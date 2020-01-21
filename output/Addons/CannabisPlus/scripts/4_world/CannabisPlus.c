@@ -36,8 +36,7 @@ class CannabisPlusConfig
 	int pumpkinSeed_count = 9;
 	
 	int potato_growtime = 8;
-	int potato_cropcount = 2;
-	
+	int potato_cropcount = 2;	
 }
 //generating CannabisPlus.json
 class CannabisPlus{
@@ -180,25 +179,25 @@ modded class PlantBase
 	private float 	m_SprayQuantity;
 	private float 	m_growtime;
 	
-	private int m_tabacco_growtime;
-	private	int m_cannabis_growtime; 
-	private int m_cannabisKush_growtime;
-	private int m_cannabisBlue_growtime;
-	private int m_pepper_growtime;
-	private int m_tomato_growtime;
-	private int m_zucchini_growtime;
-	private int m_potato_growtime;
-	private int m_pumpkin_growtime;
+	private float m_tabacco_growtime;
+	private	float m_cannabis_growtime; 
+	private float m_cannabisKush_growtime;
+	private float m_cannabisBlue_growtime;
+	private float m_pepper_growtime;
+	private float m_tomato_growtime;
+	private float m_zucchini_growtime;
+	private float m_potato_growtime;
+	private float m_pumpkin_growtime;
 	
-	private int m_tabacco_cropcount;
-	private int m_cannabis_cropcount;
-	private int m_cannabisKush_cropcount;
-	private int m_cannabisBlue_cropcount;
-	private int m_pepper_cropcount;
-	private int m_tomato_cropcount;
-	private int m_zucchini_cropcount;
-	private int m_potato_cropcount;
-	private int m_pumpkin_cropcount;
+	private float m_tabacco_cropcount;
+	private float m_cannabis_cropcount;
+	private float m_cannabisKush_cropcount;
+	private float m_cannabisBlue_cropcount;
+	private float m_pepper_cropcount;
+	private float m_tomato_cropcount;
+	private float m_zucchini_cropcount;
+	private float m_potato_cropcount;
+	private float m_pumpkin_cropcount;
 	
 	int 	m_DeleteDryPlantTime; 			// For how long in seconds can an unwatered plant exist before it disappears
 	int 	m_SpoiledRemoveTime;			// For how long in seconds a spoiled plant will exist
@@ -232,7 +231,6 @@ modded class PlantBase
 		m_IsInfested = false;
 		m_SprayQuantity = 0.0;
 		m_HasCrops = true;
-		
 		
 		RegisterNetSyncVariableBool("m_HasCrops");
 		RegisterNetSyncVariableInt("m_PlantState");
@@ -325,21 +323,35 @@ modded class PlantBase
 				break;
 
 		}
-			
+
+		Print("TYPE:" + this.GetType());
+		Print("fertility:" + fertility);
+		Print("m_GrowTime:" + m_growtime);
+		
 		float divided = (float) (60 * m_growtime + Math.RandomInt(0, 60 * 1)) / fertility;  //added m_growtime
+		Print("divided:" + divided);
+		
 		m_FullMaturityTime = divided;
 		
 		divided = (float)((60 * 30) + Math.RandomInt(0, 60 * 30)) * fertility;
+
+		Print("divided:" + divided);
+				
 		m_SpoilAfterFullMaturityTime = divided;
 
 		divided = (float)((float)m_FullMaturityTime / ((float)m_GrowthStagesCount - 2.0));
+
 		m_StateChangeTime = divided;
 
 		float count = m_CropsCount * fertility * harvesting_efficiency;
+
+		Print("harvesting_efficiency:" + harvesting_efficiency);
+		
 		m_CropsCount = (int)Math.Ceil( count );
 
 		m_PlantMaterialMultiplier = 0.1 * harvesting_efficiency;
 		
+
 		float rain_intensity = GetGame().GetWeather().GetRain().GetActual();
 		if ( rain_intensity > 0.0 )
 		{
