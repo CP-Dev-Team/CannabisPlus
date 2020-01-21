@@ -3,40 +3,40 @@ class CannabisPlusConfig
 {
 	bool removeAfterHarvest = true;		
 	
-	int tobacco_growtime = 8;
-	int tobacco_cropcount = 2;
-	int tobaccoSeed_count = 9;
+	float tobacco_growtime = 8;
+	float tobacco_cropcount = 2;
+	float tobaccoSeed_count = 1;
 	
-	int cannabis_growtime = 8;
-	int cannabis_cropcount = 2;
-	int cannabisSeed_count = 9;
+	float cannabis_growtime = 8;
+	float cannabis_cropcount = 2;
+	float cannabisSeed_count = 2;
 	
-	int cannabisKush_growtime = 8;
-	int cannabisKush_cropcount = 2;
-	int cannabisKushSeed_count = 9;
+	float cannabisKush_growtime = 8;
+	float cannabisKush_cropcount = 2;
+	float cannabisKushSeed_count = 3;
 	
-	int cannabisBlue_growtime = 8;
-	int cannabisBlue_cropcount = 2;
-	int cannabisBlueSeed_count = 9;
+	float cannabisBlue_growtime = 8;
+	float cannabisBlue_cropcount = 2;
+	float cannabisBlueSeed_count = 4;
 	
-	int pepper_growtime = 8;
-	int pepper_cropcount = 2;
-	int pepperSeed_count = 9;
+	float pepper_growtime = 8;
+	float pepper_cropcount = 2;
+	float pepperSeed_count = 5;
 	
-	int tomato_growtime = 8;
-	int tomato_cropcount = 2;
-	int tomatoSeed_count = 9;
+	float tomato_growtime = 8;
+	float tomato_cropcount = 2;
+	float tomatoSeed_count = 6;
 	
-	int zucchini_growtime = 8;
-	int zucchini_cropcount = 2;
-	int zucchiniSeed_count = 9;
+	float zucchini_growtime = 8;
+	float zucchini_cropcount = 2;
+	float zucchiniSeed_count = 7;
+	
+	float pumpkin_growtime = 8;
+	float pumpkin_cropcount = 2;
+	float pumpkinSeed_count = 8;
 
-	int pumpkin_growtime = 8;
-	int pumpkin_cropcount = 2;
-	int pumpkinSeed_count = 9;
-	
-	int potato_growtime = 8;
-	int potato_cropcount = 2;	
+	float potato_growtime = 8;
+	float potato_cropcount = 2;	
 }
 //generating CannabisPlus.json
 class CannabisPlus{
@@ -324,19 +324,12 @@ modded class PlantBase
 
 		}
 
-		Print("TYPE:" + this.GetType());
-		Print("fertility:" + fertility);
-		Print("m_GrowTime:" + m_growtime);
-		
-		float divided = (float) (60 * m_growtime + Math.RandomInt(0, 60 * 1)) / fertility;  //added m_growtime
-		Print("divided:" + divided);
-		
+		float divided = (float) (60 * m_growtime + (Math.RandomInt(0, 60 * 1) / fertility);  //added m_growtime
+	
 		m_FullMaturityTime = divided;
 		
 		divided = (float)((60 * 30) + Math.RandomInt(0, 60 * 30)) * fertility;
-
-		Print("divided:" + divided);
-				
+		
 		m_SpoilAfterFullMaturityTime = divided;
 
 		divided = (float)((float)m_FullMaturityTime / ((float)m_GrowthStagesCount - 2.0));
@@ -344,8 +337,6 @@ modded class PlantBase
 		m_StateChangeTime = divided;
 
 		float count = m_CropsCount * fertility * harvesting_efficiency;
-
-		Print("harvesting_efficiency:" + harvesting_efficiency);
 		
 		m_CropsCount = (int)Math.Ceil( count );
 
