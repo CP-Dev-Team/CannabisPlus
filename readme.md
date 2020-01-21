@@ -42,4 +42,4 @@ Growtime adds a randomizer so the time is not 100% exact.
 | potato_cropcount       |       2       | Ammount of Potato to harvest (for future use) |
 
 ## Steam-Workshop Link
-https://steamcommunity.com/sharedfiles/filedetails/?id=1684272862&searchtext=ConquerDayZ_Pack_experimental
+https://steamcommunity.com/sharedfiles/filedetails/?id=1932611410
