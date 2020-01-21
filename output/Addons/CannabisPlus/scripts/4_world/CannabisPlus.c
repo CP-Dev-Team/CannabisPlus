@@ -271,40 +271,61 @@ modded class PlantBase
 		m_pumpkin_cropcount = CannabisPlus.getInstance().GetConfig().pumpkin_cropcount;
 
 		m_GardenBase = garden_base;
-		
+
 		//sets values out of CannabisPlus.json
-		if(this.GetType() == "Plant_Cannabis") {
-			m_growtime = m_cannabis_growtime;
-			m_CropsCount = m_cannabis_cropcount;
-		} else if(this.GetType() == "Plant_CannabisBlue"){
-			m_growtime = m_cannabisBlue_growtime;
-			m_CropsCount = m_cannabisBlue_cropcount;
-		} else if(this.GetType() == "Plant_Tobacco"){
-			m_growtime = m_tabacco_growtime;
-			m_CropsCount = m_tabacco_cropcount;
-		} else if(this.GetType() == "Plant_CannabisKush"){
-			m_growtime = m_cannabisKush_growtime;
-			m_CropsCount = m_cannabisKush_cropcount;
-		} else if(this.GetType() == "Plant_Pepper"){
-			m_growtime = m_pepper_growtime;
-			m_CropsCount = m_pepper_cropcount;
-		} else if(this.GetType() == "Plant_Tomato"){
-			m_growtime = m_tomato_growtime;
-			m_CropsCount = m_tomato_cropcount;
-		} else if(this.GetType() == "Plant_Zucchini"){
-			m_growtime = m_zucchini_growtime;
-			m_CropsCount = m_zucchini_cropcount;
-		} else if(this.GetType() == "Plant_Potato"){
-			m_growtime = m_potato_growtime;
-			m_CropsCount = m_potato_cropcount;
-		} else if(this.GetType() == "Plant_Pumpkin"){
-			m_growtime = m_pumpkin_growtime;
-			m_CropsCount = m_pumpkin_cropcount;
-		} else {
-			m_growtime = 8;		
-			m_CropsCount = 5;	
+		switch(this.GetType()){
+			case "Plant_Cannabis":
+				m_growtime = m_cannabis_growtime;
+				m_CropsCount = m_cannabis_cropcount;
+				break;
+
+			case "Plant_CannabisBlue":
+				m_growtime = m_cannabisBlue_growtime;
+				m_CropsCount = m_cannabisBlue_cropcount;
+				break;
+
+			case "Plant_Tobacco":
+				m_growtime = m_tabacco_growtime;
+				m_CropsCount = m_tabacco_cropcount;
+				break;
+
+			case "Plant_CannabisKush":
+				m_growtime = m_cannabisKush_growtime;
+				m_CropsCount = m_cannabisKush_cropcount;
+				break;
+
+			case "Plant_Pepper":
+				m_growtime = m_pepper_growtime;
+				m_CropsCount = m_pepper_cropcount;
+				break;
+
+			case "Plant_Tomato":
+				m_growtime = m_tomato_growtime;
+				m_CropsCount = m_tomato_cropcount;
+				break;
+
+			case "Plant_Zucchini":
+				m_growtime = m_zucchini_growtime;
+				m_CropsCount = m_zucchini_cropcount;
+				break;
+
+			case "Plant_Potato":
+				m_growtime = m_potato_growtime;
+				m_CropsCount = m_potato_cropcount;
+				break;
+
+			case "Plant_Pumpkin":
+				m_growtime = m_pumpkin_growtime;
+				m_CropsCount = m_pumpkin_cropcount;
+				break;
+
+			default:
+				m_growtime = 8;		
+				m_CropsCount = 5;	
+				break;
+
 		}
-				
+			
 		float divided = (float) (60 * m_growtime + Math.RandomInt(0, 60 * 1)) / fertility;  //added m_growtime
 		m_FullMaturityTime = divided;
 		
