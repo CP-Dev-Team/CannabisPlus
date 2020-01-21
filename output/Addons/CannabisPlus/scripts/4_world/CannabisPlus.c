@@ -36,7 +36,8 @@ class CannabisPlusConfig
 	float pumpkinSeed_count = 8;
 
 	float potato_growtime = 8;
-	float potato_cropcount = 2;	
+	float potato_cropcount = 2;
+	int value_count = 28			// counter for values in json file to 
 }
 //generating CannabisPlus.json
 class CannabisPlus{
@@ -162,21 +163,7 @@ modded class Plant_Pumpkin
 }
 
 modded class PlantBase
-{
-	private float 	m_InfestationChance;
-	
-	private int 	m_GrowthStagesCount; 
-	private int 	m_CropsCount;
-	private bool 	m_HasCrops;
-	private string 	m_CropsType; 
-	private float 	m_PlantMaterialMultiplier; 
-	
-	private int 	m_PlantState;
-	private int 	m_PlantStateIndex;
-	private float 	m_CurrentPlantMaterialQuantity;
-	
-	private bool 	m_IsInfested;
-	private float 	m_SprayQuantity;
+{	
 	private float 	m_growtime;
 	
 	private float m_tabacco_growtime;
@@ -324,7 +311,7 @@ modded class PlantBase
 
 		}
 
-		float divided = (float) (60 * m_growtime + (Math.RandomInt(0, 60 * 1) / fertility);  //added m_growtime
+		float divided = (float) ((60 * m_growtime + (Math.RandomInt(0, 60 * 1)) / fertility;  //added m_growtime
 	
 		m_FullMaturityTime = divided;
 		
