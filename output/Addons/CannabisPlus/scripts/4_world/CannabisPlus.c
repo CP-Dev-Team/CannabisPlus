@@ -37,7 +37,7 @@ class CannabisPlusConfig
 
 	float potato_growtime = 8;
 	float potato_cropcount = 2;
-	int value_count = 28			// counter for values in json file to 
+	int value_count = 28;			// counter for values in json file to 
 }
 //generating CannabisPlus.json
 class CannabisPlus{
@@ -261,6 +261,8 @@ modded class PlantBase
 		if(fertility > 1.0) {
 			fertility = 2.0;
 		}
+		
+		Print("FERT:" + fertility );
 		
 		//sets values out of CannabisPlus.json
 		switch(this.GetType()){
