@@ -257,6 +257,9 @@ modded class PlantBase
 
 		m_GardenBase = garden_base;
 
+		// set fertility from default 1.5226 to 2
+		fertility = 2.0;
+
 		//sets values out of CannabisPlus.json
 		switch(this.GetType()){
 			case "Plant_Cannabis":
@@ -311,7 +314,7 @@ modded class PlantBase
 
 		}
 
-		float divided = (float) ((60 * m_growtime + (Math.RandomInt(0, 60 * 1)) / fertility;  //added m_growtime
+		float divided = (float) ((60 * m_growtime + (Math.RandomInt(0, 60 * 1)) / fertility;  
 	
 		m_FullMaturityTime = divided;
 		
