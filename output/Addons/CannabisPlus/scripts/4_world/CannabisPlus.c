@@ -37,7 +37,7 @@ class CannabisPlusConfig
 
 	float potato_growtime = 8;
 	float potato_cropcount = 2;
-	int value_count = 28;			// counter for values in json file to 
+	//int value_count = 28;			// counter for values in json file to 
 }
 //generating CannabisPlus.json
 class CannabisPlus{
@@ -186,12 +186,6 @@ modded class PlantBase
 	private float m_potato_cropcount;
 	private float m_pumpkin_cropcount;
 	
-	//int 	m_DeleteDryPlantTime; 			// For how long in seconds can an unwatered plant exist before it disappears
-	//int 	m_SpoiledRemoveTime;			// For how long in seconds a spoiled plant will exist
-	//int 	m_FullMaturityTime;				// How much time needs plant to be full grown in seconds
-	//int 	m_SpoilAfterFullMaturityTime;	// How long in seconds it takes for plant to be spoiled after it is full grown
-	//int 	m_StateChangeTime;				// For how long in seconds will plant stay in one state before its going to next state
-	
 	ref Timer m_DeleteDryPlantTimer = NULL;
 	
 	private GardenBase m_GardenBase = NULL;	
@@ -261,8 +255,6 @@ modded class PlantBase
 		if(fertility > 1.0) {
 			fertility = 2.0;
 		}
-		
-		Print("FERT:" + fertility );
 		
 		//sets values out of CannabisPlus.json
 		switch(this.GetType()){
