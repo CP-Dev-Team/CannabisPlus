@@ -186,11 +186,11 @@ modded class PlantBase
 	private float m_potato_cropcount;
 	private float m_pumpkin_cropcount;
 	
-	int 	m_DeleteDryPlantTime; 			// For how long in seconds can an unwatered plant exist before it disappears
-	int 	m_SpoiledRemoveTime;			// For how long in seconds a spoiled plant will exist
-	int 	m_FullMaturityTime;				// How much time needs plant to be full grown in seconds
-	int 	m_SpoilAfterFullMaturityTime;	// How long in seconds it takes for plant to be spoiled after it is full grown
-	int 	m_StateChangeTime;				// For how long in seconds will plant stay in one state before its going to next state
+	//int 	m_DeleteDryPlantTime; 			// For how long in seconds can an unwatered plant exist before it disappears
+	//int 	m_SpoiledRemoveTime;			// For how long in seconds a spoiled plant will exist
+	//int 	m_FullMaturityTime;				// How much time needs plant to be full grown in seconds
+	//int 	m_SpoilAfterFullMaturityTime;	// How long in seconds it takes for plant to be spoiled after it is full grown
+	//int 	m_StateChangeTime;				// For how long in seconds will plant stay in one state before its going to next state
 	
 	ref Timer m_DeleteDryPlantTimer = NULL;
 	
@@ -257,9 +257,11 @@ modded class PlantBase
 
 		m_GardenBase = garden_base;
 
-		// set fertility from default 1.5226 to 2
-		fertility = 2.0;
-
+		// set fertility from default 1 to 2 if fertility larger then 1 to double income
+		if(fertility > 1.0) {
+			fertility = 2.0;
+		}
+		
 		//sets values out of CannabisPlus.json
 		switch(this.GetType()){
 			case "Plant_Cannabis":
