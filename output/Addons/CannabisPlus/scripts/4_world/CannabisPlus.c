@@ -5,35 +5,35 @@ class CannabisPlusConfig
 	
 	float tobacco_growtime = 8;
 	float tobacco_cropcount = 2;
-	float tobaccoSeed_count = 1;
+	float tobaccoSeed_count = 9;
 	
 	float cannabis_growtime = 8;
 	float cannabis_cropcount = 2;
-	float cannabisSeed_count = 2;
+	float cannabisSeed_count = 9;
 	
 	float cannabisKush_growtime = 8;
 	float cannabisKush_cropcount = 2;
-	float cannabisKushSeed_count = 3;
+	float cannabisKushSeed_count = 9;
 	
 	float cannabisBlue_growtime = 8;
 	float cannabisBlue_cropcount = 2;
-	float cannabisBlueSeed_count = 4;
+	float cannabisBlueSeed_count = 9;
 	
 	float pepper_growtime = 8;
 	float pepper_cropcount = 2;
-	float pepperSeed_count = 5;
+	float pepperSeed_count = 9;
 	
 	float tomato_growtime = 8;
 	float tomato_cropcount = 2;
-	float tomatoSeed_count = 6;
+	float tomatoSeed_count = 9;
 	
 	float zucchini_growtime = 8;
 	float zucchini_cropcount = 2;
-	float zucchiniSeed_count = 7;
+	float zucchiniSeed_count = 9;
 	
 	float pumpkin_growtime = 8;
 	float pumpkin_cropcount = 2;
-	float pumpkinSeed_count = 8;
+	float pumpkinSeed_count = 9;
 
 	float potato_growtime = 8;
 	float potato_cropcount = 2;
