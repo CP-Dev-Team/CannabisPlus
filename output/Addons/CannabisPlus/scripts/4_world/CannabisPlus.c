@@ -310,25 +310,28 @@ modded class PlantBase
 
 		}
 
-		float divided = (float) ((60 * m_growtime + (Math.RandomInt(0, 60 * 1)) / fertility;  
-	
-		m_FullMaturityTime = divided;
-		
-		divided = (float)((60 * 30) + Math.RandomInt(0, 60 * 30)) * fertility;
-		
+		m_FullMaturityTime 				= (float) ((60 * m_growtime + (Math.RandomInt(0, 60 * 1)) / fertility;
+		m_SpoilAfterFullMaturityTime 	= (float)((60 * 30) + Math.RandomInt(0, 60 * 30)) * fertility;
+		m_StateChangeTime 				= (float)((float)m_FullMaturityTime / ((float)m_GrowthStagesCount - 2.0));
+
+		/*
+		float divided = (float) ((60 * m_growtime + (Math.RandomInt(0, 60 * 1)) / fertility;  	
+		m_FullMaturityTime = divided;		
+		divided = (float)((60 * 30) + Math.RandomInt(0, 60 * 30)) * fertility;		
 		m_SpoilAfterFullMaturityTime = divided;
-
 		divided = (float)((float)m_FullMaturityTime / ((float)m_GrowthStagesCount - 2.0));
-
 		m_StateChangeTime = divided;
-
 		float count = m_CropsCount * fertility * harvesting_efficiency;
-		
 		m_CropsCount = (int)Math.Ceil( count );
-
 		m_PlantMaterialMultiplier = 0.1 * harvesting_efficiency;
-		
+		/*
 
+		/* DEBUG-OUTPUT */
+		Print("m_GrowthStagesCount: " + m_GrowthStagesCount);
+		Print("m_CropsCount: " + m_CropsCount);
+		Print("m_PlantMaterialMultiplier: " + m_PlantMaterialMultiplier);
+		Print("harvesting_efficiency: " + harvesting_efficiency);
+		
 		float rain_intensity = GetGame().GetWeather().GetRain().GetActual();
 		if ( rain_intensity > 0.0 )
 		{
