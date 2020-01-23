@@ -212,10 +212,7 @@ modded class PlantBase
 		m_IsInfested = false;
 		m_SprayQuantity = 0.0;
 		m_HasCrops = true;
-		
-		RegisterNetSyncVariableBool("m_HasCrops");
-		RegisterNetSyncVariableInt("m_PlantState");
-		RegisterNetSyncVariableInt("m_PlantStateIndex");
+
 	}
 	
 	void ~PlantBase()
