@@ -14,6 +14,7 @@ class CfgPatches
 		};
 	};
 };
+
 class CfgHorticulture
 {
 	class Plants
@@ -48,6 +49,7 @@ class CfgHorticulture
 		};
 	};
 };
+
 class CfgVehicles
 {
 	class Static;
