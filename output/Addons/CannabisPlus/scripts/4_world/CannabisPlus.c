@@ -313,8 +313,6 @@ modded class PlantBase
 			m_FullMaturityTime = (float) ((60 * m_growtime + (Math.RandomInt(0, 60 * 1)) / fertility;
 		}
 		
-		
-
 		m_SpoilAfterFullMaturityTime 	= (float) ((60 * 30) + Math.RandomInt(0, 60 * 30)) * fertility;
 
 		m_StateChangeTime 				= (float) ((float)m_FullMaturityTime / ((float)m_GrowthStagesCount - 2.0));
