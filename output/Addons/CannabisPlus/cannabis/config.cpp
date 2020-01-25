@@ -1022,7 +1022,7 @@ class CfgVehicles
 		descriptionShort="Some tobacco leaves.";
 		model="CannabisPlus\cannabis\tobacco.p3d";
 		ContinuousActions[]={159,185};
-		rotationFlags=12;
+		rotationFlags=16;
 		itemSize[]={1,1};
 		weight=256;
 		varQuantityInit=200;
