@@ -1024,10 +1024,14 @@ class CfgVehicles
 		ContinuousActions[]={159,185};
 		rotationFlags=12;
 		itemSize[]={1,1};
-		weight=265;
+		weight=256;
 		varQuantityInit=200;
 		varQuantityMin=0;
 		varQuantityMax=200;
+		itemBehaviour=2;
+        placement="ForceSlopeOnTerrain";
+		//SingleUseActions[]={527};
+        //InteractActions[]={1021,1022};
 		isMeleeWeapon=1;
 		hiddenSelections[]=
 		{

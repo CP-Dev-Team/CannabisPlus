@@ -20,6 +20,6 @@ class Tobacco : Edible_Base
 		super.SetActions();
 		
 		AddAction(ActionForceFeed);
-		AddAction(ActionEatFruit);
+		AddAction(ActionEatFruit);		
 	}
 }
