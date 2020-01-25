@@ -37,7 +37,6 @@ class CannabisPlusConfig
 
 	float potato_growtime = 8;
 	float potato_cropcount = 2;
-	//int value_count = 28;			// counter for values in json file to 
 }
 //generating CannabisPlus.json
 class CannabisPlus{
@@ -225,6 +224,8 @@ modded class PlantBase
 	
 	override void Init( GardenBase garden_base, float fertility, float harvesting_efficiency, float water)
 	{	
+		private bool isFertilized = false;
+		
 		//reads settings from CannabisPlus.json
 		m_tabacco_growtime =  CannabisPlus.getInstance().GetConfig().tobacco_growtime;
 		m_cannabis_growtime =  CannabisPlus.getInstance().GetConfig().cannabis_growtime;
@@ -247,10 +248,10 @@ modded class PlantBase
 		m_pumpkin_cropcount = CannabisPlus.getInstance().GetConfig().pumpkin_cropcount;
 
 		m_GardenBase = garden_base;
-
+		
 		// set fertility from default 1 to 2 if fertility larger then 1 to double income
 		if(fertility > 1.0) {
-			fertility = 2.0;
+			isFertilized = true;
 		}
 		
 		//sets values out of CannabisPlus.json
@@ -307,42 +308,23 @@ modded class PlantBase
 
 		}
 
-		if(fertility == 2.0){
-			m_FullMaturityTime = (float) (((60 * m_growtime + (Math.RandomInt(0, 60 * 1)) / fertility) * 0.9;	
+		if(isFertilized) {
+			m_FullMaturityTime = (float) ((48 * m_growtime) + Math.RandomInt(0, 30)) / fertility; 
 		} else {
-			m_FullMaturityTime = (float) ((60 * m_growtime + (Math.RandomInt(0, 60 * 1)) / fertility;
+			m_FullMaturityTime = (float) ((48 * m_growtime) + Math.RandomInt(0, 30)); 
 		}
 		
 		m_SpoilAfterFullMaturityTime 	= (float) ((60 * 30) + Math.RandomInt(0, 60 * 30)) * fertility;
 
 		m_StateChangeTime 				= (float) ((float)m_FullMaturityTime / ((float)m_GrowthStagesCount - 2.0));
 
-		m_CropsCount					= (int)Math.Ceil( m_CropsCount * fertility * harvesting_efficiency);
-
+		if(isFertilized) {
+			m_CropsCount = m_CropsCount * harvesting_efficiency * 2;
+		} else {
+			m_CropsCount = m_CropsCount * harvesting_efficiency;
+		}
+		
 		m_PlantMaterialMultiplier 		= 0.1 * harvesting_efficiency;
-
-		/*
-		float divided = (float) ((60 * m_growtime + (Math.RandomInt(0, 60 * 1)) / fertility;  	
-		m_FullMaturityTime = divided;		
-
-		divided = (float)((60 * 30) + Math.RandomInt(0, 60 * 30)) * fertility;		
-		m_SpoilAfterFullMaturityTime = divided;
-
-		divided = (float)((float)m_FullMaturityTime / ((float)m_GrowthStagesCount - 2.0));
-		m_StateChangeTime = divided;
-
-		float count = m_CropsCount * fertility * harvesting_efficiency;
-		m_CropsCount = (int)Math.Ceil( count );
-		m_PlantMaterialMultiplier = 0.1 * harvesting_efficiency;
-		/*
-
-		/* DEBUG-OUTPUT */
-		Print("m_FullMaturityTime: " + m_FullMaturityTime);
-		Print("m_StateChangeTime: " + m_StateChangeTime);
-		Print("m_GrowthStagesCount: " + m_GrowthStagesCount);
-		Print("m_CropsCount: " + m_CropsCount);
-		Print("m_PlantMaterialMultiplier: " + m_PlantMaterialMultiplier);
-		Print("harvesting_efficiency: " + harvesting_efficiency);
 		
 		float rain_intensity = GetGame().GetWeather().GetRain().GetActual();
 		if ( rain_intensity > 0.0 )

@@ -2,74 +2,36 @@ class CfgPatches
 {
 	class CannabisPlus_Gear_Cultivation
 	{
-		units[]={
-			"Tobacco"
-		};
+		units[]={};
 		weapons[]={};
 		requiredVersion=0.1;
 		requiredAddons[]=
 		{
 			"DZ_Data",
-			"DZ_Gear_Food"
+			"DZ_Gear_Food",
+			"DZ_Gear_Medical",
+			"DZ_Gear_Tools"
 		};
 	};
 };
-
-class CfgHorticulture
-{
-	class Plants
-	{
-		class Plant_Tobacco
-		{
-			infestedTex="dz\gear\cultivation\data\zucchini_plant_insect_co.paa";
-			infestedMat="";
-			healthyTex="dz\gear\cultivation\data\zucchini_plant_co.paa";
-			healthyMat="dz\gear\cultivation\data\zucchini_plant.rvmat";
-		};
-		class Plant_Cannabis
-		{
-			infestedTex="dz\gear\cultivation\data\cannabis_plant_insect_co.paa";
-			infestedMat="dz\gear\cultivation\data\cannabis_plant_insect.rvmat";
-			healthyTex="dz\gear\cultivation\data\cannabis_plant_co.paa";
-			healthyMat="dz\gear\cultivation\data\cannabis_plant.rvmat";
-		};
-		class Plant_CannabisKush
-		{
-			infestedTex="dz\gear\cultivation\data\cannabis_plant_insect_co.paa";
-			infestedMat="dz\gear\cultivation\data\cannabis_plant_insect.rvmat";
-			healthyTex="CannabisPlus\cannabis\data\cannabis_plant_kush.paa";
-			healthyMat="dz\gear\cultivation\data\cannabis_plant.rvmat";
-		};
-		class Plant_CannabisBlue
-		{
-			infestedTex="dz\gear\cultivation\data\cannabis_plant_insect_co.paa";
-			infestedMat="dz\gear\cultivation\data\cannabis_plant_insect.rvmat";
-			healthyTex="CannabisPlus\cannabis\data\cannabis_plant_blue.paa";
-			healthyMat="dz\gear\cultivation\data\cannabis_plant.rvmat";
-		};
-	};
-};
-
 class CfgVehicles
 {
-	class Static;
 	class Inventory_Base;
-	class HouseNoDestruct;
 	class Edible_Base;
 	class SeedBase;
 	class PlantBase;
 	class FoodAnimationSources;
+	class ZucchiniSeedsPack;
+	class ZucchiniSeeds;
+	class Plant_Zucchini;
 	class FruitStageTransitions;
-	class TobaccoSeeds: SeedBase
+	class Heatpack;
+	class TobaccoSeeds: ZucchiniSeeds
 	{
 		scope=2;
 		displayName="Tobacco Seeds";
 		descriptionShort="A handful of tobacco seeds.";
 		model="\dz\gear\cultivation\Zucchini_seeds.p3d";
-		canBeSplit=1;
-		varQuantityInit=20;
-		varQuantityMin=0;
-		varQuantityMax=20;
 		class Horticulture
 		{
 			PlantType="Plant_Tobacco";
@@ -77,265 +39,61 @@ class CfgVehicles
 	};
 	class CannabisSeeds: SeedBase
 	{
-		scope=2;
 		displayName="Cannabis Seeds";
 		descriptionShort="A handful of cannabis seeds.";
-		model="\dz\gear\cultivation\cannabis_seeds.p3d";
-		canBeSplit=1;
-		varQuantityInit=20;
-		varQuantityMin=0;
-		varQuantityMax=20;
-		class Horticulture
-		{
-			PlantType="Plant_Cannabis";
-		};
 	};
-	class CannabisSeedsKush: SeedBase
+	class CannabisSeedsKush: CannabisSeeds
 	{
-		scope=2;
 		displayName="Purple Kush Cannabis Seeds";
 		descriptionShort="A handful of Purple Kush cannabis seeds.";
-		model="\dz\gear\cultivation\cannabis_seeds.p3d";
-		canBeSplit=1;
-		varQuantityInit=20;
-		varQuantityMin=0;
-		varQuantityMax=20;
 		class Horticulture
 		{
 			PlantType="Plant_CannabisKush";
 		};
 	};
-	class CannabisSeedsBlue: SeedBase
+	class CannabisSeedsBlue: CannabisSeeds
 	{
-		scope=2;
 		displayName="Blue God Cannabis Seeds";
 		descriptionShort="A handful of Blue God cannabis seeds.";
-		model="\dz\gear\cultivation\cannabis_seeds.p3d";
-		canBeSplit=1;
-		varQuantityInit=20;
-		varQuantityMin=0;
-		varQuantityMax=20;
 		class Horticulture
 		{
 			PlantType="Plant_CannabisBlue";
 		};
 	};
-	class TobaccoSeedsPack: Inventory_Base
+	class TobaccoSeedsPack: ZucchiniSeedsPack
 	{
-		scope=2;
 		displayName="Packed Tobacco Seeds";
 		descriptionShort="A package of tobacco seeds.";
-		model="\dz\gear\cultivation\Zucchini_seeds_pack.p3d";
-		rotationFlags=17;
-		quantityBar=1;
-		itemSize[]={1,1};
-		weight=10;
-		spawnOffset=0;
-		lootCategory="Materials";
-		lootTag[]=
-		{
-			"Farm",
-			"Kitchen",
-			"Forester"
-		};
 		hiddenSelections[]=
 		{
 			"zbytek"
 		};
 		hiddenSelectionsTextures[]=
 		{
-			"CannabisPlus\cannabis\data\tobacco_seeds_co.paa"
+			"CannabisPlus\cannabis\data\tobacco_seeds_co.paa",
 		};
-		class DamageSystem
-		{
-			class GlobalHealth
-			{
-				class Health
-				{
-					hitpoints=5;
-					healthLevels[]=
-					{
-						
-						{
-							1,
-							
-							{
-								"DZ\gear\cultivation\data\zucchini_seeds.rvmat"
-							}
-						},
-						
-						{
-							0.69999999,
-							
-							{
-								"DZ\gear\cultivation\data\zucchini_seeds.rvmat"
-							}
-						},
-						
-						{
-							0.5,
-							
-							{
-								"DZ\gear\cultivation\data\zucchini_seeds_damage.rvmat"
-							}
-						},
-						
-						{
-							0.30000001,
-							
-							{
-								"DZ\gear\cultivation\data\zucchini_seeds_damage.rvmat"
-							}
-						},
-						
-						{
-							0,
-							
-							{
-								"DZ\gear\cultivation\data\zucchini_seeds_destruct.rvmat"
-							}
-						}
-					};
-				};
-			};
-		};
+		hiddenSelectionsMaterials[]=
+        {
+            "DZ\gear\cultivation\data\zucchini_seeds.rvmat",
+			"DZ\gear\cultivation\data\zucchini_seeds.rvmat",
+			"DZ\gear\cultivation\data\zucchini_seeds_damage.rvmat",
+			"DZ\gear\cultivation\data\zucchini_seeds_damage.rvmat",
+			"DZ\gear\cultivation\data\zucchini_seeds_destruct.rvmat"
+        };
 		class Horticulture
 		{
 			ContainsSeedsType="TobaccoSeeds";
-			ContainsSeedsQuantity=9;
-		};
-		class UserActions
-		{
-			class EmptyPack
-			{
-				displayNameDefault="$STR_CfgVehicles_TobaccoSeedsPack_UserActions_EmptyPack0";
-				displayName="$STR_CfgVehicles_TobaccoSeedsPack_UserActions_EmptyPack1";
-				position="action";
-				onlyForPlayer=1;
-				radius=2;
-				condition="true";
-				statement="this callMethod ['EmptySeedPack', _person];";
-			};
-		};
-		class AnimEvents
-		{
-			class SoundWeapon
-			{
-				class pickup
-				{
-					soundSet="seedpack_pickup_SoundSet";
-					id=797;
-				};
-			};
 		};
 	};
 	class CannabisSeedsPack: Inventory_Base
 	{
-		scope=2;
 		displayName="Packed Cannabis Seeds";
 		descriptionShort="A pack of cannabis seeds.";
-		model="\dz\gear\cultivation\cannabis_seeds_pack.p3d";
-		rotationFlags=17;
-		quantityBar=1;
-		itemSize[]={1,1};
-		weight=10;
-		spawnOffset=0;
-		lootCategory="Materials";
-		lootTag[]=
-		{
-			"Farm",
-			"Kitchen",
-			"Forester"
-		};
-		class DamageSystem
-		{
-			class GlobalHealth
-			{
-				class Health
-				{
-					hitpoints=5;
-					healthLevels[]=
-					{
-						
-						{
-							1,
-							
-							{
-								"DZ\gear\cultivation\data\cannabis_seeds.rvmat"
-							}
-						},
-						
-						{
-							0.69999999,
-							
-							{
-								"DZ\gear\cultivation\data\cannabis_seeds.rvmat"
-							}
-						},
-						
-						{
-							0.5,
-							
-							{
-								"DZ\gear\cultivation\data\cannabis_seeds_damage.rvmat"
-							}
-						},
-						
-						{
-							0.30000001,
-							
-							{
-								"DZ\gear\cultivation\data\cannabis_seeds_damage.rvmat"
-							}
-						},
-						
-						{
-							0,
-							
-							{
-								"DZ\gear\cultivation\data\cannabis_seeds_destruct.rvmat"
-							}
-						}
-					};
-				};
-			};
-		};
-		class Horticulture
-		{
-			ContainsSeedsType="CannabisSeeds";
-			ContainsSeedsQuantity=9;
-		};
-		class UserActions
-		{
-			class EmptyPack
-			{
-				displayNameDefault="$STR_CfgVehicles_CannabisSeedsPack_UserActions_EmptyPack0";
-				displayName="$STR_CfgVehicles_CannabisSeedsPack_UserActions_EmptyPack1";
-				position="action";
-				onlyForPlayer=1;
-				radius=2;
-				condition="true";
-				statement="this callMethod ['EmptySeedPack', _person];";
-			};
-		};
-		class AnimEvents
-		{
-			class SoundWeapon
-			{
-				class pickup
-				{
-					soundSet="seedpack_pickup_SoundSet";
-					id=797;
-				};
-			};
-		};
 	};
-	class CannabisSeedsPackKush: Inventory_Base
+	class CannabisSeedsPackKush: CannabisSeedsPack
 	{
-		scope=2;
 		displayName="Pack of Purple Kush Cannabis Seeds";
 		descriptionShort="A pack of Purple Kush cannabis seeds.";
-		model="\dz\gear\cultivation\zucchini_seeds_pack.p3d";
 		hiddenSelections[]=
 		{
 			"zbytek"
@@ -344,107 +102,15 @@ class CfgVehicles
 		{
 			"CannabisPlus\cannabis\data\cannabis_seeds_kush.paa"
 		};
-		rotationFlags=17;
-		quantityBar=1;
-		itemSize[]={1,1};
-		weight=10;
-		spawnOffset=0;
-		lootCategory="Materials";
-		lootTag[]=
-		{
-			"Farm",
-			"Kitchen",
-			"Forester"
-		};
-		class DamageSystem
-		{
-			class GlobalHealth
-			{
-				class Health
-				{
-					hitpoints=5;
-					healthLevels[]=
-					{
-						
-						{
-							1,
-							
-							{
-								"DZ\gear\cultivation\data\cannabis_seeds.rvmat"
-							}
-						},
-						
-						{
-							0.69999999,
-							
-							{
-								"DZ\gear\cultivation\data\cannabis_seeds.rvmat"
-							}
-						},
-						
-						{
-							0.5,
-							
-							{
-								"DZ\gear\cultivation\data\cannabis_seeds_damage.rvmat"
-							}
-						},
-						
-						{
-							0.30000001,
-							
-							{
-								"DZ\gear\cultivation\data\cannabis_seeds_damage.rvmat"
-							}
-						},
-						
-						{
-							0,
-							
-							{
-								"DZ\gear\cultivation\data\cannabis_seeds_destruct.rvmat"
-							}
-						}
-					};
-				};
-			};
-		};
 		class Horticulture
 		{
 			ContainsSeedsType="CannabisSeedsKush";
-			ContainsSeedsQuantity=9;
-		};
-		class UserActions
-		{
-			class EmptyPack
-			{
-				displayNameDefault="$STR_CfgVehicles_CannabisSeedsPack_UserActions_EmptyPack0";
-				displayName="$STR_CfgVehicles_CannabisSeedsPack_UserActions_EmptyPack1";
-				position="action";
-				onlyForPlayer=1;
-				radius=2;
-				condition="true";
-				statement="this callMethod ['EmptySeedPack', _person];";
-			};
-		};
-		class AnimEvents
-		{
-			class SoundWeapon
-			{
-				class pickup
-				{
-					soundSet="seedpack_pickup_SoundSet";
-					id=797;
-				};
-			};
 		};
 	};
-	class CannabisSeedsPackBlue: Inventory_Base
+	class CannabisSeedsPackBlue: CannabisSeedsPack
 	{
-		scope=2;
 		displayName="Pack of Blue God Cannabis Seeds";
 		descriptionShort="A pack of Blue God cannabis seeds.";
-		model="\dz\gear\cultivation\zucchini_seeds_pack.p3d";
 		hiddenSelections[]=
 		{
 			"zbytek"
@@ -452,133 +118,19 @@ class CfgVehicles
 		hiddenSelectionsTextures[]=
 		{
 			"CannabisPlus\cannabis\data\cannabis_seeds_blue.paa"
-		};
-		rotationFlags=17;
-		quantityBar=1;
-		itemSize[]={1,1};
-		weight=10;
-		spawnOffset=0;
-		lootCategory="Materials";
-		lootTag[]=
-		{
-			"Farm",
-			"Kitchen",
-			"Forester"
-		};
-		class DamageSystem
-		{
-			class GlobalHealth
-			{
-				class Health
-				{
-					hitpoints=5;
-					healthLevels[]=
-					{
-						
-						{
-							1,
-							
-							{
-								"DZ\gear\cultivation\data\cannabis_seeds.rvmat"
-							}
-						},
-						
-						{
-							0.69999999,
-							
-							{
-								"DZ\gear\cultivation\data\cannabis_seeds.rvmat"
-							}
-						},
-						
-						{
-							0.5,
-							
-							{
-								"DZ\gear\cultivation\data\cannabis_seeds_damage.rvmat"
-							}
-						},
-						
-						{
-							0.30000001,
-							
-							{
-								"DZ\gear\cultivation\data\cannabis_seeds_damage.rvmat"
-							}
-						},
-						
-						{
-							0,
-							
-							{
-								"DZ\gear\cultivation\data\cannabis_seeds_destruct.rvmat"
-							}
-						}
-					};
-				};
-			};
-		};
+		};		
 		class Horticulture
 		{
 			ContainsSeedsType="CannabisSeedsBlue";
-			ContainsSeedsQuantity=9;
-		};
-		class UserActions
-		{
-			class EmptyPack
-			{
-				displayNameDefault="$STR_CfgVehicles_CannabisSeedsPack_UserActions_EmptyPack0";
-				displayName="$STR_CfgVehicles_CannabisSeedsPack_UserActions_EmptyPack1";
-				position="action";
-				onlyForPlayer=1;
-				radius=2;
-				condition="true";
-				statement="this callMethod ['EmptySeedPack', _person];";
-			};
-		};
-		class AnimEvents
-		{
-			class SoundWeapon
-			{
-				class pickup
-				{
-					soundSet="seedpack_pickup_SoundSet";
-					id=797;
-				};
-			};
 		};
 	};
-	class Plant_Tobacco: PlantBase
+	class Plant_Tobacco: Plant_Zucchini
 	{
-		scope=2;
 		displayName="Tobacco Plant";
 		descriptionShort="A tobacco plant.";
-		model="DZ\gear\cultivation\zucchini_plant.p3d";
-		hiddenSelections[]=
-		{
-			"plantstage_06",
-			"plantstage_02",
-			"plantstage_03",
-			"plantstage_04",
-			"plantstage_05",
-			"plantstage_01",
-			"plantstage_06_crops",
-			"plantstage_04_crops",
-			"plantstage_05_crops",
-			"infestedparts"
-		};
 		hiddenSelectionsTextures[]=
 		{
-			"CannabisPlus\cannabis\data\tobacco_plant_co.paa",
-			"CannabisPlus\cannabis\data\tobacco_plant_co.paa",
-			"CannabisPlus\cannabis\data\tobacco_plant_co.paa",
-			"CannabisPlus\cannabis\data\tobacco_plant_co.paa",
-			"CannabisPlus\cannabis\data\tobacco_plant_co.paa",
-			"CannabisPlus\cannabis\data\tobacco_plant_co.paa",
-			"CannabisPlus\cannabis\data\tobacco_plant_co.paa",
-			"CannabisPlus\cannabis\data\tobacco_plant_co.paa",
-			"CannabisPlus\cannabis\data\tobacco_plant_co.paa",
-			"CannabisPlus\cannabis\data\tobacco_plant_co.paa"
+			"CannabisPlus\cannabis\data\tobacco_plant_co.paa"			
 		};
 		hiddenSelectionsMaterials[]=
 		{
@@ -587,30 +139,13 @@ class CfgVehicles
 		class Horticulture
 		{
 			GrowthStagesCount=5;
-			CropsCount=3;
 			CropsType="Tobacco";
 		};
 	};
 	class Plant_Cannabis: PlantBase
-	{
-		scope=2;
-		model="DZ\gear\cultivation\Cannabis_plant.p3d";
+	{	scope=2;
 		displayName="Cannabis Plant";
 		descriptionShort="A Cannabis plant.";
-		hiddenSelectionsTextures[]=
-		{
-			"dz\gear\cultivation\data\Cannabis_plant_co.paa"
-		};
-		hiddenSelectionsMaterials[]=
-		{
-			"dz\gear\cultivation\data\Cannabis_plant.rvmat"
-		};
-		class Horticulture
-		{
-			GrowthStagesCount=6;
-			CropsCount=2;
-			CropsType="Cannabis";
-		};
 	};
 	class Plant_CannabisKush: PlantBase
 	{
@@ -684,7 +219,6 @@ class CfgVehicles
 	};
 	class Cannabis: Edible_Base
 	{
-		scope=2;
 		displayName="Cannabis";
 		descriptionShort="Some cannabis bud.";
 		weight=14;
@@ -714,10 +248,6 @@ class CfgVehicles
 		};
 		hiddenSelectionsTextures[]=
 		{
-			"CannabisPlus\cannabis\data\cannabis_seedman_raw_kush.paa",
-			"CannabisPlus\cannabis\data\cannabis_seedman_raw_kush.paa",
-			"CannabisPlus\cannabis\data\cannabis_seedman_raw_kush.paa",
-			"CannabisPlus\cannabis\data\cannabis_seedman_raw_kush.paa",
 			"CannabisPlus\cannabis\data\cannabis_seedman_raw_kush.paa"
 		};
 		hiddenSelectionsMaterials[]=
@@ -877,10 +407,6 @@ class CfgVehicles
 		};
 		hiddenSelectionsTextures[]=
 		{
-			"CannabisPlus\cannabis\data\cannabis_seedman_raw_blue.paa",
-			"CannabisPlus\cannabis\data\cannabis_seedman_raw_blue.paa",
-			"CannabisPlus\cannabis\data\cannabis_seedman_raw_blue.paa",
-			"CannabisPlus\cannabis\data\cannabis_seedman_raw_blue.paa",
 			"CannabisPlus\cannabis\data\cannabis_seedman_raw_blue.paa"
 		};
 		hiddenSelectionsMaterials[]=
@@ -1021,25 +547,25 @@ class CfgVehicles
 		displayName="Tobacco";
 		descriptionShort="Some tobacco leaves.";
 		model="CannabisPlus\cannabis\tobacco.p3d";
-		ContinuousActions[]={159,185};
 		rotationFlags=16;
+		lootCategory="Crafted";
+		weight=0;
 		itemSize[]={1,1};
-		weight=256;
-		varQuantityInit=200;
+		stackedUnit="g";
+		absorbency=0.2;
+		varQuantityInit=10;
 		varQuantityMin=0;
-		varQuantityMax=200;
-		itemBehaviour=2;
-        placement="ForceSlopeOnTerrain";
-		//SingleUseActions[]={527};
-        //InteractActions[]={1021,1022};
-		isMeleeWeapon=1;
+		varQuantityMax=10;
+		quantityBar=1;
+		inventorySlot="Ingredient";
+		containsSeedsType="";
+		containsSeedsQuantity="0";
 		hiddenSelections[]=
 		{
 			"zbytek"
 		};
 		hiddenSelectionsTextures[]=
 		{
-			// hier
 			"CannabisPlus\cannabis\data\tobacco_co.paa"
 		};
 	};
@@ -1433,7 +959,7 @@ class CfgVehicles
 							0.5,
 							
 							{
-								"CannabisPlus\cannabis\data\cannabis_brick.rvmat"
+								"CannabisPlus\cannabis\data\cannabis_brick_damage.rvmat"
 							}
 						},
 						
@@ -1441,7 +967,7 @@ class CfgVehicles
 							0.30000001,
 							
 							{
-								"CannabisPlus\cannabis\data\cannabis_brick.rvmat"
+								"CannabisPlus\cannabis\data\cannabis_brick_damage.rvmat"
 							}
 						},
 						
@@ -1449,7 +975,7 @@ class CfgVehicles
 							0,
 							
 							{
-								"CannabisPlus\cannabis\data\cannabis_brick.rvmat"
+								"CannabisPlus\cannabis\data\cannabis_brick_destruct.rvmat"
 							}
 						}
 					};
@@ -1473,9 +999,8 @@ class CfgVehicles
 			};
 		};
 	};
-	class CannabisBrickKush: Inventory_Base
+	class CannabisBrickKush: CannabisBrick
 	{
-		scope=2;
 		displayName="Brick of Purple Kush Weed";
 		descriptionShort="One pound of Purple Kush weed.";
 		model="\dz\gear\containers\FirstAidKit.p3d";
@@ -1487,81 +1012,8 @@ class CfgVehicles
 		{
 			"CannabisPlus\cannabis\data\cannabis_brick_kush.paa"
 		};
-		lootCategory="Crafted";
-		rotationFlags=17;
-		weight=454;
-		itemSize[]={3,3};
-		class DamageSystem
-		{
-			class GlobalHealth
-			{
-				class Health
-				{
-					hitpoints=100;
-					healthLevels[]=
-					{
-						
-						{
-							1,
-							
-							{
-								"CannabisPlus\cannabis\data\cannabis_brick.rvmat"
-							}
-						},
-						
-						{
-							0.69999999,
-							
-							{
-								"CannabisPlus\cannabis\data\cannabis_brick.rvmat"
-							}
-						},
-						
-						{
-							0.5,
-							
-							{
-								"CannabisPlus\cannabis\data\cannabis_brick.rvmat"
-							}
-						},
-						
-						{
-							0.30000001,
-							
-							{
-								"CannabisPlus\cannabis\data\cannabis_brick.rvmat"
-							}
-						},
-						
-						{
-							0,
-							
-							{
-								"CannabisPlus\cannabis\data\cannabis_brick.rvmat"
-							}
-						}
-					};
-				};
-			};
-		};
-		class AnimEvents
-		{
-			class SoundWeapon
-			{
-				class pickUpItem_Light
-				{
-					soundSet="pickUpCourierBag_Light_SoundSet";
-					id=796;
-				};
-				class pickUpItem
-				{
-					soundSet="pickUpCourierBag_SoundSet";
-					id=797;
-				};
-			};
-		};
 	};
-	class CannabisBrickBlue: Inventory_Base
+	class CannabisBrickBlue: CannabisBrick
 	{
 		scope=2;
 		displayName="Brick of Blue God Weed";
@@ -1575,89 +1027,42 @@ class CfgVehicles
 		{
 			"CannabisPlus\cannabis\data\cannabis_brick_blue.paa"
 		};
-		lootCategory="Crafted";
-		rotationFlags=17;
-		weight=454;
-		itemSize[]={3,3};
-		class DamageSystem
-		{
-			class GlobalHealth
-			{
-				class Health
-				{
-					hitpoints=100;
-					healthLevels[]=
-					{
-						
-						{
-							1,
-							
-							{
-								"CannabisPlus\cannabis\data\cannabis_brick.rvmat"
-							}
-						},
-						
-						{
-							0.69999999,
-							
-							{
-								"CannabisPlus\cannabis\data\cannabis_brick.rvmat"
-							}
-						},
-						
-						{
-							0.5,
-							
-							{
-								"CannabisPlus\cannabis\data\cannabis_brick.rvmat"
-							}
-						},
-						
-						{
-							0.30000001,
-							
-							{
-								"CannabisPlus\cannabis\data\cannabis_brick.rvmat"
-							}
-						},
-						
-						{
-							0,
-							
-							{
-								"CannabisPlus\cannabis\data\cannabis_brick.rvmat"
-							}
-						}
-					};
-				};
-			};
-		};
-		class AnimEvents
-		{
-			class SoundWeapon
-			{
-				class pickUpItem_Light
-				{
-					soundSet="pickUpCourierBag_Light_SoundSet";
-					id=796;
-				};
-				class pickUpItem
-				{
-					soundSet="pickUpCourierBag_SoundSet";
-					id=797;
-				};
-			};
-		};
 	};
 	class CigarettePack_ColorBase: Inventory_Base
-	{
+	{	
+		scope=2;
 		descriptionShort="A pack of cigarettes.";
+		lootCategory="Crafted";
 	};
 	class CigarettePack_Cannabis: CigarettePack_ColorBase
 	{
-		scope=2;
 		displayName="Marijuana Cigarettes";
 		descriptionShort="A pack of marijuana cigarettes.";
+		lootCategory="Crafted";
+		hiddenSelectionsTextures[]=
+		{
+			"CannabisPlus\cannabis\data\pack_of_cigs_cannabis.paa",
+			"CannabisPlus\cannabis\data\pack_of_cigs_cannabis.paa",
+			"CannabisPlus\cannabis\data\pack_of_cigs_cannabis.paa"
+		};
+	};
+	class CigarettePack_CannabisBlue: CigarettePack_ColorBase
+	{	
+		displayName="Marijuana Cigarettes Blue God";
+		descriptionShort="A pack of marijuana cigarettes.";
+		lootCategory="Crafted";
+		hiddenSelectionsTextures[]=
+		{
+			"CannabisPlus\cannabis\data\pack_of_cigs_cannabis.paa",
+			"CannabisPlus\cannabis\data\pack_of_cigs_cannabis.paa",
+			"CannabisPlus\cannabis\data\pack_of_cigs_cannabis.paa"
+		};
+	};
+	class CigarettePack_CannabisKush: CigarettePack_ColorBase
+	{	
+		displayName="Marijuana Cigarettes Purple Kush";
+		descriptionShort="A pack of marijuana cigarettes.";
+		lootCategory="Crafted";
 		hiddenSelectionsTextures[]=
 		{
 			"CannabisPlus\cannabis\data\pack_of_cigs_cannabis.paa",

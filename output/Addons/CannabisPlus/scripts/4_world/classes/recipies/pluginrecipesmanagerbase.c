@@ -4,6 +4,8 @@ modded class PluginRecipesManager
     {
         super.RegisterRecipies();
         RegisterRecipe(new CraftCigsCannabis);
+        RegisterRecipe(new CraftCigsCannabisBlue);
+        RegisterRecipe(new CraftCigsCannabisKush);
         RegisterRecipe(new CraftCigsTobacco);
         RegisterRecipe(new CraftCannabisBag);
         RegisterRecipe(new CraftCannabisBrick);

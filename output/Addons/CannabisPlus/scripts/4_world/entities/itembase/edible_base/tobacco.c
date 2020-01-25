@@ -2,7 +2,7 @@ class Tobacco : Edible_Base
 {
 	override bool CanBeCookedOnStick()
 	{
-		return true;
+		return false;
 	}
 
 	override bool CanBeCooked()
@@ -18,8 +18,7 @@ class Tobacco : Edible_Base
 	override void SetActions()
 	{
 		super.SetActions();
-		
 		AddAction(ActionForceFeed);
-		AddAction(ActionEatFruit);		
+		AddAction(ActionEatFruit);
 	}
 }
