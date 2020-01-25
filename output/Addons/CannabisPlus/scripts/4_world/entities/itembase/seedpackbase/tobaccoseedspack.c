@@ -1,3 +1,0 @@
-class TobaccoSeedsPack extends SeedPackBase
-{	
-}
