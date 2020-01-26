@@ -1,0 +1,3 @@
+class CannabisSeedsPackKush extends SeedPackBase
+{	
+}

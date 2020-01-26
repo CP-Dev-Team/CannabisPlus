@@ -1,0 +1,3 @@
+class CannabisSeedsPackBlue extends SeedPackBase
+{	
+}
