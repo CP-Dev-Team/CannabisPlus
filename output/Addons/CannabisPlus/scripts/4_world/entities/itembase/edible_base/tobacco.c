@@ -7,7 +7,7 @@ class Tobacco : Edible_Base
 
 	override bool CanBeCooked()
 	{
-		return true;
+		return false;
 	}	
 
 	override bool IsFruit()

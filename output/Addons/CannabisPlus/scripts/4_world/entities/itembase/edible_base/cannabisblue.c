@@ -2,12 +2,12 @@ class CannabisBlue : Edible_Base
 {
 	override bool CanBeCookedOnStick()
 	{
-		return true;
+		return false;
 	}
 
 	override bool CanBeCooked()
 	{
-		return true;
+		return false;
 	}	
 
 	override bool IsFruit()

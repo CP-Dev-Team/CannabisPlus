@@ -32,7 +32,7 @@ class Stage2
 };
 class Stage3
 {
-	texture="#(argb,8,8,3)color(0,0,0,0,MC)";
+	texture="dz\characters\tops\data\tops_destruct_mc.paa";
 	uvSource="tex";
 	class uvTransform
 	{
