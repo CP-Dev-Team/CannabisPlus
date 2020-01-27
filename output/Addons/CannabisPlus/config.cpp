@@ -32,7 +32,7 @@ class CfgMods
 		dependencies[]=
 		{
 			"World",
-			"Game"
+			"Mission"
 		};
 		class defs
 		{

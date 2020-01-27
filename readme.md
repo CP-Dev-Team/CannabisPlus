@@ -2,8 +2,10 @@
 A modification for DayZ Standalone for advanced cannabis cultivation
 
 ## ToDo
-* [x] double income by fertiliziation
-* [ ] add transpareny for tobacco texture
+* [ ] better comments in config files
+* [ ] better comments in CannabisPlus.c
+* [ ] refactoring CannabisPlus.c
+* [ ] more dynamic calculation of plant growing
 
 ## Installation
 Simply subscribe to workshop item
