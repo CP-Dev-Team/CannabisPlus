@@ -3,7 +3,7 @@
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 class CfgPatches
 {
-	class CannabisPlus_Gear_Cultivation
+	class CannabisPlus_Tobacco
 	{
 		units[]={};
 		weapons[]={};
@@ -12,8 +12,7 @@ class CfgPatches
 		{
 			"DZ_Data",
 			"DZ_Gear_Food",
-			"DZ_Gear_Medical",
-			"DZ_Gear_Tools"
+			"DZ_Gear_Cultivation"
 		};
 	};
 };
