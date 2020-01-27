@@ -2,8 +2,8 @@
 A modification for DayZ Standalone for advanced cannabis cultivation
 
 ## ToDo
-[x] double income by fertiliziation
-[ ] add transpareny for tobacco texture
+*[x] double income by fertiliziation
+*[ ] add transpareny for tobacco texture
 
 ## Installation
 Simply subscribe to workshop item
