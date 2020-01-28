@@ -2,7 +2,7 @@
 //
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 class CannabisPlusConfig
-{
+{	
 	bool removeAfterHarvest = true;		
 	
 	float tobacco_growtime = 8;
