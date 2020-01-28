@@ -23,7 +23,7 @@ class CfgVehicles
 		scope=2;
 		displayName="Joint";
 		descriptionShort="A joint for smoking weed...";
-		model="\CannabisPlus\joint\sherlockpipe_g.p3d";
+		model="\CannabisPlus\joint\joint.p3d";
 		repairableWithKits[]={5,8};
 		repairCosts[]={30,25};
 		inventorySlot="Ingredient";
