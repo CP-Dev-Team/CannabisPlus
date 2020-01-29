@@ -1,8 +1,8 @@
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 //
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-class CannabisPlusConfig
-{	
+class CannabisPlusConfig {	
+	
 	bool removeAfterHarvest = true;		
 	
 	float tobacco_growtime = 8;
@@ -45,34 +45,38 @@ class CannabisPlusConfig
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 //
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-class CannabisPlus{
+class CannabisPlus {
+
 	static ref CannabisPlus g_CannabisPlus;		
 	private string CONFIG_FILE =  "$profile:CannabisPlus.json";
 	private ref CannabisPlusConfig _config;
 	
-	void CannabisPlus(){
+	void CannabisPlus() {
 
 		if ( GetGame().IsServer() ){
 			_config = new CannabisPlusConfig();
 			string fileName;
 			FileAttr fileAttr;
 			FindFileHandle configFile = FindFile(CONFIG_FILE, fileName, fileAttr, 0);
-			if(!configFile)
-			{
+			if(!configFile) {
+
 				JsonFileLoader<CannabisPlusConfig>.JsonSaveFile(CONFIG_FILE, _config);
 			}
 			else{
+
 				JsonFileLoader<CannabisPlusConfig>.JsonLoadFile(CONFIG_FILE, _config);
 			}
 		}
 	}
 	
 	static ref CannabisPlus getInstance(){
+
 		if(!g_CannabisPlus){g_CannabisPlus = new CannabisPlus();}
 		return g_CannabisPlus;
 	}
 	
 	CannabisPlusConfig GetConfig(){
+
 		return _config;
 	}
 }
@@ -81,10 +85,9 @@ class CannabisPlus{
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 //
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-modded class Plant_Cannabis
-{
-	override void Harvest( PlayerBase player )
-	{
+modded class Plant_Cannabis {
+	override void Harvest( PlayerBase player ) {
+
 		super.Harvest(player);
 		if(GetGame().IsServer() && CannabisPlus.getInstance().GetConfig().removeAfterHarvest==true){
 			GetGame().GetCallQueue( CALL_CATEGORY_SYSTEM ).CallLater( RemovePlant, 10, true );
@@ -96,10 +99,9 @@ modded class Plant_Cannabis
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 //
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-modded class Plant_CannabisBlue
-{
-	override void Harvest( PlayerBase player )
-	{
+modded class Plant_CannabisBlue { 
+	override void Harvest( PlayerBase player ) {
+
 		super.Harvest(player);
 		if(GetGame().IsServer() && CannabisPlus.getInstance().GetConfig().removeAfterHarvest==true){
 			GetGame().GetCallQueue( CALL_CATEGORY_SYSTEM ).CallLater( RemovePlant, 10, true );
@@ -111,10 +113,10 @@ modded class Plant_CannabisBlue
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 //
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-modded class Plant_CannabisKush
-{
-	override void Harvest( PlayerBase player )
-	{
+modded class Plant_CannabisKush {
+
+	override void Harvest( PlayerBase player ) {
+
 		super.Harvest(player);
 		if(GetGame().IsServer() && CannabisPlus.getInstance().GetConfig().removeAfterHarvest==true){
 			GetGame().GetCallQueue( CALL_CATEGORY_SYSTEM ).CallLater( RemovePlant, 10, true );
@@ -126,10 +128,10 @@ modded class Plant_CannabisKush
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 //
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-modded class Plant_Tobacco
-{
-	override void Harvest( PlayerBase player )
-	{
+modded class Plant_Tobacco {
+
+	override void Harvest( PlayerBase player ) {
+
 		super.Harvest(player);
 		if(GetGame().IsServer() && CannabisPlus.getInstance().GetConfig().removeAfterHarvest==true){
 			GetGame().GetCallQueue( CALL_CATEGORY_SYSTEM ).CallLater( RemovePlant, 10, true );

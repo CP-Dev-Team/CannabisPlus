@@ -76,8 +76,8 @@ class CfgVehicles
 	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 	//
 	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-    class CannabisBag: Inventory_Base
-	{
+    class CannabisBag: Inventory_Base {
+
 		scope=2;
 		displayName="Bag of Weed";
 		descriptionShort="About an ounce of weed.";
@@ -92,59 +92,47 @@ class CfgVehicles
 		varQuantityMin=0;
 		varQuantityMax=16;
 		varQuantityDestroyOnMin=1;
-		hiddenSelections[]=
-		{
+		hiddenSelections[]=	{
 			"zbytek"
 		};
-		hiddenSelectionsTextures[]=
-		{
+		hiddenSelectionsTextures[]= {
 			"CannabisPlus\plants\cannabis\data\cannabis_bag.paa"
 		};
-		class DamageSystem
-		{
-			class GlobalHealth
-			{
-				class Health
-				{
+
+		class DamageSystem {
+
+			class GlobalHealth {
+
+				class Health {
+
 					hitpoints=30;
-					healthLevels[]=
-					{
-						
+					healthLevels[]=	{
 						{
 							1,
-							
 							{
 								"DZ\gear\tools\data\heat_pack.rvmat"
 							}
 						},
-						
 						{
 							0.69999999,
-							
 							{
 								"DZ\gear\tools\data\heat_pack.rvmat"
 							}
 						},
-						
 						{
 							0.5,
-							
 							{
 								"DZ\gear\tools\data\heat_pack_damage.rvmat"
 							}
 						},
-						
 						{
 							0.30000001,
-							
 							{
 								"DZ\gear\tools\data\heat_pack_damage.rvmat"
 							}
 						},
-						
 						{
 							0,
-							
 							{
 								"DZ\gear\tools\data\heat_pack_destruct.rvmat"
 							}
@@ -153,37 +141,42 @@ class CfgVehicles
 				};
 			};
 		};
-		class AnimEvents
-		{
-			class SoundWeapon
-			{
-				class openTunaCan
-				{
+		class AnimEvents {
+
+			class SoundWeapon {
+
+				class openTunaCan {
+
 					soundSet="openTunaCan_SoundSet";
 					id=204;
 				};
-				class pickUpItem
-				{
+
+				class pickUpItem {
+
 					soundSet="Zucchini_pickup_SoundSet";
 					id=797;
 				};
-				class Eating_TakeFood
-				{
+
+				class Eating_TakeFood {
+
 					soundSet="Eating_TakeFood_Soundset";
 					id=889;
 				};
-				class Eating_BoxOpen
-				{
+
+				class Eating_BoxOpen {
+
 					soundSet="Eating_BoxOpen_Soundset";
 					id=893;
 				};
-				class Eating_BoxShake
-				{
+
+				class Eating_BoxShake {
+
 					soundSet="Eating_BoxShake_Soundset";
 					id=894;
 				};
-				class Eating_BoxEnd
-				{
+
+				class Eating_BoxEnd	{
+
 					soundSet="Eating_BoxEnd_Soundset";
 					id=895;
 				};
@@ -195,8 +188,8 @@ class CfgVehicles
 	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 	//
 	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-	class CannabisBrick: Inventory_Base
-	{
+	class CannabisBrick: Inventory_Base	{
+		
 		scope=2;
 		displayName="Brick of Weed";
 		descriptionShort="One pound of weed.";
