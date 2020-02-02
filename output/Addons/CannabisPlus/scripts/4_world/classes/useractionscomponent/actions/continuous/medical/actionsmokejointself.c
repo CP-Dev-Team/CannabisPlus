@@ -3,24 +3,21 @@
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~	
 class ActionSmokeJointSelfCB : ActionContinuousBaseCB
 {
-	override void CreateActionComponent()
-	{
-		//m_ActionData.m_ActionComponent = new CAContinuousTime(UATimeSpent.MEASURE_TEMP);
-		// value in secondes for animation duration
-		m_ActionData.m_ActionComponent = new CAContinuousTime(5);
+	override void CreateActionComponent() {
+		
+		m_ActionData.m_ActionComponent = new CAContinuousQuantityEdible(UAQuantityConsumed.DRINK,UATimeSpent.DEFAULT);
 	}
 };
 
 
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 //
-//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~	
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 class ActionSmokeJointSelf: ActionContinuousBase
-{
+{	
+	static Particle m_SmokeParticle;	// member variable to get access on particle effect	
+	CP_Joint joint;
 	
-	Particle m_SmokeParticle;	// member variable to get access on particle effect
-
-
 	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 	//
 	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~	
@@ -32,6 +29,10 @@ class ActionSmokeJointSelf: ActionContinuousBase
 		m_SpecialtyWeight = UASoftSkillsWeight.PRECISE_LOW;
 	}
 
+	override bool IsDrink()
+	{
+		return true;
+	}
 
 	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 	//
@@ -46,8 +47,7 @@ class ActionSmokeJointSelf: ActionContinuousBase
 	//
 	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~	
 	override void OnEndAnimationLoop(ActionData action_data) {
-
-		m_SmokeParticle.Stop();
+		
 		super.OnEndAnimationLoop(action_data);
 	}
 
@@ -67,7 +67,7 @@ class ActionSmokeJointSelf: ActionContinuousBase
 	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~	
 	override bool HasProneException() {
 
-		return true;
+		return false;
 	}
 
 	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -92,9 +92,10 @@ class ActionSmokeJointSelf: ActionContinuousBase
 	//
 	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~	
 	override void OnEndInput(ActionData action_data) {
-
-		m_SmokeParticle.Stop();		
-		super.OnEndInput(action_data);
+				
+		super.OnEndInput(action_data);		
+		GetGame().GetCallQueue(CALL_CATEGORY_GAMEPLAY).Call(StopSmokeParticle);
+		//m_SmokeParticle.Stop();
 	}
 
 
@@ -103,8 +104,7 @@ class ActionSmokeJointSelf: ActionContinuousBase
 	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 	override void OnExecuteClient( ActionData action_data ) {
 
-		super.OnExecuteClient( action_data );
-		SpwanSmokeParticle( action_data );
+		super.OnExecuteClient( action_data );		
 	}
 
 	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -113,23 +113,51 @@ class ActionSmokeJointSelf: ActionContinuousBase
 	override void OnExecuteServer( ActionData action_data )	{
 
 		super.OnExecuteServer( action_data );
-
-		if ( !GetGame().IsMultiplayer() ){ // Only in singleplayer
-		
-			SpwanSmokeParticle( action_data );
-		}
+		// APPLYCHANGES
+		Print("EXECUTE SERVER");
+		SpwanSmokeParticle( action_data );		
 	}
 
 
 	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-	//
+	// spawn particle effect related to player position
 	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 	void SpwanSmokeParticle( ActionData action_data ) {
+		
+		joint = action_data.m_MainItem;
+		
+		if(joint.GetQuantity() > 0.0) {
+			if ( !GetGame().IsServer() || !GetGame().IsMultiplayer() ) { // client side
+				
+				PlayerBase player = action_data.m_Player;
+				m_SmokeParticle = Particle.PlayOnObject(ParticleList.CAMP_NORMAL_SMOKE, joint, Vector(0, 0.0, 0));
+				m_SmokeParticle.ScaleParticleParamFromOriginal(EmitorParam.SIZE, 0.01);
+				m_SmokeParticle.ScaleParticleParamFromOriginal(EmitorParam.VELOCITY, 0.03);
+			}
+		} else {
+						
+			//m_SmokeParticle.Stop();
+			GetGame().GetCallQueue(CALL_CATEGORY_GAMEPLAY).Call(StopSmokeParticle);
+			GetGame().ObjectDelete(joint);
+		}
+	}
 
-		PlayerBase player = action_data.m_Player;
-		m_SmokeParticle = Particle.PlayOnObject(ParticleList.CAMP_NORMAL_SMOKE, player, Vector(0, 1.8, 0));
-		m_SmokeParticle.ScaleParticleParamFromOriginal(EmitorParam.SIZE, 0.01);
-		m_SmokeParticle.ScaleParticleParamFromOriginal(EmitorParam.VELOCITY, 0.03);
+	
+	void StopSmokeParticle() {
+		
+		this.m_SmokeParticle.Stop();
+	}
+	
+
+	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+	//
+	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+	override void OnFinishProgress( ActionData action_data ) {
+		
+		super.OnFinishProgress(action_data);
+		Print("OnFinishProgress");
+		GetGame().GetCallQueue(CALL_CATEGORY_GAMEPLAY).Call(StopSmokeParticle);
+		//m_SmokeParticle.Stop();
 	}
 
 
@@ -138,6 +166,12 @@ class ActionSmokeJointSelf: ActionContinuousBase
 	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 	override void OnFinishProgressServer( ActionData action_data )	{	
 
+		super.OnFinishProgressServer(action_data);		
+		Print("OnFinishProgressServer");
+		m_SmokeParticle.Stop();
+		
+		
+		/*
 		Thermometer thermometer = Thermometer.Cast(action_data.m_MainItem);
 		
 		if(thermometer)	{
@@ -148,5 +182,6 @@ class ActionSmokeJointSelf: ActionContinuousBase
 		}
 
 		action_data.m_Player.GetSoftSkillsManager().AddSpecialty( m_SpecialtyWeight );
+		*/
 	}
 };
