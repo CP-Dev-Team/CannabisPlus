@@ -1,17 +1,15 @@
-//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-//
-//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-class CannabisPlusConfig {	
-	
+//preconfiguring the CannabisPlus.json
+class CannabisPlusConfig
+{
 	bool removeAfterHarvest = true;		
 	
 	float tobacco_growtime = 8;
 	float tobacco_cropcount = 2;
 	float tobaccoSeed_count = 9;
 	
-	float cannabis_growtime = 8;
-	float cannabis_cropcount = 2;
-	float cannabisSeed_count = 9;
+	float cannabisSkunk_growtime = 8;
+	float cannabisSkunk_cropcount = 2;
+	float cannabisSkunkSeed_count = 9;
 	
 	float cannabisKush_growtime = 8;
 	float cannabisKush_cropcount = 2;
@@ -36,113 +34,79 @@ class CannabisPlusConfig {
 	float pumpkin_growtime = 8;
 	float pumpkin_cropcount = 2;
 	float pumpkinSeed_count = 9;
-
-	float potato_growtime = 8;
-	float potato_cropcount = 2;
 }
-
-
-//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-//
-//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-class CannabisPlus {
-
+//generating CannabisPlus.json
+class CannabisPlus{
 	static ref CannabisPlus g_CannabisPlus;		
 	private string CONFIG_FILE =  "$profile:CannabisPlus.json";
 	private ref CannabisPlusConfig _config;
 	
-	void CannabisPlus() {
-
+	void CannabisPlus(){
 		if ( GetGame().IsServer() ){
 			_config = new CannabisPlusConfig();
 			string fileName;
 			FileAttr fileAttr;
 			FindFileHandle configFile = FindFile(CONFIG_FILE, fileName, fileAttr, 0);
-			if(!configFile) {
-
+			if(!configFile)
+			{
 				JsonFileLoader<CannabisPlusConfig>.JsonSaveFile(CONFIG_FILE, _config);
 			}
 			else{
-
 				JsonFileLoader<CannabisPlusConfig>.JsonLoadFile(CONFIG_FILE, _config);
 			}
 		}
 	}
 	
 	static ref CannabisPlus getInstance(){
-
 		if(!g_CannabisPlus){g_CannabisPlus = new CannabisPlus();}
 		return g_CannabisPlus;
 	}
 	
 	CannabisPlusConfig GetConfig(){
-
 		return _config;
 	}
 }
-
-
-//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-//
-//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-modded class Plant_Cannabis {
-	override void Harvest( PlayerBase player ) {
-
+//RemoveAfterHarvest for each plant type
+modded class Plant_CannabisSkunk
+{
+	override void Harvest( PlayerBase player )
+	{
 		super.Harvest(player);
 		if(GetGame().IsServer() && CannabisPlus.getInstance().GetConfig().removeAfterHarvest==true){
 			GetGame().GetCallQueue( CALL_CATEGORY_SYSTEM ).CallLater( RemovePlant, 10, true );
 		}
 	}
 }
-
-
-//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-//
-//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-modded class Plant_CannabisBlue { 
-	override void Harvest( PlayerBase player ) {
-
+modded class Plant_CannabisBlue
+{
+	override void Harvest( PlayerBase player )
+	{
 		super.Harvest(player);
 		if(GetGame().IsServer() && CannabisPlus.getInstance().GetConfig().removeAfterHarvest==true){
 			GetGame().GetCallQueue( CALL_CATEGORY_SYSTEM ).CallLater( RemovePlant, 10, true );
 		}
 	}
 }
-
-
-//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-//
-//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-modded class Plant_CannabisKush {
-
-	override void Harvest( PlayerBase player ) {
-
+modded class Plant_CannabisKush
+{
+	override void Harvest( PlayerBase player )
+	{
 		super.Harvest(player);
 		if(GetGame().IsServer() && CannabisPlus.getInstance().GetConfig().removeAfterHarvest==true){
 			GetGame().GetCallQueue( CALL_CATEGORY_SYSTEM ).CallLater( RemovePlant, 10, true );
 		}
 	}
 }
-
-
-//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-//
-//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-modded class Plant_Tobacco {
-
-	override void Harvest( PlayerBase player ) {
-
+modded class Plant_Tobacco
+{
+	override void Harvest( PlayerBase player )
+	{
 		super.Harvest(player);
 		if(GetGame().IsServer() && CannabisPlus.getInstance().GetConfig().removeAfterHarvest==true){
 			GetGame().GetCallQueue( CALL_CATEGORY_SYSTEM ).CallLater( RemovePlant, 10, true );
 		}
 	}
 }
-
-
-//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-//
-//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 modded class Plant_Pepper
 {
 	override void Harvest( PlayerBase player )
@@ -153,11 +117,6 @@ modded class Plant_Pepper
 		}
 	}
 }
-
-
-//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-//
-//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 modded class Plant_Tomato
 {
 	override void Harvest( PlayerBase player )
@@ -168,11 +127,6 @@ modded class Plant_Tomato
 		}
 	}
 }
-
-
-//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-//
-//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 modded class Plant_Zucchini
 {
 	override void Harvest( PlayerBase player )
@@ -183,26 +137,6 @@ modded class Plant_Zucchini
 		}
 	}
 }
-
-
-//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-//
-//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-modded class Plant_Potato
-{
-	override void Harvest( PlayerBase player )
-	{
-		super.Harvest(player);
-		if(GetGame().IsServer() && CannabisPlus.getInstance().GetConfig().removeAfterHarvest==true){
-			GetGame().GetCallQueue( CALL_CATEGORY_SYSTEM ).CallLater( RemovePlant, 10, true );
-		}
-	}
-}
-
-
-//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-//
-//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 modded class Plant_Pumpkin
 {
 	override void Harvest( PlayerBase player )
@@ -214,32 +148,26 @@ modded class Plant_Pumpkin
 	}
 }
 
-
-//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-//
-//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 modded class PlantBase
 {	
 	private float 	m_growtime;
 	
 	private float m_tabacco_growtime;
-	private	float m_cannabis_growtime; 
+	private	float m_cannabisSkunk_growtime; 
 	private float m_cannabisKush_growtime;
 	private float m_cannabisBlue_growtime;
 	private float m_pepper_growtime;
 	private float m_tomato_growtime;
 	private float m_zucchini_growtime;
-	private float m_potato_growtime;
 	private float m_pumpkin_growtime;
 	
 	private float m_tabacco_cropcount;
-	private float m_cannabis_cropcount;
+	private float m_cannabisSkunk_cropcount;
 	private float m_cannabisKush_cropcount;
 	private float m_cannabisBlue_cropcount;
 	private float m_pepper_cropcount;
 	private float m_tomato_cropcount;
 	private float m_zucchini_cropcount;
-	private float m_potato_cropcount;
 	private float m_pumpkin_cropcount;
 	
 	ref Timer m_DeleteDryPlantTimer = NULL;
@@ -285,23 +213,21 @@ modded class PlantBase
 		
 		//reads settings from CannabisPlus.json
 		m_tabacco_growtime =  CannabisPlus.getInstance().GetConfig().tobacco_growtime;
-		m_cannabis_growtime =  CannabisPlus.getInstance().GetConfig().cannabis_growtime;
+		m_cannabisSkunk_growtime =  CannabisPlus.getInstance().GetConfig().cannabisSkunk_growtime;
 		m_cannabisKush_growtime =  CannabisPlus.getInstance().GetConfig().cannabisKush_growtime;
 		m_cannabisBlue_growtime =  CannabisPlus.getInstance().GetConfig().cannabisBlue_growtime;
 		m_pepper_growtime =  CannabisPlus.getInstance().GetConfig().pepper_growtime;
 		m_tomato_growtime =  CannabisPlus.getInstance().GetConfig().tomato_growtime;
 		m_zucchini_growtime =  CannabisPlus.getInstance().GetConfig().zucchini_growtime;
-		m_potato_growtime =  CannabisPlus.getInstance().GetConfig().potato_growtime;
 		m_pumpkin_growtime =  CannabisPlus.getInstance().GetConfig().pumpkin_growtime;
 	
 		m_tabacco_cropcount = CannabisPlus.getInstance().GetConfig().tobacco_cropcount;
-		m_cannabis_cropcount = CannabisPlus.getInstance().GetConfig().cannabis_cropcount;
+		m_cannabisSkunk_cropcount = CannabisPlus.getInstance().GetConfig().cannabisSkunk_cropcount;
 		m_cannabisKush_cropcount = CannabisPlus.getInstance().GetConfig().cannabisKush_cropcount;
 		m_cannabisBlue_cropcount = CannabisPlus.getInstance().GetConfig().cannabisBlue_cropcount;
 		m_pepper_cropcount = CannabisPlus.getInstance().GetConfig().pepper_cropcount;
 		m_tomato_cropcount = CannabisPlus.getInstance().GetConfig().tomato_cropcount;
 		m_zucchini_cropcount = CannabisPlus.getInstance().GetConfig().zucchini_cropcount;
-		m_potato_cropcount = CannabisPlus.getInstance().GetConfig().potato_cropcount;
 		m_pumpkin_cropcount = CannabisPlus.getInstance().GetConfig().pumpkin_cropcount;
 
 		m_GardenBase = garden_base;
@@ -313,9 +239,9 @@ modded class PlantBase
 		
 		//sets values out of CannabisPlus.json
 		switch(this.GetType()){
-			case "Plant_Cannabis":
-				m_growtime = m_cannabis_growtime;
-				m_CropsCount = m_cannabis_cropcount;
+			case "Plant_CannabisSkunk":
+				m_growtime = m_cannabisSkunk_growtime;
+				m_CropsCount = m_cannabisSkunk_cropcount;
 				break;
 
 			case "Plant_CannabisBlue":
@@ -323,14 +249,14 @@ modded class PlantBase
 				m_CropsCount = m_cannabisBlue_cropcount;
 				break;
 
-			case "Plant_Tobacco":
-				m_growtime = m_tabacco_growtime;
-				m_CropsCount = m_tabacco_cropcount;
-				break;
-
 			case "Plant_CannabisKush":
 				m_growtime = m_cannabisKush_growtime;
 				m_CropsCount = m_cannabisKush_cropcount;
+				break;
+
+			case "Plant_Tobacco":
+				m_growtime = m_tabacco_growtime;
+				m_CropsCount = m_tabacco_cropcount;
 				break;
 
 			case "Plant_Pepper":
@@ -346,11 +272,6 @@ modded class PlantBase
 			case "Plant_Zucchini":
 				m_growtime = m_zucchini_growtime;
 				m_CropsCount = m_zucchini_cropcount;
-				break;
-
-			case "Plant_Potato":
-				m_growtime = m_potato_growtime;
-				m_CropsCount = m_potato_cropcount;
 				break;
 
 			case "Plant_Pumpkin":
@@ -372,6 +293,7 @@ modded class PlantBase
 		}
 		
 		m_SpoilAfterFullMaturityTime 	= (float) ((60 * 30) + Math.RandomInt(0, 60 * 30)) * fertility;
+
 		m_StateChangeTime 				= (float) ((float)m_FullMaturityTime / ((float)m_GrowthStagesCount - 2.0));
 
 		if(isFertilized) {
@@ -434,12 +356,7 @@ modded class PlantBase
 	void clearSpamCheck(){
 		harvestingSpamCheck = false;
 	}	
-}
-
-
-//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-//
-//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+}	
 modded class ActionPlantSeed: ActionSingleUseBase
 {
 	override void Process( ActionData action_data )
@@ -461,10 +378,6 @@ modded class ActionPlantSeed: ActionSingleUseBase
 	}
 };
 
-
-//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-//
-//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 modded class ActionHarvestCrops: ActionInteractBase
 {
 	override void OnExecuteClient( ActionData action_data )
@@ -484,15 +397,10 @@ modded class ActionHarvestCrops: ActionInteractBase
 		}
 	}
 };
-
-
-//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-//
-//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 modded class SeedPackBase
 {
 	private int m_tobaccoSeed_count;
-	private int m_cannabisSeed_count;
+	private int m_cannabisSkunkSeed_count;
 	private int m_cannabisBlueSeed_count;
 	private int m_cannabisKushSeed_count;
 	private int m_pepperSeed_count;
@@ -514,7 +422,7 @@ modded class SeedPackBase
 		int seeds_quantity = seeds_quantity_max;
 		
 		m_tobaccoSeed_count =  CannabisPlus.getInstance().GetConfig().tobaccoSeed_count;
-		m_cannabisSeed_count =  CannabisPlus.getInstance().GetConfig().cannabisSeed_count;
+		m_cannabisSkunkSeed_count =  CannabisPlus.getInstance().GetConfig().cannabisSkunkSeed_count;
 		m_cannabisBlueSeed_count =  CannabisPlus.getInstance().GetConfig().cannabisBlueSeed_count;
 		m_cannabisKushSeed_count =  CannabisPlus.getInstance().GetConfig().cannabisKushSeed_count;
 		m_pepperSeed_count =  CannabisPlus.getInstance().GetConfig().pepperSeed_count;
@@ -523,8 +431,8 @@ modded class SeedPackBase
 		m_pumpkinSeed_count =  CannabisPlus.getInstance().GetConfig().pumpkinSeed_count;
 		
 		switch(this.GetType()) {
-			case "CannabisSeedsPack":
-				seeds_quantity_max = m_cannabisSeed_count;
+			case "CannabisSeedsPackSkunk":
+				seeds_quantity_max = m_cannabisSkunkSeed_count;
 				break;
 			
 			case "CannabisSeedsPackBlue":

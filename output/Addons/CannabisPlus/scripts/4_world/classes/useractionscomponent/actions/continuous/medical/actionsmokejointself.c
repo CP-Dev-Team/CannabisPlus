@@ -15,8 +15,11 @@ class ActionSmokeJointSelfCB : ActionContinuousBaseCB
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 class ActionSmokeJointSelf: ActionContinuousBase
 {	
+	
 	static Particle m_SmokeParticle;	// member variable to get access on particle effect	
-	CP_Joint joint;
+	static PortableGasLampLight m_light;// member variable to get access on light emitter	
+	CP_Joint joint;						// reference to joint
+	
 	
 	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 	//
@@ -29,8 +32,11 @@ class ActionSmokeJointSelf: ActionContinuousBase
 		m_SpecialtyWeight = UASoftSkillsWeight.PRECISE_LOW;
 	}
 
-	override bool IsDrink()
-	{
+	
+	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+	// 
+	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+	override bool IsDrink() {
 		return true;
 	}
 
@@ -94,8 +100,7 @@ class ActionSmokeJointSelf: ActionContinuousBase
 	override void OnEndInput(ActionData action_data) {
 				
 		super.OnEndInput(action_data);		
-		GetGame().GetCallQueue(CALL_CATEGORY_GAMEPLAY).Call(StopSmokeParticle);
-		//m_SmokeParticle.Stop();
+		GetGame().GetCallQueue(CALL_CATEGORY_GAMEPLAY).Call(StopSmokeParticle);				
 	}
 
 
@@ -113,8 +118,7 @@ class ActionSmokeJointSelf: ActionContinuousBase
 	override void OnExecuteServer( ActionData action_data )	{
 
 		super.OnExecuteServer( action_data );
-		// APPLYCHANGES
-		Print("EXECUTE SERVER");
+		// APPLYCHANGES		
 		SpwanSmokeParticle( action_data );		
 	}
 
@@ -133,31 +137,51 @@ class ActionSmokeJointSelf: ActionContinuousBase
 				m_SmokeParticle = Particle.PlayOnObject(ParticleList.CAMP_NORMAL_SMOKE, joint, Vector(0, 0.0, 0));
 				m_SmokeParticle.ScaleParticleParamFromOriginal(EmitorParam.SIZE, 0.01);
 				m_SmokeParticle.ScaleParticleParamFromOriginal(EmitorParam.VELOCITY, 0.03);
+								
+				m_light = PortableGasLampLight.Cast(ScriptedLightBase.CreateLight( PortableGasLampLight, joint.GetPosition()));
+				m_light.FadeIn(2.0);
+				m_light.SetFadeOutTime(1.0);				
+				m_light.SetDiffuseColor(0.85,0.5,0.23);				
+				m_light.SetRadiusTo(1);
+				m_light.SetBrightnessTo(2.0);
+				m_light.AttachOnObject(joint);				
+				m_light.SetEnabled(true);				
 			}
 		} else {
-						
-			//m_SmokeParticle.Stop();
+									
 			GetGame().GetCallQueue(CALL_CATEGORY_GAMEPLAY).Call(StopSmokeParticle);
 			GetGame().ObjectDelete(joint);
 		}
 	}
 
-	
+		
+	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+	//
+	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 	void StopSmokeParticle() {
 		
-		this.m_SmokeParticle.Stop();
+		this.m_SmokeParticle.Stop();		
+		GetGame().ObjectDelete(m_light);				
 	}
 	
-
+	
+	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+	//
+	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+	void StopJointLightning() {
+		
+		
+	}
+	
+	
 	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 	//
 	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 	override void OnFinishProgress( ActionData action_data ) {
 		
-		super.OnFinishProgress(action_data);
-		Print("OnFinishProgress");
+		super.OnFinishProgress(action_data);		
+		//GetGame().GetCallQueue(CALL_CATEGORY_GAMEPLAY).Call(StopJointLightning);
 		GetGame().GetCallQueue(CALL_CATEGORY_GAMEPLAY).Call(StopSmokeParticle);
-		//m_SmokeParticle.Stop();
 	}
 
 
@@ -166,10 +190,9 @@ class ActionSmokeJointSelf: ActionContinuousBase
 	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 	override void OnFinishProgressServer( ActionData action_data )	{	
 
-		super.OnFinishProgressServer(action_data);		
-		Print("OnFinishProgressServer");
-		m_SmokeParticle.Stop();
-		
+		super.OnFinishProgressServer(action_data);				
+		//GetGame().GetCallQueue(CALL_CATEGORY_GAMEPLAY).Call(StopJointLightning);
+		GetGame().GetCallQueue(CALL_CATEGORY_GAMEPLAY).Call(StopSmokeParticle);
 		
 		/*
 		Thermometer thermometer = Thermometer.Cast(action_data.m_MainItem);

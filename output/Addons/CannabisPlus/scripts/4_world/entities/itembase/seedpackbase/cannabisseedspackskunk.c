@@ -1,0 +1,3 @@
+class CannabisSeedsPackSkunk extends SeedPackBase
+{	
+}

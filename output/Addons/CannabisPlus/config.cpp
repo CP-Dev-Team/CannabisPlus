@@ -1,15 +1,13 @@
 class CfgPatches
 {
-	class CannabisPlus
+	class CP_scripts
 	{
 		units[]={};
 		weapons[]={};
 		requiredVersion=0.1;
 		requiredAddons[]=
 		{
-			"DZ_Data",
-			"DZ_Gear_Food",
-			"DZ_Gear_Medical"
+			"DZ_Data"
 		};
 	};
 };
@@ -23,7 +21,7 @@ class CfgMods
 		hideName=1;
 		hidePicture=1;
 		name="CannabisPlus";
-		credits="IceBlade, bombjack";
+		credits="IceBlade, bombjack, Gloser";
 		author="IceBlade";
 		authorID="0";
 		version="1.0";
