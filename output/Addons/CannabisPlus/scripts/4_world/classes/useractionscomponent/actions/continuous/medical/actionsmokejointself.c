@@ -178,7 +178,6 @@ class ActionSmokeJointSelf: ActionContinuousBase
 		this.m_SmokeParticle.Stop();
 		m_light.SetEnabled(false);		
 		GetGame().ObjectDelete(m_light);
-		Print("RAUCH UND LICHT WERDEN ANGEHALTEN");		
 	}
 	
 	
