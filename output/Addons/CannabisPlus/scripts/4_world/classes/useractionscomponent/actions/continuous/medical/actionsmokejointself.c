@@ -49,12 +49,15 @@ class ActionSmokeJointSelf: ActionContinuousBase
 	}
 
 
+	
+	
 	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 	//
 	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~	
 	override void OnEndAnimationLoop(ActionData action_data) {
 		
 		super.OnEndAnimationLoop(action_data);
+		GetGame().GetCallQueue(CALL_CATEGORY_GAMEPLAY).Call(StopSmokeParticle);
 	}
 
 
@@ -111,17 +114,28 @@ class ActionSmokeJointSelf: ActionContinuousBase
 
 		super.OnExecuteClient( action_data );		
 	}
-
+	
+	
 	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 	//
 	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 	override void OnExecuteServer( ActionData action_data )	{
 
 		super.OnExecuteServer( action_data );
-		// APPLYCHANGES		
-		SpwanSmokeParticle( action_data );		
+		// APPLYCHANGES
+		//SpwanSmokeParticle( action_data );
 	}
-
+	
+	
+	override void OnStartAnimationLoopServer(ActionData action_data) {
+		SpwanSmokeParticle( action_data );
+	}
+	
+	
+	override void OnStartAnimationLoopClient(ActionData action_data) {
+		SpwanSmokeParticle( action_data );
+	}
+	
 
 	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 	// spawn particle effect related to player position
@@ -150,6 +164,7 @@ class ActionSmokeJointSelf: ActionContinuousBase
 		} else {
 									
 			GetGame().GetCallQueue(CALL_CATEGORY_GAMEPLAY).Call(StopSmokeParticle);
+			// can automatically destroyed if 'varQuantityDestroyOnMin' set to 'true' in config file
 			GetGame().ObjectDelete(joint);
 		}
 	}
@@ -160,17 +175,10 @@ class ActionSmokeJointSelf: ActionContinuousBase
 	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 	void StopSmokeParticle() {
 		
-		this.m_SmokeParticle.Stop();		
-		GetGame().ObjectDelete(m_light);				
-	}
-	
-	
-	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-	//
-	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-	void StopJointLightning() {
-		
-		
+		this.m_SmokeParticle.Stop();
+		m_light.SetEnabled(false);		
+		GetGame().ObjectDelete(m_light);
+		Print("RAUCH UND LICHT WERDEN ANGEHALTEN");		
 	}
 	
 	
@@ -179,8 +187,7 @@ class ActionSmokeJointSelf: ActionContinuousBase
 	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 	override void OnFinishProgress( ActionData action_data ) {
 		
-		super.OnFinishProgress(action_data);		
-		//GetGame().GetCallQueue(CALL_CATEGORY_GAMEPLAY).Call(StopJointLightning);
+		super.OnFinishProgress(action_data);				
 		GetGame().GetCallQueue(CALL_CATEGORY_GAMEPLAY).Call(StopSmokeParticle);
 	}
 
@@ -190,8 +197,7 @@ class ActionSmokeJointSelf: ActionContinuousBase
 	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 	override void OnFinishProgressServer( ActionData action_data )	{	
 
-		super.OnFinishProgressServer(action_data);				
-		//GetGame().GetCallQueue(CALL_CATEGORY_GAMEPLAY).Call(StopJointLightning);
+		super.OnFinishProgressServer(action_data);						
 		GetGame().GetCallQueue(CALL_CATEGORY_GAMEPLAY).Call(StopSmokeParticle);
 		
 		/*

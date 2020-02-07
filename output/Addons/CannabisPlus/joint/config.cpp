@@ -37,26 +37,40 @@ class CfgVehicles
 		varQuantityInit=500;
 		varQuantityMin=0;
 		varQuantityMax=500;
-		varLiquidTypeInit=512;
-		liquidContainerType="1 + 2 + 4 + 8 + 16 + 32 + 64 + 128 + 256 + 512 + 1024 + 2048 + 4096 + 8192 + 16384 + 32768 + 65536  - (1 + 2 + 4 + 8 + 16 + 32 + 64 + 128 + 256)";
+		//varLiquidTypeInit=0;
+		//liquidContainerType="1 + 2 + 4 + 8 + 16 + 32 + 64 + 128 + 256 + 512 + 1024 + 2048 + 4096 + 8192 + 16384 + 32768 + 65536  - (1 + 2 + 4 + 8 + 16 + 32 + 64 + 128 + 256)";
 		heatIsolation=0.13;
 		quantityBar=1;
 		visibilityModifier=0.69999999;
-		//hiddenSelections[]=
-		//{
-		//	"zbytek"
-		//};
-		//hiddenSelectionsTextures[]=
-		//{
-		//	"CannabisPlus\joint\data\tobacco_co.paa"
-		//};
-		class Nutrition
+		hiddenSelections[]=
 		{
+			"zbytek"
+		};
+		hiddenSelectionsTextures[]=
+		{
+			"CannabisPlus\joint\data\tobacco_co.paa"
+		};
+		/*
+		class Nutrition {
+			
+			totalVolume=1;
 			fullnessIndex=2.5;
-			energy=365;
-			water=0.5;
+			energy=1;
+			water=-10;
 			nutritionalIndex=1;
 			toxicity=0;
-		};	
+		};
+		class EnergyManager {
+
+            switchOnAtSpawn=0;
+            isPassiveDevice=1;
+            energyStorageMax=60;
+            energyUsagePerSecond=1;
+            energyAtSpawn=60;
+            powerSocketsCount=1;
+            compatiblePlugTypes[]={7};
+            convertEnergyToQuantity=1;
+        };
+		*/
 	};
 };

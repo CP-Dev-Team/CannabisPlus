@@ -33,7 +33,7 @@ class CP_Joint : Edible_Base
 	override bool CanBeCooked()	{
 
 		return false;
-	}	
+	}
 
 
 	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -44,6 +44,7 @@ class CP_Joint : Edible_Base
 		return true;
 	}
 	
+	
 	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 	//
 	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -51,7 +52,7 @@ class CP_Joint : Edible_Base
 
 		super.SetActions();		
 		AddAction(ActionSmokeJointSelf);	// add action to smoke the joint
-		AddAction(ActionSmokeJointTarget);	// add action to let somebody else smoke the joint
+		//AddAction(ActionSmokeJointTarget);	// add action to let somebody else smoke the joint
 	}
 
 	
@@ -62,26 +63,13 @@ class CP_Joint : Edible_Base
 		
 		super.OnConsume(amount, consumer);
 		
-		//ActionSmokeJointSelf.m_light.SetPosition(this.GetPosition());
-		
 		if(this.GetQuantity() <= 0.0) {
 			GetGame().ObjectDelete(this);
-		}				
+		}
 	}	
 	
 	override void OnWork(float consumed_energy) {
 		
 		super.OnWork(consumed_energy);
-		
-		/*
-		if ( !GetGame().IsMultiplayer() || GetGame().IsClient() )
-		{
-			// Update Light
-			if (!m_Light) {
-				m_Light = TorchLight.Cast( ScriptedLightBase.CreateLight( TorchLight, Vector(0,0,0), 1 ) );
-				m_Light.AttachOnObject(this, m_ParticleLocalPos + Vector (0,0.2,0));
-			}
-		}
-		*/
 	}	
 }

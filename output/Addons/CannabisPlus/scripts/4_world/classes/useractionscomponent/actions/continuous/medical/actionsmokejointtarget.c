@@ -1,3 +1,4 @@
+/*
 class ActionSmokeJointTargetCB : ActionContinuousBaseCB
 {
 	override void CreateActionComponent()
@@ -52,3 +53,4 @@ class ActionSmokeJointTarget : ActionContinuousBase
 		}
 	}
 };
+*/
