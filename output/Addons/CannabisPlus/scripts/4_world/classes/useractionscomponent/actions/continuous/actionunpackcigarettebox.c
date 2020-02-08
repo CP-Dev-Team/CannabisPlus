@@ -1,0 +1,88 @@
+
+class ActionUnpackCigaretteBoxCB : ActionContinuousBaseCB
+{
+	
+	override void CreateActionComponent()
+	{
+		m_ActionData.m_ActionComponent = new CAContinuousTime(UATimeSpent.UNPACK);
+	}
+};
+
+
+class ActionUnpackCigaretteBox: ActionContinuousBase
+{	
+	ItemBase resultItem;
+	
+	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+	//
+	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+	void ActionUnpackCigaretteBox() {
+		
+		m_CallbackClass = ActionUnpackCigaretteBoxCB;
+		m_CommandUID = DayZPlayerConstants.CMD_ACTIONMOD_OPENITEM;
+		m_CommandUIDProne = DayZPlayerConstants.CMD_ACTIONFB_OPENITEM;
+		m_SpecialtyWeight = UASoftSkillsWeight.PRECISE_LOW;
+	}
+	
+	override void CreateConditionComponents()  
+	{		
+		m_ConditionItem = new CCINonRuined;
+		m_ConditionTarget = new CCTNone;
+	}
+	
+	override bool HasProneException()
+	{
+		return true;
+	}
+
+	override bool HasTarget()
+	{
+		return false;
+	}
+		
+	override string GetText()
+	{
+		return "#unbox";		
+	}
+	
+	
+	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+	//
+	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~	
+	override void OnFinishProgressServer( ActionData action_data )
+	{		
+		super.OnFinishProgressServer(action_data);
+		
+		if ( action_data.m_MainItem && action_data.m_MainItem.GetHierarchyRootPlayer() == action_data.m_Player )
+		{			
+			for(int i = 0; i<20; i++){
+				switch(action_data.m_MainItem.GetType()) {
+					case "CigarettePack_CannabisBlue":
+						resultItem = ItemBase.Cast( GetGame().CreateObject("CP_JointBlue" , action_data.m_Player.GetPosition(), false) );						
+						break;
+					
+					case "CigarettePack_CannabisKush":
+						resultItem = ItemBase.Cast( GetGame().CreateObject("CP_JointKush" , action_data.m_Player.GetPosition(), false) );
+						break;
+					
+					case "CigarettePack_CannabisSkunk":
+						resultItem = ItemBase.Cast( GetGame().CreateObject("CP_JointSkunk" , action_data.m_Player.GetPosition(), false) );
+						break;
+					
+					case "CigarettePack_Merkur":
+						resultItem = ItemBase.Cast( GetGame().CreateObject("CP_Cigarette" , action_data.m_Player.GetPosition(), false) );
+						break;
+					
+					case "CigarettePack_Chernamorka":
+						resultItem = ItemBase.Cast( GetGame().CreateObject("CP_Cigarette" , action_data.m_Player.GetPosition(), false) );
+						break;
+				}							
+
+			}
+			
+			GetGame().ObjectDelete(action_data.m_MainItem);
+			action_data.m_Player.GetHumanInventory().CreateInHands("CigarettePack_Empty");
+		}
+	}
+	
+};

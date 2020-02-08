@@ -13,5 +13,13 @@ modded class PluginRecipesManager
         RegisterRecipe(new CraftCannabisBrickKush);
         RegisterRecipe(new CraftCannabisBagBlue);
         RegisterRecipe(new CraftCannabisBrickBlue);
+        RegisterRecipe(new CraftCigarettePackSkunkEmpty);
+        RegisterRecipe(new CraftCigarettePackBlueEmpty);
+        RegisterRecipe(new CraftCigarettePackKushEmpty);
+        RegisterRecipe(new CraftCigarettePackChernamorkaEmpty);
+        RegisterRecipe(new CraftCigarettePackSkunk);
+        RegisterRecipe(new CraftCigarettePackBlue);
+        RegisterRecipe(new CraftCigarettePackKush);
+        RegisterRecipe(new CraftCigarettePackChernamorka);
     }
 }

@@ -8,7 +8,7 @@ PixelShaderID="Super";
 VertexShaderID="Super";
 class Stage1
 {
-	texture="dz\gear\medical\data\cigarettes_unlit_nohq.paa";
+	texture="CannabisPlus\cigarettes\data\cigarettes_unlit_nohq.paa";
 	uvSource="tex";
 	class uvTransform
 	{
@@ -56,7 +56,7 @@ class Stage4
 };
 class Stage5
 {
-	texture="dz\gear\medical\data\cigarettes_unlit_smdi.paa";
+	texture="CannabisPlus\cigarettes\data\cigarettes_unlit_smdi.paa";
 	uvSource="tex";
 	class uvTransform
 	{

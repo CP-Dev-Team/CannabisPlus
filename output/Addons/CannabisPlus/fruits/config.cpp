@@ -1,25 +1,24 @@
-class CfgPatches {
-
-	class CP_Fruits {
-
+class CfgPatches
+{
+	class CP_Fruits
+	{
 		units[]={};
 		weapons[]={};
 		requiredVersion=0.1;
-		requiredAddons[]= {
-
+		requiredAddons[]=
+		{
 			"DZ_Data",
 			"DZ_Gear_Food"
 		};
 	};
 };
-
-class CfgVehicles {
-
+class CfgVehicles
+{
 	class Edible_Base;
 	class FoodAnimationSources;
 	class FruitStageTransitions;
-	class CannabisSkunk: Edible_Base {
-
+	class CannabisSkunk: Edible_Base
+	{
 		scope=2;
 		displayName="Cannabis";
 		descriptionShort="Some cannabis bud. Skunk variety";
@@ -37,17 +36,20 @@ class CfgVehicles {
 		inventorySlot="Ingredient";
 		containsSeedsType="";
 		containsSeedsQuantity="0";
-		hiddenSelections[]= {
+		hiddenSelections[]=
+		{
 			"cs_raw"
 		};
-		hiddenSelectionsTextures[]=	{
+		hiddenSelectionsTextures[]=
+		{
 			"CannabisPlus\fruits\data\cannabis_seedman_raw_skunk_co.paa",
 			"CannabisPlus\fruits\data\cannabis_seedman_baked_skunk_co.paa",
 			"CannabisPlus\fruits\data\cannabis_seedman_raw_skunk_co.paa",
 			"CannabisPlus\fruits\data\cannabis_seedman_raw_skunk_co.paa",
 			"CannabisPlus\fruits\data\cannabis_seedman_baked_skunk_co.paa"
 		};
-		hiddenSelectionsMaterials[]= {
+		hiddenSelectionsMaterials[]=
+		{
 			"CannabisPlus\fruits\data\cannabis_seedman_raw.rvmat",
 			"CannabisPlus\fruits\data\cannabis_seedman_baked.rvmat",
 			"CannabisPlus\fruits\data\cannabis_seedman_raw.rvmat",
@@ -55,31 +57,36 @@ class CfgVehicles {
 			"CannabisPlus\fruits\data\cannabis_seedman_burnt.rvmat",
 			"CannabisPlus\fruits\data\cannabis_seedman_rotten.rvmat"
 		};
-
-		class DamageSystem {
-
-			class GlobalHealth {
-
-				class Health {
-
+	class DamageSystem
+		{
+			class GlobalHealth
+			{
+				class Health
+				{
 					hitpoints=10;
-					healthLevels[]= {
+					healthLevels[]=
+					{
+						
 						{
 							1,
 							{}
 						},
+						
 						{
 							0.69999999,
 							{}
 						},
+						
 						{
 							0.5,
 							{}
 						},
+						
 						{
 							0.30000001,
 							{}
 						},
+						
 						{
 							0,
 							{}
@@ -223,22 +230,27 @@ class CfgVehicles {
 					hitpoints=10;
 					healthLevels[]=
 					{
+						
 						{
 							1,
 							{}
 						},
+						
 						{
 							0.69999999,
 							{}
 						},
+						
 						{
 							0.5,
 							{}
 						},
+						
 						{
 							0.30000001,
 							{}
 						},
+						
 						{
 							0,
 							{}
@@ -381,22 +393,27 @@ class CfgVehicles {
 					hitpoints=10;
 					healthLevels[]=
 					{
+						
 						{
 							1,
 							{}
 						},
+						
 						{
 							0.69999999,
 							{}
 						},
+						
 						{
 							0.5,
 							{}
 						},
+						
 						{
 							0.30000001,
 							{}
 						},
+						
 						{
 							0,
 							{}
@@ -509,13 +526,5 @@ class CfgVehicles {
 		inventorySlot="Ingredient";
 		containsSeedsType="";
 		containsSeedsQuantity="0";
-		hiddenSelections[]=
-		{
-			"zbytek"
-		};
-		hiddenSelectionsTextures[]=
-		{
-			"CannabisPlus\fruits\data\tobacco_co.paa"
-		};
 	};
 };

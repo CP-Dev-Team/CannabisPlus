@@ -18,7 +18,6 @@ class ActionSmokeJointSelf: ActionContinuousBase
 	
 	static Particle m_SmokeParticle;	// member variable to get access on particle effect	
 	static PortableGasLampLight m_light;// member variable to get access on light emitter	
-	CP_Joint joint;						// reference to joint
 	
 	
 	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -142,30 +141,28 @@ class ActionSmokeJointSelf: ActionContinuousBase
 	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 	void SpwanSmokeParticle( ActionData action_data ) {
 		
-		joint = action_data.m_MainItem;
-		
-		if(joint.GetQuantity() > 0.0) {
+		if(action_data.m_MainItem.GetQuantity() > 0.0) {
 			if ( !GetGame().IsServer() || !GetGame().IsMultiplayer() ) { // client side
 				
 				PlayerBase player = action_data.m_Player;
-				m_SmokeParticle = Particle.PlayOnObject(ParticleList.CAMP_NORMAL_SMOKE, joint, Vector(0, 0.0, 0));
+				m_SmokeParticle = Particle.PlayOnObject(ParticleList.CAMP_NORMAL_SMOKE, action_data.m_MainItem, Vector(0, 0.0, 0));
 				m_SmokeParticle.ScaleParticleParamFromOriginal(EmitorParam.SIZE, 0.01);
 				m_SmokeParticle.ScaleParticleParamFromOriginal(EmitorParam.VELOCITY, 0.03);
 								
-				m_light = PortableGasLampLight.Cast(ScriptedLightBase.CreateLight( PortableGasLampLight, joint.GetPosition()));
+				m_light = PortableGasLampLight.Cast(ScriptedLightBase.CreateLight( PortableGasLampLight, action_data.m_MainItem.GetPosition()));
 				m_light.FadeIn(2.0);
 				m_light.SetFadeOutTime(1.0);				
 				m_light.SetDiffuseColor(0.85,0.5,0.23);				
 				m_light.SetRadiusTo(1);
 				m_light.SetBrightnessTo(2.0);
-				m_light.AttachOnObject(joint);				
+				m_light.AttachOnObject(action_data.m_MainItem);				
 				m_light.SetEnabled(true);				
 			}
 		} else {
 									
 			GetGame().GetCallQueue(CALL_CATEGORY_GAMEPLAY).Call(StopSmokeParticle);
 			// can automatically destroyed if 'varQuantityDestroyOnMin' set to 'true' in config file
-			GetGame().ObjectDelete(joint);
+			GetGame().ObjectDelete(action_data.m_MainItem);
 		}
 	}
 

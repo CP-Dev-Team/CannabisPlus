@@ -2,7 +2,7 @@ class CraftCigsCannabisSkunk extends RecipeBase
 {	
 	override void Init()
 	{
-		m_Name = "Make Skunk Cannabis Cigarettes";
+		m_Name = "Roll a Joint out of finest Skunk weed";
 		m_IsInstaRecipe = false;//should this recipe be performed instantly without animation
 		m_AnimationLength = 0.5;//animation length in relative time units
 		m_Specialty = -0.01;// value > 0 for roughness, value < 0 for precision
@@ -29,24 +29,22 @@ class CraftCigsCannabisSkunk extends RecipeBase
 
 		m_IngredientAddHealth[0] = 0;// 0 = do nothing
 		m_IngredientSetHealth[0] = -1; // -1 = do nothing
-		m_IngredientAddQuantity[0] = 0;// 0 = do nothing
-		m_IngredientDestroy[0] = true;//true = destroy, false = do nothing
+		m_IngredientAddQuantity[0] = -10;// 0 = do nothing
+		m_IngredientDestroy[0] = false;//true = destroy, false = do nothing
 		m_IngredientUseSoftSkills[0] = false;// set 'true' to allow modification of the values by softskills on this ingredient
 		
 		//ingredient 2
-		InsertIngredient(1, "CigarettePack_Chernamorka");//you can insert multiple ingredients this way
-		InsertIngredient(1, "CigarettePack_Merkur");
-		InsertIngredient(1, "CigarettePack_Partyzanka");
+		InsertIngredient(1, "CP_Rolling");//you can insert multiple ingredients this way
 
 		m_IngredientAddHealth[1] = 0;// 0 = do nothing
 		m_IngredientSetHealth[1] = -1; // -1 = do nothing
-		m_IngredientAddQuantity[1] = 0;// 0 = do nothing
-		m_IngredientDestroy[1] = true;// false = do nothing
+		m_IngredientAddQuantity[1] = -1;// 0 = do nothing
+		m_IngredientDestroy[1] = false;// false = do nothing
 		m_IngredientUseSoftSkills[1] = false;// set 'true' to allow modification of the values by softskills on this ingredient
 		//----------------------------------------------------------------------------------------------------------------------
 		
 		//result1
-		AddResult("CigarettePack_CannabisSkunk");//add results here
+		AddResult("CP_JointSkunk");//add results here
 
 		m_ResultSetFullQuantity[0] = true;//true = set full quantity, false = do nothing
 		m_ResultSetQuantity[0] = -1;//-1 = do nothing
