@@ -7,7 +7,9 @@ class CP_JointBlue : Edible_Base
 	// constructor
 	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 	void CP_JointBlue() {
-
+		
+		Print(ConfigGetString("descriptionShort"));
+		
 	}
 
 	

@@ -27,7 +27,7 @@ class ActionUnpackCigaretteBox: ActionContinuousBase
 		
 		GameOptions gameOptions = new GameOptions();
 		ListOptionsAccess lang = ListOptionsAccess.Cast(gameOptions.GetOptionByType( AT_OPTIONS_LANGUAGE ));
-		lang.GetItemText(lang.GetIndex(), currentLanguage);
+		lang.GetItemText(lang.GetIndex(), currentLanguage);		
 	}
 	
 	
@@ -64,11 +64,21 @@ class ActionUnpackCigaretteBox: ActionContinuousBase
 		string text = "";
 		
 		switch(currentLanguage) {
+			// if language setting is german
 			case "#options_language_DE":
 				text = "Auspacken";
 				break;
+			// if language setting is french
+			case "#options_language_FR":
+				text = "Déballer";
+				break;
+			// if language setting is spanish
+			case "#options_language_ES":
+				text = "Desenvolver";
+				break;
+			// set english to default
 			default:
-				text = "unpack";
+				text = "Unpack";
 		}
 		return text;
 	}
