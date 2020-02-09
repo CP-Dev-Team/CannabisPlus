@@ -18,7 +18,7 @@ class ActionSmokeJointSelf: ActionContinuousBase
 	
 	static Particle m_SmokeParticle;	// member variable to get access on particle effect	
 	static PortableGasLampLight m_light;// member variable to get access on light emitter	
-	
+	string currentLanguage;	
 	
 	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 	//
@@ -29,6 +29,10 @@ class ActionSmokeJointSelf: ActionContinuousBase
 		m_CommandUID = DayZPlayerConstants.CMD_ACTIONMOD_TAKETEMPSELF;
 		m_CommandUIDProne = DayZPlayerConstants.CMD_ACTIONFB_TAKETEMPSELF;
 		m_SpecialtyWeight = UASoftSkillsWeight.PRECISE_LOW;
+		
+		GameOptions gameOptions = new GameOptions();
+		ListOptionsAccess lang = ListOptionsAccess.Cast(gameOptions.GetOptionByType( AT_OPTIONS_LANGUAGE ));
+		lang.GetItemText(lang.GetIndex(), currentLanguage);
 	}
 
 	
@@ -92,7 +96,16 @@ class ActionSmokeJointSelf: ActionContinuousBase
 	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~	
 	override string GetText() {
 
-        return "Smoke Joint";
+        string text = "";
+		
+		switch(currentLanguage) {
+			case "#options_language_DE":
+				text = "Rauchen";
+				break;
+			default:
+				text = "smoke";
+		}
+		return text;
 	}
 
 
