@@ -7,64 +7,327 @@ class CfgPatches
 		requiredVersion=0.1;
 		requiredAddons[]=
 		{
-			"DZ_Data",
-			"DZ_Gear_Medical"
+			"DZ_Data"
 		};
 	};
 };
 class CfgVehicles
 {
 	class Inventory_Base;
-	class CigarettePack_ColorBase: Inventory_Base
+	class CigarettePack_Empty: Inventory_Base
 	{
 		scope=2;
-		descriptionShort="A pack of cigarettes.";
+		displayName="Empty Cigarettespack";
+		descriptionShort="Looking shaby but still usable";
+		model="\dz\gear\medical\cigarette_pack.p3d";
 		lootCategory="Crafted";
-	};
-	class CigarettePack_Empty: CigarettePack_ColorBase
-	{
-		scope=2;
-		displayName="A empty Cigarettespack";
+		itemSize[]={1,1};
+		weight=50;
 		canBeSplit=0;
-		varQuantityInit=1;
+		varQuantityInit=0;
 		varQuantityMin=0;
-		varQuantityMax=20;
+		varQuantityMax=20;	
+		varQuantityDestroyOnMin=0;	
 		quantityBar=1;
+		hiddenSelections[]=
+		{
+			"camoGround",
+			"zbytek"
+		};
 		hiddenSelectionsTextures[]=
 		{
 			"CannabisPlus\cigarettepacks\data\pack_of_cigs_empty_co.paa",
-			"CannabisPlus\cigarettepacks\data\pack_of_cigs_empty_co.paa",
 			"CannabisPlus\cigarettepacks\data\pack_of_cigs_empty_co.paa"
 		};
+		class DamageSystem
+		{
+			class GlobalHealth
+			{
+				class Health
+				{
+					hitpoints=25;
+					healthLevels[]=
+					{
+						
+						{
+							1,
+							
+							{
+								"DZ\gear\medical\data\Pack_of_cigs.rvmat"
+							}
+						},
+						
+						{
+							0.69999999,
+							
+							{
+								"DZ\gear\medical\data\Pack_of_cigs.rvmat"
+							}
+						},
+						
+						{
+							0.5,
+							
+							{
+								"DZ\gear\medical\data\Pack_of_cigs_damage.rvmat"
+							}
+						},
+						
+						{
+							0.30000001,
+							
+							{
+								"DZ\gear\medical\data\Pack_of_cigs_damage.rvmat"
+							}
+						},
+						
+						{
+							0,
+							
+							{
+								"DZ\gear\medical\data\Pack_of_cigs_destruct.rvmat"
+							}
+						}
+					};
+				};
+			};
+		};
 	};
-	class CigarettePack_Chernamorka: CigarettePack_ColorBase
+	class CigarettePack_Chernamorka: Inventory_Base
 	{
 		scope=2;
 		displayName="Chernamorka Cigarettes";
+		descriptionShort="A pack of finest Chernamorka Cigarettes";
+		model="\dz\gear\medical\cigarette_pack.p3d";
+		lootCategory="Crafted";
+		itemSize[]={1,1};
+		weight=50;
+		canBeSplit=0;
+		varQuantityInit=1;
+		varQuantityMin=1;
+		varQuantityMax=20;	
+		varQuantityDestroyOnMin=1;	
+		quantityBar=0;
+		hiddenSelections[]=
+		{
+			"camoGround",
+			"zbytek"
+		};
 		hiddenSelectionsTextures[]=
 		{
 			"DZ\gear\medical\Data\pack_of_cigs_cherno_co.paa",
 			"DZ\gear\medical\Data\pack_of_cigs_cherno_co.paa"
 		};
+		class DamageSystem
+		{
+			class GlobalHealth
+			{
+				class Health
+				{
+					hitpoints=25;
+					healthLevels[]=
+					{
+						
+						{
+							1,
+							
+							{
+								"DZ\gear\medical\data\Pack_of_cigs.rvmat"
+							}
+						},
+						
+						{
+							0.69999999,
+							
+							{
+								"DZ\gear\medical\data\Pack_of_cigs.rvmat"
+							}
+						},
+						
+						{
+							0.5,
+							
+							{
+								"DZ\gear\medical\data\Pack_of_cigs_damage.rvmat"
+							}
+						},
+						
+						{
+							0.30000001,
+							
+							{
+								"DZ\gear\medical\data\Pack_of_cigs_damage.rvmat"
+							}
+						},
+						
+						{
+							0,
+							
+							{
+								"DZ\gear\medical\data\Pack_of_cigs_destruct.rvmat"
+							}
+						}
+					};
+				};
+			};
+		};
 	};
-	class CigarettePack_Merkur: CigarettePack_ColorBase
+	class CigarettePack_Merkur: Inventory_Base
 	{
 		scope=2;
 		displayName="Merkur Cigarettes";
+		descriptionShort="A pack of finest Merkur Cigarettes";
+		model="\dz\gear\medical\cigarette_pack.p3d";
+		lootCategory="Crafted";
+		itemSize[]={1,1};
+		weight=50;
+		canBeSplit=0;
+		varQuantityInit=1;
+		varQuantityMin=1;
+		varQuantityMax=20;	
+		varQuantityDestroyOnMin=1;	
+		quantityBar=0;
+		hiddenSelections[]=
+		{
+			"camoGround",
+			"zbytek"
+		};
 		hiddenSelectionsTextures[]=
 		{
 			"DZ\gear\medical\Data\pack_of_cigs_merkur_co.paa",
 			"DZ\gear\medical\Data\pack_of_cigs_merkur_co.paa"
 		};
+		class DamageSystem
+		{
+			class GlobalHealth
+			{
+				class Health
+				{
+					hitpoints=25;
+					healthLevels[]=
+					{
+						
+						{
+							1,
+							
+							{
+								"DZ\gear\medical\data\Pack_of_cigs.rvmat"
+							}
+						},
+						
+						{
+							0.69999999,
+							
+							{
+								"DZ\gear\medical\data\Pack_of_cigs.rvmat"
+							}
+						},
+						
+						{
+							0.5,
+							
+							{
+								"DZ\gear\medical\data\Pack_of_cigs_damage.rvmat"
+							}
+						},
+						
+						{
+							0.30000001,
+							
+							{
+								"DZ\gear\medical\data\Pack_of_cigs_damage.rvmat"
+							}
+						},
+						
+						{
+							0,
+							
+							{
+								"DZ\gear\medical\data\Pack_of_cigs_destruct.rvmat"
+							}
+						}
+					};
+				};
+			};
+		};
 	};
-	class CigarettePack_Partyzanka: CigarettePack_ColorBase
+	class CigarettePack_Partyzanka: Inventory_Base
 	{
 		scope=2;
 		displayName="Partyzanka Cigarettes";
+		descriptionShort="A pack of finest Partyzanka Cigarettes";
+		model="\dz\gear\medical\cigarette_pack.p3d";
+		lootCategory="Crafted";
+		itemSize[]={1,1};
+		weight=50;
+		canBeSplit=0;
+		varQuantityInit=1;
+		varQuantityMin=1;
+		varQuantityMax=20;	
+		varQuantityDestroyOnMin=1;	
+		quantityBar=0;
+		hiddenSelections[]=
+		{
+			"camoGround",
+			"zbytek"
+		};
 		hiddenSelectionsTextures[]=
 		{
 			"DZ\gear\medical\Data\pack_of_cigs_partyzanka_co.paa",
 			"DZ\gear\medical\Data\pack_of_cigs_partyzanka_co.paa"
+		};
+		class DamageSystem
+		{
+			class GlobalHealth
+			{
+				class Health
+				{
+					hitpoints=25;
+					healthLevels[]=
+					{
+						
+						{
+							1,
+							
+							{
+								"DZ\gear\medical\data\Pack_of_cigs.rvmat"
+							}
+						},
+						
+						{
+							0.69999999,
+							
+							{
+								"DZ\gear\medical\data\Pack_of_cigs.rvmat"
+							}
+						},
+						
+						{
+							0.5,
+							
+							{
+								"DZ\gear\medical\data\Pack_of_cigs_damage.rvmat"
+							}
+						},
+						
+						{
+							0.30000001,
+							
+							{
+								"DZ\gear\medical\data\Pack_of_cigs_damage.rvmat"
+							}
+						},
+						
+						{
+							0,
+							
+							{
+								"DZ\gear\medical\data\Pack_of_cigs_destruct.rvmat"
+							}
+						}
+					};
+				};
+			};
 		};
 	};
 	class CigarettePack_CannabisSkunk: Inventory_Base
@@ -76,11 +339,9 @@ class CfgVehicles
 		lootCategory="Crafted";
 		itemSize[]={1,1};
 		weight=50;
-		SingleUseActions[]={509,510};
-		InteractActions[]={1002,1003};
 		canBeSplit=0;
 		varQuantityInit=1;
-		varQuantityMin=0;
+		varQuantityMin=1;
 		varQuantityMax=20;	
 		varQuantityDestroyOnMin=1;	
 		quantityBar=0;
@@ -91,7 +352,6 @@ class CfgVehicles
 		};
 		hiddenSelectionsTextures[]=
 		{
-			"CannabisPlus\cigarettepacks\data\pack_of_cigs_cannabis_skunk_co.paa",
 			"CannabisPlus\cigarettepacks\data\pack_of_cigs_cannabis_skunk_co.paa",
 			"CannabisPlus\cigarettepacks\data\pack_of_cigs_cannabis_skunk_co.paa"
 		};
@@ -148,12 +408,6 @@ class CfgVehicles
 				};
 			};
 		};
-		class Medicine
-		{
-			prevention=0;
-			treatment=0.89999998;
-			diseaseExit=1;
-		};
 	};
 	class CigarettePack_CannabisBlue: Inventory_Base
 	{
@@ -164,11 +418,9 @@ class CfgVehicles
 		lootCategory="Crafted";
 		itemSize[]={1,1};
 		weight=50;
-		SingleUseActions[]={509,510};
-		InteractActions[]={1002,1003};
 		canBeSplit=0;
 		varQuantityInit=1;
-		varQuantityMin=0;
+		varQuantityMin=1;
 		varQuantityMax=20;	
 		varQuantityDestroyOnMin=1;	
 		quantityBar=0;
@@ -179,7 +431,6 @@ class CfgVehicles
 		};
 		hiddenSelectionsTextures[]=
 		{
-			"CannabisPlus\cigarettepacks\data\pack_of_cigs_cannabisblue_co.paa",
 			"CannabisPlus\cigarettepacks\data\pack_of_cigs_cannabisblue_co.paa",
 			"CannabisPlus\cigarettepacks\data\pack_of_cigs_cannabisblue_co.paa"
 		};
@@ -236,12 +487,6 @@ class CfgVehicles
 				};
 			};
 		};
-		class Medicine
-		{
-			prevention=0;
-			treatment=0.89999998;
-			diseaseExit=1;
-		};
 	};
 	class CigarettePack_CannabisKush: Inventory_Base
 	{
@@ -252,11 +497,9 @@ class CfgVehicles
 		lootCategory="Crafted";
 		itemSize[]={1,1};
 		weight=50;
-		SingleUseActions[]={509,510};
-		InteractActions[]={1002,1003};
 		canBeSplit=0;
 		varQuantityInit=1;
-		varQuantityMin=0;
+		varQuantityMin=1;
 		varQuantityMax=20;	
 		varQuantityDestroyOnMin=1;	
 		quantityBar=0;
@@ -267,7 +510,6 @@ class CfgVehicles
 		};
 		hiddenSelectionsTextures[]=
 		{
-			"CannabisPlus\cigarettepacks\data\pack_of_cigs_cannabiskush_co.paa",
 			"CannabisPlus\cigarettepacks\data\pack_of_cigs_cannabiskush_co.paa",
 			"CannabisPlus\cigarettepacks\data\pack_of_cigs_cannabiskush_co.paa"
 		};
@@ -323,12 +565,6 @@ class CfgVehicles
 					};
 				};
 			};
-		};
-		class Medicine
-		{
-			prevention=0;
-			treatment=0.89999998;
-			diseaseExit=1;
 		};
 	};
 };

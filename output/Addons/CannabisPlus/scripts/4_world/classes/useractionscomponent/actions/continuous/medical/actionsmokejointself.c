@@ -19,7 +19,8 @@ class ActionSmokeJointSelf: ActionContinuousBase
 	static Particle m_SmokeParticle;	// member variable to get access on particle effect	
 	static PortableGasLampLight m_light;// member variable to get access on light emitter	
 	string currentLanguage;	
-	
+
+		
 	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 	//
 	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~	
@@ -149,11 +150,17 @@ class ActionSmokeJointSelf: ActionContinuousBase
 	}
 	
 	
+	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+	// 
+	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 	override void OnStartAnimationLoopServer(ActionData action_data) {
 		SpwanSmokeParticle( action_data );
 	}
 	
 	
+	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+	// 
+	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 	override void OnStartAnimationLoopClient(ActionData action_data) {
 		SpwanSmokeParticle( action_data );
 	}
@@ -217,19 +224,6 @@ class ActionSmokeJointSelf: ActionContinuousBase
 	override void OnFinishProgressServer( ActionData action_data )	{	
 
 		super.OnFinishProgressServer(action_data);						
-		GetGame().GetCallQueue(CALL_CATEGORY_GAMEPLAY).Call(StopSmokeParticle);
-		
-		/*
-		Thermometer thermometer = Thermometer.Cast(action_data.m_MainItem);
-		
-		if(thermometer)	{
-
-			ScriptRPC rpc = new ScriptRPC();
-			rpc.Write(thermometer.GetTemperatureMessage(action_data.m_Player));
-			rpc.Send(action_data.m_Player, ERPCs.RPC_SYNC_THERMOMETER, true, action_data.m_Player.GetIdentity() );
-		}
-
-		action_data.m_Player.GetSoftSkillsManager().AddSpecialty( m_SpecialtyWeight );
-		*/
+		GetGame().GetCallQueue(CALL_CATEGORY_GAMEPLAY).Call(StopSmokeParticle);		
 	}
 };

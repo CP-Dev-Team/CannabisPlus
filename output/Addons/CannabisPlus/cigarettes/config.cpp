@@ -97,5 +97,13 @@ class CfgVehicles
 				};
 			};
 		};
+		class Nutrition
+		{
+			fullnessIndex = 1;
+			energy = 1;
+			water = -25;
+			nutritionalIndex = 55;
+			toxicity = 0;
+		};
 	};
 };

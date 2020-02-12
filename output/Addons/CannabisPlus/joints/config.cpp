@@ -42,6 +42,14 @@ class CfgVehicles
 		heatIsolation=0.13;
 		quantityBar=1;
 		//visibilityModifier=0.69999999;
+		class Nutrition
+		{
+			fullnessIndex = 1;
+			energy = -25;
+			water = 1;
+			nutritionalIndex = 55;
+			toxicity = 0;
+		};
 		/*
 		class Nutrition {
 			
