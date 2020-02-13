@@ -422,6 +422,7 @@ modded class PlantBase
 	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 	override void OnStoreSave( ParamsWriteContext ctx )
 	{
+		// call the inherited class
 		super.OnStoreSave( ctx );
 		if(GetGame().IsServer()){
 			ctx.Write( m_HasCrops );
@@ -476,6 +477,7 @@ modded class ActionPlantSeed: ActionSingleUseBase
 			}
 		}
 		else{
+			// call the inherited class
 			super.Process(action_data);
 		}
 	}
@@ -497,6 +499,7 @@ modded class ActionHarvestCrops: ActionInteractBase
 		Object targetObject = action_data.m_Target.GetObject();
 		PlantBase plant = PlantBase.Cast( targetObject );
 		if(plant.HasCrops()){
+			// call the inherited class
 			super.OnExecuteClient(action_data);
 		}
 	}
@@ -520,15 +523,15 @@ modded class ActionHarvestCrops: ActionInteractBase
 // 
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 modded class SeedPackBase
-{
-	private int m_tobaccoSeed_count;
-	private int m_cannabisSkunkSeed_count;
-	private int m_cannabisBlueSeed_count;
-	private int m_cannabisKushSeed_count;
-	private int m_pepperSeed_count;
-	private int m_tomatoSeed_count;
-	private int m_zucchiniSeed_count;
-	private int m_pumpkinSeed_count;
+{	
+	private int m_tobaccoSeed_count;		// number of tobacco seeds that emerge
+	private int m_cannabisSkunkSeed_count;	// number of cannabis skunk seeds that emerge
+	private int m_cannabisBlueSeed_count;	// number of cannabis blue emerge
+	private int m_cannabisKushSeed_count;	// number of cannabis kush that emerge
+	private int m_pepperSeed_count;			// number of pepper seeds that emerge
+	private int m_tomatoSeed_count;			// number of tomato seeds that emerge
+	private int m_zucchiniSeed_count;		// number of zucchini seeds that emerge
+	private int m_pumpkinSeed_count;		// number of pumpkin seeds that emerge
 	
 
 	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -545,46 +548,46 @@ modded class SeedPackBase
 		//int seeds_quantity_max = GetGame().ConfigGetInt( "cfgVehicles " + pack_type + " Horticulture ContainsSeedsQuantity" );
 		int seeds_quantity_max;
 		int seeds_quantity = seeds_quantity_max;
-		
-		m_tobaccoSeed_count 		=  CannabisPlus.getInstance().GetConfig().tobaccoSeed_count;
-		m_cannabisSkunkSeed_count 	=  CannabisPlus.getInstance().GetConfig().cannabisSkunkSeed_count;
-		m_cannabisBlueSeed_count 	=  CannabisPlus.getInstance().GetConfig().cannabisBlueSeed_count;
-		m_cannabisKushSeed_count 	=  CannabisPlus.getInstance().GetConfig().cannabisKushSeed_count;
-		m_pepperSeed_count 			=  CannabisPlus.getInstance().GetConfig().pepperSeed_count;
-		m_tomatoSeed_count 			=  CannabisPlus.getInstance().GetConfig().tomatoSeed_count;
-		m_zucchiniSeed_count 		=  CannabisPlus.getInstance().GetConfig().zucchiniSeed_count;
-		m_pumpkinSeed_count 		=  CannabisPlus.getInstance().GetConfig().pumpkinSeed_count;
-		
+		// read seed count values from config file
+		m_tobaccoSeed_count 		=  CannabisPlus.getInstance().GetConfig().tobaccoSeed_count;		// tobacco
+		m_cannabisSkunkSeed_count 	=  CannabisPlus.getInstance().GetConfig().cannabisSkunkSeed_count;	// cannabis skunk
+		m_cannabisBlueSeed_count 	=  CannabisPlus.getInstance().GetConfig().cannabisBlueSeed_count;	// cannbis blue
+		m_cannabisKushSeed_count 	=  CannabisPlus.getInstance().GetConfig().cannabisKushSeed_count;	// cannabis kush
+		m_pepperSeed_count 			=  CannabisPlus.getInstance().GetConfig().pepperSeed_count;			// pepper
+		m_tomatoSeed_count 			=  CannabisPlus.getInstance().GetConfig().tomatoSeed_count;			// tomato
+		m_zucchiniSeed_count 		=  CannabisPlus.getInstance().GetConfig().zucchiniSeed_count;		// zucchini
+		m_pumpkinSeed_count 		=  CannabisPlus.getInstance().GetConfig().pumpkinSeed_count;		// pumpkin
+		// select the current seedpack
 		switch(this.GetType()) {
-			
+			// Cannabis Skunk seedpack
 			case "CannabisSeedsPackSkunk":
 				seeds_quantity_max = m_cannabisSkunkSeed_count;
 				break;
-			
+			// Cannabis Blue seedpack
 			case "CannabisSeedsPackBlue":
 				seeds_quantity_max = m_cannabisBlueSeed_count;
 				break;
-			
+			// Tobacco seedpack
 			case "TobaccoSeedsPack":
 				seeds_quantity_max = m_tobaccoSeed_count;
 				break;
-			
+			// Cannabis Kush seedpack
 			case "CannabisSeedsPackKush":
 				seeds_quantity_max = m_cannabisKushSeed_count;
 				break;
-			
+			// Pepper seedpack
 			case "PepperSeedsPack":
 				seeds_quantity_max = m_pepperSeed_count;
 				break;
-			
+			// Tomato seedpack
 			case "TomatoSeedsPack":
 				seeds_quantity_max = m_tomatoSeed_count;
 				break;
-			
+			// Zucchini seedpack
 			case "ZucchiniSeedsPack":
 				seeds_quantity_max = m_zucchiniSeed_count;
 				break;
-			
+			// Pumpkin seedpack
 			case "PumpkinSeedsPack":
 				seeds_quantity_max = m_pumpkinSeed_count;
 				break;
@@ -595,7 +598,7 @@ modded class SeedPackBase
 		}
 		
 		seeds_quantity = Math.Round( seeds_quantity_max * GetHealth01("","") );
-	
+		// 'resets' the seed quantity to 1 if...
 		if ( seeds_quantity < 1 ) { 
 			seeds_quantity = 1;
 		}
