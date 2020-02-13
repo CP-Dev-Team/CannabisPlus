@@ -73,7 +73,7 @@ class CannabisPlus{
 	
 	
 	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-	// 
+	// returns a referenz of cannabis class to get access to neccessary variables
 	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 	static ref CannabisPlus getInstance(){
 		
@@ -86,7 +86,7 @@ class CannabisPlus{
 	
 	
 	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-	// 
+	// returns the config of cannabis plus to get access to variables
 	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 	CannabisPlusConfig GetConfig(){
 		return _config;
@@ -98,9 +98,7 @@ class CannabisPlus{
 // 
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 modded class Plant_CannabisSkunk
-{
-	
-	
+{	
 	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 	// 
 	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -268,7 +266,6 @@ modded class PlantBase
 		m_IsInfested 					= false;
 		m_SprayQuantity 				= 0.0;
 		m_HasCrops 						= true;
-
 	}
 
 	
@@ -316,44 +313,44 @@ modded class PlantBase
 			isFertilized = true;
 		}
 		
-		//sets values out of CannabisPlus.json
+		//sets growtime and cropcount out of CannabisPlus.json
 		switch(this.GetType()){
-			
+			// cannabis skunk
 			case "Plant_CannabisSkunk":
 				m_growtime = m_cannabisSkunk_growtime;
 				m_CropsCount = m_cannabisSkunk_cropcount;
 				break;
-
+			// cannabis blue
 			case "Plant_CannabisBlue":
 				m_growtime = m_cannabisBlue_growtime;
 				m_CropsCount = m_cannabisBlue_cropcount;
 				break;
-
+			// cannabis kush
 			case "Plant_CannabisKush":
 				m_growtime = m_cannabisKush_growtime;
 				m_CropsCount = m_cannabisKush_cropcount;
 				break;
-
+			// tobacco
 			case "Plant_Tobacco":
 				m_growtime = m_tabacco_growtime;
 				m_CropsCount = m_tabacco_cropcount;
 				break;
-
+			// pepper 
 			case "Plant_Pepper":
 				m_growtime = m_pepper_growtime;
 				m_CropsCount = m_pepper_cropcount;
 				break;
-
+			// tomato
 			case "Plant_Tomato":
 				m_growtime = m_tomato_growtime;
 				m_CropsCount = m_tomato_cropcount;
 				break;
-
+			// zucchini
 			case "Plant_Zucchini":
 				m_growtime = m_zucchini_growtime;
 				m_CropsCount = m_zucchini_cropcount;
 				break;
-
+			// pumpkin
 			case "Plant_Pumpkin":
 				m_growtime = m_pumpkin_growtime;
 				m_CropsCount = m_pumpkin_cropcount;
@@ -366,6 +363,7 @@ modded class PlantBase
 
 		}
 
+		// if the plant is fertilized reduce time that the plant is full-grown
 		if(isFertilized) {
 			m_FullMaturityTime = (float) ((48 * m_growtime) + Math.RandomInt(0, 30)) / fertility; 
 		} else {
@@ -376,6 +374,7 @@ modded class PlantBase
 
 		m_StateChangeTime 				= (float) ((float)m_FullMaturityTime / ((float)m_GrowthStagesCount - 2.0));
 
+		// if the plant is fertilized double the cropcount
 		if(isFertilized) {
 			m_CropsCount = m_CropsCount * harvesting_efficiency * 2;
 		} else {
@@ -385,20 +384,17 @@ modded class PlantBase
 		m_PlantMaterialMultiplier 		= 0.1 * harvesting_efficiency;
 		
 		float rain_intensity = GetGame().GetWeather().GetRain().GetActual();
-		if ( rain_intensity > 0.0 )
-		{
+		
+		if ( rain_intensity > 0.0 ) {
 			CheckWater();
 		}
-		else
-		{
+		else {
 			CheckWater();
 			
-			if ( NeedsWater() )
-			{
+			if ( NeedsWater() )	{
 				SetPlantState(STATE_DRY);
 				
-				if (GetGame().IsServer())
-				{
+				if (GetGame().IsServer()) {
 					m_DeleteDryPlantTimer = new Timer( CALL_CATEGORY_SYSTEM );
 					m_DeleteDryPlantTimer.Run( m_DeleteDryPlantTime, this, "DeleteDryPlantTick", NULL, false );
 				}
