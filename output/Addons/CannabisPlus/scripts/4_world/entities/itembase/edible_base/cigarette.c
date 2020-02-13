@@ -13,6 +13,10 @@ class CP_Cigarette : Edible_Base
 	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 	void CP_Cigarette() {
 		
+		// set values from config to the player		
+		PlayerBase.m_IsSmokeEffectActivated 		= CannabisPlus.getInstance().GetConfig().activateCigaretteSmokingEffect;
+		PlayerBase.m_smokingCigaretteEffectDuration = CannabisPlus.getInstance().GetConfig().smokingCigaretteEffectDuration;
+		PlayerBase.m_cigarettesToActivateEffect 	= CannabisPlus.getInstance().GetConfig().cigarettesToActivateEffect;				
 	}
 
 	
@@ -23,6 +27,7 @@ class CP_Cigarette : Edible_Base
 
 	}
 
+	
 	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 	//
 	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -56,8 +61,7 @@ class CP_Cigarette : Edible_Base
 	override void SetActions()	{
 
 		super.SetActions();		
-		AddAction(ActionSmokeJointSelf);	// add action to smoke the joint
-		//AddAction(ActionSmokeJointTarget);	// add action to let somebody else smoke the joint
+		AddAction(ActionSmokeJointSelf);	// add action to smoke the joint		
 	}
 
 	
@@ -67,9 +71,12 @@ class CP_Cigarette : Edible_Base
 	override void OnConsume(float amount, PlayerBase consumer) {
 		
 		super.OnConsume(amount, consumer);
-
-		consumer.AddValueToCigaretteValue(amount);
 		
+		// checks if effect on smoking a cigarette is enable then add the amount
+		if(CannabisPlus.getInstance().GetConfig().activateCigaretteSmokingEffect)
+			consumer.AddValueToCigaretteValue(amount);
+		
+		// despawn the current object if the quantity is 0 (or less)
 		if(this.GetQuantity() <= 0.0) {
 			GetGame().ObjectDelete(this);
 		}
