@@ -37,9 +37,12 @@ class CannabisPlusConfig
 	
 	// smoke effect settings
 	bool activateCigaretteSmokingEffect = true; // reduces the fluctuation/sway in aiming when a cigarette is smoked
-	int smokingCigaretteEffectDuration 	= 600;	// Time in seconds for the effect to stop
+	int smokingCigaretteEffectDuration 	= 20;	// Time in seconds for the effect to stop
 	int cigarettesToActivateEffect 		= 1;	// number of cigarettes consumed to activate the effect
 	// joint smoke effect settings
+	bool activateJointSmokingEffect 	= true; // reduces the fluctuation/sway in aiming when a cigarette is smoked
+	int smokingJointEffectDuration 		= 20;	// Time in seconds for the effect to stop
+	int jointsToActivateEffect 			= 1;	// number of cigarettes consumed to activate the effect
 	
 }
 

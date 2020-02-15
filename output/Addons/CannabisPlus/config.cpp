@@ -34,6 +34,14 @@ class CfgMods
 		};
 		class defs
 		{
+			class gameScriptModule
+			{
+				value="";
+				files[]=
+				{
+					"CannabisPlus/scripts/3_game"
+				};
+			};
 			class worldScriptModule
 			{
 				value="";

@@ -3,12 +3,17 @@
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 class CP_JointBlue : Edible_Base
 {
+	
+	Material materialColors = GetGame().GetWorld().GetMaterial("graphics/materials/postprocess/glow");
+	
 	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 	// constructor
 	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 	void CP_JointBlue() {
 		
-		Print(ConfigGetString("descriptionShort"));
+		PlayerBase.m_IsJointEffectActivated 	= CannabisPlus.getInstance().GetConfig().activateJointSmokingEffect;
+		PlayerBase.m_smokingJointEffectDuration = CannabisPlus.getInstance().GetConfig().smokingJointEffectDuration;
+		PlayerBase.m_jointsToActivateEffect 	= CannabisPlus.getInstance().GetConfig().jointsToActivateEffect;				
 		
 	}
 
@@ -56,7 +61,7 @@ class CP_JointBlue : Edible_Base
 		AddAction(ActionSmokeJointSelf);	// add action to smoke the joint
 		//AddAction(ActionSmokeJointTarget);	// add action to let somebody else smoke the joint
 	}
-
+	
 	
 	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 	// is called server-side (the right place to adapt values if smoking)
@@ -65,6 +70,10 @@ class CP_JointBlue : Edible_Base
 		
 		super.OnConsume(amount, consumer);
 		
+		if(CannabisPlus.getInstance().GetConfig().activateJointSmokingEffect){
+			consumer.AddValueToJointValue(amount);
+		}
+				
 		if(this.GetQuantity() <= 0.0) {
 			GetGame().ObjectDelete(this);
 		}
