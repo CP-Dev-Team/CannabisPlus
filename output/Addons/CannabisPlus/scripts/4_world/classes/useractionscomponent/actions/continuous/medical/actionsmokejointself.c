@@ -48,15 +48,16 @@ class ActionSmokeJointSelf: ActionContinuousBase
 		return true;
 	}
 
+	
 	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 	//
 	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~	
 	override void OnStartAnimationLoop(ActionData action_data) {
 		// call the inherited class
 		super.OnStartAnimationLoop(action_data);
+		// 
+		GetGame().GetCallQueue(CALL_CATEGORY_GAMEPLAY).Call(SpwanSmokeParticle, action_data);		
 	}
-
-
 	
 	
 	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -142,7 +143,9 @@ class ActionSmokeJointSelf: ActionContinuousBase
 	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 	override void OnExecuteClient( ActionData action_data ) {
 		// call the inherited class
-		super.OnExecuteClient( action_data );		
+		super.OnExecuteClient( action_data );
+		// spawn particles server-side
+		//GetGame().GetCallQueue(CALL_CATEGORY_GAMEPLAY).Call(SpwanSmokeParticle, action_data);
 	}
 	
 	
@@ -152,6 +155,8 @@ class ActionSmokeJointSelf: ActionContinuousBase
 	override void OnExecuteServer( ActionData action_data )	{
 		// call the inherited class
 		super.OnExecuteServer( action_data );
+		// spawn particles server-side
+		//GetGame().GetCallQueue(CALL_CATEGORY_GAMEPLAY).Call(SpwanSmokeParticle, action_data);
 	}
 	
 	
@@ -160,7 +165,7 @@ class ActionSmokeJointSelf: ActionContinuousBase
 	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 	override void OnStartAnimationLoopServer(ActionData action_data) {
 		// spawns the smoke particles
-		SpwanSmokeParticle( action_data );
+		GetGame().GetCallQueue(CALL_CATEGORY_GAMEPLAY).Call(SpwanSmokeParticle, action_data);
 	}
 	
 	
@@ -168,8 +173,9 @@ class ActionSmokeJointSelf: ActionContinuousBase
 	// fired when the animation begins - client side
 	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 	override void OnStartAnimationLoopClient(ActionData action_data) {
-		// spawns the smoke particles
-		SpwanSmokeParticle( action_data );
+		// spawns the smoke particles		
+		GetGame().GetCallQueue(CALL_CATEGORY_GAMEPLAY).Call(SpwanSmokeParticle, action_data);
+		
 	}
 	
 
@@ -230,7 +236,7 @@ class ActionSmokeJointSelf: ActionContinuousBase
 
 
 	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-	// fired when the whole progress is finishe - server side
+	// fired when the whole progress is finished - server side
 	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 	override void OnFinishProgressServer( ActionData action_data )	{			
 		// call the inherited class
