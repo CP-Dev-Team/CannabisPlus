@@ -21,7 +21,8 @@ class ActionSmokeJointSelf: ActionContinuousBase
 	static PortableGasLampLight m_light;
 	// holds the currently selected game langunge
 	string currentLanguage;	
-
+	
+	ActionData actionData;
 		
 	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 	//
@@ -40,6 +41,13 @@ class ActionSmokeJointSelf: ActionContinuousBase
 		lang.GetItemText(lang.GetIndex(), currentLanguage);
 	}
 
+	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+	//
+	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+	void ~ActionSmokeJointSelf() {
+		GetGame().ObjectDelete(actionData.m_MainItem);
+	}
+	
 	
 	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 	// 
@@ -55,6 +63,8 @@ class ActionSmokeJointSelf: ActionContinuousBase
 	override void OnStartAnimationLoop(ActionData action_data) {
 		// call the inherited class
 		super.OnStartAnimationLoop(action_data);
+		actionData = action_data;
+		
 		// 
 		GetGame().GetCallQueue(CALL_CATEGORY_GAMEPLAY).Call(SpwanSmokeParticle, action_data);		
 	}
@@ -66,6 +76,7 @@ class ActionSmokeJointSelf: ActionContinuousBase
 	override void OnEndAnimationLoop(ActionData action_data) {
 		// call the inherited class
 		super.OnEndAnimationLoop(action_data);
+		actionData = action_data;
 		// register the function 'StopSmokeParticle' for call-queue to make sure the function would executed
 		GetGame().GetCallQueue(CALL_CATEGORY_GAMEPLAY).Call(StopSmokeParticle);
 	}
@@ -133,6 +144,7 @@ class ActionSmokeJointSelf: ActionContinuousBase
 	override void OnEndInput(ActionData action_data) {
 		// call the inherited class		
 		super.OnEndInput(action_data);
+		actionData = action_data;
 		// register the function 'StopSmokeParticle' for call-queue to make sure the function would executed
 		GetGame().GetCallQueue(CALL_CATEGORY_GAMEPLAY).Call(StopSmokeParticle);				
 	}
@@ -144,8 +156,9 @@ class ActionSmokeJointSelf: ActionContinuousBase
 	override void OnExecuteClient( ActionData action_data ) {
 		// call the inherited class
 		super.OnExecuteClient( action_data );
+		actionData = action_data;
 		// spawn particles server-side
-		//GetGame().GetCallQueue(CALL_CATEGORY_GAMEPLAY).Call(SpwanSmokeParticle, action_data);
+		GetGame().GetCallQueue(CALL_CATEGORY_GAMEPLAY).Call(SpwanSmokeParticle, action_data);
 	}
 	
 	
@@ -155,8 +168,9 @@ class ActionSmokeJointSelf: ActionContinuousBase
 	override void OnExecuteServer( ActionData action_data )	{
 		// call the inherited class
 		super.OnExecuteServer( action_data );
+		actionData = action_data;
 		// spawn particles server-side
-		//GetGame().GetCallQueue(CALL_CATEGORY_GAMEPLAY).Call(SpwanSmokeParticle, action_data);
+		 GetGame().GetCallQueue(CALL_CATEGORY_GAMEPLAY).Call(SpwanSmokeParticle, action_data);
 	}
 	
 	
@@ -174,8 +188,8 @@ class ActionSmokeJointSelf: ActionContinuousBase
 	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 	override void OnStartAnimationLoopClient(ActionData action_data) {
 		// spawns the smoke particles		
-		GetGame().GetCallQueue(CALL_CATEGORY_GAMEPLAY).Call(SpwanSmokeParticle, action_data);
-		
+		actionData = action_data;
+		GetGame().GetCallQueue(CALL_CATEGORY_GAMEPLAY).Call(SpwanSmokeParticle, action_data);		
 	}
 	
 
