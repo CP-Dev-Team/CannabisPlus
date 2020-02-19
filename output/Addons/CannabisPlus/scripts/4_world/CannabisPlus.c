@@ -59,6 +59,7 @@ class CannabisPlus{
 	// 
 	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 	void CannabisPlus(){
+		
 		if ( GetGame().IsServer() ){
 			_config = new CannabisPlusConfig();
 			string fileName;

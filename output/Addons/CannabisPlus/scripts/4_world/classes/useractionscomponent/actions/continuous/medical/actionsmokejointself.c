@@ -63,13 +63,11 @@ class ActionSmokeJointSelf: ActionContinuousBase
 	override void OnStartAnimationLoop(ActionData action_data) {
 		// call the inherited class
 		super.OnStartAnimationLoop(action_data);
-		actionData = action_data;
+		GetGame().GetCallQueue(CALL_CATEGORY_GAMEPLAY).Call(SpwanSmokeParticle, action_data);
 		
-		// 
-		GetGame().GetCallQueue(CALL_CATEGORY_GAMEPLAY).Call(SpwanSmokeParticle, action_data);		
+		Print("Item:" + action_data.m_MainItem); // gets the current item in hands
 	}
-	
-	
+		
 	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 	//
 	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~	
@@ -197,31 +195,34 @@ class ActionSmokeJointSelf: ActionContinuousBase
 	// spawn particle effect related to player position
 	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 	void SpwanSmokeParticle( ActionData action_data ) {
-		// as long as the joint has 'quantity' (quantity is configured in config file) , smoking is allowed
-		if(action_data.m_MainItem.GetQuantity() > 0.0) {
-			// make sure the effects called client side
-			if ( !GetGame().IsServer() || !GetGame().IsMultiplayer() ) { 
-				// get reference to player object
-				PlayerBase player = action_data.m_Player;
-				m_SmokeParticle = Particle.PlayOnObject(ParticleList.CAMP_NORMAL_SMOKE, action_data.m_MainItem, Vector(0, 0.0, 0));
-				m_SmokeParticle.ScaleParticleParamFromOriginal(EmitorParam.SIZE, 0.01);
-				m_SmokeParticle.ScaleParticleParamFromOriginal(EmitorParam.VELOCITY, 0.03);
-								
-				m_light = PortableGasLampLight.Cast(ScriptedLightBase.CreateLight( PortableGasLampLight, action_data.m_MainItem.GetPosition()));
-				m_light.FadeIn(2.0);
-				m_light.SetFadeOutTime(1.0);				
-				m_light.SetDiffuseColor(0.85,0.5,0.23);				
-				m_light.SetRadiusTo(1);
-				m_light.SetBrightnessTo(2.0);
-				m_light.AttachOnObject(action_data.m_MainItem);				
-				m_light.SetEnabled(true);				
+		
+		if(!GetGame().IsServer() || !GetGame().IsMultiplayer()){
+			// as long as the joint has 'quantity' (quantity is configured in config file) , smoking is allowed
+			if(action_data.m_MainItem.GetQuantity() > 0.0) {
+				// make sure the effects called client side
+				if ( !GetGame().IsServer() || !GetGame().IsMultiplayer() ) { 
+					// get reference to player object
+					PlayerBase player = action_data.m_Player;
+					m_SmokeParticle = Particle.PlayOnObject(ParticleList.CAMP_NORMAL_SMOKE, action_data.m_MainItem, Vector(0, 0.0, 0));
+					m_SmokeParticle.ScaleParticleParamFromOriginal(EmitorParam.SIZE, 0.01);
+					m_SmokeParticle.ScaleParticleParamFromOriginal(EmitorParam.VELOCITY, 0.03);
+									
+					m_light = PortableGasLampLight.Cast(ScriptedLightBase.CreateLight( PortableGasLampLight, action_data.m_MainItem.GetPosition()));
+					m_light.FadeIn(2.0);
+					m_light.SetFadeOutTime(1.0);				
+					m_light.SetDiffuseColor(0.85,0.5,0.23);				
+					m_light.SetRadiusTo(1);
+					m_light.SetBrightnessTo(2.0);
+					m_light.AttachOnObject(action_data.m_MainItem);				
+					m_light.SetEnabled(true);				
+				}
+			} else {
+				// register the function 'StopSmokeParticle' for call-queue to make sure the function would executed
+				GetGame().GetCallQueue(CALL_CATEGORY_GAMEPLAY).Call(StopSmokeParticle);
+				// can automatically destroyed if 'varQuantityDestroyOnMin' set to 'true' in config file
+				GetGame().ObjectDelete(action_data.m_MainItem);
 			}
-		} else {
-			// register the function 'StopSmokeParticle' for call-queue to make sure the function would executed
-			GetGame().GetCallQueue(CALL_CATEGORY_GAMEPLAY).Call(StopSmokeParticle);
-			// can automatically destroyed if 'varQuantityDestroyOnMin' set to 'true' in config file
-			GetGame().ObjectDelete(action_data.m_MainItem);
-		}
+		}		
 	}
 
 		

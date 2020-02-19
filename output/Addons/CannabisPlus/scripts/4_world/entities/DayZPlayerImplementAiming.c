@@ -28,7 +28,7 @@ modded class DayZPlayerImplementAiming {
 			
 		if( m_PlayerPb.IsHoldingBreath() || m_PlayerPb.m_HasConsumedCigarette )
 		{
-			speed *= 0.1;
+			speed *= 0.1;			
 		}
 		
 		m_TotalTime += pDt * speed;
