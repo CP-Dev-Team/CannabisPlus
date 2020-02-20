@@ -11,6 +11,6 @@ modded class ActionManagerBase {
 		
 		super.OnActionEnd();		
 		ActionSmokeJointSelf.m_SmokeParticle.Stop();
-		ActionSmokeJointSelf.StopSmokeParticle();
+		//ActionSmokeJointSelf.StopSmokeParticle();
 	}
 }
