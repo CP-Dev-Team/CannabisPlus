@@ -57,6 +57,7 @@ class ActionSmokeJointSelf: ActionContinuousBase
 	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 	override void OnStartAnimationLoopClient(ActionData action_data) {
 		Print("Method: - OnStartAnimationLoopClient");
+		super.OnStartAnimationLoopClient(action_data);
 		// spawns the smoke particles		
 		actionData = action_data;
 		GetGame().GetCallQueue(CALL_CATEGORY_GAMEPLAY).Call(SpwanSmokeParticle, action_data);		
@@ -95,7 +96,7 @@ class ActionSmokeJointSelf: ActionContinuousBase
 		super.OnExecuteServer( action_data );
 		actionData = action_data;
 		// spawn particles server-side
-		//GetGame().GetCallQueue(CALL_CATEGORY_GAMEPLAY).Call(SpwanSmokeParticle, action_data);
+		GetGame().GetCallQueue(CALL_CATEGORY_GAMEPLAY).Call(SpwanSmokeParticle, action_data);
 	}
 
 	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -112,7 +113,7 @@ class ActionSmokeJointSelf: ActionContinuousBase
 		actionData = action_data;
 		// register the function 'StopSmokeParticle' for call-queue to make sure the function would executed
 		GetGame().GetCallQueue(CALL_CATEGORY_GAMEPLAY).Call(StopSmokeParticle);
-		StopSmokeParticle();
+		//StopSmokeParticle();
 	}
 
 
@@ -126,7 +127,7 @@ class ActionSmokeJointSelf: ActionContinuousBase
 		super.OnFinishProgress(action_data);
 		// register the function 'StopSmokeParticle' for call-queue to make sure the function would executed				
 		GetGame().GetCallQueue(CALL_CATEGORY_GAMEPLAY).Call(StopSmokeParticle);
-		StopSmokeParticle();
+		//StopSmokeParticle();
 	}
 
 
@@ -139,7 +140,7 @@ class ActionSmokeJointSelf: ActionContinuousBase
 		super.OnFinishProgressServer(action_data);
 		// register the function 'StopSmokeParticle' for call-queue to make sure the function would executed
 		GetGame().GetCallQueue(CALL_CATEGORY_GAMEPLAY).Call(StopSmokeParticle);		
-		StopSmokeParticle();
+		//StopSmokeParticle();
 	}
 
 
@@ -153,7 +154,7 @@ class ActionSmokeJointSelf: ActionContinuousBase
 		actionData = action_data;
 		// register the function 'StopSmokeParticle' for call-queue to make sure the function would executed
 		GetGame().GetCallQueue(CALL_CATEGORY_GAMEPLAY).Call(StopSmokeParticle);	
-		StopSmokeParticle();			
+		//StopSmokeParticle();			
 	}
 
 
@@ -183,15 +184,16 @@ class ActionSmokeJointSelf: ActionContinuousBase
 					m_light.SetRadiusTo(1);
 					m_light.SetBrightnessTo(2.0);
 					m_light.AttachOnObject(action_data.m_MainItem);				
-					m_light.SetEnabled(true);				
+					m_light.SetEnabled(true);
+			}				
 				//}
-			} else {
+			//} else {
 				// register the function 'StopSmokeParticle' for call-queue to make sure the function would executed
 				GetGame().GetCallQueue(CALL_CATEGORY_GAMEPLAY).Call(StopSmokeParticle);
 				//GetGame().ObjectDelete(this.m_SmokeParticle);
 				// can automatically destroyed if 'varQuantityDestroyOnMin' set to 'true' in config file
 				GetGame().ObjectDelete(action_data.m_MainItem);
-			}
+			//}
 		//}
 	}
 

@@ -13,7 +13,7 @@ enum SmokingState {
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 class CP_JointBlue : Edible_Base
 {
-
+	
 	protected SmokingState m_SmokingState = SmokingState.NO_SMOKING;
 	Material materialColors = GetGame().GetWorld().GetMaterial("graphics/materials/postprocess/glow");
 	
