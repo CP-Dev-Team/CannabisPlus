@@ -95,7 +95,7 @@ class ActionSmokeJointSelf: ActionContinuousBase
 		super.OnExecuteServer( action_data );
 		actionData = action_data;
 		// spawn particles server-side
-		 GetGame().GetCallQueue(CALL_CATEGORY_GAMEPLAY).Call(SpwanSmokeParticle, action_data);
+		//GetGame().GetCallQueue(CALL_CATEGORY_GAMEPLAY).Call(SpwanSmokeParticle, action_data);
 	}
 
 	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -162,11 +162,11 @@ class ActionSmokeJointSelf: ActionContinuousBase
 	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 	void SpwanSmokeParticle( ActionData action_data ) {
 		Print("Method: - SpwanSmokeParticle");
-		if(!GetGame().IsServer() || !GetGame().IsMultiplayer()){
+		//if(!GetGame().IsServer() || !GetGame().IsMultiplayer()){
 			// as long as the joint has 'quantity' (quantity is configured in config file) , smoking is allowed
 			if(action_data.m_MainItem.GetQuantity() > 0.0) {
 				// make sure the effects called client side
-				if ( !GetGame().IsServer() || !GetGame().IsMultiplayer() ) { 
+				//if ( !GetGame().IsServer() || !GetGame().IsMultiplayer() ) {
 					// get reference to player object
 					PlayerBase player = action_data.m_Player;
 					m_SmokeParticle.OnCheckAutoDelete();
@@ -174,6 +174,7 @@ class ActionSmokeJointSelf: ActionContinuousBase
 					m_SmokeParticle = Particle.PlayOnObject(ParticleList.CAMP_NORMAL_SMOKE, action_data.m_MainItem, Vector(0, 0.0, 0));
 					m_SmokeParticle.ScaleParticleParamFromOriginal(EmitorParam.SIZE, 0.01);
 					m_SmokeParticle.ScaleParticleParamFromOriginal(EmitorParam.VELOCITY, 0.03);
+					
 					// spwan light stuff
 					m_light = PortableGasLampLight.Cast(ScriptedLightBase.CreateLight( PortableGasLampLight, action_data.m_MainItem.GetPosition()));
 					m_light.FadeIn(2.0);
@@ -183,15 +184,15 @@ class ActionSmokeJointSelf: ActionContinuousBase
 					m_light.SetBrightnessTo(2.0);
 					m_light.AttachOnObject(action_data.m_MainItem);				
 					m_light.SetEnabled(true);				
-				}
+				//}
 			} else {
 				// register the function 'StopSmokeParticle' for call-queue to make sure the function would executed
-				//GetGame().GetCallQueue(CALL_CATEGORY_GAMEPLAY).Call(StopSmokeParticle);
+				GetGame().GetCallQueue(CALL_CATEGORY_GAMEPLAY).Call(StopSmokeParticle);
 				//GetGame().ObjectDelete(this.m_SmokeParticle);
 				// can automatically destroyed if 'varQuantityDestroyOnMin' set to 'true' in config file
-				//GetGame().ObjectDelete(action_data.m_MainItem);
+				GetGame().ObjectDelete(action_data.m_MainItem);
 			}
-		}		
+		//}
 	}
 
 
@@ -202,6 +203,7 @@ class ActionSmokeJointSelf: ActionContinuousBase
 		Print("Method: - StopSmokeParticle");
 		// stop the particle effect
 		this.m_SmokeParticle.Stop();
+		this.m_SmokeParticle = null;
 		// try to delete the object self
 		GetGame().ObjectDelete(this.m_SmokeParticle);
 		// disable the light - it does have no effect in som cases
