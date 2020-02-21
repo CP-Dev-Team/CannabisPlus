@@ -165,7 +165,7 @@ class ActionSmokeJointSelf: ActionContinuousBase
 		
 		Print("Method: - SpwanSmokeParticle");
 		// as long as the joint has 'quantity' (quantity is configured in config file) , smoking is allowed
-		if(action_data.m_MainItem.GetQuantity() > 0.0) {
+		if(action_data.m_MainItem.GetQuantity() > 0.0 && (!GetGame().IsMultiplayer() || GetGame().IsClient() )) {
 			// get reference to player object
 			PlayerBase player = action_data.m_Player;
 			m_SmokeParticle.OnCheckAutoDelete();
