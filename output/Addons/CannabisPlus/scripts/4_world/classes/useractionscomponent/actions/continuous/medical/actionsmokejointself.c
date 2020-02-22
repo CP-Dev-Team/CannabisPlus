@@ -39,19 +39,10 @@ class ActionSmokeJointSelf: ActionContinuousBase
 	// when the player stops pressing the mouse button
 	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~	
 	override void OnEndInput(ActionData action_data) {
-		//Print("Method: - OnEndInput");
-		// call the inherited class
-		super.OnEndInput(action_data);
 		
-		CP_JointKush joint = CP_JointKush.Cast(action_data.m_MainItem);
+		super.OnEndInput(action_data);		
+		JointBase joint = JointBase.Cast(action_data.m_MainItem);
 		joint.StopSmokeParticle();
-		
-		Print("Method: - OnEndInput: " + action_data.m_MainItem);
-		
-		//actionData = action_data;
-		// register the function 'StopSmokeParticle' for call-queue to make sure the function would executed
-		//GetGame().GetCallQueue(CALL_CATEGORY_GAMEPLAY).Call(StopSmokeParticle);	
-		//StopSmokeParticle();			
 	}
 	
 	

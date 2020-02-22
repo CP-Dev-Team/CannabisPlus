@@ -1,18 +1,7 @@
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 //
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-/*
-enum SmokingState {
-	
-	NO_SMOKING 	= 1,
-	SMOKING		= 2,
-	COUNT		= 9
-}
-*/
-//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-//
-//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-class CP_JointBlue : Edible_Base
+class CP_JointBlue extends JointBase
 {
 	
 	//protected SmokingState m_SmokingState = SmokingState.NO_SMOKING;
@@ -28,46 +17,33 @@ class CP_JointBlue : Edible_Base
 		PlayerBase.m_jointsToActivateEffect 	= CannabisPlus.getInstance().GetConfig().jointsToActivateEffect;				
 		
 	}
+	
 
 	
-	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-	// destructor
-	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-	void ~CP_JointBlue() {
-
-	}
-
-	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-	// starts the particle effect
-	// param: Particle
-	// param: type of the particle (ParticleList.CAMP_NORMAL_SMOKE)
-	// param: position of the particle (must update position to the joint/cig position)
-	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-	bool PlayParticle(out Particle particle, int particle_type, vector pos) {
-
-		if(!particle && GetGame() && (!GetGame().IsMultiplayer() || GetGame().IsClient())) {
-			particle = Particle.PlayOnObject(particle_type, this, pos );
-			return true;
-		}
-		return false;
-	}
-
-
-	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-	//returns true if particle stopped, false if not	
-	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-	bool StopParticle( out Particle particle ) {
+	
+	
+	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+	// is called server-side (the right place to adapt values if smoking)
+	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+	override void OnConsume(float amount, PlayerBase consumer) {
 		
-		if ( particle && GetGame() && ( !GetGame().IsMultiplayer() || GetGame().IsClient() ) ) {
-			particle.Stop();
-			particle = NULL;
+		super.OnConsume(amount, consumer);
+	
+		if(!m_SmokeParticle) {
+			SpwanSmokeParticle();
+		}
 			
-			return true;
+		if(CannabisPlus.getInstance().GetConfig().activateJointSmokingEffect){
+			consumer.AddValueToJointValue(amount);
 		}
-		
-		return false;
-	}
-
+				
+		if(this.GetQuantity() <= 0.0) {
+			GetGame().ObjectDelete(this);
+			StopSmokeParticle();
+		}
+	}	
+	
+	
 	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 	//
 	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -104,26 +80,4 @@ class CP_JointBlue : Edible_Base
 		AddAction(ActionSmokeJointSelf);	// add action to smoke the joint
 		//AddAction(ActionSmokeJointTarget);	// add action to let somebody else smoke the joint
 	}
-	
-	
-	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-	// is called server-side (the right place to adapt values if smoking)
-	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-	override void OnConsume(float amount, PlayerBase consumer) {
-		
-		super.OnConsume(amount, consumer);
-		
-		if(CannabisPlus.getInstance().GetConfig().activateJointSmokingEffect){
-			consumer.AddValueToJointValue(amount);
-		}
-				
-		if(this.GetQuantity() <= 0.0) {
-			GetGame().ObjectDelete(this);
-		}
-	}	
-	
-	override void OnWork(float consumed_energy) {
-		
-		super.OnWork(consumed_energy);
-	}	
 }
