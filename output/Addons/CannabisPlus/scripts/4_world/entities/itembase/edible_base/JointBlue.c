@@ -31,6 +31,7 @@ class CP_JointBlue extends JointBase
 	
 		if(!m_SmokeParticle) {
 			PlayParticle(m_SmokeParticle, ParticleList.CAMP_NORMAL_SMOKE, GetLocalPos("0 0 0"));
+			SetSynchDirty();
 		}
 			
 		if(CannabisPlus.getInstance().GetConfig().activateJointSmokingEffect){
