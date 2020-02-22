@@ -14,20 +14,14 @@ class ActionSmokeJointSelfCB : ActionContinuousBaseCB
 //
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 class ActionSmokeJointSelf: ActionContinuousBase
-{	
-	// member variable to get access on particle effect	
-	static Particle m_SmokeParticle;	
-	// member variable to get access on light emitter
-	static PortableGasLampLight m_light;
-	// holds the currently selected game langunge
+{		
 	string currentLanguage;
-
-	ActionData actionData;
-		
+	
 	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 	//
 	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~	
 	void ActionSmokeJointSelf()	{
+		
 		// define the callback class
 		m_CallbackClass = ActionSmokeJointSelfCB;
 		// define ActionCommandUID - todo: make a own action command
@@ -40,181 +34,24 @@ class ActionSmokeJointSelf: ActionContinuousBase
 		lang.GetItemText(lang.GetIndex(), currentLanguage);
 	}
 
-	
-	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-	//
-	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~	
-	override void OnStartAnimationLoop(ActionData action_data) {
-		Print("Method: - OnStartAnimationLoop");
-		// call the inherited class
-		super.OnStartAnimationLoop(action_data);
-		GetGame().GetCallQueue(CALL_CATEGORY_GAMEPLAY).Call(SpwanSmokeParticle, action_data);		
-	}
-
-
-	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-	// fired when the animation begins - client side
-	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-	override void OnStartAnimationLoopClient(ActionData action_data) {
-		Print("Method: - OnStartAnimationLoopClient");
-		super.OnStartAnimationLoopClient(action_data);
-		// spawns the smoke particles		
-		actionData = action_data;
-		GetGame().GetCallQueue(CALL_CATEGORY_GAMEPLAY).Call(SpwanSmokeParticle, action_data);		
-	}
-
-
-	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-	// fired when the animation begins - server side*
-	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-	override void OnStartAnimationLoopServer(ActionData action_data) {
-		Print("Method: - OnStartAnimationLoopServer");
-		// spawns the smoke particles
-		GetGame().GetCallQueue(CALL_CATEGORY_GAMEPLAY).Call(SpwanSmokeParticle, action_data);
-	}
-
-
-	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-	// is execute client side
-	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-	override void OnExecuteClient( ActionData action_data ) {
-		Print("Method: - OnExecuteClient");
-		// call the inherited class
-		super.OnExecuteClient( action_data );
-		actionData = action_data;
-		// spawn particles server-side
-		GetGame().GetCallQueue(CALL_CATEGORY_GAMEPLAY).Call(SpwanSmokeParticle, action_data);
-	}
-	
-	
-	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-	// is execute server side
-	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-	override void OnExecuteServer( ActionData action_data )	{
-		Print("Method: - OnExecuteServer");
-		// call the inherited class
-		super.OnExecuteServer( action_data );
-		actionData = action_data;
-		// spawn particles server-side
-		GetGame().GetCallQueue(CALL_CATEGORY_GAMEPLAY).Call(SpwanSmokeParticle, action_data);
-	}
-
-	
-	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-	//  
-	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~	
-
-	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-	//
-	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~	
-	override void OnEndAnimationLoop(ActionData action_data) {
-		Print("Method: - OnEndAnimationLoop");
-		// call the inherited class
-		super.OnEndAnimationLoop(action_data);
-		actionData = action_data;
-		// register the function 'StopSmokeParticle' for call-queue to make sure the function would executed
-		GetGame().GetCallQueue(CALL_CATEGORY_GAMEPLAY).Call(StopSmokeParticle);
-		//StopSmokeParticle();
-	}
-
-	
-	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-	// fired when the whole progress is finishe - client side*
-	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-	override void OnFinishProgress( ActionData action_data ) {
-		Print("Method: - OnFinishProgress");
-		// call the inherited class
-		super.OnFinishProgress(action_data);
-		// register the function 'StopSmokeParticle' for call-queue to make sure the function would executed				
-		GetGame().GetCallQueue(CALL_CATEGORY_GAMEPLAY).Call(StopSmokeParticle);
-		//StopSmokeParticle();
-	}
-
-
-	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-	// fired when the whole progress is finished - server side*
-	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-	override void OnFinishProgressServer( ActionData action_data )	{			
-		Print("Method: - OnFinishProgressServer");
-		// call the inherited class
-		super.OnFinishProgressServer(action_data);
-		// register the function 'StopSmokeParticle' for call-queue to make sure the function would executed
-		GetGame().GetCallQueue(CALL_CATEGORY_GAMEPLAY).Call(StopSmokeParticle);		
-		//StopSmokeParticle();
-	}
-
 
 	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 	// when the player stops pressing the mouse button
 	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~	
 	override void OnEndInput(ActionData action_data) {
-		Print("Method: - OnEndInput");
-		// call the inherited class		
+		//Print("Method: - OnEndInput");
+		// call the inherited class
 		super.OnEndInput(action_data);
-		actionData = action_data;
-		// register the function 'StopSmokeParticle' for call-queue to make sure the function would executed
-		GetGame().GetCallQueue(CALL_CATEGORY_GAMEPLAY).Call(StopSmokeParticle);	
-		//StopSmokeParticle();			
-	}
-
-
-	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-	// spawn particle effect related to player position
-	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-	void SpwanSmokeParticle( ActionData action_data ) {
 		
-		Print("Method: - SpwanSmokeParticle");
-		// as long as the joint has 'quantity' (quantity is configured in config file) , smoking is allowed
-		if(action_data.m_MainItem.GetQuantity() > 0.0 && (!GetGame().IsMultiplayer() || GetGame().IsClient() )) {
-			// get reference to player object
-			PlayerBase player = action_data.m_Player;
-			m_SmokeParticle.OnCheckAutoDelete();
-			m_SmokeParticle.SetLifetime(5000);
-			m_SmokeParticle = Particle.PlayOnObject(ParticleList.CAMP_NORMAL_SMOKE, action_data.m_MainItem, Vector(0, 0.0, 0));
-			m_SmokeParticle.ScaleParticleParamFromOriginal(EmitorParam.SIZE, 0.01);
-			m_SmokeParticle.ScaleParticleParamFromOriginal(EmitorParam.VELOCITY, 0.03);
-			
-			// spwan light stuff
-			m_light = PortableGasLampLight.Cast(ScriptedLightBase.CreateLight( PortableGasLampLight, action_data.m_MainItem.GetPosition()));
-			m_light.FadeIn(2.0);
-			m_light.SetFadeOutTime(1.0);				
-			m_light.SetDiffuseColor(0.85,0.5,0.23);
-			m_light.SetRadiusTo(1);
-			m_light.SetBrightnessTo(2.0);
-			m_light.AttachOnObject(action_data.m_MainItem);
-			m_light.SetEnabled(true);
-		}
+		CP_JointKush joint = CP_JointKush.Cast(action_data.m_MainItem);
+		joint.StopSmokeParticle();
+		
+		Print("Method: - OnEndInput: " + action_data.m_MainItem);
+		
+		//actionData = action_data;
 		// register the function 'StopSmokeParticle' for call-queue to make sure the function would executed
-		//GetGame().GetCallQueue(CALL_CATEGORY_GAMEPLAY).Call(StopSmokeParticle);
-		//GetGame().ObjectDelete(this.m_SmokeParticle);
-		// can automatically destroyed if 'varQuantityDestroyOnMin' set to 'true' in config file
-		//GetGame().ObjectDelete(action_data.m_MainItem);
-	}
-
-
-	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-	// stops particle effect and disable the light/glow effect while player consume the joint
-	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-	void StopSmokeParticle() {		
-		Print("Method: - StopSmokeParticle");
-		// stop the particle effect
-		this.m_SmokeParticle.Stop();
-		this.m_SmokeParticle = null;
-		// try to delete the object self
-		GetGame().ObjectDelete(this.m_SmokeParticle);
-		// disable the light - it does have no effect in som cases
-		m_light.SetEnabled(false);
-		// delete the ligth-gameobject. If don´t delete the light is still visible after conume the joint
-		GetGame().ObjectDelete(m_light);
-	}
-	
-
-	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-	//
-	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-	void ~ActionSmokeJointSelf() {
-		Print("Method: - ~ActionSmokeJointSelf");
-		GetGame().ObjectDelete(actionData.m_MainItem);
+		//GetGame().GetCallQueue(CALL_CATEGORY_GAMEPLAY).Call(StopSmokeParticle);	
+		//StopSmokeParticle();			
 	}
 	
 	
