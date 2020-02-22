@@ -119,7 +119,7 @@ class CP_JointKush extends Edible_Base
 			// get reference to player object
 			//PlayerBase player = action_data.m_Player;
 			
-			if(!GetGame().IsMultiplayer() || GetGame().IsClient()) {
+			//if(!GetGame().IsMultiplayer() || GetGame().IsClient()) {
 				//m_SmokeParticle.OnCheckAutoDelete();
 				//m_SmokeParticle.SetLifetime(5000);
 				m_SmokeParticle = Particle.PlayOnObject(ParticleList.CAMP_NORMAL_SMOKE, this, Vector(0, 0.0, 0));
@@ -137,7 +137,7 @@ class CP_JointKush extends Edible_Base
 				m_light.AttachOnObject(player);
 				m_light.SetEnabled(true);
 
-			}			
+			//}			
 		}
 		// register the function 'StopSmokeParticle' for call-queue to make sure the function would executed
 		//GetGame().GetCallQueue(CALL_CATEGORY_GAMEPLAY).Call(StopSmokeParticle);
