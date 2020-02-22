@@ -11,12 +11,12 @@ class CP_JointSkunk extends JointBase
 		super.OnConsume(amount, consumer);
 	
 		if(!m_SmokeParticle) {
-			SpwanSmokeParticle();
+			PlayParticle(m_SmokeParticle, ParticleList.CAMP_NORMAL_SMOKE, GetLocalPos("0 0 0"));
 		}
 			
 		if(this.GetQuantity() <= 0.0) {
 			GetGame().ObjectDelete(this);
-			StopSmokeParticle();
+			StopParticle(m_SmokeParticle);
 		}
 	}
 	

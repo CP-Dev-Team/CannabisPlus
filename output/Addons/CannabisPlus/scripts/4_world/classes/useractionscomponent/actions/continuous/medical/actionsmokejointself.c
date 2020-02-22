@@ -42,7 +42,7 @@ class ActionSmokeJointSelf: ActionContinuousBase
 		
 		super.OnEndInput(action_data);		
 		JointBase joint = JointBase.Cast(action_data.m_MainItem);
-		joint.StopSmokeParticle();
+		joint.StopParticle(joint.m_SmokeParticle);
 	}
 	
 	
