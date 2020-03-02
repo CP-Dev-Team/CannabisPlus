@@ -1,9 +1,10 @@
+
+
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 //
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 class CP_JointBlue extends JointBase
-{
-	
+{		
 	//protected SmokingState m_SmokingState = SmokingState.NO_SMOKING;
 	Material materialColors = GetGame().GetWorld().GetMaterial("graphics/materials/postprocess/glow");
 	
@@ -14,12 +15,11 @@ class CP_JointBlue extends JointBase
 		
 		PlayerBase.m_IsJointEffectActivated 	= CannabisPlus.getInstance().GetConfig().activateJointSmokingEffect;
 		PlayerBase.m_smokingJointEffectDuration = CannabisPlus.getInstance().GetConfig().smokingJointEffectDuration;
-		PlayerBase.m_jointsToActivateEffect 	= CannabisPlus.getInstance().GetConfig().jointsToActivateEffect;				
+		PlayerBase.m_jointsToActivateEffect 	= CannabisPlus.getInstance().GetConfig().jointsToActivateEffect;
+		
+		RegisterNetSyncVariableInt("m_SmokeState");
 		
 	}
-	
-
-	
 	
 	
 	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -29,10 +29,17 @@ class CP_JointBlue extends JointBase
 		
 		super.OnConsume(amount, consumer);
 	
-		if(!m_SmokeParticle) {
-			PlayParticle(m_SmokeParticle, ParticleList.CAMP_NORMAL_SMOKE, GetLocalPos("0 0 0"));
-			SetSynchDirty();
+		if(GetGame().IsServer()) {
+			SetSmokingStateSynchronized(SmokeState.SMOKING);
 		}
+		
+		/*
+		if(!m_SmokeParticle) {
+			PlayParticle(m_SmokeParticle, ParticleList.CAMP_NORMAL_SMOKE, GetLocalPos("0 0 0"));			
+		}
+		*/
+		
+		UpdateActiveParticles();
 			
 		if(CannabisPlus.getInstance().GetConfig().activateJointSmokingEffect){
 			consumer.AddValueToJointValue(amount);
@@ -80,5 +87,5 @@ class CP_JointBlue extends JointBase
 		super.SetActions();		
 		AddAction(ActionSmokeJointSelf);	// add action to smoke the joint
 		//AddAction(ActionSmokeJointTarget);	// add action to let somebody else smoke the joint
-	}
+	}	
 }

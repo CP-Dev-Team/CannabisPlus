@@ -93,7 +93,8 @@ class ActionUnpackCigaretteBox: ActionContinuousBase
 		
 		if ( action_data.m_MainItem && action_data.m_MainItem.GetHierarchyRootPlayer() == action_data.m_Player )
 		{			
-			for(int i = 0; i<20; i++){
+			//for(int i = 0; i<20; i++){
+			for(int i = 0; i<action_data.m_MainItem.GetQuantity(); i++){
 				switch(action_data.m_MainItem.GetType()) {
 					case "CigarettePack_CannabisBlue":
 						resultItem = ItemBase.Cast( GetGame().CreateObject("CP_JointBlue" , action_data.m_Player.GetPosition(), false) );						

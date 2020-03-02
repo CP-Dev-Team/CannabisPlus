@@ -29,6 +29,7 @@ class CfgMods
 		type="mod";
 		dependencies[]=
 		{
+			"Game",
 			"World",
 			"Mission"
 		};
