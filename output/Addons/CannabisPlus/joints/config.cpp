@@ -166,5 +166,17 @@ class CfgVehicles
             convertEnergyToQuantity=1;
         };
 		*/
+		class EnergyManager
+		{
+			switchOnAtSpawn=0;
+			autoSwitchOff=1;
+			autoSwitchOffWhenInCargo=1;
+			energyStorageMax=0;
+			energyUsagePerSecond=1;
+			energyAtSpawn=0;
+			powerSocketsCount=0;
+			plugType=7;
+			attachmentAction=1;
+		};
 	};
 };
