@@ -3,7 +3,7 @@ enum SmokeState {
 	SMOKING
 }
 
-class JointBase : Edible_Base {
+class JointBase extends Edible_Base {
 	
 	// member variable to get access on particle effect	
 	Particle m_SmokeParticle;
@@ -16,8 +16,11 @@ class JointBase : Edible_Base {
 	
 	
 	void UpdateActiveParticles() {
+		
+		/*
 		if ( GetGame().IsServer()  &&  GetGame().IsMultiplayer() )
 			return;
+		*/
 		
 		switch(m_SmokeState) {
 			case SmokeState.NOT_SMOKING:
@@ -77,10 +80,25 @@ class JointBase : Edible_Base {
 	
 	
 	
+	override void OnWork(float consumed_energy) {
+		
+		Print("ON WORK");
+	}
+	
+	
+	
+	override void OnWorkStart() {
+		
+		Print("ON WORK START");
+	}
+
+	
+	
 	void SetSmokingState(int state_number) {
 		m_SmokeState = state_number;
 	}
 
+	
 	
 	void SetSmokingStateSynchronized(int state_number) {
 		if ( GetGame().IsServer() )	{

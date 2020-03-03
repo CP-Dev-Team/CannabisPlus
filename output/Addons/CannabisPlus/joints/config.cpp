@@ -168,7 +168,7 @@ class CfgVehicles
 		*/
 		class EnergyManager
 		{
-			switchOnAtSpawn=0;
+			switchOnAtSpawn=1;
 			autoSwitchOff=1;
 			autoSwitchOffWhenInCargo=1;
 			energyStorageMax=0;
