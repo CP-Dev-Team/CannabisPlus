@@ -6,7 +6,7 @@
 class CP_JointBlue extends JointBase
 {		
 	//protected SmokingState m_SmokingState = SmokingState.NO_SMOKING;
-	Material materialColors = GetGame().GetWorld().GetMaterial("graphics/materials/postprocess/glow");
+	//Material materialColors = GetGame().GetWorld().GetMaterial("graphics/materials/postprocess/glow");
 	
 	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 	// constructor
@@ -17,7 +17,7 @@ class CP_JointBlue extends JointBase
 		PlayerBase.m_smokingJointEffectDuration = CannabisPlus.getInstance().GetConfig().smokingJointEffectDuration;
 		PlayerBase.m_jointsToActivateEffect 	= CannabisPlus.getInstance().GetConfig().jointsToActivateEffect;
 		
-		RegisterNetSyncVariableInt("m_SmokeState");
+		//RegisterNetSyncVariableInt("m_SmokeState");
 		
 	}
 	
@@ -29,9 +29,11 @@ class CP_JointBlue extends JointBase
 		
 		super.OnConsume(amount, consumer);
 	
+		/*
 		if(GetGame().IsServer()) {
 			SetSmokingStateSynchronized(SmokeState.SMOKING);
 		}
+		*/
 		
 		/*
 		if(!m_SmokeParticle) {
@@ -39,16 +41,18 @@ class CP_JointBlue extends JointBase
 		}
 		*/
 		
-		UpdateActiveParticles();
+		// UpdateActiveParticles();
 			
 		if(CannabisPlus.getInstance().GetConfig().activateJointSmokingEffect){
 			consumer.AddValueToJointValue(amount);
 		}
-				
+
+		
 		if(this.GetQuantity() <= 0.0) {
 			GetGame().ObjectDelete(this);
-			StopParticle(m_SmokeParticle);
+			//StopParticle(m_SmokeParticle);
 		}
+		
 	}	
 	
 	

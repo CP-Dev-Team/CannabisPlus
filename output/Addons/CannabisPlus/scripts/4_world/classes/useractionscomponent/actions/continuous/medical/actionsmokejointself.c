@@ -41,10 +41,12 @@ class ActionSmokeJointSelf: ActionContinuousBase
 	override void OnEndInput(ActionData action_data) {
 		
 		super.OnEndInput(action_data);		
-		JointBase joint = JointBase.Cast(action_data.m_MainItem);
 		
+		/*
+		JointBase joint = JointBase.Cast(action_data.m_MainItem);		
 		joint.m_SmokeState = SmokeState.NOT_SMOKING;
 		joint.UpdateActiveParticles();
+		*/
 		//joint.StopParticle(joint.m_SmokeParticle);
 	}
 	

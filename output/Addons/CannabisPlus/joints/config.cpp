@@ -42,15 +42,6 @@ class CfgVehicles
 		heatIsolation=0.13;
 		quantityBar=1;
 		//visibilityModifier=0.69999999;
-		class Nutrition
-		{
-			fullnessIndex = 1;
-			energy = -25;
-			water = 1;
-			nutritionalIndex = 55;
-			toxicity = 0;
-		};
-		/*
 		class Nutrition {
 			
 			totalVolume=1;
@@ -60,6 +51,7 @@ class CfgVehicles
 			nutritionalIndex=1;
 			toxicity=0;
 		};
+		/*
 		class EnergyManager {
             switchOnAtSpawn=0;
             isPassiveDevice=1;
@@ -98,7 +90,7 @@ class CfgVehicles
 		heatIsolation=0.13;
 		quantityBar=1;
 		visibilityModifier=0.69999999;
-		/*
+		
 		class Nutrition {
 			
 			totalVolume=1;
@@ -108,6 +100,7 @@ class CfgVehicles
 			nutritionalIndex=1;
 			toxicity=0;
 		};
+		/*
 		class EnergyManager {
             switchOnAtSpawn=0;
             isPassiveDevice=1;
@@ -145,7 +138,7 @@ class CfgVehicles
 		heatIsolation=0.13;
 		quantityBar=1;
 		visibilityModifier=0.69999999;
-		/*
+		
 		class Nutrition {
 			
 			totalVolume=1;
@@ -155,6 +148,7 @@ class CfgVehicles
 			nutritionalIndex=1;
 			toxicity=0;
 		};
+		/*
 		class EnergyManager {
             switchOnAtSpawn=0;
             isPassiveDevice=1;
@@ -165,7 +159,7 @@ class CfgVehicles
             compatiblePlugTypes[]={7};
             convertEnergyToQuantity=1;
         };
-		*/
+		
 		class EnergyManager
 		{
 			switchOnAtSpawn=1;
@@ -178,5 +172,6 @@ class CfgVehicles
 			plugType=7;
 			attachmentAction=1;
 		};
+		*/
 	};
 };

@@ -15,13 +15,15 @@ class JointBase extends Edible_Base {
 	PlayerBase player;	
 	
 	
-	void UpdateActiveParticles() {
+	
+	//void UpdateActiveParticles() {
 		
 		/*
 		if ( GetGame().IsServer()  &&  GetGame().IsMultiplayer() )
 			return;
 		*/
 		
+	/*
 		switch(m_SmokeState) {
 			case SmokeState.NOT_SMOKING:
 				StopParticle(m_SmokeParticle);
@@ -32,20 +34,21 @@ class JointBase extends Edible_Base {
 				break;
 		}
 	}
-	
+	*/
 	
 	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 	// spawn particle effect related to player position
 	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+	
+	/*
 	protected bool PlayParticle(out Particle particle, int particle_type, vector local_pos) {
 		
-		// as long as the joint has 'quantity' (quantity is configured in config file) , smoking is allowed
+		
 		if(this.GetQuantity() > 0.0 && !particle) {
 						
 			particle = Particle.PlayOnObject(ParticleList.CAMP_NORMAL_SMOKE, this, Vector(0, 0, 0));
 			particle.ScaleParticleParamFromOriginal(EmitorParam.SIZE, 0.01);
-			particle.ScaleParticleParamFromOriginal(EmitorParam.VELOCITY, 0.03);				
-			// spwan light stuff
+			particle.ScaleParticleParamFromOriginal(EmitorParam.VELOCITY, 0.03);							
 			m_light = PortableGasLampLight.Cast(ScriptedLightBase.CreateLight( PortableGasLampLight, this.GetPosition()));
 			m_light.FadeIn(2.0);
 			m_light.SetFadeOutTime(1.0);				
@@ -59,10 +62,12 @@ class JointBase extends Edible_Base {
 		}
 		return false;
 	}
+	*/
 	
 	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 	// stops particle effect and disable the light/glow effect while player consume the joint
 	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+	/*
 	bool StopParticle(out Particle particle) {
 		
 		SetSmokingStateSynchronized(SmokeState.NOT_SMOKING);
@@ -77,7 +82,7 @@ class JointBase extends Edible_Base {
 		}
 		return false;
 	}
-	
+	*/
 	
 	
 	override void OnWork(float consumed_energy) {
@@ -93,7 +98,7 @@ class JointBase extends Edible_Base {
 	}
 
 	
-	
+	/*
 	void SetSmokingState(int state_number) {
 		m_SmokeState = state_number;
 	}
@@ -106,4 +111,5 @@ class JointBase extends Edible_Base {
 			SetSynchDirty();
 		}
 	}
+	*/
 }

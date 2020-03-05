@@ -91,11 +91,12 @@ class ActionUnpackCigaretteBox: ActionContinuousBase
 	{		
 		super.OnFinishProgressServer(action_data);
 		
-		if ( action_data.m_MainItem && action_data.m_MainItem.GetHierarchyRootPlayer() == action_data.m_Player )
-		{			
-			//for(int i = 0; i<20; i++){
+		if ( action_data.m_MainItem && action_data.m_MainItem.GetHierarchyRootPlayer() == action_data.m_Player ) {						
+			
 			for(int i = 0; i<action_data.m_MainItem.GetQuantity(); i++){
+				
 				switch(action_data.m_MainItem.GetType()) {
+					
 					case "CigarettePack_CannabisBlue":
 						resultItem = ItemBase.Cast( GetGame().CreateObject("CP_JointBlue" , action_data.m_Player.GetPosition(), false) );						
 						break;
@@ -115,13 +116,11 @@ class ActionUnpackCigaretteBox: ActionContinuousBase
 					case "CigarettePack_Chernamorka":
 						resultItem = ItemBase.Cast( GetGame().CreateObject("CP_Cigarette" , action_data.m_Player.GetPosition(), false) );
 						break;
-				}							
-
+				}
 			}
 			
 			GetGame().ObjectDelete(action_data.m_MainItem);
 			action_data.m_Player.GetHumanInventory().CreateInHands("CigarettePack_Empty");
 		}
-	}
-	
+	}	
 };
