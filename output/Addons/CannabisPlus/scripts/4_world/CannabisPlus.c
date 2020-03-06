@@ -78,6 +78,7 @@ class CannabisPlus{
 					JsonFileLoader<CannabisPlusConfig>.JsonLoadFile(CONFIG_FILE, _config);
 				} else {
 					
+					DeleteFile("$profile:CannabisPlus_old.json");
 					CopyFile(CONFIG_FILE, "$profile:CannabisPlus_old.json");
 					DeleteFile(CONFIG_FILE);
 					JsonFileLoader<CannabisPlusConfig>.JsonSaveFile(CONFIG_FILE, _config);
