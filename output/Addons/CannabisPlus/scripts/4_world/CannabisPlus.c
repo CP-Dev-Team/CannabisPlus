@@ -1,6 +1,8 @@
 //preconfiguring the CannabisPlus.json
 class CannabisPlusConfig
 {
+	int configVersion				= 100;
+	
 	bool removeAfterHarvest 		= true;
 	
 	float tobacco_growtime 			= 8;
@@ -55,6 +57,8 @@ class CannabisPlus{
 	private string CONFIG_FILE =  "$profile:CannabisPlus.json";
 	private ref CannabisPlusConfig _config;
 	
+	private int modVersion = 100;
+	
 	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 	// 
 	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -65,19 +69,27 @@ class CannabisPlus{
 			string fileName;
 			FileAttr fileAttr;
 			FindFileHandle configFile = FindFile(CONFIG_FILE, fileName, fileAttr, 0);
-			if(!configFile)
-			{
+			if(!configFile){
 				JsonFileLoader<CannabisPlusConfig>.JsonSaveFile(CONFIG_FILE, _config);
 			}
 			else{
-				JsonFileLoader<CannabisPlusConfig>.JsonLoadFile(CONFIG_FILE, _config);
+								
+				if(_config.configVersion == modVersion) {
+					JsonFileLoader<CannabisPlusConfig>.JsonLoadFile(CONFIG_FILE, _config);
+				} else {
+					
+					CopyFile(CONFIG_FILE, "$profile:CannabisPlus_old.json");
+					DeleteFile(CONFIG_FILE);
+					JsonFileLoader<CannabisPlusConfig>.JsonSaveFile(CONFIG_FILE, _config);
+					JsonFileLoader<CannabisPlusConfig>.JsonLoadFile(CONFIG_FILE, _config);
+				}
 			}
 		}
 	}
 	
 	
 	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-	// returns a referenz of cannabis class to get access to neccessary variables
+	// returns a reference of cannabis class to get access to neccessary variables
 	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 	static ref CannabisPlus getInstance(){
 		
