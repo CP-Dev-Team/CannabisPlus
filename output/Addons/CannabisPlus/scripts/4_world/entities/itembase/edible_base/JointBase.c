@@ -41,9 +41,8 @@ class JointBase extends Edible_Base {
 	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~	
 	protected bool PlayParticle(out Particle particle, int particle_type, vector local_pos) {
 				
-		if(this.GetQuantity() > 0.0 && !particle) {
-			
-			if(!GetGame().IsMultiplayer() || GetGame().IsClient()) {
+		if(this.GetQuantity() > 0.0) {
+						
 				particle = Particle.PlayOnObject(ParticleList.JOINT_SMOKE, this, Vector(0, 0, 0));			
 				/*
 				m_light = PortableGasLampLight.Cast(ScriptedLightBase.CreateLight( PortableGasLampLight, this.GetPosition()));
@@ -55,8 +54,7 @@ class JointBase extends Edible_Base {
 				m_light.AttachOnObject(player);
 				m_light.SetEnabled(true);
 				*/
-				return true;
-			}
+			return true			
 		}
 		return false;
 	}
