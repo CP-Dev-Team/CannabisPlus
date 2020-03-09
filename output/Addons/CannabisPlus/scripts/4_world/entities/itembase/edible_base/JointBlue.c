@@ -35,11 +35,11 @@ class CP_JointBlue extends JointBase
 		}
 		*/
 		
-		/*
+		
 		if(!m_SmokeParticle) {
-			PlayParticle(m_SmokeParticle, ParticleList.CAMP_NORMAL_SMOKE, GetLocalPos("0 0 0"));			
+			PlayParticle(m_SmokeParticle, ParticleList.JOINT_SMOKE, GetLocalPos("0 0 0"));
 		}
-		*/
+		
 		
 		// UpdateActiveParticles();
 			
@@ -50,7 +50,7 @@ class CP_JointBlue extends JointBase
 		
 		if(this.GetQuantity() <= 0.0) {
 			GetGame().ObjectDelete(this);
-			//StopParticle(m_SmokeParticle);
+			StopParticle(m_SmokeParticle);
 		}
 		
 	}	

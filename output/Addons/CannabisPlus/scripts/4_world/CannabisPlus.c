@@ -71,11 +71,13 @@ class CannabisPlus{
 			FindFileHandle configFile = FindFile(CONFIG_FILE, fileName, fileAttr, 0);
 			if(!configFile){
 				JsonFileLoader<CannabisPlusConfig>.JsonSaveFile(CONFIG_FILE, _config);
+				Print("Create new Config File");
 			}
 			else{
 								
 				if(_config.configVersion == modVersion) {
 					JsonFileLoader<CannabisPlusConfig>.JsonLoadFile(CONFIG_FILE, _config);
+					Print("Load Config File");
 				} else {
 					
 					DeleteFile("$profile:CannabisPlus_old.json");
@@ -83,6 +85,8 @@ class CannabisPlus{
 					DeleteFile(CONFIG_FILE);
 					JsonFileLoader<CannabisPlusConfig>.JsonSaveFile(CONFIG_FILE, _config);
 					JsonFileLoader<CannabisPlusConfig>.JsonLoadFile(CONFIG_FILE, _config);
+					
+					Print("Copy old Config File");
 				}
 			}
 		}

@@ -38,39 +38,36 @@ class JointBase extends Edible_Base {
 	
 	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 	// spawn particle effect related to player position
-	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-	
-	/*
+	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~	
 	protected bool PlayParticle(out Particle particle, int particle_type, vector local_pos) {
-		
-		
+				
 		if(this.GetQuantity() > 0.0 && !particle) {
-						
-			particle = Particle.PlayOnObject(ParticleList.CAMP_NORMAL_SMOKE, this, Vector(0, 0, 0));
-			particle.ScaleParticleParamFromOriginal(EmitorParam.SIZE, 0.01);
-			particle.ScaleParticleParamFromOriginal(EmitorParam.VELOCITY, 0.03);							
-			m_light = PortableGasLampLight.Cast(ScriptedLightBase.CreateLight( PortableGasLampLight, this.GetPosition()));
-			m_light.FadeIn(2.0);
-			m_light.SetFadeOutTime(1.0);				
-			m_light.SetDiffuseColor(0.85,0.5,0.23);
-			m_light.SetRadiusTo(1);
-			m_light.SetBrightnessTo(2.0);
-			m_light.AttachOnObject(player);
-			m_light.SetEnabled(true);
 			
-			return true;
+			if(!GetGame().IsMultiplayer() || GetGame().IsClient()) {
+				particle = Particle.PlayOnObject(ParticleList.JOINT_SMOKE, this, Vector(0, 0, 0));			
+				/*
+				m_light = PortableGasLampLight.Cast(ScriptedLightBase.CreateLight( PortableGasLampLight, this.GetPosition()));
+				m_light.FadeIn(2.0);
+				m_light.SetFadeOutTime(1.0);				
+				m_light.SetDiffuseColor(0.85,0.5,0.23);
+				m_light.SetRadiusTo(1);
+				m_light.SetBrightnessTo(2.0);
+				m_light.AttachOnObject(player);
+				m_light.SetEnabled(true);
+				*/
+				return true;
+			}
 		}
 		return false;
 	}
-	*/
+	
 	
 	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 	// stops particle effect and disable the light/glow effect while player consume the joint
 	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-	/*
 	bool StopParticle(out Particle particle) {
 		
-		SetSmokingStateSynchronized(SmokeState.NOT_SMOKING);
+		//SetSmokingStateSynchronized(SmokeState.NOT_SMOKING);
 		
 		if(particle){
 		
@@ -81,16 +78,14 @@ class JointBase extends Edible_Base {
 			return true;
 		}
 		return false;
-	}
-	*/
-	
-	
+	}	
+
+		
 	override void OnWork(float consumed_energy) {
 		
 		Print("ON WORK");
 	}
-	
-	
+		
 	
 	override void OnWorkStart() {
 		

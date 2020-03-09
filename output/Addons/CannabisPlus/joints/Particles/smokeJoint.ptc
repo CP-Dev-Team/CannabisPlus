@@ -1,0 +1,16 @@
+EffectDef {
+ Emitors {
+  EmitorDef smokeEmitter {
+   MaxNum 30
+   BirthRate 30
+   BirthRateVel 5
+   Material "{735D641EB0FC5209}system/wbdata/particleeditor/defaultmaterial.emat"
+   SizeMultiplier 2
+   SizeRND 0
+   LifeTime 2
+   Size {
+    0 0.06962 1 1
+   }
+  }
+ }
+}
