@@ -1,10 +1,8 @@
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 // callback function for 'ActionSmokeJointSelf'-action 
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~	
-class ActionSmokeJointSelfCB : ActionContinuousBaseCB
-{
+class ActionSmokeJointSelfCB : ActionContinuousBaseCB {
 	override void CreateActionComponent() {
-		
 		m_ActionData.m_ActionComponent = new CAContinuousQuantityEdible(UAQuantityConsumed.DRINK,UATimeSpent.DEFAULT);
 	}
 };
@@ -20,35 +18,55 @@ class ActionSmokeJointSelf: ActionContinuousBase
 	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 	//
 	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~	
-	void ActionSmokeJointSelf()	{
+	void ActionSmokeJointSelf()	{		
+		Print("!!!!!!!!!!!!!!!! ActionSmokeJointSelf");
 		
-		// define the callback class
-		m_CallbackClass = ActionSmokeJointSelfCB;
-		// define ActionCommandUID - todo: make a own action command
+		m_CallbackClass = ActionSmokeJointSelfCB;		
 		m_CommandUID = DayZPlayerConstants.CMD_ACTIONMOD_TAKETEMPSELF;
 		m_CommandUIDProne = DayZPlayerConstants.CMD_ACTIONFB_TAKETEMPSELF;
 		m_SpecialtyWeight = UASoftSkillsWeight.PRECISE_LOW;
-		// get reference to game options to figure out what language the game is running
 		GameOptions gameOptions = new GameOptions();
 		ListOptionsAccess lang = ListOptionsAccess.Cast(gameOptions.GetOptionByType( AT_OPTIONS_LANGUAGE ));
 		lang.GetItemText(lang.GetIndex(), currentLanguage);
 	}
 
 
+	override void OnStartAnimationLoop(ActionData action_data){
+		Print("!!!!!!!!!!!!!!!! OnStartAnimationLoop");
+		
+		super.OnStartAnimationLoop(action_data);
+		JointBase joint = JointBase.Cast(action_data.m_MainItem);		
+		joint.SetSmokingState(1);		
+	}
+	
+	
+	override void OnEndAnimationLoop(ActionData action_data){
+		Print("!!!!!!!!!!!!!!!! OnEndAnimationLoop");
+		
+		super.OnEndAnimationLoop(action_data);
+		JointBase joint = JointBase.Cast(action_data.m_MainItem);		
+		joint.SetSmokingState(0);
+	}
+	
+	
+	override void OnFinishProgress( ActionData action_data ) {
+		Print("!!!!!!!!!!!!!!!! OnFinishProgress");
+		
+		super.OnFinishProgress(action_data);
+		JointBase joint = JointBase.Cast(action_data.m_MainItem);
+		joint.SetSmokingState(0);
+	}
+	
+	
 	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 	// when the player stops pressing the mouse button
 	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~	
 	override void OnEndInput(ActionData action_data) {
+		Print("!!!!!!!!!!!!!!!! OnEndInput");
 		
 		super.OnEndInput(action_data);		
-		
-		
 		JointBase joint = JointBase.Cast(action_data.m_MainItem);
-		/*		
-		joint.m_SmokeState = SmokeState.NOT_SMOKING;
-		joint.UpdateActiveParticles();
-		*/
-		joint.StopParticle(joint.m_SmokeParticle);
+		joint.SetSmokingState(0);
 	}
 	
 	
@@ -93,7 +111,6 @@ class ActionSmokeJointSelf: ActionContinuousBase
 	//
 	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~	
 	override void CreateConditionComponents() {
-
 		m_ConditionItem = new CCINonRuined;
 		m_ConditionTarget = new CCTSelf;
 	}
@@ -103,7 +120,6 @@ class ActionSmokeJointSelf: ActionContinuousBase
 	//
 	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~	
 	override bool HasProneException() {
-
 		return true;
 	}
 
@@ -112,7 +128,6 @@ class ActionSmokeJointSelf: ActionContinuousBase
 	//
 	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~				
 	override bool HasTarget() {
-
 		return false;
 	}
 };

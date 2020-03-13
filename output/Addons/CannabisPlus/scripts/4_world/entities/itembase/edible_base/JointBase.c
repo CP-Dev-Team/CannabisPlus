@@ -1,109 +1,96 @@
-enum SmokeState {
-	NOT_SMOKING,
-	SMOKING
-}
 
 class JointBase extends Edible_Base {
 	
-	// member variable to get access on particle effect	
-	Particle m_SmokeParticle;
-	// member variable to get access on light emitter
 	static PortableGasLampLight m_light;
+	static int m_SmokeState = 0;
+	static Particle m_SmokeParticle;
+	PlayerBase player;
+	
+	
+	override void EEDelete(EntityAI parent)	{
+		super.EEDelete(parent);
+		if ( !GetGame().IsMultiplayer() || GetGame().IsClient() ){
+			if ( m_SmokeParticle )
+				m_SmokeParticle.Stop();
+		}
+		m_SmokeParticle.Stop();
+	}
+	
+	
+	override void EEInit() {
+		super.EEInit();
+	}
 
-	static int m_SmokeState = SmokeState.NOT_SMOKING;
-		
-	PlayerBase player;	
 	
-	
-	
-	//void UpdateActiveParticles() {
+	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+	// 
+	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+	override void OnConsume(float amount, PlayerBase consumer) {
+		Print("!!!!!!!!!!!!!!!! OnConsume");
 		
-		/*
-		if ( GetGame().IsServer()  &&  GetGame().IsMultiplayer() )
-			return;
-		*/
-		
-	/*
-		switch(m_SmokeState) {
-			case SmokeState.NOT_SMOKING:
-				StopParticle(m_SmokeParticle);
-				break;
-			
-			case SmokeState.SMOKING:
-				PlayParticle(m_SmokeParticle, ParticleList.CAMP_NORMAL_SMOKE, GetLocalPos("0 0 0"));
-				break;
+		super.OnConsume(amount, consumer);
+	
+		if(CannabisPlus.getInstance().GetConfig().activateJointSmokingEffect){
+			consumer.AddValueToJointValue(amount);
 		}
-	}
-	*/
-	
-	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-	// spawn particle effect related to player position
-	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~	
-	protected bool PlayParticle(out Particle particle, int particle_type, vector local_pos) {
-				
-		if(this.GetQuantity() > 0.0) {
-						
-			//particle = Particle.PlayOnObject(ParticleList.JOINT_SMOKE, this, Vector(0, 0, 0));						
-			m_SmokeParticle = Particle.PlayOnObject(ParticleList.JOINT_SMOKE, this, Vector(0, 0, 0));				
-			/*
-			m_light = PortableGasLampLight.Cast(ScriptedLightBase.CreateLight( PortableGasLampLight, this.GetPosition()));
-			m_light.FadeIn(2.0);
-			m_light.SetFadeOutTime(1.0);				
-			m_light.SetDiffuseColor(0.85,0.5,0.23);
-			m_light.SetRadiusTo(1);
-			m_light.SetBrightnessTo(2.0);
-			m_light.AttachOnObject(player);
-			m_light.SetEnabled(true);
-			*/
-			return true			
+
+		if(this.GetQuantity() <= 0.0) {
+			GetGame().ObjectDelete(this);
+			StopParticle();
 		}
-		return false;
+		
+		UpdateVisuals();
 	}
-	
+		
+	override void UpdateVisuals()
+    {
+        super.UpdateVisuals();
+
+		Print("!!!!!!!!!!!!! Update Visuals");
+		
+        switch(m_SmokeState) {
+            case 0:
+                StopParticle();
+				Print("!!!!!!!!!!!!! Stop Particles");
+                break;
+
+            case 1:
+				if(!m_SmokeParticle) {
+					Print("!!!!!!!!!!!!! Start Particles");
+					m_SmokeParticle = Particle.PlayOnObject(ParticleList.JOINT_SMOKE, this, Vector(0, 0, 0));
+				}
+				if(this.GetQuantity() <= 0.0) {
+					SetSmokingState(0);
+				}
+                break;				
+        }
+	}
+		
 	
 	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 	// stops particle effect and disable the light/glow effect while player consume the joint
 	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-	bool StopParticle(out Particle particle) {
-		
-		//SetSmokingStateSynchronized(SmokeState.NOT_SMOKING);
-		
-		if(particle){
-		
-			particle.Stop();
-			particle = null;		
-			m_light.SetEnabled(false);		
-			GetGame().ObjectDelete(m_light);
-			return true;
-		}
-		return false;
+	void StopParticle() {		
+		m_SmokeParticle.Stop();
 	}	
 
 		
-	override void OnWork(float consumed_energy) {
-		
+	override void OnWork(float consumed_energy) {		
 		Print("ON WORK");
 	}
 		
 	
 	override void OnWorkStart() {
-		
 		Print("ON WORK START");
 	}
 
 	
-	/*
+	override void OnWorkStop() {
+		Print("ON WORK STOP");
+	}
+	
+	
 	void SetSmokingState(int state_number) {
 		m_SmokeState = state_number;
-	}
-
-	
-	
-	void SetSmokingStateSynchronized(int state_number) {
-		if ( GetGame().IsServer() )	{
-			m_SmokeState = state_number;
-			SetSynchDirty();
-		}
-	}
-	*/
+	}	
 }
