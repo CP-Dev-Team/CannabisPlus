@@ -7,6 +7,11 @@ class JointBase extends Edible_Base {
 	PlayerBase player;
 	
 	
+	void JointBase() {
+		RegisterNetSyncVariableInt("m_SmokeState");
+	}
+	
+	
 	override void EEDelete(EntityAI parent)	{
 		super.EEDelete(parent);
 		if ( !GetGame().IsMultiplayer() || GetGame().IsClient() ){
@@ -17,14 +22,20 @@ class JointBase extends Edible_Base {
 	}
 	
 	
+	override void OnVariablesSynchronized() {
+		super.OnVariablesSynchronized();
+		UpdateVisuals();
+	}
+	
+	
 	override void EEInit() {
 		super.EEInit();
 	}
 
 	
-	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 	// 
-	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 	override void OnConsume(float amount, PlayerBase consumer) {
 		Print("!!!!!!!!!!!!!!!! OnConsume");
 		
@@ -66,10 +77,10 @@ class JointBase extends Edible_Base {
         }
 	}
 		
-	
-	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+		
+	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 	// stops particle effect and disable the light/glow effect while player consume the joint
-	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 	void StopParticle() {		
 		m_SmokeParticle.Stop();
 	}	
