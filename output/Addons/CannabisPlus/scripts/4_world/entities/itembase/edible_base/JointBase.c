@@ -6,7 +6,7 @@ class JointBase extends Edible_Base {
 	static Particle m_SmokeParticle;
 	PlayerBase player;
 	
-	
+		
 	void JointBase() {
 		RegisterNetSyncVariableInt("m_SmokeState");
 	}
@@ -24,14 +24,10 @@ class JointBase extends Edible_Base {
 	
 	override void OnVariablesSynchronized() {
 		super.OnVariablesSynchronized();
+		Print("!!!!!!!!!!!!!!!! OnVariablesSynchronized");
 		UpdateVisuals();
 	}
 	
-	
-	override void EEInit() {
-		super.EEInit();
-	}
-
 	
 	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 	// 
@@ -48,15 +44,14 @@ class JointBase extends Edible_Base {
 		if(this.GetQuantity() <= 0.0) {
 			GetGame().ObjectDelete(this);
 			StopParticle();
-		}
-		
+		}		
 		UpdateVisuals();
 	}
 		
+	
 	override void UpdateVisuals()
     {
         super.UpdateVisuals();
-
 		Print("!!!!!!!!!!!!! Update Visuals");
 		
         switch(m_SmokeState) {

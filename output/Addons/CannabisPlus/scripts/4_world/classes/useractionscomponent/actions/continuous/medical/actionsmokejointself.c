@@ -31,12 +31,30 @@ class ActionSmokeJointSelf: ActionContinuousBase
 	}
 
 
+	
 	override void OnStartAnimationLoop(ActionData action_data){
 		Print("!!!!!!!!!!!!!!!! OnStartAnimationLoop");
 		
 		super.OnStartAnimationLoop(action_data);
-		JointBase joint = JointBase.Cast(action_data.m_MainItem);		
-		joint.SetSmokingState(1);		
+		JointBase joint = JointBase.Cast(action_data.m_MainItem);				
+		joint.SetSmokingState(1);
+	}
+	
+	
+	override void OnExecuteServer(ActionData action_data){
+		Print("!!!!!!!!!!!!!!!! OnExecuteServer");
+		
+		super.OnExecuteServer(action_data);
+		JointBase joint = JointBase.Cast(action_data.m_MainItem);				
+		joint.SetSmokingState(1);
+	}
+	
+	override void OnStartAnimationLoopServer(ActionData action_data) {
+		Print("!!!!!!!!!!!!!!!! OnStartAnimationLoopServer");
+		
+		super.OnStartAnimationLoopServer(action_data)
+		JointBase joint = JointBase.Cast(action_data.m_MainItem);				
+		joint.SetSmokingState(1);
 	}
 	
 	
@@ -44,6 +62,15 @@ class ActionSmokeJointSelf: ActionContinuousBase
 		Print("!!!!!!!!!!!!!!!! OnEndAnimationLoop");
 		
 		super.OnEndAnimationLoop(action_data);
+		JointBase joint = JointBase.Cast(action_data.m_MainItem);		
+		joint.SetSmokingState(0);
+	}
+	
+	
+	override void OnEndAnimationLoopServer(ActionData action_data) {
+		Print("!!!!!!!!!!!!!!!! OnEndAnimationLoop");
+		
+		super.OnEndAnimationLoopServer(action_data);
 		JointBase joint = JointBase.Cast(action_data.m_MainItem);		
 		joint.SetSmokingState(0);
 	}
