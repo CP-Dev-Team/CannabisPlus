@@ -670,6 +670,8 @@ class CfgVehicles
 			};
 		};
 	};
+	// endNEXT UPDATE
+/* FUTURE 
 	class CannabisAcapulco: Edible_Base
 	{
 		scope=2;
@@ -833,8 +835,6 @@ class CfgVehicles
 			};
 		};
 	};
-	// endNEXT UPDATE
-	/* FUTURE 
 	class CannabisCookies: Edible_Base
 	{
 		scope=2;
@@ -1650,7 +1650,7 @@ class CfgVehicles
 			};
 		};
 	};
-	*/ //endFUTURE
+*/ //endFUTURE
 	class Tobacco: Edible_Base
 	{
 		scope=2;
