@@ -20,6 +20,10 @@ class CannabisPlusConfig
 	float cannabisBlue_growtime 	= 8;
 	float cannabisBlue_cropcount 	= 2;
 	float cannabisBlueSeed_count 	= 9;
+
+	float cannabisStardawg_growtime 	= 8;
+	float cannabisStardawg_cropcount 	= 2;
+	float cannabisStardawgSeed_count 	= 9;
 	
 	float pepper_growtime 			= 8;
 	float pepper_cropcount 			= 2;
@@ -164,6 +168,20 @@ modded class Plant_CannabisKush
 
 
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+// NEXT UPDATE
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+modded class Plant_CannabisStardawg
+{
+	override void Harvest( PlayerBase player )
+	{
+		super.Harvest(player);
+		if(GetGame().IsServer() && CannabisPlus.getInstance().GetConfig().removeAfterHarvest==true){
+			GetGame().GetCallQueue( CALL_CATEGORY_SYSTEM ).CallLater( RemovePlant, 10, true );
+		}
+	}
+}
+
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 // 
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 modded class Plant_Tobacco
@@ -249,6 +267,9 @@ modded class PlantBase
 	private	float m_cannabisSkunk_growtime; 
 	private float m_cannabisKush_growtime;
 	private float m_cannabisBlue_growtime;
+	// NEXT UPDATE
+	private float m_cannabisStardawg_growtime;
+	// END NEXT UPDATE
 	private float m_pepper_growtime;
 	private float m_tomato_growtime;
 	private float m_zucchini_growtime;
@@ -258,6 +279,9 @@ modded class PlantBase
 	private float m_cannabisSkunk_cropcount;
 	private float m_cannabisKush_cropcount;
 	private float m_cannabisBlue_cropcount;
+	// NEXT UPDATE
+	private float m_cannabisStardawg_cropcount;
+	// END NEXT UPDATE
 	private float m_pepper_cropcount;
 	private float m_tomato_cropcount;
 	private float m_zucchini_cropcount;
@@ -313,6 +337,9 @@ modded class PlantBase
 		m_cannabisSkunk_growtime 	= CannabisPlus.getInstance().GetConfig().cannabisSkunk_growtime;
 		m_cannabisKush_growtime 	= CannabisPlus.getInstance().GetConfig().cannabisKush_growtime;
 		m_cannabisBlue_growtime	 	= CannabisPlus.getInstance().GetConfig().cannabisBlue_growtime;
+		// NEXT UPDATE
+		m_cannabisStardawg_growtime	 	= CannabisPlus.getInstance().GetConfig().cannabisStardawg_growtime;
+		// END NEXT UPDATE
 		m_pepper_growtime 			= CannabisPlus.getInstance().GetConfig().pepper_growtime;
 		m_tomato_growtime 			= CannabisPlus.getInstance().GetConfig().tomato_growtime;
 		m_zucchini_growtime 		= CannabisPlus.getInstance().GetConfig().zucchini_growtime;
@@ -322,6 +349,9 @@ modded class PlantBase
 		m_cannabisSkunk_cropcount 	= CannabisPlus.getInstance().GetConfig().cannabisSkunk_cropcount;
 		m_cannabisKush_cropcount 	= CannabisPlus.getInstance().GetConfig().cannabisKush_cropcount;
 		m_cannabisBlue_cropcount 	= CannabisPlus.getInstance().GetConfig().cannabisBlue_cropcount;
+		// NEXT UPDATE
+		m_cannabisStardawg_cropcount 	= CannabisPlus.getInstance().GetConfig().cannabisStardawg_cropcount;
+		// END NEXT UPDATE
 		m_pepper_cropcount 			= CannabisPlus.getInstance().GetConfig().pepper_cropcount;
 		m_tomato_cropcount 			= CannabisPlus.getInstance().GetConfig().tomato_cropcount;
 		m_zucchini_cropcount 		= CannabisPlus.getInstance().GetConfig().zucchini_cropcount;
@@ -350,6 +380,11 @@ modded class PlantBase
 			case "Plant_CannabisKush":
 				m_growtime = m_cannabisKush_growtime;
 				m_CropsCount = m_cannabisKush_cropcount;
+				break;
+			// cannabis Stardawg
+			case "Plant_CannabisStardawg":
+				m_growtime = m_cannabisStardawg_growtime;
+				m_CropsCount = m_cannabisStardawg_cropcount;
 				break;
 			// tobacco
 			case "Plant_Tobacco":
@@ -549,6 +584,7 @@ modded class SeedPackBase
 	private int m_cannabisSkunkSeed_count;	// number of cannabis skunk seeds that emerge
 	private int m_cannabisBlueSeed_count;	// number of cannabis blue emerge
 	private int m_cannabisKushSeed_count;	// number of cannabis kush that emerge
+	private int m_cannabisStardawgSeed_count;	// number of cannabis Stardawg seeds that emerge
 	private int m_pepperSeed_count;			// number of pepper seeds that emerge
 	private int m_tomatoSeed_count;			// number of tomato seeds that emerge
 	private int m_zucchiniSeed_count;		// number of zucchini seeds that emerge
@@ -574,6 +610,7 @@ modded class SeedPackBase
 		m_cannabisSkunkSeed_count 	=  CannabisPlus.getInstance().GetConfig().cannabisSkunkSeed_count;	// cannabis skunk
 		m_cannabisBlueSeed_count 	=  CannabisPlus.getInstance().GetConfig().cannabisBlueSeed_count;	// cannbis blue
 		m_cannabisKushSeed_count 	=  CannabisPlus.getInstance().GetConfig().cannabisKushSeed_count;	// cannabis kush
+		m_cannabisStardawgSeed_count 	=  CannabisPlus.getInstance().GetConfig().cannabisStardawgSeed_count;	// cannabis Stardawg
 		m_pepperSeed_count 			=  CannabisPlus.getInstance().GetConfig().pepperSeed_count;			// pepper
 		m_tomatoSeed_count 			=  CannabisPlus.getInstance().GetConfig().tomatoSeed_count;			// tomato
 		m_zucchiniSeed_count 		=  CannabisPlus.getInstance().GetConfig().zucchiniSeed_count;		// zucchini
@@ -587,6 +624,10 @@ modded class SeedPackBase
 			// Cannabis Blue seedpack
 			case "CannabisSeedsPackBlue":
 				seeds_quantity_max = m_cannabisBlueSeed_count;
+				break;
+			// Cannabis Stardawg seedpack
+			case "CannabisSeedsPackStardawg":
+				seeds_quantity_max = m_cannabisStardawgSeed_count;
 				break;
 			// Tobacco seedpack
 			case "TobaccoSeedsPack":
