@@ -299,4 +299,100 @@ class CfgVehicles
 			};
 		};	
 	};
+	//NEXT UPDATE
+	class CannabisBagStardawg: Inventory_Base
+	{
+		scope=2;
+		displayName="Bag of Stardawg Weed";
+		descriptionShort="About an ounce of Stardawg weed.";
+		model="\DZ\gear\tools\Heatpack.p3d";
+		rotationFlags=17;
+		canBeSplit=1;
+		lootCategory="Crafted";
+		weight=28;
+		itemSize[]={2,2};
+		absorbency=0.2;
+		varQuantityInit=1;
+		varQuantityMin=0;
+		varQuantityMax=16;
+		varQuantityDestroyOnMin=1;
+		hiddenSelections[]=
+		{
+			"zbytek"
+		};
+		hiddenSelectionsTextures[]=
+		{
+			"CannabisPlus\bags\data\cannabis_bag_stardawg_co.paa"
+		};
+		class DamageSystem
+		{
+			class GlobalHealth
+			{
+				class Health
+				{
+					hitpoints=30;
+					healthLevels[]=
+					{
+						
+						{
+							1,
+							
+							{
+								"DZ\gear\tools\data\heat_pack.rvmat"
+							}
+						},
+						
+						{
+							0.69999999,
+							
+							{
+								"DZ\gear\tools\data\heat_pack.rvmat"
+							}
+						},
+						
+						{
+							0.5,
+							
+							{
+								"DZ\gear\tools\data\heat_pack_damage.rvmat"
+							}
+						},
+						
+						{
+							0.30000001,
+							
+							{
+								"DZ\gear\tools\data\heat_pack_damage.rvmat"
+							}
+						},
+						
+						{
+							0,
+							
+							{
+								"DZ\gear\tools\data\heat_pack_destruct.rvmat"
+							}
+						}
+					};
+				};
+			};
+		};
+		class AnimEvents
+		{
+			class SoundWeapon
+			{
+				class pickUpItem
+				{
+					soundSet="pickUpBloodBag_SoundSet";
+					id=797;
+				};
+				class drop
+				{
+					soundset="bloodbag_drop_SoundSet";
+					id=898;
+				};
+			};
+		};
+	};
+	//end NEXT UPDATE
 };

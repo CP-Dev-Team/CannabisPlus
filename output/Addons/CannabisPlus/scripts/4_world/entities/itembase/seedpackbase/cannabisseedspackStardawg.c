@@ -1,0 +1,3 @@
+class CannabisSeedsPackStardawg extends SeedPackBase
+{	
+}
