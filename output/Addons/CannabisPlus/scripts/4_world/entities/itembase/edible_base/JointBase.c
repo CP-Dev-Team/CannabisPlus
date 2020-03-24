@@ -88,11 +88,15 @@ class JointBase extends Edible_Base {
 	
 	override void OnWorkStart() {
 		Print("ON WORK START");
+		SetSmokingState(1);
+		UpdateVisuals();
 	}
 
 	
 	override void OnWorkStop() {
 		Print("ON WORK STOP");
+		SetSmokingState(0);
+		UpdateVisuals();
 	}
 	
 	
