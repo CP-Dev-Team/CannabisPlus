@@ -1,9 +1,9 @@
 
 class JointBase extends Edible_Base {
 	
-	static PortableGasLampLight m_light;
-	static int m_SmokeState = 0;
-	static Particle m_SmokeParticle;
+	PortableGasLampLight m_light;
+	int m_SmokeState = 0;
+	Particle m_SmokeParticle;
 	PlayerBase player;
 	
 		
@@ -42,9 +42,11 @@ class JointBase extends Edible_Base {
 		}
 
 		if(this.GetQuantity() <= 0.0) {
-			GetGame().ObjectDelete(this);
+			//GetGame().ObjectDelete(this);
 			StopParticle();
-		}		
+		} else {
+			SetSmokingState(1);
+		}
 		UpdateVisuals();
 	}
 		
