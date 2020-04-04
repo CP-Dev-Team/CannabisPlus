@@ -1,7 +1,7 @@
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-// callback function for 'ActionSmokeJointSelf'-action 
+// callback function for 'ActionSmokeCigSelf'-action 
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~	
-class ActionSmokeJointSelfCB : ActionContinuousBaseCB {
+class ActionSmokeCigSelfCB : ActionContinuousBaseCB {
 	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 	//
 	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -12,9 +12,9 @@ class ActionSmokeJointSelfCB : ActionContinuousBaseCB {
 	//
 	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 	override void OnFinish(bool pCanceled){
+		Print("!!!!!!!!!!!!!!!!!! OnFinish");
 		super.OnFinish(pCanceled);
-		JointBase joint = JointBase.Cast(m_ActionData.m_Target.GetObject());
-		
+		CP_Cigarette joint = CP_Cigarette.Cast(m_ActionData.m_Target.GetObject());		
 		joint.m_SmokeParticle.Delete();
 		joint.m_SmokeParticle.Stop();
 	}
@@ -24,13 +24,13 @@ class ActionSmokeJointSelfCB : ActionContinuousBaseCB {
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 //
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-class ActionSmokeJointSelf: ActionContinuousBase {		
+class ActionSmokeCigSelf: ActionContinuousBase {		
 	string currentLanguage;		
 	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 	//
 	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~	
-	void ActionSmokeJointSelf()	{
-		m_CallbackClass = ActionSmokeJointSelfCB;		
+	void ActionSmokeCigSelf()	{
+		m_CallbackClass = ActionSmokeCigSelfCB;		
 		m_CommandUID = DayZPlayerConstants.CMD_ACTIONMOD_TAKETEMPSELF;
 		m_CommandUIDProne = DayZPlayerConstants.CMD_ACTIONFB_TAKETEMPSELF;
 		m_SpecialtyWeight = UASoftSkillsWeight.PRECISE_LOW;
@@ -42,38 +42,40 @@ class ActionSmokeJointSelf: ActionContinuousBase {
 	//
 	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~	
 	override void OnExecuteServer(ActionData action_data){
+		Print("!!!!!!!!!!!!!!!!!! OnExecuteServer");
 		super.OnExecuteServer(action_data);
-		JointBase joint = JointBase.Cast(action_data.m_Target.GetObject());
-		
+		CP_Cigarette joint = CP_Cigarette.Cast(action_data.m_Target.GetObject());
 		joint.SetSmokingState(1);
 	}
 	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 	//
 	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~	
-	override void OnStartAnimationLoopServer(ActionData action_data) {		
+	override void OnStartAnimationLoopServer(ActionData action_data) {
+		Print("!!!!!!!!!!!!!!!!!! OnStartAnimationLoopServer");
 		super.OnStartAnimationLoopServer(action_data);
-		JointBase joint = JointBase.Cast(action_data.m_Target.GetObject());
-		
+		CP_Cigarette joint = CP_Cigarette.Cast(action_data.m_Target.GetObject());
 		joint.SetSmokingState(1);
 	}
 	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 	//
 	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~	
+	/*
 	override void OnFinishProgress( ActionData action_data ) {
+		Print("!!!!!!!!!!!!!!!!!! OnFinishProgress");
 		super.OnFinishProgress(action_data);
-		JointBase joint = JointBase.Cast(action_data.m_Target.GetObject());
-		
+		CP_Cigarette joint = CP_Cigarette.Cast(action_data.m_Target.GetObject());
 		joint.m_SmokeParticle.Stop();
 		joint.m_SmokeParticle.Delete();
 		joint.SetSmokingState(0);				
 	}
+	*/
 	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 	// when the player stops pressing the mouse button
 	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~	
 	override void OnEndInput(ActionData action_data) {
+		Print("!!!!!!!!!!!!!!!!!! OnEndInput");
 		super.OnEndInput(action_data);
-		JointBase joint = JointBase.Cast(action_data.m_Target.GetObject());
-		
+		CP_Cigarette joint = CP_Cigarette.Cast(action_data.m_Target.GetObject());
 		joint.m_SmokeParticle.Stop();
 		joint.m_SmokeParticle.Delete();
 		joint.SetSmokingState(0);
@@ -81,21 +83,23 @@ class ActionSmokeJointSelf: ActionContinuousBase {
 	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 	// 
 	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+	/*
 	override void OnEndServer( ActionData action_data ) {		
+		Print("!!!!!!!!!!!!!!!!!! OnEndServer");
 		super.OnEndServer(action_data);
-		JointBase joint = JointBase.Cast(action_data.m_Target.GetObject());
-		
+		CP_Cigarette joint = CP_Cigarette.Cast(action_data.m_Target.GetObject());
 		joint.m_SmokeParticle.Stop();
 		joint.m_SmokeParticle.Delete();
 		joint.SetSmokingState(0);
 	}
+	*/
 	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 	// 
 	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 	override void OnEndAnimationLoop(ActionData action_data) {
+		Print("!!!!!!!!!!!!!!!!!! OnEndAnimationLoop");
 		super.OnEndAnimationLoop(action_data);
-		JointBase joint = JointBase.Cast(action_data.m_Target.GetObject());
-		
+		CP_Cigarette joint = CP_Cigarette.Cast(action_data.m_Target.GetObject());
 		joint.m_SmokeParticle.Stop();
 		joint.m_SmokeParticle.Delete();
 		joint.SetSmokingState(0);

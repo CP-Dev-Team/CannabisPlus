@@ -25,9 +25,10 @@ modded class DayZPlayerImplementAiming {
 		float player_stamina = m_PlayerPb.GetStaminaHandler().GetStaminaNormalized();
 		float speed = ((1.0 - player_stamina) * 4.0) + 1.0 * m_SwayModifier[2];
 	
-			
-		if( m_PlayerPb.IsHoldingBreath() || m_PlayerPb.m_HasConsumedCigarette )
-		{
+		//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+		// reduce sway while aiming if hold breath or if player consumed a joint
+		//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+		if( m_PlayerPb.IsHoldingBreath() || m_PlayerPb.m_HasConsumedCigarette ) {
 			speed *= 0.1;			
 		}
 		

@@ -1,20 +1,14 @@
-
-class ActionUnpackCigaretteBoxCB : ActionContinuousBaseCB
-{
+class ActionUnpackCigaretteBoxCB : ActionContinuousBaseCB {
 	
-	override void CreateActionComponent()
-	{
+	override void CreateActionComponent() {
 		m_ActionData.m_ActionComponent = new CAContinuousTime(UATimeSpent.UNPACK);
 	}
 };
 
 
-class ActionUnpackCigaretteBox: ActionContinuousBase
-{	
+class ActionUnpackCigaretteBox: ActionContinuousBase {	
 	ItemBase resultItem;
-	string currentLanguage;
-	
-	
+	string currentLanguage;	
 	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 	//
 	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -28,9 +22,7 @@ class ActionUnpackCigaretteBox: ActionContinuousBase
 		GameOptions gameOptions = new GameOptions();
 		ListOptionsAccess lang = ListOptionsAccess.Cast(gameOptions.GetOptionByType( AT_OPTIONS_LANGUAGE ));
 		lang.GetItemText(lang.GetIndex(), currentLanguage);		
-	}
-	
-	
+	}		
 	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 	//
 	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~	

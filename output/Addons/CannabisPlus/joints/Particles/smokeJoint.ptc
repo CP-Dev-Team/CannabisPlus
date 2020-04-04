@@ -1,15 +1,31 @@
 EffectDef {
  Emitors {
   EmitorDef smokeEmitter {
-   MaxNum 30
-   BirthRate 30
-   BirthRateVel 5
+   ConeAngle 360 0 25
+   MaxNum 20
+   BirthRate 25
+   BirthRateRND 2
+   BirthRateVel 3
+   LocalTransform 0
    Material "{735D641EB0FC5209}system/wbdata/particleeditor/defaultmaterial.emat"
+   ScaleX 1
    SizeMultiplier 2
    SizeRND 0
-   LifeTime 2
+   RandomAngle 0
+   BillboardingType Full
+   Velocity 2
+   AirResistanceRND 0
+   Spring 0
+   LifeTime 3
+   LifeTimeRND 0
+   Alpha {
+    0 0.11392 1 0
+   }
+   RotationSpeed {
+    0 0.39241 1 0.63924
+   }
    Size {
-    0 0.06962 1 1
+    0 0.14557 1 0.46835
    }
   }
  }
