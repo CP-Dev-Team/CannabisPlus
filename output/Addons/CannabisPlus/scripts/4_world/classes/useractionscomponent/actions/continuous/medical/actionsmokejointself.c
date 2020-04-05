@@ -44,7 +44,6 @@ class ActionSmokeJointSelf: ActionContinuousBase {
 	override void OnExecuteServer(ActionData action_data){
 		super.OnExecuteServer(action_data);
 		JointBase joint = JointBase.Cast(action_data.m_Target.GetObject());
-		
 		joint.SetSmokingState(1);
 	}
 	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -52,8 +51,7 @@ class ActionSmokeJointSelf: ActionContinuousBase {
 	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~	
 	override void OnStartAnimationLoopServer(ActionData action_data) {		
 		super.OnStartAnimationLoopServer(action_data);
-		JointBase joint = JointBase.Cast(action_data.m_Target.GetObject());
-		
+		JointBase joint = JointBase.Cast(action_data.m_Target.GetObject());		
 		joint.SetSmokingState(1);
 	}
 	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -61,22 +59,26 @@ class ActionSmokeJointSelf: ActionContinuousBase {
 	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~	
 	override void OnFinishProgress( ActionData action_data ) {
 		super.OnFinishProgress(action_data);
-		JointBase joint = JointBase.Cast(action_data.m_Target.GetObject());
 		
-		joint.m_SmokeParticle.Stop();
-		joint.m_SmokeParticle.Delete();
-		joint.SetSmokingState(0);				
+		JointBase joint = JointBase.Cast(action_data.m_Target.GetObject());	
+		if(joint.m_SmokeParticle){			
+			joint.m_SmokeParticle.Stop();
+			joint.m_SmokeParticle.Delete();	
+			joint.SetSmokingState(0);				
+		}				
 	}
 	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 	// when the player stops pressing the mouse button
 	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~	
 	override void OnEndInput(ActionData action_data) {
 		super.OnEndInput(action_data);
-		JointBase joint = JointBase.Cast(action_data.m_Target.GetObject());
 		
-		joint.m_SmokeParticle.Stop();
-		joint.m_SmokeParticle.Delete();
-		joint.SetSmokingState(0);
+		JointBase joint = JointBase.Cast(action_data.m_Target.GetObject());
+		if(joint.m_SmokeParticle){			
+			joint.m_SmokeParticle.Stop();
+			joint.m_SmokeParticle.Delete();	
+			joint.SetSmokingState(0);
+		}		
 	}
 	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 	// 
@@ -84,21 +86,24 @@ class ActionSmokeJointSelf: ActionContinuousBase {
 	override void OnEndServer( ActionData action_data ) {		
 		super.OnEndServer(action_data);
 		JointBase joint = JointBase.Cast(action_data.m_Target.GetObject());
-		
-		joint.m_SmokeParticle.Stop();
-		joint.m_SmokeParticle.Delete();
-		joint.SetSmokingState(0);
+		if(joint.m_SmokeParticle){			
+			joint.m_SmokeParticle.Stop();
+			joint.m_SmokeParticle.Delete();	
+			joint.SetSmokingState(0);
+		}				
 	}
 	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 	// 
 	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 	override void OnEndAnimationLoop(ActionData action_data) {
 		super.OnEndAnimationLoop(action_data);
-		JointBase joint = JointBase.Cast(action_data.m_Target.GetObject());
 		
-		joint.m_SmokeParticle.Stop();
-		joint.m_SmokeParticle.Delete();
-		joint.SetSmokingState(0);
+		JointBase joint = JointBase.Cast(action_data.m_Target.GetObject());
+		if(joint.m_SmokeParticle){			
+			joint.m_SmokeParticle.Stop();
+			joint.m_SmokeParticle.Delete();
+			joint.SetSmokingState(0);
+		}
 	}
 	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 	// 

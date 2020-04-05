@@ -14,9 +14,12 @@ class ActionSmokeCigSelfCB : ActionContinuousBaseCB {
 	override void OnFinish(bool pCanceled){
 		Print("!!!!!!!!!!!!!!!!!! OnFinish");
 		super.OnFinish(pCanceled);
-		CP_Cigarette joint = CP_Cigarette.Cast(m_ActionData.m_Target.GetObject());		
-		joint.m_SmokeParticle.Delete();
-		joint.m_SmokeParticle.Stop();
+		CP_Cigarette joint = CP_Cigarette.Cast(m_ActionData.m_Target.GetObject());
+		if(joint.m_SmokeParticle){
+			joint.m_SmokeParticle.Delete();
+			joint.m_SmokeParticle.Stop();
+			joint.SetSmokingState(0);
+		}		
 	}
 	
 };
@@ -76,9 +79,13 @@ class ActionSmokeCigSelf: ActionContinuousBase {
 		Print("!!!!!!!!!!!!!!!!!! OnEndInput");
 		super.OnEndInput(action_data);
 		CP_Cigarette joint = CP_Cigarette.Cast(action_data.m_Target.GetObject());
-		joint.m_SmokeParticle.Stop();
-		joint.m_SmokeParticle.Delete();
-		joint.SetSmokingState(0);
+		
+		if(joint.m_SmokeParticle){
+			joint.m_SmokeParticle.Delete();
+			joint.m_SmokeParticle.Stop();	
+			joint.SetSmokingState(0);
+		}				
+		
 	}
 	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 	// 
@@ -100,9 +107,11 @@ class ActionSmokeCigSelf: ActionContinuousBase {
 		Print("!!!!!!!!!!!!!!!!!! OnEndAnimationLoop");
 		super.OnEndAnimationLoop(action_data);
 		CP_Cigarette joint = CP_Cigarette.Cast(action_data.m_Target.GetObject());
-		joint.m_SmokeParticle.Stop();
-		joint.m_SmokeParticle.Delete();
-		joint.SetSmokingState(0);
+		if(joint.m_SmokeParticle) {
+			joint.m_SmokeParticle.Stop();
+			joint.m_SmokeParticle.Delete();
+			joint.SetSmokingState(0);
+		}
 	}
 	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 	// 

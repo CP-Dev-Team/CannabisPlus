@@ -85,18 +85,20 @@ class CP_Cigarette extends Edible_Base
         super.UpdateVisuals();
         switch(m_SmokeState) {
             case 0:
-                m_SmokeParticle.Stop();
+			if(m_SmokeParticle){
+				m_SmokeParticle.Stop();
 				m_SmokeParticle.Delete();
-                break;
+			}
+            break;
 
             case 1:
-				if(!m_SmokeParticle) {					
-					m_SmokeParticle = Particle.PlayOnObject(ParticleList.JOINT_SMOKE, this, Vector(0, 0, 0));
-				}
-				if(this.GetQuantity() <= 0.0) {
-					m_SmokeParticle.Stop();
-				}
-                break;				
+			if(!m_SmokeParticle) {					
+				m_SmokeParticle = Particle.PlayOnObject(ParticleList.JOINT_SMOKE, this, Vector(0, 0, 0));
+			}
+			if(this.GetQuantity() <= 0.0) {
+				m_SmokeParticle.Stop();
+			}
+			break;				
         }
 	}
 	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
