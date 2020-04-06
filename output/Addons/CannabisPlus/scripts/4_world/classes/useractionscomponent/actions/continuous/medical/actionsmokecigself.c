@@ -45,16 +45,14 @@ class ActionSmokeCigSelf: ActionContinuousBase {
 	//
 	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~	
 	override void OnExecuteServer(ActionData action_data){
-		Print("!!!!!!!!!!!!!!!!!! OnExecuteServer");
-		super.OnExecuteServer(action_data);
+		super.OnExecuteServer(action_data);		
 		CP_Cigarette joint = CP_Cigarette.Cast(action_data.m_Target.GetObject());
-		joint.SetSmokingState(1);
+		joint.SetSmokingState(1);		
 	}
 	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 	//
 	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~	
 	override void OnStartAnimationLoopServer(ActionData action_data) {
-		Print("!!!!!!!!!!!!!!!!!! OnStartAnimationLoopServer");
 		super.OnStartAnimationLoopServer(action_data);
 		CP_Cigarette joint = CP_Cigarette.Cast(action_data.m_Target.GetObject());
 		joint.SetSmokingState(1);

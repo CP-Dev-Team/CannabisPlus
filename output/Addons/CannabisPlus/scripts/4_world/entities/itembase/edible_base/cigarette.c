@@ -92,7 +92,7 @@ class CP_Cigarette extends Edible_Base
             break;
 
             case 1:
-			if(!m_SmokeParticle) {					
+			if(!m_SmokeParticle && GetGame() && (!GetGame().IsMultiplayer() || GetGame().IsClient())) {
 				m_SmokeParticle = Particle.PlayOnObject(ParticleList.JOINT_SMOKE, this, Vector(0, 0, 0));
 			}
 			if(this.GetQuantity() <= 0.0) {
