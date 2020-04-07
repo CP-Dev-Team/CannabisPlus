@@ -13,12 +13,15 @@ class ActionSmokeJointSelfCB : ActionContinuousBaseCB {
 	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 	override void OnFinish(bool pCanceled){
 		super.OnFinish(pCanceled);
-		JointBase joint = JointBase.Cast(m_ActionData.m_Target.GetObject());
 		
-		joint.m_SmokeParticle.Delete();
-		joint.m_SmokeParticle.Stop();
-	}
-	
+		if(m_ActionData.m_Target){
+			JointBase joint = JointBase.Cast(m_ActionData.m_Target.GetObject());
+			if(joint.m_SmokeParticle) {
+				joint.m_SmokeParticle.Delete();
+				joint.m_SmokeParticle.Stop();
+			}
+		}		
+	}	
 };
 
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~

@@ -11,17 +11,17 @@ class ActionSmokeCigSelfCB : ActionContinuousBaseCB {
 	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 	//
 	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-	override void OnFinish(bool pCanceled){
-		Print("!!!!!!!!!!!!!!!!!! OnFinish");
+	override void OnFinish(bool pCanceled){		
 		super.OnFinish(pCanceled);
-		CP_Cigarette joint = CP_Cigarette.Cast(m_ActionData.m_Target.GetObject());
-		if(joint.m_SmokeParticle){
-			joint.m_SmokeParticle.Delete();
-			joint.m_SmokeParticle.Stop();
-			joint.SetSmokingState(0);
-		}		
+		if(m_ActionData.m_Target) {
+			CP_Cigarette joint = CP_Cigarette.Cast(m_ActionData.m_Target.GetObject());
+			if(joint.m_SmokeParticle){
+				joint.m_SmokeParticle.Delete();
+				joint.m_SmokeParticle.Stop();
+				joint.SetSmokingState(0);
+			}
+		}
 	}
-	
 };
 
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -73,8 +73,7 @@ class ActionSmokeCigSelf: ActionContinuousBase {
 	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 	// when the player stops pressing the mouse button
 	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~	
-	override void OnEndInput(ActionData action_data) {
-		Print("!!!!!!!!!!!!!!!!!! OnEndInput");
+	override void OnEndInput(ActionData action_data) {		
 		super.OnEndInput(action_data);
 		CP_Cigarette joint = CP_Cigarette.Cast(action_data.m_Target.GetObject());
 		
@@ -101,8 +100,7 @@ class ActionSmokeCigSelf: ActionContinuousBase {
 	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 	// 
 	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-	override void OnEndAnimationLoop(ActionData action_data) {
-		Print("!!!!!!!!!!!!!!!!!! OnEndAnimationLoop");
+	override void OnEndAnimationLoop(ActionData action_data) {		
 		super.OnEndAnimationLoop(action_data);
 		CP_Cigarette joint = CP_Cigarette.Cast(action_data.m_Target.GetObject());
 		if(joint.m_SmokeParticle) {
