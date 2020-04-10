@@ -50,7 +50,7 @@ class JointBase extends Edible_Base {
 		} else {
 			SetSmokingState(1);
 		}
-		//UpdateVisuals();
+		UpdateVisuals();
 	}		
 	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 	//
@@ -87,7 +87,7 @@ class JointBase extends Edible_Base {
 	//
 	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~		
 	override void OnWork(float consumed_energy) {		
-		
+		super.OnWork(consumed_energy);
 	}
 	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 	//
