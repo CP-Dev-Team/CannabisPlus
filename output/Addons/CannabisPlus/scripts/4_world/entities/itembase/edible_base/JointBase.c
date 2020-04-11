@@ -45,7 +45,7 @@ class JointBase extends Edible_Base {
 		}
 
 		if(this.GetQuantity() <= 0.0) {
-			GetGame().ObjectDelete(this);
+			//GetGame().ObjectDelete(this);
 			StopParticle();
 		} else {
 			SetSmokingState(1);
@@ -80,33 +80,33 @@ class JointBase extends Edible_Base {
 	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 	void StopParticle() {
 		m_SmokeParticle.Stop();
-		m_SmokeParticle.Delete();
-		UpdateVisuals();
+		//m_SmokeParticle.Delete();
+		//UpdateVisuals();
 	}
 	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 	//
 	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~		
-	override void OnWork(float consumed_energy) {		
-		super.OnWork(consumed_energy);
-	}
+	//override void OnWork(float consumed_energy) {		
+//		super.OnWork(consumed_energy);
+	//}
 	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 	//
 	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~		
 	override void OnWorkStart() {
 		SetSmokingState(1);
+		UpdateVisuals();
 	}
 	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 	//
 	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~		
-	override void OnWorkStop() {
-		StopParticle();		
-		//SetSmokingState(0);
+	override void OnWorkStop() {		
+		SetSmokingState(0);
+		UpdateVisuals();
 	}
 	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 	//
 	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~		
 	void SetSmokingState(int state_number) {
-		m_SmokeState = state_number;
-		UpdateVisuals();
+		m_SmokeState = state_number;		
 	}
 }
