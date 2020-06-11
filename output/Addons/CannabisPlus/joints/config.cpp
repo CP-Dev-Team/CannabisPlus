@@ -42,8 +42,7 @@ class CfgVehicles
 		heatIsolation=0.13;
 		quantityBar=1;
 		//visibilityModifier=0.69999999;
-		class Nutrition {
-			
+		class Nutrition {			
 			totalVolume=1;
 			fullnessIndex=2.5;
 			energy=1;
@@ -51,18 +50,6 @@ class CfgVehicles
 			nutritionalIndex=1;
 			toxicity=0;
 		};
-		/*
-		class EnergyManager {
-            switchOnAtSpawn=0;
-            isPassiveDevice=1;
-            energyStorageMax=60;
-            energyUsagePerSecond=1;
-            energyAtSpawn=60;
-            powerSocketsCount=1;
-            compatiblePlugTypes[]={7};
-            convertEnergyToQuantity=1;
-        };
-		*/
 	};
 
 	class CP_JointBlue: Edible_Base

@@ -1,37 +1,12 @@
-//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-// callback function for 'ActionSmokeCigSelf'-action 
-//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~	
 class ActionSmokeCigSelfCB : ActionContinuousBaseCB {
-	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-	//
-	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 	override void CreateActionComponent() {
 		m_ActionData.m_ActionComponent = new CAContinuousQuantityEdible(UAQuantityConsumed.DRINK,UATimeSpent.DEFAULT);
-	}	
-	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-	//
-	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-	override void OnFinish(bool pCanceled){		
-		super.OnFinish(pCanceled);
-		if(m_ActionData.m_Target) {
-			CP_Cigarette joint = CP_Cigarette.Cast(m_ActionData.m_Target.GetObject());
-			if(joint.m_SmokeParticle){
-				joint.m_SmokeParticle.Delete();
-				joint.m_SmokeParticle.Stop();
-				joint.SetSmokingState(0);
-			}
-		}
-	}
+	}		
 };
 
-//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-//
-//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 class ActionSmokeCigSelf: ActionContinuousBase {		
 	string currentLanguage;		
-	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-	//
-	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~	
+
 	void ActionSmokeCigSelf()	{
 		m_CallbackClass = ActionSmokeCigSelfCB;		
 		m_CommandUID = DayZPlayerConstants.CMD_ACTIONMOD_TAKETEMPSELF;
@@ -41,83 +16,43 @@ class ActionSmokeCigSelf: ActionContinuousBase {
 		ListOptionsAccess lang = ListOptionsAccess.Cast(gameOptions.GetOptionByType( AT_OPTIONS_LANGUAGE ));
 		lang.GetItemText(lang.GetIndex(), currentLanguage);
 	}		
-	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-	//
-	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~	
-	override void OnExecuteServer(ActionData action_data){
-		super.OnExecuteServer(action_data);		
-		CP_Cigarette joint = CP_Cigarette.Cast(action_data.m_Target.GetObject());
-		joint.SetSmokingState(1);		
-	}
-	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-	//
-	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~	
-	override void OnStartAnimationLoopServer(ActionData action_data) {
-		super.OnStartAnimationLoopServer(action_data);
-		CP_Cigarette joint = CP_Cigarette.Cast(action_data.m_Target.GetObject());
-		joint.SetSmokingState(1);
-	}
-	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-	//
-	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~	
-	/*
-	override void OnFinishProgress( ActionData action_data ) {
-		Print("!!!!!!!!!!!!!!!!!! OnFinishProgress");
-		super.OnFinishProgress(action_data);
-		CP_Cigarette joint = CP_Cigarette.Cast(action_data.m_Target.GetObject());
-		joint.m_SmokeParticle.Stop();
-		joint.m_SmokeParticle.Delete();
-		joint.SetSmokingState(0);				
-	}
-	*/
-	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-	// when the player stops pressing the mouse button
-	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~	
-	override void OnEndInput(ActionData action_data) {		
-		super.OnEndInput(action_data);
-		CP_Cigarette joint = CP_Cigarette.Cast(action_data.m_Target.GetObject());
-		
-		if(joint.m_SmokeParticle){
-			joint.m_SmokeParticle.Delete();
-			joint.m_SmokeParticle.Stop();	
-			joint.SetSmokingState(0);
-		}				
-		
-	}
-	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-	// 
-	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-	/*
-	override void OnEndServer( ActionData action_data ) {		
-		Print("!!!!!!!!!!!!!!!!!! OnEndServer");
-		super.OnEndServer(action_data);
-		CP_Cigarette joint = CP_Cigarette.Cast(action_data.m_Target.GetObject());
-		joint.m_SmokeParticle.Stop();
-		joint.m_SmokeParticle.Delete();
-		joint.SetSmokingState(0);
-	}
-	*/
-	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-	// 
-	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-	override void OnEndAnimationLoop(ActionData action_data) {		
-		super.OnEndAnimationLoop(action_data);
-		CP_Cigarette joint = CP_Cigarette.Cast(action_data.m_Target.GetObject());
-		if(joint.m_SmokeParticle) {
-			joint.m_SmokeParticle.Stop();
-			joint.m_SmokeParticle.Delete();
-			joint.SetSmokingState(0);
+
+	override void OnStartAnimationLoop(ActionData action_data) {	
+		CP_Cigarette cig = CP_Cigarette.Cast(action_data.m_MainItem);
+		if (cig) {
+			cig.SetSmokingState(1);
+			cig.UpdateVisuals();
 		}
+		super.OnStartAnimationLoop(action_data);
+		Print("[DEBUG] ActionSmokeCigSelf:OnStartAnimationLoop")
 	}
-	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-	// 
-	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+	override void OnEndInput(ActionData action_data) {
+		super.OnEndInput(action_data);	
+		CP_Cigarette cig = CP_Cigarette.Cast(action_data.m_MainItem);
+		if (cig) {
+			cig.SetSmokingState(1);
+			cig.UpdateVisuals();
+		}
+		super.OnStartAnimationLoop(action_data);
+		Print("[DEBUG] ActionSmokeCigSelf:OnEndInput")
+	}
+
+	override void OnEndAnimationLoop(ActionData action_data) {
+		super.OnEndAnimationLoop(action_data);
+		CP_Cigarette cig = CP_Cigarette.Cast(action_data.m_MainItem);
+		if (cig) {
+			cig.SetSmokingState(1);
+			cig.UpdateVisuals();
+		}
+		super.OnStartAnimationLoop(action_data);	
+		Print("[DEBUG] ActionSmokeCigSelf:OnEndAnimationLoop")
+	}
+
 	override bool IsDrink() {
 		return true;
 	}
-	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-	// returns a localized text of the action
-	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~	
+
 	override string GetText() {
 		// reserve empty string as return statement
         string text = "";
@@ -142,23 +77,9 @@ class ActionSmokeCigSelf: ActionContinuousBase {
 		// returns the string in the right language
 		return text;
 	}
-	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-	// 
-	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
 	override void CreateConditionComponents() {
 		m_ConditionItem = new CCINonRuined;
 		m_ConditionTarget = new CCTSelf;
-	}
-	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-	// 
-	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-	override bool HasProneException() {
-		return true;
-	}
-	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-	// 
-	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-	override bool HasTarget() {
-		return false;
 	}
 };

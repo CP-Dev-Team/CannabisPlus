@@ -7,6 +7,7 @@ class CP_Cigarette extends Edible_Base
 	static Particle m_SmokeParticle;
 	PortableGasLampLight m_light;	
 	PlayerBase player;
+	vector m_ParticleLocalPos = Vector(0.1, 0.5, 0);
 	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 	// constructor
 	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -18,64 +19,30 @@ class CP_Cigarette extends Edible_Base
 		
 		RegisterNetSyncVariableInt("m_SmokeState");
 	}
-	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-	//
-	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-	override void EEDelete(EntityAI parent)	{
-		super.EEDelete(parent);
-		if ( !GetGame().IsMultiplayer() || GetGame().IsClient() ){
-			if ( m_SmokeParticle )
-				m_SmokeParticle.Stop();
-		}
-		m_SmokeParticle.Stop();
+	void Init() {
+		SetSmokingState(0);
+		UpdateVisuals();
 	}
-	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-	//
-	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-	override bool CanBeCookedOnStick() {
-		return false;
+
+	void ~CP_Cigarette()
+	{
+		Print("[DEBUG] ~CP_Cigarette")
+		if (m_SmokeParticle) {
+		 	m_SmokeParticle.Stop();
+		 }
 	}
-	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-	//
-	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-	override bool CanBeCooked()	{
-		return false;
-	}
-	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-	//
-	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-	override bool IsFruit()	{
-		return true;
-	}
-	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-	// add the actions to the item so the player can perform it
-	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-	override void SetActions()	{
-		super.SetActions();		
-		AddAction(ActionSmokeCigSelf);	// add action to smoke the joint		
-	}
-	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-	// 
-	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-	override void OnConsume(float amount, PlayerBase consumer) {		
-		super.OnConsume(amount, consumer);		
-		// checks if effect on smoking a cigarette is enable then add the amount
+	override void OnConsume(float amount, PlayerBase consumer) {
+		super.OnConsume(amount, consumer);
+		Print("[DEBUG] CP_Cigarette:OnConsume")
 		if(CannabisPlus.getInstance().GetConfig().activateCigaretteSmokingEffect)
-			consumer.AddValueToCigaretteValue(amount);
-		// despawn the current object if the quantity is 0 (or less)
-		if(this.GetQuantity() <= 0.0) {
+			//consumer.AddValueToJointValue(amount);
+
+		if(this.GetQuantity() <= 0.0) 
+			SetSmokingState(0);
+			UpdateVisuals();
 			GetGame().ObjectDelete(this);
-			StopParticle();
-		} else {
-			SetSmokingState(1);
-		}
+			Print("[DEBUG] CP_Cigarette:OnConsume Delete Object")
 	}		
-	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-	// 
-	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~	
-	override void OnWork(float consumed_energy) {		
-		super.OnWork(consumed_energy);
-	}	
 	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 	//
 	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -83,58 +50,35 @@ class CP_Cigarette extends Edible_Base
         super.UpdateVisuals();
         switch(m_SmokeState) {
             case 0:
-			if(m_SmokeParticle){
-				m_SmokeParticle.Stop();
-				m_SmokeParticle.Delete();
-			}
-            break;
-
+				StopParticle();              
+                break;
             case 1:
-			if(!m_SmokeParticle && GetGame() && (!GetGame().IsMultiplayer() || GetGame().IsClient())) {
-				m_SmokeParticle = Particle.PlayOnObject(ParticleList.JOINT_SMOKE, this, Vector(0, 0, 0));
-			}
-			if(this.GetQuantity() <= 0.0) {
-				m_SmokeParticle.Stop();
-			}
-			break;				
+				if(!GetGame().IsServer()  ||  !GetGame().IsMultiplayer()) {
+					m_SmokeParticle = Particle.PlayOnObject(ParticleList.JOINT_SMOKE, this, m_ParticleLocalPos, Vector(0,0,0), true);
+				}
+                break;				
         }
 	}
 	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 	// stops particle effect and disable the light/glow effect while player consume the joint
 	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 	void StopParticle() {
-		m_SmokeParticle.Stop();
-		//m_SmokeParticle.Delete();
-		//UpdateVisuals();
+		 if (m_SmokeParticle) {
+		 	Print("[DEBUG] Turning off smoke particle")
+			m_SmokeParticle.Stop();
+			m_SmokeParticle.Delete();
+		 } 	
 	}
 	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 	//
 	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~		
 	void SetSmokingState(int state_number) {
-		m_SmokeState = state_number;
+		m_SmokeState = state_number;	
 	}
-	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-	//
-	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~		
-	override void OnWorkStart() {
-		SetSmokingState(1);
-		UpdateVisuals();
+	override void SetActions()	{
+		super.SetActions();		
+		AddAction(ActionSmokeCigSelf);	// add action to smoke the joint
 	}
-	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-	//
-	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~		
-	override void OnWorkStop() {
-		SetSmokingState(0);
-		UpdateVisuals();
-	}
-	
-	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-	//
-	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-	override void OnVariablesSynchronized() {
-		super.OnVariablesSynchronized();		
-		UpdateVisuals();
-	}	
 }
 
 
