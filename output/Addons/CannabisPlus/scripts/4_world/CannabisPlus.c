@@ -4,6 +4,9 @@ class CannabisPlusConfig
 	int configVersion				= 100;
 	
 	bool removeAfterHarvest 		= true;
+
+	int JointSmokeTime				= 1;
+	int JointSmokePercent			= 25;
 	
 	float tobacco_growtime 			= 8;
 	float tobacco_cropcount 		= 2;
@@ -50,6 +53,13 @@ class CannabisPlusConfig
 	int smokingJointEffectDuration 		= 20;	// Time in seconds for the effect to stop
 	int jointsToActivateEffect 			= 1;	// number of cigarettes consumed to activate the effect
 	
+	int GetSmokeTime() {
+        return JointSmokeTime;
+    }
+
+	int GetSmokePercent() {
+        return JointSmokePercent;
+    }
 }
 
 

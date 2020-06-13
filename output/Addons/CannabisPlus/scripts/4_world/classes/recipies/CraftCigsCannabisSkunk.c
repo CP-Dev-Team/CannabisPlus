@@ -44,7 +44,7 @@ class CraftCigsCannabisSkunk extends RecipeBase
 		//----------------------------------------------------------------------------------------------------------------------
 		
 		//result1
-		AddResult("CP_JointSkunk");//add results here
+		AddResult("CP_JointBase");//add results here
 
 		m_ResultSetFullQuantity[0] = true;//true = set full quantity, false = do nothing
 		m_ResultSetQuantity[0] = -1;//-1 = do nothing

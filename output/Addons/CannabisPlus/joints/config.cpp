@@ -2,10 +2,7 @@ class CfgPatches
 {
 	class CannabisPlus_Joint
 	{
-		units[]=
-		{
-			"CP_Joint"
-		};
+		units[]={};
 		weapons[]={};
 		requiredVersion=0.1;
 		requiredAddons[]=
@@ -17,194 +14,34 @@ class CfgPatches
 };
 class CfgVehicles
 {
-	class Edible_Base;
-	class CP_JointSkunk: Edible_Base
+	class Inventory_Base;
+	class CP_JointBase : Inventory_Base
 	{
 		scope=2;
-		displayName="Joint";
+		displayName="Skunk Joint";
 		descriptionShort="A joint made out of finest Skunk weed";
 		model="\CannabisPlus\joints\joint.p3d";
-		repairableWithKits[]={5,8};
-		repairCosts[]={30,25};
 		inventorySlot="Ingredient";
-		lootCategory="Crafted";
-		SingleUseActions[]={509,510};
-		InteractActions[]={1002,1003};
 		rotationFlags=16;
 		weight=30;
 		itemSize[]={1,2};
-		absorbency=0;
-		varQuantityInit=500;
-		varQuantityMin=0;
-		varQuantityMax=500;
-		//varLiquidTypeInit=0;
-		//liquidContainerType="1 + 2 + 4 + 8 + 16 + 32 + 64 + 128 + 256 + 512 + 1024 + 2048 + 4096 + 8192 + 16384 + 32768 + 65536  - (1 + 2 + 4 + 8 + 16 + 32 + 64 + 128 + 256)";
-		heatIsolation=0.13;
-		quantityBar=1;
-		//visibilityModifier=0.69999999;
-		class Nutrition {			
-			totalVolume=1;
-			fullnessIndex=2.5;
-			energy=1;
-			water=-10;
-			nutritionalIndex=1;
-			toxicity=0;
-		};
 	};
 
-	class CP_JointBlue: Edible_Base
+	class CP_JointBlue: CP_JointBase
 	{
-		scope=2;
-		displayName="Joint";
+		displayName="Blue God Joint";
 		descriptionShort="A joint made out of finest Blue God weed";
-		model="\CannabisPlus\joints\joint.p3d";
-		repairableWithKits[]={5,8};
-		repairCosts[]={30,25};
-		inventorySlot="Ingredient";
-		lootCategory="Crafted";
-		SingleUseActions[]={509,510};
-		InteractActions[]={1002,1003};
-		rotationFlags=16;
-		weight=30;
-		itemSize[]={1,2};
-		absorbency=0;
-		varQuantityInit=500;
-		varQuantityMin=0;
-		varQuantityMax=500;
-		//varLiquidTypeInit=0;
-		//liquidContainerType="1 + 2 + 4 + 8 + 16 + 32 + 64 + 128 + 256 + 512 + 1024 + 2048 + 4096 + 8192 + 16384 + 32768 + 65536  - (1 + 2 + 4 + 8 + 16 + 32 + 64 + 128 + 256)";
-		heatIsolation=0.13;
-		quantityBar=1;
-		visibilityModifier=0.69999999;
-		
-		class Nutrition {
-			
-			totalVolume=1;
-			fullnessIndex=2.5;
-			energy=1;
-			water=-10;
-			nutritionalIndex=1;
-			toxicity=0;
-		};
-		/*
-		class EnergyManager {
-            switchOnAtSpawn=0;
-            isPassiveDevice=1;
-            energyStorageMax=60;
-            energyUsagePerSecond=1;
-            energyAtSpawn=60;
-            powerSocketsCount=1;
-            compatiblePlugTypes[]={7};
-            convertEnergyToQuantity=1;
-        };
-		*/
 	};
 
-	class CP_JointKush: Edible_Base
+	class CP_JointKush: CP_JointBase
 	{
-		scope=2;
-		displayName="Joint";
+		displayName="Purple Kush Joint";
 		descriptionShort="A joint made out of finest Purple Kush weed";
-		model="\CannabisPlus\joints\joint.p3d";
-		repairableWithKits[]={5,8};
-		repairCosts[]={30,25};
-		inventorySlot="Ingredient";
-		lootCategory="Crafted";
-		SingleUseActions[]={509,510};
-		InteractActions[]={1002,1003};
-		rotationFlags=16;
-		weight=30;
-		itemSize[]={1,2};
-		absorbency=0;
-		varQuantityInit=500;
-		varQuantityMin=0;
-		varQuantityMax=500;
-		//varLiquidTypeInit=0;
-		//liquidContainerType="1 + 2 + 4 + 8 + 16 + 32 + 64 + 128 + 256 + 512 + 1024 + 2048 + 4096 + 8192 + 16384 + 32768 + 65536  - (1 + 2 + 4 + 8 + 16 + 32 + 64 + 128 + 256)";
-		heatIsolation=0.13;
-		quantityBar=1;
-		visibilityModifier=0.69999999;
-		
-		class Nutrition {
-			
-			totalVolume=1;
-			fullnessIndex=2.5;
-			energy=1;
-			water=-10;
-			nutritionalIndex=1;
-			toxicity=0;
-		};
-		/*
-		class EnergyManager {
-            switchOnAtSpawn=0;
-            isPassiveDevice=1;
-            energyStorageMax=60;
-            energyUsagePerSecond=1;
-            energyAtSpawn=60;
-            powerSocketsCount=1;
-            compatiblePlugTypes[]={7};
-            convertEnergyToQuantity=1;
-        };
-		
-		class EnergyManager
-		{
-			switchOnAtSpawn=1;
-			autoSwitchOff=1;
-			autoSwitchOffWhenInCargo=1;
-			energyStorageMax=0;
-			energyUsagePerSecond=1;
-			energyAtSpawn=0;
-			powerSocketsCount=0;
-			plugType=7;
-			attachmentAction=1;
-		};
-		*/
 	};
 
-	class CP_JointStardawg: Edible_Base
+	class CP_JointStardawg: CP_JointBase
 	{
-		scope=2;
-		displayName="Joint";
+		displayName="Stardawg Joint";
 		descriptionShort="A joint made out of finest Stardawg weed";
-		model="\CannabisPlus\joints\joint.p3d";
-		repairableWithKits[]={5,8};
-		repairCosts[]={30,25};
-		inventorySlot="Ingredient";
-		lootCategory="Crafted";
-		SingleUseActions[]={509,510};
-		InteractActions[]={1002,1003};
-		rotationFlags=16;
-		weight=30;
-		itemSize[]={1,2};
-		absorbency=0;
-		varQuantityInit=500;
-		varQuantityMin=0;
-		varQuantityMax=500;
-		//varLiquidTypeInit=0;
-		//liquidContainerType="1 + 2 + 4 + 8 + 16 + 32 + 64 + 128 + 256 + 512 + 1024 + 2048 + 4096 + 8192 + 16384 + 32768 + 65536  - (1 + 2 + 4 + 8 + 16 + 32 + 64 + 128 + 256)";
-		heatIsolation=0.13;
-		quantityBar=1;
-		//visibilityModifier=0.69999999;
-		class Nutrition {
-			
-			totalVolume=1;
-			fullnessIndex=2.5;
-			energy=1;
-			water=-10;
-			nutritionalIndex=1;
-			toxicity=0;
-		};
-		/*
-		class EnergyManager {
-            switchOnAtSpawn=0;
-            isPassiveDevice=1;
-            energyStorageMax=60;
-            energyUsagePerSecond=1;
-            energyAtSpawn=60;
-            powerSocketsCount=1;
-            compatiblePlugTypes[]={7};
-            convertEnergyToQuantity=1;
-        };
-		*/
 	};
 };
