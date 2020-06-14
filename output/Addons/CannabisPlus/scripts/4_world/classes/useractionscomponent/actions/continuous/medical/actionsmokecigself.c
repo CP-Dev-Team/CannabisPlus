@@ -1,57 +1,35 @@
 class ActionSmokeCigSelfCB : ActionContinuousBaseCB {
+
 	override void CreateActionComponent() {
-		m_ActionData.m_ActionComponent = new CAContinuousQuantityEdible(UAQuantityConsumed.DRINK,UATimeSpent.DEFAULT);
+		m_ActionData.m_ActionComponent = new CAContinuousRepeat(CannabisPlus.getInstance().GetConfig().GetSmokeTime() / (100/CannabisPlus.getInstance().GetConfig().GetSmokePercent()));
 	}		
 };
 
-class ActionSmokeCigSelf: ActionContinuousBase {		
-	string currentLanguage;		
+class ActionSmokeCigSelf: ActionContinuousBase {	
+
+	string currentLanguage;	
+	private float clhealth;
 
 	void ActionSmokeCigSelf()	{
 		m_CallbackClass = ActionSmokeCigSelfCB;		
 		m_CommandUID = DayZPlayerConstants.CMD_ACTIONMOD_TAKETEMPSELF;
 		m_CommandUIDProne = DayZPlayerConstants.CMD_ACTIONFB_TAKETEMPSELF;
-		m_SpecialtyWeight = UASoftSkillsWeight.PRECISE_LOW;
+
 		GameOptions gameOptions = new GameOptions();
 		ListOptionsAccess lang = ListOptionsAccess.Cast(gameOptions.GetOptionByType( AT_OPTIONS_LANGUAGE ));
 		lang.GetItemText(lang.GetIndex(), currentLanguage);
-	}		
+	}	
 
-	override void OnStartAnimationLoop(ActionData action_data) {	
-		CP_Cigarette cig = CP_Cigarette.Cast(action_data.m_MainItem);
-		if (cig) {
-			cig.SetSmokingState(1);
-			cig.UpdateVisuals();
-		}
-		super.OnStartAnimationLoop(action_data);
-		Print("[DEBUG] ActionSmokeCigSelf:OnStartAnimationLoop")
-	}
+	override bool ActionCondition(PlayerBase player, ActionTarget target, ItemBase item) {
+        CP_Cigarette cig;
+		Class.CastTo(cig, item);
 
-	override void OnEndInput(ActionData action_data) {
-		super.OnEndInput(action_data);	
-		CP_Cigarette cig = CP_Cigarette.Cast(action_data.m_MainItem);
-		if (cig) {
-			cig.SetSmokingState(1);
-			cig.UpdateVisuals();
-		}
-		super.OnStartAnimationLoop(action_data);
-		Print("[DEBUG] ActionSmokeCigSelf:OnEndInput")
-	}
-
-	override void OnEndAnimationLoop(ActionData action_data) {
-		super.OnEndAnimationLoop(action_data);
-		CP_Cigarette cig = CP_Cigarette.Cast(action_data.m_MainItem);
-		if (cig) {
-			cig.SetSmokingState(1);
-			cig.UpdateVisuals();
-		}
-		super.OnStartAnimationLoop(action_data);	
-		Print("[DEBUG] ActionSmokeCigSelf:OnEndAnimationLoop")
-	}
-
-	override bool IsDrink() {
-		return true;
-	}
+        if (cig) {
+            clhealth = cig.GetSynchronizedHealth();
+            return true;
+		}	
+        return false;
+    }	
 
 	override string GetText() {
 		// reserve empty string as return statement
@@ -78,8 +56,63 @@ class ActionSmokeCigSelf: ActionContinuousBase {
 		return text;
 	}
 
-	override void CreateConditionComponents() {
-		m_ConditionItem = new CCINonRuined;
-		m_ConditionTarget = new CCTSelf;
+	override void OnStartAnimationLoop( ActionData action_data ) {
+
+        CP_Cigarette cig = CP_Cigarette.Cast(action_data.m_MainItem);
+
+		//Print("[DEBUG] ActionSmokeCigSelf:OnStartAnimationLoop");
+        if (cig) {
+			cig.StartSmoking();
+        };
+		super.OnStartAnimationLoop(action_data);
+    }
+
+	override void OnEndInput( ActionData action_data )
+	{
+		super.OnEndInput(action_data);
+		CP_Cigarette cig = CP_Cigarette.Cast(action_data.m_MainItem);
+		float ReduceAmount = CannabisPlus.getInstance().GetConfig().GetSmokePercent();
+
+        if (cig) {
+			//Print("[DEBUG] ActionSmokeCigSelf:OnEndInput");
+
+            cig.AddHealth("", "Health", -ReduceAmount);
+
+			clhealth = cig.GetHealth();
+			//Print("[DEBUG] cig has " + clhealth + " health");
+
+			cig.SetSynchronizedHealth(clhealth);
+
+			if (clhealth <= 0) {
+				//Print("[DEBUG] Deleting Joint");
+				cig.Delete();
+			}
+        }
 	}
+
+	override void OnFinishProgressServer(ActionData action_data) {
+        CP_Cigarette cig = CP_Cigarette.Cast(action_data.m_MainItem);
+		float ReduceAmount = CannabisPlus.getInstance().GetConfig().GetSmokePercent();
+
+        if (cig) {
+			//Print("[DEBUG] ActionSmokeCigSelf:OnFinishProgressServer");
+
+            cig.AddHealth("", "Health", -ReduceAmount);
+
+			clhealth = cig.GetHealth();
+			//Print("[DEBUG] cig has " + clhealth + " health");
+
+			cig.SetSynchronizedHealth(clhealth);
+
+			if (clhealth <= 0) {
+				//Print("[DEBUG] Deleting cig");
+				cig.Delete();
+			}
+        }
+    }
+
+	override void CreateConditionComponents() {
+        m_ConditionItem = new CCINonRuined;
+        m_ConditionTarget = new CCTNone;
+    }
 };

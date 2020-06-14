@@ -14,7 +14,7 @@ class CfgPatches
 class CfgVehicles
 {
 	class Inventory_Base;
-	class CP_Rolling: Inventory_Base
+	class CP_RollingPapers: Inventory_Base
 	{
 		scope=2;
 		displayName="Zig Zag";

@@ -23,7 +23,6 @@ class ActionSmokeJointSelf: ActionContinuousBase {
 	override bool ActionCondition(PlayerBase player, ActionTarget target, ItemBase item) {
         CP_JointBase joint;
 		Class.CastTo(joint, item);
-
         if (joint) {
             clhealth = joint.GetSynchronizedHealth();
             return true;
@@ -60,7 +59,6 @@ class ActionSmokeJointSelf: ActionContinuousBase {
 
         CP_JointBase joint = CP_JointBase.Cast(action_data.m_MainItem);
 
-		Print("[DEBUG] ActionSmokeJointSelf:OnStartAnimationLoop");
         if (joint) {
 			joint.StartSmoking();
         };
@@ -74,19 +72,20 @@ class ActionSmokeJointSelf: ActionContinuousBase {
 		float ReduceAmount = CannabisPlus.getInstance().GetConfig().GetSmokePercent();
 
         if (joint) {
-			Print("[DEBUG] ActionSmokeJointSelf:OnEndInput");
-
+			//Print("[DEBUG] ActionSmokeJointSelf:OnEndInput");
             joint.AddHealth("", "Health", -ReduceAmount);
 
 			clhealth = joint.GetHealth();
-			Print("[DEBUG] Joint has " + clhealth + " health");
+			//Print("[DEBUG] Joint has " + clhealth + " health");
 
 			joint.SetSynchronizedHealth(clhealth);
 
 			if (clhealth <= 0) {
-				Print("[DEBUG] Deleting Joint");
+				//Print("[DEBUG] Deleting Joint");
 				joint.Delete();
 			}
+
+			//joint.StopSmoking();
         }
 	}
 
@@ -95,17 +94,17 @@ class ActionSmokeJointSelf: ActionContinuousBase {
 		float ReduceAmount = CannabisPlus.getInstance().GetConfig().GetSmokePercent();
 
         if (joint) {
-			Print("[DEBUG] ActionSmokeJointSelf:OnFinishProgressServer");
+			//Print("[DEBUG] ActionSmokeJointSelf:OnFinishProgressServer");
 
             joint.AddHealth("", "Health", -ReduceAmount);
 
 			clhealth = joint.GetHealth();
-			Print("[DEBUG] Joint has " + clhealth + " health");
+			//Print("[DEBUG] Joint has " + clhealth + " health");
 
 			joint.SetSynchronizedHealth(clhealth);
 
 			if (clhealth <= 0) {
-				Print("[DEBUG] Deleting Joint");
+				//Print("[DEBUG] Deleting Joint");
 				joint.Delete();
 			}
         }
