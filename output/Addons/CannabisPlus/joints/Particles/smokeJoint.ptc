@@ -1,25 +1,20 @@
 EffectDef {
  Emitors {
   EmitorDef smokeEmitter {
-   ShapeType Cone
-   ConeAngle 360 0 5
-   MaxNum 15
-   BirthRate 15
-   BirthRateRND 5
-   BirthRateVel 1
-   Angles 37.73173 24.28309 2.67469
+   ConeAngle 360 0 25
+   MaxNum 20
+   BirthRate 25
+   BirthRateRND 2
+   BirthRateVel 3
    LocalTransform 0
    Material "{735D641EB0FC5209}system/wbdata/particleeditor/defaultmaterial.emat"
    ScaleX 1
-   SizeMultiplier 1
+   SizeMultiplier 2
    SizeRND 0
-   RandomRotDir 1
-   RotMultiplier 100
-   StretchMultiplier 1
-   StreakFullUV 0
-   RandomAngle 1
+   RandomRotDir 0
+   RandomAngle 0
    BillboardingType Full
-   Velocity 1
+   Velocity 2
    AirResistanceRND 0
    Spring 0
    LifeTime 3
