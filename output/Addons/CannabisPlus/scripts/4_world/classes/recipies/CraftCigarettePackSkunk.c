@@ -26,7 +26,7 @@ class CraftCigarettePackSkunkEmpty extends RecipeBase
 		//INGREDIENTS
 		//ingredient 1
 
-		InsertIngredient(0,"CP_JointSkunk");//you can insert multiple ingredients this way
+		InsertIngredient(0,"CP_JointBase");//you can insert multiple ingredients this way
 		m_IngredientAddHealth[0] = 0;// 0 = do nothing
 		m_IngredientSetHealth[0] = -1; // -1 = do nothing
 		m_IngredientAddQuantity[0] = 0;// 0 = do nothing
@@ -95,7 +95,7 @@ class CraftCigarettePackSkunk extends RecipeBase
 		//INGREDIENTS
 		//ingredient 1
 
-		InsertIngredient(0,"CP_JointSkunk");
+		InsertIngredient(0,"CP_JointBase");
 		m_IngredientAddHealth[0] = 0;// 0 = do nothing
 		m_IngredientSetHealth[0] = -1; // -1 = do nothing
 		m_IngredientAddQuantity[0] = 0;// 0 = do nothing
