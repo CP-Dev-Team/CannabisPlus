@@ -7,7 +7,7 @@ EffectDef {
    BirthRateRND 2
    BirthRateVel 3
    LocalTransform 0
-   Material "{735D641EB0FC5209}system/wbdata/particleeditor/defaultmaterial.emat"
+   Material "{55020E0786F83004}graphics/particles/materials/smoke/smoke_anim_01.emat"
    ScaleX 1
    SizeMultiplier 2
    SizeRND 0
