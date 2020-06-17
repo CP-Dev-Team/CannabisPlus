@@ -89,7 +89,7 @@ class ActionUnpackCigaretteBox: ActionContinuousBase {
 				
 				switch(action_data.m_MainItem.GetType()) {
 					
-					case "CigarettePack_CannabisBlue":1
+					case "CigarettePack_CannabisBlue":
 						resultItem = ItemBase.Cast( GetGame().CreateObject("CP_JointBlue" , action_data.m_Player.GetPosition(), false) );						
 						break;
 					
