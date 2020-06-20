@@ -58,6 +58,7 @@ class ActionSmokeJointSelf: ActionContinuousBase {
 	override void OnStartAnimationLoop( ActionData action_data ) {
 
         CP_JointBase joint = CP_JointBase.Cast(action_data.m_MainItem);
+		Print("[DEBUG] Joint is: " + joint)
 
         if (joint) {
 			joint.StartSmoking();
