@@ -1,7 +1,7 @@
 class ActionSmokeCigSelfCB : ActionContinuousBaseCB {
 
 	override void CreateActionComponent() {
-		m_ActionData.m_ActionComponent = new CAContinuousRepeat(CannabisPlus.getInstance().GetConfig().GetSmokeTime() / (100/CannabisPlus.getInstance().GetConfig().GetSmokePercent()));
+		m_ActionData.m_ActionComponent = new CAContinuousRepeat(1);
 	}		
 };
 
@@ -9,6 +9,7 @@ class ActionSmokeCigSelf: ActionContinuousBase {
 
 	string currentLanguage;	
 	private float clhealth;
+	private int ReduceAmount=5;
 
 	void ActionSmokeCigSelf()	{
 		m_CallbackClass = ActionSmokeCigSelfCB;		
@@ -62,16 +63,15 @@ class ActionSmokeCigSelf: ActionContinuousBase {
 
 		//Print("[DEBUG] ActionSmokeCigSelf:OnStartAnimationLoop");
         if (cig) {
-			cig.StartSmoking();
+			cig.SetSmokingState(ESmokeState.SMOKING);
         };
 		super.OnStartAnimationLoop(action_data);
     }
 
-	override void OnEndInput( ActionData action_data )
+	/*override void OnEndInput( ActionData action_data )
 	{
 		super.OnEndInput(action_data);
 		CP_Cigarette cig = CP_Cigarette.Cast(action_data.m_MainItem);
-		float ReduceAmount = CannabisPlus.getInstance().GetConfig().GetSmokePercent();
 
         if (cig) {
 			//Print("[DEBUG] ActionSmokeCigSelf:OnEndInput");
@@ -84,15 +84,15 @@ class ActionSmokeCigSelf: ActionContinuousBase {
 			cig.SetSynchronizedHealth(clhealth);
 
 			if (clhealth <= 0) {
-				//Print("[DEBUG] Deleting Joint");
+				cig.SetSmokingState(ESmokeState.NOT_SMOKING);
+				cig.UpdateParticles();
 				cig.Delete();
 			}
         }
-	}
+	}*/
 
 	override void OnFinishProgressServer(ActionData action_data) {
         CP_Cigarette cig = CP_Cigarette.Cast(action_data.m_MainItem);
-		float ReduceAmount = CannabisPlus.getInstance().GetConfig().GetSmokePercent();
 
         if (cig) {
 			//Print("[DEBUG] ActionSmokeCigSelf:OnFinishProgressServer");
@@ -105,7 +105,8 @@ class ActionSmokeCigSelf: ActionContinuousBase {
 			cig.SetSynchronizedHealth(clhealth);
 
 			if (clhealth <= 0) {
-				//Print("[DEBUG] Deleting cig");
+				cig.SetSmokingState(ESmokeState.NOT_SMOKING);
+				cig.UpdateParticles();
 				cig.Delete();
 			}
         }

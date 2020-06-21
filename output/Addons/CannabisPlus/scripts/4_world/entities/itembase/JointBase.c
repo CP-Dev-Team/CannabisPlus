@@ -1,67 +1,90 @@
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 //
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+enum ESmokeState {
+	NOT_SMOKING = 0 
+	SMOKING = 1
+	COUNT = 2 
+}
+
 class CP_JointBase extends ItemBase {
 
-	static Particle m_SmokeParticle;
+	protected Particle m_SmokeParticle;
+	
+	protected ESmokeState m_JointSmokeState;
+	protected ESmokeState m_LastJointSmokeState;
+	
 	vector m_ParticleLocalPos = Vector(0, 0.1, 0);
 	protected int health;
-	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-	//
-	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+	
 	void CP_JointBase() {
+		m_JointSmokeState = ESmokeState.NOT_SMOKING;
 		RegisterNetSyncVariableInt("health", 0, 100);
+		RegisterNetSyncVariableInt("m_JointSmokeState", ESmokeState.NOT_SMOKING, ESmokeState.COUNT); //only 2 states, 0 and 1
 	}
 
-	void ~CP_JointBase()
-	{
-		Print("[DEBUG] ~CP_JointBase")
-		if (m_SmokeParticle) {
-		 	m_SmokeParticle.Stop();
-		    m_SmokeParticle = null;  
-		 }
+	void ~CP_JointBase() {
+		if (m_SmokeParticle)
+			m_SmokeParticle.Stop();
+	};
+	
+	void SetSmokingState (ESmokeState state) {
+		if( GetGame().IsServer() ) {
+			if ( m_JointSmokeState != state ) {
+				m_JointSmokeState = state;				
+				//synchronize
+				SetSynchDirty();
+			}
+		}		
 	}
-
+	
+      ESmokeState GetSmokingState() {
+		return m_JointSmokeState;
+	}
+	
+	void UpdateParticles() {
+		ESmokeState state = GetSmokingState();
+		
+		if( m_LastJointSmokeState != state )
+		{
+			if (state == ESmokeState.SMOKING) {
+				m_SmokeParticle = Particle.PlayOnObject(ParticleList.JOINT_SMOKE, this, m_ParticleLocalPos, Vector(0,0,0), true);
+			} else if (state == ESmokeState.NOT_SMOKING) {
+				m_SmokeParticle.Stop();
+			}	
+		}	
+		m_LastJointSmokeState = state;
+	}
+	
 	override void AfterStoreLoad() {
-        super.AfterStoreLoad();
+		super.AfterStoreLoad();
 
-        if (GetGame().IsServer() && GetGame().IsMultiplayer()) {
-            health = GetHealth();
-        }
-        Synchronize();
-    }
-
-	void Synchronize() {
-        if (!GetGame().IsServer() || !GetGame().IsMultiplayer()) { return; }
-
-        SetSynchDirty();
-    }
-
-	void SetSynchronizedHealth(int amount) {
-        if (!GetGame().IsServer() || !GetGame().IsMultiplayer()) { return; }
-
-        health = amount;
-        SetSynchDirty();
-    }
-
-    int GetSynchronizedHealth() {
-        return health;
-    }
-
-	void StartSmoking() {
-		if(!m_SmokeParticle && (!GetGame().IsServer()  ||  !GetGame().IsMultiplayer())) {
-			//Print("[DEBUG] CP_JointBase:StartSmoking");
-			m_SmokeParticle = Particle.PlayOnObject(ParticleList.JOINT_SMOKE, this, m_ParticleLocalPos, Vector(0,0,0), true);
-		} 
-		SetSynchDirty();
+		if (GetGame().IsServer() && GetGame().IsMultiplayer()) {
+            	health = GetHealth();
+		}
+		Synchronize();			
 	}
+	
+	void Synchronize() {
+	      if (GetGame().IsServer()) 
+			SetSynchDirty();
+	  }
+	
+	void SetSynchronizedHealth(int amount) {
+		if (GetGame().IsServer())
+			health = amount;
+	      	SetSynchDirty();
+	}
+	
+	int GetSynchronizedHealth() {
+		return health;
+	}
+	
+	override void OnVariablesSynchronized()
+	{
+		super.OnVariablesSynchronized();
 
-	void StopSmoking() {
-		//Print("[DEBUG] CP_JointBase:StopSmoking");
-		if (m_SmokeParticle && (!GetGame().IsServer()  ||  !GetGame().IsMultiplayer()))
-		  m_SmokeParticle.Stop();
-		  //m_SmokeParticle.Delete(); 
-		SetSynchDirty();  	
+		UpdateParticles();
 	}
 
 	override void SetActions()	{

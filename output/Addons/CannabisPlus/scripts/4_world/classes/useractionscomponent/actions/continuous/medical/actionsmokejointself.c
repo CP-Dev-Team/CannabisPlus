@@ -1,7 +1,7 @@
 class ActionSmokeJointSelfCB : ActionContinuousBaseCB {
 
 	override void CreateActionComponent() {
-		m_ActionData.m_ActionComponent = new CAContinuousRepeat(CannabisPlus.getInstance().GetConfig().GetSmokeTime() / (100/CannabisPlus.getInstance().GetConfig().GetSmokePercent()));
+		m_ActionData.m_ActionComponent = new CAContinuousRepeat(1);
 	}		
 };
 
@@ -9,6 +9,7 @@ class ActionSmokeJointSelf: ActionContinuousBase {
 
 	string currentLanguage;	
 	private float clhealth;
+	private int ReduceAmount=5;
 
 	void ActionSmokeJointSelf()	{
 		m_CallbackClass = ActionSmokeJointSelfCB;		
@@ -21,13 +22,13 @@ class ActionSmokeJointSelf: ActionContinuousBase {
 	}	
 
 	override bool ActionCondition(PlayerBase player, ActionTarget target, ItemBase item) {
-        CP_JointBase joint;
+        	CP_JointBase joint;
 		Class.CastTo(joint, item);
-        if (joint) {
-            clhealth = joint.GetSynchronizedHealth();
-            return true;
+        	if (joint) {
+	            clhealth = joint.GetSynchronizedHealth();
+	            return true;
 		}	
-        return false;
+		return false;
     }	
 
 	override string GetText() {
@@ -58,58 +59,56 @@ class ActionSmokeJointSelf: ActionContinuousBase {
 	override void OnStartAnimationLoop( ActionData action_data ) {
 
         CP_JointBase joint = CP_JointBase.Cast(action_data.m_MainItem);
-		Print("[DEBUG] Joint is: " + joint)
-
+		
         if (joint) {
-			joint.StartSmoking();
+			joint.SetSmokingState(ESmokeState.SMOKING);
         };
 		super.OnStartAnimationLoop(action_data);
     }
 
-	override void OnEndInput( ActionData action_data )
-	{
+	/*override void OnEndInput( ActionData action_data ) {
 		super.OnEndInput(action_data);
 		CP_JointBase joint = CP_JointBase.Cast(action_data.m_MainItem);
-		float ReduceAmount = CannabisPlus.getInstance().GetConfig().GetSmokePercent();
 
-        if (joint) {
+		if (joint) {
 			//Print("[DEBUG] ActionSmokeJointSelf:OnEndInput");
-            joint.AddHealth("", "Health", -ReduceAmount);
-
+			joint.AddHealth("", "Health", -ReduceAmount);
+		
 			clhealth = joint.GetHealth();
 			//Print("[DEBUG] Joint has " + clhealth + " health");
-
+			
 			joint.SetSynchronizedHealth(clhealth);
-
+			
 			if (clhealth <= 0) {
 				//Print("[DEBUG] Deleting Joint");
+				joint.SetSmokingState(ESmokeState.NOT_SMOKING);
+				joint.UpdateParticles();
 				joint.Delete();
 			}
-
-			//joint.StopSmoking();
-        }
-	}
+		}
+	}*/
 
 	override void OnFinishProgressServer(ActionData action_data) {
-        CP_JointBase joint = CP_JointBase.Cast(action_data.m_MainItem);
-		float ReduceAmount = CannabisPlus.getInstance().GetConfig().GetSmokePercent();
-
-        if (joint) {
+		CP_JointBase joint = CP_JointBase.Cast(action_data.m_MainItem);
+		
+		if (joint) {
 			//Print("[DEBUG] ActionSmokeJointSelf:OnFinishProgressServer");
-
-            joint.AddHealth("", "Health", -ReduceAmount);
-
+			
+			joint.AddHealth("", "Health", -ReduceAmount);
+			
 			clhealth = joint.GetHealth();
-			//Print("[DEBUG] Joint has " + clhealth + " health");
-
+			Print("[DEBUG] Joint has " + clhealth + " health");
+			
 			joint.SetSynchronizedHealth(clhealth);
-
+			
 			if (clhealth <= 0) {
 				//Print("[DEBUG] Deleting Joint");
+				joint.SetSmokingState(ESmokeState.NOT_SMOKING);
+				joint.UpdateParticles();
 				joint.Delete();
 			}
-        }
-    }
+		}
+    	}
 
 	override void CreateConditionComponents() {
         m_ConditionItem = new CCINonRuined;
