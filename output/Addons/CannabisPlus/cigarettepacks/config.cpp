@@ -334,7 +334,7 @@ class CfgVehicles
 	{
 		scope=2;
 		displayName="Marijuana Cigarettes Skunk";
-		descriptionShort="A pack of marijuana cigarettes.";
+		descriptionShort="A pack of skunk marijuana cigarettes.";
 		model="\dz\gear\medical\cigarette_pack.p3d";
 		lootCategory="Crafted";
 		itemSize[]={1,1};
@@ -413,7 +413,7 @@ class CfgVehicles
 	{
 		scope=2;
 		displayName="Marijuana Cigarettes Blue God";
-		descriptionShort="A pack of marijuana cigarettes.";
+		descriptionShort="A pack of blue god marijuana cigarettes.";
 		model="\dz\gear\medical\cigarette_pack.p3d";
 		lootCategory="Crafted";
 		itemSize[]={1,1};
@@ -492,7 +492,7 @@ class CfgVehicles
 	{
 		scope=2;
 		displayName="Marijuana Cigarettes Purple Kush";
-		descriptionShort="A pack of marijuana cigarettes.";
+		descriptionShort="A pack of purple kush marijuana cigarettes.";
 		model="\dz\gear\medical\cigarette_pack.p3d";
 		lootCategory="Crafted";
 		itemSize[]={1,1};
@@ -571,7 +571,7 @@ class CfgVehicles
 	{
 		scope=2;
 		displayName="Marijuana Cigarettes Stardawg";
-		descriptionShort="A pack of marijuana cigarettes.";
+		descriptionShort="A pack of Stardawg marijuana cigarettes.";
 		model="\dz\gear\medical\cigarette_pack.p3d";
 		lootCategory="Crafted";
 		itemSize[]={1,1};

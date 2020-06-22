@@ -8,6 +8,7 @@ modded class PluginRecipesManager
         RegisterRecipe(new CraftCigsCannabisKush);
         RegisterRecipe(new CraftCigsCannabisStardawg);
         RegisterRecipe(new CraftCigsTobacco);
+		
         RegisterRecipe(new CraftCannabisBagSkunk);
         RegisterRecipe(new CraftCannabisBrickSkunk);
         RegisterRecipe(new CraftCannabisBagKush);
@@ -16,10 +17,13 @@ modded class PluginRecipesManager
         RegisterRecipe(new CraftCannabisBrickBlue);
         RegisterRecipe(new CraftCannabisBagStardawg);
         RegisterRecipe(new CraftCannabisBrickStardawg);
+		
         RegisterRecipe(new CraftCigarettePackSkunkEmpty);
-        RegisterRecipe(new CraftCigarettePackBlueEmpty);
+	  RegisterRecipe(new CraftCigarettePackBlueEmpty);
         RegisterRecipe(new CraftCigarettePackKushEmpty);
+	  RegisterRecipe(new CraftCigarettePackStardawgEmpty);
         RegisterRecipe(new CraftCigarettePackChernamorkaEmpty);
+		
         RegisterRecipe(new CraftCigarettePackSkunk);
         RegisterRecipe(new CraftCigarettePackBlue);
         RegisterRecipe(new CraftCigarettePackKush);
