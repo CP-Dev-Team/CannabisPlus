@@ -1,20 +1,21 @@
 EffectDef {
  Emitors {
   EmitorDef smokeEmitter {
-   ConeAngle 360 0 25
-   MaxNum 20
-   BirthRate 25
-   BirthRateRND 2
-   BirthRateVel 3
+   ConeAngle 0 0 0
+   MaxNum 12
+   BirthRate 1
+   BirthRateRND 12
+   BirthRateVel 1
    LocalTransform 0
    Material "{55020E0786F83004}graphics/particles/materials/smoke/smoke_anim_01.emat"
    ScaleX 1
-   SizeMultiplier 2
-   SizeRND 0
+   SizeMultiplier 1.5
+   SizeRND 2
    RandomRotDir 0
    RandomAngle 0
    BillboardingType Full
-   Velocity 2
+   Velocity 1
+   VelocityRND 0.5
    AirResistanceRND 0
    Spring 0
    LifeTime 3

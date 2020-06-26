@@ -1,1 +1,1 @@
-class CP_Rolling: Inventory_Base {};
+class CP_RollingPapers: Inventory_Base {};

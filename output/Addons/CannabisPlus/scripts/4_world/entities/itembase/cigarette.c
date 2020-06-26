@@ -46,6 +46,8 @@ class CP_Cigarette extends ItemBase
 		{
 			if (state == ESmokeState.SMOKING) {
 				m_SmokeParticle = Particle.PlayOnObject(ParticleList.JOINT_SMOKE, this, m_ParticleLocalPos, Vector(0,0,0), true);
+				m_SmokeParticle.ScaleParticleParamFromOriginal(EmitorParam.SIZE, 0.5);
+				m_SmokeParticle.ScaleParticleParamFromOriginal(EmitorParam.VELOCITY, 0.5);
 			} else if (state == ESmokeState.NOT_SMOKING) {
 				m_SmokeParticle.Stop();
 			}	

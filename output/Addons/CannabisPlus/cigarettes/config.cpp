@@ -19,7 +19,7 @@ class CfgVehicles
 		scope=2;
 		displayName="Cigarette";
 		descriptionShort="A Cigarette made out of good Tobacco";
-		model="\CannabisPlus\cigarettes\cigarettes_lit.p3d";
+		model="\CannabisPlus\cigarettes\cigarettes_unlit.p3d";
 		inventorySlot="Ingredient";
 		rotationFlags=16;
 		weight=30;

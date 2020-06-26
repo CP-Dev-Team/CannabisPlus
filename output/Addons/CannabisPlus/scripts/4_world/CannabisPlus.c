@@ -9,6 +9,10 @@ class CannabisPlusConfig
 	float tobacco_cropcount 		= 2;
 	float tobaccoSeed_count 		= 9;
 	
+	float cannabis_growtime         = 8; //deprecated
+	float cannabis_cropcount        = 2; //deprecated
+	float cannabisSeed_count        = 9; //deprecated
+	
 	float cannabisSkunk_growtime 	= 8;
 	float cannabisSkunk_cropcount 	= 2;
 	float cannabisSkunkSeed_count 	= 9;
@@ -122,6 +126,17 @@ class CannabisPlus{
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 // 
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+modded class Plant_Cannabis //deprecated
+{
+	override void Harvest( PlayerBase player )
+	{
+		super.Harvest(player);
+		if(GetGame().IsServer() && CannabisPlus.getInstance().GetConfig().removeAfterHarvest==true){
+			GetGame().GetCallQueue( CALL_CATEGORY_SYSTEM ).CallLater( RemovePlant, 10, true );
+		}
+	}
+}
+
 modded class Plant_CannabisSkunk
 {	
 	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -264,6 +279,7 @@ modded class PlantBase
 	private float m_growtime;
 	
 	private float m_tabacco_growtime;
+	private	float m_cannabis_growtime; //deprecated
 	private	float m_cannabisSkunk_growtime; 
 	private float m_cannabisKush_growtime;
 	private float m_cannabisBlue_growtime;
@@ -276,6 +292,7 @@ modded class PlantBase
 	private float m_pumpkin_growtime;
 	
 	private float m_tabacco_cropcount;
+	private float m_cannabis_cropcount; // deprecated7
 	private float m_cannabisSkunk_cropcount;
 	private float m_cannabisKush_cropcount;
 	private float m_cannabisBlue_cropcount;
@@ -334,6 +351,7 @@ modded class PlantBase
 		
 		//reads settings from CannabisPlus.json
 		m_tabacco_growtime 			= CannabisPlus.getInstance().GetConfig().tobacco_growtime;
+		m_cannabis_growtime         =  CannabisPlus.getInstance().GetConfig().cannabis_growtime; //deprecated
 		m_cannabisSkunk_growtime 	= CannabisPlus.getInstance().GetConfig().cannabisSkunk_growtime;
 		m_cannabisKush_growtime 	= CannabisPlus.getInstance().GetConfig().cannabisKush_growtime;
 		m_cannabisBlue_growtime	 	= CannabisPlus.getInstance().GetConfig().cannabisBlue_growtime;
@@ -346,6 +364,7 @@ modded class PlantBase
 		m_pumpkin_growtime 			= CannabisPlus.getInstance().GetConfig().pumpkin_growtime;
 	
 		m_tabacco_cropcount 		= CannabisPlus.getInstance().GetConfig().tobacco_cropcount;
+		m_cannabis_cropcount 	    = CannabisPlus.getInstance().GetConfig().cannabis_cropcount; //deprecated
 		m_cannabisSkunk_cropcount 	= CannabisPlus.getInstance().GetConfig().cannabisSkunk_cropcount;
 		m_cannabisKush_cropcount 	= CannabisPlus.getInstance().GetConfig().cannabisKush_cropcount;
 		m_cannabisBlue_cropcount 	= CannabisPlus.getInstance().GetConfig().cannabisBlue_cropcount;
@@ -366,6 +385,10 @@ modded class PlantBase
 		
 		//sets growtime and cropcount out of CannabisPlus.json
 		switch(this.GetType()){
+		    case "Plant_Cannabis": //deprecated
+				m_growtime = m_cannabis_growtime;
+				m_CropsCount = m_cannabis_cropcount;
+				break;
 			// cannabis skunk
 			case "Plant_CannabisSkunk":
 				m_growtime = m_cannabisSkunk_growtime;
@@ -581,6 +604,7 @@ modded class ActionHarvestCrops: ActionInteractBase
 modded class SeedPackBase
 {	
 	private int m_tobaccoSeed_count;		// number of tobacco seeds that emerge
+	private int m_cannabisSeed_count;       // deprecated
 	private int m_cannabisSkunkSeed_count;	// number of cannabis skunk seeds that emerge
 	private int m_cannabisBlueSeed_count;	// number of cannabis blue emerge
 	private int m_cannabisKushSeed_count;	// number of cannabis kush that emerge
@@ -607,6 +631,7 @@ modded class SeedPackBase
 		int seeds_quantity = seeds_quantity_max;
 		// read seed count values from config file
 		m_tobaccoSeed_count 		=  CannabisPlus.getInstance().GetConfig().tobaccoSeed_count;		// tobacco
+		m_cannabisSeed_count        =  CannabisPlus.getInstance().GetConfig().cannabisSeed_count;       //deprecated
 		m_cannabisSkunkSeed_count 	=  CannabisPlus.getInstance().GetConfig().cannabisSkunkSeed_count;	// cannabis skunk
 		m_cannabisBlueSeed_count 	=  CannabisPlus.getInstance().GetConfig().cannabisBlueSeed_count;	// cannbis blue
 		m_cannabisKushSeed_count 	=  CannabisPlus.getInstance().GetConfig().cannabisKushSeed_count;	// cannabis kush
@@ -617,6 +642,9 @@ modded class SeedPackBase
 		m_pumpkinSeed_count 		=  CannabisPlus.getInstance().GetConfig().pumpkinSeed_count;		// pumpkin
 		// select the current seedpack
 		switch(this.GetType()) {
+			case "CannabisSeedsPack":  //deprecated
+				seeds_quantity_max = m_cannabisSeed_count;
+				break;			
 			// Cannabis Skunk seedpack
 			case "CannabisSeedsPackSkunk":
 				seeds_quantity_max = m_cannabisSkunkSeed_count;

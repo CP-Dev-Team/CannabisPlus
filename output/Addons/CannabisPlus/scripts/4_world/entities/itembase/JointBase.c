@@ -14,7 +14,7 @@ class CP_JointBase extends ItemBase {
 	protected ESmokeState m_JointSmokeState;
 	protected ESmokeState m_LastJointSmokeState;
 	
-	vector m_ParticleLocalPos = Vector(0, 0.1, 0);
+	vector m_ParticleLocalPos = Vector(0, 0.2, 0);
 	protected int health;
 	
 	void CP_JointBase() {
