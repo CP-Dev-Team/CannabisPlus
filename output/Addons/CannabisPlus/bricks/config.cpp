@@ -12,10 +12,11 @@ class CfgPatches
 		};
 	};
 };
+
 class CfgVehicles
 {
 	class Container_Base;
-	class CannabisBrickSkunk: Container_Base
+	class CP_CannabisBrickSkunk: Container_Base
 	{	
 		scope=2;
 		displayName="Brick of Skunk Weed";
@@ -110,7 +111,8 @@ class CfgVehicles
 			};
 		};
 	};
-	class CannabisBrickBlue: Container_Base
+
+	class CP_CannabisBrickBlue: Container_Base
 	{
 		scope=2;
 		displayName="Brick of Blue God Weed";
@@ -205,7 +207,11 @@ class CfgVehicles
 			};
 		};
 	};
-	class CannabisBrickKush: Container_Base
+	
+	//old - Remove in V3
+	class CannabisBrickBlue: CP_CannabisBrickBlue{};
+
+	class CP_CannabisBrickKush: Container_Base
 	{	
 		scope=2;
 		displayName="Brick of Purple Kush Weed";
@@ -300,7 +306,10 @@ class CfgVehicles
 			};
 		};
 	};
-	//NEXT UPDATE
+
+	//old - Remove in V3
+	class CannabisBrickKush: CP_CannabisBrickBlue{};
+	
 	class CannabisBrickStardawg: Container_Base
 	{	
 		scope=2;
@@ -396,5 +405,5 @@ class CfgVehicles
 			};
 		};
 	};
-	//end NEXT UPDATE
+
 };

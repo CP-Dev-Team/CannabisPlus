@@ -89,33 +89,32 @@ class ActionUnpackCigaretteBox: ActionContinuousBase {
 				
 				switch(action_data.m_MainItem.GetType()) {
 					
-					case "CigarettePack_CannabisBlue":
+					case "CP_CigarettePack_CannabisBlue":
 						resultItem = ItemBase.Cast( GetGame().CreateObject("CP_JointBlue" , action_data.m_Player.GetPosition(), false) );						
-						break;
-					
-					case "CigarettePack_CannabisKush":
+						break;					
+					case "CP_CigarettePack_CannabisKush":
 						resultItem = ItemBase.Cast( GetGame().CreateObject("CP_JointKush" , action_data.m_Player.GetPosition(), false) );
-						break;
-					
-					case "CigarettePack_CannabisSkunk":
+						break;					
+					case "CP_CigarettePack_CannabisSkunk":
 						resultItem = ItemBase.Cast( GetGame().CreateObject("CP_JointSkunk" , action_data.m_Player.GetPosition(), false) );
 						break;
-					case "CigarettePack_CannabisStardawg":
+					case "CP_CigarettePack_CannabisStardawg":
 						resultItem = ItemBase.Cast( GetGame().CreateObject("CP_JointStardawg" , action_data.m_Player.GetPosition(), false) );
-						break;
-					
+						break;					
 					case "CigarettePack_Merkur":
 						resultItem = ItemBase.Cast( GetGame().CreateObject("CP_Cigarette" , action_data.m_Player.GetPosition(), false) );
-						break;
-					
+						break;					
 					case "CigarettePack_Chernamorka":
+						resultItem = ItemBase.Cast( GetGame().CreateObject("CP_Cigarette" , action_data.m_Player.GetPosition(), false) );
+						break;					
+					case "CigarettePack_Partyzanka":
 						resultItem = ItemBase.Cast( GetGame().CreateObject("CP_Cigarette" , action_data.m_Player.GetPosition(), false) );
 						break;
 				}
 			}
 			
 			GetGame().ObjectDelete(action_data.m_MainItem);
-			action_data.m_Player.GetHumanInventory().CreateInHands("CigarettePack_Empty");
+			action_data.m_Player.GetHumanInventory().CreateInHands("CP_CigarettePack_Empty");
 		}
 	}	
 };

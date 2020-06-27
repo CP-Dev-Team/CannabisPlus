@@ -1,4 +1,4 @@
-class CraftCigarettePackBlueEmpty extends RecipeBase
+class CP_CraftCigarettePackBlueEmpty extends RecipeBase
 {	
 	override void Init()
 	{
@@ -33,7 +33,7 @@ class CraftCigarettePackBlueEmpty extends RecipeBase
 		m_IngredientUseSoftSkills[0] = false;// set 'true' to allow modification of the values by softskills on this ingredient
 		
 		//ingredient 2
-		InsertIngredient(1, "CigarettePack_Empty");//you can insert multiple ingredients this way
+		InsertIngredient(1, "CP_CigarettePack_Empty");//you can insert multiple ingredients this way
 		m_IngredientAddHealth[1] = 0;// 0 = do nothing
 		m_IngredientSetHealth[1] = -1; // -1 = do nothing
 		m_IngredientAddQuantity[1] = -1;// 0 = do nothing
@@ -42,7 +42,7 @@ class CraftCigarettePackBlueEmpty extends RecipeBase
 		//----------------------------------------------------------------------------------------------------------------------
 		
 		//result1
-		AddResult("CigarettePack_CannabisBlue");//add results here
+		AddResult("CP_CigarettePack_CannabisBlue");//add results here
 
 		m_ResultSetFullQuantity[0] = false;//true = set full quantity, false = do nothing
 		m_ResultSetQuantity[0] = -1;//-1 = do nothing
@@ -67,7 +67,7 @@ class CraftCigarettePackBlueEmpty extends RecipeBase
 	}
 };
 
-class CraftCigarettePackBlue extends RecipeBase
+class CP_CraftCigarettePackBlue extends RecipeBase
 {	
 	override void Init()
 	{
@@ -103,7 +103,7 @@ class CraftCigarettePackBlue extends RecipeBase
 		
 		//ingredient 2
 
-		InsertIngredient(1, "CigarettePack_CannabisBlue");
+		InsertIngredient(1, "CP_CigarettePack_CannabisBlue");
 		m_IngredientAddHealth[1] = 0;// 0 = do nothing
 		m_IngredientSetHealth[1] = -1; // -1 = do nothing
 		m_IngredientAddQuantity[1] = 0;// 0 = do nothing

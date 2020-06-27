@@ -28,15 +28,13 @@ modded class DayZPlayerImplementAiming {
 		//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 		// reduce sway while aiming if hold breath or if player consumed a joint
 		//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-		if( m_PlayerPb.IsHoldingBreath() || m_PlayerPb.m_HasConsumedCigarette ) {
+		if( m_PlayerPb.IsHoldingBreath() || m_PlayerPb.m_HasConsumedJoint || m_PlayerPb.m_HasConsumedCigarette) {
 			speed *= 0.1;			
 		}
 		
 		m_TotalTime += pDt * speed;
 		m_SwayWeight = CalculateWeight(	stance_index, player_stamina, m_PlayerPb.m_CameraSwayModifier );
-		
 
-		
 		//! get sway
 		ApplyBreathingPattern(breathing_offset_x, breathing_offset_y, 3.0, m_TotalTime, m_SwayWeight);
 		ApplyHorizontalNoise(noise_offset_x, noise_offset_y, 0.2, 0.5, 3.0 * m_SwayModifier[0], speed, 3 * m_SwayModifier[1], m_SwayWeight, pDt);

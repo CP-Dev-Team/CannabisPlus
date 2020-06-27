@@ -3,28 +3,37 @@
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 modded class PlayerBase {
 	
-	ref Timer swayTimer;								// timer that resets the values after the effect is over
-	ref Timer jointTimer;								// timer that resets the values after the effect is over
-	bool m_HasConsumedCigarette = false;				// has the player consumed a hole cigarette	
-	int m_cigaretteValue = 0;							// the quantity of the cigarette, what the player consumed
-	int m_jointValue = 0;								// the quantity of the cigarette, what the player consumed
-	static bool m_IsSmokeEffectActivated = true;		// is the sway-effect on smoking a cigarette enabled
-	static int m_smokingCigaretteEffectDuration = 600;	// Time in seconds for the effect to stop
-	static int m_cigarettesToActivateEffect = 1;		// number of cigarettes consumed to activate the effect
+	ref Timer swayTimer;				// timer that resets the values after the effect is over
+	ref Timer jointTimer;				// timer that resets the values after the effect is over
 	
-	static bool m_IsJointEffectActivated = true;		//
-	static bool m_HasConsumedJoint = false;
-	static int m_smokingJointEffectDuration = 20;		// 
-	static int m_jointsToActivateEffect = 1;			// 		
+	bool m_HasConsumedCigarette = false;	// has the player consumed a hole cigarette	
+	int m_cigaretteValue = 0;			// the quantity of the cigarette, what the player consumed
+	bool m_activateCigaretteSmokingEffect = true;
+	int m_CigaretteCyclesToActivateEffect = 8;
+	int m_smokingCigaretteEffectDuration = 60;
+	
+	bool m_HasConsumedJoint = false;
+	int m_jointValue = 0;				// the quantity of the cigarette, what the player consumed
+	bool m_activateJointSmokingEffect =  true;
+	int m_jointCyclesToActivateEffect = 8;
+	int m_smokingJointEffectDuration = 60;
+	
+	//getters for cig/joint smoke state
+	bool HasConsumedJoint () {
+		return m_HasConsumedJoint; 
+	}
+	bool HasConsumedCigarette () {
+		return m_HasConsumedCigarette; 
+	}		
+	
 	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 	// set to true if the player consumed a cigarette
 	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-	void AddValueToCigaretteValue(int value) {
-		
-		if(m_IsSmokeEffectActivated) {
+	void AddValueToCigaretteValue(int value) {		
+		if(m_activateCigaretteSmokingEffect) {
 			m_cigaretteValue += value;
 					
-			if(m_cigaretteValue >= 500 * m_jointsToActivateEffect){
+			if(m_cigaretteValue >= m_CigaretteCyclesToActivateEffect){
 				m_HasConsumedCigarette = true;
 				swayTimer = new Timer();
 				swayTimer.Run(m_smokingCigaretteEffectDuration, this, "ResetCigaretteValues", null, false);				
@@ -32,15 +41,13 @@ modded class PlayerBase {
 		}		
 	}	
 	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-	// set to true if the player consumed a cigarette
+	// set to true if the player consumed a joint
 	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-	void AddValueToJointValue(int value) {
-		
-		if(m_IsJointEffectActivated) {
+	void AddValueToJointValue(int value) {		
+		if(m_activateJointSmokingEffect) {
 			m_jointValue += value;
 					
-			if(m_jointValue >= 500 * m_cigarettesToActivateEffect){
-				
+			if(m_jointValue >= m_jointCyclesToActivateEffect){				
 				m_HasConsumedJoint = true;
 				jointTimer = new Timer();
 				jointTimer.Run(m_smokingJointEffectDuration, this, "ResetJointValues", null, false);				
@@ -60,27 +67,10 @@ modded class PlayerBase {
 	void ResetJointValues() {
 		m_HasConsumedJoint = false;
 		m_jointValue = 0;
-	}	
-	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-	// set to true if the player consumed a cigarette
-	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-	/*
-	void SetConsumedCigarette(bool state) {
-		
-		m_HasConsumedCigarette = state;
 	}
-	*/		
-	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-	// returns if the player consumed a cigarette
-	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-	/*
-	bool HasPlayerConsumedCigarette() {
-		
-		return m_HasConsumedCigarette;
-	}
-	*/
+
 	override void Init()
-    {
+      {
         if ( GetGame().IsServer() || GetGame().IsMultiplayer() )
 		{
             DayzPlayerItemBehaviorCfg     heavy = new DayzPlayerItemBehaviorCfg;
@@ -95,6 +85,7 @@ modded class PlayerBase {
 		GetDayZPlayerType().AddItemInHandsProfileIK("CP_JointStardawg", "dz/anims/workspaces/player/player_main/player_main_1h.asi", onehand, "dz/anims/anm/player/ik/gear/thermometer.anm");
 		GetDayZPlayerType().AddItemInHandsProfileIK("CP_Cigarette", "dz/anims/workspaces/player/player_main/player_main_1h.asi", onehand, "dz/anims/anm/player/ik/gear/thermometer.anm");
 	  }
+	  
         super.Init();
     }
 }

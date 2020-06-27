@@ -1,4 +1,4 @@
-class CraftCannabisBagSkunk extends RecipeBase
+class CP_CraftCannabisBagSkunk extends RecipeBase
 {	
 	override void Init()
 	{
@@ -25,7 +25,8 @@ class CraftCannabisBagSkunk extends RecipeBase
 		//INGREDIENTS
 		//ingredient 1
 
-		InsertIngredient(0,"CannabisSkunk");//you can insert multiple ingredients this way
+		InsertIngredient(0,"CP_CannabisSkunk");//you can insert multiple ingredients this way
+		InsertIngredient(0,"Cannabis");
 		m_IngredientAddHealth[0] = 0;// 0 = do nothing
 		m_IngredientSetHealth[0] = -1; // -1 = do nothing
 		m_IngredientAddQuantity[0] = -1;// 0 = do nothing
@@ -33,7 +34,8 @@ class CraftCannabisBagSkunk extends RecipeBase
 		m_IngredientUseSoftSkills[0] = false;// set 'true' to allow modification of the values by softskills on this ingredient
 		
 		//ingredient 2
-		InsertIngredient(1, "CannabisSkunk");//you can insert multiple ingredients this way
+		InsertIngredient(1, "CP_CannabisSkunk");//you can insert multiple ingredients this way
+		InsertIngredient(1, "Cannabis");
 		m_IngredientAddHealth[1] = 0;// 0 = do nothing
 		m_IngredientSetHealth[1] = -1; // -1 = do nothing
 		m_IngredientAddQuantity[1] = -1;// 0 = do nothing
@@ -42,7 +44,7 @@ class CraftCannabisBagSkunk extends RecipeBase
 		//----------------------------------------------------------------------------------------------------------------------
 		
 		//result1
-		AddResult("CannabisBagSkunk");//add results here
+		AddResult("CP_CannabisBagSkunk");//add results here
 
 		m_ResultSetFullQuantity[0] = false;//true = set full quantity, false = do nothing
 		m_ResultSetQuantity[0] = 1;//-1 = do nothing

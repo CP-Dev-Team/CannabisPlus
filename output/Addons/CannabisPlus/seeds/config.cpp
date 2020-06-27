@@ -16,7 +16,7 @@ class CfgVehicles
 {
 	class SeedBase;
 	class Inventory_Base;
-	class CannabisSeedsSkunk: SeedBase
+	class CP_CannabisSeedsSkunk: SeedBase
 	{
 		scope=2;
 		displayName="Skunk Cannabis Seeds";
@@ -31,7 +31,8 @@ class CfgVehicles
 			PlantType="Plant_CannabisSkunk";
 		};
 	};
-	class CannabisSeedsBlue: SeedBase
+	
+	class CP_CannabisSeedsBlue: SeedBase
 	{
 		scope=2;
 		displayName="Blue God Cannabis Seeds";
@@ -46,7 +47,11 @@ class CfgVehicles
 			PlantType="Plant_CannabisBlue";
 		};
 	};
-	class CannabisSeedsKush: SeedBase
+	
+	//old - Remove in V3
+	class CannabisSeedsBlue: CP_CannabisSeedsBlue{};
+
+	class CP_CannabisSeedsKush: SeedBase
 	{
 		scope=2;
 		displayName="Purple Kush Cannabis Seeds";
@@ -61,8 +66,11 @@ class CfgVehicles
 			PlantType="Plant_CannabisKush";
 		};
 	};
-	// NEXT UPDATE
-	class CannabisSeedsStardawg: SeedBase
+
+	//old - Remove in V3
+	class CannabisSeedsKush: CP_CannabisSeedsKush{};
+
+	class CP_CannabisSeedsStardawg: SeedBase
 	{
 		scope=2;
 		displayName="Stardawg Cannabis Seeds";

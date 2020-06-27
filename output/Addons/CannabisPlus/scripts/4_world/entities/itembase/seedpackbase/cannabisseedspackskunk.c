@@ -1,3 +1,3 @@
-class CannabisSeedsPackSkunk extends SeedPackBase
+class CP_CannabisSeedsPackSkunk extends SeedPackBase
 {	
 }

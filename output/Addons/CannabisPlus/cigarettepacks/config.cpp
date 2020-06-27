@@ -11,10 +11,12 @@ class CfgPatches
 		};
 	};
 };
+
 class CfgVehicles
 {
 	class Inventory_Base;
-	class CigarettePack_Empty: Inventory_Base
+	
+	class CP_CigarettePack_Empty: Inventory_Base
 	{
 		scope=2;
 		displayName="Empty Cigarettespack";
@@ -93,6 +95,7 @@ class CfgVehicles
 			};
 		};
 	};
+
 	class CigarettePack_Chernamorka: Inventory_Base
 	{
 		scope=2;
@@ -172,6 +175,7 @@ class CfgVehicles
 			};
 		};
 	};
+
 	class CigarettePack_Merkur: Inventory_Base
 	{
 		scope=2;
@@ -251,6 +255,7 @@ class CfgVehicles
 			};
 		};
 	};
+
 	class CigarettePack_Partyzanka: Inventory_Base
 	{
 		scope=2;
@@ -330,7 +335,8 @@ class CfgVehicles
 			};
 		};
 	};
-	class CigarettePack_CannabisSkunk: Inventory_Base
+	
+	class CP_CigarettePack_CannabisSkunk: Inventory_Base
 	{
 		scope=2;
 		displayName="Marijuana Cigarettes Skunk";
@@ -409,7 +415,8 @@ class CfgVehicles
 			};
 		};
 	};
-	class CigarettePack_CannabisBlue: Inventory_Base
+	
+	class CP_CigarettePack_CannabisBlue: Inventory_Base
 	{
 		scope=2;
 		displayName="Marijuana Cigarettes Blue God";
@@ -488,7 +495,8 @@ class CfgVehicles
 			};
 		};
 	};
-	class CigarettePack_CannabisKush: Inventory_Base
+	
+	class CP_CigarettePack_CannabisKush: Inventory_Base
 	{
 		scope=2;
 		displayName="Marijuana Cigarettes Purple Kush";
@@ -567,7 +575,8 @@ class CfgVehicles
 			};
 		};
 	};
-	class CigarettePack_CannabisStardawg: Inventory_Base
+	
+	class CP_CigarettePack_CannabisStardawg: Inventory_Base
 	{
 		scope=2;
 		displayName="Marijuana Cigarettes Stardawg";

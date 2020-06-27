@@ -1,8 +1,5 @@
-// Script File
-class CigarettePack_CannabisSkunk: Box_Base {
-	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-	//
-	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+class CP_CigarettePack_CannabisSkunk: Box_Base 
+{
 	override void SetActions()	{
 		
 		AddAction(ActionUnpackCigaretteBox);

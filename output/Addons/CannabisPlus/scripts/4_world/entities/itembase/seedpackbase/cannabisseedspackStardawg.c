@@ -1,3 +1,3 @@
-class CannabisSeedsPackStardawg extends SeedPackBase
+class CP_CannabisSeedsPackStardawg extends SeedPackBase
 {	
 }

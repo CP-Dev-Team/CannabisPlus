@@ -1,3 +1,3 @@
-class CannabisSeedsPackKush extends SeedPackBase
+class CP_CannabisSeedsPackKush extends SeedPackBase
 {	
 }

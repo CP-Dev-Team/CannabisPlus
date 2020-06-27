@@ -90,6 +90,20 @@ class ActionSmokeCigSelf: ActionContinuousBase {
 			}
         }
 	}*/
+	
+	override void OnFinishProgressClient( ActionData action_data )
+	{
+		PlayerBase player = action_data.m_Player;
+        	CP_Cigarette cig = CP_Cigarette.Cast(action_data.m_MainItem);
+		
+		if (cig) {
+			if(CannabisPlus.getInstance().GetConfig().activateCigaretteSmokingEffect){
+				player.AddValueToCigaretteValue(1);
+			}
+		}	
+			
+		super.OnFinishProgressClient(action_data)
+	}
 
 	override void OnFinishProgressServer(ActionData action_data) {
         CP_Cigarette cig = CP_Cigarette.Cast(action_data.m_MainItem);

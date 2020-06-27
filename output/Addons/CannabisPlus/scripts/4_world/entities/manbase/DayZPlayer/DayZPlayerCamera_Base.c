@@ -1,5 +1,10 @@
-enum MyNVTypes : NVTypes
+enum MyNVTypes
 {	
+	NONE = 0,
+	NV_GOGGLES,
+	NV_OPTICS_ON,
+	NV_OPTICS_OFF,
+	MAX,
 	SMOKEJOINT
 }
 
@@ -12,7 +17,6 @@ modded class DayZPlayerCameraBase extends DayZPlayerCamera {
 	
 	override void SetNVPostprocess(int NVtype)
 	{		
-		//Print("+++Setting NV type: " + NVtype + " +++");
 		switch (NVtype)
 		{
 			case MyNVTypes.NONE:

@@ -48,11 +48,11 @@ class CannabisPlusConfig
 	// smoke effect settings
 	bool activateCigaretteSmokingEffect = true; // reduces the fluctuation/sway in aiming when a cigarette is smoked
 	int smokingCigaretteEffectDuration 	= 20;	// Time in seconds for the effect to stop
-	int cigarettesToActivateEffect 		= 1;	// number of cigarettes consumed to activate the effect
+	int cigaretteCyclesToActivateEffect 		= 8;	// number of cigarettes consumed to activate the effect
 	// joint smoke effect settings
 	bool activateJointSmokingEffect 	= true; // reduces the fluctuation/sway in aiming when a cigarette is smoked
 	int smokingJointEffectDuration 		= 20;	// Time in seconds for the effect to stop
-	int jointsToActivateEffect 			= 1;	// number of cigarettes consumed to activate the effect
+	int jointCyclesToActivateEffect 			= 8;	// number of cigarettes consumed to activate the effect
 
 }
 
@@ -79,13 +79,13 @@ class CannabisPlus{
 			FindFileHandle configFile = FindFile(CONFIG_FILE, fileName, fileAttr, 0);
 			if(!configFile){
 				JsonFileLoader<CannabisPlusConfig>.JsonSaveFile(CONFIG_FILE, _config);
-				Print("Create new Config File");
+				Print("Create new CannabisPlus Config File");
 			}
 			else{
 								
 				if(_config.configVersion == modVersion) {
 					JsonFileLoader<CannabisPlusConfig>.JsonLoadFile(CONFIG_FILE, _config);
-					Print("Load Config File");
+					Print("Load CannabisPlus Config File");
 				} else {
 					
 					DeleteFile("$profile:CannabisPlus_old.json");
@@ -94,7 +94,7 @@ class CannabisPlus{
 					JsonFileLoader<CannabisPlusConfig>.JsonSaveFile(CONFIG_FILE, _config);
 					JsonFileLoader<CannabisPlusConfig>.JsonLoadFile(CONFIG_FILE, _config);
 					
-					Print("Copy old Config File");
+					Print("Copy old CannabisPlus Config File");
 				}
 			}
 		}
@@ -137,7 +137,7 @@ modded class Plant_Cannabis //deprecated
 	}
 }
 
-modded class Plant_CannabisSkunk
+modded class CP_Plant_CannabisSkunk
 {	
 	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 	// 
@@ -155,7 +155,7 @@ modded class Plant_CannabisSkunk
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 // 
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-modded class Plant_CannabisBlue
+modded class CP_Plant_CannabisBlue
 {
 	override void Harvest( PlayerBase player )
 	{
@@ -166,11 +166,21 @@ modded class Plant_CannabisBlue
 	}
 }
 
+modded class Plant_CannabisBlue  //deprecated
+{
+	override void Harvest( PlayerBase player )
+	{
+		super.Harvest(player);
+		if(GetGame().IsServer() && CannabisPlus.getInstance().GetConfig().removeAfterHarvest==true){
+			GetGame().GetCallQueue( CALL_CATEGORY_SYSTEM ).CallLater( RemovePlant, 10, true );
+		}
+	}
+}
 
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 // 
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-modded class Plant_CannabisKush
+modded class CP_Plant_CannabisKush
 {
 	override void Harvest( PlayerBase player )
 	{
@@ -181,11 +191,21 @@ modded class Plant_CannabisKush
 	}
 }
 
+modded class Plant_CannabisKush //deprecated
+{
+	override void Harvest( PlayerBase player )
+	{
+		super.Harvest(player);
+		if(GetGame().IsServer() && CannabisPlus.getInstance().GetConfig().removeAfterHarvest==true){
+			GetGame().GetCallQueue( CALL_CATEGORY_SYSTEM ).CallLater( RemovePlant, 10, true );
+		}
+	}
+}
 
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 // NEXT UPDATE
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-modded class Plant_CannabisStardawg
+modded class CP_Plant_CannabisStardawg
 {
 	override void Harvest( PlayerBase player )
 	{
@@ -199,7 +219,18 @@ modded class Plant_CannabisStardawg
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 // 
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-modded class Plant_Tobacco
+modded class CP_Plant_Tobacco
+{
+	override void Harvest( PlayerBase player )
+	{
+		super.Harvest(player);
+		if(GetGame().IsServer() && CannabisPlus.getInstance().GetConfig().removeAfterHarvest==true){
+			GetGame().GetCallQueue( CALL_CATEGORY_SYSTEM ).CallLater( RemovePlant, 10, true );
+		}
+	}
+}
+
+modded class Plant_Tobacco  //deprecated
 {
 	override void Harvest( PlayerBase player )
 	{
@@ -390,30 +421,43 @@ modded class PlantBase
 				m_CropsCount = m_cannabis_cropcount;
 				break;
 			// cannabis skunk
-			case "Plant_CannabisSkunk":
+			case "CP_Plant_CannabisSkunk":
 				m_growtime = m_cannabisSkunk_growtime;
 				m_CropsCount = m_cannabisSkunk_cropcount;
 				break;
+			case "Plant_CannabisBlue":  //deprecated
+				m_growtime = m_cannabisBlue_growtime;
+				m_CropsCount = m_cannabisBlue_cropcount;
+				break;	
 			// cannabis blue
-			case "Plant_CannabisBlue":
+			case "CP_Plant_CannabisBlue":
 				m_growtime = m_cannabisBlue_growtime;
 				m_CropsCount = m_cannabisBlue_cropcount;
 				break;
+			case "Plant_CannabisKush": //deprecated
+				m_growtime = m_cannabisKush_growtime;
+				m_CropsCount = m_cannabisKush_cropcount;
+				break;
 			// cannabis kush
-			case "Plant_CannabisKush":
+			case "CP_Plant_CannabisKush":
 				m_growtime = m_cannabisKush_growtime;
 				m_CropsCount = m_cannabisKush_cropcount;
 				break;
 			// cannabis Stardawg
-			case "Plant_CannabisStardawg":
+			case "CP_Plant_CannabisStardawg":
 				m_growtime = m_cannabisStardawg_growtime;
 				m_CropsCount = m_cannabisStardawg_cropcount;
 				break;
 			// tobacco
-			case "Plant_Tobacco":
+			case "CP_Plant_Tobacco":
 				m_growtime = m_tabacco_growtime;
 				m_CropsCount = m_tabacco_cropcount;
 				break;
+			// deprecated
+			case "Plant_Tobacco":
+				m_growtime = m_tabacco_growtime;
+				m_CropsCount = m_tabacco_cropcount;
+				break;	
 			// pepper 
 			case "Plant_Pepper":
 				m_growtime = m_pepper_growtime;
@@ -646,25 +690,35 @@ modded class SeedPackBase
 				seeds_quantity_max = m_cannabisSeed_count;
 				break;			
 			// Cannabis Skunk seedpack
-			case "CannabisSeedsPackSkunk":
+			case "CP_CannabisSeedsPackSkunk":
 				seeds_quantity_max = m_cannabisSkunkSeed_count;
 				break;
-			// Cannabis Blue seedpack
-			case "CannabisSeedsPackBlue":
+			case "CannabisSeedsPackBlue": //deprecated
 				seeds_quantity_max = m_cannabisBlueSeed_count;
 				break;
+			// Cannabis Blue seedpack
+			case "CP_CannabisSeedsPackBlue":
+				seeds_quantity_max = m_cannabisBlueSeed_count;
+				break;
+			case "CannabisSeedsPackKush": //deprecated
+				seeds_quantity_max = m_cannabisKushSeed_count;
+				break;	
+			// Cannabis Kush seedpack
+			case "CP_CannabisSeedsPackKush":
+				seeds_quantity_max = m_cannabisKushSeed_count;
+				break;	
 			// Cannabis Stardawg seedpack
-			case "CannabisSeedsPackStardawg":
+			case "CP_CannabisSeedsPackStardawg":
 				seeds_quantity_max = m_cannabisStardawgSeed_count;
 				break;
 			// Tobacco seedpack
-			case "TobaccoSeedsPack":
+			case "CP_TobaccoSeedsPack":
 				seeds_quantity_max = m_tobaccoSeed_count;
 				break;
-			// Cannabis Kush seedpack
-			case "CannabisSeedsPackKush":
-				seeds_quantity_max = m_cannabisKushSeed_count;
-				break;
+			// deprecated
+			case "TobaccoSeedsPack":
+				seeds_quantity_max = m_tobaccoSeed_count;
+				break;	
 			// Pepper seedpack
 			case "PepperSeedsPack":
 				seeds_quantity_max = m_pepperSeed_count;

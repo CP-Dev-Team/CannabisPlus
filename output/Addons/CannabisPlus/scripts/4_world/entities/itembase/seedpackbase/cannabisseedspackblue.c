@@ -1,3 +1,3 @@
-class CannabisSeedsPackBlue extends SeedPackBase
+class CP_CannabisSeedsPackBlue extends SeedPackBase
 {	
 }

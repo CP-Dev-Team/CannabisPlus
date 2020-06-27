@@ -1,4 +1,4 @@
-modded class CigarettePack_Merkur: Box_Base 
+modded class CigarettePack_Partyzanka: Box_Base 
 {	
 	override void SetActions()	{
 		

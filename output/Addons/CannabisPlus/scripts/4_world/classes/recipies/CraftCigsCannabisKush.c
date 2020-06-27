@@ -1,4 +1,4 @@
-class CraftCigsCannabisKush extends RecipeBase
+class CP_CraftCigsCannabisKush extends RecipeBase
 {	
 	override void Init()
 	{
@@ -25,8 +25,8 @@ class CraftCigsCannabisKush extends RecipeBase
 		//INGREDIENTS
 		//ingredient 1
 
-		InsertIngredient(0,"CannabisKush");//you can insert multiple ingredients this way
-
+		InsertIngredient(0,"CP_CannabisKush");//you can insert multiple ingredients this way
+		InsertIngredient(0,"CannabisKush");
 		m_IngredientAddHealth[0] = 0;// 0 = do nothing
 		m_IngredientSetHealth[0] = -1; // -1 = do nothing
 		m_IngredientAddQuantity[0] = -10;// 0 = do nothing

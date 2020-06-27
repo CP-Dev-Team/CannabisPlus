@@ -13,8 +13,8 @@ class CfgPatches
 };
 class CfgVehicles
 {
-	class Edible_Base;
-	class CP_Cigarette: Edible_Base
+	class Inventory_Base;
+	class CP_Cigarette: Inventory_Base
 	{
 		scope=2;
 		displayName="Cigarette";

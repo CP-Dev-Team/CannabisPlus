@@ -15,7 +15,8 @@ class CfgPatches
 class CfgVehicles
 {
 	class Inventory_Base;
-	class CannabisBagSkunk: Inventory_Base
+
+	class CP_CannabisBagSkunk: Inventory_Base
 	{
 		scope=2;
 		displayName="Bag of Skunk Weed";
@@ -109,7 +110,8 @@ class CfgVehicles
 			};
 		};
 	};
-	class CannabisBagBlue: Inventory_Base
+
+	class CP_CannabisBagBlue: Inventory_Base
 	{
 		scope=2;
 		displayName="Bag of Blue God Weed";
@@ -204,7 +206,11 @@ class CfgVehicles
 		};
 
 	};
-	class CannabisBagKush: Inventory_Base
+	
+	//old - Remove in V3
+	class CannabisBagBlue: CP_CannabisBagBlue{};
+
+	class CP_CannabisBagKush: Inventory_Base
 	{	
 		scope=2;
 		displayName="Bag of Purple Kush Weed";
@@ -299,8 +305,10 @@ class CfgVehicles
 			};
 		};	
 	};
-	//NEXT UPDATE
-	class CannabisBagStardawg: Inventory_Base
+	//old - Remove in V3
+	class CannabisBagKush: CP_CannabisBagKush {};
+
+	class CP_CannabisBagStardawg: Inventory_Base
 	{
 		scope=2;
 		displayName="Bag of Stardawg Weed";
@@ -394,5 +402,4 @@ class CfgVehicles
 			};
 		};
 	};
-	//end NEXT UPDATE
 };

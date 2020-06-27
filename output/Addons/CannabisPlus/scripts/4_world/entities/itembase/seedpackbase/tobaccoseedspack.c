@@ -1,3 +1,3 @@
-class TobaccoSeedsPack extends SeedPackBase
+class CP_TobaccoSeedsPack extends SeedPackBase
 {	
 }

@@ -3,33 +3,31 @@ modded class PluginRecipesManager
 	override void RegisterRecipies()
     {
         super.RegisterRecipies();
-        RegisterRecipe(new CraftCigsCannabisSkunk);
-        RegisterRecipe(new CraftCigsCannabisBlue);
-        RegisterRecipe(new CraftCigsCannabisKush);
-        RegisterRecipe(new CraftCigsCannabisStardawg);
-        RegisterRecipe(new CraftCigsTobacco);
+        RegisterRecipe(new CP_CraftCigsCannabisSkunk);
+        RegisterRecipe(new CP_CraftCigsCannabisBlue);
+        RegisterRecipe(new CP_CraftCigsCannabisKush);
+        RegisterRecipe(new CP_CraftCigsCannabisStardawg);
+        RegisterRecipe(new CP_CraftCigsTobacco);
 		
-        RegisterRecipe(new CraftCannabisBag);
-        RegisterRecipe(new CraftCannabisBagSkunk);
-        RegisterRecipe(new CraftCannabisBrick);
-        RegisterRecipe(new CraftCannabisBrickSkunk);
-        RegisterRecipe(new CraftCannabisBagKush);
-        RegisterRecipe(new CraftCannabisBrickKush);
-        RegisterRecipe(new CraftCannabisBagBlue);
-        RegisterRecipe(new CraftCannabisBrickBlue);
-        RegisterRecipe(new CraftCannabisBagStardawg);
-        RegisterRecipe(new CraftCannabisBrickStardawg);
+        RegisterRecipe(new CP_CraftCannabisBagSkunk);
+        RegisterRecipe(new CP_CraftCannabisBrickSkunk);
+        RegisterRecipe(new CP_CraftCannabisBagKush);
+        RegisterRecipe(new CP_CraftCannabisBrickKush);
+        RegisterRecipe(new CP_CraftCannabisBagBlue);
+        RegisterRecipe(new CP_CraftCannabisBrickBlue);
+        RegisterRecipe(new CP_CraftCannabisBagStardawg);
+        RegisterRecipe(new CP_CraftCannabisBrickStardawg);
 		
-        RegisterRecipe(new CraftCigarettePackSkunkEmpty);
-	    RegisterRecipe(new CraftCigarettePackBlueEmpty);
-        RegisterRecipe(new CraftCigarettePackKushEmpty);
-	    RegisterRecipe(new CraftCigarettePackStardawgEmpty);
-        RegisterRecipe(new CraftCigarettePackChernamorkaEmpty);
+        RegisterRecipe(new CP_CraftCigarettePackSkunkEmpty);
+	    RegisterRecipe(new CP_CraftCigarettePackBlueEmpty);
+        RegisterRecipe(new CP_CraftCigarettePackKushEmpty);
+	    RegisterRecipe(new CP_CraftCigarettePackStardawgEmpty);
+        RegisterRecipe(new CP_CraftCigarettePackChernamorkaEmpty);
 		
-        RegisterRecipe(new CraftCigarettePackSkunk);
-        RegisterRecipe(new CraftCigarettePackBlue);
-        RegisterRecipe(new CraftCigarettePackKush);
-        RegisterRecipe(new CraftCigarettePackStardawg);
-        RegisterRecipe(new CraftCigarettePackChernamorka);
+        RegisterRecipe(new CP_CraftCigarettePackSkunk);
+        RegisterRecipe(new CP_CraftCigarettePackBlue);
+        RegisterRecipe(new CP_CraftCigarettePackKush);
+        RegisterRecipe(new CP_CraftCigarettePackStardawg);
+        RegisterRecipe(new CP_CraftCigarettePackChernamorka);
     }
 }
