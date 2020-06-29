@@ -54,6 +54,9 @@ class CannabisPlusConfig
 	int smokingJointEffectDuration 		= 20;	// Time in seconds for the effect to stop
 	int jointCyclesToActivateEffect 			= 8;	// number of cigarettes consumed to activate the effect
 
+	float jointEffectRed 			= 0.5;
+	float jointEffectGreen 			= 0.3;
+	float jointEffectBlue 			= 0.1;
 }
 
 
@@ -96,6 +99,12 @@ class CannabisPlus{
 					
 					Print("Copy old CannabisPlus Config File");
 				}
+			}
+			if (_config.jointEffectRed > 1.0 || _config.jointEffectGreen > 1.0 || _config.jointEffectBlue > 1.0) {
+				Print("Joint Effect r,g,b values must be <= 1.0");
+				_config.jointEffectRed = 1.0;
+				_config.jointEffectGreen = 1.0;
+				_config.jointEffectBlue = 1.0;
 			}
 		}
 	}

@@ -17,12 +17,11 @@ class CP_JointBase extends ItemBase {
 	vector m_ParticleLocalPos = Vector(0, 0.2, 0);
 	protected int health;
 	
-	void CP_JointBase() {		
+	void CP_JointBase() {			
 		m_JointSmokeState = ESmokeState.NOT_SMOKING;
 		RegisterNetSyncVariableInt("health", 0, 100);
 		RegisterNetSyncVariableInt("m_JointSmokeState", ESmokeState.NOT_SMOKING, ESmokeState.COUNT); //only 2 states, 0 and 1
 	}
-
 
 	void ~CP_JointBase() {
 		if (m_SmokeParticle)

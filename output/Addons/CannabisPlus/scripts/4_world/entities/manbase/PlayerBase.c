@@ -8,15 +8,19 @@ modded class PlayerBase {
 	
 	bool m_HasConsumedCigarette = false;	// has the player consumed a hole cigarette	
 	int m_cigaretteValue = 0;			// the quantity of the cigarette, what the player consumed
-	bool m_activateCigaretteSmokingEffect = true;
-	int m_CigaretteCyclesToActivateEffect = 8;
-	int m_smokingCigaretteEffectDuration = 60;
+	static bool m_activateCigaretteSmokingEffect = true;
+	static int m_cigaretteCyclesToActivateEffect = 8;
+	static int m_smokingCigaretteEffectDuration = 60;
 	
 	bool m_HasConsumedJoint = false;
 	int m_jointValue = 0;				// the quantity of the cigarette, what the player consumed
-	bool m_activateJointSmokingEffect =  true;
-	int m_jointCyclesToActivateEffect = 8;
-	int m_smokingJointEffectDuration = 60;
+	static bool m_activateJointSmokingEffect =  true;
+	static int m_jointCyclesToActivateEffect = 8;
+	static int m_smokingJointEffectDuration = 60;
+	
+	static float m_jointEffectRed 		= 0.5;
+	static float m_jointEffectGreen 		= 0.3;
+	static float m_jointEffectBlue 		= 0.1;
 	
 	//getters for cig/joint smoke state
 	bool HasConsumedJoint () {
@@ -26,6 +30,30 @@ modded class PlayerBase {
 		return m_HasConsumedCigarette; 
 	}		
 	
+	void PlayerBase() {
+		if ( GetGame().IsServer() ){
+			m_activateCigaretteSmokingEffect = CannabisPlus.getInstance().GetConfig().activateCigaretteSmokingEffect;
+			m_cigaretteCyclesToActivateEffect = CannabisPlus.getInstance().GetConfig().cigaretteCyclesToActivateEffect;
+			m_smokingCigaretteEffectDuration = CannabisPlus.getInstance().GetConfig().smokingCigaretteEffectDuration;	
+			m_activateJointSmokingEffect =  CannabisPlus.getInstance().GetConfig().activateJointSmokingEffect;
+			m_jointCyclesToActivateEffect = CannabisPlus.getInstance().GetConfig().jointCyclesToActivateEffect;
+			m_smokingJointEffectDuration = CannabisPlus.getInstance().GetConfig().smokingJointEffectDuration;
+			
+			m_jointEffectRed = CannabisPlus.getInstance().GetConfig().jointEffectRed;
+			m_jointEffectGreen = CannabisPlus.getInstance().GetConfig().jointEffectGreen;
+			m_jointEffectBlue = CannabisPlus.getInstance().GetConfig().jointEffectBlue;
+			Print("CP_JointBase: Setting up joint effects");
+			Print(m_activateCigaretteSmokingEffect);
+			Print(m_cigaretteCyclesToActivateEffect);
+			Print(m_smokingCigaretteEffectDuration);
+			Print(m_activateJointSmokingEffect);
+			Print(m_jointCyclesToActivateEffect);
+			Print(m_smokingJointEffectDuration);
+			Print(m_jointEffectRed);
+			Print(m_jointEffectGreen);
+			Print(m_jointEffectBlue);
+		}	
+	}
 	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 	// set to true if the player consumed a cigarette
 	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -33,7 +61,7 @@ modded class PlayerBase {
 		if(m_activateCigaretteSmokingEffect) {
 			m_cigaretteValue += value;
 					
-			if(m_cigaretteValue >= m_CigaretteCyclesToActivateEffect){
+			if(m_cigaretteValue >= m_cigaretteCyclesToActivateEffect){
 				m_HasConsumedCigarette = true;
 				swayTimer = new Timer();
 				swayTimer.Run(m_smokingCigaretteEffectDuration, this, "ResetCigaretteValues", null, false);				

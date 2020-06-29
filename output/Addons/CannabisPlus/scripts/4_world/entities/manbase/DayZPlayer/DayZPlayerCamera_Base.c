@@ -45,7 +45,7 @@ modded class DayZPlayerCameraBase extends DayZPlayerCamera {
 			
 			case MyNVTypes.SMOKEJOINT:
 				PPEffects.SetEVValuePP(3);
-				PPEffects.SetColorizationNV(0.5, 0.3, 0.1);
+				PPEffects.SetColorizationNV(PlayerBase.m_jointEffectRed, PlayerBase.m_jointEffectGreen, PlayerBase.m_jointEffectBlue);
 				//PPEffects.SetNVParams(2.0, 1.0, 10.0, 1.0);
 			break;			
 		}
