@@ -101,7 +101,7 @@ class CfgVehicles
 		class Horticulture
 		{
 			GrowthStagesCount=6;
-			CropsType="CannabisSkunk";
+			CropsType="CP_CannabisSkunk";
 		};
 	};
 	
@@ -136,7 +136,7 @@ class CfgVehicles
 		class Horticulture
 		{
 			GrowthStagesCount=6;
-			CropsType="CannabisBlue";
+			CropsType="CP_CannabisBlue";
 		};
 	};
 	
@@ -174,7 +174,7 @@ class CfgVehicles
 		class Horticulture
 		{
 			GrowthStagesCount=6;
-			CropsType="CannabisKush";
+			CropsType="CP_CannabisKush";
 		};
 	};
 
@@ -212,7 +212,7 @@ class CfgVehicles
 		class Horticulture
 		{
 			GrowthStagesCount=6;
-			CropsType="CannabisStardawg";
+			CropsType="CP_CannabisStardawg";
 		};
 	};
 
@@ -233,7 +233,7 @@ class CfgVehicles
 		class Horticulture
 		{
 			GrowthStagesCount=5;
-			CropsType="Tobacco";
+			CropsType="CP_Tobacco";
 		};
 	};
 

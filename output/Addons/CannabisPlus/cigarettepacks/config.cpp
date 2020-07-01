@@ -108,7 +108,7 @@ class CfgVehicles
 		canBeSplit=0;
 		varQuantityInit=1;
 		varQuantityMin=1;
-		varQuantityMax=20;	
+		varQuantityMax=5;	
 		varQuantityDestroyOnMin=1;	
 		quantityBar=0;
 		hiddenSelections[]=
@@ -188,7 +188,7 @@ class CfgVehicles
 		canBeSplit=0;
 		varQuantityInit=1;
 		varQuantityMin=1;
-		varQuantityMax=20;	
+		varQuantityMax=5;	
 		varQuantityDestroyOnMin=1;	
 		quantityBar=0;
 		hiddenSelections[]=
@@ -268,7 +268,7 @@ class CfgVehicles
 		canBeSplit=0;
 		varQuantityInit=1;
 		varQuantityMin=1;
-		varQuantityMax=20;	
+		varQuantityMax=5;	
 		varQuantityDestroyOnMin=1;	
 		quantityBar=0;
 		hiddenSelections[]=
@@ -348,7 +348,7 @@ class CfgVehicles
 		canBeSplit=0;
 		varQuantityInit=1;
 		varQuantityMin=1;
-		varQuantityMax=20;	
+		varQuantityMax=5;	
 		varQuantityDestroyOnMin=1;	
 		quantityBar=0;
 		hiddenSelections[]=
@@ -428,7 +428,7 @@ class CfgVehicles
 		canBeSplit=0;
 		varQuantityInit=1;
 		varQuantityMin=1;
-		varQuantityMax=20;	
+		varQuantityMax=5;	
 		varQuantityDestroyOnMin=1;	
 		quantityBar=0;
 		hiddenSelections[]=
@@ -508,7 +508,7 @@ class CfgVehicles
 		canBeSplit=0;
 		varQuantityInit=1;
 		varQuantityMin=1;
-		varQuantityMax=20;	
+		varQuantityMax=5;	
 		varQuantityDestroyOnMin=1;	
 		quantityBar=0;
 		hiddenSelections[]=
@@ -588,7 +588,7 @@ class CfgVehicles
 		canBeSplit=0;
 		varQuantityInit=1;
 		varQuantityMin=1;
-		varQuantityMax=20;	
+		varQuantityMax=5;	
 		varQuantityDestroyOnMin=1;	
 		quantityBar=0;
 		hiddenSelections[]=

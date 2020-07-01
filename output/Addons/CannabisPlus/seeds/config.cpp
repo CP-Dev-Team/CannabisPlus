@@ -530,7 +530,7 @@ class CfgVehicles
 	};
 	
 	//remove in V3
-	//CannabisSeedsPackKush: CP_CannabisSeedsPackKush{};
+	class CannabisSeedsPackKush: CP_CannabisSeedsPackKush{};
 
 	class CP_CannabisSeedsPackStardawg: Inventory_Base
 	{

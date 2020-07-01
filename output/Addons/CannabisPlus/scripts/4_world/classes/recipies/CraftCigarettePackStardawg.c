@@ -131,7 +131,7 @@ class CP_CraftCigarettePackStardawg extends RecipeBase
     {
 		ItemBase pack;
 		Class.CastTo(pack, ingredients[1]);
-        if( pack.GetQuantity() == 20)
+        if( pack.GetQuantity() == 5)
 		{
 			return false;			
 		}
