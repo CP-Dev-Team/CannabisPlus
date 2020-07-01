@@ -46,11 +46,11 @@ class CannabisPlusConfig
 	float pumpkinSeed_count 		= 9;
 	
 	// smoke effect settings
-	bool activateCigaretteSmokingEffect = true; // reduces the fluctuation/sway in aiming when a cigarette is smoked
+	bool activateCigaretteSmokingEffect = false; // reduces the fluctuation/sway in aiming when a cigarette is smoked
 	int smokingCigaretteEffectDuration 	= 20;	// Time in seconds for the effect to stop
 	int cigaretteCyclesToActivateEffect 		= 8;	// number of cigarettes consumed to activate the effect
 	// joint smoke effect settings
-	bool activateJointSmokingEffect 	= true; // reduces the fluctuation/sway in aiming when a cigarette is smoked
+	bool activateJointSmokingEffect 	= false; // reduces the fluctuation/sway in aiming when a cigarette is smoked
 	int smokingJointEffectDuration 		= 20;	// Time in seconds for the effect to stop
 	int jointCyclesToActivateEffect 			= 8;	// number of cigarettes consumed to activate the effect
 
@@ -106,7 +106,7 @@ class CannabisPlus{
 				_config.jointEffectGreen = 1.0;
 				_config.jointEffectBlue = 1.0;
 			}
-		}
+		}	
 	}
 	
 	
@@ -129,6 +129,7 @@ class CannabisPlus{
 	CannabisPlusConfig GetConfig(){
 		return _config;
 	}
+	
 }
 
 

@@ -13,7 +13,7 @@ class CP_Cigarette extends ItemBase
 	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 	//
 	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-	void CP_Cigarette() {
+	void CP_Cigarette() {		
 		m_CigSmokeState = ESmokeState.NOT_SMOKING;
 		RegisterNetSyncVariableInt("health", 0, 100);
 		RegisterNetSyncVariableInt("m_CigSmokeState", ESmokeState.NOT_SMOKING, ESmokeState.COUNT); //only 2 states, 0 and 1

@@ -91,15 +91,15 @@ class ActionSmokeJointSelf: ActionContinuousBase {
 	override void OnFinishProgressClient( ActionData action_data )
 	{
 		PlayerBase player = action_data.m_Player;
-        	CP_JointBase joint = CP_JointBase.Cast(action_data.m_MainItem);
+		CP_JointBase joint = CP_JointBase.Cast(action_data.m_MainItem);
 		
 		if (joint) {
-			if(CannabisPlus.getInstance().GetConfig().activateJointSmokingEffect){
+			if(player.m_activateJointSmokingEffect){
 				player.AddValueToJointValue(1);
 			}
 		}	
 			
-		super.OnFinishProgressClient(action_data)
+		super.OnFinishProgressClient(action_data);
 	}
 	
 	override void OnFinishProgressServer(ActionData action_data) {
