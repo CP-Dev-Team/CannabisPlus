@@ -1336,5 +1336,5 @@ class CfgVehicles
 	};
 
 	//deprecated remove in V3
-	class Tobacco: CP_Tobacco
+	class Tobacco: CP_Tobacco{};
 };
