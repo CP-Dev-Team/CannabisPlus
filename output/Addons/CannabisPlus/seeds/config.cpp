@@ -418,7 +418,7 @@ class CfgVehicles
 	};
 	
 	//remove in V3
-	class CannabisSeedsPackBlue: CP_CannabisSeedsPackBlue
+	class CannabisSeedsPackBlue: CP_CannabisSeedsPackBlue{};
 
 	class CP_CannabisSeedsPackKush: Inventory_Base
 	{
@@ -530,7 +530,7 @@ class CfgVehicles
 	};
 	
 	//remove in V3
-	CannabisSeedsPackKush: CP_CannabisSeedsPackKush{};
+	//CannabisSeedsPackKush: CP_CannabisSeedsPackKush{};
 
 	class CP_CannabisSeedsPackStardawg: Inventory_Base
 	{
