@@ -24,5 +24,13 @@ class CfgVehicles
 		rotationFlags=16;
 		weight=30;
 		itemSize[]={1,2};
+		hiddenSelections[]=
+		{
+			"zbytek"
+		};
+		hiddenSelectionsTextures[]=
+		{
+			"CannabisPlus\cigarette\data\cigarette_unlit_co.paa"
+		};
 	};
 };

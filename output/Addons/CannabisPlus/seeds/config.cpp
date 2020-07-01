@@ -28,7 +28,7 @@ class CfgVehicles
 		varQuantityMax=20;
 		class Horticulture
 		{
-			PlantType="Plant_CannabisSkunk";
+			PlantType="CP_Plant_CannabisSkunk";
 		};
 	};
 	
@@ -44,7 +44,7 @@ class CfgVehicles
 		varQuantityMax=20;
 		class Horticulture
 		{
-			PlantType="Plant_CannabisBlue";
+			PlantType="CP_Plant_CannabisBlue";
 		};
 	};
 	
@@ -63,7 +63,7 @@ class CfgVehicles
 		varQuantityMax=20;
 		class Horticulture
 		{
-			PlantType="Plant_CannabisKush";
+			PlantType="CP_Plant_CannabisKush";
 		};
 	};
 
@@ -82,9 +82,10 @@ class CfgVehicles
 		varQuantityMax=20;
 		class Horticulture
 		{
-			PlantType="Plant_CannabisStardawg";
+			PlantType="CP_Plant_CannabisStardawg";
 		};
 	};
+
 /* FUTURE
 	class CannabisSeedsAcapulco: SeedBase
 	{
@@ -177,7 +178,8 @@ class CfgVehicles
 		};
 	};
 */ // endFUTURE
-	class TobaccoSeeds: SeedBase
+	
+	class CP_TobaccoSeeds: SeedBase
 	{
 		scope=2;
 		displayName="Tobacco Seeds";
@@ -189,10 +191,15 @@ class CfgVehicles
 		varQuantityMax=20;
 		class Horticulture
 		{
-			PlantType="Plant_Tobacco";
+			PlantType="CP_Plant_Tobacco";
 		};
 	};
-	class CannabisSeedsPackSkunk: Inventory_Base
+
+	//deprecated remove in v3
+	class TobaccoSeeds: CP_TobaccoSeeds{};
+
+	class CP_CannabisSeedsPackSkunk: Inventory_Base
+
 	{
 		scope=2;
 		displayName="Packed Cannabis Skunk Seeds";
@@ -273,7 +280,7 @@ class CfgVehicles
 		};
 		class Horticulture
 		{
-			ContainsSeedsType="CannabisSeedsSkunk";
+			ContainsSeedsType="CP_CannabisSeedsSkunk";
 		};
 		class UserActions
 		{
@@ -300,7 +307,8 @@ class CfgVehicles
 			};
 		};
 	};
-	class CannabisSeedsPackBlue: Inventory_Base
+	
+	class CP_CannabisSeedsPackBlue: Inventory_Base
 	{
 		scope=2;
 		displayName="Packed Blue God Cannabis Seeds";
@@ -381,7 +389,7 @@ class CfgVehicles
 		};
 		class Horticulture
 		{
-			ContainsSeedsType="CannabisSeedsBlue";
+			ContainsSeedsType="CP_CannabisSeedsBlue";
 		};
 		class UserActions
 		{
@@ -408,7 +416,11 @@ class CfgVehicles
 			};
 		};
 	};
-	class CannabisSeedsPackKush: Inventory_Base
+	
+	//remove in V3
+	class CannabisSeedsPackBlue: CP_CannabisSeedsPackBlue
+
+	class CP_CannabisSeedsPackKush: Inventory_Base
 	{
 		scope=2;
 		displayName="Packed Purple Kush Cannabis Seeds";
@@ -489,7 +501,7 @@ class CfgVehicles
 		};
 		class Horticulture
 		{
-			ContainsSeedsType="CannabisSeedsKush";
+			ContainsSeedsType="CP_CannabisSeedsKush";
 		};
 		class UserActions
 		{
@@ -516,8 +528,11 @@ class CfgVehicles
 			};
 		};
 	};
-	// NEXT UPDATE
-	class CannabisSeedsPackStardawg: Inventory_Base
+	
+	//remove in V3
+	CannabisSeedsPackKush: CP_CannabisSeedsPackKush{};
+
+	class CP_CannabisSeedsPackStardawg: Inventory_Base
 	{
 		scope=2;
 		displayName="Packed Cannabis Stardawg Seeds";
@@ -598,7 +613,7 @@ class CfgVehicles
 		};
 		class Horticulture
 		{
-			ContainsSeedsType="CannabisSeedsStardawg";
+			ContainsSeedsType="CP_CannabisSeedsStardawg";
 		};
 		class UserActions
 		{
@@ -625,6 +640,7 @@ class CfgVehicles
 			};
 		};
 	};
+
 /* FUTURE
 	class CannabisSeedsPackAcapulco: Inventory_Base
 	{
@@ -1275,7 +1291,8 @@ class CfgVehicles
 		};
 	};
 */ // endFUTURE
-	class TobaccoSeedsPack: Inventory_Base
+
+	class CP_TobaccoSeedsPack: Inventory_Base
 	{
 		scope=2;
 		displayName="Packed Tobacco Seeds";
@@ -1356,7 +1373,7 @@ class CfgVehicles
 		};
 		class Horticulture
 		{
-			ContainsSeedsType="TobaccoSeeds";
+			ContainsSeedsType="CP_TobaccoSeeds";
 		};
 		class UserActions
 		{
@@ -1382,5 +1399,8 @@ class CfgVehicles
 				};
 			};
 		};
-	};	
+	};
+
+	//remove in V3
+	class TobaccoSeedsPack: CP_TobaccoSeedsPack{};
 };

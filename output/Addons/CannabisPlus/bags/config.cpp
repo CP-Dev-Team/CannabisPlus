@@ -305,6 +305,7 @@ class CfgVehicles
 			};
 		};	
 	};
+	
 	//old - Remove in V3
 	class CannabisBagKush: CP_CannabisBagKush {};
 

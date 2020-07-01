@@ -272,7 +272,7 @@ class CfgVehicles
 	//old - Remove in V3
 	class CannabisKush: CP_CannabisKush{};
 
-	class CannabisStardawg: Inventory_Base
+	class CP_CannabisStardawg: Inventory_Base
 	{
 		scope=2;
 		displayName="Stardawg";
@@ -1334,4 +1334,7 @@ class CfgVehicles
 		weight=14;
 		itemSize[]={1,1};
 	};
+
+	//deprecated remove in V3
+	class Tobacco: CP_Tobacco
 };

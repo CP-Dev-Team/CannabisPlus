@@ -310,7 +310,7 @@ class CfgVehicles
 	//old - Remove in V3
 	class CannabisBrickKush: CP_CannabisBrickBlue{};
 	
-	class CannabisBrickStardawg: Container_Base
+	class CP_CannabisBrickStardawg: Container_Base
 	{	
 		scope=2;
 		displayName="Brick of Stardawg Weed";
