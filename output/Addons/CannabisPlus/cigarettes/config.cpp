@@ -30,7 +30,7 @@ class CfgVehicles
 		};
 		hiddenSelectionsTextures[]=
 		{
-			"CannabisPlus\cigarette\data\cigarette_unlit_co.paa"
+			"CannabisPlus\cigarettes\data\cigarette_unlit_co.paa"
 		};
 	};
 };
