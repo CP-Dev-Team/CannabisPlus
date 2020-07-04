@@ -97,9 +97,7 @@ class ActionSmokeCigSelf: ActionContinuousBase {
 		CP_Cigarette cig = CP_Cigarette.Cast(action_data.m_MainItem);
 		
 		if (cig) {
-			if(player.m_activateCigaretteSmokingEffect){
-				player.AddValueToCigaretteValue(1);
-			}
+			player.AddValueToCigaretteValue(1);
 		}	
 			
 		super.OnFinishProgressClient(action_data);

@@ -94,9 +94,7 @@ class ActionSmokeJointSelf: ActionContinuousBase {
 		CP_JointBase joint = CP_JointBase.Cast(action_data.m_MainItem);
 		
 		if (joint) {
-			if(player.m_activateJointSmokingEffect){
-				player.AddValueToJointValue(1);
-			}
+			player.AddValueToJointValue(1);
 		}	
 			
 		super.OnFinishProgressClient(action_data);

@@ -29,7 +29,8 @@ modded class DayZPlayerImplementAiming {
 		// reduce sway while aiming if hold breath or if player consumed a joint
 		//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 		if( m_PlayerPb.IsHoldingBreath() || m_PlayerPb.m_HasConsumedJoint || m_PlayerPb.m_HasConsumedCigarette) {
-			speed *= 0.1;			
+			speed *= 0.1;		
+			player_stamina = 1;	
 		}
 		
 		//negates stamina effect during hold breath

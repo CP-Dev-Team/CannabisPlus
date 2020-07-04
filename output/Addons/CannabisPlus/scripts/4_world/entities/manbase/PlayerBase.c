@@ -9,19 +9,9 @@ modded class PlayerBase {
 	
 	bool m_HasConsumedCigarette = false;	// has the player consumed a hole cigarette	
 	int m_cigaretteValue = 0;			// the quantity of the cigarette, what the player consumed
-	static bool m_activateCigaretteSmokingEffect = false;
-	static int m_cigaretteCyclesToActivateEffect = 25;
-	static int m_smokingCigaretteEffectDuration = 60;
 	
 	bool m_HasConsumedJoint = false;
 	int m_jointValue = 0;				// the quantity of the cigarette, what the player consumed
-	static bool m_activateJointSmokingEffect = false;
-	static int m_jointCyclesToActivateEffect = 25;
-	static int m_smokingJointEffectDuration = 60;
-	
-	static float m_jointEffectRed = 0.5;
-	static float m_jointEffectGreen = 0.3;
-	static float m_jointEffectBlue = 0.1;
 	
 	//getters for cig/joint smoke state
 	bool HasConsumedJoint () {
@@ -31,34 +21,47 @@ modded class PlayerBase {
 	bool HasConsumedCigarette () {
 		return m_HasConsumedCigarette; 
 	}		
+
+	override void OnConnect()
+	{
+		super.OnConnect();
+		GetRPCManager().SendRPC( "CP_scripts", "RetreiveCannabisPlusConfig", new Param1 <ref CannabisPlusConfig> (GetDayZGame().GetCannabisPlusConfig()));
+		Print("Receiving CannabisPlusConfig info from server");
+	}
 	
 	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 	// set to true if the player consumed a cigarette
 	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-	void AddValueToCigaretteValue(int value) {		
-		if(m_activateCigaretteSmokingEffect) {
-			m_cigaretteValue += value;
-					
-			if(m_cigaretteValue >= m_cigaretteCyclesToActivateEffect){
-				m_HasConsumedCigarette = true;
-				swayTimer = new Timer();
-				swayTimer.Run(m_smokingCigaretteEffectDuration, this, "ResetCigaretteValues", null, false);				
+	void AddValueToCigaretteValue(int value) {
+		if (GetDayZGame().GetCannabisPlusConfig()) {	
+			if(GetDayZGame().GetCannabisPlusConfig().activateCigaretteSmokingEffect) {
+				m_cigaretteValue += value;
+						
+				if(m_cigaretteValue >= GetDayZGame().GetCannabisPlusConfig().cigaretteCyclesToActivateEffect){
+					Print("Smoking cigarrette effect" + GetDayZGame().GetCannabisPlusConfig().cigaretteCyclesToActivateEffect);
+					m_HasConsumedCigarette = true;
+					swayTimer = new Timer();
+					swayTimer.Run(GetDayZGame().GetCannabisPlusConfig().smokingCigaretteEffectDuration, this, "ResetCigaretteValues", null, false);				
+				}
 			}
 		}		
 	}	
 	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 	// set to true if the player consumed a joint
 	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-	void AddValueToJointValue(int value) {		
-		if(m_activateJointSmokingEffect) {
-			//Print("CannabisPlus: AddValueToJointValue");
-			m_jointValue += value;
-					
-			if(m_jointValue >= m_jointCyclesToActivateEffect){	
-				//Print("CannabisPlus: Starting Effect");			
-				m_HasConsumedJoint = true;
-				jointTimer = new Timer();
-				jointTimer.Run(m_smokingJointEffectDuration, this, "ResetJointValues", null, false);				
+	void AddValueToJointValue(int value) {	
+		if (GetDayZGame().GetCannabisPlusConfig()) {	
+			if(GetDayZGame().GetCannabisPlusConfig().activateJointSmokingEffect == 1) {
+				//Print("CannabisPlus: AddValueToJointValue");
+				m_jointValue += value;
+						
+				if(m_jointValue >= GetDayZGame().GetCannabisPlusConfig().jointCyclesToActivateEffect){	
+					Print("Smoking joint effect" + GetDayZGame().GetCannabisPlusConfig().jointCyclesToActivateEffect);
+					//Print("CannabisPlus: Starting Effect");			
+					m_HasConsumedJoint = true;
+					jointTimer = new Timer();
+					jointTimer.Run(GetDayZGame().GetCannabisPlusConfig().smokingJointEffectDuration, this, "ResetJointValues", null, false);				
+				}
 			}
 		}
 	}
@@ -87,7 +90,7 @@ modded class PlayerBase {
             heavy.SetHeavyItems();
 		onehand.SetToolsOneHanded();
 
-    	GetDayZPlayerType().AddItemInHandsProfileIK("CP_JointSkunk", "dz/anims/workspaces/player/player_main/player_main_1h.asi", onehand, "dz/anims/anm/player/ik/gear/thermometer.anm");
+    		GetDayZPlayerType().AddItemInHandsProfileIK("CP_JointSkunk", "dz/anims/workspaces/player/player_main/player_main_1h.asi", onehand, "dz/anims/anm/player/ik/gear/thermometer.anm");
 		GetDayZPlayerType().AddItemInHandsProfileIK("CP_JointBlue", "dz/anims/workspaces/player/player_main/player_main_1h.asi", onehand, "dz/anims/anm/player/ik/gear/thermometer.anm");
 		GetDayZPlayerType().AddItemInHandsProfileIK("CP_JointKush", "dz/anims/workspaces/player/player_main/player_main_1h.asi", onehand, "dz/anims/anm/player/ik/gear/thermometer.anm");
 		GetDayZPlayerType().AddItemInHandsProfileIK("CP_JointStardawg", "dz/anims/workspaces/player/player_main/player_main_1h.asi", onehand, "dz/anims/anm/player/ik/gear/thermometer.anm");
