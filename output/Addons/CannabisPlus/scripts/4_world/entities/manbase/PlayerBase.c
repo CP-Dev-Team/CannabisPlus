@@ -53,6 +53,7 @@ modded class PlayerBase {
 					Print("Smoking cigarrette effect" + GetDayZGame().GetCannabisPlusConfig().cigaretteCyclesToActivateEffect);
 					m_HasConsumedCigarette = true;
 					if (!swayTimer) { swayTimer = new Timer()};
+					swayTimer.Stop();
 					swayTimer.Run(GetDayZGame().GetCannabisPlusConfig().smokingCigaretteEffectDuration, this, "ResetCigaretteValues", null, false);				
 				}
 			}
@@ -72,6 +73,7 @@ modded class PlayerBase {
 					//Print("CannabisPlus: Starting Effect");			
 					m_HasConsumedJoint = true;
 					if (!jointTimer) { jointTimer = new Timer()};
+					jointTimer.Stop();
 					jointTimer.Run(GetDayZGame().GetCannabisPlusConfig().smokingJointEffectDuration, this, "ResetJointValues", null, false);				
 				}
 			}
@@ -83,7 +85,7 @@ modded class PlayerBase {
 	void ResetCigaretteValues() {		
 		m_cigaretteValue = 0;
 		m_HasConsumedCigarette = false;
-		//jointTimer.Reset();
+		swayTimer.Stop();
 	}
 	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 	// called by timer if the effect is over, resets all values that the player "consume again"
@@ -91,7 +93,7 @@ modded class PlayerBase {
 	void ResetJointValues() {
 		m_HasConsumedJoint = false;
 		m_jointValue = 0;
-		//jointTimer.Reset();
+		jointTimer.Stop();
 	}
 	
 	override void Init()

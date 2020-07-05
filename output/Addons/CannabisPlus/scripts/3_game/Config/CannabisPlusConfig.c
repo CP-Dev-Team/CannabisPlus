@@ -99,8 +99,8 @@ class CannabisPlusConfig
 		smokingJointEffectDuration 		= 20;
 		jointCyclesToActivateEffect 			= 2;	
 		jointEffectRed 			= 0.5;
-		jointEffectGreen 			= 0.3;
-		jointEffectBlue 			= 0.1;
+		jointEffectGreen 			= 0.1;
+		jointEffectBlue 			= 0.5;
 	};
 	
 	void Validate() {		
