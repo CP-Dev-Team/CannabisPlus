@@ -46,7 +46,6 @@ modded class DayZPlayerCameraBase extends DayZPlayerCamera {
 			case MyNVTypes.SMOKEJOINT:
 				PPEffects.SetEVValuePP(3);
 				PPEffects.SetColorizationNV(GetDayZGame().GetCannabisPlusConfig().jointEffectRed, GetDayZGame().GetCannabisPlusConfig().jointEffectGreen, GetDayZGame().GetCannabisPlusConfig().jointEffectBlue);
-				//PPEffects.SetNVParams(2.0, 1.0, 10.0, 1.0);
 			break;			
 		}
 		
@@ -59,7 +58,7 @@ modded class DayZPlayerCameraBase extends DayZPlayerCamera {
 	
 	override void UpdateCameraNV(PlayerBase player) {
 		if( !GetGame().IsMultiplayer() || GetGame().IsClient() ) {		
-			if(player.m_HasConsumedJoint) {
+			if(player.HasConsumedJoint()) {
 				SetNVPostprocess(MyNVTypes.SMOKEJOINT);
 			}else{
 				super.UpdateCameraNV(player);

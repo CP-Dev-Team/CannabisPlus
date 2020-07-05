@@ -104,7 +104,6 @@ class ActionSmokeJointSelf: ActionContinuousBase {
 		CP_JointBase joint = CP_JointBase.Cast(action_data.m_MainItem);
 		
 		if (joint) {
-			//Print("[DEBUG] ActionSmokeJointSelf:OnFinishProgressServer");
 			
 			joint.AddHealth("", "Health", -ReduceAmount);
 			

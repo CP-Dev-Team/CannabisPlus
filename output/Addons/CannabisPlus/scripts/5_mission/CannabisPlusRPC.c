@@ -17,7 +17,7 @@ class CannabisPlusRPC {
         else
         {
             Print( "Client function called!" );
-            //m_CannabisPlusConfig = GetDayZGame().GetCannabisPlusConfig();
+	    GetDayZGame().SetCannabisPlusConfig(m_CannabisPlusConfig.param1);
         }
     }
 }

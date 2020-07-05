@@ -3,7 +3,6 @@
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 modded class PlayerBase {
 
-	
 	ref Timer swayTimer;				// timer that resets the values after the effect is over
 	ref Timer jointTimer;				// timer that resets the values after the effect is over
 	
@@ -13,6 +12,8 @@ modded class PlayerBase {
 	bool m_HasConsumedJoint = false;
 	int m_jointValue = 0;				// the quantity of the cigarette, what the player consumed
 	
+	//protected ref CannabisPlusConfig m_CannabisPlusConfig
+	
 	//getters for cig/joint smoke state
 	bool HasConsumedJoint () {
 		return m_HasConsumedJoint; 
@@ -20,13 +21,24 @@ modded class PlayerBase {
 
 	bool HasConsumedCigarette () {
 		return m_HasConsumedCigarette; 
-	}		
-
+	}		 
+   
 	override void OnConnect()
 	{
 		super.OnConnect();
-		GetRPCManager().SendRPC( "CP_scripts", "RetreiveCannabisPlusConfig", new Param1 <ref CannabisPlusConfig> (GetDayZGame().GetCannabisPlusConfig()));
-		Print("Receiving CannabisPlusConfig info from server");
+		if (GetIdentity()) {
+			GetRPCManager().SendRPC( "CP_scripts", "RetreiveCannabisPlusConfig", new Param1 <CannabisPlusConfig> (GetDayZGame().GetCannabisPlusConfig()),true,GetIdentity());
+			Print("Receiving CannabisPlusConfig info from server");
+		}	
+	}
+	
+	override void OnReconnect()
+	{
+		super.OnReconnect();
+		if (GetIdentity()) {
+			GetRPCManager().SendRPC( "CP_scripts", "RetreiveCannabisPlusConfig", new Param1 <CannabisPlusConfig> (GetDayZGame().GetCannabisPlusConfig()),true,GetIdentity());
+			Print("Receiving CannabisPlusConfig info from server");
+		}	
 	}
 	
 	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -40,7 +52,7 @@ modded class PlayerBase {
 				if(m_cigaretteValue >= GetDayZGame().GetCannabisPlusConfig().cigaretteCyclesToActivateEffect){
 					Print("Smoking cigarrette effect" + GetDayZGame().GetCannabisPlusConfig().cigaretteCyclesToActivateEffect);
 					m_HasConsumedCigarette = true;
-					swayTimer = new Timer();
+					if (!swayTimer) { swayTimer = new Timer()};
 					swayTimer.Run(GetDayZGame().GetCannabisPlusConfig().smokingCigaretteEffectDuration, this, "ResetCigaretteValues", null, false);				
 				}
 			}
@@ -51,7 +63,7 @@ modded class PlayerBase {
 	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 	void AddValueToJointValue(int value) {	
 		if (GetDayZGame().GetCannabisPlusConfig()) {	
-			if(GetDayZGame().GetCannabisPlusConfig().activateJointSmokingEffect == 1) {
+			if(GetDayZGame().GetCannabisPlusConfig().activateJointSmokingEffect) {
 				//Print("CannabisPlus: AddValueToJointValue");
 				m_jointValue += value;
 						
@@ -59,7 +71,7 @@ modded class PlayerBase {
 					Print("Smoking joint effect" + GetDayZGame().GetCannabisPlusConfig().jointCyclesToActivateEffect);
 					//Print("CannabisPlus: Starting Effect");			
 					m_HasConsumedJoint = true;
-					jointTimer = new Timer();
+					if (!jointTimer) { jointTimer = new Timer()};
 					jointTimer.Run(GetDayZGame().GetCannabisPlusConfig().smokingJointEffectDuration, this, "ResetJointValues", null, false);				
 				}
 			}
@@ -71,6 +83,7 @@ modded class PlayerBase {
 	void ResetCigaretteValues() {		
 		m_cigaretteValue = 0;
 		m_HasConsumedCigarette = false;
+		//jointTimer.Reset();
 	}
 	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 	// called by timer if the effect is over, resets all values that the player "consume again"
@@ -78,6 +91,7 @@ modded class PlayerBase {
 	void ResetJointValues() {
 		m_HasConsumedJoint = false;
 		m_jointValue = 0;
+		//jointTimer.Reset();
 	}
 	
 	override void Init()
@@ -97,7 +111,7 @@ modded class PlayerBase {
 		GetDayZPlayerType().AddItemInHandsProfileIK("CP_Cigarette", "dz/anims/workspaces/player/player_main/player_main_1h.asi", onehand, "dz/anims/anm/player/ik/gear/thermometer.anm");
 		
 	  }
-	  
+
         super.Init();
     }
 }

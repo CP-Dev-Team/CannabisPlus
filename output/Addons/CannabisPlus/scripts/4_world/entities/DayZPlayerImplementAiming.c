@@ -28,25 +28,25 @@ modded class DayZPlayerImplementAiming {
 		//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 		// reduce sway while aiming if hold breath or if player consumed a joint
 		//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-		if( m_PlayerPb.IsHoldingBreath() || m_PlayerPb.m_HasConsumedJoint || m_PlayerPb.m_HasConsumedCigarette) {
+		if( m_PlayerPb.IsHoldingBreath() || m_PlayerPb.HasConsumedJoint() || m_PlayerPb.HasConsumedCigarette()) {
 			speed *= 0.1;		
 			player_stamina = 1;	
 		}
 		
 		//negates stamina effect during hold breath
-		if( m_PlayerPb.IsHoldingBreath() )
+		if( m_PlayerPb.IsHoldingBreath() || m_PlayerPb.HasConsumedJoint() || m_PlayerPb.HasConsumedCigarette())
 		{
 			player_stamina = 1;
 		}
 		speed = (((1.0 - player_stamina) * 3.0) + 1.0) * m_SwayModifier[2];
 		m_TotalTime += pDt * speed;
 		
-		if( m_PlayerPb.IsHoldingBreath() && !m_HoldingBreathSet)
+		if((m_PlayerPb.IsHoldingBreath() || m_PlayerPb.HasConsumedJoint() || m_PlayerPb.HasConsumedCigarette()) && !m_HoldingBreathSet)
 		{
 			//m_HoldingBreathSet = true;
 			m_ReferenceTime = m_TotalTime;
 		}
-		else if(!m_PlayerPb.IsHoldingBreath() && m_HoldingBreathSet)
+		else if((!m_PlayerPb.IsHoldingBreath() || !m_PlayerPb.HasConsumedJoint() || !m_PlayerPb.HasConsumedCigarette()) && m_HoldingBreathSet)
 		{
 			//m_HoldingBreathSet = false;
 			m_ReferenceTime = m_TotalTime;
