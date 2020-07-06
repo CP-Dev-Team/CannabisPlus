@@ -282,14 +282,6 @@ class CfgVehicles
 		rotationFlags=16;
 		weight=30;
 		itemSize[]={1,2};
-		hiddenSelections[]=
-		{
-			"zbytek"
-		};
-		hiddenSelectionsTextures[]=
-		{
-			"CannabisPlus\joints\data\joint_ca.paa"
-		};
 	};
 
 	class CP_JointBlue: Inventory_Base
@@ -302,14 +294,6 @@ class CfgVehicles
 		rotationFlags=16;
 		weight=30;
 		itemSize[]={1,2};
-		hiddenSelections[]=
-		{
-			"zbytek"
-		};
-		hiddenSelectionsTextures[]=
-		{
-			"CannabisPlus\joints\data\joint_ca.paa"
-		};
 	};
 
 	class CP_JointKush: Inventory_Base
@@ -322,14 +306,6 @@ class CfgVehicles
 		rotationFlags=16;
 		weight=30;
 		itemSize[]={1,2};
-		hiddenSelections[]=
-		{
-			"zbytek"
-		};
-		hiddenSelectionsTextures[]=
-		{
-			"CannabisPlus\joints\data\joint_ca.paa"
-		};
 	};
 
 	class CP_JointStardawg: Inventory_Base
@@ -342,13 +318,5 @@ class CfgVehicles
 		rotationFlags=16;
 		weight=30;
 		itemSize[]={1,2};
-		hiddenSelections[]=
-		{
-			"zbytek"
-		};
-		hiddenSelectionsTextures[]=
-		{
-			"CannabisPlus\joints\data\joint_ca.paa"
-		};
 	};	
 };
