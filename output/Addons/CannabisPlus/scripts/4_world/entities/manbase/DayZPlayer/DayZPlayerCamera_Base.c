@@ -19,6 +19,7 @@ modded class DayZPlayerCameraBase extends DayZPlayerCamera {
 	
 	override void SetNVPostprocess(int NVtype)
 	{		
+		super.SetNVPostprocess(NVtype)
 		switch (NVtype)
 		{
 			case MyNVTypes.NONE:
@@ -61,10 +62,9 @@ modded class DayZPlayerCameraBase extends DayZPlayerCamera {
 		}
 	}
 	
-	
+	/*
 	override void UpdateCameraNV(PlayerBase player) {
-		if( !GetGame().IsMultiplayer() || GetGame().IsClient() ) {
-					
+		if( !GetGame().IsMultiplayer() || GetGame().IsClient() ) {		
 			if(player.HasConsumedJoint()) {
 				SetNVPostprocess(MyNVTypes.SMOKEJOINT);
 			}else{
@@ -72,5 +72,6 @@ modded class DayZPlayerCameraBase extends DayZPlayerCamera {
 				super.UpdateCameraNV(player);
 			}
 		}
-	}	
+	}
+	*/	
 }
