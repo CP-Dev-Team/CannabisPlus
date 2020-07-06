@@ -10,6 +10,8 @@ enum MyNVTypes
 
 modded class DayZPlayerCameraBase extends DayZPlayerCamera {
 	
+	private int tempNV;
+	
 	override void OnUpdate(float pDt, out DayZPlayerCameraResult pOutResult) {
 		
 		super.OnUpdate(pDt, pOutResult);		
@@ -20,24 +22,28 @@ modded class DayZPlayerCameraBase extends DayZPlayerCamera {
 		switch (NVtype)
 		{
 			case MyNVTypes.NONE:
+				tempNV = NVtype;
 				PPEffects.SetEVValuePP(0);
 				PPEffects.SetColorizationNV(1.0, 1.0, 1.0);
 				PPEffects.SetNVParams(1.0, 0.0, 2.35, 2.75); //default values
 			break;
 			
 			case MyNVTypes.NV_OPTICS_ON:
+				tempNV = NVtype;
 				PPEffects.SetEVValuePP(7);
 				PPEffects.SetColorizationNV(0.0, 1.0, 0.0);
 				PPEffects.SetNVParams(3.0, 2.0, 9.0, 1.0);
 			break;
 			
 			case MyNVTypes.NV_OPTICS_OFF:
+				tempNV = NVtype;
 				PPEffects.SetEVValuePP(-10);
 				PPEffects.SetColorizationNV(0.0, 0.0, 0.0);
 				PPEffects.SetNVParams(1.0, 0.0, 2.35, 2.75); //default values
 			break;
 			
 			case MyNVTypes.NV_GOGGLES:
+				tempNV = NVtype;
 				PPEffects.SetEVValuePP(7);
 				PPEffects.SetColorizationNV(0.0, 1.0, 0.0);
 				PPEffects.SetNVParams(2.0, 1.0, 10.0, 1.0);
@@ -57,12 +63,13 @@ modded class DayZPlayerCameraBase extends DayZPlayerCamera {
 	
 	
 	override void UpdateCameraNV(PlayerBase player) {
-		if( !GetGame().IsMultiplayer() || GetGame().IsClient() ) {		
+		if( !GetGame().IsMultiplayer() || GetGame().IsClient() ) {
+					
 			if(player.HasConsumedJoint()) {
-				//SetNVPostprocess(MyNVTypes.SMOKEJOINT);
+				SetNVPostprocess(MyNVTypes.SMOKEJOINT);
 			}else{
-				//SetNVPostprocess(MyNVTypes.NONE);
-				//super.UpdateCameraNV(player);
+				SetNVPostprocess(tempNV);
+				super.UpdateCameraNV(player);
 			}
 		}
 	}	
