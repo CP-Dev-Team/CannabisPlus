@@ -59,10 +59,10 @@ modded class DayZPlayerCameraBase extends DayZPlayerCamera {
 	override void UpdateCameraNV(PlayerBase player) {
 		if( !GetGame().IsMultiplayer() || GetGame().IsClient() ) {		
 			if(player.HasConsumedJoint()) {
-				SetNVPostprocess(MyNVTypes.SMOKEJOINT);
+				//SetNVPostprocess(MyNVTypes.SMOKEJOINT);
 			}else{
-				SetNVPostprocess(MyNVTypes.NONE);
-				super.UpdateCameraNV(player);
+				//SetNVPostprocess(MyNVTypes.NONE);
+				//super.UpdateCameraNV(player);
 			}
 		}
 	}	
