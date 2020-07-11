@@ -290,6 +290,16 @@ class CfgVehicles
 		{
 			"CannabisPlus\joints\data\joint_ca.paa"
 		};
+		class DamageSystem
+        {
+            class GlobalHealth
+            {
+                class Health
+                {
+                    hitpoints=100;
+				}
+			}
+		}			
 	};
 
 	class CP_JointBlue: Inventory_Base
@@ -310,6 +320,16 @@ class CfgVehicles
 		{
 			"CannabisPlus\joints\data\joint_ca.paa"
 		};
+		class DamageSystem
+        {
+            class GlobalHealth
+            {
+                class Health
+                {
+                    hitpoints=100;
+				}
+			}
+		}
 	};
 
 	class CP_JointKush: Inventory_Base
@@ -330,6 +350,16 @@ class CfgVehicles
 		{
 			"CannabisPlus\joints\data\joint_ca.paa"
 		};
+		class DamageSystem
+        {
+            class GlobalHealth
+            {
+                class Health
+                {
+                    hitpoints=100;
+				}
+			}
+		}
 	};
 
 	class CP_JointStardawg: Inventory_Base
@@ -350,5 +380,15 @@ class CfgVehicles
 		{
 			"CannabisPlus\joints\data\joint_ca.paa"
 		};
+		class DamageSystem
+        {
+            class GlobalHealth
+            {
+                class Health
+                {
+                    hitpoints=100;
+				}
+			}
+		}
 	};	
 };
