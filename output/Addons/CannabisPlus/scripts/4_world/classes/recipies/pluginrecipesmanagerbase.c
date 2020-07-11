@@ -29,5 +29,7 @@ modded class PluginRecipesManager
         RegisterRecipe(new CP_CraftCigarettePackKush);
         RegisterRecipe(new CP_CraftCigarettePackStardawg);
         RegisterRecipe(new CP_CraftCigarettePackChernamorka);
+        RegisterRecipe(new CP_CraftCigarettePackMerkur);
+        RegisterRecipe(new CP_CraftCigarettePackPartyzanka);
     }
 }

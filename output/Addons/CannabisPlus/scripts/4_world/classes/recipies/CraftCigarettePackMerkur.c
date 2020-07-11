@@ -1,8 +1,8 @@
-class CP_CraftCigarettePackChernamorkaEmpty extends RecipeBase
+class CP_CraftCigarettePackMerkurEmpty extends RecipeBase
 {	
 	override void Init()
 	{
-		m_Name = "Pack Cigarette into Chernamorka Cigarette Pack";
+		m_Name = "Pack Cigarette into Merkur Cigarette Pack";
 		m_IsInstaRecipe = false;//should this recipe be performed instantly without animation
 		m_AnimationLength = 0;//animation length in relative time units
 		m_Specialty = 0;// value > 0 for roughness, value < 0 for precision
@@ -42,7 +42,7 @@ class CP_CraftCigarettePackChernamorkaEmpty extends RecipeBase
 		//----------------------------------------------------------------------------------------------------------------------
 		
 		//result1
-		AddResult("CigarettePack_Chernamorka");//add results here
+		AddResult("CigarettePack_Merkur");//add results here
 
 		m_ResultSetFullQuantity[0] = false;//true = set full quantity, false = do nothing
 		m_ResultSetQuantity[0] = -1;//-1 = do nothing
@@ -67,11 +67,11 @@ class CP_CraftCigarettePackChernamorkaEmpty extends RecipeBase
 	}
 };
 
-class CP_CraftCigarettePackChernamorka extends RecipeBase
+class CP_CraftCigarettePackMerkur extends RecipeBase
 {	
 	override void Init()
 	{
-		m_Name = "Pack Cigarette into Chernamorka Cigarette Pack";
+		m_Name = "Pack Cigarette into Merkur Cigarette Pack";
 		m_IsInstaRecipe = false;//should this recipe be performed instantly without animation
 		m_AnimationLength = 0;//animation length in relative time units
 		m_Specialty = 0;// value > 0 for roughness, value < 0 for precision
@@ -103,7 +103,7 @@ class CP_CraftCigarettePackChernamorka extends RecipeBase
 		
 		//ingredient 2
 
-		InsertIngredient(1, "CigarettePack_Chernamorka");
+		InsertIngredient(1, "CigarettePack_Merkur");
 		m_IngredientAddHealth[1] = 0;// 0 = do nothing
 		m_IngredientSetHealth[1] = -1; // -1 = do nothing
 		m_IngredientAddQuantity[1] = 0;// 0 = do nothing
