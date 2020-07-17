@@ -1,0 +1,28 @@
+<Trader> Misc Trader
+	<Category> Cannabis
+        CigarettePack_Chernamorka,          	*,		900,		450
+        CigarettePack_Merkur,              		*,		900,		450
+        CigarettePack_Partyzanka,              	*,		900,		450
+		CP_CigarettePack_CannabisSkunk,			*,		1200,		600
+		CP_CannabisBagSkunk,					1,		465,		233
+		CP_CannabisBrickSkunk,					*,		7500,		3750
+
+
+
+<Trader> Black Market
+	<Category> Cannabis
+        CigarettePack_Chernamorka,          	*,		900,		600
+        CigarettePack_Merkur,              		*,		900,		600
+        CigarettePack_Partyzanka,              	*,		900,		600
+		CP_CigarettePack_CannabisSkunk,			*,		1200,		800
+		CP_CannabisBagSkunk,					1,		465,		310
+		CP_CannabisBrickSkunk,					*,		7500,		5000
+		CP_CigarettePack_CannabisBlue,			*,		2400,		1600
+        CP_CannabisBagBlue,						1,		945,		630
+		CP_CannabisBrickBlue,					*,		15000,		10000
+		CP_CigarettePack_CannabisKush,			*,		3525,		2350
+        CP_CannabisBagKush,						1,		1410,		940
+		CP_CannabisBrickKush,					*,		22500,		15000
+		CP_CigarettePack_CannabisStardawg,		*,		4725,		3150
+        CP_CannabisBagStardawg,					1,		1875,		1250
+		CP_CannabisBrickStardawg,				*,		30000,		20000

@@ -5,10 +5,10 @@
 <!-- V1.0 - Deprecated Classnames -->
 <!-- Will be deleted in October.  Have users sell all the old stuff. -->
 <type name="Cannabis">
-        <nominal>10</nominal>
+        <nominal>0</nominal>
         <lifetime>3600</lifetime>
         <restock>0</restock>
-        <min>5</min>
+        <min>0</min>
         <quantmin>-1</quantmin>
         <quantmax>-1</quantmax>
         <cost>100</cost>
@@ -31,10 +31,10 @@
         <category name="food"/>
     </type>
     <type name="CannabisSeedsPack">
-        <nominal>30</nominal>
+        <nominal>0</nominal>
         <lifetime>86400</lifetime>
         <restock>0</restock>
-        <min>22</min>
+        <min>0</min>
         <quantmin>-1</quantmin>
         <quantmax>-1</quantmax>
         <cost>100</cost>
@@ -66,10 +66,10 @@
         <category name="food"/>
     </type>
 	<type name="CannabisKush">
-        <nominal>10</nominal>
+        <nominal>0</nominal>
         <lifetime>3600</lifetime>
         <restock>0</restock>
-        <min>5</min>
+        <min>0</min>
         <quantmin>-1</quantmin>
         <quantmax>-1</quantmax>
         <cost>100</cost>
@@ -92,10 +92,10 @@
         <category name="food"/>
     </type>
     <type name="CannabisSeedsPackKush">
-        <nominal>3</nominal>
+        <nominal>0</nominal>
         <lifetime>7200</lifetime>
         <restock>0</restock>
-        <min>1</min>
+        <min>0</min>
         <quantmin>-1</quantmin>
         <quantmax>-1</quantmax>
         <cost>100</cost>
@@ -127,10 +127,10 @@
         <category name="food"/>
     </type>
 	<type name="CannabisBlue">
-        <nominal>10</nominal>
+        <nominal>0</nominal>
         <lifetime>3600</lifetime>
         <restock>0</restock>
-        <min>5</min>
+        <min>0</min>
         <quantmin>-1</quantmin>
         <quantmax>-1</quantmax>
         <cost>100</cost>
@@ -153,10 +153,10 @@
         <category name="food"/>
     </type>
     <type name="CannabisSeedsPackBlue">
-        <nominal>10</nominal>
+        <nominal>0</nominal>
         <lifetime>7200</lifetime>
         <restock>0</restock>
-        <min>5</min>
+        <min>0</min>
         <quantmin>-1</quantmin>
         <quantmax>-1</quantmax>
         <cost>100</cost>
@@ -188,10 +188,10 @@
         <category name="food"/>
     </type>
  <type name="CigarettePack_Cannabis">
-        <nominal>10</nominal>
+        <nominal>0</nominal>
         <lifetime>7200</lifetime>
         <restock>0</restock>
-        <min>10</min>
+        <min>0</min>
         <quantmin>-1</quantmin>
         <quantmax>-1</quantmax>
         <cost>100</cost>
@@ -200,53 +200,11 @@
         <tag name="shelves"/>
         <value name="Tier4"/>
     </type>
- <type name="CigarettePack_Chernamorka">
-        <nominal>20</nominal>
-        <lifetime>7200</lifetime>
-        <restock>0</restock>
-        <min>10</min>
-        <quantmin>-1</quantmin>
-        <quantmax>-1</quantmax>
-        <cost>100</cost>
-        <flags count_in_cargo="0" count_in_hoarder="0" count_in_map="1" count_in_player="0" crafted="0" deloot="0"/>
-        <usage name="Medic"/>
-        <tag name="shelves"/>
-        <value name="Tier2"/>
- <value name="Tier3"/>
-    </type>
- <type name="CigarettePack_Merkur">
-        <nominal>20</nominal>
-        <lifetime>7200</lifetime>
-        <restock>0</restock>
-        <min>10</min>
-        <quantmin>-1</quantmin>
-        <quantmax>-1</quantmax>
-        <cost>100</cost>
-        <flags count_in_cargo="0" count_in_hoarder="0" count_in_map="1" count_in_player="0" crafted="0" deloot="0"/>
-        <usage name="Medic"/>
-        <tag name="shelves"/>
-        <value name="Tier2"/>
- <value name="Tier3"/>
-    </type>
-    <type name="CigarettePack_Partyzanka">
-        <nominal>20</nominal>
-        <lifetime>7200</lifetime>
-        <restock>0</restock>
-        <min>10</min>
-        <quantmin>-1</quantmin>
-        <quantmax>-1</quantmax>
-        <cost>100</cost>
-        <flags count_in_cargo="0" count_in_hoarder="0" count_in_map="1" count_in_player="0" crafted="0" deloot="0"/>
-        <usage name="Medic"/>
-        <tag name="shelves"/>
-        <value name="Tier2"/>
- <value name="Tier3"/>
-    </type>
 	<type name="TobaccoSeedsPack">
-        <nominal>30</nominal>
+        <nominal>0</nominal>
         <lifetime>7200</lifetime>
         <restock>0</restock>
-        <min>15</min>
+        <min>0</min>
         <quantmin>-1</quantmin>
         <quantmax>-1</quantmax>
         <cost>100</cost>
@@ -262,10 +220,10 @@
         <flags count_in_cargo="0" count_in_hoarder="0" count_in_map="1" count_in_player="0" crafted="0" deloot="0"/>
     </type>
     <type name="CP_CannabisSkunk">
-        <nominal>10</nominal>
+        <nominal>45</nominal>
         <lifetime>3600</lifetime>
         <restock>0</restock>
-        <min>5</min>
+        <min>30</min>
         <quantmin>-1</quantmin>
         <quantmax>-1</quantmax>
         <cost>100</cost>
@@ -291,7 +249,7 @@
         <nominal>30</nominal>
         <lifetime>7200</lifetime>
         <restock>0</restock>
-        <min>22</min>
+        <min>20</min>
         <quantmin>-1</quantmin>
         <quantmax>-1</quantmax>
         <cost>100</cost>
@@ -326,7 +284,7 @@
         <nominal>10</nominal>
         <lifetime>7200</lifetime>
         <restock>0</restock>
-        <min>10</min>
+        <min>8</min>
         <quantmin>1</quantmin>
         <quantmax>100</quantmax>
         <cost>100</cost>
@@ -336,10 +294,10 @@
         <value name="Tier4"/>
     </type>
     <type name="CP_JointSkunk">
-        <nominal>30</nominal>
+        <nominal>45</nominal>
         <lifetime>7200</lifetime>
         <restock>0</restock>
-        <min>20</min>
+        <min>30</min>
         <quantmin>-1</quantmin>
         <quantmax>-1</quantmax>
         <cost>100</cost>
@@ -354,10 +312,10 @@
         <flags count_in_cargo="0" count_in_hoarder="0" count_in_map="1" count_in_player="0" crafted="0" deloot="0"/>
     </type>
 	<type name="CP_CannabisBlue">
-        <nominal>10</nominal>
+        <nominal>15</nominal>
         <lifetime>3600</lifetime>
         <restock>0</restock>
-        <min>5</min>
+        <min>10</min>
         <quantmin>-1</quantmin>
         <quantmax>-1</quantmax>
         <cost>100</cost>
@@ -415,10 +373,10 @@
         <category name="food"/>
     </type>
     <type name="CP_CigarettePack_CannabisBlue">
-        <nominal>10</nominal>
+        <nominal>5</nominal>
         <lifetime>7200</lifetime>
         <restock>0</restock>
-        <min>10</min>
+        <min>4</min>
         <quantmin>1</quantmin>
         <quantmax>100</quantmax>
         <cost>100</cost>
@@ -428,10 +386,10 @@
         <value name="Tier4"/>
     </type>
     <type name="CP_JointBlue">
-        <nominal>30</nominal>
+        <nominal>15</nominal>
         <lifetime>7200</lifetime>
         <restock>0</restock>
-        <min>20</min>
+        <min>10</min>
         <quantmin>-1</quantmin>
         <quantmax>-1</quantmax>
         <cost>100</cost>
@@ -446,10 +404,10 @@
         <flags count_in_cargo="0" count_in_hoarder="0" count_in_map="1" count_in_player="0" crafted="0" deloot="0"/>
     </type>
 	<type name="CP_CannabisKush">
-        <nominal>10</nominal>
+        <nominal>9</nominal>
         <lifetime>3600</lifetime>
         <restock>0</restock>
-        <min>5</min>
+        <min>7</min>
         <quantmin>-1</quantmin>
         <quantmax>-1</quantmax>
         <cost>100</cost>
@@ -472,10 +430,10 @@
         <category name="food"/>
     </type>
     <type name="CP_CannabisSeedsPackKush">
-        <nominal>3</nominal>
+        <nominal>6</nominal>
         <lifetime>7200</lifetime>
         <restock>0</restock>
-        <min>1</min>
+        <min>4</min>
         <quantmin>-1</quantmin>
         <quantmax>-1</quantmax>
         <cost>100</cost>
@@ -507,10 +465,10 @@
         <category name="food"/>
     </type>
     <type name="CP_CigarettePack_CannabisKush">
-        <nominal>10</nominal>
+        <nominal>3</nominal>
         <lifetime>7200</lifetime>
         <restock>0</restock>
-        <min>10</min>
+        <min>2</min>
         <quantmin>1</quantmin>
         <quantmax>100</quantmax>
         <cost>100</cost>
@@ -520,10 +478,10 @@
         <value name="Tier4"/>
     </type>
     <type name="CP_JointKush">
-        <nominal>30</nominal>
+        <nominal>9</nominal>
         <lifetime>7200</lifetime>
         <restock>0</restock>
-        <min>20</min>
+        <min>7</min>
         <quantmin>-1</quantmin>
         <quantmax>-1</quantmax>
         <cost>100</cost>
@@ -538,10 +496,10 @@
         <flags count_in_cargo="0" count_in_hoarder="0" count_in_map="1" count_in_player="0" crafted="0" deloot="0"/>
     </type>
     <type name="CP_CannabisStardawg">
-        <nominal>10</nominal>
+        <nominal>6</nominal>
         <lifetime>3600</lifetime>
         <restock>0</restock>
-        <min>5</min>
+        <min>4</min>
         <quantmin>-1</quantmin>
         <quantmax>-1</quantmax>
         <cost>100</cost>
@@ -564,10 +522,10 @@
         <category name="food"/>
     </type>
     <type name="CP_CannabisSeedsPackStardawg">
-        <nominal>30</nominal>
+        <nominal>4</nominal>
         <lifetime>7200</lifetime>
         <restock>0</restock>
-        <min>22</min>
+        <min>1</min>
         <quantmin>-1</quantmin>
         <quantmax>-1</quantmax>
         <cost>100</cost>
@@ -599,10 +557,10 @@
         <category name="food"/>
     </type>
     <type name="CP_CigarettePack_CannabisStardawg">
-        <nominal>10</nominal>
+        <nominal>2</nominal>
         <lifetime>7200</lifetime>
         <restock>0</restock>
-        <min>10</min>
+        <min>1</min>
         <quantmin>1</quantmin>
         <quantmax>100</quantmax>
         <cost>100</cost>
@@ -612,10 +570,10 @@
         <value name="Tier4"/>
     </type>
     <type name="CP_JointStardawg">
-        <nominal>30</nominal>
+        <nominal>6</nominal>
         <lifetime>7200</lifetime>
         <restock>0</restock>
-        <min>20</min>
+        <min>4</min>
         <quantmin>-1</quantmin>
         <quantmax>-1</quantmax>
         <cost>100</cost>
@@ -656,10 +614,10 @@
         <category name="food"/>
     </type>
  	<type name="CP_TobaccoSeedsPack">
-        <nominal>30</nominal>
+        <nominal>33</nominal>
         <lifetime>7200</lifetime>
         <restock>0</restock>
-        <min>15</min>
+        <min>25</min>
         <quantmin>-1</quantmin>
         <quantmax>-1</quantmax>
         <cost>100</cost>
@@ -669,7 +627,7 @@
         <usage name="Hunting"/>
     </type>
     <type name="CP_CigarettePack_Empty">
-        <nominal>10</nominal>
+        <nominal>20</nominal>
         <lifetime>7200</lifetime>
         <restock>0</restock>
         <min>10</min>
@@ -683,10 +641,10 @@
         <value name="Tier2"/>
     </type>
     <type name="CigarettePack_Chernamorka">
-        <nominal>20</nominal>
+        <nominal>10</nominal>
         <lifetime>7200</lifetime>
         <restock>0</restock>
-        <min>10</min>
+        <min>5</min>
         <quantmin>1</quantmin>
         <quantmax>100</quantmax>
         <cost>100</cost>
@@ -697,10 +655,10 @@
         <value name="Tier3"/>
     </type>
     <type name="CigarettePack_Merkur">
-        <nominal>20</nominal>
+        <nominal>10</nominal>
         <lifetime>7200</lifetime>
         <restock>0</restock>
-        <min>10</min>
+        <min>5</min>
         <quantmin>1</quantmin>
         <quantmax>100</quantmax>
         <cost>100</cost>
@@ -711,10 +669,10 @@
         <value name="Tier3"/>
     </type>
     <type name="CigarettePack_Partyzanka">
-        <nominal>20</nominal>
+        <nominal>10</nominal>
         <lifetime>7200</lifetime>
         <restock>0</restock>
-        <min>10</min>
+        <min>5</min>
         <quantmin>1</quantmin>
         <quantmax>100</quantmax>
         <cost>100</cost>
