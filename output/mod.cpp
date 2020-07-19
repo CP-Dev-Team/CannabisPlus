@@ -7,5 +7,5 @@
 		tooltip = "Better Cannabis farming";							// tool tip on mouse hover
 		overview = "This mod brings the ability to craft Cannabis and pack it into Bags and Bricks."; 						// overview
 		action = "https://steamcommunity.com/sharedfiles/filedetails/?id=1932611410";					// link to your mod
-		author = "CannaGuys";								// author
-		version = "1.0";	
+		author = "CP-Dev-Team";								// author
+		version = "2.0";	
