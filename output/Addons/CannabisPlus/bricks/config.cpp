@@ -26,7 +26,7 @@ class CfgVehicles
 		//canBeSplit=1;
 		lootCategory="Crafted";
 		weight=450;
-		itemSize[]={4,4};
+		itemSize[]={3,3};
 		absorbency=0.2;
 		//varQuantityInit=1;
 		//varQuantityMin=0;
@@ -122,7 +122,7 @@ class CfgVehicles
 		//canBeSplit=1;
 		lootCategory="Crafted";
 		weight=450;
-		itemSize[]={4,4};
+		itemSize[]={3,3};
 		absorbency=0.2;
 		//varQuantityInit=1;
 		//varQuantityMin=0;
@@ -221,7 +221,7 @@ class CfgVehicles
 		//canBeSplit=1;
 		lootCategory="Crafted";
 		weight=450;
-		itemSize[]={4,4};
+		itemSize[]={3,3};
 		absorbency=0.2;
 		//varQuantityInit=1;
 		//varQuantityMin=0;
@@ -320,7 +320,7 @@ class CfgVehicles
 		//canBeSplit=1;
 		lootCategory="Crafted";
 		weight=450;
-		itemSize[]={4,4};
+		itemSize[]={3,3};
 		absorbency=0.2;
 		//varQuantityInit=1;
 		//varQuantityMin=0;

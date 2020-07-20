@@ -1,0 +1,47 @@
+This mod creates a config in "profiles" folder named CannabisPlus.json.
+You can set different amounts of crop and growtime for each plant.
+Fertilization reduces the growtime and doubles the crop.
+Growtime adds a randomizer so the time is not 100% exact.
+
+Explanation of CannabisPlus.json:
+    "configVersion": 200,                   // Mod version.  200 = 2.0.0
+	"removeAfterHarvest": 1,                // 1 = Removes plant after harvesting; 0 = Leaves plant after harvest.
+    "tobacco_growtime": 8,	                // Growtime of Tobacco in minutes 
+    "tobacco_cropcount": 2,                 // Amount of Tobacco crop to harvest
+	"tobaccoSeed_count": 9,                 // Amount of Tobaccoseeds in a seedpack
+    "cannabis_growtime": 8,                 // Growtime of regular Cannabis in minutes  (Deprecated.  Will be removed in Oct.2020)
+    "cannabis_cropcount": 2,                // Amount of regular Cannabis crop to harvest  (Deprecated.  Will be removed in Oct.2020)
+	"cannabisSeed_count": 9,                // Amount of regular Cannabisseeds in a seedpack  (Deprecated.  Will be removed in Oct.2020)
+    "cannabisSkunk_growtime": 8,            // Growtime of Skunk Cannabis in minutes
+    "cannabisSkunk_cropcount": 2,           // Amount of Skunk Cannabis crop to harvest
+    "cannabisSkunkSeed_count": 9,           // Amount of Skunk Cannabis seeds in a seedpack
+    "cannabisKush_growtime": 8,             // Growtime of Purple Kush in minutes 
+    "cannabisKush_cropcount": 2,            // Amount of Purple Kush crop to harvest
+	"cannabisKushSeed_count": 9,            // Amount of Purple Kush seeds in a seedpack
+    "cannabisBlue_growtime": 8,             // Growtime of Blue God in minutes 
+    "cannabisBlue_cropcount": 2,            // Amount of Blue God crop to harvest
+	"cannabisBlueSeed_count": 9,            // Amount of Blue God seeds in a seedpack
+    "cannabisStardawg_growtime": 8,         // Growtime of Stardawg in minutes 
+    "cannabisStardawg_cropcount": 2,        // Amount of Stardawg crop to harvest
+    "cannabisStardawgSeed_count": 9,        // Amount of Stardawg seeds in a seedpack
+    "pepper_growtime": 8,                   // Growtime of Pepper in minutes 
+    "pepper_cropcount": 2,                  // Amount of Pepper crop to harvest
+	"pepperSeed_count": 9,                  // Amount of Pepper seeds in a seedpack
+    "tomato_growtime": 8,                   // Growtime of Tomato in minutes 
+    "tomato_cropcount": 2,                  // Amount of Tomato crop to harvest
+	"tomatoSeed_count": 9,                  // Amount of Tomato seeds in a seedpack
+    "zucchini_growtime": 8,                 // Growtime of Zucchini in minutes 
+    "zucchini_cropcount": 2,                // Amount of Zucchini crop to harvest
+	"zucchiniSeed_count": 9,                // Amount of Zucchini seeds in a seedpack
+    "pumpkin_growtime": 8,                  // Growtime of Pumpkin in minutes 
+    "pumpkin_cropcount": 2,                 // Amount of Pumpkin crop to harvest 
+	"pumpkinSeed_count": 9,                 // Amount of Pumpkin seeds in a seedpack
+    "activateCigaretteSmokingEffect": 0,    // [Currently Disabled]1 = Activates effects when smoking cigarettes; 0 = No effect
+    "smokingCigaretteEffectDuration": 20,   // [Currently Disabled]Duration the effect will last, in seconds
+    "cigaretteCyclesToActivateEffect": 8,   // [Currently Disabled]How many cycles to activate the effect.  8 = One cigarette
+    "activateJointSmokingEffect": 1,        // [Currently Disabled]1 = Activates effects when smoking joints; 0 = No effect
+    "smokingJointEffectDuration": 60,       // [Currently Disabled]Duration the effect will last, in seconds
+    "jointCyclesToActivateEffect": 20,      // [Currently Disabled]How many cycles to activate the effect  8 = One joint
+    "jointEffectRed": 0.5,                  // [Currently Disabled]Manipulating the effects red spectrum
+    "jointEffectGreen": 0.1,                // [Currently Disabled]Manipulating the effects green spectrum
+    "jointEffectBlue": 0.5                  // [Currently Disabled]Manipulating the effects blue spectrum
