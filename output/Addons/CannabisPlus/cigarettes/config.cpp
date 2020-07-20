@@ -32,15 +32,5 @@ class CfgVehicles
 		{
 			"CannabisPlus\cigarettes\data\cigarette_unlit_co.paa"
 		};
-		class DamageSystem
-        {
-            class GlobalHealth
-            {
-                class Health
-                {
-                    hitpoints=100;
-				}
-			}
-		}
 	};
 };
