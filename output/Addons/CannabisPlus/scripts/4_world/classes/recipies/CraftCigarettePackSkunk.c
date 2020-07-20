@@ -59,7 +59,14 @@ class CP_CraftCigarettePackSkunkEmpty extends RecipeBase
 
 	override bool CanDo(ItemBase ingredients[], PlayerBase player)//final check for recipe's validity
 	{
-		return true;
+		ItemBase item;
+		Class.CastTo(item ,ingredients[0]);
+		//Print("[DEBUG] " + item.GetDamage());		
+		if( item.GetDamage() == 0) {
+			return true;
+		} else {
+			return false;
+		}
 	}
 
 	override void Do(ItemBase ingredients[], PlayerBase player,array<ItemBase> results, float specialty_weight)//gets called upon recipe's completion

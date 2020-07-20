@@ -57,8 +57,15 @@ class CP_CraftCigarettePackBlueEmpty extends RecipeBase
 	}
 
 	override bool CanDo(ItemBase ingredients[], PlayerBase player)//final check for recipe's validity
-	{
-		return true;
+	{				
+		ItemBase item;
+		Class.CastTo(item ,ingredients[0]);
+		//Print("[DEBUG] " + item.GetDamage());		
+		if( item.GetDamage() == 0) {
+			return true;
+		} else {
+			return false;
+		}
 	}
 
 	override void Do(ItemBase ingredients[], PlayerBase player,array<ItemBase> results, float specialty_weight)//gets called upon recipe's completion
@@ -77,8 +84,8 @@ class CP_CraftCigarettePackBlue extends RecipeBase
 		m_Specialty = 0;// value > 0 for roughness, value < 0 for precision
 		
 		
-		//conditions
-		m_MinDamageIngredient[0] = -1;//-1 = disable check
+		//conditions		
+		m_MinDamageIngredient[0] = -1;
 		m_MaxDamageIngredient[0] = -1;//-1 = disable check
 		
 		m_MinQuantityIngredient[0] = 500;//-1 = disable check
@@ -130,11 +137,14 @@ class CP_CraftCigarettePackBlue extends RecipeBase
     {
 		ItemBase pack;
 		Class.CastTo(pack, ingredients[1]);
+					
+		
         if( pack.GetQuantity() == 5)
 		{
 			return false;			
 		}
 		else return true;
+		
     }
 
     override void Do(ItemBase ingredients[], PlayerBase player,array<ItemBase> results, float specialty_weight)//gets called upon recipe's completion
