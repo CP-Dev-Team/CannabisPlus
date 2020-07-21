@@ -135,14 +135,19 @@ class CP_CraftCigarettePackChernamorka extends RecipeBase
 
 	override bool CanDo(ItemBase ingredients[], PlayerBase player)//final check for recipe's validity
     {
-		ItemBase pack;
 		ItemBase item;
+		Class.CastTo(item, ingredients[0]);
+		ItemBase pack;
 		Class.CastTo(pack, ingredients[1]);
-		if( item.GetDamage() == 0 && pack.GetQuantity() < 5) {
+		
+		if ( item.GetDamage() == 0 && pack.GetQuantity() < 5 )
+		{
 			return true;
-		} else {
+		} 
+		else 
+		{
 			return false;			
-		}
+		}	
     }
 
     override void Do(ItemBase ingredients[], PlayerBase player,array<ItemBase> results, float specialty_weight)//gets called upon recipe's completion
