@@ -134,15 +134,18 @@ class CP_CraftCigarettePackStardawg extends RecipeBase
 		//----------------------------------------------------------------------------------------------------------------------
 	}
 
-	override bool CanDo(ItemBase ingredients[], PlayerBase player)//final check for recipe's validity
-    {
+	override bool CanDo(ItemBase ingredients[], PlayerBase player){ //final check for recipe's validity
+		
+		ItemBase item;
 		ItemBase pack;
+		Class.CastTo(item ,ingredients[0]);
 		Class.CastTo(pack, ingredients[1]);
-        if( pack.GetQuantity() == 5)
-		{
+		
+        if( pack.GetQuantity() == 5 || item.GetDamage() > 0) {
 			return false;			
-		}
-		else return true;
+		} else {
+			return true;
+		} 
     }
 
     override void Do(ItemBase ingredients[], PlayerBase player,array<ItemBase> results, float specialty_weight)//gets called upon recipe's completion
