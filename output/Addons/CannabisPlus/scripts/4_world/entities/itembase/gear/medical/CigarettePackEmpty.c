@@ -1,0 +1,1 @@
+class CP_CigarettePack_Empty: CigarettePack_ColorBase {};

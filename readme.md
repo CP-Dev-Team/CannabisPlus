@@ -2,8 +2,10 @@
 A modification for DayZ Standalone for advanced cannabis cultivation
 
 ## ToDo
-[x] double income by fertiliziation
-[ ] add transpareny for tobacco texture
+* [ ] better comments in config files
+* [ ] better comments in CannabisPlus.c
+* [ ] refactoring CannabisPlus.c
+* [ ] more dynamic calculation of plant growing
 
 ## Installation
 Simply subscribe to workshop item
@@ -42,8 +44,6 @@ Growtime adds a randomizer so the time is not 100% exact.
 | pumpkin_growtime       |       8       | Growtime of Pumpkin in minutes |
 | pumpkin_cropcount      |       2       | Ammount of Pumpkin to harvest |
 | pumpkinSeed_count      |       9       | Ammount of Pumpkin seeds in a seedpack |
-| potato_growtime        |       8       | Growtime of Potato in minutes (for future use) |
-| potato_cropcount       |       2       | Ammount of Potato to harvest (for future use) |
 
 ## Steam-Workshop Link
 https://steamcommunity.com/sharedfiles/filedetails/?id=1932611410

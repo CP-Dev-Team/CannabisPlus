@@ -1,0 +1,34 @@
+EffectDef {
+ Emitors {
+  EmitorDef smokeEmitter {
+   ConeAngle 0 0 0
+   MaxNum 12
+   BirthRate 1
+   BirthRateRND 12
+   BirthRateVel 1
+   LocalTransform 0
+   Material "{55020E0786F83004}graphics/particles/materials/smoke/smoke_anim_01.emat"
+   ScaleX 1
+   SizeMultiplier 1.5
+   SizeRND 2
+   RandomRotDir 0
+   RandomAngle 0
+   BillboardingType Full
+   Velocity 1
+   VelocityRND 0.5
+   AirResistanceRND 0
+   Spring 0
+   LifeTime 3
+   LifeTimeRND 0
+   Alpha {
+    0 0.11392 1 0
+   }
+   RotationSpeed {
+    0 0.39241 1 0.63924
+   }
+   Size {
+    0 0.14557 1 0.46835
+   }
+  }
+ }
+}
