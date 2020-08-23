@@ -86,6 +86,78 @@ class CfgVehicles
 		};
 	};
 
+	/* Future */
+	class CP_CannabisSeedsFuture: SeedBase
+	{
+		scope=2;
+		displayName="Future Cannabis Seeds";
+		descriptionShort="A handful of Future cannabis seeds.";
+		model="\dz\gear\cultivation\cannabis_seeds.p3d";
+		canBeSplit=1;
+		varQuantityInit=20;
+		varQuantityMin=0;
+		varQuantityMax=20;
+		class Horticulture
+		{
+			PlantType="CP_Plant_CannabisFuture";
+		};
+	};
+
+	/* S1 */
+	class CP_CannabisSeedsS1: SeedBase
+	{
+		scope=2;
+		displayName="S1 Cannabis Seeds";
+		descriptionShort="A handful of S1 cannabis seeds.";
+		model="\dz\gear\cultivation\cannabis_seeds.p3d";
+		canBeSplit=1;
+		varQuantityInit=20;
+		varQuantityMin=0;
+		varQuantityMax=20;
+		class Horticulture
+		{
+			PlantType="CP_Plant_CannabisS1";
+		};
+	};
+
+	/* Nomad */
+	class CP_CannabisSeedsNomad: SeedBase
+	{
+		scope=2;
+		displayName="Nomad Cannabis Seeds";
+		descriptionShort="A handful of Nomad cannabis seeds.";
+		model="\dz\gear\cultivation\cannabis_seeds.p3d";
+		canBeSplit=1;
+		varQuantityInit=20;
+		varQuantityMin=0;
+		varQuantityMax=20;
+		class Horticulture
+		{
+			PlantType="CP_Plant_CannabisNomad";
+		};
+	};
+
+	/* BlackFrost */
+	class CP_CannabisSeedsBlackFrost: SeedBase
+	{
+		scope=2;
+		displayName="BlackFrost Cannabis Seeds";
+		descriptionShort="A handful of BlackFrost cannabis seeds.";
+		model="\dz\gear\cultivation\cannabis_seeds.p3d";
+		canBeSplit=1;
+		varQuantityInit=20;
+		varQuantityMin=0;
+		varQuantityMax=20;
+		class Horticulture
+		{
+			PlantType="CP_Plant_CannabisBlackFrost";
+		};
+	};
+
+
+
+
+
 /* FUTURE
 	class CannabisSeedsAcapulco: SeedBase
 	{
