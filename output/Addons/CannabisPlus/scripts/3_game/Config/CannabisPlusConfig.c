@@ -28,6 +28,23 @@ class CannabisPlusConfig
 	float cannabisStardawg_growtime;
 	float cannabisStardawg_cropcount;
 	float cannabisStardawgSeed_count;
+
+	float cannabisFuture_growtime;
+	float cannabisFuture_cropcount;
+	float cannabisFutureSeed_count;
+	
+
+	float cannabisS1_growtime;
+	float cannabisS1_cropcount;
+	float cannabisS1Seed_count;
+
+	float cannabisNomad_growtime;
+	float cannabisNomad_cropcount;
+	float cannabisNomadSeed_count;
+
+	float cannabisBlackFrost_growtime;
+	float cannabisBlackFrost_cropcount;
+	float cannabisBlackFrost_count;
 	
 	float pepper_growtime;
 	float pepper_cropcount;
@@ -79,7 +96,24 @@ class CannabisPlusConfig
 		cannabisBlueSeed_count 	= 9;	
 		cannabisStardawg_growtime 	= 8;
 		cannabisStardawg_cropcount 	= 2;
-		cannabisStardawgSeed_count 	= 9;		
+		cannabisStardawgSeed_count 	= 9;
+
+		cannabisFuture_growtime 	= 8;
+		cannabisFuture_cropcount 	= 2;
+		cannabisFutureSeed_count 	= 9;		
+
+		cannabisS1_growtime 	= 8;
+		cannabisS1_cropcount 	= 2;
+		cannabisS1Seed_count 	= 9;
+
+		cannabisNomad_growtime 	= 8;
+		cannabisNomad_cropcount 	= 2;
+		cannabisNomadSeed_count 	= 9;
+
+		cannabisBlackFrost_growtime 	= 8;
+		cannabisBlackFrost_cropcount 	= 2;
+		cannabisBlackFrostSeed_count 	= 9;
+
 		pepper_growtime 			= 8;
 		pepper_cropcount 			= 2;
 		pepperSeed_count 			= 9;		
