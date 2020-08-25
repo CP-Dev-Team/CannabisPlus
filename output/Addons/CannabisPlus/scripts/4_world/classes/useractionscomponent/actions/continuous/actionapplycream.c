@@ -2,7 +2,7 @@ class ActionApplyCreamCB : ActionContinuousBaseCB
 {
 	override void CreateActionComponent()
 	{
-		m_ActionData.m_ActionComponent = new CAContinuousRepeat(1);
+		m_ActionData.m_ActionComponent = new CAContinuousRepeat(UATimeSpent.WASH_HANDS);
 	}
 };
 
@@ -13,6 +13,11 @@ class ActionApplyCream: ActionContinuousBase
 	void ActionApplyCream()
 	{
 		m_CallbackClass = ActionApplyCreamCB;
+		m_CommandUID	= DayZPlayerConstants.CMD_ACTIONFB_WASHHANDSWELL;
+
+		GameOptions gameOptions = new GameOptions();
+		ListOptionsAccess lang = ListOptionsAccess.Cast(gameOptions.GetOptionByType( AT_OPTIONS_LANGUAGE ));
+		lang.GetItemText(lang.GetIndex(), currentLanguage);
 	}
 	
 	override void CreateConditionComponents()  
@@ -31,8 +36,11 @@ class ActionApplyCream: ActionContinuousBase
 		//action_data.m_Player.m_ModifiersManager.DeactivateModifier(eModifiers.MDF_POISONING);
 	}
 	
-	override string GetText() {
-		// reserve empty string as return statement
+	override string GetText() 
+	{
+		return "#wash_hands";
+
+/* 		// reserve empty string as return statement
         string text = "";
 		
 		switch(currentLanguage) {
@@ -53,6 +61,6 @@ class ActionApplyCream: ActionContinuousBase
 				text = "Apply Cream";
 		}
 		// returns the string in the right language
-		return text;
+		return text; */
 	}
 };

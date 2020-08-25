@@ -2,7 +2,7 @@ modded class MissionServer
 {
 	private string CONFIG_FILE =  "$profile:CannabisPlus.json";
 	ref CannabisPlusConfig _config;	
-	private int modVersion = 100;
+	private int modVersion = 200;
 	ref CannabisPlusRPC m_CannabisPlusRPC;
 
 	void MissionServer()
