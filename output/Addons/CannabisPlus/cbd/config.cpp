@@ -14,26 +14,26 @@ class CfgPatches
 class CfgVehicles
 {
 	class Edible_Base;
-	class CP_Relief_Balm: Edible_Base
+	class CP_Relief_Balm : Edible_Base
 	{
 		scope=2;
 		displayName="CBD Relief Balm";
 		descriptionShort="CBD Relief Balm";
-		model="\dz\gear\consumables\spraycan.p3d";
+		model="\dz\gear\food\Marmalade.p3d";
+		hiddenSelections[]=
+		{
+			"zbytek"
+		};
 		hiddenSelectionsTextures[]=
 		{
-			"CannabisPlus\cbd\data\relief_balm_co.paa"
+			"CannabisPlus\cbd\data\relief_balm_ca.paa"
 		};
-		rotationFlags=17;
-		itemSize[]={1,3};
-		varQuantityInit=100;
+		weight=60;
+		itemSize[]={2,2};
+		varQuantityInit=340;
 		varQuantityMin=0;
-		varQuantityMax=100;
-//		varQuantityDestroyOnMin=1;  Should leave empty canister.
-		weight=1000;
-//		stackedUnit="ml";
-		quantityBar=0;
-		absorbency=0.69999999;
+		varQuantityMax=340;
+		absorbency=0.89999998;
 		class DamageSystem
 		{
 			class GlobalHealth
@@ -48,7 +48,7 @@ class CfgVehicles
 							1,
 							
 							{
-								"DZ\gear\consumables\data\butane_canister.rvmat"
+								"DZ\gear\food\data\marmalade_jar.rvmat"
 							}
 						},
 						
@@ -56,7 +56,7 @@ class CfgVehicles
 							0.69999999,
 							
 							{
-								"DZ\gear\consumables\data\butane_canister.rvmat"
+								"DZ\gear\food\data\marmalade_jar.rvmat"
 							}
 						},
 						
@@ -64,7 +64,7 @@ class CfgVehicles
 							0.5,
 							
 							{
-								"DZ\gear\consumables\data\butane_canister_damage.rvmat"
+								"DZ\gear\food\data\marmalade_jar_damage.rvmat"
 							}
 						},
 						
@@ -72,7 +72,7 @@ class CfgVehicles
 							0.30000001,
 							
 							{
-								"DZ\gear\consumables\data\butane_canister_damage.rvmat"
+								"DZ\gear\food\data\marmalade_jar_damage.rvmat"
 							}
 						},
 						
@@ -80,42 +80,29 @@ class CfgVehicles
 							0,
 							
 							{
-								"DZ\gear\consumables\data\butane_canister_destruct.rvmat"
+								"DZ\gear\food\data\marmalade_jar_destruct.rvmat"
 							}
 						}
 					};
 				};
 			};
 		};
-	};
-		class AnimEvents
+/*		class Nutrition
+ *		{
+ *			fullnessIndex=1.5;
+ *			energy=280;
+ *			water=30;
+ *			nutritionalIndex=1;
+ *			toxicity=0;
+ *		};
+ */		class AnimEvents
 		{
 			class SoundWeapon
 			{
-				class Tablets_open
+				class pickUpItem
 				{
-					soundSet="Tablets_open_SoundSet";
-					id=201;
-				};
-				class Tablets_catch
-				{
-					soundSet="Tablets_catch_SoundSet";
-					id=202;
-				};
-				class Tablets_close
-				{
-					soundSet="Tablets_close_SoundSet";
-					id=203;
-				};
-				class pickup
-				{
-					soundSet="purificationtablets_pickup_SoundSet";
+					soundSet="Marmalade_pickup_SoundSet";
 					id=797;
-				};
-				class drop
-				{
-					soundset="purificationtablets_drop_SoundSet";
-					id=898;
 				};
 			};
 		};
