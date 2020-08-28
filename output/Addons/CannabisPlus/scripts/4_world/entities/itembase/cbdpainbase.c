@@ -3,7 +3,6 @@ class CP_Relief_Balm extends ItemBase
 	override void SetActions()
 	{
 		super.SetActions();
-		
 		AddAction(ActionApplyCream);
 	}
 	
