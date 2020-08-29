@@ -38,7 +38,7 @@ class ActionApplyCream: ActionContinuousBase
 	
 	override string GetText() 
 	{
-		return "#wash_hands";
+		return "Apply Cream";
 
 /* 		// reserve empty string as return statement
         string text = "";
