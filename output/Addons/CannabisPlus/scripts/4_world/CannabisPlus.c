@@ -319,37 +319,37 @@ modded class PlantBase
 		private bool isFertilized = false;
 		
 		//reads settings from CannabisPlus.json
-		m_tabacco_growtime 			= GetDayZGame().GetCannabisPlusConfig().tobacco_growtime;
-		m_cannabis_growtime         =  GetDayZGame().GetCannabisPlusConfig().cannabis_growtime; //deprecated
-		m_cannabisSkunk_growtime 	= GetDayZGame().GetCannabisPlusConfig().cannabisSkunk_growtime;
-		m_cannabisKush_growtime 	= GetDayZGame().GetCannabisPlusConfig().cannabisKush_growtime;
-		m_cannabisBlue_growtime	 	= GetDayZGame().GetCannabisPlusConfig().cannabisBlue_growtime;
-		m_cannabisStardawg_growtime	 	= GetDayZGame().GetCannabisPlusConfig().cannabisStardawg_growtime;
-		m_cannabisFuture_growtime = GetDayZGame().GetCannabisPlusConfig().cannabisFuture_growtime;
-		m_cannabisS1_growtime = GetDayZGame().GetCannabisPlusConfig().cannabisS1_growtime;
-		m_cannabisNomad_growtime = GetDayZGame().GetCannabisPlusConfig().cannabisNomad_growtime;
-		m_cannabisBlackFrost_growtime = GetDayZGame().GetCannabisPlusConfig().cannabisBlackFrost_growtime;
+		m_tabacco_growtime 				= GetDayZGame().GetCannabisPlusConfig().tobacco_growtime;
+		m_cannabis_growtime         	= GetDayZGame().GetCannabisPlusConfig().cannabis_growtime; //deprecated
+		m_cannabisSkunk_growtime 		= GetDayZGame().GetCannabisPlusConfig().cannabisSkunk_growtime;
+		m_cannabisKush_growtime 		= GetDayZGame().GetCannabisPlusConfig().cannabisKush_growtime;
+		m_cannabisBlue_growtime	 		= GetDayZGame().GetCannabisPlusConfig().cannabisBlue_growtime;
+		m_cannabisStardawg_growtime		= GetDayZGame().GetCannabisPlusConfig().cannabisStardawg_growtime;
+		m_cannabisFuture_growtime 		= GetDayZGame().GetCannabisPlusConfig().cannabisFuture_growtime;
+		m_cannabisS1_growtime 			= GetDayZGame().GetCannabisPlusConfig().cannabisS1_growtime;
+		m_cannabisNomad_growtime 		= GetDayZGame().GetCannabisPlusConfig().cannabisNomad_growtime;
+		m_cannabisBlackFrost_growtime 	= GetDayZGame().GetCannabisPlusConfig().cannabisBlackFrost_growtime;
 
-		m_pepper_growtime 			= GetDayZGame().GetCannabisPlusConfig().pepper_growtime;
-		m_tomato_growtime 			= GetDayZGame().GetCannabisPlusConfig().tomato_growtime;
-		m_zucchini_growtime 		= GetDayZGame().GetCannabisPlusConfig().zucchini_growtime;
-		m_pumpkin_growtime 			= GetDayZGame().GetCannabisPlusConfig().pumpkin_growtime;
+		m_pepper_growtime 				= GetDayZGame().GetCannabisPlusConfig().pepper_growtime;
+		m_tomato_growtime 				= GetDayZGame().GetCannabisPlusConfig().tomato_growtime;
+		m_zucchini_growtime 			= GetDayZGame().GetCannabisPlusConfig().zucchini_growtime;
+		m_pumpkin_growtime 				= GetDayZGame().GetCannabisPlusConfig().pumpkin_growtime;
 	
-		m_tabacco_cropcount 		= GetDayZGame().GetCannabisPlusConfig().tobacco_cropcount;
-		m_cannabis_cropcount 	    = GetDayZGame().GetCannabisPlusConfig().cannabis_cropcount; //deprecated
-		m_cannabisSkunk_cropcount 	= GetDayZGame().GetCannabisPlusConfig().cannabisSkunk_cropcount;
-		m_cannabisKush_cropcount 	= GetDayZGame().GetCannabisPlusConfig().cannabisKush_cropcount;
-		m_cannabisBlue_cropcount 	= GetDayZGame().GetCannabisPlusConfig().cannabisBlue_cropcount;
-		m_cannabisStardawg_cropcount = GetDayZGame().GetCannabisPlusConfig().cannabisStardawg_cropcount;
-		m_cannabisFuture_cropcount = GetDayZGame().GetCannabisPlusConfig().cannabisFuture_cropcount;
-		m_cannabisS1_cropcount = GetDayZGame().GetCannabisPlusConfig().cannabisS1_cropcount;
-		m_cannabisNomad_cropcount = GetDayZGame().GetCannabisPlusConfig().cannabisNomad_cropcount;
-		m_cannabisBlackFrost_cropcount = GetDayZGame().GetCannabisPlusConfig().cannabisBlackFrost_cropcount;
+		m_tabacco_cropcount 			= GetDayZGame().GetCannabisPlusConfig().tobacco_cropcount;
+		m_cannabis_cropcount 	    	= GetDayZGame().GetCannabisPlusConfig().cannabis_cropcount; //deprecated
+		m_cannabisSkunk_cropcount 		= GetDayZGame().GetCannabisPlusConfig().cannabisSkunk_cropcount;
+		m_cannabisKush_cropcount 		= GetDayZGame().GetCannabisPlusConfig().cannabisKush_cropcount;
+		m_cannabisBlue_cropcount 		= GetDayZGame().GetCannabisPlusConfig().cannabisBlue_cropcount;
+		m_cannabisStardawg_cropcount 	= GetDayZGame().GetCannabisPlusConfig().cannabisStardawg_cropcount;
+		m_cannabisFuture_cropcount 		= GetDayZGame().GetCannabisPlusConfig().cannabisFuture_cropcount;
+		m_cannabisS1_cropcount 			= GetDayZGame().GetCannabisPlusConfig().cannabisS1_cropcount;
+		m_cannabisNomad_cropcount 		= GetDayZGame().GetCannabisPlusConfig().cannabisNomad_cropcount;
+		m_cannabisBlackFrost_cropcount 	= GetDayZGame().GetCannabisPlusConfig().cannabisBlackFrost_cropcount;
 		
-		m_pepper_cropcount 			= GetDayZGame().GetCannabisPlusConfig().pepper_cropcount;
-		m_tomato_cropcount 			= GetDayZGame().GetCannabisPlusConfig().tomato_cropcount;
-		m_zucchini_cropcount 		= GetDayZGame().GetCannabisPlusConfig().zucchini_cropcount;
-		m_pumpkin_cropcount 		= GetDayZGame().GetCannabisPlusConfig().pumpkin_cropcount;
+		m_pepper_cropcount 				= GetDayZGame().GetCannabisPlusConfig().pepper_cropcount;
+		m_tomato_cropcount 				= GetDayZGame().GetCannabisPlusConfig().tomato_cropcount;
+		m_zucchini_cropcount 			= GetDayZGame().GetCannabisPlusConfig().zucchini_cropcount;
+		m_pumpkin_cropcount 			= GetDayZGame().GetCannabisPlusConfig().pumpkin_cropcount;
 
 		m_GardenBase = garden_base;
 		
@@ -650,22 +650,22 @@ modded class SeedPackBase
 		int seeds_quantity_max;
 		int seeds_quantity = seeds_quantity_max;
 		// read seed count values from config file
-		m_tobaccoSeed_count 		=  GetDayZGame().GetCannabisPlusConfig().tobaccoSeed_count;		
-		m_cannabisSeed_count        =  GetDayZGame().GetCannabisPlusConfig().cannabisSeed_count;       //deprecated
-		m_cannabisSkunkSeed_count 	=  GetDayZGame().GetCannabisPlusConfig().cannabisSkunkSeed_count;	
-		m_cannabisBlueSeed_count 	=  GetDayZGame().GetCannabisPlusConfig().cannabisBlueSeed_count;	
-		m_cannabisKushSeed_count 	=  GetDayZGame().GetCannabisPlusConfig().cannabisKushSeed_count;	
-		m_cannabisStardawgSeed_count = GetDayZGame().GetCannabisPlusConfig().cannabisStardawgSeed_count;	
+		m_tobaccoSeed_count 			=  GetDayZGame().GetCannabisPlusConfig().tobaccoSeed_count;		
+		m_cannabisSeed_count        	=  GetDayZGame().GetCannabisPlusConfig().cannabisSeed_count;       //deprecated
+		m_cannabisSkunkSeed_count 		=  GetDayZGame().GetCannabisPlusConfig().cannabisSkunkSeed_count;	
+		m_cannabisBlueSeed_count 		=  GetDayZGame().GetCannabisPlusConfig().cannabisBlueSeed_count;	
+		m_cannabisKushSeed_count 		=  GetDayZGame().GetCannabisPlusConfig().cannabisKushSeed_count;	
+		m_cannabisStardawgSeed_count 	=  GetDayZGame().GetCannabisPlusConfig().cannabisStardawgSeed_count;	
 
-		m_cannabisFutureSeed_count = GetDayZGame().GetCannabisPlusConfig().cannabisFutureSeed_count;
-		m_cannabisS1Seed_count 	=  GetDayZGame().GetCannabisPlusConfig().cannabisS1Seed_count;
-		m_cannabisNomadSeed_count =  GetDayZGame().GetCannabisPlusConfig().cannabisNomadSeed_count;
+		m_cannabisFutureSeed_count 		=  GetDayZGame().GetCannabisPlusConfig().cannabisFutureSeed_count;
+		m_cannabisS1Seed_count 			=  GetDayZGame().GetCannabisPlusConfig().cannabisS1Seed_count;
+		m_cannabisNomadSeed_count 		=  GetDayZGame().GetCannabisPlusConfig().cannabisNomadSeed_count;
 		m_cannabisBlackFrostSeed_count 	=  GetDayZGame().GetCannabisPlusConfig().cannabisBlackFrostSeed_count;
 
-		m_pepperSeed_count 			=  GetDayZGame().GetCannabisPlusConfig().pepperSeed_count;			
-		m_tomatoSeed_count 			=  GetDayZGame().GetCannabisPlusConfig().tomatoSeed_count;			
-		m_zucchiniSeed_count 		=  GetDayZGame().GetCannabisPlusConfig().zucchiniSeed_count;	
-		m_pumpkinSeed_count 		=  GetDayZGame().GetCannabisPlusConfig().pumpkinSeed_count;		
+		m_pepperSeed_count 				=  GetDayZGame().GetCannabisPlusConfig().pepperSeed_count;			
+		m_tomatoSeed_count 				=  GetDayZGame().GetCannabisPlusConfig().tomatoSeed_count;			
+		m_zucchiniSeed_count 			=  GetDayZGame().GetCannabisPlusConfig().zucchiniSeed_count;	
+		m_pumpkinSeed_count 			=  GetDayZGame().GetCannabisPlusConfig().pumpkinSeed_count;		
 		// select the current seedpack
 		switch(this.GetType()) {
 			case "CannabisSeedsPack":  //deprecated
@@ -708,6 +708,11 @@ modded class SeedPackBase
 			// Cannabis Nomad seedpack
 			case "CP_CannabisSeedsPackNomad":
 				seeds_quantity_max = m_cannabisNomadSeed_count;
+				break;
+
+			// Cannabis BlackFrost seedpack
+			case "CP_CannabisSeedsPackBlackFrost":
+				seeds_quantity_max = m_cannabisBlackFrostSeed_count;
 				break;
 
 			// Tobacco seedpack
