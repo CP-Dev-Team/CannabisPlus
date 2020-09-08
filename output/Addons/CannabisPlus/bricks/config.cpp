@@ -16,6 +16,8 @@ class CfgPatches
 class CfgVehicles
 {
 	class Container_Base;
+
+	/* Skunk */
 	class CP_CannabisBrickSkunk: Container_Base
 	{	
 		scope=2;
@@ -112,6 +114,7 @@ class CfgVehicles
 		};
 	};
 
+	/* BlueGod */
 	class CP_CannabisBrickBlue: Container_Base
 	{
 		scope=2;
@@ -211,6 +214,7 @@ class CfgVehicles
 	//old - Remove in V3
 	class CannabisBrickBlue: CP_CannabisBrickBlue{};
 
+	/* PurpleKush */
 	class CP_CannabisBrickKush: Container_Base
 	{	
 		scope=2;
@@ -309,7 +313,8 @@ class CfgVehicles
 
 	//old - Remove in V3
 	class CannabisBrickKush: CP_CannabisBrickBlue{};
-	
+
+	/* Stardawg */	
 	class CP_CannabisBrickStardawg: Container_Base
 	{	
 		scope=2;

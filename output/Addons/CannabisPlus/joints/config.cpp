@@ -352,6 +352,26 @@ class CfgVehicles
 		};
 	};	
 
+	class CP_JointFuture: Inventory_Base
+	{
+		scope=2;
+		displayName="Future Joint";
+		descriptionShort="A joint made out of finest Future weed";
+		model="\CannabisPlus\joints\joint.p3d";
+		inventorySlot="Ingredient";
+		rotationFlags=16;
+		weight=30;
+		itemSize[]={1,2};
+		hiddenSelections[]=
+		{
+			"zbytek"
+		};
+		hiddenSelectionsTextures[]=
+		{
+			"CannabisPlus\joints\data\joint_ca.paa"
+		};
+	};
+
 	class CP_JointS1: Inventory_Base
 	{
 		scope=2;

@@ -70,6 +70,7 @@ class CfgVehicles
 	//old - Remove in V3
 	class CannabisSeedsKush: CP_CannabisSeedsKush{};
 
+	/* Stardawg */
 	class CP_CannabisSeedsStardawg: SeedBase
 	{
 		scope=2;
@@ -158,7 +159,7 @@ class CfgVehicles
 
 
 
-/* FUTURE
+/* 
 	class CannabisSeedsAcapulco: SeedBase
 	{
 		scope=2;
@@ -249,7 +250,7 @@ class CfgVehicles
 			PlantType="Plant_CannabisOGKush";
 		};
 	};
-*/ // endFUTURE
+*/ 
 	
 	class CP_TobaccoSeeds: SeedBase
 	{
@@ -714,6 +715,115 @@ class CfgVehicles
 
 	};
 	
+	class CP_CannabisSeedsPackFuture: Inventory_Base
+	{
+		scope=2;
+		displayName="Packed Cannabis Future Seeds";
+		descriptionShort="A package of Future cannabis seeds.";
+		model="\dz\gear\cultivation\zucchini_seeds_pack.p3d";
+		rotationFlags=17;
+		quantityBar=1;
+		itemSize[]={1,1};
+		weight=10;
+		spawnOffset=0;
+		lootCategory="Materials";
+		lootTag[]=
+		{
+			"Farm",
+			"Kitchen",
+			"Forester"
+		};
+		hiddenSelections[]=
+		{
+			"zbytek"
+		};
+		hiddenSelectionsTextures[]=
+		{
+			"CannabisPlus\seeds\data\cannabis_seeds_pack_Future_co.paa"
+		};
+		class DamageSystem
+		{
+			class GlobalHealth
+			{
+				class Health
+				{
+					hitpoints=5;
+					healthLevels[]=
+					{
+						
+						{
+							1,
+							
+							{
+								"DZ\gear\cultivation\data\cannabis_seeds.rvmat"
+							}
+						},
+						
+						{
+							0.69999999,
+							
+							{
+								"DZ\gear\cultivation\data\cannabis_seeds.rvmat"
+							}
+						},
+						
+						{
+							0.5,
+							
+							{
+								"DZ\gear\cultivation\data\cannabis_seeds_damage.rvmat"
+							}
+						},
+						
+						{
+							0.30000001,
+							
+							{
+								"DZ\gear\cultivation\data\cannabis_seeds_damage.rvmat"
+							}
+						},
+						
+						{
+							0,
+							
+							{
+								"DZ\gear\cultivation\data\cannabis_seeds_destruct.rvmat"
+							}
+						}
+					};
+				};
+			};
+		};
+		class Horticulture
+		{
+			ContainsSeedsType="CP_CannabisSeedsFuture";
+		};
+		class UserActions
+		{
+			class EmptyPack
+			{
+				displayNameDefault="Empty Seeds Pack";
+				displayName="A Empty Seeds Pack";
+				position="action";
+				onlyForPlayer=1;
+				radius=2;
+				condition="true";
+				statement="this callMethod ['EmptySeedPack', _person];";
+			};
+		};
+		class AnimEvents
+		{
+			class SoundWeapon
+			{
+				class pickup
+				{
+					soundSet="seedpack_pickup_SoundSet";
+					id=797;
+				};
+			};
+		};
+	};
+	
 	class CP_CannabisSeedsPackS1: Inventory_Base
 	{
 		scope=2;
@@ -1041,7 +1151,7 @@ class CfgVehicles
 		};
 	};
 
-/* FUTURE
+/* 
 	class CannabisSeedsPackAcapulco: Inventory_Base
 	{
 		scope=2;
@@ -1690,7 +1800,7 @@ class CfgVehicles
 			};
 		};
 	};
-*/ // endFUTURE
+*/ 
 
 	class CP_TobaccoSeedsPack: Inventory_Base
 	{

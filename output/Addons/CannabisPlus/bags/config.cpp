@@ -16,6 +16,7 @@ class CfgVehicles
 {
 	class Inventory_Base;
 
+	/* Skunk */
 	class CP_CannabisBagSkunk: Inventory_Base
 	{
 		scope=2;
@@ -111,6 +112,7 @@ class CfgVehicles
 		};
 	};
 
+	/* Blue God */
 	class CP_CannabisBagBlue: Inventory_Base
 	{
 		scope=2;
@@ -210,6 +212,7 @@ class CfgVehicles
 	//old - Remove in V3
 	class CannabisBagBlue: CP_CannabisBagBlue{};
 
+	/* PurpleKush */
 	class CP_CannabisBagKush: Inventory_Base
 	{	
 		scope=2;
@@ -309,6 +312,7 @@ class CfgVehicles
 	//old - Remove in V3
 	class CannabisBagKush: CP_CannabisBagKush {};
 
+	/* Stardawg */
 	class CP_CannabisBagStardawg: Inventory_Base
 	{
 		scope=2;
