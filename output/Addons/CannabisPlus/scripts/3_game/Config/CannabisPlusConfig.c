@@ -79,21 +79,27 @@ class CannabisPlusConfig
 		
 		configVersion				= 200;		
 		removeAfterHarvest 		= true;		
+
 		tobacco_growtime 			= 8;
 		tobacco_cropcount 		= 2;
-		tobaccoSeed_count 		= 9;		
+		tobaccoSeed_count 		= 9;
+
 		cannabis_growtime         = 8; //deprecated
 		cannabis_cropcount        = 2; //deprecated
-		cannabisSeed_count        = 9; //deprecated		
+		cannabisSeed_count        = 9; //deprecated	
+
 		cannabisSkunk_growtime 	= 8;
 		cannabisSkunk_cropcount 	= 2;
-		cannabisSkunkSeed_count 	= 9;		
+		cannabisSkunkSeed_count 	= 9;	
+
 		cannabisKush_growtime 	= 8;
 		cannabisKush_cropcount 	= 2;
-		cannabisKushSeed_count 	= 9;		
+		cannabisKushSeed_count 	= 9;	
+
 		cannabisBlue_growtime 	= 8;
 		cannabisBlue_cropcount 	= 2;
 		cannabisBlueSeed_count 	= 9;	
+
 		cannabisStardawg_growtime 	= 8;
 		cannabisStardawg_cropcount 	= 2;
 		cannabisStardawgSeed_count 	= 9;
@@ -106,7 +112,7 @@ class CannabisPlusConfig
 		cannabisS1_cropcount 	= 2;
 		cannabisS1Seed_count 	= 9;
 
-		cannabisNomad_growtime 	= 8;
+		cannabisNomad_growtime 		= 8;
 		cannabisNomad_cropcount 	= 2;
 		cannabisNomadSeed_count 	= 9;
 
