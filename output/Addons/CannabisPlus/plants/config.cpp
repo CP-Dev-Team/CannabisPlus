@@ -248,7 +248,6 @@ class CfgVehicles
 		};
 	};
 
-
 	class CP_Plant_CannabisFuture: PlantBase
 	{
 		scope=2;
@@ -319,7 +318,6 @@ class CfgVehicles
 		};
 	};
 
-
 	class CP_Plant_CannabisNomad: PlantBase
 	{
 		scope=2;
@@ -355,7 +353,7 @@ class CfgVehicles
 		};
 	};
 
-		class CP_Plant_CannabisBlackFrost: PlantBase
+	class CP_Plant_CannabisBlackFrost: PlantBase
 	{
 		scope=2;
 		displayName="Black Frost Plant";
