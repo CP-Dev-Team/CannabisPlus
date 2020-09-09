@@ -1,5 +1,6 @@
 class CP_CraftCannabisBagNomad extends RecipeBase
 {	
+	override void Init()
 	{
 		m_Name = "Make Nomad Cannabis Bag";
 		m_IsInstaRecipe = false;//should this recipe be performed instantly without animation
