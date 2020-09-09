@@ -98,7 +98,7 @@ modded class CP_Plant_CannabisStardawg
 /* 
  * Future strain 
  */
-modded class CP_PlantCannabisFuture {
+modded class CP_Plant_CannabisFuture {
 	override void Harvest(PlayerBase player) {
 		super.Harvest(player);
 		if(GetGame().IsServer() && GetDayZGame().GetCannabisPlusConfig().removeAfterHarvest==true){
@@ -111,7 +111,7 @@ modded class CP_PlantCannabisFuture {
  * S1 strain
  */
 
-modded class CP_PlantCannabisS1 {
+modded class CP_Plant_CannabisS1 {
 	override void Harvest(PlayerBase player) {
 		super.Harvest(player);
 		if(GetGame().IsServer() && GetDayZGame().GetCannabisPlusConfig().removeAfterHarvest==true){
@@ -124,7 +124,7 @@ modded class CP_PlantCannabisS1 {
  * Nomad strain
  */
 
-modded class CP_PlantCannabisNomad {
+modded class CP_Plant_CannabisNomad {
 	override void Harvest(PlayerBase player) {
 		super.Harvest(player);
 		if(GetGame().IsServer() && GetDayZGame().GetCannabisPlusConfig().removeAfterHarvest==true){
@@ -138,7 +138,7 @@ modded class CP_PlantCannabisNomad {
  *  BlackFrost
  */
 
-modded class CP_PlantCannabisBlackFrost {
+modded class CP_Plant_CannabisBlackFrost {
 	override void Harvest(PlayerBase player) {
 		super.Harvest(player);
 		if(GetGame().IsServer() && GetDayZGame().GetCannabisPlusConfig().removeAfterHarvest==true){
