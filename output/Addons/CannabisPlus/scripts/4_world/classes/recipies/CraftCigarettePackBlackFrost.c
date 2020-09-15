@@ -60,7 +60,7 @@ class CP_CraftCigarettePackBlackFrostEmpty extends RecipeBase
 	override bool CanDo(ItemBase ingredients[], PlayerBase player)//final check for recipe's validity
 	{
 		ItemBase item;
-		Class.CastTo(item ,ingredients[0]);
+		Class.CastTo(item ,ingredients[1]);
 		//Print("[DEBUG] " + item.GetDamage());		
 		if( item.GetDamage() == 0) {
 			return true;
