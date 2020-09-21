@@ -65,6 +65,38 @@ class CfgHorticulture
 			healthyMat="dz\gear\cultivation\data\cannabis_plant.rvmat";
 		};
 
+		class CP_Plant_CannabisFuture
+		{
+			infestedTex="dz\gear\cultivation\data\cannabis_plant_insect_co.paa";
+			infestedMat="dz\gear\cultivation\data\cannabis_plant_insect.rvmat";
+			healthyTex="CannabisPlus\plants\data\cannabis_plant_future_co.paa";
+			healthyMat="dz\gear\cultivation\data\cannabis_plant.rvmat";
+		};
+
+		class CP_Plant_CannabisS1
+		{
+			infestedTex="dz\gear\cultivation\data\cannabis_plant_insect_co.paa";
+			infestedMat="dz\gear\cultivation\data\cannabis_plant_insect.rvmat";
+			healthyTex="CannabisPlus\plants\data\cannabis_plant_s1_co.paa";
+			healthyMat="dz\gear\cultivation\data\cannabis_plant.rvmat";
+		};
+
+		class CP_Plant_CannabisNomad
+		{
+			infestedTex="dz\gear\cultivation\data\cannabis_plant_insect_co.paa";
+			infestedMat="dz\gear\cultivation\data\cannabis_plant_insect.rvmat";
+			healthyTex="CannabisPlus\plants\data\cannabis_plant_nomad_co.paa";
+			healthyMat="dz\gear\cultivation\data\cannabis_plant.rvmat";
+		};
+
+		class CP_Plant_CannabisBlackFrost
+		{
+			infestedTex="dz\gear\cultivation\data\cannabis_plant_insect_co.paa";
+			infestedMat="dz\gear\cultivation\data\cannabis_plant_insect.rvmat";
+			healthyTex="CannabisPlus\plants\data\cannabis_plant_blackfrost_co.paa";
+			healthyMat="dz\gear\cultivation\data\cannabis_plant.rvmat";
+		};
+
 	};
 };
 class CfgVehicles
@@ -213,6 +245,146 @@ class CfgVehicles
 		{
 			GrowthStagesCount=6;
 			CropsType="CP_CannabisStardawg";
+		};
+	};
+
+	class CP_Plant_CannabisFuture: PlantBase
+	{
+		scope=2;
+		displayName="Future Plant";
+		descriptionShort="A Future plant.";
+		model="DZ\gear\cultivation\Cannabis_plant.p3d";
+		hiddenSelections[]=
+		{
+			"plantstage_03",
+			"plantstage_02",
+			"plantstage_04",
+			"plantstage_05",
+			"plantstage_01",
+			"infestedparts"
+		};
+		hiddenSelectionsTextures[]=
+		{
+			"CannabisPlus\plants\data\cannabis_plant_future_co.paa",
+			"CannabisPlus\plants\data\cannabis_plant_future_co.paa",
+			"CannabisPlus\plants\data\cannabis_plant_future_co.paa",
+			"CannabisPlus\plants\data\cannabis_plant_future_co.paa",
+			"CannabisPlus\plants\data\cannabis_plant_future_co.paa",
+			"CannabisPlus\plants\data\cannabis_plant_future_co.paa"
+		};
+		hiddenSelectionsMaterials[]=
+		{
+			"dz\gear\cultivation\data\Cannabis_plant.rvmat"
+		};
+		class Horticulture
+		{
+			GrowthStagesCount=6;
+			CropsType="CP_CannabisFuture";
+		};
+	};
+
+	class CP_Plant_CannabisS1: PlantBase
+	{
+		scope=2;
+		displayName="S1 Plant";
+		descriptionShort="A S1 plant.";
+		model="DZ\gear\cultivation\Cannabis_plant.p3d";
+		hiddenSelections[]=
+		{
+			"plantstage_03",
+			"plantstage_02",
+			"plantstage_04",
+			"plantstage_05",
+			"plantstage_01",
+			"infestedparts"
+		};
+		hiddenSelectionsTextures[]=
+		{
+			"CannabisPlus\plants\data\cannabis_plant_s1_co.paa",
+			"CannabisPlus\plants\data\cannabis_plant_s1_co.paa",
+			"CannabisPlus\plants\data\cannabis_plant_s1_co.paa",
+			"CannabisPlus\plants\data\cannabis_plant_s1_co.paa",
+			"CannabisPlus\plants\data\cannabis_plant_s1_co.paa",
+			"CannabisPlus\plants\data\cannabis_plant_s1_co.paa"
+		};
+		hiddenSelectionsMaterials[]=
+		{
+			"dz\gear\cultivation\data\Cannabis_plant.rvmat"
+		};
+		class Horticulture
+		{
+			GrowthStagesCount=6;
+			CropsType="CP_CannabisS1";
+		};
+	};
+
+	class CP_Plant_CannabisNomad: PlantBase
+	{
+		scope=2;
+		displayName="Nomad Plant";
+		descriptionShort="A Nomad plant.";
+		model="DZ\gear\cultivation\Cannabis_plant.p3d";
+		hiddenSelections[]=
+		{
+			"plantstage_03",
+			"plantstage_02",
+			"plantstage_04",
+			"plantstage_05",
+			"plantstage_01",
+			"infestedparts"
+		};
+		hiddenSelectionsTextures[]=
+		{
+			"CannabisPlus\plants\data\cannabis_plant_nomad_co.paa",
+			"CannabisPlus\plants\data\cannabis_plant_nomad_co.paa",
+			"CannabisPlus\plants\data\cannabis_plant_nomad_co.paa",
+			"CannabisPlus\plants\data\cannabis_plant_nomad_co.paa",
+			"CannabisPlus\plants\data\cannabis_plant_nomad_co.paa",
+			"CannabisPlus\plants\data\cannabis_plant_nomad_co.paa"
+		};
+		hiddenSelectionsMaterials[]=
+		{
+			"dz\gear\cultivation\data\Cannabis_plant.rvmat"
+		};
+		class Horticulture
+		{
+			GrowthStagesCount=6;
+			CropsType="CP_CannabisNomad";
+		};
+	};
+
+	class CP_Plant_CannabisBlackFrost: PlantBase
+	{
+		scope=2;
+		displayName="Black Frost Plant";
+		descriptionShort="A Black Frost plant.";
+		model="DZ\gear\cultivation\Cannabis_plant.p3d";
+		hiddenSelections[]=
+		{
+			"plantstage_03",
+			"plantstage_02",
+			"plantstage_04",
+			"plantstage_05",
+			"plantstage_01",
+			"infestedparts"
+		};
+		hiddenSelectionsTextures[]=
+		{
+			"CannabisPlus\plants\data\cannabis_plant_blackfrost_co.paa",
+			"CannabisPlus\plants\data\cannabis_plant_blackfrost_co.paa",
+			"CannabisPlus\plants\data\cannabis_plant_blackfrost_co.paa",
+			"CannabisPlus\plants\data\cannabis_plant_blackfrost_co.paa",
+			"CannabisPlus\plants\data\cannabis_plant_blackfrost_co.paa",
+			"CannabisPlus\plants\data\cannabis_plant_blackfrost_co.paa"
+		};
+		hiddenSelectionsMaterials[]=
+		{
+			"dz\gear\cultivation\data\Cannabis_plant.rvmat"
+		};
+		class Horticulture
+		{
+			GrowthStagesCount=6;
+			CropsType="CP_CannabisBlackFrost";
 		};
 	};
 

@@ -343,7 +343,291 @@ class CfgVehicles
 		};
 	};
 
-/* FUTURE 
+	class CP_CannabisFuture: Inventory_Base
+	{
+		scope=2;
+		displayName="Future";
+		descriptionShort="Some cannabis bud.  Future variety.";
+		model="\dz\gear\food\cannabis_seedman.p3d";
+		rotationFlags=34;
+		lootCategory="Crafted";
+		weight=14;
+		itemSize[]={1,1};
+		hiddenSelections[]=
+		{
+			"cs_raw"
+		};
+		hiddenSelectionsTextures[]=
+		{
+			"CannabisPlus\fruits\data\cannabis_seedman_raw_Future_co.paa",
+			"CannabisPlus\fruits\data\cannabis_seedman_baked_Future_co.paa",
+			"CannabisPlus\fruits\data\cannabis_seedman_raw_Future_co.paa",
+			"CannabisPlus\fruits\data\cannabis_seedman_raw_Future_co.paa",
+			"CannabisPlus\fruits\data\cannabis_seedman_baked_Future_co.paa"
+		};
+		hiddenSelectionsMaterials[]=
+		{
+			"CannabisPlus\fruits\data\cannabis_seedman_raw.rvmat",
+			"CannabisPlus\fruits\data\cannabis_seedman_baked.rvmat",
+			"CannabisPlus\fruits\data\cannabis_seedman_raw.rvmat",
+			"CannabisPlus\fruits\data\cannabis_seedman_dried.rvmat",
+			"CannabisPlus\fruits\data\cannabis_seedman_burnt.rvmat",
+			"CannabisPlus\fruits\data\cannabis_seedman_rotten.rvmat"
+		};
+		class DamageSystem
+		{
+			class GlobalHealth
+			{
+				class Health
+				{
+					hitpoints=10;
+					healthLevels[]=
+					{
+						
+						{
+							1,
+							{}
+						},
+						
+						{
+							0.69999999,
+							{}
+						},
+						
+						{
+							0.5,
+							{}
+						},
+						
+						{
+							0.30000001,
+							{}
+						},
+						
+						{
+							0,
+							{}
+						}
+					};
+				};
+			};
+		};
+	};
+
+	class CP_CannabisS1: Inventory_Base
+	{
+		scope=2;
+		displayName="S1";
+		descriptionShort="Some cannabis bud.  S1 variety.";
+		model="\dz\gear\food\cannabis_seedman.p3d";
+		rotationFlags=34;
+		lootCategory="Crafted";
+		weight=14;
+		itemSize[]={1,1};
+		hiddenSelections[]=
+		{
+			"cs_raw"
+		};
+		hiddenSelectionsTextures[]=
+		{
+			"CannabisPlus\fruits\data\cannabis_seedman_raw_S1_co.paa",
+			"CannabisPlus\fruits\data\cannabis_seedman_baked_S1_co.paa",
+			"CannabisPlus\fruits\data\cannabis_seedman_raw_S1_co.paa",
+			"CannabisPlus\fruits\data\cannabis_seedman_raw_S1_co.paa",
+			"CannabisPlus\fruits\data\cannabis_seedman_baked_S1_co.paa"
+		};
+		hiddenSelectionsMaterials[]=
+		{
+			"CannabisPlus\fruits\data\cannabis_seedman_raw.rvmat",
+			"CannabisPlus\fruits\data\cannabis_seedman_baked.rvmat",
+			"CannabisPlus\fruits\data\cannabis_seedman_raw.rvmat",
+			"CannabisPlus\fruits\data\cannabis_seedman_dried.rvmat",
+			"CannabisPlus\fruits\data\cannabis_seedman_burnt.rvmat",
+			"CannabisPlus\fruits\data\cannabis_seedman_rotten.rvmat"
+		};
+		class DamageSystem
+		{
+			class GlobalHealth
+			{
+				class Health
+				{
+					hitpoints=10;
+					healthLevels[]=
+					{
+						
+						{
+							1,
+							{}
+						},
+						
+						{
+							0.69999999,
+							{}
+						},
+						
+						{
+							0.5,
+							{}
+						},
+						
+						{
+							0.30000001,
+							{}
+						},
+						
+						{
+							0,
+							{}
+						}
+					};
+				};
+			};
+		};
+	};
+
+	class CP_CannabisNomad: Inventory_Base
+	{
+		scope=2;
+		displayName="Nomad";
+		descriptionShort="Some cannabis bud.  Nomad variety.";
+		model="\dz\gear\food\cannabis_seedman.p3d";
+		rotationFlags=34;
+		lootCategory="Crafted";
+		weight=14;
+		itemSize[]={1,1};
+		hiddenSelections[]=
+		{
+			"cs_raw"
+		};
+		hiddenSelectionsTextures[]=
+		{
+			"CannabisPlus\fruits\data\cannabis_seedman_raw_Nomad_co.paa",
+			"CannabisPlus\fruits\data\cannabis_seedman_baked_Nomad_co.paa",
+			"CannabisPlus\fruits\data\cannabis_seedman_raw_Nomad_co.paa",
+			"CannabisPlus\fruits\data\cannabis_seedman_raw_Nomad_co.paa",
+			"CannabisPlus\fruits\data\cannabis_seedman_baked_Nomad_co.paa"
+		};
+		hiddenSelectionsMaterials[]=
+		{
+			"CannabisPlus\fruits\data\cannabis_seedman_raw.rvmat",
+			"CannabisPlus\fruits\data\cannabis_seedman_baked.rvmat",
+			"CannabisPlus\fruits\data\cannabis_seedman_raw.rvmat",
+			"CannabisPlus\fruits\data\cannabis_seedman_dried.rvmat",
+			"CannabisPlus\fruits\data\cannabis_seedman_burnt.rvmat",
+			"CannabisPlus\fruits\data\cannabis_seedman_rotten.rvmat"
+		};
+		class DamageSystem
+		{
+			class GlobalHealth
+			{
+				class Health
+				{
+					hitpoints=10;
+					healthLevels[]=
+					{
+						
+						{
+							1,
+							{}
+						},
+						
+						{
+							0.69999999,
+							{}
+						},
+						
+						{
+							0.5,
+							{}
+						},
+						
+						{
+							0.30000001,
+							{}
+						},
+						
+						{
+							0,
+							{}
+						}
+					};
+				};
+			};
+		};
+	};
+
+	class CP_CannabisBlackFrost: Inventory_Base
+	{
+		scope=2;
+		displayName="Black Frost";
+		descriptionShort="Some cannabis bud.  Black Frost variety.";
+		model="\dz\gear\food\cannabis_seedman.p3d";
+		rotationFlags=34;
+		lootCategory="Crafted";
+		weight=14;
+		itemSize[]={1,1};
+		hiddenSelections[]=
+		{
+			"cs_raw"
+		};
+		hiddenSelectionsTextures[]=
+		{
+			"CannabisPlus\fruits\data\cannabis_seedman_raw_BlackFrost_co.paa",
+			"CannabisPlus\fruits\data\cannabis_seedman_baked_BlackFrost_co.paa",
+			"CannabisPlus\fruits\data\cannabis_seedman_raw_BlackFrost_co.paa",
+			"CannabisPlus\fruits\data\cannabis_seedman_raw_BlackFrost_co.paa",
+			"CannabisPlus\fruits\data\cannabis_seedman_baked_BlackFrost_co.paa"
+		};
+		hiddenSelectionsMaterials[]=
+		{
+			"CannabisPlus\fruits\data\cannabis_seedman_raw.rvmat",
+			"CannabisPlus\fruits\data\cannabis_seedman_baked.rvmat",
+			"CannabisPlus\fruits\data\cannabis_seedman_raw.rvmat",
+			"CannabisPlus\fruits\data\cannabis_seedman_dried.rvmat",
+			"CannabisPlus\fruits\data\cannabis_seedman_burnt.rvmat",
+			"CannabisPlus\fruits\data\cannabis_seedman_rotten.rvmat"
+		};
+		class DamageSystem
+		{
+			class GlobalHealth
+			{
+				class Health
+				{
+					hitpoints=10;
+					healthLevels[]=
+					{
+						
+						{
+							1,
+							{}
+						},
+						
+						{
+							0.69999999,
+							{}
+						},
+						
+						{
+							0.5,
+							{}
+						},
+						
+						{
+							0.30000001,
+							{}
+						},
+						
+						{
+							0,
+							{}
+						}
+					};
+				};
+			};
+		};
+	};
+
+/*  
 	class CannabisAcapulco: Edible_Base
 	{
 		scope=2;
@@ -1322,7 +1606,7 @@ class CfgVehicles
 			};
 		};
 	};
-*/ //endFUTURE
+*/
 	class CP_Tobacco: Inventory_Base
 	{
 		scope=2;

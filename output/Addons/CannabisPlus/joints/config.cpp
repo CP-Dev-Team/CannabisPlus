@@ -351,4 +351,84 @@ class CfgVehicles
 			"CannabisPlus\joints\data\joint_ca.paa"
 		};
 	};	
+
+	class CP_JointFuture: Inventory_Base
+	{
+		scope=2;
+		displayName="Future Joint";
+		descriptionShort="A joint made out of finest Future weed";
+		model="\CannabisPlus\joints\joint.p3d";
+		inventorySlot="Ingredient";
+		rotationFlags=16;
+		weight=30;
+		itemSize[]={1,2};
+		hiddenSelections[]=
+		{
+			"zbytek"
+		};
+		hiddenSelectionsTextures[]=
+		{
+			"CannabisPlus\joints\data\joint_ca.paa"
+		};
+	};
+
+	class CP_JointS1: Inventory_Base
+	{
+		scope=2;
+		displayName="S1 Joint";
+		descriptionShort="A joint made out of finest S1 weed";
+		model="\CannabisPlus\joints\joint.p3d";
+		inventorySlot="Ingredient";
+		rotationFlags=16;
+		weight=30;
+		itemSize[]={1,2};
+		hiddenSelections[]=
+		{
+			"zbytek"
+		};
+		hiddenSelectionsTextures[]=
+		{
+			"CannabisPlus\joints\data\joint_ca.paa"
+		};
+	};
+
+	class CP_JointNomad: Inventory_Base
+	{
+		scope=2;
+		displayName="Nomad Joint";
+		descriptionShort="A joint made out of finest Nomad weed";
+		model="\CannabisPlus\joints\joint.p3d";
+		inventorySlot="Ingredient";
+		rotationFlags=16;
+		weight=30;
+		itemSize[]={1,2};
+		hiddenSelections[]=
+		{
+			"zbytek"
+		};
+		hiddenSelectionsTextures[]=
+		{
+			"CannabisPlus\joints\data\joint_ca.paa"
+		};
+	};
+
+	class CP_JointBlackFrost: Inventory_Base
+	{
+		scope=2;
+		displayName="BlackFrost Joint";
+		descriptionShort="A joint made out of finest BlackFrost weed";
+		model="\CannabisPlus\joints\joint.p3d";
+		inventorySlot="Ingredient";
+		rotationFlags=16;
+		weight=30;
+		itemSize[]={1,2};
+		hiddenSelections[]=
+		{
+			"zbytek"
+		};
+		hiddenSelectionsTextures[]=
+		{
+			"CannabisPlus\joints\data\joint_ca.paa"
+		};
+	};
 };

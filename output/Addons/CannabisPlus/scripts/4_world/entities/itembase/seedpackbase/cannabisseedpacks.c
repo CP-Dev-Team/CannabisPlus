@@ -17,3 +17,23 @@ class CP_CannabisSeedsPackStardawg extends SeedPackBase
 {	
 
 }
+
+class CP_CannabisSeedsPackFuture extends SeedPackBase
+{	
+
+}
+
+class CP_CannabisSeedsPackS1 extends SeedPackBase
+{	
+
+}
+
+class CP_CannabisSeedsPackNomad extends SeedPackBase
+{	
+
+}
+
+class CP_CannabisSeedsPackBlackFrost extends SeedPackBase
+{	
+
+}
