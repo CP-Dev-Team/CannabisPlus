@@ -508,8 +508,8 @@ class CfgVehicles
 	class CP_CannabisBagS1: Inventory_Base
 	{
 		scope=2;
-		displayName="Bag of S1 Weed";
-		descriptionShort="About an ounce of S1 weed.";
+		displayName="Bag of S1 Hemp";
+		descriptionShort="About an ounce of S1 hemp.  Sponsored by StevesGoods.com";
 		model="\DZ\gear\tools\Heatpack.p3d";
 		rotationFlags=17;
 		canBeSplit=1;

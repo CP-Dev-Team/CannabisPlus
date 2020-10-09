@@ -418,7 +418,7 @@ class CfgVehicles
 	{
 		scope=2;
 		displayName="S1";
-		descriptionShort="Some cannabis bud.  S1 variety.";
+		descriptionShort="Some cannabis bud.  S1 variety.  Sponsored by StevesGoods.com";
 		model="\dz\gear\food\cannabis_seedman.p3d";
 		rotationFlags=34;
 		lootCategory="Crafted";
