@@ -13,8 +13,8 @@ class CfgPatches
 };
 class CfgVehicles
 {
-	class Edible_Base;
-	class CP_Relief_Balm : Edible_Base
+	class Inventory_Base;
+	class CP_Relief_Balm : Inventory_Base
 	{
 		scope=2;
 		displayName="CBD Relief Balm";
@@ -87,15 +87,7 @@ class CfgVehicles
 				};
 			};
 		};
-/*		class Nutrition
- *		{
- *			fullnessIndex=1.5;
- *			energy=280;
- *			water=30;
- *			nutritionalIndex=1;
- *			toxicity=0;
- *		};
- */		class AnimEvents
+     	class AnimEvents
 		{
 			class SoundWeapon
 			{

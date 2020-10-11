@@ -1,4 +1,4 @@
-class CP_Relief_Balm extends ItemBase
+class CP_Relief_Balm extends Inventory_Base
 {
 	override void SetActions()
 	{

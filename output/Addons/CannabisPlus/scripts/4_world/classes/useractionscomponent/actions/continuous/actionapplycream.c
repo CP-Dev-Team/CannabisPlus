@@ -2,7 +2,7 @@ class ActionApplyCreamCB : ActionContinuousBaseCB
 {
 	override void CreateActionComponent()
 	{
-		m_ActionData.m_ActionComponent = new CAContinuousRepeat(UATimeSpent.WASH_HANDS);
+		m_ActionData.m_ActionComponent = new CAContinuousTime(UATimeSpent.SEW_CUTS);
 	}
 };
 
@@ -13,11 +13,27 @@ class ActionApplyCream: ActionContinuousBase
 	void ActionApplyCream()
 	{
 		m_CallbackClass = ActionApplyCreamCB;
-		m_CommandUID	= DayZPlayerConstants.CMD_ACTIONFB_WASHHANDSWELL;
+		m_CommandUID	= DayZPlayerConstants.CMD_ACTIONFB_STITCHUPSELF;
+		m_FullBody = true;
+		m_StanceMask = DayZPlayerConstants.STANCEMASK_ERECT | DayZPlayerConstants.STANCEMASK_CROUCH;
 
 		GameOptions gameOptions = new GameOptions();
 		ListOptionsAccess lang = ListOptionsAccess.Cast(gameOptions.GetOptionByType( AT_OPTIONS_LANGUAGE ));
 		lang.GetItemText(lang.GetIndex(), currentLanguage);
+	}
+	
+	override void ApplyModifiers( ActionData action_data )
+	{
+		action_data.m_MainItem.OnApply(action_data.m_Player);
+		//player.m_ModifiersManager.ActivateModifier(eModifiers.MDF_CHEMICALPOISON);
+	}
+	
+	override void OnFinishProgressServer( ActionData action_data )
+	{	
+		if (action_data.m_MainItem)
+		{
+			ApplyModifiers(action_data);
+		}
 	}
 	
 	override void CreateConditionComponents()  
@@ -30,17 +46,10 @@ class ActionApplyCream: ActionContinuousBase
 	{
 		return false;
 	}
-
-	override void ApplyModifiers( ActionData action_data )
-	{
-		//action_data.m_Player.m_ModifiersManager.DeactivateModifier(eModifiers.MDF_POISONING);
-	}
 	
 	override string GetText() 
 	{
-		return "Apply Cream";
-
-/* 		// reserve empty string as return statement
+        // reserve empty string as return statement
         string text = "";
 		
 		switch(currentLanguage) {
@@ -59,8 +68,8 @@ class ActionApplyCream: ActionContinuousBase
 			// set english to default
 			default:
 				text = "Apply Cream";
-		}
+		};
 		// returns the string in the right language
-		return text; */
-	}
+		return text;
+	};
 };
