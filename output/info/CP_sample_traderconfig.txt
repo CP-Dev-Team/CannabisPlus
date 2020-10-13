@@ -26,3 +26,15 @@
 		CP_CigarettePack_CannabisStardawg,		*,		4725,		3150
         CP_CannabisBagStardawg,					1,		1875,		1250
 		CP_CannabisBrickStardawg,				*,		30000,		20000
+		CP_CigarettePack_CannabisFuture,		*,		4725,		3150
+        CP_CannabisBagFuture,					1,		1875,		1250
+		CP_CannabisBrickFuture,					*,		30000,		20000		
+		CP_CigarettePack_CannabisS1,		*,		4725,		3150
+        CP_CannabisBagS1,					1,		1875,		1250
+		CP_CannabisBrickS1,				*,		30000,		20000
+		CP_CigarettePack_CannabisNomad,		*,		4725,		3150
+        CP_CannabisBagNomad,					1,		1875,		1250
+		CP_CannabisBrickNomad,				*,		30000,		20000
+		CP_CigarettePack_CannabisBlackFrost,		*,		4725,		3150
+        CP_CannabisBagBlackFrost,					1,		1875,		1250
+		CP_CannabisBrickBlackFrost,				*,		30000,		20000				
