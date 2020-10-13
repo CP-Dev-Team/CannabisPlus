@@ -512,8 +512,8 @@ class CfgVehicles
 	class CP_CannabisBrickS1: Container_Base
 	{	
 		scope=2;
-		displayName="Brick of S1 Weed";
-		descriptionShort="One pound of S1 weed.";
+		displayName="Brick of S1 Hemp";
+		descriptionShort="One pound of S1 hemp.  Sponsored by StevesGoods.com";
 		model="\dz\gear\containers\FirstAidKit.p3d";
 		rotationFlags=17;
 		//canBeSplit=1;

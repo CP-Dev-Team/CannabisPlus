@@ -740,7 +740,7 @@ class CfgVehicles
 	{
 		scope=2;
 		displayName="Marijuana Cigarettes S1";
-		descriptionShort="A pack of S1 marijuana cigarettes.";
+		descriptionShort="A pack of S1 marijuana cigarettes.  Sponsored by StevesGoods.com";
 		model="\dz\gear\medical\cigarette_pack.p3d";
 		lootCategory="Crafted";
 		itemSize[]={1,1};

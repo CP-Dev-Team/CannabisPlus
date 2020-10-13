@@ -827,8 +827,8 @@ class CfgVehicles
 	class CP_CannabisSeedsPackS1: Inventory_Base
 	{
 		scope=2;
-		displayName="Packed Cannabis S1 Seeds";
-		descriptionShort="A package of S1 cannabis seeds.";
+		displayName="Packed S1 Hemp Seeds";
+		descriptionShort="A package of S1 hemp seeds.  Sponsored by StevesGoods.com";
 		model="\dz\gear\cultivation\zucchini_seeds_pack.p3d";
 		rotationFlags=17;
 		quantityBar=1;

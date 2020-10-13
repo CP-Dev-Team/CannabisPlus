@@ -287,7 +287,7 @@ class CfgVehicles
 	{
 		scope=2;
 		displayName="S1 Plant";
-		descriptionShort="A S1 plant.";
+		descriptionShort="An S1 plant by StevesGoods.com";
 		model="DZ\gear\cultivation\Cannabis_plant.p3d";
 		hiddenSelections[]=
 		{
