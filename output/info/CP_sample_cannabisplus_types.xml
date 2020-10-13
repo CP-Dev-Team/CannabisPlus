@@ -213,7 +213,6 @@
         <usage name="Farm"/>
         <usage name="Hunting"/>
     </type>
-
 <!-- V2.0 - 10/07/2020 -->
  	<type name="CP_Plant_CannabisSkunk">
         <lifetime>3888000</lifetime>
