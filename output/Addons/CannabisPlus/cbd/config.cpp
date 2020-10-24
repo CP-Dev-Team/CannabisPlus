@@ -29,11 +29,15 @@ class CfgVehicles
 			"CannabisPlus\cbd\data\relief_balm_ca.paa"
 		};
 		weight=60;
-		itemSize[]={2,2};
-		varQuantityInit=340;
+		isMeleeWeapon=1;
+		varQuantityInit=10;
 		varQuantityMin=0;
-		varQuantityMax=340;
+		varQuantityMax=10;
+		quantityBar=1;
+		varQuantityDestroyOnMin=1;
+		rotationFlags=17;
 		absorbency=0.89999998;
+		itemSize[]={2,2};
 		class DamageSystem
 		{
 			class GlobalHealth
@@ -48,7 +52,7 @@ class CfgVehicles
 							1,
 							
 							{
-								"DZ\gear\food\data\marmalade_jar.rvmat"
+								"CannabisPlus\cbd\data\relief_balm.rvmat"
 							}
 						},
 						
@@ -56,7 +60,7 @@ class CfgVehicles
 							0.69999999,
 							
 							{
-								"DZ\gear\food\data\marmalade_jar.rvmat"
+								"CannabisPlus\cbd\data\relief_balm.rvmat"
 							}
 						},
 						

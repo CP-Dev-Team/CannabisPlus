@@ -6,21 +6,36 @@ class ActionApplyCreamCB : ActionContinuousBaseCB
 	}
 };
 
-class ActionApplyCream: ActionContinuousBase
+class ActionApplyCream : ActionContinuousBase
 {
 	string currentLanguage;	
 
 	void ActionApplyCream()
 	{
-		m_CallbackClass = ActionApplyCreamCB;
-		m_CommandUID	= DayZPlayerConstants.CMD_ACTIONFB_STITCHUPSELF;
-		m_FullBody = true;
-		m_StanceMask = DayZPlayerConstants.STANCEMASK_ERECT | DayZPlayerConstants.STANCEMASK_CROUCH;
+		m_CallbackClass 	= ActionApplyCreamCB;
+		m_CommandUID		= DayZPlayerConstants.CMD_ACTIONFB_WASHHANDSWELL;
+		m_FullBody 			= true;
+		m_StanceMask 		= DayZPlayerConstants.STANCEMASK_ERECT | DayZPlayerConstants.STANCEMASK_CROUCH;
 
 		GameOptions gameOptions = new GameOptions();
 		ListOptionsAccess lang = ListOptionsAccess.Cast(gameOptions.GetOptionByType( AT_OPTIONS_LANGUAGE ));
 		lang.GetItemText(lang.GetIndex(), currentLanguage);
 	}
+
+	void ApplyCream( ItemBase item, PlayerBase player )
+	{			
+		PluginTransmissionAgents m_mta = PluginTransmissionAgents.Cast(GetPlugin(PluginTransmissionAgents));
+		m_mta.TransmitAgents(item, player, AGT_ITEM_TO_FLESH);
+
+		if (item.HasQuantity())
+		{
+			item.AddQuantity(-1,true);
+		}
+		else
+		{
+			item.Delete();
+		}
+	}	
 	
 	override void ApplyModifiers( ActionData action_data )
 	{
