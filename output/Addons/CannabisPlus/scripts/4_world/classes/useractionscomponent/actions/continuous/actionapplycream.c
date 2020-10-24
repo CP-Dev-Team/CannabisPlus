@@ -45,9 +45,12 @@ class ActionApplyCream : ActionContinuousBase
 	
 	override void OnFinishProgressServer( ActionData action_data )
 	{	
+		PlayerBase target = PlayerBase.Cast(action_data.m_Player);
 		if (action_data.m_MainItem)
 		{
+			action_data.m_MainItem.Open();
 			ApplyModifiers(action_data);
+			ApplyCream( action_data.m_MainItem, target );
 		}
 	}
 	
