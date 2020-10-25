@@ -211,9 +211,6 @@ class CfgVehicles
 		};
 	};
 	
-	//old - Remove in V3
-	class CannabisBrickBlue: CP_CannabisBrickBlue{};
-
 	/* PurpleKush */
 	class CP_CannabisBrickKush: Container_Base
 	{	
@@ -310,9 +307,6 @@ class CfgVehicles
 			};
 		};
 	};
-
-	//old - Remove in V3
-	class CannabisBrickKush: CP_CannabisBrickBlue{};
 
 	/* Stardawg */	
 	class CP_CannabisBrickStardawg: Container_Base

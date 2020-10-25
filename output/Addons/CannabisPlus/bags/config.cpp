@@ -209,9 +209,6 @@ class CfgVehicles
 
 	};
 	
-	//old - Remove in V3
-	class CannabisBagBlue: CP_CannabisBagBlue{};
-
 	/* PurpleKush */
 	class CP_CannabisBagKush: Inventory_Base
 	{	
@@ -308,9 +305,6 @@ class CfgVehicles
 			};
 		};	
 	};
-	
-	//old - Remove in V3
-	class CannabisBagKush: CP_CannabisBagKush {};
 
 	/* Stardawg */
 	class CP_CannabisBagStardawg: Inventory_Base

@@ -9,10 +9,6 @@ class CannabisPlusConfig
 	float tobacco_cropcount;
 	float tobaccoSeed_count;
 	
-	float cannabis_growtime;  //deprecated
-	float cannabis_cropcount; //deprecated
-	float cannabisSeed_count; //deprecated
-	
 	float cannabisSkunk_growtime;
 	float cannabisSkunk_cropcount;
 	float cannabisSkunkSeed_count;
@@ -76,16 +72,12 @@ class CannabisPlusConfig
 	
 	void CannabisPlusConfig() {
 		
-		configVersion					= 200;		
+		configVersion					= 300;		
 		removeAfterHarvest 				= true;		
 
 		tobacco_growtime 				= 8;
 		tobacco_cropcount 				= 2;
 		tobaccoSeed_count 				= 9;
-
-		cannabis_growtime         		= 8; //deprecated
-		cannabis_cropcount        		= 2; //deprecated
-		cannabisSeed_count        		= 9; //deprecated	
 
 		cannabisSkunk_growtime 			= 8;
 		cannabisSkunk_cropcount 		= 2;

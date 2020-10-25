@@ -25,7 +25,6 @@ class CP_CraftCannabisBagKush extends RecipeBase
 		//INGREDIENTS
 		//ingredient 1
 
-		InsertIngredient(0,"CannabisKush");
 		InsertIngredient(0,"CP_CannabisKush");
 		m_IngredientAddHealth[0] = 0;// 0 = do nothing
 		m_IngredientSetHealth[0] = -1; // -1 = do nothing
@@ -34,7 +33,6 @@ class CP_CraftCannabisBagKush extends RecipeBase
 		m_IngredientUseSoftSkills[0] = false;// set 'true' to allow modification of the values by softskills on this ingredient
 		
 		//ingredient 2
-		InsertIngredient(1, "CannabisKush");
 		InsertIngredient(1, "CP_CannabisKush");
 		m_IngredientAddHealth[1] = 0;// 0 = do nothing
 		m_IngredientSetHealth[1] = -1; // -1 = do nothing

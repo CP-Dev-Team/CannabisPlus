@@ -195,9 +195,6 @@ class CfgVehicles
 		};
 	};
 
-	//old - Remove in V3
-	class CannabisBlue: CP_CannabisBlue{};
-	
 	class CP_CannabisKush: Inventory_Base
 	{
 		scope=2;
@@ -268,9 +265,6 @@ class CfgVehicles
 			};
 		};
 	};
-
-	//old - Remove in V3
-	class CannabisKush: CP_CannabisKush{};
 
 	class CP_CannabisStardawg: Inventory_Base
 	{
@@ -1607,6 +1601,7 @@ class CfgVehicles
 		};
 	};
 */
+
 	class CP_Tobacco: Inventory_Base
 	{
 		scope=2;
@@ -1619,6 +1614,4 @@ class CfgVehicles
 		itemSize[]={1,1};
 	};
 
-	//deprecated remove in V3
-	class Tobacco: CP_Tobacco{};
 };
