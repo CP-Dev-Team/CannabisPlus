@@ -18,7 +18,8 @@ class CfgVehicles
 	{
 		scope=2;
 		displayName="CBD Relief Balm";
-		descriptionShort="CBD Relief Balm";
+		descriptionShort=
+		"What if I told you that pain relief is just a swipe away? This revolutionary full spectrum salve holds the key to relieving pain with ease. Rub it on your knees after an epic day of hiking, apply it to your wrists after a long day of typing, or massage it into the back of your neck when dealing with headaches!";
 		model="\dz\gear\food\Marmalade.p3d";
 		hiddenSelections[]=
 		{
