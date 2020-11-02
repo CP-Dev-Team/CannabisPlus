@@ -26,6 +26,7 @@ class CfgVehicles
 		lootCategory="Crafted";
 		weight=14;
 		itemSize[]={1,1};
+		inventorySlot[]={"DryPlant"};
 		hiddenSelections[]=
 		{
 			"cs_raw"
