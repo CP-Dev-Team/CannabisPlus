@@ -66,9 +66,11 @@ class CannabisPlusConfig
 	int smokingJointEffectDuration;			// Time in seconds for the effect to stop
 	int jointCyclesToActivateEffect;		// number of cigarettes consumed to activate the effect
 
-	float jointEffectRed;
-	float jointEffectGreen;
-	float jointEffectBlue;
+	// Weed Effects.
+      float weedHueIntensity;
+      int weedRadBlurXPower;
+      int weedRadBlurYPower;
+      int weedRotBlurPow;
 	
 	void CannabisPlusConfig() {
 		
@@ -126,20 +128,16 @@ class CannabisPlusConfig
 		activateCigaretteSmokingEffect 	= false;
 		smokingCigaretteEffectDuration 	= 20;
 		cigaretteCyclesToActivateEffect = 8;
-		activateJointSmokingEffect 		= false;
-		smokingJointEffectDuration 		= 20;
-		jointCyclesToActivateEffect 	= 2;	
-		jointEffectRed 					= 0.5;
-		jointEffectGreen 				= 0.1;
-		jointEffectBlue 				= 0.5;
+		activateJointSmokingEffect 		= true;
+		smokingJointEffectDuration 		= 360;
+		jointCyclesToActivateEffect 	= 5;	
+		weedHueIntensity = 55;
+            weedRadBlurXPower = 2;
+        	weedRadBlurYPower = 2;
+        	weedRotBlurPow = 10;
 	};
 	
 	void Validate() {		
-		if (jointEffectRed > 1.0 || jointEffectGreen > 1.0 || jointEffectBlue > 1.0) {
-			Print("[CannabisPlusConfig] Joint Effect r,g,b values must be <= 1.0");
-			jointEffectRed 	 = 1.0;
-			jointEffectGreen = 1.0;
-			jointEffectBlue  = 1.0;
-		}
+		
 	};
 };
