@@ -12,6 +12,8 @@ modded class PlayerBase {
 	bool m_HasConsumedJoint = false;
 	int m_jointValue = 0;				// the quantity of the cigarette, what the player consumed
 	
+	float multiplier;
+	
 	//protected ref CannabisPlusConfig m_CannabisPlusConfig
 	
 	//getters for cig/joint smoke state
@@ -68,10 +70,11 @@ modded class PlayerBase {
 				//Print("CannabisPlus: AddValueToJointValue");
 				m_jointValue += value;
 						
-				if(m_jointValue >= GetDayZGame().GetCannabisPlusConfig().jointCyclesToActivateEffect){	
-					Print("Smoking joint effect" + GetDayZGame().GetCannabisPlusConfig().jointCyclesToActivateEffect);
+				if((m_jointValue % GetDayZGame().GetCannabisPlusConfig().jointCyclesToActivateEffect) == 0){	
+					//Print("Smoking joint effect " + GetDayZGame().GetCannabisPlusConfig().jointCyclesToActivateEffect);
 					//Print("CannabisPlus: Starting Effect");			
 					m_HasConsumedJoint = true;
+					CannabisEffectsTriggered(m_jointValue);
 					if (!jointTimer) { jointTimer = new Timer()};
 					jointTimer.Stop();
 					jointTimer.Run(GetDayZGame().GetCannabisPlusConfig().smokingJointEffectDuration, this, "ResetJointValues", null, false);				
@@ -92,33 +95,101 @@ modded class PlayerBase {
 	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 	void ResetJointValues() {
 		m_HasConsumedJoint = false;
+		CannabisEffectsTriggeredOff();
 		m_jointValue = 0;
 		jointTimer.Stop();
 	}
 	
-	override void Init()
-      {
-        if ( GetGame().IsServer() || GetGame().IsMultiplayer() )
-		{
-        DayzPlayerItemBehaviorCfg     heavy = new DayzPlayerItemBehaviorCfg;
-		DayzPlayerItemBehaviorCfg 	onehand = new DayzPlayerItemBehaviorCfg;
-
-        heavy.SetHeavyItems();
-		onehand.SetToolsOneHanded();
-
-    	GetDayZPlayerType().AddItemInHandsProfileIK("CP_JointSkunk", "dz/anims/workspaces/player/player_main/player_main_1h.asi", onehand, "dz/anims/anm/player/ik/gear/thermometer.anm");
-		GetDayZPlayerType().AddItemInHandsProfileIK("CP_JointBlue", "dz/anims/workspaces/player/player_main/player_main_1h.asi", onehand, "dz/anims/anm/player/ik/gear/thermometer.anm");
-		GetDayZPlayerType().AddItemInHandsProfileIK("CP_JointKush", "dz/anims/workspaces/player/player_main/player_main_1h.asi", onehand, "dz/anims/anm/player/ik/gear/thermometer.anm");
-		GetDayZPlayerType().AddItemInHandsProfileIK("CP_JointStardawg", "dz/anims/workspaces/player/player_main/player_main_1h.asi", onehand, "dz/anims/anm/player/ik/gear/thermometer.anm");
-		GetDayZPlayerType().AddItemInHandsProfileIK("CP_JointFuture", "dz/anims/workspaces/player/player_main/player_main_1h.asi", onehand, "dz/anims/anm/player/ik/gear/thermometer.anm");
-		GetDayZPlayerType().AddItemInHandsProfileIK("CP_JointS1", "dz/anims/workspaces/player/player_main/player_main_1h.asi", onehand, "dz/anims/anm/player/ik/gear/thermometer.anm");
-		GetDayZPlayerType().AddItemInHandsProfileIK("CP_JointNomad", "dz/anims/workspaces/player/player_main/player_main_1h.asi", onehand, "dz/anims/anm/player/ik/gear/thermometer.anm");
-		GetDayZPlayerType().AddItemInHandsProfileIK("CP_JointBlackFrost", "dz/anims/workspaces/player/player_main/player_main_1h.asi", onehand, "dz/anims/anm/player/ik/gear/thermometer.anm");
-		GetDayZPlayerType().AddItemInHandsProfileIK("CP_Cigarette", "dz/anims/workspaces/player/player_main/player_main_1h.asi", onehand, "dz/anims/anm/player/ik/gear/thermometer.anm");
-		GetDayZPlayerType().AddItemInHandsProfileIK("CP_Relief_Balm", "dz/anims/workspaces/player/player_main/player_main_1h.asi", onehand, "dz/anims/anm/player/ik/gear/marmalade.anm");
+	// Cannabis Visual Effect On.
+    void CannabisEffectsTriggered(int cycles)
+    { 
 		
+	  multiplier = 1 + (0.25 * (cycles / GetDayZGame().GetCannabisPlusConfig().jointCyclesToActivateEffect));
+	  if (multiplier >= 4.0) {	
+	    multiplier = 4.0;
 	  }
 
-        super.Init();
+        if(GetGame().IsClient())
+        {
+            //Reset effects on player before adding new ones.
+            CameraEffects.changeHue(60);
+            CameraEffects.changeRadBlurXEffect(0);
+            CameraEffects.changeRadBlurYEffect(0);
+            CameraEffects.changeRotationBlurPower(0);
+		CameraEffects.changeVignetteColorRGB(0,0,0);
+            
+            // Visual effects for cannabis.
+		if (multiplier >= 3.5) {
+			CameraEffects.changeHue(GetDayZGame().GetCannabisPlusConfig().weedHueIntensity*2*multiplier);
+			CameraEffects.changeVignetteColorRGB(0,0,5);
+		}else if (multiplier >= 2.5) {
+			CameraEffects.changeHue(GetDayZGame().GetCannabisPlusConfig().weedHueIntensity*multiplier);	
+			CameraEffects.changeRadBlurXEffect(GetDayZGame().GetCannabisPlusConfig().weedRadBlurXPower*multiplier);
+            	CameraEffects.changeRadBlurYEffect(GetDayZGame().GetCannabisPlusConfig().weedRadBlurYPower*multiplier);
+            	CameraEffects.changeRotationBlurPower(GetDayZGame().GetCannabisPlusConfig().weedRotBlurPow*multiplier);		
+		// Testing 
+		}if (multiplier >= 2) {      
+			CameraEffects.changeHue(GetDayZGame().GetCannabisPlusConfig().weedHueIntensity);	      
+            	CameraEffects.changeRadBlurXEffect(GetDayZGame().GetCannabisPlusConfig().weedRadBlurXPower);
+            	CameraEffects.changeRadBlurYEffect(GetDayZGame().GetCannabisPlusConfig().weedRadBlurYPower);
+            	CameraEffects.changeRotationBlurPower(GetDayZGame().GetCannabisPlusConfig().weedRotBlurPow);
+		} 	
+        }
+	  Print("Camera multiplier: " + multiplier);		
+
+    }
+
+    // Cannabis Effects Triggered Off.
+    void CannabisEffectsTriggeredOff()
+    {
+
+        if(GetGame().IsClient())
+        {
+            CameraEffects.changeHue(60);
+            CameraEffects.changeRadBlurXEffect(0);
+            CameraEffects.changeRadBlurYEffect(0);
+            CameraEffects.changeRotationBlurPower(0);
+		CameraEffects.changeVignetteColorRGB(0,0,0);
+        }
+
+    }
+	
+	override void Init()
+      {
+        
+		super.Init();
+		
+		//Reset effects on player spawn.
+		CameraEffects.changeHue(60);
+	      CameraEffects.changeRadBlurXEffect(0);
+	      CameraEffects.changeRadBlurYEffect(0);
+	      CameraEffects.setExposure(60);
+	      CameraEffects.changeRotationBlurPower(0);
+	      CameraEffects.changeVignette(0);
+	      CameraEffects.changeChromaX(0);
+	      CameraEffects.changeChromaY(0);
+		CameraEffects.changeVignetteColorRGB(0,0,0);
+		
+		if ( GetGame().IsServer() || GetGame().IsMultiplayer() )
+		{
+	        	DayzPlayerItemBehaviorCfg     heavy = new DayzPlayerItemBehaviorCfg;
+			DayzPlayerItemBehaviorCfg 	onehand = new DayzPlayerItemBehaviorCfg;
+	
+	        	heavy.SetHeavyItems();
+			onehand.SetToolsOneHanded();
+	
+	    		GetDayZPlayerType().AddItemInHandsProfileIK("CP_JointSkunk", "dz/anims/workspaces/player/player_main/player_main_1h.asi", onehand, "dz/anims/anm/player/ik/gear/thermometer.anm");
+			GetDayZPlayerType().AddItemInHandsProfileIK("CP_JointBlue", "dz/anims/workspaces/player/player_main/player_main_1h.asi", onehand, "dz/anims/anm/player/ik/gear/thermometer.anm");
+			GetDayZPlayerType().AddItemInHandsProfileIK("CP_JointKush", "dz/anims/workspaces/player/player_main/player_main_1h.asi", onehand, "dz/anims/anm/player/ik/gear/thermometer.anm");
+			GetDayZPlayerType().AddItemInHandsProfileIK("CP_JointStardawg", "dz/anims/workspaces/player/player_main/player_main_1h.asi", onehand, "dz/anims/anm/player/ik/gear/thermometer.anm");
+			GetDayZPlayerType().AddItemInHandsProfileIK("CP_JointFuture", "dz/anims/workspaces/player/player_main/player_main_1h.asi", onehand, "dz/anims/anm/player/ik/gear/thermometer.anm");
+			GetDayZPlayerType().AddItemInHandsProfileIK("CP_JointS1", "dz/anims/workspaces/player/player_main/player_main_1h.asi", onehand, "dz/anims/anm/player/ik/gear/thermometer.anm");
+			GetDayZPlayerType().AddItemInHandsProfileIK("CP_JointNomad", "dz/anims/workspaces/player/player_main/player_main_1h.asi", onehand, "dz/anims/anm/player/ik/gear/thermometer.anm");
+			GetDayZPlayerType().AddItemInHandsProfileIK("CP_JointBlackFrost", "dz/anims/workspaces/player/player_main/player_main_1h.asi", onehand, "dz/anims/anm/player/ik/gear/thermometer.anm");
+			GetDayZPlayerType().AddItemInHandsProfileIK("CP_Cigarette", "dz/anims/workspaces/player/player_main/player_main_1h.asi", onehand, "dz/anims/anm/player/ik/gear/thermometer.anm");
+			GetDayZPlayerType().AddItemInHandsProfileIK("CP_Relief_Balm", "dz/anims/workspaces/player/player_main/player_main_1h.asi", onehand, "dz/anims/anm/player/ik/gear/marmalade.anm");
+		
+	  	}
+		
     }
 }
