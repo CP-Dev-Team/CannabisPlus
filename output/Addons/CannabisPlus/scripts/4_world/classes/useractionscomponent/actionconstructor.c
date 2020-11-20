@@ -1,16 +1,12 @@
-//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-//
-//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-modded class ActionConstructor {    
-
-    //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-	// register new actions
-	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-	override void RegisterActions(TTypenameArray actions) {		
-
+modded class ActionConstructor 
+{    
+	override void RegisterActions(TTypenameArray actions) 
+	{
 		super.RegisterActions(actions);
-        actions.Insert(ActionSmokeJointSelf);   	// register action to smoke the joint self
-		actions.Insert(ActionSmokeCigSelf);   	// register action to smoke the joint self
-		actions.Insert(ActionUnpackCigaretteBox);			
+
+        actions.Insert(ActionSmokeJointSelf);
+		actions.Insert(ActionSmokeCigSelf); 
+		actions.Insert(ActionUnpackCigaretteBox);
+		actions.Insert(ActionApplyCream);
 	}
 };

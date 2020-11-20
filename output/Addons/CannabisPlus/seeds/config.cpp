@@ -16,6 +16,7 @@ class CfgVehicles
 {
 	class SeedBase;
 	class Inventory_Base;
+
 	class CP_CannabisSeedsSkunk: SeedBase
 	{
 		scope=2;
@@ -48,9 +49,6 @@ class CfgVehicles
 		};
 	};
 	
-	//old - Remove in V3
-	class CannabisSeedsBlue: CP_CannabisSeedsBlue{};
-
 	class CP_CannabisSeedsKush: SeedBase
 	{
 		scope=2;
@@ -66,9 +64,6 @@ class CfgVehicles
 			PlantType="CP_Plant_CannabisKush";
 		};
 	};
-
-	//old - Remove in V3
-	class CannabisSeedsKush: CP_CannabisSeedsKush{};
 
 	/* Stardawg */
 	class CP_CannabisSeedsStardawg: SeedBase
@@ -267,9 +262,6 @@ class CfgVehicles
 			PlantType="CP_Plant_Tobacco";
 		};
 	};
-
-	//deprecated remove in v3
-	class TobaccoSeeds: CP_TobaccoSeeds{};
 
 	class CP_CannabisSeedsPackSkunk: Inventory_Base
 
@@ -490,9 +482,6 @@ class CfgVehicles
 		};
 	};
 	
-	//remove in V3
-	class CannabisSeedsPackBlue: CP_CannabisSeedsPackBlue{};
-
 	class CP_CannabisSeedsPackKush: Inventory_Base
 	{
 		scope=2;
@@ -602,9 +591,6 @@ class CfgVehicles
 		};
 	};
 	
-	//remove in V3
-	class CannabisSeedsPackKush: CP_CannabisSeedsPackKush{};
-
 	class CP_CannabisSeedsPackStardawg: Inventory_Base
 	{
 		scope=2;
@@ -1911,6 +1897,4 @@ class CfgVehicles
 		};
 	};
 
-	//remove in V3
-	class TobaccoSeedsPack: CP_TobaccoSeedsPack{};
 };

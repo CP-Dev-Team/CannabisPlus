@@ -9,7 +9,3 @@ class CP_Plant_CannabisNomad : PlantBase {};
 class CP_Plant_CannabisBlackFrost : PlantBase {};
 
 class CP_Plant_Tobacco : PlantBase {};
-
-class Plant_CannabisBlue : PlantBase {}; //deprecated
-class Plant_CannabisKush : PlantBase {}; //deprecated
-class Plant_Tobacco : PlantBase {};  //deprecated

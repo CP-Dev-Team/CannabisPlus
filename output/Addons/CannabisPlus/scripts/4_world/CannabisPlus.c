@@ -1,17 +1,6 @@
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 // 
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-modded class Plant_Cannabis //deprecated
-{
-	override void Harvest( PlayerBase player )
-	{
-		super.Harvest(player);
-		if(GetGame().IsServer() && GetDayZGame().GetCannabisPlusConfig().removeAfterHarvest==true){
-			GetGame().GetCallQueue( CALL_CATEGORY_SYSTEM ).CallLater( RemovePlant, 10, true );
-		}
-	}
-}
-
 modded class CP_Plant_CannabisSkunk
 {	
 	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -41,32 +30,10 @@ modded class CP_Plant_CannabisBlue
 	}
 }
 
-modded class Plant_CannabisBlue  //deprecated
-{
-	override void Harvest( PlayerBase player )
-	{
-		super.Harvest(player);
-		if(GetGame().IsServer() && GetDayZGame().GetCannabisPlusConfig().removeAfterHarvest==true){
-			GetGame().GetCallQueue( CALL_CATEGORY_SYSTEM ).CallLater( RemovePlant, 10, true );
-		}
-	}
-}
-
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 // 
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 modded class CP_Plant_CannabisKush
-{
-	override void Harvest( PlayerBase player )
-	{
-		super.Harvest(player);
-		if(GetGame().IsServer() && GetDayZGame().GetCannabisPlusConfig().removeAfterHarvest==true){
-			GetGame().GetCallQueue( CALL_CATEGORY_SYSTEM ).CallLater( RemovePlant, 10, true );
-		}
-	}
-}
-
-modded class Plant_CannabisKush //deprecated
 {
 	override void Harvest( PlayerBase player )
 	{
@@ -162,18 +129,6 @@ modded class CP_Plant_Tobacco
 	}
 }
 
-modded class Plant_Tobacco  //deprecated
-{
-	override void Harvest( PlayerBase player )
-	{
-		super.Harvest(player);
-		if(GetGame().IsServer() && GetDayZGame().GetCannabisPlusConfig().removeAfterHarvest==true){
-			GetGame().GetCallQueue( CALL_CATEGORY_SYSTEM ).CallLater( RemovePlant, 10, true );
-		}
-	}
-}
-
-
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 // 
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -242,7 +197,6 @@ modded class PlantBase
 	private float m_growtime;
 	
 	private float m_tabacco_growtime;
-	private	float m_cannabis_growtime; //deprecated
 	private	float m_cannabisSkunk_growtime; 
 	private float m_cannabisKush_growtime;
 	private float m_cannabisBlue_growtime;
@@ -258,7 +212,6 @@ modded class PlantBase
 	private float m_pumpkin_growtime;
 	
 	private float m_tabacco_cropcount;
-	private float m_cannabis_cropcount; // deprecated7
 	private float m_cannabisSkunk_cropcount;
 	private float m_cannabisKush_cropcount;
 	private float m_cannabisBlue_cropcount;
@@ -320,7 +273,6 @@ modded class PlantBase
 		
 		//reads settings from CannabisPlus.json
 		m_tabacco_growtime 				= GetDayZGame().GetCannabisPlusConfig().tobacco_growtime;
-		m_cannabis_growtime         	= GetDayZGame().GetCannabisPlusConfig().cannabis_growtime; //deprecated
 		m_cannabisSkunk_growtime 		= GetDayZGame().GetCannabisPlusConfig().cannabisSkunk_growtime;
 		m_cannabisKush_growtime 		= GetDayZGame().GetCannabisPlusConfig().cannabisKush_growtime;
 		m_cannabisBlue_growtime	 		= GetDayZGame().GetCannabisPlusConfig().cannabisBlue_growtime;
@@ -336,7 +288,6 @@ modded class PlantBase
 		m_pumpkin_growtime 				= GetDayZGame().GetCannabisPlusConfig().pumpkin_growtime;
 	
 		m_tabacco_cropcount 			= GetDayZGame().GetCannabisPlusConfig().tobacco_cropcount;
-		m_cannabis_cropcount 	    	= GetDayZGame().GetCannabisPlusConfig().cannabis_cropcount; //deprecated
 		m_cannabisSkunk_cropcount 		= GetDayZGame().GetCannabisPlusConfig().cannabisSkunk_cropcount;
 		m_cannabisKush_cropcount 		= GetDayZGame().GetCannabisPlusConfig().cannabisKush_cropcount;
 		m_cannabisBlue_cropcount 		= GetDayZGame().GetCannabisPlusConfig().cannabisBlue_cropcount;
@@ -360,27 +311,15 @@ modded class PlantBase
 		
 		//sets growtime and cropcount out of CannabisPlus.json
 		switch(this.GetType()){
-		    case "Plant_Cannabis": //deprecated
-				m_growtime = m_cannabis_growtime;
-				m_CropsCount = m_cannabis_cropcount;
-				break;
-			// cannabis skunk
+		    // cannabis skunk
 			case "CP_Plant_CannabisSkunk":
 				m_growtime = m_cannabisSkunk_growtime;
 				m_CropsCount = m_cannabisSkunk_cropcount;
 				break;
-			case "Plant_CannabisBlue":  //deprecated
-				m_growtime = m_cannabisBlue_growtime;
-				m_CropsCount = m_cannabisBlue_cropcount;
-				break;	
 			// cannabis blue
 			case "CP_Plant_CannabisBlue":
 				m_growtime = m_cannabisBlue_growtime;
 				m_CropsCount = m_cannabisBlue_cropcount;
-				break;
-			case "Plant_CannabisKush": //deprecated
-				m_growtime = m_cannabisKush_growtime;
-				m_CropsCount = m_cannabisKush_cropcount;
 				break;
 			// cannabis kush
 			case "CP_Plant_CannabisKush":
@@ -618,7 +557,6 @@ modded class ActionHarvestCrops: ActionInteractBase
 modded class SeedPackBase
 {	
 	private int m_tobaccoSeed_count;		
-	private int m_cannabisSeed_count;       // deprecated
 	private int m_cannabisSkunkSeed_count;	
 	private int m_cannabisBlueSeed_count;	
 	private int m_cannabisKushSeed_count;	
@@ -651,7 +589,6 @@ modded class SeedPackBase
 		int seeds_quantity = seeds_quantity_max;
 		// read seed count values from config file
 		m_tobaccoSeed_count 			=  GetDayZGame().GetCannabisPlusConfig().tobaccoSeed_count;		
-		m_cannabisSeed_count        	=  GetDayZGame().GetCannabisPlusConfig().cannabisSeed_count;       //deprecated
 		m_cannabisSkunkSeed_count 		=  GetDayZGame().GetCannabisPlusConfig().cannabisSkunkSeed_count;	
 		m_cannabisBlueSeed_count 		=  GetDayZGame().GetCannabisPlusConfig().cannabisBlueSeed_count;	
 		m_cannabisKushSeed_count 		=  GetDayZGame().GetCannabisPlusConfig().cannabisKushSeed_count;	
@@ -668,24 +605,14 @@ modded class SeedPackBase
 		m_pumpkinSeed_count 			=  GetDayZGame().GetCannabisPlusConfig().pumpkinSeed_count;		
 		// select the current seedpack
 		switch(this.GetType()) {
-			case "CannabisSeedsPack":  //deprecated
-				seeds_quantity_max = m_cannabisSeed_count;
-				break;			
 			// Cannabis Skunk seedpack
 			case "CP_CannabisSeedsPackSkunk":
 				seeds_quantity_max = m_cannabisSkunkSeed_count;
-				break;
-			case "CannabisSeedsPackBlue": //deprecated
-				seeds_quantity_max = m_cannabisBlueSeed_count;
 				break;
 			// Cannabis Blue seedpack
 			case "CP_CannabisSeedsPackBlue":
 				seeds_quantity_max = m_cannabisBlueSeed_count;
 				break;
-			case "CannabisSeedsPackKush": //deprecated
-				seeds_quantity_max = m_cannabisKushSeed_count;
-				break;
-
 			// Cannabis Kush seedpack
 			case "CP_CannabisSeedsPackKush":
 				seeds_quantity_max = m_cannabisKushSeed_count;

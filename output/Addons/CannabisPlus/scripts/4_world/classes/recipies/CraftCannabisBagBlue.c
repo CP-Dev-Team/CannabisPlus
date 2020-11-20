@@ -25,7 +25,6 @@ class CP_CraftCannabisBagBlue extends RecipeBase
 		//INGREDIENTS
 		//ingredient 1
 
-		InsertIngredient(0,"CannabisBlue");
 		InsertIngredient(0,"CP_CannabisBlue");
 		m_IngredientAddHealth[0] = 0;// 0 = do nothing
 		m_IngredientSetHealth[0] = -1; // -1 = do nothing
@@ -35,7 +34,6 @@ class CP_CraftCannabisBagBlue extends RecipeBase
 		
 		//ingredient 2
 
-		InsertIngredient(1, "CannabisBlue");
 		InsertIngredient(1, "CP_CannabisBlue");
 		m_IngredientAddHealth[1] = 0;// 0 = do nothing
 		m_IngredientSetHealth[1] = -1; // -1 = do nothing

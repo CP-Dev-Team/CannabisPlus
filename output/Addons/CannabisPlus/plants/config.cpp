@@ -24,9 +24,6 @@ class CfgHorticulture
 			healthyMat="dz\gear\cultivation\data\zucchini_plant.rvmat";
 		};
 		
-		//Remove in V3
-		class Plant_Tobacco : CP_Plant_Tobacco{};
-
 		class CP_Plant_CannabisSkunk
 		{
 			infestedTex="dz\gear\cultivation\data\cannabis_plant_insect_co.paa";
@@ -43,9 +40,6 @@ class CfgHorticulture
 			healthyMat="dz\gear\cultivation\data\cannabis_plant.rvmat";
 		};
 		
-		//old - Remove in V3
-		class Plant_CannabisKush{};
-
 		class CP_Plant_CannabisBlue
 		{
 			infestedTex="dz\gear\cultivation\data\cannabis_plant_insect_co.paa";
@@ -53,9 +47,6 @@ class CfgHorticulture
 			healthyTex="CannabisPlus\plants\data\cannabis_plant_blue_co.paa";
 			healthyMat="dz\gear\cultivation\data\cannabis_plant.rvmat";
 		};
-
-		//old - Remove in V3
-		class Plant_CannabisBlue{};
 
 		class CP_Plant_CannabisStardawg
 		{
@@ -102,6 +93,7 @@ class CfgHorticulture
 class CfgVehicles
 {
 	class PlantBase;
+
 	class CP_Plant_CannabisSkunk: PlantBase
 	{
 		scope=2;
@@ -172,9 +164,6 @@ class CfgVehicles
 		};
 	};
 	
-	//old - Remove in V3
-	class Plant_CannabisBlue: CP_Plant_CannabisBlue{};
-
 	class CP_Plant_CannabisKush: PlantBase
 	{
 		scope=2;
@@ -209,9 +198,6 @@ class CfgVehicles
 			CropsType="CP_CannabisKush";
 		};
 	};
-
-	//old - Remove in V3
-	class Plant_CannabisKush: CP_Plant_CannabisKush{};
 
 	class CP_Plant_CannabisStardawg: PlantBase
 	{
@@ -409,6 +395,4 @@ class CfgVehicles
 		};
 	};
 
-	//old - Remove in V3
-	class Plant_Tobacco: CP_Plant_Tobacco{};
 };
