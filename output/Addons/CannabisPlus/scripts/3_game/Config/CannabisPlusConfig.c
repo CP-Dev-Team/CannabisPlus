@@ -74,12 +74,12 @@ class CannabisPlusConfig
 	
 	void CannabisPlusConfig() {
 		
-		configVersion					= 300;		
-		removeAfterHarvest 				= true;		
+		configVersion				= 250;		
+		removeAfterHarvest 			= true;		
 
 		tobacco_growtime 				= 8;
-		tobacco_cropcount 				= 2;
-		tobaccoSeed_count 				= 9;
+		tobacco_cropcount 			= 2;
+		tobaccoSeed_count 			= 9;
 
 		cannabisSkunk_growtime 			= 8;
 		cannabisSkunk_cropcount 		= 2;
@@ -109,9 +109,9 @@ class CannabisPlusConfig
 		cannabisNomad_cropcount 		= 2;
 		cannabisNomadSeed_count 		= 9;
 
-		cannabisBlackFrost_growtime 	= 8;
-		cannabisBlackFrost_cropcount 	= 2;
-		cannabisBlackFrostSeed_count 	= 9;
+		cannabisBlackFrost_growtime 		= 8;
+		cannabisBlackFrost_cropcount 		= 2;
+		cannabisBlackFrostSeed_count 		= 9;
 
 		pepper_growtime 				= 8;
 		pepper_cropcount 				= 2;
@@ -119,22 +119,22 @@ class CannabisPlusConfig
 		tomato_growtime 				= 8;
 		tomato_cropcount 				= 2;
 		tomatoSeed_count 				= 9;		
-		zucchini_growtime 				= 8;
-		zucchini_cropcount 				= 2;
-		zucchiniSeed_count 				= 9;
+		zucchini_growtime 			= 8;
+		zucchini_cropcount 			= 2;
+		zucchiniSeed_count 			= 9;
 		pumpkin_growtime 				= 8;
-		pumpkin_cropcount 				= 2;
-		pumpkinSeed_count 				= 9;
+		pumpkin_cropcount 			= 2;
+		pumpkinSeed_count 			= 9;
 		activateCigaretteSmokingEffect 	= false;
 		smokingCigaretteEffectDuration 	= 20;
-		cigaretteCyclesToActivateEffect = 8;
+		cigaretteCyclesToActivateEffect 	= 8;
 		activateJointSmokingEffect 		= true;
 		smokingJointEffectDuration 		= 360;
-		jointCyclesToActivateEffect 	= 5;	
-		weedHueIntensity = 55;
-            weedRadBlurXPower = 2;
-        	weedRadBlurYPower = 2;
-        	weedRotBlurPow = 10;
+		jointCyclesToActivateEffect 		= 5;	
+		weedHueIntensity 				= 55.0;
+            weedRadBlurXPower 			= 2;
+        	weedRadBlurYPower 			= 2;
+        	weedRotBlurPow 				= 10;
 	};
 	
 	void Validate() {		
