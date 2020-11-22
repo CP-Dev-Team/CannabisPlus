@@ -92,10 +92,11 @@ class ActionSmokeJointSelf: ActionContinuousBase {
 	{
 		PlayerBase player = action_data.m_Player;
 		CP_JointBase joint = CP_JointBase.Cast(action_data.m_MainItem);
+		string joint_type = joint.GetType();
 		
-		if (joint) {
+		if (joint && joint_type != "CP_JointS1") {
 			player.AddValueToJointValue(1);
-		}	
+		}
 			
 		super.OnFinishProgressClient(action_data);
 	}
