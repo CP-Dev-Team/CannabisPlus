@@ -12,8 +12,6 @@ modded class PlayerBase {
 	bool m_HasConsumedJoint = false;
 	int m_jointValue = 0;				// the quantity of the cigarette, what the player consumed
 	
-	float multiplier;
-	
 	//protected ref CannabisPlusConfig m_CannabisPlusConfig
 	
 	//getters for cig/joint smoke state
@@ -103,11 +101,12 @@ modded class PlayerBase {
 	// Cannabis Visual Effect On.
     void CannabisEffectsTriggered(int cycles)
     { 
+	  float multiplier;
+	  int counter;			
 		
-	  multiplier = 1 + (0.25 * (cycles / GetDayZGame().GetCannabisPlusConfig().jointCyclesToActivateEffect));
-	  if (multiplier >= 4.0) {	
-	    multiplier = 4.0;
-	  }
+	  counter = cycles / GetDayZGame().GetCannabisPlusConfig().jointCyclesToActivateEffect;
+	  multiplier = 1 + (0.25 * counter);
+
 
         if(GetGame().IsClient())
         {
@@ -116,26 +115,13 @@ modded class PlayerBase {
             CameraEffects.changeRadBlurXEffect(0);
             CameraEffects.changeRadBlurYEffect(0);
             CameraEffects.changeRotationBlurPower(0);
-		CameraEffects.changeVignetteColorRGB(0,0,0);
             
-            // Visual effects for cannabis.
-		if (multiplier >= 3.5) {
-			CameraEffects.changeHue(GetDayZGame().GetCannabisPlusConfig().weedHueIntensity*2*multiplier);
-			CameraEffects.changeVignetteColorRGB(0,0,5);
-		}else if (multiplier >= 2.5) {
-			CameraEffects.changeHue(GetDayZGame().GetCannabisPlusConfig().weedHueIntensity*multiplier);	
-			CameraEffects.changeRadBlurXEffect(GetDayZGame().GetCannabisPlusConfig().weedRadBlurXPower*multiplier);
-            	CameraEffects.changeRadBlurYEffect(GetDayZGame().GetCannabisPlusConfig().weedRadBlurYPower*multiplier);
-            	CameraEffects.changeRotationBlurPower(GetDayZGame().GetCannabisPlusConfig().weedRotBlurPow*multiplier);		
-		// Testing 
-		}if (multiplier >= 2) {      
-			CameraEffects.changeHue(GetDayZGame().GetCannabisPlusConfig().weedHueIntensity);	      
-            	CameraEffects.changeRadBlurXEffect(GetDayZGame().GetCannabisPlusConfig().weedRadBlurXPower);
-            	CameraEffects.changeRadBlurYEffect(GetDayZGame().GetCannabisPlusConfig().weedRadBlurYPower);
-            	CameraEffects.changeRotationBlurPower(GetDayZGame().GetCannabisPlusConfig().weedRotBlurPow);
-		} 	
-        }
-	  Print("Camera multiplier: " + multiplier);		
+            CameraEffects.changeHue(GetDayZGame().GetCannabisPlusConfig().weedHueIntensity-counter);
+		CameraEffects.changeRadBlurXEffect(GetDayZGame().GetCannabisPlusConfig().weedRadBlurXPower*multiplier);
+           	CameraEffects.changeRadBlurYEffect(GetDayZGame().GetCannabisPlusConfig().weedRadBlurYPower*multiplier);
+           	CameraEffects.changeRotationBlurPower(GetDayZGame().GetCannabisPlusConfig().weedRotBlurPow*multiplier);		
+		 	
+        }	
 
     }
 
@@ -149,7 +135,6 @@ modded class PlayerBase {
             CameraEffects.changeRadBlurXEffect(0);
             CameraEffects.changeRadBlurYEffect(0);
             CameraEffects.changeRotationBlurPower(0);
-		CameraEffects.changeVignetteColorRGB(0,0,0);
         }
 
     }

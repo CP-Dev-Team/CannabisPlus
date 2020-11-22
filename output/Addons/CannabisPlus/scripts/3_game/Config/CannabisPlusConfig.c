@@ -130,8 +130,8 @@ class CannabisPlusConfig
 		cigaretteCyclesToActivateEffect 	= 8;
 		activateJointSmokingEffect 		= true;
 		smokingJointEffectDuration 		= 360;
-		jointCyclesToActivateEffect 		= 5;	
-		weedHueIntensity 				= 55.0;
+		jointCyclesToActivateEffect 		= 10;	
+		weedHueIntensity 				= 58.0;
             weedRadBlurXPower 			= 2;
         	weedRadBlurYPower 			= 2;
         	weedRotBlurPow 				= 10;
