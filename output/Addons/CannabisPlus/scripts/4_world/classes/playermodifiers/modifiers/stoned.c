@@ -2,6 +2,7 @@ class StonedMdfr: ModifierBase
 {
 	int LIFETIME = 60;  //currently the same as the config
 	
+	static const int CHANCE_OF_LAUGHTER = 50;
 	static const int CHANCE_OF_COUGH = 20;
 	static const int CHANCE_OF_PUKE  = 5;
 	static const int WATER_DRAIN_WHILE_STONED = 5;
@@ -30,19 +31,22 @@ class StonedMdfr: ModifierBase
 		
 		if ( roll < CHANCE_OF_PUKE )
 		{
-		    Print("[CP] Stoned modifier PUKING");	
+		    //Print("[CP] Stoned modifier PUKING");	
 		    SymptomBase symptom = player.GetSymptomManager().QueueUpPrimarySymptom(SymptomIDs.SYMPTOM_VOMIT);
 				
 		    if ( symptom )
 		    {
 		        symptom.SetDuration(5);	
 		    }		
-		}
-		
-		if ( roll < CHANCE_OF_COUGH )
+		} else if ( roll < CHANCE_OF_COUGH )
 		{
-			Print("[CP] Stoned modifier COUGHING");	
+			//Print("[CP] Stoned modifier COUGHING");	
 			player.GetSymptomManager().QueueUpPrimarySymptom(SymptomIDs.SYMPTOM_COUGH);	
+
+		} else if ( roll < CHANCE_OF_LAUGHTER )
+		{
+			//Print("[CP] Stoned modifier LAUGHING");	
+			player.GetSymptomManager().QueueUpPrimarySymptom(SymptomIDs.SYMPTOM_LAUGHTER);	
 
 		}
 	}
