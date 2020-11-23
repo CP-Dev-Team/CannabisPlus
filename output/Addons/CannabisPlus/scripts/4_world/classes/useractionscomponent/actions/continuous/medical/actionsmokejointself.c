@@ -1,8 +1,8 @@
 class ActionSmokeJointSelfCB : ActionContinuousBaseCB {
-
+	
 	override void CreateActionComponent() {
 		m_ActionData.m_ActionComponent = new CAContinuousRepeat(1);
-	}		
+	}	
 };
 
 class ActionSmokeJointSelf: ActionContinuousBase {	
@@ -88,6 +88,16 @@ class ActionSmokeJointSelf: ActionContinuousBase {
 		}
 	}*/
 
+	override void ApplyModifiers( ActionData action_data )
+	{
+		CP_JointBase joint = CP_JointBase.Cast(action_data.m_MainItem);
+		
+		if (joint) 
+		{
+			joint.MakeStoned(action_data.m_Player);
+		}	
+	}
+	
 	override void OnFinishProgressClient( ActionData action_data )
 	{
 		PlayerBase player = action_data.m_Player;
@@ -105,6 +115,8 @@ class ActionSmokeJointSelf: ActionContinuousBase {
 		CP_JointBase joint = CP_JointBase.Cast(action_data.m_MainItem);
 		
 		if (joint) {
+			
+			ApplyModifiers(action_data);
 			
 			joint.AddHealth("", "Health", -ReduceAmount);
 			

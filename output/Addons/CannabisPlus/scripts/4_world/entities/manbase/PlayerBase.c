@@ -4,7 +4,9 @@
 modded class PlayerBase {
 
 	ref Timer swayTimer;				// timer that resets the values after the effect is over
-	ref Timer jointTimer;				// timer that resets the values after the effect is over
+	ref Timer jointTimer;			// timer that resets the values after the effect is over
+	
+	ref SymptomBase symptom;
 	
 	bool m_HasConsumedCigarette = false;	// has the player consumed a hole cigarette	
 	int m_cigaretteValue = 0;			// the quantity of the cigarette, what the player consumed
@@ -39,6 +41,11 @@ modded class PlayerBase {
 			GetRPCManager().SendRPC( "CP_scripts", "RetreiveCannabisPlusConfig", new Param1 <CannabisPlusConfig> (GetDayZGame().GetCannabisPlusConfig()),true,GetIdentity());
 			Print("Receiving CannabisPlusConfig info from server");
 		}	
+	}
+	
+	int GetJointCycles()
+	{
+		return m_jointValue;
 	}
 	
 	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -119,8 +126,7 @@ modded class PlayerBase {
             CameraEffects.changeHue(GetDayZGame().GetCannabisPlusConfig().weedHueIntensity-counter);
 		CameraEffects.changeRadBlurXEffect(GetDayZGame().GetCannabisPlusConfig().weedRadBlurXPower*multiplier);
            	CameraEffects.changeRadBlurYEffect(GetDayZGame().GetCannabisPlusConfig().weedRadBlurYPower*multiplier);
-           	CameraEffects.changeRotationBlurPower(GetDayZGame().GetCannabisPlusConfig().weedRotBlurPow*multiplier);		
-		 	
+           	CameraEffects.changeRotationBlurPower(GetDayZGame().GetCannabisPlusConfig().weedRotBlurPow*multiplier);
         }	
 
     }
@@ -134,7 +140,7 @@ modded class PlayerBase {
             CameraEffects.changeHue(60);
             CameraEffects.changeRadBlurXEffect(0);
             CameraEffects.changeRadBlurYEffect(0);
-            CameraEffects.changeRotationBlurPower(0);
+            CameraEffects.changeRotationBlurPower(0);	
         }
 
     }

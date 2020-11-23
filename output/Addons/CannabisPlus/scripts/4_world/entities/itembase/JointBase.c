@@ -42,6 +42,19 @@ class CP_JointBase extends ItemBase {
 		return m_JointSmokeState;
 	}
 	
+	void MakeStoned(PlayerBase player)
+	{
+		//Print("[CP] Stoned modifier " + player.GetModifiersManager().IsModifierActive(99) + " on player: " + player);
+		
+		player.GetModifiersManager().AddModifier(new StonedMdfr);
+		
+		if( player.GetModifiersManager().IsModifierActive(99) )//effectively resets the timer
+		{
+			player.GetModifiersManager().DeactivateModifier(99);
+		}
+		player.GetModifiersManager().ActivateModifier(99);
+	}
+	
 	void UpdateParticles() {
 		ESmokeState state = GetSmokingState();
 		
