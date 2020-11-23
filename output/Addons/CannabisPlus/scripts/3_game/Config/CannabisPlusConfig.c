@@ -5,57 +5,57 @@ class CannabisPlusConfig
 	
 	bool removeAfterHarvest;
 	
-	float tobacco_growtime;
-	float tobacco_cropcount;
-	float tobaccoSeed_count;
+	int tobacco_growtime;
+	int tobacco_cropcount;
+	int tobaccoSeed_count;
 	
-	float cannabisSkunk_growtime;
-	float cannabisSkunk_cropcount;
-	float cannabisSkunkSeed_count;
+	int cannabisSkunk_growtime;
+	int cannabisSkunk_cropcount;
+	int cannabisSkunkSeed_count;
 	
-	float cannabisKush_growtime;
-	float cannabisKush_cropcount;
-	float cannabisKushSeed_count;
+	int cannabisKush_growtime;
+	int cannabisKush_cropcount;
+	int cannabisKushSeed_count;
 	
-	float cannabisBlue_growtime;
-	float cannabisBlue_cropcount;
-	float cannabisBlueSeed_count;
+	int cannabisBlue_growtime;
+	int cannabisBlue_cropcount;
+	int cannabisBlueSeed_count;
 
-	float cannabisStardawg_growtime;
-	float cannabisStardawg_cropcount;
-	float cannabisStardawgSeed_count;
+	int cannabisStardawg_growtime;
+	int cannabisStardawg_cropcount;
+	int cannabisStardawgSeed_count;
 
-	float cannabisFuture_growtime;
-	float cannabisFuture_cropcount;
-	float cannabisFutureSeed_count;
+	int cannabisFuture_growtime;
+	int cannabisFuture_cropcount;
+	int cannabisFutureSeed_count;
 
-	float cannabisS1_growtime;
-	float cannabisS1_cropcount;
-	float cannabisS1Seed_count;
+	int cannabisS1_growtime;
+	int cannabisS1_cropcount;
+	int cannabisS1Seed_count;
 
-	float cannabisNomad_growtime;
-	float cannabisNomad_cropcount;
-	float cannabisNomadSeed_count;
+	int cannabisNomad_growtime;
+	int cannabisNomad_cropcount;
+	int cannabisNomadSeed_count;
 
-	float cannabisBlackFrost_growtime;
-	float cannabisBlackFrost_cropcount;
-	float cannabisBlackFrostSeed_count;
+	int cannabisBlackFrost_growtime;
+	int cannabisBlackFrost_cropcount;
+	int cannabisBlackFrostSeed_count;
 	
-	float pepper_growtime;
-	float pepper_cropcount;
-	float pepperSeed_count;
+	int pepper_growtime;
+	int pepper_cropcount;
+	int pepperSeed_count;
 	
-	float tomato_growtime;
-	float tomato_cropcount;
-	float tomatoSeed_count;
+	int tomato_growtime;
+	int tomato_cropcount;
+	int tomatoSeed_count;
 	
-	float zucchini_growtime;
-	float zucchini_cropcount;
-	float zucchiniSeed_count;
+	int zucchini_growtime;
+	int zucchini_cropcount;
+	int zucchiniSeed_count;
 	
-	float pumpkin_growtime;
-	float pumpkin_cropcount;
-	float pumpkinSeed_count;
+	int pumpkin_growtime;
+	int pumpkin_cropcount;
+	int pumpkinSeed_count;
 	
 	// smoke effect settings
 	int activateCigaretteSmokingEffect; 	// reduces the fluctuation/sway in aiming when a cigarette is smoked
@@ -66,18 +66,20 @@ class CannabisPlusConfig
 	int smokingJointEffectDuration;			// Time in seconds for the effect to stop
 	int jointCyclesToActivateEffect;		// number of cigarettes consumed to activate the effect
 
-	float jointEffectRed;
-	float jointEffectGreen;
-	float jointEffectBlue;
+	// Weed Effects.
+      float weedHueIntensity;
+      int weedRadBlurXPower;
+      int weedRadBlurYPower;
+      int weedRotBlurPow;
 	
 	void CannabisPlusConfig() {
 		
-		configVersion					= 300;		
-		removeAfterHarvest 				= true;		
+		configVersion				= 250;		
+		removeAfterHarvest 			= true;		
 
 		tobacco_growtime 				= 8;
-		tobacco_cropcount 				= 2;
-		tobaccoSeed_count 				= 9;
+		tobacco_cropcount 			= 2;
+		tobaccoSeed_count 			= 9;
 
 		cannabisSkunk_growtime 			= 8;
 		cannabisSkunk_cropcount 		= 2;
@@ -107,9 +109,9 @@ class CannabisPlusConfig
 		cannabisNomad_cropcount 		= 2;
 		cannabisNomadSeed_count 		= 9;
 
-		cannabisBlackFrost_growtime 	= 8;
-		cannabisBlackFrost_cropcount 	= 2;
-		cannabisBlackFrostSeed_count 	= 9;
+		cannabisBlackFrost_growtime 		= 8;
+		cannabisBlackFrost_cropcount 		= 2;
+		cannabisBlackFrostSeed_count 		= 9;
 
 		pepper_growtime 				= 8;
 		pepper_cropcount 				= 2;
@@ -117,29 +119,25 @@ class CannabisPlusConfig
 		tomato_growtime 				= 8;
 		tomato_cropcount 				= 2;
 		tomatoSeed_count 				= 9;		
-		zucchini_growtime 				= 8;
-		zucchini_cropcount 				= 2;
-		zucchiniSeed_count 				= 9;
+		zucchini_growtime 			= 8;
+		zucchini_cropcount 			= 2;
+		zucchiniSeed_count 			= 9;
 		pumpkin_growtime 				= 8;
-		pumpkin_cropcount 				= 2;
-		pumpkinSeed_count 				= 9;
+		pumpkin_cropcount 			= 2;
+		pumpkinSeed_count 			= 9;
 		activateCigaretteSmokingEffect 	= false;
 		smokingCigaretteEffectDuration 	= 20;
-		cigaretteCyclesToActivateEffect = 8;
-		activateJointSmokingEffect 		= false;
-		smokingJointEffectDuration 		= 20;
-		jointCyclesToActivateEffect 	= 2;	
-		jointEffectRed 					= 0.5;
-		jointEffectGreen 				= 0.1;
-		jointEffectBlue 				= 0.5;
+		cigaretteCyclesToActivateEffect 	= 8;
+		activateJointSmokingEffect 		= true;
+		smokingJointEffectDuration 		= 360;
+		jointCyclesToActivateEffect 		= 10;	
+		weedHueIntensity 				= 58.0;
+            weedRadBlurXPower 			= 2;
+        	weedRadBlurYPower 			= 2;
+        	weedRotBlurPow 				= 10;
 	};
 	
 	void Validate() {		
-		if (jointEffectRed > 1.0 || jointEffectGreen > 1.0 || jointEffectBlue > 1.0) {
-			Print("[CannabisPlusConfig] Joint Effect r,g,b values must be <= 1.0");
-			jointEffectRed 	 = 1.0;
-			jointEffectGreen = 1.0;
-			jointEffectBlue  = 1.0;
-		}
+		
 	};
 };

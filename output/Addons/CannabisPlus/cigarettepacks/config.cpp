@@ -739,8 +739,8 @@ class CfgVehicles
 	class CP_CigarettePack_CannabisS1: Inventory_Base
 	{
 		scope=2;
-		displayName="Marijuana Cigarettes S1";
-		descriptionShort="A pack of S1 marijuana cigarettes.  Sponsored by StevesGoods.com";
+		displayName="Hemp Cigarettes S1";
+		descriptionShort="A pack of S1 hemp cigarettes.  Sponsored by StevesGoods.com";
 		model="\dz\gear\medical\cigarette_pack.p3d";
 		lootCategory="Crafted";
 		itemSize[]={1,1};

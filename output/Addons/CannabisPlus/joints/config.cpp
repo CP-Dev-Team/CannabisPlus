@@ -120,7 +120,7 @@ class CfgVehicles
 	{
 		scope=2;
 		displayName="S1 Joint";
-		descriptionShort="A joint made out of finest S1 hemp.  Sponsored by StevesGoods.com";
+		descriptionShort="A joint made out of the finest S1 hemp.  Sponsored by StevesGoods.com";
 		model="\CannabisPlus\joints\joint.p3d";
 		inventorySlot="Ingredient";
 		rotationFlags=16;
