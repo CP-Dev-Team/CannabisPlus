@@ -272,8 +272,8 @@ class CfgVehicles
 	class CP_Plant_CannabisS1: PlantBase
 	{
 		scope=2;
-		displayName="S1 Plant";
-		descriptionShort="An S1 plant by StevesGoods.com";
+		displayName="S1 Hemp Plant";
+		descriptionShort="An S1 hemp plant.  Sponsored by StevesGoods.com";
 		model="DZ\gear\cultivation\Cannabis_plant.p3d";
 		hiddenSelections[]=
 		{

@@ -104,7 +104,7 @@ class CfgVehicles
 	{
 		scope=2;
 		displayName="S1 Cannabis Seeds";
-		descriptionShort="A handful of S1 cannabis seeds.";
+		descriptionShort="A handful of S1 cannabis seeds.  Sponsored by StevesGoods.com";
 		model="\dz\gear\cultivation\cannabis_seeds.p3d";
 		canBeSplit=1;
 		varQuantityInit=20;
