@@ -10,6 +10,7 @@ class ActionSmokeJointSelf: ActionContinuousBase {
 	string currentLanguage;	
 	private float clhealth;
 	private int ReduceAmount=5;
+	int CurrentCycles;
 
 	void ActionSmokeJointSelf()	{
 		m_CallbackClass = ActionSmokeJointSelfCB;		
@@ -95,6 +96,8 @@ class ActionSmokeJointSelf: ActionContinuousBase {
 		if (joint) 
 		{
 			joint.MakeStoned(action_data.m_Player);
+			if (CurrentCycles >= 50)
+			    joint.MakePuke(action_data.m_Player);	
 		}	
 	}
 	
@@ -106,6 +109,7 @@ class ActionSmokeJointSelf: ActionContinuousBase {
 		
 		if (joint && joint_type != "CP_JointS1") {
 			player.AddValueToJointValue(1);
+			CurrentCycles = player.GetJointCycles();
 		}
 			
 		super.OnFinishProgressClient(action_data);

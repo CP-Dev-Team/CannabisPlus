@@ -44,15 +44,18 @@ class CP_JointBase extends ItemBase {
 	
 	void MakeStoned(PlayerBase player)
 	{
-		//Print("[CP] Stoned modifier " + player.GetModifiersManager().IsModifierActive(99) + " on player: " + player);
-		
-		player.GetModifiersManager().AddModifier(new StonedMdfr);
-		
+		//Print("[CP] Stoned modifier " + player.GetModifiersManager().IsModifierActive(99) + " on player: " + player);	
 		if( player.GetModifiersManager().IsModifierActive(99) )//effectively resets the timer
 		{
-			player.GetModifiersManager().DeactivateModifier(99);
+			//player.GetModifiersManager().DeactivateModifier(99);
+			return;  //let previous modifier finish
 		}
 		player.GetModifiersManager().ActivateModifier(99);
+	}
+	
+	void MakePuke(PlayerBase player)
+	{
+		player.GetModifiersManager().ActivateModifier(100);	
 	}
 	
 	void UpdateParticles() {

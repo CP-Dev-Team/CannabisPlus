@@ -1,11 +1,10 @@
 class StonedMdfr: ModifierBase
 {
-	int LIFETIME = 60;  //currently the same as the config
+	int LIFETIME = 30;  //currently the same as the config
 	
 	static const int CHANCE_OF_LAUGHTER = 50;
-	static const int CHANCE_OF_COUGH = 20;
-	static const int CHANCE_OF_PUKE  = 5;
-	static const int WATER_DRAIN_WHILE_STONED = 5;
+	static const int CHANCE_OF_COUGH = 25;
+	static const int WATER_DRAIN_WHILE_STONED = 2;
 	
 	float 			m_LastWaterLevel;
 	ref HumanMovementState		m_MovementState	= new HumanMovementState();
@@ -16,7 +15,7 @@ class StonedMdfr: ModifierBase
 		m_IsPersistent 		= false;
 		m_ID 				= 99;
 		m_TickIntervalInactive 	= DEFAULT_TICK_TIME_INACTIVE;
-		m_TickIntervalActive 	= 30;
+		m_TickIntervalActive 	= 10;
 	}
 	
 	override string GetDebugText()
@@ -29,25 +28,15 @@ class StonedMdfr: ModifierBase
 		int roll = Math.RandomInt(0, 100);
 		Print("[CP] Stoned modifier activating on player: " + player + " with roll: " + roll);	
 		
-		if ( roll < CHANCE_OF_PUKE )
+		if ( roll < CHANCE_OF_COUGH )
 		{
-		    //Print("[CP] Stoned modifier PUKING");	
-		    SymptomBase symptom = player.GetSymptomManager().QueueUpPrimarySymptom(SymptomIDs.SYMPTOM_VOMIT);
-				
-		    if ( symptom )
-		    {
-		        symptom.SetDuration(5);	
-		    }		
-		} else if ( roll < CHANCE_OF_COUGH )
-		{
-			//Print("[CP] Stoned modifier COUGHING");	
-			player.GetSymptomManager().QueueUpPrimarySymptom(SymptomIDs.SYMPTOM_COUGH);	
-
+			Print("[CP] Stoned modifier COUGHING");	
+			player.GetSymptomManager().QueueUpPrimarySymptom(99);	
+			
 		} else if ( roll < CHANCE_OF_LAUGHTER )
 		{
-			//Print("[CP] Stoned modifier LAUGHING");	
-			player.GetSymptomManager().QueueUpPrimarySymptom(SymptomIDs.SYMPTOM_LAUGHTER);	
-
+			Print("[CP] Stoned modifier LAUGHING");	
+			player.GetSymptomManager().QueueUpPrimarySymptom(100);
 		}
 	}
 	
