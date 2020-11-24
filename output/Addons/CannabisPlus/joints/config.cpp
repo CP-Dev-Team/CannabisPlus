@@ -21,7 +21,7 @@ class CfgVehicles
 		scope=2;
 		displayName="Skunk Joint";
 		descriptionShort="A joint made out of finest Skunk weed";
-		model="\CannabisPlus\joints\joint.p3d";
+		model="\CannabisPlus\joints\joint_new.p3d";
 		inventorySlot="Ingredient";
 		rotationFlags=16;
 		weight=30;
@@ -32,7 +32,7 @@ class CfgVehicles
 		};
 		hiddenSelectionsTextures[]=
 		{
-			"CannabisPlus\joints\data\joint_ca.paa"
+			"CannabisPlus\joints\data\JointNew_Diffuse.paa"
 		};
 	};
 
