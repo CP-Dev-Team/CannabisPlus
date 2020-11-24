@@ -31,12 +31,12 @@ class StonedMdfr: ModifierBase
 		if ( roll < CHANCE_OF_COUGH )
 		{
 			Print("[CP] Stoned modifier COUGHING");	
-			player.GetSymptomManager().QueueUpPrimarySymptom(99);	
+			player.GetSymptomManager().QueueUpPrimarySymptom(SymptomIDs.SYMPTOM_COUGH);	
 			
 		} else if ( roll < CHANCE_OF_LAUGHTER )
 		{
 			Print("[CP] Stoned modifier LAUGHING");	
-			player.GetSymptomManager().QueueUpPrimarySymptom(100);
+			player.GetSymptomManager().QueueUpPrimarySymptom(SymptomIDs.SYMPTOM_LAUGHTER);
 		}
 	}
 	

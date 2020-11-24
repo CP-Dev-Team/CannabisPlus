@@ -5,7 +5,7 @@ class StonedCoughSymptom extends SymptomBase
 	{
 		m_SymptomType = SymptomTypes.PRIMARY;
 		m_Priority = 100;
-		m_ID = 99;
+		m_ID	   = 99;
 		m_DestroyOnAnimFinish = true;
 		m_SyncToClient = false;
 	}

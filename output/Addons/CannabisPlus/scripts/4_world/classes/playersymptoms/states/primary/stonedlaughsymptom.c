@@ -4,7 +4,7 @@ class StonedLaughSymptom extends SymptomBase
 	override void OnInit()
 	{
 		m_SymptomType = SymptomTypes.PRIMARY;
-		m_Priority = 100;
+		m_Priority = 0;
 		m_ID = 100;
 		m_DestroyOnAnimFinish = true;
 		m_SyncToClient = false;
