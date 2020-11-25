@@ -72,11 +72,11 @@ class ActionSmokeJointSelf: ActionContinuousBase {
 		CP_JointBase joint = CP_JointBase.Cast(action_data.m_MainItem);
 
 		if (joint) {
-			//Print("[DEBUG] ActionSmokeJointSelf:OnEndInput");
+			//Print("[CP] ActionSmokeJointSelf:OnEndInput");
 			joint.AddHealth("", "Health", -ReduceAmount);
 		
 			clhealth = joint.GetHealth();
-			//Print("[DEBUG] Joint has " + clhealth + " health");
+			//Print("[CP] Joint has " + clhealth + " health");
 			
 			joint.SetSynchronizedHealth(clhealth);
 			
@@ -125,12 +125,12 @@ class ActionSmokeJointSelf: ActionContinuousBase {
 			joint.AddHealth("", "Health", -ReduceAmount);
 			
 			clhealth = joint.GetHealth();
-			Print("[DEBUG] Joint has " + clhealth + " health");
+			//Print("[CP] Joint has " + clhealth + " health");
 			
 			joint.SetSynchronizedHealth(clhealth);
 			
 			if (clhealth <= 0) {
-				//Print("[DEBUG] Deleting Joint");
+				//Print("[CP] Deleting Joint");
 				joint.SetSmokingState(ESmokeState.NOT_SMOKING);
 				joint.UpdateParticles();
 				joint.Delete();

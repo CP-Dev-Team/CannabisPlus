@@ -61,7 +61,7 @@ class ActionSmokeCigSelf: ActionContinuousBase {
 
         CP_Cigarette cig = CP_Cigarette.Cast(action_data.m_MainItem);
 
-		//Print("[DEBUG] ActionSmokeCigSelf:OnStartAnimationLoop");
+		//Print("[CP] ActionSmokeCigSelf:OnStartAnimationLoop");
         if (cig) {
 			cig.SetSmokingState(ESmokeState.SMOKING);
         };
@@ -74,12 +74,12 @@ class ActionSmokeCigSelf: ActionContinuousBase {
 		CP_Cigarette cig = CP_Cigarette.Cast(action_data.m_MainItem);
 
         if (cig) {
-			//Print("[DEBUG] ActionSmokeCigSelf:OnEndInput");
+			//Print("[CP] ActionSmokeCigSelf:OnEndInput");
 
             cig.AddHealth("", "Health", -ReduceAmount);
 
 			clhealth = cig.GetHealth();
-			//Print("[DEBUG] cig has " + clhealth + " health");
+			//Print("[CP] cig has " + clhealth + " health");
 
 			cig.SetSynchronizedHealth(clhealth);
 
@@ -107,12 +107,12 @@ class ActionSmokeCigSelf: ActionContinuousBase {
         CP_Cigarette cig = CP_Cigarette.Cast(action_data.m_MainItem);
 
         if (cig) {
-			//Print("[DEBUG] ActionSmokeCigSelf:OnFinishProgressServer");
+			//Print("[CP] ActionSmokeCigSelf:OnFinishProgressServer");
 
             cig.AddHealth("", "Health", -ReduceAmount);
 
 			clhealth = cig.GetHealth();
-			//Print("[DEBUG] cig has " + clhealth + " health");
+			//Print("[DECPBUG] cig has " + clhealth + " health");
 
 			cig.SetSynchronizedHealth(clhealth);
 

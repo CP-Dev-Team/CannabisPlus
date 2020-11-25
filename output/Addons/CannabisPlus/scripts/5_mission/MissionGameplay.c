@@ -6,6 +6,6 @@ modded class MissionGameplay
 	void MissionGameplay()
 	{
 		m_CannabisPlusRPC = new ref CannabisPlusRPC();
-		Print( "Loaded CannabisPlusRPC on Client" );
+		Print( "[CP] Loaded CannabisPlusRPC on Client" );
 	}
 }
