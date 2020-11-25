@@ -32,7 +32,7 @@ class CfgVehicles
 		};
 		hiddenSelectionsTextures[]=
 		{
-			"CannabisPlus\joints\data\JointNew.paa"
+			"CannabisPlus\joints\data\Joint_New.paa"
 		};
 	};
 
@@ -52,7 +52,7 @@ class CfgVehicles
 		};
 		hiddenSelectionsTextures[]=
 		{
-			"CannabisPlus\joints\data\JointNew.paa"
+			"CannabisPlus\joints\data\Joint_New.paa"
 		};
 	};
 
@@ -72,7 +72,7 @@ class CfgVehicles
 		};
 		hiddenSelectionsTextures[]=
 		{
-			"CannabisPlus\joints\data\JointNew.paa"
+			"CannabisPlus\joints\data\Joint_New.paa"
 		};
 	};
 
@@ -92,7 +92,7 @@ class CfgVehicles
 		};
 		hiddenSelectionsTextures[]=
 		{
-			"CannabisPlus\joints\data\JointNew.paa"
+			"CannabisPlus\joints\data\Joint_New.paa"
 		};
 	};	
 
@@ -112,7 +112,7 @@ class CfgVehicles
 		};
 		hiddenSelectionsTextures[]=
 		{
-			"CannabisPlus\joints\data\JointNew.paa"
+			"CannabisPlus\joints\data\Joint_New.paa"
 		};
 	};
 
@@ -132,7 +132,7 @@ class CfgVehicles
 		};
 		hiddenSelectionsTextures[]=
 		{
-			"CannabisPlus\joints\data\JointNew.paa"
+			"CannabisPlus\joints\data\Joint_New.paa"
 		};
 	};
 
@@ -152,7 +152,7 @@ class CfgVehicles
 		};
 		hiddenSelectionsTextures[]=
 		{
-			"CannabisPlus\joints\data\JointNew.paa"
+			"CannabisPlus\joints\data\Joint_New.paa"
 		};
 	};
 
@@ -172,7 +172,7 @@ class CfgVehicles
 		};
 		hiddenSelectionsTextures[]=
 		{
-			"CannabisPlus\joints\data\JointNew.paa"
+			"CannabisPlus\joints\data\Joint_New.paa"
 		};
 	};
 
