@@ -194,37 +194,37 @@ modded class Plant_Pumpkin
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 modded class PlantBase
 {	
-	private float m_growtime;
+	private int m_growtime;
 	
-	private float m_tabacco_growtime;
-	private	float m_cannabisSkunk_growtime; 
-	private float m_cannabisKush_growtime;
-	private float m_cannabisBlue_growtime;
-	private float m_cannabisStardawg_growtime;
-	private float m_cannabisFuture_growtime;
-	private float m_cannabisS1_growtime;
-	private float m_cannabisNomad_growtime;
-	private float m_cannabisBlackFrost_growtime;
+	private int m_tabacco_growtime;
+	private	int m_cannabisSkunk_growtime; 
+	private int m_cannabisKush_growtime;
+	private int m_cannabisBlue_growtime;
+	private int m_cannabisStardawg_growtime;
+	private int m_cannabisFuture_growtime;
+	private int m_cannabisS1_growtime;
+	private int m_cannabisNomad_growtime;
+	private int m_cannabisBlackFrost_growtime;
 
-	private float m_pepper_growtime;
-	private float m_tomato_growtime;
-	private float m_zucchini_growtime;
-	private float m_pumpkin_growtime;
+	private int m_pepper_growtime;
+	private int m_tomato_growtime;
+	private int m_zucchini_growtime;
+	private int m_pumpkin_growtime;
 	
-	private float m_tabacco_cropcount;
-	private float m_cannabisSkunk_cropcount;
-	private float m_cannabisKush_cropcount;
-	private float m_cannabisBlue_cropcount;
-	private float m_cannabisStardawg_cropcount;
-	private float m_cannabisFuture_cropcount;
-	private float m_cannabisS1_cropcount;
-	private float m_cannabisNomad_cropcount;
-	private float m_cannabisBlackFrost_cropcount;
+	private int m_tabacco_cropcount;
+	private int m_cannabisSkunk_cropcount;
+	private int m_cannabisKush_cropcount;
+	private int m_cannabisBlue_cropcount;
+	private int m_cannabisStardawg_cropcount;
+	private int m_cannabisFuture_cropcount;
+	private int m_cannabisS1_cropcount;
+	private int m_cannabisNomad_cropcount;
+	private int m_cannabisBlackFrost_cropcount;
 
-	private float m_pepper_cropcount;
-	private float m_tomato_cropcount;
-	private float m_zucchini_cropcount;
-	private float m_pumpkin_cropcount;
+	private int m_pepper_cropcount;
+	private int m_tomato_cropcount;
+	private int m_zucchini_cropcount;
+	private int m_pumpkin_cropcount;
 	
 	ref Timer m_DeleteDryPlantTimer = NULL;
 	
