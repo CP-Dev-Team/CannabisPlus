@@ -30,7 +30,7 @@ modded class PlayerBase {
 		super.OnConnect();
 		if (GetIdentity()) {
 			GetRPCManager().SendRPC( "CP_scripts", "RetreiveCannabisPlusConfig", new Param1 <CannabisPlusConfig> (GetDayZGame().GetCannabisPlusConfig()),true,GetIdentity());
-			Print("Receiving CannabisPlusConfig info from server");
+			Print("[CP] Receiving CannabisPlusConfig info from server");
 		}	
 	}
 	
@@ -39,7 +39,7 @@ modded class PlayerBase {
 		super.OnReconnect();
 		if (GetIdentity()) {
 			GetRPCManager().SendRPC( "CP_scripts", "RetreiveCannabisPlusConfig", new Param1 <CannabisPlusConfig> (GetDayZGame().GetCannabisPlusConfig()),true,GetIdentity());
-			Print("Receiving CannabisPlusConfig info from server");
+			Print("[CP] Receiving CannabisPlusConfig info from server");
 		}	
 	}
 	
@@ -57,7 +57,7 @@ modded class PlayerBase {
 				m_cigaretteValue += value;
 						
 				if(m_cigaretteValue >= GetDayZGame().GetCannabisPlusConfig().cigaretteCyclesToActivateEffect){
-					Print("Smoking cigarrette effect" + GetDayZGame().GetCannabisPlusConfig().cigaretteCyclesToActivateEffect);
+					//Print("[CP] Smoking cigarrette effect" + GetDayZGame().GetCannabisPlusConfig().cigaretteCyclesToActivateEffect);
 					m_HasConsumedCigarette = true;
 					if (!swayTimer) { swayTimer = new Timer()};
 					swayTimer.Stop();
@@ -72,12 +72,12 @@ modded class PlayerBase {
 	void AddValueToJointValue(int value) {	
 		if (GetDayZGame().GetCannabisPlusConfig()) {	
 			if(GetDayZGame().GetCannabisPlusConfig().activateJointSmokingEffect) {
-				//Print("CannabisPlus: AddValueToJointValue");
+				//Print("[CP] CannabisPlus: AddValueToJointValue");
 				m_jointValue += value;
 						
 				if((m_jointValue % GetDayZGame().GetCannabisPlusConfig().jointCyclesToActivateEffect) == 0){	
-					//Print("Smoking joint effect " + GetDayZGame().GetCannabisPlusConfig().jointCyclesToActivateEffect);
-					//Print("CannabisPlus: Starting Effect");			
+					//Print("[CP] Smoking joint effect " + GetDayZGame().GetCannabisPlusConfig().jointCyclesToActivateEffect);
+					//Print("[CP] CannabisPlus: Starting Effect");			
 					m_HasConsumedJoint = true;
 					CannabisEffectsTriggered(m_jointValue);
 					if (!jointTimer) { jointTimer = new Timer()};
