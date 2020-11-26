@@ -62,10 +62,20 @@ class ActionSmokeJointSelf: ActionContinuousBase {
         CP_JointBase joint = CP_JointBase.Cast(action_data.m_MainItem);
 		
         if (joint) {
-			joint.SetSmokingState(ESmokeState.SMOKING);
+		joint.SetSmokingState(ESmokeState.SMOKING);
         };
-		super.OnStartAnimationLoop(action_data);
+	  super.OnStartAnimationLoop(action_data);
     }
+	
+    override void OnEndAnimationLoop( ActionData action_data )
+    {
+        CP_JointBase joint = CP_JointBase.Cast(action_data.m_MainItem);
+		
+        if (joint) {
+		joint.SetSmokingState(ESmokeState.INACTIVE);
+        };
+	  super.OnEndAnimationLoop(action_data);		
+    }			
 
 	/*override void OnEndInput( ActionData action_data ) {
 		super.OnEndInput(action_data);
@@ -92,9 +102,8 @@ class ActionSmokeJointSelf: ActionContinuousBase {
 	override void ApplyModifiers( ActionData action_data )
 	{
 		CP_JointBase joint = CP_JointBase.Cast(action_data.m_MainItem);
-		
-		if (joint) 
-		{
+				
+		if (joint) {
 			joint.MakeStoned(action_data.m_Player);
 			if (CurrentCycles >= 50)
 			    joint.MakePuke(action_data.m_Player);	
@@ -106,6 +115,7 @@ class ActionSmokeJointSelf: ActionContinuousBase {
 		PlayerBase player = action_data.m_Player;
 		CP_JointBase joint = CP_JointBase.Cast(action_data.m_MainItem);
 		string joint_type = joint.GetType();
+		Print("[CP] Player has smoked " + player.GetJointCycles() + " cycles");
 		
 		if (joint && joint_type != "CP_JointS1") {
 			player.AddValueToJointValue(1);

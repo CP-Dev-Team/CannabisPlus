@@ -21,12 +21,14 @@ class VomitMdfr: ModifierBase
 	override void OnActivate(PlayerBase player)
 	{
 		Print("[CP] Vomit modifier PUKING");
-		player.GetSymptomManager().QueueUpPrimarySymptom( SymptomIDs.SYMPTOM_VOMIT );
+		SymptomBase vomit_symptom = player.GetSymptomManager().QueueUpPrimarySymptom( SymptomIDs.SYMPTOM_VOMIT );
+		if (vomit_symptom)
+			vomit_symptom.SetDuration(5);
 	}
 
 
 	override bool DeactivateCondition(PlayerBase player)
 	{
-		return !ActivateCondition(player);
+		return true;
 	}		
 };

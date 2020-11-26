@@ -6,13 +6,11 @@ modded class PlayerBase {
 	ref Timer swayTimer;				// timer that resets the values after the effect is over
 	ref Timer jointTimer;			// timer that resets the values after the effect is over
 	
-	ref SymptomBase symptom;
-	
 	bool m_HasConsumedCigarette = false;	// has the player consumed a hole cigarette	
-	int m_cigaretteValue = 0;			// the quantity of the cigarette, what the player consumed
+	int m_cigaretteValue;			// the quantity of the cigarette, what the player consumed
 	
 	bool m_HasConsumedJoint = false;
-	int m_jointValue = 0;				// the quantity of the cigarette, what the player consumed
+	int m_jointValue;				// the quantity of the cigarette, what the player consumed
 	
 	//protected ref CannabisPlusConfig m_CannabisPlusConfig
 	
@@ -25,8 +23,7 @@ modded class PlayerBase {
 		return m_HasConsumedCigarette; 
 	}		 
    
-	override void OnConnect()
-	{
+	override void OnConnect() {
 		super.OnConnect();
 		if (GetIdentity()) {
 			GetRPCManager().SendRPC( "CP_scripts", "RetreiveCannabisPlusConfig", new Param1 <CannabisPlusConfig> (GetDayZGame().GetCannabisPlusConfig()),true,GetIdentity());
@@ -34,8 +31,7 @@ modded class PlayerBase {
 		}	
 	}
 	
-	override void OnReconnect()
-	{
+	override void OnReconnect() {
 		super.OnReconnect();
 		if (GetIdentity()) {
 			GetRPCManager().SendRPC( "CP_scripts", "RetreiveCannabisPlusConfig", new Param1 <CannabisPlusConfig> (GetDayZGame().GetCannabisPlusConfig()),true,GetIdentity());
@@ -43,8 +39,7 @@ modded class PlayerBase {
 		}	
 	}
 	
-	int GetJointCycles()
-	{
+	int GetJointCycles () {
 		return m_jointValue;
 	}
 	

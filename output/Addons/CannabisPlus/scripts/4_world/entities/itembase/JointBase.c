@@ -4,7 +4,8 @@
 enum ESmokeState {
 	NOT_SMOKING = 0 
 	SMOKING = 1
-	COUNT = 2 
+	INACTIVE = 2
+	COUNT = 3 
 }
 
 class CP_JointBase extends ItemBase {
@@ -45,8 +46,7 @@ class CP_JointBase extends ItemBase {
 	void MakeStoned(PlayerBase player)
 	{
 		//Print("[CP] Stoned modifier " + player.GetModifiersManager().IsModifierActive(99) + " on player: " + player);	
-		if( player.GetModifiersManager().IsModifierActive(99) )//effectively resets the timer
-		{
+		if( player.GetModifiersManager().IsModifierActive(99) ) { //effectively resets the timer
 			//player.GetModifiersManager().DeactivateModifier(99);
 			return;  //let previous modifier finish
 		}
@@ -61,10 +61,29 @@ class CP_JointBase extends ItemBase {
 	void UpdateParticles() {
 		ESmokeState state = GetSmokingState();
 		
-		if( m_LastJointSmokeState != state )
-		{
+		if( m_LastJointSmokeState != state ) {
 			if (state == ESmokeState.SMOKING) {
-				m_SmokeParticle = Particle.PlayOnObject(ParticleList.JOINT_SMOKE, this, m_ParticleLocalPos, Vector(0,0,0), true);
+				if (m_SmokeParticle)
+				{	
+					m_SmokeParticle.ScaleParticleParamFromOriginal(EmitorParam.SIZE, 1.0);
+					m_SmokeParticle.ScaleParticleParamFromOriginal(EmitorParam.VELOCITY, 1.0);				
+				} else
+				{
+					m_SmokeParticle = Particle.PlayOnObject(ParticleList.JOINT_SMOKE, this, m_ParticleLocalPos, Vector(0,0,0), true);
+					m_SmokeParticle.ScaleParticleParamFromOriginal(EmitorParam.SIZE, 1.0);
+					m_SmokeParticle.ScaleParticleParamFromOriginal(EmitorParam.VELOCITY, 1.0);
+				}	
+			} else if (state == ESmokeState.INACTIVE) {
+				if (m_SmokeParticle)
+				{	
+					m_SmokeParticle.ScaleParticleParamFromOriginal(EmitorParam.SIZE, 0.01);
+					m_SmokeParticle.ScaleParticleParamFromOriginal(EmitorParam.VELOCITY, 0.03);				
+				} else
+				{
+					m_SmokeParticle = Particle.PlayOnObject(ParticleList.JOINT_SMOKE, this, m_ParticleLocalPos, Vector(0,0,0), true);
+					m_SmokeParticle.ScaleParticleParamFromOriginal(EmitorParam.SIZE, 0.01);
+					m_SmokeParticle.ScaleParticleParamFromOriginal(EmitorParam.VELOCITY, 0.03);
+				}				
 			} else if (state == ESmokeState.NOT_SMOKING) {
 				m_SmokeParticle.Stop();
 			}	

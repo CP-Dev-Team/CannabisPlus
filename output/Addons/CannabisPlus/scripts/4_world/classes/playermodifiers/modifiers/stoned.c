@@ -25,24 +25,11 @@ class StonedMdfr: ModifierBase
 	
 	override protected void OnActivate(PlayerBase player)
 	{
-		int roll = Math.RandomInt(0, 100);
-		Print("[CP] Stoned modifier activating on player: " + player + " with roll: " + roll);	
-		
-		if ( roll < CHANCE_OF_COUGH )
-		{
-			Print("[CP] Stoned modifier COUGHING");	
-			player.GetSymptomManager().QueueUpPrimarySymptom(SymptomIDs.SYMPTOM_COUGH);	
-			
-		} else if ( roll < CHANCE_OF_LAUGHTER )
-		{
-			Print("[CP] Stoned modifier LAUGHING");	
-			player.GetSymptomManager().QueueUpPrimarySymptom(SymptomIDs.SYMPTOM_LAUGHTER);
-		}
+		Print("[CP] Stoned modifier activating on player: " + player);	
 	}
 	
 	override protected void OnDeactivate(PlayerBase player)
 	{
-		player.DecreaseDiseaseCount();
 		Print("[CP] Stoned modifier deactivating on player: " + player);
 	}
 	
@@ -67,7 +54,21 @@ class StonedMdfr: ModifierBase
 
 	override protected void OnTick(PlayerBase player, float deltaT)
 	{
-		
+		int roll = Math.RandomInt(0, 100);	
+		if ( roll < CHANCE_OF_COUGH )
+		{
+			Print("[CP] Stoned modifier COUGHING");	
+			SymptomBase cough_symptom = player.GetSymptomManager().QueueUpPrimarySymptom(SymptomIDs.SYMPTOM_COUGH);
+			if (cough_symptom)
+				cough_symptom.SetDuration(5);
+			
+		} else if ( roll < CHANCE_OF_LAUGHTER )
+		{
+			//Print("[CP] Stoned modifier LAUGHING");	
+			SymptomBase laugh_symptom = player.GetSymptomManager().QueueUpPrimarySymptom(SymptomIDs.SYMPTOM_LAUGHTER);
+			if (laugh_symptom)
+				laugh_symptom.SetDuration(5);
+		}
 		if (player.GetStatWater().Get() > (WATER_DRAIN_WHILE_STONED))
 	 		player.GetStatWater().Add(-1 * WATER_DRAIN_WHILE_STONED);
 	}
