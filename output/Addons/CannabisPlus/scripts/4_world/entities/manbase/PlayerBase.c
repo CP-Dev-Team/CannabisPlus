@@ -5,6 +5,11 @@ modded class PlayerBase {
 
 	ref Timer swayTimer;				// timer that resets the values after the effect is over
 	ref Timer jointTimer;			// timer that resets the values after the effect is over
+
+	const string SMOKE_SOUND                  = "Smoking_SoundSet";
+
+	EffectSound                                     m_TurnOff;
+      EffectSound                                     m_TurnOn;
 	
 	bool m_HasConsumedCigarette = false;	// has the player consumed a hole cigarette	
 	int m_cigaretteValue;			// the quantity of the cigarette, what the player consumed
@@ -123,6 +128,7 @@ modded class PlayerBase {
            	CameraEffects.changeRadBlurYEffect(GetDayZGame().GetCannabisPlusConfig().weedRadBlurYPower*multiplier);
            	CameraEffects.changeRotationBlurPower(GetDayZGame().GetCannabisPlusConfig().weedRotBlurPow*multiplier);
         }	
+	  PlaySoundSet(m_TurnOn, SMOKE_SOUND, 0.0, 0.0)	
 
     }
 
