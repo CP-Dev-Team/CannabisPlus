@@ -12,11 +12,11 @@ class CannabisPlusRPC {
         
         if( type == CallType.Server )
         {
-            Print( "Server function called!" );
+            Print( "[CP] Server function called!" );
         }
         else
         {
-            Print( "Client function called!" );
+            Print( "[CP] Client function called!" );
 	    GetDayZGame().SetCannabisPlusConfig(m_CannabisPlusConfig.param1);
         }
     }

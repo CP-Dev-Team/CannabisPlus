@@ -63,3 +63,47 @@ class CfgMods
 		};
 	};
 };
+
+class CfgSoundShaders
+{
+    class Custom_SoundShader_Base
+    {
+        range = 30;
+    };
+
+    class Smoking_SoundShader : Custom_SoundShader_Base
+    {
+        samples[] =
+        {
+        	{
+        		"CannabisPlus\sounds\smoke.ogg", 
+        		1
+        	}
+        };
+        volume = 1;
+    };
+};
+
+class CfgSoundSets
+{
+    class Custom_SoundSet_Base
+    {
+        sound3DProcessingType = "character3DProcessingType";
+        volumeCurve = "characterAttenuationCurve";
+        spatial = 1;
+        doppler = 0;
+        loop = 0;
+    };
+
+    class Smoking_SoundSet : Custom_SoundSet_Base
+    {
+        soundShaders[] =
+        {
+            "Smoking_SoundShader"
+        };
+        
+        frequencyRandomizer = 0;
+        volumeRandomizer = 0;
+        volume = 0.5;
+    };
+};	

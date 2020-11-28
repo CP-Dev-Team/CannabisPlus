@@ -11,6 +11,7 @@
 
 <Trader> Black Market
 	<Category> Cannabis
+//		CP_Relief_Balm,							*,		-1,			-1	
         CigarettePack_Chernamorka,          	*,		900,		600
         CigarettePack_Merkur,              		*,		900,		600
         CigarettePack_Partyzanka,              	*,		900,		600
