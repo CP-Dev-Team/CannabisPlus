@@ -62,7 +62,7 @@ class ActionSmokeJointSelf: ActionContinuousBase {
         CP_JointBase joint = CP_JointBase.Cast(action_data.m_MainItem);
 		
         if (joint) {
-		joint.SetSmokingState(ESmokeState.SMOKING);
+			joint.SetSmokingState(ESmokeState.SMOKING);
         };
 	  super.OnStartAnimationLoop(action_data);
     }
@@ -72,7 +72,7 @@ class ActionSmokeJointSelf: ActionContinuousBase {
         CP_JointBase joint = CP_JointBase.Cast(action_data.m_MainItem);
 		
         if (joint) {
-		joint.SetSmokingState(ESmokeState.INACTIVE);
+			joint.SetSmokingState(ESmokeState.INACTIVE);
         };
 	  super.OnEndAnimationLoop(action_data);		
     }			
@@ -116,7 +116,7 @@ class ActionSmokeJointSelf: ActionContinuousBase {
 		CP_JointBase joint = CP_JointBase.Cast(action_data.m_MainItem);
 		string joint_type = joint.GetType();
 		
-		if (joint && joint_type != "CP_JointS1") {
+		if (joint) {
 			player.AddValueToJointValue(1);
 			CurrentCycles = player.GetJointCycles();
 		}
