@@ -41,18 +41,18 @@ class CameraEffects extends PPEffects
 	}
 
     // Function used to apply NVG grain effects on a player.
-    static void setNVGEffect(float sharpness, float grain_size)
-    {
-        Material matHDR = GetGame().GetWorld().GetMaterial("Graphics/Materials/postprocess/filmgrainNV");
-        SHARPNESS = sharpness;
-        GRAIN_SIZE = grain_size;
+    //static void setNVGEffect(float sharpness, float grain_size)
+    //{
+    //    Material matHDR = GetGame().GetWorld().GetMaterial("Graphics/Materials/postprocess/filmgrainNV");
+    //    SHARPNESS = sharpness;
+    //    GRAIN_SIZE = grain_size;
 
-        if(matHDR)
-        {
-            matHDR.SetParam("Sharpness", SHARPNESS);
-		    matHDR.SetParam("GrainSize", GRAIN_SIZE);
-        }
-    }
+    //    if(matHDR)
+    //    {
+    //        matHDR.SetParam("Sharpness", SHARPNESS);
+    //		    matHDR.SetParam("GrainSize", GRAIN_SIZE);
+    //    }
+    //}
 
     // Function used to change Chromatic Aberration X value.
     static void changeChromaX(int value)

@@ -1,8 +1,8 @@
 class ActionSmokeJointSelfCB : ActionContinuousBaseCB {
-
+	
 	override void CreateActionComponent() {
 		m_ActionData.m_ActionComponent = new CAContinuousRepeat(1);
-	}		
+	}	
 };
 
 class ActionSmokeJointSelf: ActionContinuousBase {	
@@ -10,6 +10,7 @@ class ActionSmokeJointSelf: ActionContinuousBase {
 	string currentLanguage;	
 	private float clhealth;
 	private int ReduceAmount=5;
+	int CurrentCycles;
 
 	void ActionSmokeJointSelf()	{
 		m_CallbackClass = ActionSmokeJointSelfCB;		
@@ -63,19 +64,29 @@ class ActionSmokeJointSelf: ActionContinuousBase {
         if (joint) {
 			joint.SetSmokingState(ESmokeState.SMOKING);
         };
-		super.OnStartAnimationLoop(action_data);
+	  super.OnStartAnimationLoop(action_data);
     }
+	
+    override void OnEndAnimationLoop( ActionData action_data )
+    {
+        CP_JointBase joint = CP_JointBase.Cast(action_data.m_MainItem);
+		
+        if (joint) {
+			joint.SetSmokingState(ESmokeState.INACTIVE);
+        };
+	  super.OnEndAnimationLoop(action_data);		
+    }			
 
 	/*override void OnEndInput( ActionData action_data ) {
 		super.OnEndInput(action_data);
 		CP_JointBase joint = CP_JointBase.Cast(action_data.m_MainItem);
 
 		if (joint) {
-			//Print("[DEBUG] ActionSmokeJointSelf:OnEndInput");
+			//Print("[CP] ActionSmokeJointSelf:OnEndInput");
 			joint.AddHealth("", "Health", -ReduceAmount);
 		
 			clhealth = joint.GetHealth();
-			//Print("[DEBUG] Joint has " + clhealth + " health");
+			//Print("[CP] Joint has " + clhealth + " health");
 			
 			joint.SetSynchronizedHealth(clhealth);
 			
@@ -88,14 +99,26 @@ class ActionSmokeJointSelf: ActionContinuousBase {
 		}
 	}*/
 
+	override void ApplyModifiers( ActionData action_data )
+	{
+		CP_JointBase joint = CP_JointBase.Cast(action_data.m_MainItem);
+				
+		if (joint) {
+			joint.MakeStoned(action_data.m_Player);
+			if (CurrentCycles >= 50)
+			    joint.MakePuke(action_data.m_Player);	
+		}	
+	}
+	
 	override void OnFinishProgressClient( ActionData action_data )
 	{
 		PlayerBase player = action_data.m_Player;
 		CP_JointBase joint = CP_JointBase.Cast(action_data.m_MainItem);
 		string joint_type = joint.GetType();
 		
-		if (joint && joint_type != "CP_JointS1") {
+		if (joint) {
 			player.AddValueToJointValue(1);
+			CurrentCycles = player.GetJointCycles();
 		}
 			
 		super.OnFinishProgressClient(action_data);
@@ -106,15 +129,17 @@ class ActionSmokeJointSelf: ActionContinuousBase {
 		
 		if (joint) {
 			
+			ApplyModifiers(action_data);
+			
 			joint.AddHealth("", "Health", -ReduceAmount);
 			
 			clhealth = joint.GetHealth();
-			Print("[DEBUG] Joint has " + clhealth + " health");
+			//Print("[CP] Joint has " + clhealth + " health");
 			
 			joint.SetSynchronizedHealth(clhealth);
 			
 			if (clhealth <= 0) {
-				//Print("[DEBUG] Deleting Joint");
+				//Print("[CP] Deleting Joint");
 				joint.SetSmokingState(ESmokeState.NOT_SMOKING);
 				joint.UpdateParticles();
 				joint.Delete();
