@@ -74,7 +74,7 @@ class CannabisPlusConfig
 	
 	void CannabisPlusConfig() {
 		
-		configVersion				= 250;		
+		configVersion				= 251;		
 		removeAfterHarvest 			= true;		
 
 		tobacco_growtime 				= 8;
