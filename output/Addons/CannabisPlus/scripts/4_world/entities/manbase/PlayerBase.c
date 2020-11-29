@@ -118,10 +118,10 @@ modded class PlayerBase {
         if(GetGame().IsClient())
         {
             //Reset effects on player before adding new ones.
-            CameraEffects.changeHue(60);
-            CameraEffects.changeRadBlurXEffect(0);
-            CameraEffects.changeRadBlurYEffect(0);
-            CameraEffects.changeRotationBlurPower(0);
+            //CameraEffects.changeHue(60);
+            //CameraEffects.changeRadBlurXEffect(0);
+            //CameraEffects.changeRadBlurYEffect(0);
+            //CameraEffects.changeRotationBlurPower(0);
             
             CameraEffects.changeHue(GetDayZGame().GetCannabisPlusConfig().weedHueIntensity-counter);
 		CameraEffects.changeRadBlurXEffect(GetDayZGame().GetCannabisPlusConfig().weedRadBlurXPower*multiplier);
@@ -152,15 +152,15 @@ modded class PlayerBase {
 		super.Init();
 		
 		//Reset effects on player spawn.
-		CameraEffects.changeHue(60);
-	      CameraEffects.changeRadBlurXEffect(0);
-	      CameraEffects.changeRadBlurYEffect(0);
-	      CameraEffects.setExposure(60);
-	      CameraEffects.changeRotationBlurPower(0);
-	      CameraEffects.changeVignette(0);
-	      CameraEffects.changeChromaX(0);
-	      CameraEffects.changeChromaY(0);
-		CameraEffects.changeVignetteColorRGB(0,0,0);
+		//CameraEffects.changeHue(60);
+	      //CameraEffects.changeRadBlurXEffect(0);
+	      //CameraEffects.changeRadBlurYEffect(0);
+	      //CameraEffects.setExposure(60);
+	      //CameraEffects.changeRotationBlurPower(0);
+	      //CameraEffects.changeVignette(0);
+	      //CameraEffects.changeChromaX(0);
+	      //CameraEffects.changeChromaY(0);
+		//CameraEffects.changeVignetteColorRGB(0,0,0);
 		
 		if ( GetGame().IsServer() || GetGame().IsMultiplayer() )
 		{
