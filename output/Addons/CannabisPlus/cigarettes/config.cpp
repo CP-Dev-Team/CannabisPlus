@@ -14,6 +14,7 @@ class CfgPatches
 class CfgVehicles
 {
 	class Inventory_Base;
+	
 	class CP_Cigarette: Inventory_Base
 	{
 		scope=2;

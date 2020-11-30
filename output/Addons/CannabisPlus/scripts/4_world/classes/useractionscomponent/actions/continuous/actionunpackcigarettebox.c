@@ -100,7 +100,19 @@ class ActionUnpackCigaretteBox: ActionContinuousBase {
 						break;
 					case "CP_CigarettePack_CannabisStardawg":
 						resultItem = ItemBase.Cast( GetGame().CreateObject("CP_JointStardawg" , action_data.m_Player.GetPosition(), false) );
+						break;	
+					case "CP_CigarettePack_CannabisFuture":
+						resultItem = ItemBase.Cast( GetGame().CreateObject("CP_JointFuture" , action_data.m_Player.GetPosition(), false) );
+						break;		
+					case "CP_CigarettePack_CannabisS1":
+						resultItem = ItemBase.Cast( GetGame().CreateObject("CP_JointS1" , action_data.m_Player.GetPosition(), false) );
+						break;		
+					case "CP_CigarettePack_CannabisNomad":
+						resultItem = ItemBase.Cast( GetGame().CreateObject("CP_JointNomad" , action_data.m_Player.GetPosition(), false) );
 						break;					
+					case "CP_CigarettePack_CannabisBlackFrost":
+						resultItem = ItemBase.Cast( GetGame().CreateObject("CP_JointBlackFrost" , action_data.m_Player.GetPosition(), false) );
+						break;		
 					case "CigarettePack_Merkur":
 						resultItem = ItemBase.Cast( GetGame().CreateObject("CP_Cigarette" , action_data.m_Player.GetPosition(), false) );
 						break;					

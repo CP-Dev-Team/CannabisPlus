@@ -25,7 +25,6 @@ class CP_CraftCannabisBrickBlue extends RecipeBase
 		//INGREDIENTS
 		//ingredient 1
 		InsertIngredient(0,"CP_CannabisBagBlue");//you can insert multiple ingredients this way
-		InsertIngredient(0,"CannabisBagBlue");
 		m_IngredientAddHealth[0] = 0;// 0 = do nothing
 		m_IngredientSetHealth[0] = -1; // -1 = do nothing
 		m_IngredientAddQuantity[0] = -16;// 0 = do nothing

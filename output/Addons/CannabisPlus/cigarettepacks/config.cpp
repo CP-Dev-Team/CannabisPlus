@@ -655,4 +655,325 @@ class CfgVehicles
 			};
 		};
 	};
+
+	class CP_CigarettePack_CannabisFuture: Inventory_Base
+	{
+		scope=2;
+		displayName="Marijuana Cigarettes Future";
+		descriptionShort="A pack of Future marijuana cigarettes.";
+		model="\dz\gear\medical\cigarette_pack.p3d";
+		lootCategory="Crafted";
+		itemSize[]={1,1};
+		weight=50;
+		canBeSplit=0;
+		varQuantityInit=1;
+		varQuantityMin=1;
+		varQuantityMax=5;	
+		varQuantityDestroyOnMin=1;	
+		quantityBar=0;
+		hiddenSelections[]=
+		{
+			"camoGround",
+			"zbytek"
+		};
+		hiddenSelectionsTextures[]=
+		{
+			"CannabisPlus\cigarettepacks\data\pack_of_cigs_cannabis_Future_co.paa",
+			"CannabisPlus\cigarettepacks\data\pack_of_cigs_cannabis_Future_co.paa"
+		};
+		class DamageSystem
+		{
+			class GlobalHealth
+			{
+				class Health
+				{
+					hitpoints=25;
+					healthLevels[]=
+					{
+						
+						{
+							1,
+							
+							{
+								"DZ\gear\medical\data\Pack_of_cigs.rvmat"
+							}
+						},
+						
+						{
+							0.69999999,
+							
+							{
+								"DZ\gear\medical\data\Pack_of_cigs.rvmat"
+							}
+						},
+						
+						{
+							0.5,
+							
+							{
+								"DZ\gear\medical\data\Pack_of_cigs_damage.rvmat"
+							}
+						},
+						
+						{
+							0.30000001,
+							
+							{
+								"DZ\gear\medical\data\Pack_of_cigs_damage.rvmat"
+							}
+						},
+						
+						{
+							0,
+							
+							{
+								"DZ\gear\medical\data\Pack_of_cigs_destruct.rvmat"
+							}
+						}
+					};
+				};
+			};
+		};
+	};
+
+	class CP_CigarettePack_CannabisS1: Inventory_Base
+	{
+		scope=2;
+		displayName="Hemp Cigarettes S1";
+		descriptionShort="A pack of S1 hemp cigarettes.  Sponsored by StevesGoods.com";
+		model="\dz\gear\medical\cigarette_pack.p3d";
+		lootCategory="Crafted";
+		itemSize[]={1,1};
+		weight=50;
+		canBeSplit=0;
+		varQuantityInit=1;
+		varQuantityMin=1;
+		varQuantityMax=5;	
+		varQuantityDestroyOnMin=1;	
+		quantityBar=0;
+		hiddenSelections[]=
+		{
+			"camoGround",
+			"zbytek"
+		};
+		hiddenSelectionsTextures[]=
+		{
+			"CannabisPlus\cigarettepacks\data\pack_of_cigs_cannabis_S1_co.paa",
+			"CannabisPlus\cigarettepacks\data\pack_of_cigs_cannabis_S1_co.paa"
+		};
+		class DamageSystem
+		{
+			class GlobalHealth
+			{
+				class Health
+				{
+					hitpoints=25;
+					healthLevels[]=
+					{
+						
+						{
+							1,
+							
+							{
+								"DZ\gear\medical\data\Pack_of_cigs.rvmat"
+							}
+						},
+						
+						{
+							0.69999999,
+							
+							{
+								"DZ\gear\medical\data\Pack_of_cigs.rvmat"
+							}
+						},
+						
+						{
+							0.5,
+							
+							{
+								"DZ\gear\medical\data\Pack_of_cigs_damage.rvmat"
+							}
+						},
+						
+						{
+							0.30000001,
+							
+							{
+								"DZ\gear\medical\data\Pack_of_cigs_damage.rvmat"
+							}
+						},
+						
+						{
+							0,
+							
+							{
+								"DZ\gear\medical\data\Pack_of_cigs_destruct.rvmat"
+							}
+						}
+					};
+				};
+			};
+		};
+	};
+
+	class CP_CigarettePack_CannabisNomad: Inventory_Base
+	{
+		scope=2;
+		displayName="Marijuana Cigarettes Nomad";
+		descriptionShort="A pack of Nomad marijuana cigarettes.";
+		model="\dz\gear\medical\cigarette_pack.p3d";
+		lootCategory="Crafted";
+		itemSize[]={1,1};
+		weight=50;
+		canBeSplit=0;
+		varQuantityInit=1;
+		varQuantityMin=1;
+		varQuantityMax=5;	
+		varQuantityDestroyOnMin=1;	
+		quantityBar=0;
+		hiddenSelections[]=
+		{
+			"camoGround",
+			"zbytek"
+		};
+		hiddenSelectionsTextures[]=
+		{
+			"CannabisPlus\cigarettepacks\data\pack_of_cigs_cannabis_Nomad_co.paa",
+			"CannabisPlus\cigarettepacks\data\pack_of_cigs_cannabis_Nomad_co.paa"
+		};
+		class DamageSystem
+		{
+			class GlobalHealth
+			{
+				class Health
+				{
+					hitpoints=25;
+					healthLevels[]=
+					{
+						
+						{
+							1,
+							
+							{
+								"DZ\gear\medical\data\Pack_of_cigs.rvmat"
+							}
+						},
+						
+						{
+							0.69999999,
+							
+							{
+								"DZ\gear\medical\data\Pack_of_cigs.rvmat"
+							}
+						},
+						
+						{
+							0.5,
+							
+							{
+								"DZ\gear\medical\data\Pack_of_cigs_damage.rvmat"
+							}
+						},
+						
+						{
+							0.30000001,
+							
+							{
+								"DZ\gear\medical\data\Pack_of_cigs_damage.rvmat"
+							}
+						},
+						
+						{
+							0,
+							
+							{
+								"DZ\gear\medical\data\Pack_of_cigs_destruct.rvmat"
+							}
+						}
+					};
+				};
+			};
+		};
+	};
+
+	class CP_CigarettePack_CannabisBlackFrost: Inventory_Base
+	{
+		scope=2;
+		displayName="Marijuana Cigarettes Black Frost";
+		descriptionShort="A pack of Black Frost marijuana cigarettes.";
+		model="\dz\gear\medical\cigarette_pack.p3d";
+		lootCategory="Crafted";
+		itemSize[]={1,1};
+		weight=50;
+		canBeSplit=0;
+		varQuantityInit=1;
+		varQuantityMin=1;
+		varQuantityMax=5;	
+		varQuantityDestroyOnMin=1;	
+		quantityBar=0;
+		hiddenSelections[]=
+		{
+			"camoGround",
+			"zbytek"
+		};
+		hiddenSelectionsTextures[]=
+		{
+			"CannabisPlus\cigarettepacks\data\pack_of_cigs_cannabis_BlackFrost_co.paa",
+			"CannabisPlus\cigarettepacks\data\pack_of_cigs_cannabis_BlackFrost_co.paa"
+		};
+		class DamageSystem
+		{
+			class GlobalHealth
+			{
+				class Health
+				{
+					hitpoints=25;
+					healthLevels[]=
+					{
+						
+						{
+							1,
+							
+							{
+								"DZ\gear\medical\data\Pack_of_cigs.rvmat"
+							}
+						},
+						
+						{
+							0.69999999,
+							
+							{
+								"DZ\gear\medical\data\Pack_of_cigs.rvmat"
+							}
+						},
+						
+						{
+							0.5,
+							
+							{
+								"DZ\gear\medical\data\Pack_of_cigs_damage.rvmat"
+							}
+						},
+						
+						{
+							0.30000001,
+							
+							{
+								"DZ\gear\medical\data\Pack_of_cigs_damage.rvmat"
+							}
+						},
+						
+						{
+							0,
+							
+							{
+								"DZ\gear\medical\data\Pack_of_cigs_destruct.rvmat"
+							}
+						}
+					};
+				};
+			};
+		};
+	};
+
 };

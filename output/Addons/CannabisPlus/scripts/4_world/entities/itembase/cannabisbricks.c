@@ -17,3 +17,26 @@ class CP_CannabisBrickStardawg extends ItemBase
 {
 
 }
+
+class CP_CannabisBrickFuture extends ItemBase
+{
+
+}
+
+class CP_CannabisBrickS1 extends ItemBase
+{
+
+}
+
+class CP_CannabisBrickNomad extends ItemBase
+{
+
+}
+
+class CP_CannabisBrickBlackFrost extends ItemBase
+{
+
+}
+
+
+

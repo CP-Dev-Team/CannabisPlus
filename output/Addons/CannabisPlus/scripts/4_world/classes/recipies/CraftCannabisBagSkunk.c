@@ -26,7 +26,6 @@ class CP_CraftCannabisBagSkunk extends RecipeBase
 		//ingredient 1
 
 		InsertIngredient(0,"CP_CannabisSkunk");//you can insert multiple ingredients this way
-		InsertIngredient(0,"Cannabis");
 		m_IngredientAddHealth[0] = 0;// 0 = do nothing
 		m_IngredientSetHealth[0] = -1; // -1 = do nothing
 		m_IngredientAddQuantity[0] = -1;// 0 = do nothing
@@ -35,7 +34,6 @@ class CP_CraftCannabisBagSkunk extends RecipeBase
 		
 		//ingredient 2
 		InsertIngredient(1, "CP_CannabisSkunk");//you can insert multiple ingredients this way
-		InsertIngredient(1, "Cannabis");
 		m_IngredientAddHealth[1] = 0;// 0 = do nothing
 		m_IngredientSetHealth[1] = -1; // -1 = do nothing
 		m_IngredientAddQuantity[1] = -1;// 0 = do nothing

@@ -17,8 +17,8 @@ class CfgVehicles
 	class CP_RollingPapers: Inventory_Base
 	{
 		scope=2;
-		displayName="Zig Zag";
-		descriptionShort="A pack of old Zig Zag Rollingpapers";
+		displayName="Rolling Papers";
+		descriptionShort="A pack of old rollingpapers";
 		model="CannabisPlus\rolling\RollingPaperPackage.p3d";
 		rotationFlags=17;
 		canBeSplit=0;
