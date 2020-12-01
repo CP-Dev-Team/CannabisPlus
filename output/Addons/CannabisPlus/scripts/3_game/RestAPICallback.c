@@ -6,15 +6,15 @@ class CPTransactionCallBack : RestCallback
     string Element;
     
     override void OnError(int errorCode) {
-    
+    Print("Transaction Error");
     };
     
     override void OnTimeout() {
-    
+    Print("Transaction Timeout");
     };
     
     override void OnSuccess(string data, int dataSize) {
-    
+    Print("Transaction Success" + data);    
     };
 };
 
@@ -29,7 +29,7 @@ class CPApiTransaction
     }
     
     string ToJson(){
-        string jsonString = JsonFileLoader<UApiTransaction>.JsonMakeData(this);;
+        string jsonString = JsonFileLoader<CPApiTransaction>.JsonMakeData(this);;
         return jsonString;
     }
     

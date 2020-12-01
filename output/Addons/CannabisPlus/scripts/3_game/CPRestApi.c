@@ -22,6 +22,7 @@ class CPRestApi
         RestContext ctx =  Api().GetRestContext(url);
         ctx.SetHeader("application/json");
         ctx.POST(UCBX , "", jsonString);
+        Print("Post" + url + jsonString);
     }
 
     static string BaseUrl(){
@@ -33,14 +34,11 @@ class CPRestApi
     }
     
     static void Increment(string element, float value = 1) {
+        Print( "Increment" + element );
+            ref RestCallback UCBX = new ref CPTransactionCallBack;
         
-            UCBX = new ref CPTransactionCallBack;
         
-        if (auth == "" ){
-            auth = AuthToken();
-        }
-        
-        string url = BaseUrl() + "Globals/Transaction/CannabisPlus/" + auth;
+        string url = BaseUrl() + "Gobals/Transaction/CannabisPlus/" + AuthToken();
         
         ref CPApiTransaction transaction = new ref CPApiTransaction(element, value);
         
