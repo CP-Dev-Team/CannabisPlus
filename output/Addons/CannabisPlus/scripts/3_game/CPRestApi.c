@@ -1,8 +1,8 @@
 class CPRestApi
 {    
-    static protected string m_BaseUrl = "https://api.cannabisplus.tk/";
-    static protected string m_AuthToken = "XQ9mOhtiFZd1TxJ23Z.ia9vC0Tb2pO;Vnx2dqvke~9UNP";
-        
+    static protected string m_BaseUrl = CPTOKENS.URL;
+    static protected string m_AuthToken = CPTOKENS.AUTH;
+
     static RestApi Api()
     {
         RestApi clCore = GetRestApi();
