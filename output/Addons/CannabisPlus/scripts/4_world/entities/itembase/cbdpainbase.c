@@ -15,7 +15,7 @@ class CP_Relief_Balm extends Inventory_Base
 		player.GetModifiersManager().ActivateModifier( eModifiers.MDF_PAINKILLERS );
 	}
 
-	override void OnItemLocationChanged(EntityAI old_owner, EntityAI new_owner)
+    override void OnItemLocationChanged(EntityAI old_owner, EntityAI new_owner)
     {
         super.OnItemLocationChanged(old_owner, new_owner);
 
