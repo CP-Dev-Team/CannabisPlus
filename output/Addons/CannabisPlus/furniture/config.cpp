@@ -1,527 +1,292 @@
 class CfgPatches
 {
-	class CP_Furniture
-	{
-		units[]={};
-		weapons[]={};
-		requiredVersion=0.1;
-		requiredAddons[]=
-		{
-			"DZ_Data"
-		};
-	};
-};
-class CfgSlots
-{
-	class Slot_DryPlant
+    class CP_Clothesline
     {
-        name="DryPlant";
-        displayName="DryPlant";
-		ghostIcon="plant";
+        units[] =
+        {
+            ""
+        };
+        weapons[] = {};
+        requiredVersion = 0.1;
+        requiredAddons[] = 
+        {
+            "DZ_Data"
+        };
     };
 };
+
+class CfgSlots
+{ 
+    class Slot_CannabisPlant
+    {
+        name="Raw Cannabis Plant";
+        displayName="Raw Cannabis Plant";
+        ghostIcon="plant";
+    };
+    class Slot_CannabisPlant2
+    {
+        name="Raw Cannabis Plant2";
+        displayName="Raw Cannabis Plant2";
+        ghostIcon="plant";
+    };
+};
+
+class CfgNonAIVehicles
+{
+    class ProxyAttachment;
+    class Proxybdu_jacket_g : ProxyAttachment
+    {
+        scope = 2;
+        InventorySlot="Raw Cannabis Plant";
+        model="\DZ\characters\tops\bdu_jacket_g.p3d";
+    };
+    class Proxybdu_pants_g : ProxyAttachment
+    {
+        scope = 2;
+        InventorySlot="Raw Cannabis Plant2";
+        model="\DZ\characters\pants\bdu_pants_g.p3d";
+    };
+};
+
 class CfgVehicles
 {
-	class Inventory_Base;
-	class Clothesline : Inventory_Base
-	{
-		scope = 2;
+    class Inventory_Base;
+    class Clothing_Base : Inventory_Base
+    {
+        inventorySlot[]=
+        {
+            "Raw Cannabis Plant",
+            "Raw Cannabis Plant2"
+        };
+    };
+    class Clothesline : Inventory_Base
+    {
+        scope = 2;
 		displayName = "Clothesline";
 		descriptionShort = "Clothesline";
 		model="\CannabisPlus\furniture\clothesline.p3d";
-		overrideDrawArea = "3.0";
-		forceFarBubble = "true";
-		lootCategory = "Crafted";
-		carveNavmesh = 1;
-		weight = 10000;
-		itemSize[] = {6,6};
-		physLayer = "item_large";
-		createProxyPhysicsOnInit = "false";
-		createdProxiesOnInit[] = {"Deployed"};
-		rotationFlags = 2;
-		attachments[] = {"Att_CombinationLock","Material_Nails","Material_WoodenPlanks","Material_MetalSheets","CamoNet"};
-		itemsCargoSize[]={10,50};
+        attachments[]=
+        {
+            "Raw Cannabis Plant",
+            "Raw Cannabis Plant2"
+        };
+        class GUIInventoryAttachmentsProps
+        {
+            class CP_Line
+            {
+                name="Hang Clothes";
+                description="";
+                attachmentSlots[]=
+                {
+                    "Raw Cannabis Plant",
+                    "Raw Cannabis Plant2"
+                };
+            };
+        };
+    };
 
-		class GUIInventoryAttachmentsProps
+    class CP_RawCannabisPlant : Inventory_Base
+    {
+        scope = 2;
+		displayName = "Raw Cannabis Plant";
+		descriptionShort = "Raw Cannabis Plant";
+		model="\CannabisPlus\fruits\tobacco.p3d";
+        inventorySlot[]=
+        {
+            "Raw Cannabis Plant",
+            "Raw Cannabis Plant2"
+        };
+    };
+        
+/*    class CP_WoodenPost : WoodenLog
+    {
+		displayName="Wooden Post";
+		descriptionShort="A wooden post.";
+		model="\dz\gear\camping\wooden_log.p3d";
+        varStackMax=2;
+        inventorySlot[]={};
+        attachments[]=
 		{
-			class Attachments
+			"Rope"
+		};
+    };
+*/
+	class CP_WoodenPost : Inventory_Base
+	{
+		scope=2;
+		displayName="Wooden Post";
+		descriptionShort="A wooden post.";
+		model="\dz\gear\camping\wooden_log.p3d";
+		weight=20000;
+		itemSize[]={3,11};
+		varQuantityDestroyOnMin=1;
+		itemBehaviour=0;
+		canBeSplit=1;
+		varQuantityInit=1;
+		varQuantityMin=0;
+		varQuantityMax=50;
+        varStackMax=2;
+        inventorySlot[]={};
+        attachments[]=
+		{
+			"Rope"
+		};
+		class DamageSystem
+		{
+			class GlobalHealth
 			{
-				name = "Attachments";
-				description = "";
-				attachmentSlots[] = {"Att_CombinationLock", "CamoNet"};
-				icon = "cat_bb_attachments";
-				selection = "shed";
-			};
-			class Materials
-			{
-				name = "Materials";
-				description = "";
-				attachmentSlots[] = {"Material_Nails", "Material_WoodenPlanks","Material_MetalSheets"};
-				icon = "cat_bb_material";
-				selection = "shed";
+				class Health
+				{
+					hitpoints=500;
+					healthLevels[]=
+					{
+						
+						{
+							1,
+							
+							{
+								"dz\gear\camping\data\wooden_log.rvmat"
+							}
+						},
+						
+						{
+							0.69999999,
+							
+							{
+								"dz\gear\camping\data\wooden_log.rvmat"
+							}
+						},
+						
+						{
+							0.5,
+							
+							{
+								"dz\gear\camping\data\wooden_log_damage.rvmat"
+							}
+						},
+						
+						{
+							0.30000001,
+							
+							{
+								"dz\gear\camping\data\wooden_log_damage.rvmat"
+							}
+						},
+						
+						{
+							0,
+							
+							{
+								"dz\gear\camping\data\wooden_log_destruct.rvmat"
+							}
+						}
+					};
+				};
 			};
 		};
-		class AnimationSources
+		class AnimEvents
 		{
-			class AnimSourceShown
+			class SoundWeapon
 			{
-				source = "user";
-				animPeriod = 0.01;
-				initPhase = 0;
-			};
-			class AnimSourceHidden
-			{
-				source = "user";
-				animPeriod = 0.01;
-				initPhase = 1;
-			};
-			class AnimRotate
-			{
-				source = "user";
-				animPeriod = 1;
-				initPhase = 0;
-			};
-			class Material_Nails: AnimSourceHidden{};
-			class Material_WoodenPlanks: AnimSourceHidden{};
-			class Material_MetalSheets: AnimSourceHidden{};
-			class Material_MetalWire: AnimSourceHidden{};
-			class Deployed :  AnimSourceHidden{};
-			class Base_Frame : AnimSourceHidden{};
-			class Base_Wood : AnimSourceHidden{};
-			class Wall1_Frame : AnimSourceHidden{};
-			class Wall2_Frame : AnimSourceHidden{};
-			class Wall3_Frame : AnimSourceHidden{};
-			class Wall4_Frame : AnimSourceHidden{};
-			class Roof_Frame : AnimSourceHidden{};
-			class Wall1_Wood : AnimSourceHidden{};
-			class Wall2_Wood : AnimSourceHidden{};
-			class Wall3_Wood : AnimSourceHidden{};
-			class Wall4_Wood : AnimSourceHidden{};
-			class Roof_Wood : AnimSourceHidden{};
-			class Roof_Metal : AnimSourceHidden{};
-			class CamoNet : AnimSourceHidden{};
-			class Doors1 : AnimSourceHidden{};
-			class Doors1_Rotate : AnimRotate{};
-			class Doors2 : AnimSourceHidden{};
-			class Doors2_Rotate : AnimRotate{};
-		};
-		class Construction
-		{
-			class shed
-			{
-				class Base_Frame
+				class pickup
 				{
-					name="$STR_CfgVehicles_Construction_Part_Base";
-					is_base=1;
-					id=1;
-					required_parts[]={};
-					conflicted_parts[]={};
-					collision_data[]={};
-					build_action_type = 2;
-					dismantle_action_type = 2;
-					material_type = 2;
-					class Materials
-					{
-						class Material1
-						{
-							type = "Nail";
-							slot_name = "Material_Nails";
-							quantity = 20;
-						};
-						class Material2
-						{
-							type = "WoodenPlank";
-							slot_name = "Material_WoodenPlanks";
-							quantity = 10;
-						};
-					};
+					soundSet="woodenlog_pickup_SoundSet";
+					id=797;
 				};
-				class Base_Wood
+				class drop
 				{
-					name = "Base Wood";
-					id = 2;
-					required_parts[] = {"Base_Frame"};
-					conflicted_parts[] = {};
-					collision_data[] = {};
-					build_action_type = 2;
-					dismantle_action_type = 2;
-					material_type = 2;
-					class Materials
-					{
-						class Material1
-						{
-							type = "Nail";
-							slot_name = "Material_Nails";
-							quantity = 20;
-						};
-						class Material2
-						{
-							type = "WoodenPlank";
-							slot_name = "Material_WoodenPlanks";
-							quantity = 10;
-						};
-					};
-				};
-				class Wall1_Frame
-				{
-					name = "Wall 1 Frame";
-					id = 3;
-					required_parts[] = {"Base_Wood"};
-					conflicted_parts[] = {};
-					collision_data[] = {};
-					build_action_type = 2;
-					dismantle_action_type = 2;
-					material_type = 2;
-					class Materials
-					{
-						class Material1
-						{
-							type = "Nail";
-							slot_name = "Material_Nails";
-							quantity = 20;
-						};
-						class Material2
-						{
-							type = "WoodenPlank";
-							slot_name = "Material_WoodenPlanks";
-							quantity = 10;
-						};
-					};
-				};
-				class Wall2_Frame
-				{
-					name = "Wall 2 Frame";
-					id = 4;
-					required_parts[] = {"Base_Wood"};
-					conflicted_parts[] = {};
-					collision_data[] = {};
-					build_action_type = 2;
-					dismantle_action_type = 2;
-					material_type = 2;
-					class Materials
-					{
-						class Material1
-						{
-							type = "Nail";
-							slot_name = "Material_Nails";
-							quantity = 20;
-						};
-						class Material2
-						{
-							type = "WoodenPlank";
-							slot_name = "Material_WoodenPlanks";
-							quantity = 10;
-						};
-					};
-				};
-				class Wall3_Frame
-				{
-					name = "Wall 3 Frame";
-					id = 5;
-					required_parts[] = {"Base_Wood"};
-					conflicted_parts[] = {};
-					collision_data[] = {};
-					build_action_type = 2;
-					dismantle_action_type = 2;
-					material_type = 2;
-					class Materials
-					{
-						class Material1
-						{
-							type = "Nail";
-							slot_name = "Material_Nails";
-							quantity = 20;
-						};
-						class Material2
-						{
-							type = "WoodenPlank";
-							slot_name = "Material_WoodenPlanks";
-							quantity = 10;
-						};
-					};
-				};
-				class Wall4_Frame
-				{
-					name = "Wall 4 Frame";
-					id = 6;
-					required_parts[] = {"Base_Wood"};
-					conflicted_parts[] = {};
-					collision_data[] = {};
-					build_action_type = 2;
-					dismantle_action_type = 2;
-					material_type = 2;
-					class Materials
-					{
-						class Material1
-						{
-							type = "Nail";
-							slot_name = "Material_Nails";
-							quantity = 20;
-						};
-						class Material2
-						{
-							type = "WoodenPlank";
-							slot_name = "Material_WoodenPlanks";
-							quantity = 10;
-						};
-					};
-				};
-				class Roof_Frame
-				{
-					name = "Roof Frame";
-					id = 7;
-					required_parts[] = {"Wall1_Frame", "Wall2_Frame","Wall3_Frame", "Wall4_Frame"};
-					conflicted_parts[] = {};
-					collision_data[] = {};
-					build_action_type = 2;
-					dismantle_action_type = 2;
-					material_type = 2;
-					class Materials
-					{
-						class Material1
-						{
-							type = "Nail";
-							slot_name = "Material_Nails";
-							quantity = 20;
-						};
-						class Material2
-						{
-							type = "WoodenPlank";
-							slot_name = "Material_WoodenPlanks";
-							quantity = 10;
-						};
-					};
-				};
-				class Wall1_Wood
-				{
-					name = "Wall 1 Wood";
-					id = 8;
-					required_parts[] = {"Wall1_Frame", "Wall2_Frame","Wall3_Frame", "Wall4_Frame","Roof_Frame"};
-					conflicted_parts[] = {};
-					collision_data[] = {};
-					build_action_type = 2;
-					dismantle_action_type = 2;
-					material_type = 2;
-					class Materials
-					{
-						class Material1
-						{
-							type = "Nail";
-							slot_name = "Material_Nails";
-							quantity = 20;
-						};
-						class Material2
-						{
-							type = "WoodenPlank";
-							slot_name = "Material_WoodenPlanks";
-							quantity = 10;
-						};
-					};
-				};
-				class Wall2_Wood
-				{
-					name = "Wall 2 Wood";
-					id = 9;
-					required_parts[] = {"Wall1_Frame", "Wall2_Frame","Wall3_Frame", "Wall4_Frame","Roof_Frame"};
-					conflicted_parts[] = {};
-					collision_data[] = {};
-					build_action_type = 2;
-					dismantle_action_type = 2;
-					material_type = 2;
-					class Materials
-					{
-						class Material1
-						{
-							type = "Nail";
-							slot_name = "Material_Nails";
-							quantity = 20;
-						};
-						class Material2
-						{
-							type = "WoodenPlank";
-							slot_name = "Material_WoodenPlanks";
-							quantity = 10;
-						};
-					};
-				};
-				class Wall3_Wood
-				{
-					name = "Wall 3 Wood";
-					id = 10;
-					required_parts[] = {"Wall1_Frame", "Wall2_Frame","Wall3_Frame", "Wall4_Frame","Roof_Frame"};
-					conflicted_parts[] = {};
-					collision_data[] = {};
-					build_action_type = 2;
-					dismantle_action_type = 2;
-					material_type = 2;
-					class Materials
-					{
-						class Material1
-						{
-							type = "Nail";
-							slot_name = "Material_Nails";
-							quantity = 20;
-						};
-						class Material2
-						{
-							type = "WoodenPlank";
-							slot_name = "Material_WoodenPlanks";
-							quantity = 10;
-						};
-					};
-				};
-				class Wall4_Wood
-				{
-					name = "Wall 4 Wood";
-					id = 11;
-					required_parts[] = {"Wall1_Frame", "Wall2_Frame","Wall3_Frame", "Wall4_Frame","Roof_Frame"};
-					conflicted_parts[] = {};
-					collision_data[] = {};
-					build_action_type = 2;
-					dismantle_action_type = 2;
-					material_type = 2;
-					class Materials
-					{
-						class Material1
-						{
-							type = "Nail";
-							slot_name = "Material_Nails";
-							quantity = 20;
-						};
-						class Material2
-						{
-							type = "WoodenPlank";
-							slot_name = "Material_WoodenPlanks";
-							quantity = 10;
-						};
-					};
-				};
-				class Roof_Wood
-				{
-					name = "Roof Wood";
-					id = 12;
-					required_parts[] = {"Roof_Frame"};
-					conflicted_parts[] = {};
-					collision_data[] = {};
-					build_action_type = 2;
-					dismantle_action_type = 2;
-					material_type = 2;
-					class Materials
-					{
-						class Material1
-						{
-							type = "Nail";
-							slot_name = "Material_Nails";
-							quantity = 20;
-						};
-						class Material2
-						{
-							type = "WoodenPlank";
-							slot_name = "Material_WoodenPlanks";
-							quantity = 10;
-						};
-					};
-				};
-				class Doors1
-				{
-					name = "Door 1";
-					id = 13;
-					is_gate=1;
-					required_parts[] = {"Wall1_Wood", "Wall2_Wood","Wall3_Wood", "Wall4_Wood"};
-					conflicted_parts[] = {};
-					collision_data[] = {};
-					build_action_type = 2;
-					dismantle_action_type = 2;
-					material_type = 2;
-					class Materials
-					{
-						class Material1
-						{
-							type = "Nail";
-							slot_name = "Material_Nails";
-							quantity = 20;
-						};
-						class Material2
-						{
-							type = "WoodenPlank";
-							slot_name = "Material_WoodenPlanks";
-							quantity = 10;
-						};
-					};
-				};
-				class Doors2
-				{
-					name = "Door 2";
-					id = 14;
-					is_gate=1;
-					required_parts[] = {"Wall1_Wood", "Wall2_Wood","Wall3_Wood", "Wall4_Wood"};
-					conflicted_parts[] = {};
-					collision_data[] = {};
-					build_action_type = 2;
-					dismantle_action_type = 2;
-					material_type = 2;
-					class Materials
-					{
-						class Material1
-						{
-							type = "Nail";
-							slot_name = "Material_Nails";
-							quantity = 20;
-						};
-						class Material2
-						{
-							type = "WoodenPlank";
-							slot_name = "Material_WoodenPlanks";
-							quantity = 10;
-						};
-					};
-				};				
-				class Roof_Metal
-				{
-					name = "Roof Metal";
-					id = 15;
-					required_parts[] = {"Roof_Wood"};
-					conflicted_parts[] = {};
-					collision_data[] = {};
-					build_action_type = 2;
-					dismantle_action_type = 2;
-					material_type = 2;
-					class Materials
-					{
-						class Material1
-						{
-							type = "Nail";
-							slot_name = "Material_Nails";
-							quantity = 20;
-						};
-						class Material2
-						{
-							type = "MetalPlate";
-							slot_name = "Material_MetalSheets";
-							quantity = 10;
-						};
-					};
+					soundset="woodenlog_drop_SoundSet";
+					id=898;
 				};
 			};
 		};
 	};
-	class ClotheslineKitPlacing : Inventory_Base
+
+/*	class ClotheslineKit: Inventory_Base
 	{
 		scope=2;
-		displayName="This is a hologram";
-		descriptionShort="Nothing to see here, move along";
-		model="\DZ\gear\camping\fence_kit_placing.p3d";
-	};
-	class ClotheslineKit: Inventory_Base
-	{
-		scope=2;
-		displayName="ClotheslineKit";
-		descriptionShort="ClotheslineKit";
+		displayName="Clothesline Kit";
+		descriptionShort="Clothesline Kit";
 		model="\DZ\gear\camping\fence_kit.p3d";
 		rotationFlags=17;
 		itemSize[]={1,5};
 		weight=280;
 		itemBehaviour=1;
+		attachments[]=
+		{
+			"Rope"
+		};
+		class DamageSystem
+		{
+			class GlobalHealth
+			{
+				class Health
+				{
+					hitpoints=200;
+					healthLevels[]=
+					{
+						
+						{
+							1,
+							{}
+						},
+						
+						{
+							0.69999999,
+							{}
+						},
+						
+						{
+							0.5,
+							{}
+						},
+						
+						{
+							0.30000001,
+							{}
+						},
+						
+						{
+							0,
+							{}
+						}
+					};
+				};
+				class GlobalArmor
+				{
+					class Projectile
+					{
+						class Health
+						{
+							damage=0;
+						};
+						class Blood
+						{
+							damage=0;
+						};
+						class Shock
+						{
+							damage=0;
+						};
+					};
+					class FragGrenade
+					{
+						class Health
+						{
+							damage=0;
+						};
+						class Blood
+						{
+							damage=0;
+						};
+						class Shock
+						{
+							damage=0;
+						};
+					};
+				};
+			};
+		};
 		class AnimationSources
 		{
 			class AnimSourceShown
@@ -575,5 +340,29 @@ class CfgVehicles
 			};
 		};
 	};
-
+	class ClotheslineKitPlacing: ClotheslineKit
+	{
+		displayName="This is a hologram";
+		descriptionShort="Nothing to see here, move along";
+		scope=2;
+		model="\CannabisPlus\furniture\clothesline.p3d";
+		storageCategory=10;
+		hiddenSelections[]=
+		{
+			"placing"
+		};
+		hiddenSelectionsTextures[]=
+		{
+			"dz\gear\consumables\data\pile_of_planks_co.tga"
+		};
+		hiddenSelectionsMaterials[]=
+		{
+			"dz\gear\camping\data\fence_pile_of_planks.rvmat"
+		};
+		hologramMaterial="tent_medium";
+		hologramMaterialPath="dz\gear\camping\data";
+		alignHologramToTerain=0;
+		slopeTolerance=0.30000001;
+	};
+*/
 };

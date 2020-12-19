@@ -57,6 +57,8 @@ modded class PluginRecipesManager
         RegisterRecipe(new CP_CraftCigarettePackPartyzanka);
 
         RegisterRecipe(new CP_CraftCBDCrudeOil);
+        RegisterRecipe(new CP_CarveWoodenPost);
+
 
     }
 }
