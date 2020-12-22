@@ -1,6 +1,6 @@
 class CfgPatches
 {
-    class CP_Clothesline
+    class CP_DryPost
     {
         units[] =
         {
@@ -29,57 +29,66 @@ class CfgSlots
         displayName="Raw Cannabis Plant2";
         ghostIcon="plant";
     };
+    class Slot_CannabisPlant3
+    {
+        name="Raw Cannabis Plant3";
+        displayName="Raw Cannabis Plant3";
+        ghostIcon="plant";
+    };
 };
 
 class CfgNonAIVehicles
 {
     class ProxyAttachment;
-    class Proxybdu_jacket_g : ProxyAttachment
+    class ProxyCP_RawCannabisPlant : ProxyAttachment
     {
         scope = 2;
         InventorySlot="Raw Cannabis Plant";
-        model="\DZ\characters\tops\bdu_jacket_g.p3d";
-    };
-    class Proxybdu_pants_g : ProxyAttachment
-    {
-        scope = 2;
-        InventorySlot="Raw Cannabis Plant2";
-        model="\DZ\characters\pants\bdu_pants_g.p3d";
+        model="\CannabisPlus\furniture\CannabisPlantHanging.p3d";
     };
 };
 
 class CfgVehicles
 {
     class Inventory_Base;
-    class Clothing_Base : Inventory_Base
-    {
-        inventorySlot[]=
-        {
-            "Raw Cannabis Plant",
-            "Raw Cannabis Plant2"
-        };
-    };
-    class Clothesline : Inventory_Base
+    class CP_DryPost : Inventory_Base
     {
         scope = 2;
-		displayName = "Clothesline";
-		descriptionShort = "Clothesline";
-		model="\CannabisPlus\furniture\clothesline.p3d";
+		displayName = "Dry Post";
+		descriptionShort = "A post for drying plants.";
+		model="\CannabisPlus\furniture\DryPost.p3d";
+		weight=20000;
+		itemSize[]={3,11};
+		varQuantityDestroyOnMin=1;
+		itemBehaviour=0;
+		canBeSplit=0;
+		varQuantityInit=1;
+		varQuantityMin=0;
+		varQuantityMax=50;
+        varStackMax=1;
+        inventorySlot[]={};
         attachments[]=
-        {
+		{
             "Raw Cannabis Plant",
-            "Raw Cannabis Plant2"
-        };
+            "Raw Cannabis Plant2",
+			"Raw Cannabis Plant3",
+			"Rope"
+		};
+		simpleHiddenSelections[] = 
+		{
+			"Rope"
+		};
         class GUIInventoryAttachmentsProps
         {
-            class CP_Line
+            class CP_DryingPost
             {
-                name="Hang Clothes";
-                description="";
+                name="Drying Post";
+                description="A post for drying plants.";
                 attachmentSlots[]=
                 {
                     "Raw Cannabis Plant",
-                    "Raw Cannabis Plant2"
+                    "Raw Cannabis Plant2",
+                    "Raw Cannabis Plant3"
                 };
             };
         };
@@ -90,33 +99,21 @@ class CfgVehicles
         scope = 2;
 		displayName = "Raw Cannabis Plant";
 		descriptionShort = "Raw Cannabis Plant";
-		model="\CannabisPlus\fruits\tobacco.p3d";
+		model="\CannabisPlus\furniture\CannabisPlantHanging.p3d";
         inventorySlot[]=
         {
             "Raw Cannabis Plant",
-            "Raw Cannabis Plant2"
+            "Raw Cannabis Plant2",
+            "Raw Cannabis Plant3"
         };
     };
-        
-/*    class CP_WoodenPost : WoodenLog
-    {
-		displayName="Wooden Post";
-		descriptionShort="A wooden post.";
-		model="\dz\gear\camping\wooden_log.p3d";
-        varStackMax=2;
-        inventorySlot[]={};
-        attachments[]=
-		{
-			"Rope"
-		};
-    };
-*/
+    /*    
 	class CP_WoodenPost : Inventory_Base
 	{
 		scope=2;
 		displayName="Wooden Post";
 		descriptionShort="A wooden post.";
-		model="\dz\gear\camping\wooden_log.p3d";
+		model="\CannabisPlus\furniture\DryPost.p3d";
 		weight=20000;
 		itemSize[]={3,11};
 		varQuantityDestroyOnMin=1;
@@ -201,168 +198,5 @@ class CfgVehicles
 			};
 		};
 	};
-
-/*	class ClotheslineKit: Inventory_Base
-	{
-		scope=2;
-		displayName="Clothesline Kit";
-		descriptionShort="Clothesline Kit";
-		model="\DZ\gear\camping\fence_kit.p3d";
-		rotationFlags=17;
-		itemSize[]={1,5};
-		weight=280;
-		itemBehaviour=1;
-		attachments[]=
-		{
-			"Rope"
-		};
-		class DamageSystem
-		{
-			class GlobalHealth
-			{
-				class Health
-				{
-					hitpoints=200;
-					healthLevels[]=
-					{
-						
-						{
-							1,
-							{}
-						},
-						
-						{
-							0.69999999,
-							{}
-						},
-						
-						{
-							0.5,
-							{}
-						},
-						
-						{
-							0.30000001,
-							{}
-						},
-						
-						{
-							0,
-							{}
-						}
-					};
-				};
-				class GlobalArmor
-				{
-					class Projectile
-					{
-						class Health
-						{
-							damage=0;
-						};
-						class Blood
-						{
-							damage=0;
-						};
-						class Shock
-						{
-							damage=0;
-						};
-					};
-					class FragGrenade
-					{
-						class Health
-						{
-							damage=0;
-						};
-						class Blood
-						{
-							damage=0;
-						};
-						class Shock
-						{
-							damage=0;
-						};
-					};
-				};
-			};
-		};
-		class AnimationSources
-		{
-			class AnimSourceShown
-			{
-				source="user";
-				animPeriod=0.0099999998;
-				initPhase=0;
-			};
-			class AnimSourceHidden
-			{
-				source="user";
-				animPeriod=0.0099999998;
-				initPhase=1;
-			};
-			class Inventory: AnimSourceHidden
-			{
-			};
-			class Placing: AnimSourceHidden
-			{
-			};
-		};
-		class AnimEvents
-		{
-			class SoundWeapon
-			{
-				class crafting_1
-				{
-					soundSet="FenceKit_crafting_1_SoundSet";
-					id=1111;
-				};
-				class crafting_2
-				{
-					soundSet="FenceKit_crafting_2_SoundSet";
-					id=1112;
-				};
-				class crafting_3
-				{
-					soundSet="FenceKit_crafting_3_SoundSet";
-					id=1113;
-				};
-				class crafting_4
-				{
-					soundSet="FenceKit_crafting_4_SoundSet";
-					id=1114;
-				};
-				class crafting_5
-				{
-					soundSet="FenceKit_crafting_5_SoundSet";
-					id=1115;
-				};
-			};
-		};
-	};
-	class ClotheslineKitPlacing: ClotheslineKit
-	{
-		displayName="This is a hologram";
-		descriptionShort="Nothing to see here, move along";
-		scope=2;
-		model="\CannabisPlus\furniture\clothesline.p3d";
-		storageCategory=10;
-		hiddenSelections[]=
-		{
-			"placing"
-		};
-		hiddenSelectionsTextures[]=
-		{
-			"dz\gear\consumables\data\pile_of_planks_co.tga"
-		};
-		hiddenSelectionsMaterials[]=
-		{
-			"dz\gear\camping\data\fence_pile_of_planks.rvmat"
-		};
-		hologramMaterial="tent_medium";
-		hologramMaterialPath="dz\gear\camping\data";
-		alignHologramToTerain=0;
-		slopeTolerance=0.30000001;
-	};
-*/
+	*/
 };
