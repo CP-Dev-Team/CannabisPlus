@@ -164,11 +164,11 @@ modded class PlayerBase {
 		
 		if ( GetGame().IsServer() || GetGame().IsMultiplayer() )
 		{
-	        	DayzPlayerItemBehaviorCfg     heavy = new DayzPlayerItemBehaviorCfg;
 			DayzPlayerItemBehaviorCfg 	onehand = new DayzPlayerItemBehaviorCfg;
-	
-	        	heavy.SetHeavyItems();
 			onehand.SetToolsOneHanded();
+
+			DayzPlayerItemBehaviorCfg 	heavyItemBehaviour = new DayzPlayerItemBehaviorCfg;
+			heavyItemBehaviour.SetHeavyItems();
 	
 	    		GetDayZPlayerType().AddItemInHandsProfileIK("CP_JointSkunk", "dz/anims/workspaces/player/player_main/player_main_1h.asi", onehand, "dz/anims/anm/player/ik/gear/thermometer.anm");
 			GetDayZPlayerType().AddItemInHandsProfileIK("CP_JointBlue", "dz/anims/workspaces/player/player_main/player_main_1h.asi", onehand, "dz/anims/anm/player/ik/gear/thermometer.anm");
@@ -180,6 +180,8 @@ modded class PlayerBase {
 			GetDayZPlayerType().AddItemInHandsProfileIK("CP_JointBlackFrost", "dz/anims/workspaces/player/player_main/player_main_1h.asi", onehand, "dz/anims/anm/player/ik/gear/thermometer.anm");
 			GetDayZPlayerType().AddItemInHandsProfileIK("CP_Cigarette", "dz/anims/workspaces/player/player_main/player_main_1h.asi", onehand, "dz/anims/anm/player/ik/gear/thermometer.anm");
 			GetDayZPlayerType().AddItemInHandsProfileIK("CP_Relief_Balm", "dz/anims/workspaces/player/player_main/player_main_1h.asi", onehand, "dz/anims/anm/player/ik/gear/marmalade.anm");
+			GetDayZPlayerType().AddItemInHandsProfileIK("CP_DryPost", "dz/anims/workspaces/player/player_main/player_main_heavy.asi", heavyItemBehaviour, "dz/anims/anm/player/ik/heavy/wooden_log.anm");
+
 		
 	  	}
 		

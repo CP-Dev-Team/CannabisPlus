@@ -1,4 +1,4 @@
-class CP_DryPost extends ItemBase
+class CP_DryPost extends Container_Base
 {	
     /*    private void ShowSimpleSelection(string selectionName, bool hide = false)
     {

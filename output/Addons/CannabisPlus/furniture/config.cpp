@@ -14,28 +14,28 @@ class CfgPatches
         };
     };
 };
-
+	
 class CfgSlots
 { 
-    class Slot_CannabisPlant
+    class Slot_HangingPlants
     {
-        name="Raw Cannabis Plant";
-        displayName="Raw Cannabis Plant";
-		selection="Plant1";
+        name="HangingPlants";
+        displayName="HangingPlants";
+		selection="HangingPlants";
         ghostIcon="plant";
     };
-    class Slot_CannabisPlant2
+    class Slot_HangingPlants2
     {
-        name="Raw Cannabis Plant2";
-        displayName="Raw Cannabis Plant2";
-		selection="Plant2";
+        name="HangingPlants2";
+        displayName="HangingPlants2";
+		selection="HangingPlants2";
         ghostIcon="plant";
     };
-    class Slot_CannabisPlant3
+    class Slot_HangingPlants3
     {
-        name="Raw Cannabis Plant3";
-        displayName="Raw Cannabis Plant3";
-		selection="Plant3";
+        name="HangingPlants3";
+        displayName="HangingPlants3";
+		selection="HangingPlants3";
         ghostIcon="plant";
     };
 };
@@ -43,34 +43,28 @@ class CfgSlots
 class CfgNonAIVehicles
 {
     class ProxyAttachment;
-	class Proxynull : ProxyAttachment
+	class ProxyHangingPlants : ProxyAttachment
     {
-        scope=2;
-		inventorySlot[]=
-        {
-            "Raw Cannabis Plant",
-            "Raw Cannabis Plant2",
-            "Raw Cannabis Plant3"
-        };
-		model="CannabisPlus\furniture\null.p3d";
-    };    
-	class ProxyCannabisPlantHanging : ProxyAttachment
+		inventorySlot="HangingPlants";
+		model="CannabisPlus\furniture\HangingPlants.p3d";
+    };
+	class ProxyHangingPlants2 : ProxyAttachment
     {
-        scope=2;
-		inventorySlot[]=
-        {
-            "Raw Cannabis Plant",
-            "Raw Cannabis Plant2",
-            "Raw Cannabis Plant3"
-        };
-		model="CannabisPlus\furniture\CannabisPlantHanging.p3d";
+		inventorySlot="HangingPlants2";
+		model="CannabisPlus\furniture\HangingPlants2.p3d";
+    };
+	class ProxyHangingPlants3 : ProxyAttachment
+    {
+		inventorySlot="HangingPlants3";
+		model="CannabisPlus\furniture\HangingPlants3.p3d";
     };
 };
 
 class CfgVehicles
 {
     class Inventory_Base;
-    class CP_DryPost : Inventory_Base
+	class Container_Base;
+    class CP_DryPost : Container_Base
     {
         scope = 2;
 		displayName = "Dry Post";
@@ -86,11 +80,12 @@ class CfgVehicles
 		varQuantityMax=50;
         varStackMax=1;
         inventorySlot[]={};
+        physLayer="item_large";
         attachments[]=
 		{
-            "Raw Cannabis Plant",
-            "Raw Cannabis Plant2",
-			"Raw Cannabis Plant3",
+            "HangingPlants",
+            "HangingPlants2",
+			"HangingPlants3",
 			"Rope"
 		};
         class GUIInventoryAttachmentsProps
@@ -101,9 +96,10 @@ class CfgVehicles
                 description="A post for drying plants.";
                 attachmentSlots[]=
                 {
-                    "Raw Cannabis Plant",
-                    "Raw Cannabis Plant2",
-                    "Raw Cannabis Plant3"
+                    "HangingPlants",
+					"HangingPlants2",
+					"HangingPlants3",
+					"Rope"
                 };
             };
         };
@@ -190,14 +186,14 @@ class CfgVehicles
     class CP_RawCannabisPlant : Inventory_Base
     {
         scope = 2;
-		displayName = "Raw Cannabis Plant";
-		descriptionShort = "Raw Cannabis Plant";
+		displayName = "Raw_Cannabis_Plant";
+		descriptionShort = "Raw_Cannabis_Plant";
 		model="\CannabisPlus\furniture\CannabisPlantHanging.p3d";
         inventorySlot[]=
         {
-            "Raw Cannabis Plant",
-            "Raw Cannabis Plant2",
-            "Raw Cannabis Plant3"
+            "HangingPlants",
+            "HangingPlants2",
+			"HangingPlants3"
         };
     };
 };
