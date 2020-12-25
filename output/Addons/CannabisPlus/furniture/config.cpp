@@ -196,4 +196,18 @@ class CfgVehicles
 			"HangingPlants3"
         };
     };
+
+	class CP_DriedCannabisPlant : Inventory_Base
+    {
+        scope = 2;
+		displayName = "Dried_Cannabis_Plant";
+		descriptionShort = "Dried_Cannabis_Plant";
+		model="\CannabisPlus\furniture\CannabisPlantHanging.p3d";
+        inventorySlot[]=
+        {
+            "HangingPlants",
+            "HangingPlants2",
+			"HangingPlants3"
+        };
+    };
 };

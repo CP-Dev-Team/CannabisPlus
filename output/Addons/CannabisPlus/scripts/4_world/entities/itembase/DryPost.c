@@ -1,19 +1,14 @@
+class CP_RawCannabisPlant : Inventory_Base{}
+class CP_DriedCannabisPlant : Inventory_Base{}
+
 class CP_DryPost extends Container_Base
 {	
-    /*    private void ShowSimpleSelection(string selectionName, bool hide = false)
-    {
-        TStringArray selectionNames = new TStringArray;
-        ConfigGetTextArray("simpleHiddenSelections",selectionNames);
-        int selectionId = selectionNames.Find(selectionName);
-        SetSimpleHiddenSelectionState(selectionId, hide);
-    };
-    */
     override void EEItemAttached(EntityAI item, string slot_name)
     {
         super.EEItemAttached(item, slot_name);
         
         if (slot_name == "Rope")
-            SetAnimationPhase ("Rope", 0);
+            SetAnimationPhase ("Rope", 0);  // Shows the rope on the model when rope is attached.
     }
     
     override void EEItemDetached(EntityAI item, string slot_name)
@@ -21,26 +16,62 @@ class CP_DryPost extends Container_Base
         super.EEItemDetached(item, slot_name);
         
         if (slot_name == "Rope")
-            SetAnimationPhase ("Rope", 1);
+            SetAnimationPhase ("Rope", 1);  // Hides the rope on the model when rope is detached.
+            Dry();
     }
-  
-/*	override void OnPlacementComplete( Man player, vector position = "0 0 0", vector orientation = "0 0 0" )
-	{
-		super.OnPlacementComplete( player, position, orientation );
 
-		PlayerBase pb = PlayerBase.Cast( player );
-		if ( GetGame().IsServer() )
+	private bool m_IsLocked = false;
+    private ref Timer m_PlantDryTime;
+
+
+	bool IsLocked()
+	{
+		return m_IsLocked;
+	}
+
+	void Lock(float actiontime)
+	{	
+		m_IsLocked = true;
+		m_PlantDryTime.Run(actiontime, this, "Unlock", NULL,false);
+		GetInventory().LockInventory(HIDE_INV_FROM_SCRIPT);
+	}
+
+	void Unlock()
+	{
+		m_IsLocked = false;
+		GetInventory().UnlockInventory(HIDE_INV_FROM_SCRIPT);
+	}
+
+	void Drying()
+	{
+		m_PlantDryTime = new Timer();
+	}
+
+    bool IsItemTypeAttached( typename item_type )
+	{
+		if ( GetAttachmentByType( item_type ) )
 		{
-			//Create DryPost
-    		CP_DryPost drypost = CP_DryPost.Cast( GetGame().CreateObjectEx( "CP_DryPost", GetPosition(), ECE_PLACE_ON_SURFACE ) );
-            drypost.SetPosition( position );
-    		drypost.SetOrientation( orientation );
- 			
-            //    HideAllSelections();
-			SetIsDeploySound( true );
+			return true;
 		}
+		return false;
     }
-*/
+
+    CP_RawCannabisPlant GetRawCannabisPlant()
+	{
+		return CP_RawCannabisPlant.Cast( GetAttachmentByType(CP_RawCannabisPlant) );
+	}
+
+    void Dry()
+    {
+        if ( IsItemTypeAttached ( CP_RawCannabisPlant ) ) // Checks if plant is attached
+        {
+            GetInventory().CreateAttachment("CP_DriedCannabisPlant"); // Creates dried plant in output slot.
+            float DryTime = ( Math.RandomInt(1,30) );   
+            GetGame().ObjectDelete( GetRawCannabisPlant() ); // Deletes RawCannabisPlant after function is started.
+            Lock(DryTime); // Locks until process is done. DryTime is the how long it takes before unlocking.
+        }
+    }
+
     override string GetPlaceSoundset()
     {
         return "woodenlog_drop_SoundSet";
@@ -52,5 +83,5 @@ class CP_DryPost extends Container_Base
 
         AddAction(ActionTogglePlaceObject);
         AddAction(ActionPlaceObject);
-    } 
+    }
 }
