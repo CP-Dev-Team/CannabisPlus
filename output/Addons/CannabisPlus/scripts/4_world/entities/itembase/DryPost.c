@@ -8,7 +8,14 @@ class CP_DryPost extends Container_Base
         super.EEItemAttached(item, slot_name);
         
         if (slot_name == "Rope")
+        {    
+            if (slot_name =="HangingPlants" || "HangingPlants2" || "HangingPlants3")
+            {
+                Lock(actiontime);
+                Dry();
+            }
             SetAnimationPhase ("Rope", 0);  // Shows the rope on the model when rope is attached.
+        }
     }
     
     override void EEItemDetached(EntityAI item, string slot_name)
@@ -17,7 +24,6 @@ class CP_DryPost extends Container_Base
         
         if (slot_name == "Rope")
             SetAnimationPhase ("Rope", 1);  // Hides the rope on the model when rope is detached.
-            Dry();
     }
 
 	private bool m_IsLocked = false;
@@ -29,13 +35,13 @@ class CP_DryPost extends Container_Base
 		return m_IsLocked;
 	}
 
-	void Lock(float actiontime)
+/*	void Lock(float actiontime)
 	{	
 		m_IsLocked = true;
 		m_PlantDryTime.Run(actiontime, this, "Unlock", NULL,false);
 		GetInventory().LockInventory(HIDE_INV_FROM_SCRIPT);
 	}
-
+*/
 	void Unlock()
 	{
 		m_IsLocked = false;
@@ -66,12 +72,17 @@ class CP_DryPost extends Container_Base
         if ( IsItemTypeAttached ( CP_RawCannabisPlant ) ) // Checks if plant is attached
         {
             GetInventory().CreateAttachment("CP_DriedCannabisPlant"); // Creates dried plant in output slot.
-            float DryTime = ( Math.RandomInt(1,30) );   
+            float DryTime = ( Math.RandomInt(1,30) );   // Sets DryTime to a random integer between two numbers.
             GetGame().ObjectDelete( GetRawCannabisPlant() ); // Deletes RawCannabisPlant after function is started.
-            Lock(DryTime); // Locks until process is done. DryTime is the how long it takes before unlocking.
+            Lock(DryTime); // Locks until process is done. DryTime is how long it takes before unlocking.
         }
     }
-
+	override void OnPlacementStarted( Man player )
+    {
+        super.OnPlacementStarted( player );
+        
+            SetAnimationPhase ("Rope", 0);  // Shows the rope on the model when rope is attached.
+    }
     override string GetPlaceSoundset()
     {
         return "woodenlog_drop_SoundSet";
