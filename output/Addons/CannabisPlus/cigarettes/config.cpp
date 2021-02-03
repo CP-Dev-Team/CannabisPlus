@@ -2,7 +2,10 @@ class CfgPatches
 {
 	class CannabisPlus_Cigarette
 	{
-		units[]={};
+		units[]=
+		{
+			"CP_Cigarette"
+		};
 		weapons[]={};
 		requiredVersion=0.1;
 		requiredAddons[]=
@@ -14,7 +17,6 @@ class CfgPatches
 class CfgVehicles
 {
 	class Inventory_Base;
-	
 	class CP_Cigarette: Inventory_Base
 	{
 		scope=2;
@@ -31,7 +33,7 @@ class CfgVehicles
 		};
 		hiddenSelectionsTextures[]=
 		{
-			"CannabisPlus\cigarettes\data\cigarette_unlit_co.paa"
+			"CannabisPlus\cigarettes\data\cigarettes_unlit_co.paa"
 		};
 	};
 };

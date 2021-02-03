@@ -1,12 +1,36 @@
 modded class MissionServer
 {
-	private string CONFIG_FILE =  "$profile:CannabisPlus.json";
-	ref CannabisPlusConfig _config;	
-	private int modVersion = 251;
-	ref CannabisPlusRPC m_CannabisPlusRPC;
+	//private string CONFIG_FILE =  "$profile:CannabisPlus.json";
+	//ref CannabisPlusConfig _config;	
+	//private int modVersion = 251;
+	//ref CannabisPlusRPC m_CannabisPlusRPC;
+	protected ref CannabisPlusConfigManager m_currentcfg;
 
-	void MissionServer()
+	override void OnInit()
 	{
+		super.OnInit();
+		if(!m_currentcfg)
+			m_currentcfg = GetCPConfig();//Server creates default config for the mod on the startup!
+		if(m_currentcfg)
+			Print("[CP] Config Sucessfully loadet!");
+		else
+			Print("[CP] Internal Serverconfig Load failed!");
+		
+		GetRPCManager().AddRPC( "CP_scripts", "CLIENTCONFIGREQUEST", this, SingeplayerExecutionType.Both );
+	}
+
+	/* RPC HANDLING SERVERSIDE */
+	void CLIENTCONFIGREQUEST(CallType type, ref ParamsReadContext ctx, ref PlayerIdentity sender, ref Object target) {
+
+		if(type == CallType.Server) {
+			GetRPCManager().SendRPC("CP_scripts", "CONFIGRESPONSE", new Param1< ref CannabisPlusConfigManager >( m_currentcfg ), true, sender);
+			Print("[CP] -> Sucessfully sendet: " + sender.GetName() + " CP Plus Config!");
+		}
+	}
+
+	//void MissionServer()
+	//{
+		/*
 		m_CannabisPlusRPC = new ref CannabisPlusRPC();
 		Print( "[CP] Loaded CannabisPlusRPC on Server" );
 		
@@ -38,5 +62,6 @@ modded class MissionServer
 			}
 		}
 		_config.Validate();
-	}
+		*/
+	//}
 }

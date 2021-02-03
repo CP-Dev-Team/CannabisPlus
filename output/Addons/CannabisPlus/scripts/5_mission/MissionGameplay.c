@@ -1,11 +1,31 @@
-modded class MissionGameplay
+
+modded class MissionGameplay extends MissionBase
 {
-
-	ref CannabisPlusRPC m_CannabisPlusRPC;
-
-	void MissionGameplay()
+	protected bool m_isModdedMissionInitialized = false;
+	override void OnInit()
 	{
-		m_CannabisPlusRPC = new ref CannabisPlusRPC();
-		Print( "[CP] Loaded CannabisPlusRPC on Client" );
+		super.OnInit();
+		if(!m_isModdedMissionInitialized) {
+			GetRPCManager().AddRPC( "CP_scripts", "CONFIGRESPONSE", this, SingeplayerExecutionType.Client );
+			m_isModdedMissionInitialized = true;
+		}
+	}
+
+	override void OnMissionStart()
+	{
+		super.OnMissionStart();
+		GetRPCManager().SendRPC("CP_scripts", "CLIENTCONFIGREQUEST", null, true);//Sends the remote a request to get the config.
+	}
+
+	/* RPC HANDLING OF CLIENT */ 
+	void CONFIGRESPONSE(CallType type, ref ParamsReadContext ctx, ref PlayerIdentity sender, ref Object target) {
+
+		if(type == CallType.Client) 
+		{
+			Param1 <ref CannabisPlusConfigManager> data;
+        	if ( !ctx.Read( data ) ) return;
+			g_ClientCannabisPlusConfig = data.param1; //Update our referenz in Gamemodule.
+			Print("[CP] Sucessfully recived config from remote!");
+		}
 	}
 }

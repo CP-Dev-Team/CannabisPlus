@@ -1,7 +1,7 @@
+/*
 class CannabisPlusRPC {
 
     void CannabisPlusRPC() {
-
         GetRPCManager().AddRPC( "CP_scripts", "RetreiveCannabisPlusConfig", this, SingeplayerExecutionType.Both );
     }    
 
@@ -17,7 +17,8 @@ class CannabisPlusRPC {
         else
         {
             Print( "[CP] Client function called!" );
-	    GetDayZGame().SetCannabisPlusConfig(m_CannabisPlusConfig.param1);
+	        GetDayZGame().SetCannabisPlusConfig(m_CannabisPlusConfig.param1);
         }
     }
 }
+*/

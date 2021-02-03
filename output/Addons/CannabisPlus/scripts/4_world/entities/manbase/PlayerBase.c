@@ -3,21 +3,18 @@
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 modded class PlayerBase {
 
-	ref Timer swayTimer;				// timer that resets the values after the effect is over
-	ref Timer jointTimer;			// timer that resets the values after the effect is over
+	protected ref Timer 										swayTimer;				// timer that resets the values after the effect is over
+	protected ref Timer 										jointTimer;				// timer that resets the values after the effect is over
+	protected const string 										SMOKE_SOUND  = "Smoking_SoundSet";
 
-	const string SMOKE_SOUND                  = "Smoking_SoundSet";
-
-	EffectSound                                     m_TurnOff;
-      EffectSound                                     m_TurnOn;
+	protected EffectSound                                     	m_TurnOff;
+    protected EffectSound                                     	m_TurnOn;
 	
-	bool m_HasConsumedCigarette = false;	// has the player consumed a hole cigarette	
-	int m_cigaretteValue;			// the quantity of the cigarette, what the player consumed
+	bool 														m_HasConsumedCigarette = false;	// has the player consumed a hole cigarette	
+	int 														m_cigaretteValue;					// the quantity of the cigarette, what the player consumed
 	
-	bool m_HasConsumedJoint = false;
-	int m_jointValue;				// the quantity of the cigarette, what the player consumed
-	
-	//protected ref CannabisPlusConfig m_CannabisPlusConfig
+	bool 														m_HasConsumedJoint = false;
+	int 														m_jointValue;						// the quantity of the cigarette, what the player consumed
 	
 	//getters for cig/joint smoke state
 	bool HasConsumedJoint () {
@@ -27,11 +24,11 @@ modded class PlayerBase {
 	bool HasConsumedCigarette () {
 		return m_HasConsumedCigarette; 
 	}		 
-   
+   /*
 	override void OnConnect() {
 		super.OnConnect();
 		if (GetIdentity()) {
-			GetRPCManager().SendRPC( "CP_scripts", "RetreiveCannabisPlusConfig", new Param1 <CannabisPlusConfig> (GetDayZGame().GetCannabisPlusConfig()),true,GetIdentity());
+			GetRPCManager().SendRPC( "CP_scripts", "RetreiveCannabisPlusConfig", new Param1 <ref CannabisPlusConfigManager> (GetCPConfig()),true,GetIdentity());
 			Print("[CP] Receiving CannabisPlusConfig info from server");
 		}	
 	}
@@ -39,11 +36,11 @@ modded class PlayerBase {
 	override void OnReconnect() {
 		super.OnReconnect();
 		if (GetIdentity()) {
-			GetRPCManager().SendRPC( "CP_scripts", "RetreiveCannabisPlusConfig", new Param1 <CannabisPlusConfig> (GetDayZGame().GetCannabisPlusConfig()),true,GetIdentity());
+			GetRPCManager().SendRPC( "CP_scripts", "RetreiveCannabisPlusConfig", new Param1 <ref CannabisPlusConfigManager> (GetCPConfig()),true,GetIdentity());
 			Print("[CP] Receiving CannabisPlusConfig info from server");
 		}	
 	}
-	
+	*/
 	int GetJointCycles () {
 		return m_jointValue;
 	}
@@ -52,16 +49,16 @@ modded class PlayerBase {
 	// set to true if the player consumed a cigarette
 	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 	void AddValueToCigaretteValue(int value) {
-		if (GetDayZGame().GetCannabisPlusConfig()) {	
-			if(GetDayZGame().GetCannabisPlusConfig().activateCigaretteSmokingEffect) {
+		if (GetCPConfig()) {	
+			if(GetCPConfig().activateCigaretteSmokingEffect) {
 				m_cigaretteValue += value;
 						
-				if(m_cigaretteValue >= GetDayZGame().GetCannabisPlusConfig().cigaretteCyclesToActivateEffect){
+				if(m_cigaretteValue >= GetCPConfig().cigaretteCyclesToActivateEffect){
 					//Print("[CP] Smoking cigarrette effect" + GetDayZGame().GetCannabisPlusConfig().cigaretteCyclesToActivateEffect);
 					m_HasConsumedCigarette = true;
 					if (!swayTimer) { swayTimer = new Timer()};
 					swayTimer.Stop();
-					swayTimer.Run(GetDayZGame().GetCannabisPlusConfig().smokingCigaretteEffectDuration, this, "ResetCigaretteValues", null, false);				
+					swayTimer.Run(GetCPConfig().smokingCigaretteEffectDuration, this, "ResetCigaretteValues", null, false);				
 				}
 			}
 		}		
@@ -70,19 +67,19 @@ modded class PlayerBase {
 	// set to true if the player consumed a joint
 	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 	void AddValueToJointValue(int value) {	
-		if (GetDayZGame().GetCannabisPlusConfig()) {	
-			if(GetDayZGame().GetCannabisPlusConfig().activateJointSmokingEffect) {
+		if (GetCPConfig()) {	
+			if(GetCPConfig().activateJointSmokingEffect) {
 				//Print("[CP] CannabisPlus: AddValueToJointValue");
 				m_jointValue += value;
 						
-				if((m_jointValue % GetDayZGame().GetCannabisPlusConfig().jointCyclesToActivateEffect) == 0){	
+				if((m_jointValue % GetCPConfig().jointCyclesToActivateEffect) == 0){	
 					//Print("[CP] Smoking joint effect " + GetDayZGame().GetCannabisPlusConfig().jointCyclesToActivateEffect);
 					//Print("[CP] CannabisPlus: Starting Effect");			
 					m_HasConsumedJoint = true;
 					CannabisEffectsTriggered(m_jointValue);
 					if (!jointTimer) { jointTimer = new Timer()};
 					jointTimer.Stop();
-					jointTimer.Run(GetDayZGame().GetCannabisPlusConfig().smokingJointEffectDuration, this, "ResetJointValues", null, false);				
+					jointTimer.Run(GetCPConfig().smokingJointEffectDuration, this, "ResetJointValues", null, false);				
 				}
 			}
 		}
@@ -111,7 +108,7 @@ modded class PlayerBase {
 	  float multiplier;
 	  int counter;			
 		
-	  counter = cycles / GetDayZGame().GetCannabisPlusConfig().jointCyclesToActivateEffect;
+	  counter = cycles / GetCPConfig().jointCyclesToActivateEffect;
 	  multiplier = 1 + (0.25 * counter);
 
 
@@ -123,12 +120,12 @@ modded class PlayerBase {
             //CameraEffects.changeRadBlurYEffect(0);
             //CameraEffects.changeRotationBlurPower(0);
             
-            CameraEffects.changeHue(GetDayZGame().GetCannabisPlusConfig().weedHueIntensity-counter);
-		CameraEffects.changeRadBlurXEffect(GetDayZGame().GetCannabisPlusConfig().weedRadBlurXPower*multiplier);
-           	CameraEffects.changeRadBlurYEffect(GetDayZGame().GetCannabisPlusConfig().weedRadBlurYPower*multiplier);
-           	CameraEffects.changeRotationBlurPower(GetDayZGame().GetCannabisPlusConfig().weedRotBlurPow*multiplier);
+            CameraEffects.changeHue(GetCPConfig().weedHueIntensity-counter);
+			CameraEffects.changeRadBlurXEffect(GetCPConfig().weedRadBlurXPower*multiplier);
+           	CameraEffects.changeRadBlurYEffect(GetCPConfig().weedRadBlurYPower*multiplier);
+           	CameraEffects.changeRotationBlurPower(GetCPConfig().weedRotBlurPow*multiplier);
         }	
-	  PlaySoundSet(m_TurnOn, SMOKE_SOUND, 0.0, 0.0)	
+	  PlaySoundSet(m_TurnOn, SMOKE_SOUND, 0.0, 0.0);	
 
     }
 
@@ -143,6 +140,5 @@ modded class PlayerBase {
             CameraEffects.changeRadBlurYEffect(0);
             CameraEffects.changeRotationBlurPower(0);	
         }
-
     }
 }

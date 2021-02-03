@@ -2,7 +2,17 @@ class CfgPatches
 {
 	class CP_Bags
 	{
-		units[]={};
+		units[]=
+		{
+			"CP_CannabisBagSkunk",
+			"CP_CannabisBagBlue",
+			"CP_CannabisBagKush",
+			"CP_CannabisBagStardawg",
+			"CP_CannabisBagFuture",
+			"CP_CannabisBagS1",
+			"CP_CannabisBagNomad",
+			"CP_CannabisBagBlackFrost"
+		};
 		weapons[]={};
 		requiredVersion=0.1;
 		requiredAddons[]=
@@ -15,8 +25,6 @@ class CfgPatches
 class CfgVehicles
 {
 	class Inventory_Base;
-
-	/* Skunk */
 	class CP_CannabisBagSkunk: Inventory_Base
 	{
 		scope=2;
@@ -111,8 +119,6 @@ class CfgVehicles
 			};
 		};
 	};
-
-	/* Blue God */
 	class CP_CannabisBagBlue: Inventory_Base
 	{
 		scope=2;
@@ -206,12 +212,9 @@ class CfgVehicles
 				};
 			};
 		};
-
 	};
-	
-	/* PurpleKush */
 	class CP_CannabisBagKush: Inventory_Base
-	{	
+	{
 		scope=2;
 		displayName="Bag of Purple Kush Weed";
 		descriptionShort="About an ounce of Purple Kush weed.";
@@ -234,7 +237,6 @@ class CfgVehicles
 		{
 			"CannabisPlus\bags\data\cannabis_bag_kush_co.paa"
 		};
-	
 		class DamageSystem
 		{
 			class GlobalHealth
@@ -303,10 +305,8 @@ class CfgVehicles
 					id=898;
 				};
 			};
-		};	
+		};
 	};
-
-	/* Stardawg */
 	class CP_CannabisBagStardawg: Inventory_Base
 	{
 		scope=2;
@@ -401,8 +401,6 @@ class CfgVehicles
 			};
 		};
 	};
-
-	/* Future */
 	class CP_CannabisBagFuture: Inventory_Base
 	{
 		scope=2;
@@ -497,8 +495,6 @@ class CfgVehicles
 			};
 		};
 	};
-
-	/* S1 */
 	class CP_CannabisBagS1: Inventory_Base
 	{
 		scope=2;
@@ -593,8 +589,6 @@ class CfgVehicles
 			};
 		};
 	};
-
-	/* Nomad */
 	class CP_CannabisBagNomad: Inventory_Base
 	{
 		scope=2;
@@ -689,8 +683,6 @@ class CfgVehicles
 			};
 		};
 	};
-
-	/* Black Frost */
 	class CP_CannabisBagBlackFrost: Inventory_Base
 	{
 		scope=2;
@@ -785,6 +777,4 @@ class CfgVehicles
 			};
 		};
 	};
-
-
 };

@@ -2,7 +2,10 @@ class CfgPatches
 {
 	class CP_Rollingpaper
 	{
-		units[]={};
+		units[]=
+		{
+			"CP_RollingPapers"
+		};
 		weapons[]={};
 		requiredVersion=0.1;
 		requiredAddons[]=
@@ -28,7 +31,7 @@ class CfgVehicles
 		varQuantityInit=20;
 		varQuantityMin=0;
 		varQuantityMax=20;
-		varQuantityDestroyOnMin=1;	
+		varQuantityDestroyOnMin=1;
 		quantityBar=1;
 	};
 };

@@ -2,7 +2,17 @@ class CfgPatches
 {
 	class CannabisPlus_Joint
 	{
-		units[]={};
+		units[]=
+		{
+			"CP_JointSkunk",
+			"CP_JointBlue",
+			"CP_JointKush",
+			"CP_JointStardawg",
+			"CP_JointFuture",
+			"CP_JointS1",
+			"CP_JointNomad",
+			"CP_JointBlackFrost"
+		};
 		weapons[]={};
 		requiredVersion=0.1;
 		requiredAddons[]=
@@ -15,8 +25,7 @@ class CfgPatches
 class CfgVehicles
 {
 	class Inventory_Base;
-
-	class CP_JointSkunk : Inventory_Base
+	class CP_JointSkunk: Inventory_Base
 	{
 		scope=2;
 		displayName="Skunk Joint";
@@ -35,7 +44,6 @@ class CfgVehicles
 			"CannabisPlus\joints\data\Joint_New.paa"
 		};
 	};
-
 	class CP_JointBlue: Inventory_Base
 	{
 		scope=2;
@@ -55,7 +63,6 @@ class CfgVehicles
 			"CannabisPlus\joints\data\Joint_New.paa"
 		};
 	};
-
 	class CP_JointKush: Inventory_Base
 	{
 		scope=2;
@@ -75,7 +82,6 @@ class CfgVehicles
 			"CannabisPlus\joints\data\Joint_New.paa"
 		};
 	};
-
 	class CP_JointStardawg: Inventory_Base
 	{
 		scope=2;
@@ -94,8 +100,7 @@ class CfgVehicles
 		{
 			"CannabisPlus\joints\data\Joint_New.paa"
 		};
-	};	
-
+	};
 	class CP_JointFuture: Inventory_Base
 	{
 		scope=2;
@@ -115,7 +120,6 @@ class CfgVehicles
 			"CannabisPlus\joints\data\Joint_New.paa"
 		};
 	};
-
 	class CP_JointS1: Inventory_Base
 	{
 		scope=2;
@@ -135,7 +139,6 @@ class CfgVehicles
 			"CannabisPlus\joints\data\Joint_New.paa"
 		};
 	};
-
 	class CP_JointNomad: Inventory_Base
 	{
 		scope=2;
@@ -155,7 +158,6 @@ class CfgVehicles
 			"CannabisPlus\joints\data\Joint_New.paa"
 		};
 	};
-
 	class CP_JointBlackFrost: Inventory_Base
 	{
 		scope=2;
@@ -175,5 +177,4 @@ class CfgVehicles
 			"CannabisPlus\joints\data\Joint_New.paa"
 		};
 	};
-
 };

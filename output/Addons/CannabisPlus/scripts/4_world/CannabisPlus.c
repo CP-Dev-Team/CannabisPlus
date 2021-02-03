@@ -9,7 +9,7 @@ modded class CP_Plant_CannabisSkunk
 	override void Harvest( PlayerBase player )
 	{
 		super.Harvest(player);
-		if(GetGame().IsServer() && GetDayZGame().GetCannabisPlusConfig().removeAfterHarvest==true){
+		if(GetGame().IsServer() && GetCPConfig().removeAfterHarvest==true){
 			GetGame().GetCallQueue( CALL_CATEGORY_SYSTEM ).CallLater( RemovePlant, 10, true );
 		}
 	}
@@ -24,7 +24,7 @@ modded class CP_Plant_CannabisBlue
 	override void Harvest( PlayerBase player )
 	{
 		super.Harvest(player);
-		if(GetGame().IsServer() && GetDayZGame().GetCannabisPlusConfig().removeAfterHarvest==true){
+		if(GetGame().IsServer() && GetCPConfig().removeAfterHarvest==true){
 			GetGame().GetCallQueue( CALL_CATEGORY_SYSTEM ).CallLater( RemovePlant, 10, true );
 		}
 	}
@@ -38,7 +38,7 @@ modded class CP_Plant_CannabisKush
 	override void Harvest( PlayerBase player )
 	{
 		super.Harvest(player);
-		if(GetGame().IsServer() && GetDayZGame().GetCannabisPlusConfig().removeAfterHarvest==true){
+		if(GetGame().IsServer() && GetCPConfig().removeAfterHarvest==true){
 			GetGame().GetCallQueue( CALL_CATEGORY_SYSTEM ).CallLater( RemovePlant, 10, true );
 		}
 	}
@@ -55,7 +55,7 @@ modded class CP_Plant_CannabisStardawg
 	override void Harvest( PlayerBase player )
 	{
 		super.Harvest(player);
-		if(GetGame().IsServer() && GetDayZGame().GetCannabisPlusConfig().removeAfterHarvest==true){
+		if(GetGame().IsServer() && GetCPConfig().removeAfterHarvest==true){
 			GetGame().GetCallQueue( CALL_CATEGORY_SYSTEM ).CallLater( RemovePlant, 10, true );
 		}
 	}
@@ -68,7 +68,7 @@ modded class CP_Plant_CannabisStardawg
 modded class CP_Plant_CannabisFuture {
 	override void Harvest(PlayerBase player) {
 		super.Harvest(player);
-		if(GetGame().IsServer() && GetDayZGame().GetCannabisPlusConfig().removeAfterHarvest==true){
+		if(GetGame().IsServer() && GetCPConfig().removeAfterHarvest==true){
 			GetGame().GetCallQueue( CALL_CATEGORY_SYSTEM ).CallLater( RemovePlant, 10, true );
 		}
 	}
@@ -81,7 +81,7 @@ modded class CP_Plant_CannabisFuture {
 modded class CP_Plant_CannabisS1 {
 	override void Harvest(PlayerBase player) {
 		super.Harvest(player);
-		if(GetGame().IsServer() && GetDayZGame().GetCannabisPlusConfig().removeAfterHarvest==true){
+		if(GetGame().IsServer() && GetCPConfig().removeAfterHarvest==true){
 			GetGame().GetCallQueue( CALL_CATEGORY_SYSTEM ).CallLater( RemovePlant, 10, true );
 		}
 	}
@@ -94,7 +94,7 @@ modded class CP_Plant_CannabisS1 {
 modded class CP_Plant_CannabisNomad {
 	override void Harvest(PlayerBase player) {
 		super.Harvest(player);
-		if(GetGame().IsServer() && GetDayZGame().GetCannabisPlusConfig().removeAfterHarvest==true){
+		if(GetGame().IsServer() && GetCPConfig().removeAfterHarvest==true){
 			GetGame().GetCallQueue( CALL_CATEGORY_SYSTEM ).CallLater( RemovePlant, 10, true );
 		}
 	}
@@ -108,7 +108,7 @@ modded class CP_Plant_CannabisNomad {
 modded class CP_Plant_CannabisBlackFrost {
 	override void Harvest(PlayerBase player) {
 		super.Harvest(player);
-		if(GetGame().IsServer() && GetDayZGame().GetCannabisPlusConfig().removeAfterHarvest==true){
+		if(GetGame().IsServer() && GetCPConfig().removeAfterHarvest==true){
 			GetGame().GetCallQueue( CALL_CATEGORY_SYSTEM ).CallLater( RemovePlant, 10, true );
 		}
 	}
@@ -123,7 +123,7 @@ modded class CP_Plant_Tobacco
 	override void Harvest( PlayerBase player )
 	{
 		super.Harvest(player);
-		if(GetGame().IsServer() && GetDayZGame().GetCannabisPlusConfig().removeAfterHarvest==true){
+		if(GetGame().IsServer() && GetCPConfig().removeAfterHarvest==true){
 			GetGame().GetCallQueue( CALL_CATEGORY_SYSTEM ).CallLater( RemovePlant, 10, true );
 		}
 	}
@@ -137,7 +137,7 @@ modded class Plant_Pepper
 	override void Harvest( PlayerBase player )
 	{
 		super.Harvest(player);
-		if(GetGame().IsServer() && GetDayZGame().GetCannabisPlusConfig().removeAfterHarvest==true){
+		if(GetGame().IsServer() && GetCPConfig().removeAfterHarvest==true){
 			GetGame().GetCallQueue( CALL_CATEGORY_SYSTEM ).CallLater( RemovePlant, 10, true );
 		}
 	}
@@ -152,7 +152,7 @@ modded class Plant_Tomato
 	override void Harvest( PlayerBase player )
 	{
 		super.Harvest(player);
-		if(GetGame().IsServer() && GetDayZGame().GetCannabisPlusConfig().removeAfterHarvest==true){
+		if(GetGame().IsServer() && GetCPConfig().removeAfterHarvest==true){
 			GetGame().GetCallQueue( CALL_CATEGORY_SYSTEM ).CallLater( RemovePlant, 10, true );
 		}
 	}
@@ -167,7 +167,7 @@ modded class Plant_Zucchini
 	override void Harvest( PlayerBase player )
 	{
 		super.Harvest(player);
-		if(GetGame().IsServer() && GetDayZGame().GetCannabisPlusConfig().removeAfterHarvest==true){
+		if(GetGame().IsServer() && GetCPConfig().removeAfterHarvest==true){
 			GetGame().GetCallQueue( CALL_CATEGORY_SYSTEM ).CallLater( RemovePlant, 10, true );
 		}
 	}
@@ -182,7 +182,7 @@ modded class Plant_Pumpkin
 	override void Harvest( PlayerBase player )
 	{
 		super.Harvest(player);
-		if(GetGame().IsServer() && GetDayZGame().GetCannabisPlusConfig().removeAfterHarvest==true){
+		if(GetGame().IsServer() && GetCPConfig().removeAfterHarvest==true){
 			GetGame().GetCallQueue( CALL_CATEGORY_SYSTEM ).CallLater( RemovePlant, 10, true );
 		}
 	}
@@ -270,37 +270,36 @@ modded class PlantBase
 	override void Init( GardenBase garden_base, float fertility, float harvesting_efficiency, float water)
 	{	
 		private bool isFertilized = false;
-		
 		//reads settings from CannabisPlus.json
-		m_tabacco_growtime 				= GetDayZGame().GetCannabisPlusConfig().tobacco_growtime;
-		m_cannabisSkunk_growtime 		= GetDayZGame().GetCannabisPlusConfig().cannabisSkunk_growtime;
-		m_cannabisKush_growtime 		= GetDayZGame().GetCannabisPlusConfig().cannabisKush_growtime;
-		m_cannabisBlue_growtime	 		= GetDayZGame().GetCannabisPlusConfig().cannabisBlue_growtime;
-		m_cannabisStardawg_growtime		= GetDayZGame().GetCannabisPlusConfig().cannabisStardawg_growtime;
-		m_cannabisFuture_growtime 		= GetDayZGame().GetCannabisPlusConfig().cannabisFuture_growtime;
-		m_cannabisS1_growtime 			= GetDayZGame().GetCannabisPlusConfig().cannabisS1_growtime;
-		m_cannabisNomad_growtime 		= GetDayZGame().GetCannabisPlusConfig().cannabisNomad_growtime;
-		m_cannabisBlackFrost_growtime 	= GetDayZGame().GetCannabisPlusConfig().cannabisBlackFrost_growtime;
+		m_tabacco_growtime 				= GetCPConfig().tobacco_growtime;
+		m_cannabisSkunk_growtime 		= GetCPConfig().cannabisSkunk_growtime;
+		m_cannabisKush_growtime 		= GetCPConfig().cannabisKush_growtime;
+		m_cannabisBlue_growtime	 		= GetCPConfig().cannabisBlue_growtime;
+		m_cannabisStardawg_growtime		= GetCPConfig().cannabisStardawg_growtime;
+		m_cannabisFuture_growtime 		= GetCPConfig().cannabisFuture_growtime;
+		m_cannabisS1_growtime 			= GetCPConfig().cannabisS1_growtime;
+		m_cannabisNomad_growtime 		= GetCPConfig().cannabisNomad_growtime;
+		m_cannabisBlackFrost_growtime 	= GetCPConfig().cannabisBlackFrost_growtime;
 
-		m_pepper_growtime 				= GetDayZGame().GetCannabisPlusConfig().pepper_growtime;
-		m_tomato_growtime 				= GetDayZGame().GetCannabisPlusConfig().tomato_growtime;
-		m_zucchini_growtime 			= GetDayZGame().GetCannabisPlusConfig().zucchini_growtime;
-		m_pumpkin_growtime 				= GetDayZGame().GetCannabisPlusConfig().pumpkin_growtime;
+		m_pepper_growtime 				= GetCPConfig().pepper_growtime;
+		m_tomato_growtime 				= GetCPConfig().tomato_growtime;
+		m_zucchini_growtime 			= GetCPConfig().zucchini_growtime;
+		m_pumpkin_growtime 				= GetCPConfig().pumpkin_growtime;
 	
-		m_tabacco_cropcount 			= GetDayZGame().GetCannabisPlusConfig().tobacco_cropcount;
-		m_cannabisSkunk_cropcount 		= GetDayZGame().GetCannabisPlusConfig().cannabisSkunk_cropcount;
-		m_cannabisKush_cropcount 		= GetDayZGame().GetCannabisPlusConfig().cannabisKush_cropcount;
-		m_cannabisBlue_cropcount 		= GetDayZGame().GetCannabisPlusConfig().cannabisBlue_cropcount;
-		m_cannabisStardawg_cropcount 	= GetDayZGame().GetCannabisPlusConfig().cannabisStardawg_cropcount;
-		m_cannabisFuture_cropcount 		= GetDayZGame().GetCannabisPlusConfig().cannabisFuture_cropcount;
-		m_cannabisS1_cropcount 			= GetDayZGame().GetCannabisPlusConfig().cannabisS1_cropcount;
-		m_cannabisNomad_cropcount 		= GetDayZGame().GetCannabisPlusConfig().cannabisNomad_cropcount;
-		m_cannabisBlackFrost_cropcount 	= GetDayZGame().GetCannabisPlusConfig().cannabisBlackFrost_cropcount;
+		m_tabacco_cropcount 			= GetCPConfig().tobacco_cropcount;
+		m_cannabisSkunk_cropcount 		= GetCPConfig().cannabisSkunk_cropcount;
+		m_cannabisKush_cropcount 		= GetCPConfig().cannabisKush_cropcount;
+		m_cannabisBlue_cropcount 		= GetCPConfig().cannabisBlue_cropcount;
+		m_cannabisStardawg_cropcount 	= GetCPConfig().cannabisStardawg_cropcount;
+		m_cannabisFuture_cropcount 		= GetCPConfig().cannabisFuture_cropcount;
+		m_cannabisS1_cropcount 			= GetCPConfig().cannabisS1_cropcount;
+		m_cannabisNomad_cropcount 		= GetCPConfig().cannabisNomad_cropcount;
+		m_cannabisBlackFrost_cropcount 	= GetCPConfig().cannabisBlackFrost_cropcount;
 		
-		m_pepper_cropcount 				= GetDayZGame().GetCannabisPlusConfig().pepper_cropcount;
-		m_tomato_cropcount 				= GetDayZGame().GetCannabisPlusConfig().tomato_cropcount;
-		m_zucchini_cropcount 			= GetDayZGame().GetCannabisPlusConfig().zucchini_cropcount;
-		m_pumpkin_cropcount 			= GetDayZGame().GetCannabisPlusConfig().pumpkin_cropcount;
+		m_pepper_cropcount 				= GetCPConfig().pepper_cropcount;
+		m_tomato_cropcount 				= GetCPConfig().tomato_cropcount;
+		m_zucchini_cropcount 			= GetCPConfig().zucchini_cropcount;
+		m_pumpkin_cropcount 			= GetCPConfig().pumpkin_cropcount;
 
 		m_GardenBase = garden_base;
 		
@@ -588,21 +587,21 @@ modded class SeedPackBase
 		int seeds_quantity_max;
 		int seeds_quantity = seeds_quantity_max;
 		// read seed count values from config file
-		m_tobaccoSeed_count 			=  GetDayZGame().GetCannabisPlusConfig().tobaccoSeed_count;		
-		m_cannabisSkunkSeed_count 		=  GetDayZGame().GetCannabisPlusConfig().cannabisSkunkSeed_count;	
-		m_cannabisBlueSeed_count 		=  GetDayZGame().GetCannabisPlusConfig().cannabisBlueSeed_count;	
-		m_cannabisKushSeed_count 		=  GetDayZGame().GetCannabisPlusConfig().cannabisKushSeed_count;	
-		m_cannabisStardawgSeed_count 	=  GetDayZGame().GetCannabisPlusConfig().cannabisStardawgSeed_count;	
+		m_tobaccoSeed_count 			=  GetCPConfig().tobaccoSeed_count;		
+		m_cannabisSkunkSeed_count 		=  GetCPConfig().cannabisSkunkSeed_count;	
+		m_cannabisBlueSeed_count 		=  GetCPConfig().cannabisBlueSeed_count;	
+		m_cannabisKushSeed_count 		=  GetCPConfig().cannabisKushSeed_count;	
+		m_cannabisStardawgSeed_count 	=  GetCPConfig().cannabisStardawgSeed_count;	
 
-		m_cannabisFutureSeed_count 		=  GetDayZGame().GetCannabisPlusConfig().cannabisFutureSeed_count;
-		m_cannabisS1Seed_count 			=  GetDayZGame().GetCannabisPlusConfig().cannabisS1Seed_count;
-		m_cannabisNomadSeed_count 		=  GetDayZGame().GetCannabisPlusConfig().cannabisNomadSeed_count;
-		m_cannabisBlackFrostSeed_count 	=  GetDayZGame().GetCannabisPlusConfig().cannabisBlackFrostSeed_count;
+		m_cannabisFutureSeed_count 		=  GetCPConfig().cannabisFutureSeed_count;
+		m_cannabisS1Seed_count 			=  GetCPConfig().cannabisS1Seed_count;
+		m_cannabisNomadSeed_count 		=  GetCPConfig().cannabisNomadSeed_count;
+		m_cannabisBlackFrostSeed_count 	=  GetCPConfig().cannabisBlackFrostSeed_count;
 
-		m_pepperSeed_count 				=  GetDayZGame().GetCannabisPlusConfig().pepperSeed_count;			
-		m_tomatoSeed_count 				=  GetDayZGame().GetCannabisPlusConfig().tomatoSeed_count;			
-		m_zucchiniSeed_count 			=  GetDayZGame().GetCannabisPlusConfig().zucchiniSeed_count;	
-		m_pumpkinSeed_count 			=  GetDayZGame().GetCannabisPlusConfig().pumpkinSeed_count;		
+		m_pepperSeed_count 				=  GetCPConfig().pepperSeed_count;			
+		m_tomatoSeed_count 				=  GetCPConfig().tomatoSeed_count;			
+		m_zucchiniSeed_count 			=  GetCPConfig().zucchiniSeed_count;	
+		m_pumpkinSeed_count 			=  GetCPConfig().pumpkinSeed_count;		
 		// select the current seedpack
 		switch(this.GetType()) {
 			// Cannabis Skunk seedpack
