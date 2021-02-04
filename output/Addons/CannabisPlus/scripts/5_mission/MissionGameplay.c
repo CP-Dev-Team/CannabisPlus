@@ -2,6 +2,7 @@
 modded class MissionGameplay extends MissionBase
 {
 	protected bool m_isModdedMissionInitialized = false;
+
 	override void OnInit()
 	{
 		super.OnInit();
@@ -25,7 +26,7 @@ modded class MissionGameplay extends MissionBase
 			Param1 <ref CannabisPlusConfigManager> data;
         	if ( !ctx.Read( data ) ) return;
 			g_ClientCannabisPlusConfig = data.param1; //Update our referenz in Gamemodule.
-			Print("[CP] Sucessfully recived config from remote!");
+			Print("[CP] Sucessfully recieved config from remote!");
 		}
 	}
 }

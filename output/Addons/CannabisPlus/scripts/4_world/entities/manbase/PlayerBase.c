@@ -23,24 +23,8 @@ modded class PlayerBase {
 
 	bool HasConsumedCigarette () {
 		return m_HasConsumedCigarette; 
-	}		 
-   /*
-	override void OnConnect() {
-		super.OnConnect();
-		if (GetIdentity()) {
-			GetRPCManager().SendRPC( "CP_scripts", "RetreiveCannabisPlusConfig", new Param1 <ref CannabisPlusConfigManager> (GetCPConfig()),true,GetIdentity());
-			Print("[CP] Receiving CannabisPlusConfig info from server");
-		}	
-	}
+	} 
 	
-	override void OnReconnect() {
-		super.OnReconnect();
-		if (GetIdentity()) {
-			GetRPCManager().SendRPC( "CP_scripts", "RetreiveCannabisPlusConfig", new Param1 <ref CannabisPlusConfigManager> (GetCPConfig()),true,GetIdentity());
-			Print("[CP] Receiving CannabisPlusConfig info from server");
-		}	
-	}
-	*/
 	int GetJointCycles () {
 		return m_jointValue;
 	}

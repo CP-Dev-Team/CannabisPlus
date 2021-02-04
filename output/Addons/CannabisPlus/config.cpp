@@ -26,7 +26,7 @@ class CfgMods
 		credits="IceBlade, bombjack, Gloser";
 		author="IceBlade";
 		authorID="0";
-		version="1.0";
+		version="2.51";
 		extra=0;
 		type="mod";
 		dependencies[]=
