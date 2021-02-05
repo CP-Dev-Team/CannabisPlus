@@ -66,10 +66,10 @@ class CannabisPlusConfigManager
 	int jointCyclesToActivateEffect;		// number of cigarettes consumed to activate the effect
 
 	// Weed Effects.
-      float weedHueIntensity;
-      int weedRadBlurXPower;
-      int weedRadBlurYPower;
-      int weedRotBlurPow;
+    float weedHueIntensity;
+    int weedRadBlurXPower;
+    int weedRadBlurYPower;
+    int weedRotBlurPow;
 	
 	void CannabisPlusConfigManager() {
 	};
@@ -148,9 +148,9 @@ class CannabisPlusConfigManager
 	}
 
 	protected int GetModVersion() { 
-	string cfgversion = "CfgMods CannabisPlus version";
+		string cfgversion = "CfgMods CannabisPlus version";
         string ModVersion;
-	  float modFloat;	
+	  	float modFloat;	
         GetGame().ConfigGetText(cfgversion, ModVersion);
         //Print("[CP->] ModConfig entry found Mod Version is: " + ModVersion);
 	    modFloat  = ModVersion.ToFloat()*100;	
@@ -166,6 +166,7 @@ class CannabisPlusConfigManager
 			DeleteFile(m_CPConfigPath);
 		}
 	}
+	
 	//this saves the config to the json file.
 	protected void SaveConfig() {
 		if (!FileExist(m_CPProfileDir + m_CPProfileFolder + "/"))
