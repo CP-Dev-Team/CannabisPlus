@@ -55,7 +55,11 @@ class CP_JointBase extends ItemBase {
 	
 	void MakePuke(PlayerBase player)
 	{
-		player.GetModifiersManager().ActivateModifier(100);	
+		Print("[CP] Vomit modifier " + player.GetModifiersManager().IsModifierActive(98) + " on player: " + player);
+		if( player.GetModifiersManager().IsModifierActive(99) ) { 
+			player.GetModifiersManager().DeactivateModifier(99);
+		}		
+		player.GetModifiersManager().ActivateModifier(98);	
 	}
 	
 	void UpdateParticles() {

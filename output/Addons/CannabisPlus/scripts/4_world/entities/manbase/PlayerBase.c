@@ -25,8 +25,25 @@ modded class PlayerBase {
 		return m_HasConsumedCigarette; 
 	} 
 	
-	int GetJointCycles () {
+	int GetJointCycles() {
 		return m_jointValue;
+	}
+	
+	override void Init()
+	{
+		super.Init();
+		
+		//Reset effects on player spawn.
+		CameraEffects.changeHue(60);
+		CameraEffects.changeRadBlurXEffect(0);
+		CameraEffects.changeRadBlurYEffect(0);
+		CameraEffects.setExposure(60);
+		CameraEffects.changeRotationBlurPower(0);
+		CameraEffects.changeVignette(0);
+		CameraEffects.changeChromaX(0);
+		CameraEffects.changeChromaY(0);
+		
+		RegisterNetSyncVariableInt("m_jointValue");
 	}
 	
 	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -65,6 +82,7 @@ modded class PlayerBase {
 					jointTimer.Stop();
 					jointTimer.Run(GetCPConfig().smokingJointEffectDuration, this, "ResetJointValues", null, false);				
 				}
+				SetSynchDirty();
 			}
 		}
 	}
@@ -84,6 +102,7 @@ modded class PlayerBase {
 		CannabisEffectsTriggeredOff();
 		m_jointValue = 0;
 		jointTimer.Stop();
+		SetSynchDirty();
 	}
 	
 	// Cannabis Visual Effect On.
@@ -105,7 +124,7 @@ modded class PlayerBase {
             //CameraEffects.changeRotationBlurPower(0);
             
             CameraEffects.changeHue(GetCPConfig().weedHueIntensity-counter);
-			CameraEffects.changeRadBlurXEffect(GetCPConfig().weedRadBlurXPower*multiplier);
+		CameraEffects.changeRadBlurXEffect(GetCPConfig().weedRadBlurXPower*multiplier);
            	CameraEffects.changeRadBlurYEffect(GetCPConfig().weedRadBlurYPower*multiplier);
            	CameraEffects.changeRotationBlurPower(GetCPConfig().weedRotBlurPow*multiplier);
         }	

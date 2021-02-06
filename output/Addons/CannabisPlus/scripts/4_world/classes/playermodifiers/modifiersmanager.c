@@ -1,7 +1,9 @@
 modded class ModifiersManager
 {
-	void ModifiersManager(PlayerBase player)
-	{
+
+	override void Init() {
+	
+		super.Init();
 		AddModifier(new VomitMdfr);
 		AddModifier(new StonedMdfr);
 	}
