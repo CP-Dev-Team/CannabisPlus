@@ -128,7 +128,7 @@ modded class PlayerBase {
            	CameraEffects.changeRadBlurYEffect(GetDayZGame().GetCannabisPlusConfig().weedRadBlurYPower*multiplier);
            	CameraEffects.changeRotationBlurPower(GetDayZGame().GetCannabisPlusConfig().weedRotBlurPow*multiplier);
         }	
-	  PlaySoundSet(m_TurnOn, SMOKE_SOUND, 0.0, 0.0)	
+	  PlaySoundSet(m_TurnOn, SMOKE_SOUND, 0.0, 0.0);	
 
     }
 

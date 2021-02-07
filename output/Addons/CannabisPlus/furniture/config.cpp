@@ -183,7 +183,7 @@ class CfgVehicles
 		};
     };
 
-    class CP_RawCannabisPlant : Inventory_Base
+    class CP_RawSkunkCannabisPlant : Inventory_Base
     {
         scope = 2;
 		displayName = "Raw_Cannabis_Plant";
@@ -197,7 +197,7 @@ class CfgVehicles
         };
     };
 
-	class CP_DriedCannabisPlant : Inventory_Base
+	class CP_DriedSkunkCannabisPlant : Inventory_Base
     {
         scope = 2;
 		displayName = "Dried_Cannabis_Plant";
@@ -210,4 +210,201 @@ class CfgVehicles
 			"HangingPlants3"
         };
     };
+
+	class CP_RawBlueCannabisPlant : Inventory_Base
+    {
+        scope = 2;
+		displayName = "Raw_Cannabis_Plant";
+		descriptionShort = "Raw_Cannabis_Plant";
+		model="\CannabisPlus\furniture\CannabisPlantHanging.p3d";
+        inventorySlot[]=
+        {
+            "HangingPlants",
+            "HangingPlants2",
+			"HangingPlants3"
+        };
+    };
+
+	class CP_DriedBlueCannabisPlant : Inventory_Base
+    {
+        scope = 2;
+		displayName = "Dried_Cannabis_Plant";
+		descriptionShort = "Dried_Cannabis_Plant";
+		model="\CannabisPlus\furniture\CannabisPlantHanging.p3d";
+        inventorySlot[]=
+        {
+            "HangingPlants",
+            "HangingPlants2",
+			"HangingPlants3"
+        };
+    };
+
+	class CP_RawKushCannabisPlant : Inventory_Base
+    {
+        scope = 2;
+		displayName = "Raw_Cannabis_Plant";
+		descriptionShort = "Raw_Cannabis_Plant";
+		model="\CannabisPlus\furniture\CannabisPlantHanging.p3d";
+        inventorySlot[]=
+        {
+            "HangingPlants",
+            "HangingPlants2",
+			"HangingPlants3"
+        };
+    };
+
+	class CP_DriedKushCannabisPlant : Inventory_Base
+    {
+        scope = 2;
+		displayName = "Dried_Cannabis_Plant";
+		descriptionShort = "Dried_Cannabis_Plant";
+		model="\CannabisPlus\furniture\CannabisPlantHanging.p3d";
+        inventorySlot[]=
+        {
+            "HangingPlants",
+            "HangingPlants2",
+			"HangingPlants3"
+        };
+    };
+
+	class CP_RawStardawgCannabisPlant : Inventory_Base
+    {
+        scope = 2;
+		displayName = "Raw_Cannabis_Plant";
+		descriptionShort = "Raw_Cannabis_Plant";
+		model="\CannabisPlus\furniture\CannabisPlantHanging.p3d";
+        inventorySlot[]=
+        {
+            "HangingPlants",
+            "HangingPlants2",
+			"HangingPlants3"
+        };
+    };
+
+	class CP_DriedStardawgCannabisPlant : Inventory_Base
+    {
+        scope = 2;
+		displayName = "Dried_Cannabis_Plant";
+		descriptionShort = "Dried_Cannabis_Plant";
+		model="\CannabisPlus\furniture\CannabisPlantHanging.p3d";
+        inventorySlot[]=
+        {
+            "HangingPlants",
+            "HangingPlants2",
+			"HangingPlants3"
+        };
+    };
+
+	class CP_RawFutureCannabisPlant : Inventory_Base
+    {
+        scope = 2;
+		displayName = "Raw_Cannabis_Plant";
+		descriptionShort = "Raw_Cannabis_Plant";
+		model="\CannabisPlus\furniture\CannabisPlantHanging.p3d";
+        inventorySlot[]=
+        {
+            "HangingPlants",
+            "HangingPlants2",
+			"HangingPlants3"
+        };
+    };
+
+	class CP_DriedFutureCannabisPlant : Inventory_Base
+    {
+        scope = 2;
+		displayName = "Dried_Cannabis_Plant";
+		descriptionShort = "Dried_Cannabis_Plant";
+		model="\CannabisPlus\furniture\CannabisPlantHanging.p3d";
+        inventorySlot[]=
+        {
+            "HangingPlants",
+            "HangingPlants2",
+			"HangingPlants3"
+        };
+    };
+
+	class CP_RawNomadCannabisPlant : Inventory_Base
+    {
+        scope = 2;
+		displayName = "Raw_Cannabis_Plant";
+		descriptionShort = "Raw_Cannabis_Plant";
+		model="\CannabisPlus\furniture\CannabisPlantHanging.p3d";
+        inventorySlot[]=
+        {
+            "HangingPlants",
+            "HangingPlants2",
+			"HangingPlants3"
+        };
+    };
+
+	class CP_DriedNomadCannabisPlant : Inventory_Base
+    {
+        scope = 2;
+		displayName = "Dried_Cannabis_Plant";
+		descriptionShort = "Dried_Cannabis_Plant";
+		model="\CannabisPlus\furniture\CannabisPlantHanging.p3d";
+        inventorySlot[]=
+        {
+            "HangingPlants",
+            "HangingPlants2",
+			"HangingPlants3"
+        };
+    };
+
+	class CP_RawS1CannabisPlant : Inventory_Base
+    {
+        scope = 2;
+		displayName = "Raw_Cannabis_Plant";
+		descriptionShort = "Raw_Cannabis_Plant";
+		model="\CannabisPlus\furniture\CannabisPlantHanging.p3d";
+        inventorySlot[]=
+        {
+            "HangingPlants",
+            "HangingPlants2",
+			"HangingPlants3"
+        };
+    };
+
+	class CP_DriedS1CannabisPlant : Inventory_Base
+    {
+        scope = 2;
+		displayName = "Dried_Cannabis_Plant";
+		descriptionShort = "Dried_Cannabis_Plant";
+		model="\CannabisPlus\furniture\CannabisPlantHanging.p3d";
+        inventorySlot[]=
+        {
+            "HangingPlants",
+            "HangingPlants2",
+			"HangingPlants3"
+        };
+    };
+
+	class CP_RawBlackFrostCannabisPlant : Inventory_Base
+    {
+        scope = 2;
+		displayName = "Raw_Cannabis_Plant";
+		descriptionShort = "Raw_Cannabis_Plant";
+		model="\CannabisPlus\furniture\CannabisPlantHanging.p3d";
+        inventorySlot[]=
+        {
+            "HangingPlants",
+            "HangingPlants2",
+			"HangingPlants3"
+        };
+    };
+
+	class CP_DriedBlackFrostCannabisPlant : Inventory_Base
+    {
+        scope = 2;
+		displayName = "Dried_Cannabis_Plant";
+		descriptionShort = "Dried_Cannabis_Plant";
+		model="\CannabisPlus\furniture\CannabisPlantHanging.p3d";
+        inventorySlot[]=
+        {
+            "HangingPlants",
+            "HangingPlants2",
+			"HangingPlants3"
+        };
+    };
+	
 };

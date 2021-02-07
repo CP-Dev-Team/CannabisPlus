@@ -392,7 +392,7 @@ modded class PlantBase
 				m_growtime = 8;		
 				m_CropsCount = 5;	
 				break;
-
+			m_CropsCount = 1;
 		}
 
 		// if the plant is fertilized reduce time that the plant is full-grown
@@ -407,11 +407,11 @@ modded class PlantBase
 		m_StateChangeTime 				= (float) ((float)m_FullMaturityTime / ((float)m_GrowthStagesCount - 2.0));
 
 		// if the plant is fertilized double the cropcount
-		if(isFertilized) {
-			m_CropsCount = m_CropsCount * harvesting_efficiency * 2;
-		} else {
-			m_CropsCount = m_CropsCount * harvesting_efficiency;
-		}
+		//if(isFertilized) {
+		//	m_CropsCount = m_CropsCount * harvesting_efficiency * 2;
+		//} else {
+		//	m_CropsCount = m_CropsCount * harvesting_efficiency;
+		//}
 		
 		m_PlantMaterialMultiplier 		= 0.1 * harvesting_efficiency;
 		
