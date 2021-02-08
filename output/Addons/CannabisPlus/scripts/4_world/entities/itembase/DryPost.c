@@ -97,27 +97,14 @@ class CP_DryPost extends Container_Base
 		}
 		return super.CanReleaseAttachment(attachment);
 	}
-	
-	override bool CanReceiveAttachment( EntityAI attachment, int slotId )
-	{
-		if ( m_IsLocked )
-		{
-			return false;
-		}
-		return super.CanReceiveAttachment(attachment, slotId);
-	}	
 
 	override bool CanPutIntoHands(EntityAI parent)
     	{
-        	if( !super.CanPutIntoHands( parent ) )
+        	if ( m_IsLocked )
         	{
             	return false;
         	}
-        	if ( GetNumberOfItems() == 0 )
-        	{
-            	return false;
-        	}
-        	return true;
+        	return super.CanPutIntoHands(parent);
     	}
 
 	void FinishDrying()
@@ -132,8 +119,6 @@ class CP_DryPost extends Container_Base
 			string ItemName  = attachment.GetType();
 			if (ItemName.IndexOf("CP_Raw") >= 0)
 			{
-				NewPlantName  = attachment.GetType();
-				int rc = NewPlantName .Replace("Raw","Dried");
 				Print("[CP] Deleting " + attachment);
 				GetGame().ObjectDelete(attachment);
 				
@@ -146,9 +131,8 @@ class CP_DryPost extends Container_Base
 	{
 		for ( int i = 0; i < NumPlants; i++ )
 		{
-			this.GetInventory().CreateAttachment(NewPlantName);
-			//this.GetInventory().CreateInInventory(NewPlantName);
-			Print("[CP] Creating " + NewPlantName);
+			this.GetInventory().CreateAttachment("CP_DriedCannabisPlant");
+			Print("[CP] Creating CP_DriedCannabisPlant");
 		}
 		NumPlants = 0;
 		m_IsLocked = false;

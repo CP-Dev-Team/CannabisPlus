@@ -67,8 +67,8 @@ class CfgVehicles
     class CP_DryPost : Container_Base
     {
         scope = 2;
-		displayName = "Dry Post";
-		descriptionShort = "A post for drying plants.";
+		displayName = "Drying Post";
+		descriptionShort = "A post for drying cannabis and other plants.";
 		model="\CannabisPlus\furniture\DryPost.p3d";
 		weight=20000;
 		itemSize[]={3,11};
@@ -84,7 +84,7 @@ class CfgVehicles
 		class Cargo
 		{
 			itemsCargoSize[] = {10,4};
-			openable = 0;
+			openable = 1;
 			allowOwnedCargoManipulation = 1;
 		};
         attachments[]=
@@ -192,22 +192,8 @@ class CfgVehicles
     class CP_RawSkunkCannabisPlant : Inventory_Base
     {
         scope = 2;
-		displayName = "Raw_Cannabis_Plant";
-		descriptionShort = "Raw_Cannabis_Plant";
-		model="\CannabisPlus\furniture\CannabisPlantHanging.p3d";
-        inventorySlot[]=
-        {
-            "HangingPlants",
-            "HangingPlants2",
-			"HangingPlants3"
-        };
-    };
-
-	class CP_DriedSkunkCannabisPlant : Inventory_Base
-    {
-        scope = 2;
-		displayName = "Dried_Cannabis_Plant";
-		descriptionShort = "Dried_Cannabis_Plant";
+		displayName = "Raw Skunk Plant";
+		descriptionShort = "A raw Skunk plant";
 		model="\CannabisPlus\furniture\CannabisPlantHanging.p3d";
         inventorySlot[]=
         {
@@ -220,22 +206,8 @@ class CfgVehicles
 	class CP_RawBlueCannabisPlant : Inventory_Base
     {
         scope = 2;
-		displayName = "Raw_Cannabis_Plant";
-		descriptionShort = "Raw_Cannabis_Plant";
-		model="\CannabisPlus\furniture\CannabisPlantHanging.p3d";
-        inventorySlot[]=
-        {
-            "HangingPlants",
-            "HangingPlants2",
-			"HangingPlants3"
-        };
-    };
-
-	class CP_DriedBlueCannabisPlant : Inventory_Base
-    {
-        scope = 2;
-		displayName = "Dried_Cannabis_Plant";
-		descriptionShort = "Dried_Cannabis_Plant";
+		displayName = "Raw Blue God  Plant";
+		descriptionShort = "A raw Blue God plant";
 		model="\CannabisPlus\furniture\CannabisPlantHanging.p3d";
         inventorySlot[]=
         {
@@ -248,22 +220,8 @@ class CfgVehicles
 	class CP_RawKushCannabisPlant : Inventory_Base
     {
         scope = 2;
-		displayName = "Raw_Cannabis_Plant";
-		descriptionShort = "Raw_Cannabis_Plant";
-		model="\CannabisPlus\furniture\CannabisPlantHanging.p3d";
-        inventorySlot[]=
-        {
-            "HangingPlants",
-            "HangingPlants2",
-			"HangingPlants3"
-        };
-    };
-
-	class CP_DriedKushCannabisPlant : Inventory_Base
-    {
-        scope = 2;
-		displayName = "Dried_Cannabis_Plant";
-		descriptionShort = "Dried_Cannabis_Plant";
+		displayName = "Raw Kush Plant";
+		descriptionShort = "A raw Kush plant";
 		model="\CannabisPlus\furniture\CannabisPlantHanging.p3d";
         inventorySlot[]=
         {
@@ -276,22 +234,8 @@ class CfgVehicles
 	class CP_RawStardawgCannabisPlant : Inventory_Base
     {
         scope = 2;
-		displayName = "Raw_Cannabis_Plant";
-		descriptionShort = "Raw_Cannabis_Plant";
-		model="\CannabisPlus\furniture\CannabisPlantHanging.p3d";
-        inventorySlot[]=
-        {
-            "HangingPlants",
-            "HangingPlants2",
-			"HangingPlants3"
-        };
-    };
-
-	class CP_DriedStardawgCannabisPlant : Inventory_Base
-    {
-        scope = 2;
-		displayName = "Dried_Cannabis_Plant";
-		descriptionShort = "Dried_Cannabis_Plant";
+		displayName = "Raw Stardawg Plant";
+		descriptionShort = "A raw Stardawg plant";
 		model="\CannabisPlus\furniture\CannabisPlantHanging.p3d";
         inventorySlot[]=
         {
@@ -304,22 +248,8 @@ class CfgVehicles
 	class CP_RawFutureCannabisPlant : Inventory_Base
     {
         scope = 2;
-		displayName = "Raw_Cannabis_Plant";
-		descriptionShort = "Raw_Cannabis_Plant";
-		model="\CannabisPlus\furniture\CannabisPlantHanging.p3d";
-        inventorySlot[]=
-        {
-            "HangingPlants",
-            "HangingPlants2",
-			"HangingPlants3"
-        };
-    };
-
-	class CP_DriedFutureCannabisPlant : Inventory_Base
-    {
-        scope = 2;
-		displayName = "Dried_Cannabis_Plant";
-		descriptionShort = "Dried_Cannabis_Plant";
+		displayName = "Raw Future Plant";
+		descriptionShort = "A raw Future plant";
 		model="\CannabisPlus\furniture\CannabisPlantHanging.p3d";
         inventorySlot[]=
         {
@@ -332,22 +262,8 @@ class CfgVehicles
 	class CP_RawNomadCannabisPlant : Inventory_Base
     {
         scope = 2;
-		displayName = "Raw_Cannabis_Plant";
-		descriptionShort = "Raw_Cannabis_Plant";
-		model="\CannabisPlus\furniture\CannabisPlantHanging.p3d";
-        inventorySlot[]=
-        {
-            "HangingPlants",
-            "HangingPlants2",
-			"HangingPlants3"
-        };
-    };
-
-	class CP_DriedNomadCannabisPlant : Inventory_Base
-    {
-        scope = 2;
-		displayName = "Dried_Cannabis_Plant";
-		descriptionShort = "Dried_Cannabis_Plant";
+		displayName = "Raw Nomad Plant";
+		descriptionShort = "A raw Nomad plant";
 		model="\CannabisPlus\furniture\CannabisPlantHanging.p3d";
         inventorySlot[]=
         {
@@ -360,22 +276,8 @@ class CfgVehicles
 	class CP_RawS1CannabisPlant : Inventory_Base
     {
         scope = 2;
-		displayName = "Raw_Cannabis_Plant";
-		descriptionShort = "Raw_Cannabis_Plant";
-		model="\CannabisPlus\furniture\CannabisPlantHanging.p3d";
-        inventorySlot[]=
-        {
-            "HangingPlants",
-            "HangingPlants2",
-			"HangingPlants3"
-        };
-    };
-
-	class CP_DriedS1CannabisPlant : Inventory_Base
-    {
-        scope = 2;
-		displayName = "Dried_Cannabis_Plant";
-		descriptionShort = "Dried_Cannabis_Plant";
+		displayName = "Raw S1 Plant";
+		descriptionShort = "A raw S1 plant";
 		model="\CannabisPlus\furniture\CannabisPlantHanging.p3d";
         inventorySlot[]=
         {
@@ -388,8 +290,8 @@ class CfgVehicles
 	class CP_RawBlackFrostCannabisPlant : Inventory_Base
     {
         scope = 2;
-		displayName = "Raw_Cannabis_Plant";
-		descriptionShort = "Raw_Cannabis_Plant";
+		displayName = "Raw Black Frost Plant";
+		descriptionShort = "A raw Black Frost plant";
 		model="\CannabisPlus\furniture\CannabisPlantHanging.p3d";
         inventorySlot[]=
         {
@@ -399,11 +301,11 @@ class CfgVehicles
         };
     };
 
-	class CP_DriedBlackFrostCannabisPlant : Inventory_Base
+	class CP_DriedCannabisPlant : Inventory_Base
     {
         scope = 2;
-		displayName = "Dried_Cannabis_Plant";
-		descriptionShort = "Dried_Cannabis_Plant";
+		displayName = "Dried Cannabis Plant";
+		descriptionShort = "A dried cannabis plant";
 		model="\CannabisPlus\furniture\CannabisPlantHanging.p3d";
         inventorySlot[]=
         {
