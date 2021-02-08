@@ -10,18 +10,6 @@ class CP_DryPost extends Container_Base
 	int NumPlants;
 	string NewPlantName 
 	
-	void CP_DryPost()
-	{
-		if (RopeAttached && Plant1Attached && Plant2Attached && Plant3Attached ) 
-		{
-			StartDrying();
-		}
-	}
-	
-	void ~CP_DryPost()
-	{
-	}
-	
 	override void EEItemAttached(EntityAI item, string slot_name)
 	{
 		super.EEItemAttached(item, slot_name);
@@ -42,9 +30,7 @@ class CP_DryPost extends Container_Base
 		}
 		if (RopeAttached && Plant1Attached && Plant2Attached && Plant3Attached ) 
 		{	
-			Print("[CP] all items attached to post...");
-			GetInventory().LockInventory(HIDE_INV_FROM_SCRIPT);
-			StartDrying();
+			CheckStart();
 		}		
 	}
     
@@ -81,49 +67,91 @@ class CP_DryPost extends Container_Base
     	{
       	return CP_RawSkunkCannabisPlant.Cast( GetAttachmentByType (CP_RawSkunkCannabisPlant) );
     	};
-
-	void StartDrying()
-	{	
-		Print("[CP] starting to dry...");
-		GetGame().GetCallQueue(CALL_CATEGORY_GAMEPLAY).CallLater(FinishDrying, DryingTime*1000, false);
+	
+	void CheckStart()
+	{
+		for ( int k = 0; k < GetInventory().AttachmentCount(); k++ )
+		{
+			ItemBase attachment = ItemBase.Cast( GetInventory().GetAttachmentFromIndex( k ) );
+			string ItemName  = attachment.GetType();
+			if (ItemName.IndexOf("CP_Raw") >= 0)
+			{
+				NumPlants += 1;
+			}	
+		}	
+		
+		if (NumPlants==3)
+		{
+			Print("[CP] all items attached to post...starting to dry");
+			//GetInventory().LockInventory(HIDE_INV_FROM_SCRIPT);
+			GetGame().GetCallQueue(CALL_CATEGORY_GAMEPLAY).CallLater(FinishDrying, DryingTime*1000, false);
+			m_IsLocked = true;
+		}	
 	}
+	
+	override bool CanReleaseAttachment(EntityAI attachment)
+	{
+		if ( m_IsLocked )
+		{
+			return false;
+		}
+		return super.CanReleaseAttachment(attachment);
+	}
+	
+	override bool CanReceiveAttachment( EntityAI attachment, int slotId )
+	{
+		if ( m_IsLocked )
+		{
+			return false;
+		}
+		return super.CanReceiveAttachment(attachment, slotId);
+	}	
+
+	override bool CanPutIntoHands(EntityAI parent)
+    	{
+        	if( !super.CanPutIntoHands( parent ) )
+        	{
+            	return false;
+        	}
+        	if ( GetNumberOfItems() == 0 )
+        	{
+            	return false;
+        	}
+        	return true;
+    	}
 
 	void FinishDrying()
 	{
 		Print("[CP] finished drying...");
-		NumPlants = 0;
+		//GetInventory().UnlockInventory(HIDE_INV_FROM_SCRIPT);
+		int NumItems = GetInventory().AttachmentCount();
 		
-		for ( int j = 0; j < GetInventory().AttachmentCount(); ++j )
+		for ( int j = 0; j < NumItems; j++ )
 		{
 			ItemBase attachment = ItemBase.Cast( GetInventory().GetAttachmentFromIndex( j ) );
 			string ItemName  = attachment.GetType();
 			if (ItemName.IndexOf("CP_Raw") >= 0)
 			{
-				NumPlants += 1;
 				NewPlantName  = attachment.GetType();
 				int rc = NewPlantName .Replace("Raw","Dried");
 				Print("[CP] Deleting " + attachment);
 				GetGame().ObjectDelete(attachment);
+				
 			}			
-		}	
-		SpawnDried();
-		
-		GetInventory().UnlockInventory(HIDE_INV_FROM_SCRIPT);
-		/*if ( IsItemTypeAttached ( CP_RawSkunkCannabisPlant ) ) // Checks if plant is attached
-		{
-			GetGame().ObjectDelete(GetCannibisBase()); // Deletes RawCannabisPlant after function is started.
-			GetInventory().CreateAttachment("CP_DriedSkunkCannabisPlant"); // Creates dried plant in output slot.			
-			GetInventory().UnlockInventory(HIDE_INV_FROM_SCRIPT);
-		}*/
+		}			
+		GetGame().GetCallQueue(CALL_CATEGORY_GAMEPLAY).CallLater(SpawnDried, 1000, false);
 	}
 	
 	void SpawnDried() 
 	{
-		for ( int i = 0; i < NumPlants; ++i )
+		for ( int i = 0; i < NumPlants; i++ )
 		{
+			this.GetInventory().CreateAttachment(NewPlantName);
+			//this.GetInventory().CreateInInventory(NewPlantName);
 			Print("[CP] Creating " + NewPlantName);
-			GetInventory().CreateAttachment(NewPlantName);
 		}
+		NumPlants = 0;
+		m_IsLocked = false;
 	}
 
 	override void OnPlacementStarted( Man player )

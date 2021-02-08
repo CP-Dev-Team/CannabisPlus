@@ -81,6 +81,12 @@ class CfgVehicles
         varStackMax=1;
         inventorySlot[]={};
         physLayer="item_large";
+		class Cargo
+		{
+			itemsCargoSize[] = {10,4};
+			openable = 0;
+			allowOwnedCargoManipulation = 1;
+		};
         attachments[]=
 		{
             "HangingPlants",
@@ -406,5 +412,5 @@ class CfgVehicles
 			"HangingPlants3"
         };
     };
-	
+
 };
