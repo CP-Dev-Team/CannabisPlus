@@ -511,7 +511,8 @@ modded class PlantBase
 				item.SetQuantity( item.GetQuantityMax() );
 				string ItemName  = item.GetType();
 				Print("[CP] harvested " + item);
-				switch(item.GetType()){
+				
+				switch(ItemName){
 				      // cannabis skunk
 					case "CP_RawSkunkCannabisPlant":
 						CP_RawSkunkCannabisPlant skunkplant = CP_RawSkunkCannabisPlant.Cast(item);
