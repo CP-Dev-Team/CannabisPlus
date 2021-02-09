@@ -230,6 +230,7 @@ modded class PlantBase
 	
 	private GardenBase m_GardenBase = NULL;	
 	private PluginHorticulture m_ModuleHorticulture;
+	private int currentYield;
 	
 	void PlantBase()
 	{
@@ -250,6 +251,7 @@ modded class PlantBase
 		m_IsInfested 					= false;
 		m_SprayQuantity 				= 0.0;
 		m_HasCrops 						= true;
+		int currentYield = 1;
 	}
 
 	
@@ -270,6 +272,7 @@ modded class PlantBase
 	override void Init( GardenBase garden_base, float fertility, float harvesting_efficiency, float water)
 	{	
 		private bool isFertilized = false;
+		private bool IncreaseCrop = true;
 		
 		//reads settings from CannabisPlus.json
 		m_tabacco_growtime 				= GetDayZGame().GetCannabisPlusConfig().tobacco_growtime;
@@ -314,83 +317,106 @@ modded class PlantBase
 		    // cannabis skunk
 			case "CP_Plant_CannabisSkunk":
 				m_growtime = m_cannabisSkunk_growtime;
-				m_CropsCount = m_cannabisSkunk_cropcount;
+				currentYield = m_cannabisSkunk_cropcount;
+				m_CropsCount = 1;
+				IncreaseCrop = false;
 				break;
 			// cannabis blue
 			case "CP_Plant_CannabisBlue":
 				m_growtime = m_cannabisBlue_growtime;
-				m_CropsCount = m_cannabisBlue_cropcount;
+				currentYield = m_cannabisBlue_cropcount;
+				m_CropsCount = 1;
+				IncreaseCrop = false;
 				break;
 			// cannabis kush
 			case "CP_Plant_CannabisKush":
 				m_growtime = m_cannabisKush_growtime;
-				m_CropsCount = m_cannabisKush_cropcount;
+				currentYield = m_cannabisKush_cropcount;
+				m_CropsCount = 1;
+				IncreaseCrop = false;
 				break;
 
 			// cannabis Stardawg
 			case "CP_Plant_CannabisStardawg":
 				m_growtime = m_cannabisStardawg_growtime;
-				m_CropsCount = m_cannabisStardawg_cropcount;
+				currentYield = m_cannabisStardawg_cropcount;
+				m_CropsCount = 1;
+				IncreaseCrop = false;
 				break;
 
 			// cannabis Future
 			case "CP_Plant_CannabisFuture":
 				m_growtime = m_cannabisFuture_growtime;
-				m_CropsCount = m_cannabisFuture_cropcount;
+				currentYield = m_cannabisFuture_cropcount;
+				m_CropsCount = 1;
+				IncreaseCrop = false;
 				break;
 
 			// cannabis S1
 			case "CP_Plant_CannabisS1":
 				m_growtime = m_cannabisS1_growtime;
-				m_CropsCount = m_cannabisS1_cropcount;
+				currentYield = m_cannabisS1_cropcount;
+				m_CropsCount = 1;
+				IncreaseCrop = false;
 				break;
 
 			// cannabis Nomad
 			case "CP_Plant_CannabisNomad":
 				m_growtime = m_cannabisNomad_growtime;
-				m_CropsCount = m_cannabisNomad_cropcount;
+				currentYield = m_cannabisNomad_cropcount;
+				m_CropsCount = 1;
+				IncreaseCrop = false;
 				break;
 
 			// cannabis BlackFrost
 			case "CP_Plant_CannabisBlackFrost":
 				m_growtime = m_cannabisBlackFrost_growtime;
-				m_CropsCount = m_cannabisBlackFrost_cropcount;
+				currentYield = m_cannabisBlackFrost_cropcount;
+				m_CropsCount = 1;
+				IncreaseCrop = false;
 				break;
 		
 			// tobacco
 			case "CP_Plant_Tobacco":
 				m_growtime = m_tabacco_growtime;
 				m_CropsCount = m_tabacco_cropcount;
+				currentYield = 1;
 				break;
 			// deprecated
 			case "Plant_Tobacco":
 				m_growtime = m_tabacco_growtime;
 				m_CropsCount = m_tabacco_cropcount;
+				currentYield = 1;
 				break;	
 			// pepper 
 			case "Plant_Pepper":
 				m_growtime = m_pepper_growtime;
 				m_CropsCount = m_pepper_cropcount;
+				currentYield = 1;
 				break;
 			// tomato
 			case "Plant_Tomato":
 				m_growtime = m_tomato_growtime;
 				m_CropsCount = m_tomato_cropcount;
+				currentYield = 1;
 				break;
 			// zucchini
 			case "Plant_Zucchini":
 				m_growtime = m_zucchini_growtime;
 				m_CropsCount = m_zucchini_cropcount;
+				currentYield = 1;
 				break;
 			// pumpkin
 			case "Plant_Pumpkin":
 				m_growtime = m_pumpkin_growtime;
 				m_CropsCount = m_pumpkin_cropcount;
+				currentYield = 1;
 				break;
 
 			default:
 				m_growtime = 8;		
-				m_CropsCount = 5;	
+				m_CropsCount = 5;
+				currentYield = 1;	
 				break;
 			m_CropsCount = 1;
 		}
@@ -407,13 +433,19 @@ modded class PlantBase
 		m_StateChangeTime 				= (float) ((float)m_FullMaturityTime / ((float)m_GrowthStagesCount - 2.0));
 
 		// if the plant is fertilized double the cropcount
-		//if(isFertilized) {
-		//	m_CropsCount = m_CropsCount * harvesting_efficiency * 2;
-		//} else {
-		//	m_CropsCount = m_CropsCount * harvesting_efficiency;
-		//}
+		if(isFertilized) {
+			if (IncreaseCrop)
+			{
+				m_CropsCount = m_CropsCount * harvesting_efficiency * 2;
+			}	
+			currentYield = currentYield * harvesting_efficiency * 2;
+		} else {
+			m_CropsCount = m_CropsCount * harvesting_efficiency;
+			currentYield = currentYield * harvesting_efficiency;
+		}
 		
-		m_PlantMaterialMultiplier 		= 0.1 * harvesting_efficiency;
+		//m_PlantMaterialMultiplier 		= 0.1 * harvesting_efficiency;
+		m_PlantMaterialMultiplier 		= 0;
 		
 		float rain_intensity = GetGame().GetWeather().GetRain().GetActual();
 		
@@ -472,13 +504,133 @@ modded class PlantBase
 	{
 		if(harvestingSpamCheck==false && m_HasCrops==true){
 			harvestingSpamCheck = true;
+			for ( int i = 0; i < m_CropsCount; i++ )
+			{
+				vector pos = player.GetPosition();
+				ItemBase item = ItemBase.Cast( GetGame().CreateObjectEx( m_CropsType, pos, ECE_PLACE_ON_SURFACE ) );
+				item.SetQuantity( item.GetQuantityMax() );
+				string ItemName  = item.GetType();
+				Print("[CP] harvested " + item);
+				switch(item.GetType()){
+				      // cannabis skunk
+					case "CP_RawSkunkCannabisPlant":
+						CP_RawSkunkCannabisPlant skunkplant = CP_RawSkunkCannabisPlant.Cast(item);
+						if (skunkplant)
+						{
+							skunkplant.SetYield(currentYield);
+							Print("[CP] setting plant " + skunkplant + " yield to " + currentYield); 
+						}	
+						break;
+					// cannabis blue
+					case "CP_RawBlueCannabisPlant":
+						CP_RawBlueCannabisPlant blueplant = CP_RawBlueCannabisPlant.Cast(item);
+						if (blueplant)
+						{
+							blueplant.SetYield(currentYield);
+							Print("[CP] setting plant " + blueplant + " yield to " + currentYield); 
+						}	
+						break;
+					// cannabis kush
+					case "CP_RawKushCannabisPlant":
+						CP_RawKushCannabisPlant kushplant = CP_RawKushCannabisPlant.Cast(item);
+						if (kushplant)
+						{
+							kushplant.SetYield(currentYield);
+							Print("[CP] setting plant " + kushplant + " yield to " + currentYield); 
+						}	
+						break;
+					// cannabis Stardawg
+					case "CP_RawStardawgCannabisPlant":
+						CP_RawStardawgCannabisPlant stardawgplant = CP_RawStardawgCannabisPlant.Cast(item);
+						if (stardawgplant)
+						{
+							stardawgplant.SetYield(currentYield);
+							Print("[CP] setting plant " + stardawgplant + " yield to " + currentYield); 
+						}	
+						break;
+					// cannabis Future
+					case "CP_RawFutureCannabisPlant":
+						CP_RawFutureCannabisPlant futureplant = CP_RawFutureCannabisPlant.Cast(item);
+						if (futureplant)
+						{
+							futureplant.SetYield(currentYield);
+							Print("[CP] setting plant " + futureplant + " yield to " + currentYield); 
+						}	
+						break;
+					// cannabis S1
+					case "CP_RawS1CannabisPlant":
+						CP_RawS1CannabisPlant s1plant = CP_RawS1CannabisPlant.Cast(item);
+						if (s1plant)
+						{
+							s1plant.SetYield(currentYield);
+							Print("[CP] setting plant " + s1plant + " yield to " + currentYield); 
+						}	
+						break;
+					// cannabis Nomad
+					case "CP_RawNomadCannabisPlant":
+						CP_RawNomadCannabisPlant nomadplant = CP_RawNomadCannabisPlant.Cast(item);
+						if (nomadplant)
+						{
+							nomadplant.SetYield(currentYield);
+							Print("[CP] setting plant " + nomadplant + " yield to " + currentYield); 
+						}	
+						break;
+					// cannabis BlackFrost
+					case "CP_RawBlackFrostCannabisPlant":
+						CP_RawBlackFrostCannabisPlant bfplant = CP_RawBlackFrostCannabisPlant.Cast(item);
+						if (bfplant)
+						{
+							bfplant.SetYield(currentYield);
+							Print("[CP] setting plant " + bfplant + " yield to " + currentYield); 
+						}	
+						break;
+					default:
+						break;
+				}
+				if ( IsSpoiled() )
+				{
+					Edible_Base food_item = Edible_Base.Cast( item );
+					if ( food_item )
+					{
+						food_item.ChangeFoodStage( FoodStageType.ROTTEN );
+					}
+				}
+			}
 			m_HasCrops = false;
 			SetSynchDirty();
 			UpdatePlant();
-			super.Harvest(player);
 			GetGame().GetCallQueue( CALL_CATEGORY_SYSTEM ).CallLater( clearSpamCheck, 5000, true );
 		}	
 	}
+	
+	/*void Harvest( PlayerBase player )
+	{
+		//TODO Boris: Add soft skill 2.0
+		//PluginExperience module_exp = GetPlugin(PluginExperience);
+		//float harvesting_efficiency = module_exp.GetExpParamNumber(player, PluginExperience.EXP_FARMER_HARVESTING, "efficiency");
+		
+		//m_CropsCount = m_CropsCount * harvesting_efficiency;
+		
+		for ( int i = 0; i < m_CropsCount; i++ )
+		{
+			vector pos = player.GetPosition();
+			ItemBase item = ItemBase.Cast( GetGame().CreateObjectEx( m_CropsType, pos, ECE_PLACE_ON_SURFACE ) );
+			item.SetQuantity( item.GetQuantityMax() );
+			
+			if ( IsSpoiled() )
+			{
+				Edible_Base food_item = Edible_Base.Cast( item );
+				if ( food_item )
+				{
+					food_item.ChangeFoodStage( FoodStageType.ROTTEN );
+				}
+			}
+		}
+		
+		m_HasCrops = false;
+		SetSynchDirty();
+		UpdatePlant();
+	}*/
 	
 	
 	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
