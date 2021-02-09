@@ -223,8 +223,8 @@ class CP_DryPost extends Container_Base
 						break;
 			}			
 		}			
-		//GetGame().GetCallQueue(CALL_CATEGORY_GAMEPLAY).CallLater(SpawnDried, 1000, false);
-		SpawnDried();
+		GetGame().GetCallQueue(CALL_CATEGORY_GAMEPLAY).CallLater(SpawnDried, 1000, false);
+		//SpawnDried();
 	}
 	
 	void SpawnDried() 
