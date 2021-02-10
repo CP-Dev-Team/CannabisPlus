@@ -197,7 +197,7 @@ modded class PlantBase
 	private int m_growtime;
 	
 	private int m_tabacco_growtime;
-	private	int m_cannabisSkunk_growtime; 
+	private int m_cannabisSkunk_growtime; 
 	private int m_cannabisKush_growtime;
 	private int m_cannabisBlue_growtime;
 	private int m_cannabisStardawg_growtime;

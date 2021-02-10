@@ -81,22 +81,25 @@ class CP_DryPost extends Container_Base
 	
 	void CheckStart()
 	{
-		for ( int k = 0; k < GetInventory().AttachmentCount(); k++ )
+		if (!m_IsLocked)	
 		{
-			ItemBase attachment = ItemBase.Cast( GetInventory().GetAttachmentFromIndex( k ) );
-			string ItemName  = attachment.GetType();
-			if (ItemName.IndexOf("CP_Raw") >= 0)
+			for ( int k = 0; k < GetInventory().AttachmentCount(); k++ )
 			{
-				NumPlants += 1;
+				ItemBase attachment = ItemBase.Cast( GetInventory().GetAttachmentFromIndex( k ) );
+				string ItemName  = attachment.GetType();
+				if (ItemName.IndexOf("CP_Raw") >= 0)
+				{
+					NumPlants += 1;
+				}	
 			}	
-		}	
-		
-		if (NumPlants==3)
-		{
-			//Print("[CP] all items attached to post...starting to dry");
-			GetGame().GetCallQueue(CALL_CATEGORY_GAMEPLAY).CallLater(FinishDrying, DryingTime*1000, false);
-			m_IsLocked = true;
-		}	
+			
+			if (NumPlants==3)
+			{
+				Print("[CP] all items attached to post...starting to dry");
+				GetGame().GetCallQueue(CALL_CATEGORY_GAMEPLAY).CallLater(FinishDrying, DryingTime*1000, false);
+				m_IsLocked = true;
+			}
+		}		
 	}
 	
 	override bool CanReleaseAttachment(EntityAI attachment)
@@ -110,7 +113,7 @@ class CP_DryPost extends Container_Base
 
 	override bool CanPutIntoHands(EntityAI parent)
     	{
-        	if ( m_IsLocked || GetNumberOfItems() > 0 )
+        	if ( m_IsLocked || RopeAttached || Plant1Attached || Plant2Attached || Plant3Attached)
         	{
             	return false;
         	}
@@ -119,23 +122,32 @@ class CP_DryPost extends Container_Base
 	
 	void AddToMap(string item, int value)
 	{
-		private int CurrentValue;
+		private int CurrentValue = 0;
+		private int NewValue = 0;
 		
-		if (BudSpawn.Find(item,CurrentValue))
+		if (value < 2)
+		{
+			NewValue = 2;
+		} else
+		{
+			NewValue = value;
+		}	
+		
+ 		if (BudSpawn.Find(item,CurrentValue))
 		{
 			//get current value, remove and re-add with updated value
-			CurrentValue = CurrentValue + value;
+			NewValue = CurrentValue + value;
 			BudSpawn.Remove(item);
-			BudSpawn.Insert(item,value);
+			BudSpawn.Insert(item,NewValue);
 				
 		} else {		
-			BudSpawn.Insert(item,value);
+			BudSpawn.Insert(item,NewValue);
 		}	
 	}
 
 	void FinishDrying()
 	{
-		//Print("[CP] finished drying...");
+		Print("[CP] finished drying...");
 		int NumItems = GetInventory().AttachmentCount();
 		
 		for ( int j = 0; j < NumItems; j++ )
@@ -154,7 +166,6 @@ class CP_DryPost extends Container_Base
 						{
 							AddToMap("CP_CannabisSkunk",	skunkplant.GetYield());
 						}
-						GetGame().ObjectDelete(attachment);	
 						break;
 					// cannabis blue
 					case "CP_RawBlueCannabisPlant":
@@ -163,7 +174,6 @@ class CP_DryPost extends Container_Base
 						{
 							AddToMap("CP_CannabisBlue",	blueplant.GetYield());
 						}	
-						GetGame().ObjectDelete(attachment);
 						break;
 					// cannabis kush
 					case "CP_RawKushCannabisPlant":
@@ -172,7 +182,6 @@ class CP_DryPost extends Container_Base
 						{
 							AddToMap("CP_CannabisKush",	kushplant.GetYield());
 						}
-						GetGame().ObjectDelete(attachment);	
 						break;
 					// cannabis Stardawg
 					case "CP_RawStardawgCannabisPlant":
@@ -181,7 +190,6 @@ class CP_DryPost extends Container_Base
 						{ 
 							AddToMap("CP_CannabisStardawg",	stardawgplant.GetYield());
 						}
-						GetGame().ObjectDelete(attachment);	
 						break;
 					// cannabis Future
 					case "CP_RawFutureCannabisPlant":
@@ -190,7 +198,6 @@ class CP_DryPost extends Container_Base
 						{ 
 							AddToMap("CP_CannabisFuture",	futureplant.GetYield());
 						}
-						GetGame().ObjectDelete(attachment);	
 						break;
 					// cannabis S1
 					case "CP_RawS1CannabisPlant":
@@ -199,7 +206,6 @@ class CP_DryPost extends Container_Base
 						{ 
 							AddToMap("CP_CannabisS1",	s1plant.GetYield());
 						}
-						GetGame().ObjectDelete(attachment);	
 						break;
 					// cannabis Nomad
 					case "CP_RawNomadCannabisPlant":
@@ -208,7 +214,6 @@ class CP_DryPost extends Container_Base
 						{ 
 							AddToMap("CP_CannabisNomad",	nomadplant.GetYield());
 						}	
-						GetGame().ObjectDelete(attachment);
 						break;
 					// cannabis BlackFrost
 					case "CP_RawBlackFrostCannabisPlant":
@@ -217,7 +222,6 @@ class CP_DryPost extends Container_Base
 						{
 							AddToMap("CP_CannabisBlackFrost",	bfplant.GetYield());
 						}
-						GetGame().ObjectDelete(attachment);	
 						break;
 					default:
 						break;
@@ -229,22 +233,45 @@ class CP_DryPost extends Container_Base
 	
 	void SpawnDried() 
 	{
-		for ( int i = 0; i < NumPlants; i++ )
+		EntityAI target = EntityAI.Cast(this);
+        int NumItems = GetInventory().AttachmentCount();
+        ItemBase attachment;
+        string ItemName;
+		for ( int i = 0; i < NumItems; i++ )
 		{
-			this.GetInventory().CreateAttachment("CP_DriedCannabisPlant");
-			//Print("[CP] Creating CP_DriedCannabisPlant");
+            attachment = ItemBase.Cast( GetInventory().GetAttachmentFromIndex( i ) );
+            ItemName = attachment.GetType();
+			if (ItemName.IndexOf("CP_Raw") >= 0)
+            {
+                target.GetInventory().CreateInInventory("CP_DriedCannabisPlant");
+			    Print("[CP] Creating CP_DriedCannabisPlant");
+            }    
 		}
-		Print("[CP] The BudSpawn has " + BudSpawn.Count() + " items");
-		vector pos = this.GetPosition();
+
+		Print("[CP] The plant has " + BudSpawn.Count() + " items");
+		
 		for (i = 0; i < BudSpawn.Count(); i++)
 		{
 			string key = BudSpawn.GetKey(i);
-			Print("[CP] BudSpawn[" + i + "] is " + key);
+			Print("[CP] plant[" + i + "] is " + key + " with quantity " + BudSpawn.Get(key));
 			for (int j = 0; j < BudSpawn.Get(key); j++)
 			{
-				ItemBase item = ItemBase.Cast( GetGame().CreateObjectEx( BudSpawn.GetKey(i), pos, ECE_PLACE_ON_SURFACE ) );
+				target.GetInventory().CreateInInventory(BudSpawn.GetKey(i));
 			}
 		}
+
+        GetGame().GetCallQueue(CALL_CATEGORY_GAMEPLAY).CallLater(CleanUp, 1000, false);
+    }
+
+    void CleanUp()
+	{	
+        int NumItems = GetInventory().AttachmentCount();
+		for ( int i = 0; i < NumItems; i++ )
+		{
+			ItemBase attachment = ItemBase.Cast( GetInventory().GetAttachmentFromIndex( i ) );
+            GetGame().ObjectDelete(attachment);	
+        }
+
 		NumPlants = 0;
 		m_IsLocked = false;
 		BudSpawn.Clear();
