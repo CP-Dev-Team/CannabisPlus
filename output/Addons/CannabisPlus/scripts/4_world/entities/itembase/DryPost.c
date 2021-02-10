@@ -8,8 +8,13 @@ class CP_DryPost extends Container_Base
 	bool Plant2Attached = false;
 	bool Plant3Attached = false;
 	int NumPlants;
+	int NumItems;
+	string ItemName
 	string NewPlantName;
 	ref map<string, int> BudSpawn;
+	ItemBase attachment;
+	int i, j, k
+	EntityAI target
 	
 	void CP_DryPost()
 	{
@@ -19,7 +24,8 @@ class CP_DryPost extends Container_Base
 	
 	void ~CP_DryPost()
 	{
-}
+		
+	}
 	
 	override void EEItemAttached(EntityAI item, string slot_name)
 	{
@@ -83,10 +89,10 @@ class CP_DryPost extends Container_Base
 	{
 		if (!m_IsLocked)	
 		{
-			for ( int k = 0; k < GetInventory().AttachmentCount(); k++ )
+			for ( k = 0; k < GetInventory().AttachmentCount(); k++ )
 			{
-				ItemBase attachment = ItemBase.Cast( GetInventory().GetAttachmentFromIndex( k ) );
-				string ItemName  = attachment.GetType();
+				attachment = ItemBase.Cast( GetInventory().GetAttachmentFromIndex( k ) );
+				ItemName  = attachment.GetType();
 				if (ItemName.IndexOf("CP_Raw") >= 0)
 				{
 					NumPlants += 1;
@@ -136,7 +142,7 @@ class CP_DryPost extends Container_Base
  		if (BudSpawn.Find(item,CurrentValue))
 		{
 			//get current value, remove and re-add with updated value
-			NewValue = CurrentValue + value;
+			NewValue += CurrentValue;
 			BudSpawn.Remove(item);
 			BudSpawn.Insert(item,NewValue);
 				
@@ -148,12 +154,12 @@ class CP_DryPost extends Container_Base
 	void FinishDrying()
 	{
 		Print("[CP] finished drying...");
-		int NumItems = GetInventory().AttachmentCount();
+		NumItems = GetInventory().AttachmentCount();
 		
-		for ( int j = 0; j < NumItems; j++ )
+		for ( j = 0; j < NumItems; j++ )
 		{
-			ItemBase attachment = ItemBase.Cast( GetInventory().GetAttachmentFromIndex( j ) );
-			string ItemName  = attachment.GetType();
+			attachment = ItemBase.Cast( GetInventory().GetAttachmentFromIndex( j ) );
+			ItemName  = attachment.GetType();
 			//code to cast and get the amount of bud to spawn before deleting
 			//plant                        Bud 
 			//CP_RawSkunkCannabisPlant     CP_CannabisSkunk
@@ -228,53 +234,70 @@ class CP_DryPost extends Container_Base
 			}			
 		}			
 		GetGame().GetCallQueue(CALL_CATEGORY_GAMEPLAY).CallLater(SpawnDried, 1000, false);
-		//SpawnDried();
 	}
 	
 	void SpawnDried() 
 	{
-		EntityAI target = EntityAI.Cast(this);
-        int NumItems = GetInventory().AttachmentCount();
-        ItemBase attachment;
-        string ItemName;
-		for ( int i = 0; i < NumItems; i++ )
+		if ( GetGame() && GetGame().IsServer() )
 		{
-            attachment = ItemBase.Cast( GetInventory().GetAttachmentFromIndex( i ) );
-            ItemName = attachment.GetType();
-			if (ItemName.IndexOf("CP_Raw") >= 0)
-            {
-                target.GetInventory().CreateInInventory("CP_DriedCannabisPlant");
-			    Print("[CP] Creating CP_DriedCannabisPlant");
-            }    
-		}
-
-		Print("[CP] The plant has " + BudSpawn.Count() + " items");
-		
-		for (i = 0; i < BudSpawn.Count(); i++)
-		{
-			string key = BudSpawn.GetKey(i);
-			Print("[CP] plant[" + i + "] is " + key + " with quantity " + BudSpawn.Get(key));
-			for (int j = 0; j < BudSpawn.Get(key); j++)
+			NumItems = GetInventory().AttachmentCount();
+			
+			for ( i = 0; i < NumItems; i++ )
 			{
-				target.GetInventory().CreateInInventory(BudSpawn.GetKey(i));
+		            attachment = ItemBase.Cast( GetInventory().GetAttachmentFromIndex( i ) );
+		            ItemName = attachment.GetType();
+				if (ItemName.IndexOf("CP_Raw") >= 0)
+		            {
+		            	GetInventory().CreateInInventory("CP_DriedCannabisPlant");
+					Print("[CP] spawning CP_DriedCannabisPlant");
+		            }    
 			}
-		}
-
-        GetGame().GetCallQueue(CALL_CATEGORY_GAMEPLAY).CallLater(CleanUp, 1000, false);
+	
+			Print("[CP] The plant has " + BudSpawn.Count() + " items");
+			
+			for (j = 0; j < BudSpawn.Count(); j++)
+			{
+				string key = BudSpawn.GetKey(j);
+				Print("[CP] plant[" + j + "] is " + key + " with quantity " + BudSpawn.Get(key));
+				for (k = 0; k < BudSpawn.Get(key); k++)
+				{
+					Print("[CP] spawning "+ BudSpawn.GetKey(j));
+					GetInventory().CreateInInventory(BudSpawn.GetKey(j));
+				}
+			}  	
+		}	
+		GetGame().GetCallQueue(CALL_CATEGORY_GAMEPLAY).CallLater(CleanUp, 1000, false);
     }
 
     void CleanUp()
 	{	
-        int NumItems = GetInventory().AttachmentCount();
-		for ( int i = 0; i < NumItems; i++ )
+		if ( GetGame() && GetGame().IsServer() )
 		{
-			ItemBase attachment = ItemBase.Cast( GetInventory().GetAttachmentFromIndex( i ) );
-            GetGame().ObjectDelete(attachment);	
-        }
-
-		NumPlants = 0;
-		m_IsLocked = false;
-		BudSpawn.Clear();
+			NumItems = GetInventory().AttachmentCount();
+			for ( i = 0; i < NumItems; ++i )
+			{
+				attachment = ItemBase.Cast( GetInventory().GetAttachmentFromIndex( i ) );
+				ItemName = attachment.GetType();
+	            	if (ItemName.IndexOf("CP_Raw") >= 0)
+		            {
+					Print("[CP] deleting " + attachment);
+					GetGame().ObjectDelete(attachment);	
+				}	
+	        	}
+	
+			NumPlants = 0;
+			BudSpawn.Clear();
+		}
+		m_IsLocked = false;	
+		syncronize();	
+	}
+	
+	void syncronize()
+	{
+		if ( GetGame() && GetGame().IsServer() )
+		{
+			SetSynchDirty();
+		}
 	}
 
 	override void OnPlacementStarted( Man player )
