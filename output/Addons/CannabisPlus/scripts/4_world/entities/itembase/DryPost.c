@@ -101,7 +101,7 @@ class CP_DryPost extends Container_Base
 			if (NumPlants==3)
 			{
 				Print("[CP] all items attached to post...starting to dry");
-				GetGame().GetCallQueue(CALL_CATEGORY_GAMEPLAY).CallLater(FinishDrying, GetDayZGame().GetCannabisPlusConfig().cannabis_drytime*1000, false);
+				GetGame().GetCallQueue(CALL_CATEGORY_GAMEPLAY).CallLater(FinishDrying, GetCPConfig().cannabis_drytime*1000, false);
 				m_IsLocked = true;
 			}
 		}		

@@ -141,8 +141,7 @@ class CannabisPlusConfigManager
             weedRadBlurYPower 			= 2;
             weedRotBlurPow 				= 10;
 
-            cannabis_drytime                  =60;
-
+            cannabis_drytime                    =60;
 
 		SaveConfig();
 	};
@@ -155,12 +154,12 @@ class CannabisPlusConfigManager
 
 	protected int GetModVersion() { 
 		string cfgversion = "CfgMods CannabisPlus version";
-        string ModVersion;
+            string ModVersion;
 	  	float modFloat;	
-        GetGame().ConfigGetText(cfgversion, ModVersion);
-        //Print("[CP->] ModConfig entry found Mod Version is: " + ModVersion);
-	    modFloat  = ModVersion.ToFloat()*100;	
-        return (int)modFloat;
+            GetGame().ConfigGetText(cfgversion, ModVersion);
+            //Print("[CP->] ModConfig entry found Mod Version is: " + ModVersion);
+            modFloat  = ModVersion.ToFloat()*100;	
+            return (int)modFloat;
 	}
 	
 	void SaveOldConfig() {
@@ -177,29 +176,31 @@ class CannabisPlusConfigManager
 	protected void SaveConfig() {
 		if (!FileExist(m_CPProfileDir + m_CPProfileFolder + "/"))
 			MakeDirectory(m_CPProfileDir + m_CPProfileFolder + "/");
-        JsonFileLoader<CannabisPlusConfigManager>.JsonSaveFile(m_CPConfigPath, this);
+            JsonFileLoader<CannabisPlusConfigManager>.JsonSaveFile(m_CPConfigPath, this);
 	};
 
 	//Dont use that to load the config!
 	static ref CannabisPlusConfigManager LoadConfig() {
-        ref CannabisPlusConfigManager settings = new CannabisPlusConfigManager();
-        if(!FileExist(m_CPProfileFolder))
-            MakeDirectory(m_CPProfileFolder);
-        if(FileExist(m_CPConfigPath))
-        {
-            JsonFileLoader<CannabisPlusConfigManager>.JsonLoadFile(m_CPConfigPath, settings);
-			if(settings.IsConfigOutdated())
-			{
-				settings.SaveOldConfig();
-				settings.LoadDefaultSettings();
-			}
-        }
-        else
-        {
-            settings.LoadDefaultSettings();
-        }
-        return settings;
-    }
+            ref CannabisPlusConfigManager settings = new CannabisPlusConfigManager();
+
+            if(!FileExist(m_CPProfileFolder))
+                  MakeDirectory(m_CPProfileFolder);
+
+            if(FileExist(m_CPConfigPath))
+            {
+                  JsonFileLoader<CannabisPlusConfigManager>.JsonLoadFile(m_CPConfigPath, settings);
+                  if(settings.IsConfigOutdated())
+                  {
+                        settings.SaveOldConfig();
+                        settings.LoadDefaultSettings();
+                  }
+            }
+            else
+            {
+                  settings.LoadDefaultSettings();
+            }
+            return settings;
+      }
 };
 
 /* Global Getter for config */
@@ -207,13 +208,13 @@ static ref CannabisPlusConfigManager g_CannabisPlusConfig;
 static ref CannabisPlusConfigManager g_ClientCannabisPlusConfig;
 static ref CannabisPlusConfigManager GetCPConfig()
 {
-    if (g_Game.IsServer() && !g_CannabisPlusConfig) 
-    {
-        g_CannabisPlusConfig = CannabisPlusConfigManager.LoadConfig();
-    }
-	else if(g_Game.IsClient())
-	{
-		return g_ClientCannabisPlusConfig; //GetsFilled on mission start with an RPC.
-	}
-    return g_CannabisPlusConfig;
+      if (g_Game.IsServer() && !g_CannabisPlusConfig) 
+      {
+            g_CannabisPlusConfig = CannabisPlusConfigManager.LoadConfig();
+      }
+            else if(g_Game.IsClient())
+            {
+                  return g_ClientCannabisPlusConfig; //GetsFilled on mission start with an RPC.
+            }
+      return g_CannabisPlusConfig;
 };

@@ -3,18 +3,18 @@
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 modded class PlayerBase {
 
-	protected ref Timer 										swayTimer;				// timer that resets the values after the effect is over
-	protected ref Timer 										jointTimer;				// timer that resets the values after the effect is over
-	protected const string 										SMOKE_SOUND  = "Smoking_SoundSet";
+	protected ref Timer swayTimer; // timer that resets the values after the effect is over
+	protected ref Timer jointTimer; // timer that resets the values after the effect is over
+	protected const string SMOKE_SOUND  = "Smoking_SoundSet";
 
-	protected EffectSound                                     	m_TurnOff;
-    protected EffectSound                                     	m_TurnOn;
+	protected EffectSound m_TurnOff;
+      protected EffectSound m_TurnOn;
 	
-	bool 														m_HasConsumedCigarette = false;	// has the player consumed a hole cigarette	
-	int 														m_cigaretteValue;					// the quantity of the cigarette, what the player consumed
+	bool m_HasConsumedCigarette = false;	// has the player consumed a hole cigarette	
+	int m_cigaretteValue;					// the quantity of the cigarette, what the player consumed
 	
-	bool 														m_HasConsumedJoint = false;
-	int 														m_jointValue;						// the quantity of the cigarette, what the player consumed
+	bool m_HasConsumedJoint = false;
+	int m_jointValue;						// the quantity of the cigarette, what the player consumed
 	
 	//getters for cig/joint smoke state
 	bool HasConsumedJoint () {
@@ -32,16 +32,6 @@ modded class PlayerBase {
 	override void Init()
 	{
 		super.Init();
-		
-		//Reset effects on player spawn.
-		//CameraEffects.changeHue(60);
-		//CameraEffects.changeRadBlurXEffect(0);
-		//CameraEffects.changeRadBlurYEffect(0);
-		//CameraEffects.setExposure(60);
-		//CameraEffects.changeRotationBlurPower(0);
-		//CameraEffects.changeVignette(0);
-		//CameraEffects.changeChromaX(0);
-		//CameraEffects.changeChromaY(0);
 		
 		RegisterNetSyncVariableInt("m_jointValue");
 	}
@@ -106,42 +96,42 @@ modded class PlayerBase {
 	}
 	
 	// Cannabis Visual Effect On.
-    void CannabisEffectsTriggered(int cycles)
-    { 
-	  float multiplier;
-	  int counter;			
-		
-	  counter = cycles / GetCPConfig().jointCyclesToActivateEffect;
-	  multiplier = 1 + (0.25 * counter);
+      void CannabisEffectsTriggered(int cycles)
+      { 
+            float multiplier;
+            int counter;			
+                  
+            counter = cycles / GetCPConfig().jointCyclesToActivateEffect;
+            multiplier = 1 + (0.25 * counter);
 
 
-        if(GetGame().IsClient())
-        {
-            //Reset effects on player before adding new ones.
-            //CameraEffects.changeHue(60);
-            //CameraEffects.changeRadBlurXEffect(0);
-            //CameraEffects.changeRadBlurYEffect(0);
-            //CameraEffects.changeRotationBlurPower(0);
-            
-            CameraEffects.changeHue(GetCPConfig().weedHueIntensity-counter);
-			CameraEffects.changeRadBlurXEffect(GetCPConfig().weedRadBlurXPower*multiplier);
-           	CameraEffects.changeRadBlurYEffect(GetCPConfig().weedRadBlurYPower*multiplier);
-           	CameraEffects.changeRotationBlurPower(GetCPConfig().weedRotBlurPow*multiplier);
-        }	
-	  PlaySoundSet(m_TurnOn, SMOKE_SOUND, 0.0, 0.0);	
+            if(GetGame().IsClient())
+            {
+                  //Reset effects on player before adding new ones.
+                  //CameraEffects.changeHue(60);
+                  //CameraEffects.changeRadBlurXEffect(0);
+                  //CameraEffects.changeRadBlurYEffect(0);
+                  //CameraEffects.changeRotationBlurPower(0);
+                  
+                  CameraEffects.changeHue(GetCPConfig().weedHueIntensity-counter);
+                  CameraEffects.changeRadBlurXEffect(GetCPConfig().weedRadBlurXPower*multiplier);
+                  CameraEffects.changeRadBlurYEffect(GetCPConfig().weedRadBlurYPower*multiplier);
+                  CameraEffects.changeRotationBlurPower(GetCPConfig().weedRotBlurPow*multiplier);
+            }	
+            PlaySoundSet(m_TurnOn, SMOKE_SOUND, 0.0, 0.0);	
 
-    }
+      }
 
-    // Cannabis Effects Triggered Off.
-    void CannabisEffectsTriggeredOff()
-    {
+      // Cannabis Effects Triggered Off.
+      void CannabisEffectsTriggeredOff()
+      {
 
-        if(GetGame().IsClient())
-        {
-            CameraEffects.changeHue(60);
-            CameraEffects.changeRadBlurXEffect(0);
-            CameraEffects.changeRadBlurYEffect(0);
-            CameraEffects.changeRotationBlurPower(0);	
-        }
-    }
+            if(GetGame().IsClient())
+            {
+                  CameraEffects.changeHue(60);
+                  CameraEffects.changeRadBlurXEffect(0);
+                  CameraEffects.changeRadBlurYEffect(0);
+                  CameraEffects.changeRotationBlurPower(0);	
+            }
+      }
 }
