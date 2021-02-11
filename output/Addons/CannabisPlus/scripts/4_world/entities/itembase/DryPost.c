@@ -2,7 +2,6 @@ class CP_DryPost extends Container_Base
 {	
 	bool m_IsLocked = false;
 	ref Timer m_PlantDryTime;
-	float DryingTime = 15.0;
 	bool RopeAttached = false;
 	bool Plant1Attached = false;
 	bool Plant2Attached = false;
@@ -102,7 +101,7 @@ class CP_DryPost extends Container_Base
 			if (NumPlants==3)
 			{
 				Print("[CP] all items attached to post...starting to dry");
-				GetGame().GetCallQueue(CALL_CATEGORY_GAMEPLAY).CallLater(FinishDrying, DryingTime*1000, false);
+				GetGame().GetCallQueue(CALL_CATEGORY_GAMEPLAY).CallLater(FinishDrying, GetDayZGame().GetCannabisPlusConfig().cannabis_drytime*1000, false);
 				m_IsLocked = true;
 			}
 		}		
@@ -233,7 +232,7 @@ class CP_DryPost extends Container_Base
 						break;
 			}			
 		}			
-		GetGame().GetCallQueue(CALL_CATEGORY_GAMEPLAY).CallLater(SpawnDried, 1000, false);
+		GetGame().GetCallQueue(CALL_CATEGORY_GAMEPLAY).CallLater(SpawnDried, 500, false);
 	}
 	
 	void SpawnDried() 
@@ -266,7 +265,7 @@ class CP_DryPost extends Container_Base
 				}
 			}  	
 		}	
-		GetGame().GetCallQueue(CALL_CATEGORY_GAMEPLAY).CallLater(CleanUp, 1000, false);
+		GetGame().GetCallQueue(CALL_CATEGORY_GAMEPLAY).CallLater(CleanUp, 500, false);
     }
 
     void CleanUp()
