@@ -2,7 +2,17 @@ class CfgPatches
 {
 	class CP_Bricks
 	{
-		units[]={};
+		units[]=
+		{
+			"CP_CannabisBrickSkunk",
+			"CP_CannabisBrickBlue",
+			"CP_CannabisBrickKush",
+			"CP_CannabisBrickStardawg",
+			"CP_CannabisBrickFuture",
+			"CP_CannabisBrickS1",
+			"CP_CannabisBrickNomad",
+			"CP_CannabisBrickBlackFrost"
+		};
 		weapons[]={};
 		requiredVersion=0.1;
 		requiredAddons[]=
@@ -12,28 +22,20 @@ class CfgPatches
 		};
 	};
 };
-
 class CfgVehicles
 {
 	class Container_Base;
-
-	/* Skunk */
 	class CP_CannabisBrickSkunk: Container_Base
-	{	
+	{
 		scope=2;
 		displayName="Brick of Skunk Weed";
 		descriptionShort="One pound of Skunk weed.";
 		model="\dz\gear\containers\FirstAidKit.p3d";
 		rotationFlags=17;
-		//canBeSplit=1;
 		lootCategory="Crafted";
 		weight=450;
 		itemSize[]={3,3};
 		absorbency=0.2;
-		//varQuantityInit=1;
-		//varQuantityMin=0;
-		//varQuantityMax=16;
-		//varQuantityDestroyOnMin=1;
 		isMeleeWeapon=1;
 		hiddenSelections[]=
 		{
@@ -113,8 +115,6 @@ class CfgVehicles
 			};
 		};
 	};
-
-	/* BlueGod */
 	class CP_CannabisBrickBlue: Container_Base
 	{
 		scope=2;
@@ -122,15 +122,10 @@ class CfgVehicles
 		descriptionShort="One pound of Blue God weed.";
 		model="\dz\gear\containers\FirstAidKit.p3d";
 		rotationFlags=17;
-		//canBeSplit=1;
 		lootCategory="Crafted";
 		weight=450;
 		itemSize[]={3,3};
 		absorbency=0.2;
-		//varQuantityInit=1;
-		//varQuantityMin=0;
-		//varQuantityMax=16;
-		//varQuantityDestroyOnMin=1;
 		isMeleeWeapon=1;
 		hiddenSelections[]=
 		{
@@ -210,24 +205,17 @@ class CfgVehicles
 			};
 		};
 	};
-	
-	/* PurpleKush */
 	class CP_CannabisBrickKush: Container_Base
-	{	
+	{
 		scope=2;
 		displayName="Brick of Purple Kush Weed";
 		descriptionShort="One pound of Purple Kush weed.";
 		model="\dz\gear\containers\FirstAidKit.p3d";
 		rotationFlags=17;
-		//canBeSplit=1;
 		lootCategory="Crafted";
 		weight=450;
 		itemSize[]={3,3};
 		absorbency=0.2;
-		//varQuantityInit=1;
-		//varQuantityMin=0;
-		//varQuantityMax=16;
-		//varQuantityDestroyOnMin=1;
 		isMeleeWeapon=1;
 		hiddenSelections[]=
 		{
@@ -307,24 +295,17 @@ class CfgVehicles
 			};
 		};
 	};
-
-	/* Stardawg */	
 	class CP_CannabisBrickStardawg: Container_Base
-	{	
+	{
 		scope=2;
 		displayName="Brick of Stardawg Weed";
 		descriptionShort="One pound of Stardawg weed.";
 		model="\dz\gear\containers\FirstAidKit.p3d";
 		rotationFlags=17;
-		//canBeSplit=1;
 		lootCategory="Crafted";
 		weight=450;
 		itemSize[]={3,3};
 		absorbency=0.2;
-		//varQuantityInit=1;
-		//varQuantityMin=0;
-		//varQuantityMax=16;
-		//varQuantityDestroyOnMin=1;
 		isMeleeWeapon=1;
 		hiddenSelections[]=
 		{
@@ -404,24 +385,17 @@ class CfgVehicles
 			};
 		};
 	};
-
-	/* Future */
 	class CP_CannabisBrickFuture: Container_Base
-	{	
+	{
 		scope=2;
 		displayName="Brick of Future Weed";
 		descriptionShort="One pound of Future weed.";
 		model="\dz\gear\containers\FirstAidKit.p3d";
 		rotationFlags=17;
-		//canBeSplit=1;
 		lootCategory="Crafted";
 		weight=450;
 		itemSize[]={3,3};
 		absorbency=0.2;
-		//varQuantityInit=1;
-		//varQuantityMin=0;
-		//varQuantityMax=16;
-		//varQuantityDestroyOnMin=1;
 		isMeleeWeapon=1;
 		hiddenSelections[]=
 		{
@@ -501,24 +475,17 @@ class CfgVehicles
 			};
 		};
 	};
-
-	/* S1 */
 	class CP_CannabisBrickS1: Container_Base
-	{	
+	{
 		scope=2;
 		displayName="Brick of S1 Hemp";
 		descriptionShort="One pound of S1 hemp.  Sponsored by StevesGoods.com";
 		model="\dz\gear\containers\FirstAidKit.p3d";
 		rotationFlags=17;
-		//canBeSplit=1;
 		lootCategory="Crafted";
 		weight=450;
 		itemSize[]={3,3};
 		absorbency=0.2;
-		//varQuantityInit=1;
-		//varQuantityMin=0;
-		//varQuantityMax=16;
-		//varQuantityDestroyOnMin=1;
 		isMeleeWeapon=1;
 		hiddenSelections[]=
 		{
@@ -598,24 +565,17 @@ class CfgVehicles
 			};
 		};
 	};
-
-	/* Nomad */
 	class CP_CannabisBrickNomad: Container_Base
-	{	
+	{
 		scope=2;
 		displayName="Brick of Nomad Weed";
 		descriptionShort="One pound of Nomad weed.";
 		model="\dz\gear\containers\FirstAidKit.p3d";
 		rotationFlags=17;
-		//canBeSplit=1;
 		lootCategory="Crafted";
 		weight=450;
 		itemSize[]={3,3};
 		absorbency=0.2;
-		//varQuantityInit=1;
-		//varQuantityMin=0;
-		//varQuantityMax=16;
-		//varQuantityDestroyOnMin=1;
 		isMeleeWeapon=1;
 		hiddenSelections[]=
 		{
@@ -695,24 +655,17 @@ class CfgVehicles
 			};
 		};
 	};
-
-	/* Black Frost */
 	class CP_CannabisBrickBlackFrost: Container_Base
-	{	
+	{
 		scope=2;
 		displayName="Brick of Black Frost Weed";
 		descriptionShort="One pound of Black Frost weed.";
 		model="\dz\gear\containers\FirstAidKit.p3d";
 		rotationFlags=17;
-		//canBeSplit=1;
 		lootCategory="Crafted";
 		weight=450;
 		itemSize[]={3,3};
 		absorbency=0.2;
-		//varQuantityInit=1;
-		//varQuantityMin=0;
-		//varQuantityMax=16;
-		//varQuantityDestroyOnMin=1;
 		isMeleeWeapon=1;
 		hiddenSelections[]=
 		{
@@ -792,5 +745,4 @@ class CfgVehicles
 			};
 		};
 	};
-
 };

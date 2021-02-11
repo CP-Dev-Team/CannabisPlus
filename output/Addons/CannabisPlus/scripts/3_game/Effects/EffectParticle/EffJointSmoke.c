@@ -4,4 +4,4 @@ class EffJointSmoke : EffectParticle {
 		
 		SetParticleID(ParticleList.JOINT_SMOKE);
 	} 
-}
+};

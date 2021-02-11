@@ -2,7 +2,21 @@ class CfgPatches
 {
 	class CP_Cigarettepacks
 	{
-		units[]={};
+		units[]=
+		{
+			"CP_CigarettePack_Empty",
+			"CigarettePack_Chernamorka",
+			"CigarettePack_Merkur",
+			"CigarettePack_Partyzanka",
+			"CP_CigarettePack_CannabisSkunk",
+			"CP_CigarettePack_CannabisBlue",
+			"CP_CigarettePack_CannabisKush",
+			"CP_CigarettePack_CannabisStardawg",
+			"CP_CigarettePack_CannabisFuture",
+			"CP_CigarettePack_CannabisS1",
+			"CP_CigarettePack_CannabisNomad",
+			"CP_CigarettePack_CannabisBlackFrost"
+		};
 		weapons[]={};
 		requiredVersion=0.1;
 		requiredAddons[]=
@@ -11,11 +25,9 @@ class CfgPatches
 		};
 	};
 };
-
 class CfgVehicles
 {
 	class Inventory_Base;
-	
 	class CP_CigarettePack_Empty: Inventory_Base
 	{
 		scope=2;
@@ -28,8 +40,8 @@ class CfgVehicles
 		canBeSplit=0;
 		varQuantityInit=0;
 		varQuantityMin=0;
-		varQuantityMax=20;	
-		varQuantityDestroyOnMin=0;	
+		varQuantityMax=20;
+		varQuantityDestroyOnMin=0;
 		quantityBar=1;
 		hiddenSelections[]=
 		{
@@ -95,7 +107,6 @@ class CfgVehicles
 			};
 		};
 	};
-
 	class CigarettePack_Chernamorka: Inventory_Base
 	{
 		scope=2;
@@ -108,8 +119,8 @@ class CfgVehicles
 		canBeSplit=0;
 		varQuantityInit=1;
 		varQuantityMin=1;
-		varQuantityMax=5;	
-		varQuantityDestroyOnMin=1;	
+		varQuantityMax=5;
+		varQuantityDestroyOnMin=1;
 		quantityBar=0;
 		hiddenSelections[]=
 		{
@@ -175,7 +186,6 @@ class CfgVehicles
 			};
 		};
 	};
-
 	class CigarettePack_Merkur: Inventory_Base
 	{
 		scope=2;
@@ -188,8 +198,8 @@ class CfgVehicles
 		canBeSplit=0;
 		varQuantityInit=1;
 		varQuantityMin=1;
-		varQuantityMax=5;	
-		varQuantityDestroyOnMin=1;	
+		varQuantityMax=5;
+		varQuantityDestroyOnMin=1;
 		quantityBar=0;
 		hiddenSelections[]=
 		{
@@ -255,7 +265,6 @@ class CfgVehicles
 			};
 		};
 	};
-
 	class CigarettePack_Partyzanka: Inventory_Base
 	{
 		scope=2;
@@ -268,8 +277,8 @@ class CfgVehicles
 		canBeSplit=0;
 		varQuantityInit=1;
 		varQuantityMin=1;
-		varQuantityMax=5;	
-		varQuantityDestroyOnMin=1;	
+		varQuantityMax=5;
+		varQuantityDestroyOnMin=1;
 		quantityBar=0;
 		hiddenSelections[]=
 		{
@@ -335,7 +344,6 @@ class CfgVehicles
 			};
 		};
 	};
-	
 	class CP_CigarettePack_CannabisSkunk: Inventory_Base
 	{
 		scope=2;
@@ -348,8 +356,8 @@ class CfgVehicles
 		canBeSplit=0;
 		varQuantityInit=1;
 		varQuantityMin=1;
-		varQuantityMax=5;	
-		varQuantityDestroyOnMin=1;	
+		varQuantityMax=5;
+		varQuantityDestroyOnMin=1;
 		quantityBar=0;
 		hiddenSelections[]=
 		{
@@ -415,7 +423,6 @@ class CfgVehicles
 			};
 		};
 	};
-	
 	class CP_CigarettePack_CannabisBlue: Inventory_Base
 	{
 		scope=2;
@@ -428,8 +435,8 @@ class CfgVehicles
 		canBeSplit=0;
 		varQuantityInit=1;
 		varQuantityMin=1;
-		varQuantityMax=5;	
-		varQuantityDestroyOnMin=1;	
+		varQuantityMax=5;
+		varQuantityDestroyOnMin=1;
 		quantityBar=0;
 		hiddenSelections[]=
 		{
@@ -495,7 +502,6 @@ class CfgVehicles
 			};
 		};
 	};
-	
 	class CP_CigarettePack_CannabisKush: Inventory_Base
 	{
 		scope=2;
@@ -508,8 +514,8 @@ class CfgVehicles
 		canBeSplit=0;
 		varQuantityInit=1;
 		varQuantityMin=1;
-		varQuantityMax=5;	
-		varQuantityDestroyOnMin=1;	
+		varQuantityMax=5;
+		varQuantityDestroyOnMin=1;
 		quantityBar=0;
 		hiddenSelections[]=
 		{
@@ -575,7 +581,6 @@ class CfgVehicles
 			};
 		};
 	};
-	
 	class CP_CigarettePack_CannabisStardawg: Inventory_Base
 	{
 		scope=2;
@@ -588,8 +593,8 @@ class CfgVehicles
 		canBeSplit=0;
 		varQuantityInit=1;
 		varQuantityMin=1;
-		varQuantityMax=5;	
-		varQuantityDestroyOnMin=1;	
+		varQuantityMax=5;
+		varQuantityDestroyOnMin=1;
 		quantityBar=0;
 		hiddenSelections[]=
 		{
@@ -655,7 +660,6 @@ class CfgVehicles
 			};
 		};
 	};
-
 	class CP_CigarettePack_CannabisFuture: Inventory_Base
 	{
 		scope=2;
@@ -668,8 +672,8 @@ class CfgVehicles
 		canBeSplit=0;
 		varQuantityInit=1;
 		varQuantityMin=1;
-		varQuantityMax=5;	
-		varQuantityDestroyOnMin=1;	
+		varQuantityMax=5;
+		varQuantityDestroyOnMin=1;
 		quantityBar=0;
 		hiddenSelections[]=
 		{
@@ -735,7 +739,6 @@ class CfgVehicles
 			};
 		};
 	};
-
 	class CP_CigarettePack_CannabisS1: Inventory_Base
 	{
 		scope=2;
@@ -748,8 +751,8 @@ class CfgVehicles
 		canBeSplit=0;
 		varQuantityInit=1;
 		varQuantityMin=1;
-		varQuantityMax=5;	
-		varQuantityDestroyOnMin=1;	
+		varQuantityMax=5;
+		varQuantityDestroyOnMin=1;
 		quantityBar=0;
 		hiddenSelections[]=
 		{
@@ -815,7 +818,6 @@ class CfgVehicles
 			};
 		};
 	};
-
 	class CP_CigarettePack_CannabisNomad: Inventory_Base
 	{
 		scope=2;
@@ -828,8 +830,8 @@ class CfgVehicles
 		canBeSplit=0;
 		varQuantityInit=1;
 		varQuantityMin=1;
-		varQuantityMax=5;	
-		varQuantityDestroyOnMin=1;	
+		varQuantityMax=5;
+		varQuantityDestroyOnMin=1;
 		quantityBar=0;
 		hiddenSelections[]=
 		{
@@ -895,7 +897,6 @@ class CfgVehicles
 			};
 		};
 	};
-
 	class CP_CigarettePack_CannabisBlackFrost: Inventory_Base
 	{
 		scope=2;
@@ -908,8 +909,8 @@ class CfgVehicles
 		canBeSplit=0;
 		varQuantityInit=1;
 		varQuantityMin=1;
-		varQuantityMax=5;	
-		varQuantityDestroyOnMin=1;	
+		varQuantityMax=5;
+		varQuantityDestroyOnMin=1;
 		quantityBar=0;
 		hiddenSelections[]=
 		{
@@ -975,5 +976,4 @@ class CfgVehicles
 			};
 		};
 	};
-
 };

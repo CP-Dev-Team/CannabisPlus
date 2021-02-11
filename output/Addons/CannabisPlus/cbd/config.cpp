@@ -2,7 +2,11 @@ class CfgPatches
 {
 	class CP_CBD
 	{
-		units[]={};
+		units[]=
+		{
+			"CP_Relief_Balm",
+			"CP_CBDCrudeOil"
+		};
 		weapons[]={};
 		requiredVersion=0.1;
 		requiredAddons[]=
@@ -14,12 +18,11 @@ class CfgPatches
 class CfgVehicles
 {
 	class Inventory_Base;
-	class CP_Relief_Balm : Inventory_Base
+	class CP_Relief_Balm: Inventory_Base
 	{
 		scope=2;
 		displayName="CBD Relief Balm";
-		descriptionShort=
-		"What if I told you that pain relief is just a swipe away? This revolutionary full spectrum salve holds the key to relieving pain with ease. Rub it on your knees after an epic day of hiking, apply it to your wrists after a long day of typing, or massage it into the back of your neck when dealing with headaches!  Sponsored by StevesGoods.com";
+		descriptionShort="What if I told you that pain relief is just a swipe away? This revolutionary full spectrum salve holds the key to relieving pain with ease. Rub it on your knees after an epic day of hiking, apply it to your wrists after a long day of typing, or massage it into the back of your neck when dealing with headaches!  Sponsored by StevesGoods.com";
 		model="\dz\gear\food\Marmalade.p3d";
 		hiddenSelections[]=
 		{
@@ -92,7 +95,7 @@ class CfgVehicles
 				};
 			};
 		};
-     	class AnimEvents
+		class AnimEvents
 		{
 			class SoundWeapon
 			{
@@ -185,4 +188,4 @@ class CfgVehicles
 			};
 		};
 	};
-}
+};

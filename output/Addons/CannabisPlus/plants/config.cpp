@@ -2,7 +2,18 @@ class CfgPatches
 {
 	class CP_Plants
 	{
-		units[]={};
+		units[]=
+		{
+			"CP_Plant_CannabisSkunk",
+			"CP_Plant_CannabisBlue",
+			"CP_Plant_CannabisKush",
+			"CP_Plant_CannabisStardawg",
+			"CP_Plant_CannabisFuture",
+			"CP_Plant_CannabisS1",
+			"CP_Plant_CannabisNomad",
+			"CP_Plant_CannabisBlackFrost",
+			"CP_Plant_Tobacco"
+		};
 		weapons[]={};
 		requiredVersion=0.1;
 		requiredAddons[]=
@@ -23,7 +34,6 @@ class CfgHorticulture
 			healthyTex="CannabisPlus\plants\data\tobacco_plant_co.paa";
 			healthyMat="dz\gear\cultivation\data\zucchini_plant.rvmat";
 		};
-		
 		class CP_Plant_CannabisSkunk
 		{
 			infestedTex="dz\gear\cultivation\data\cannabis_plant_insect_co.paa";
@@ -31,7 +41,6 @@ class CfgHorticulture
 			healthyTex="CannabisPlus\plants\data\cannabis_plant_skunk_co.paa";
 			healthyMat="dz\gear\cultivation\data\cannabis_plant.rvmat";
 		};
-		
 		class CP_Plant_CannabisKush
 		{
 			infestedTex="dz\gear\cultivation\data\cannabis_plant_insect_co.paa";
@@ -39,7 +48,6 @@ class CfgHorticulture
 			healthyTex="CannabisPlus\plants\data\cannabis_plant_kush_co.paa";
 			healthyMat="dz\gear\cultivation\data\cannabis_plant.rvmat";
 		};
-		
 		class CP_Plant_CannabisBlue
 		{
 			infestedTex="dz\gear\cultivation\data\cannabis_plant_insect_co.paa";
@@ -47,7 +55,6 @@ class CfgHorticulture
 			healthyTex="CannabisPlus\plants\data\cannabis_plant_blue_co.paa";
 			healthyMat="dz\gear\cultivation\data\cannabis_plant.rvmat";
 		};
-
 		class CP_Plant_CannabisStardawg
 		{
 			infestedTex="dz\gear\cultivation\data\cannabis_plant_insect_co.paa";
@@ -55,7 +62,6 @@ class CfgHorticulture
 			healthyTex="CannabisPlus\plants\data\cannabis_plant_stardawg_co.paa";
 			healthyMat="dz\gear\cultivation\data\cannabis_plant.rvmat";
 		};
-
 		class CP_Plant_CannabisFuture
 		{
 			infestedTex="dz\gear\cultivation\data\cannabis_plant_insect_co.paa";
@@ -63,7 +69,6 @@ class CfgHorticulture
 			healthyTex="CannabisPlus\plants\data\cannabis_plant_future_co.paa";
 			healthyMat="dz\gear\cultivation\data\cannabis_plant.rvmat";
 		};
-
 		class CP_Plant_CannabisS1
 		{
 			infestedTex="dz\gear\cultivation\data\cannabis_plant_insect_co.paa";
@@ -71,7 +76,6 @@ class CfgHorticulture
 			healthyTex="CannabisPlus\plants\data\cannabis_plant_s1_co.paa";
 			healthyMat="dz\gear\cultivation\data\cannabis_plant.rvmat";
 		};
-
 		class CP_Plant_CannabisNomad
 		{
 			infestedTex="dz\gear\cultivation\data\cannabis_plant_insect_co.paa";
@@ -79,7 +83,6 @@ class CfgHorticulture
 			healthyTex="CannabisPlus\plants\data\cannabis_plant_nomad_co.paa";
 			healthyMat="dz\gear\cultivation\data\cannabis_plant.rvmat";
 		};
-
 		class CP_Plant_CannabisBlackFrost
 		{
 			infestedTex="dz\gear\cultivation\data\cannabis_plant_insect_co.paa";
@@ -87,13 +90,11 @@ class CfgHorticulture
 			healthyTex="CannabisPlus\plants\data\cannabis_plant_blackfrost_co.paa";
 			healthyMat="dz\gear\cultivation\data\cannabis_plant.rvmat";
 		};
-
 	};
 };
 class CfgVehicles
 {
 	class PlantBase;
-
 	class CP_Plant_CannabisSkunk: PlantBase
 	{
 		scope=2;
@@ -128,7 +129,6 @@ class CfgVehicles
 			CropsType="CP_RawSkunkCannabisPlant";
 		};
 	};
-	
 	class CP_Plant_CannabisBlue: PlantBase
 	{
 		scope=2;
@@ -163,7 +163,6 @@ class CfgVehicles
 			CropsType="CP_RawBlueCannabisPlant";
 		};
 	};
-	
 	class CP_Plant_CannabisKush: PlantBase
 	{
 		scope=2;
@@ -198,7 +197,6 @@ class CfgVehicles
 			CropsType="CP_RawKushCannabisPlant";
 		};
 	};
-
 	class CP_Plant_CannabisStardawg: PlantBase
 	{
 		scope=2;
@@ -233,7 +231,6 @@ class CfgVehicles
 			CropsType="CP_RawStardawgCannabisPlant";
 		};
 	};
-
 	class CP_Plant_CannabisFuture: PlantBase
 	{
 		scope=2;
@@ -268,7 +265,6 @@ class CfgVehicles
 			CropsType="CP_RawFutureCannabisPlant";
 		};
 	};
-
 	class CP_Plant_CannabisS1: PlantBase
 	{
 		scope=2;
@@ -303,7 +299,6 @@ class CfgVehicles
 			CropsType="CP_RawS1CannabisPlant";
 		};
 	};
-
 	class CP_Plant_CannabisNomad: PlantBase
 	{
 		scope=2;
@@ -338,7 +333,6 @@ class CfgVehicles
 			CropsType="CP_RawNomadCannabisPlant";
 		};
 	};
-
 	class CP_Plant_CannabisBlackFrost: PlantBase
 	{
 		scope=2;
@@ -373,9 +367,8 @@ class CfgVehicles
 			CropsType="CP_RawBlackFrostCannabisPlant";
 		};
 	};
-
 	class CP_Plant_Tobacco: PlantBase
-	{	
+	{
 		scope=2;
 		displayName="Tobacco Plant";
 		descriptionShort="A tobacco plant.";
@@ -394,5 +387,4 @@ class CfgVehicles
 			CropsType="CP_Tobacco";
 		};
 	};
-
 };

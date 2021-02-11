@@ -8,8 +8,8 @@ A modification for DayZ Standalone for advanced cannabis cultivation
 * [ ] more dynamic calculation of plant growing
 
 ## Installation
-Simply subscribe to workshop item
-https://steamcommunity.com/sharedfiles/filedetails/?id=1684272862&searchtext=ConquerDayZ_Pack_experimental
+Simply subscribe to workshop item:
+https://steamcommunity.com/sharedfiles/filedetails/?id=1932611410
 
 ## Configuration
 This mod creates a config in "profiles" folder named CannabisPlus.json.
