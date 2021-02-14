@@ -23,7 +23,7 @@ class CfgVehicles
             scope = 2;
 		displayName = "Basic Box";
 		descriptionShort = "A box for holding items.";
-		model="\CannabisPlus\furniture\box.p3d";
+		model="\CannabisPlus\boxes\box.p3d";
 		weight=500;
 		itemSize[]={4,4};
 		varQuantityDestroyOnMin=1;
