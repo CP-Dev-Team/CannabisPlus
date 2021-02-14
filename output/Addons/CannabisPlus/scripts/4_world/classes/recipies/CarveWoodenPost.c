@@ -2,7 +2,7 @@ class CP_CarveWoodenPost extends RecipeBase
 {	
 	override void Init()
 	{
-		m_Name = "Carve Wooden Post";
+		m_Name = "Carve Wooden Drying Post";
 		m_IsInstaRecipe = false;//should this recipe be performed instantly without animation
 		m_AnimationLength = 1;//animation length in relative time units
 		m_Specialty = -0.01;// value > 0 for roughness, value < 0 for precision
@@ -60,7 +60,7 @@ class CP_CarveWoodenPost extends RecipeBase
 		//----------------------------------------------------------------------------------------------------------------------
 		
 		//result1
-		AddResult("CP_WoodenPost");//add results here
+		AddResult("CP_DryPost");//add results here
 
 		m_ResultSetFullQuantity[0] = false;//true = set full quantity, false = do nothing
 		m_ResultSetQuantity[0] = 1;//-1 = do nothing
