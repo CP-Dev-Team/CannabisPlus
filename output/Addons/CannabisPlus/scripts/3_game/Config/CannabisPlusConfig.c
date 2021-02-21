@@ -73,6 +73,9 @@ class CannabisPlusConfigManager
 
     int cannabis_drytime;
 	
+	int PlantPerBag;
+	int CompostTime;
+	
 	void CannabisPlusConfigManager() 
 	{
 		
@@ -142,6 +145,9 @@ class CannabisPlusConfigManager
             weedRotBlurPow 				= 10;
 
             cannabis_drytime                    =60;
+		
+		PlantPerBag					=18;
+		CompostTime					=360; 
 
 		SaveConfig();
 	};

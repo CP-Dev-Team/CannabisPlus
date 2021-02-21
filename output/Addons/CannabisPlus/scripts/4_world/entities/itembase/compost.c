@@ -51,7 +51,7 @@ class CP_Composter extends Container_Base
 				}		
 			}
 		}
-		if (NumItems >= 18)
+		if (NumItems >= GetCPConfig().PlantPerBag)
 		//process compost if at least 9 material in bin
 		{
 			if (!m_IsLocked)
@@ -67,7 +67,7 @@ class CP_Composter extends Container_Base
 	{
 		m_IsLocked = true;
 		GetInventory().LockInventory(HIDE_INV_FROM_SCRIPT);
-		GetGame().GetCallQueue(CALL_CATEGORY_GAMEPLAY).CallLater(ProcessOutput, ProcessTime, false);	
+		GetGame().GetCallQueue(CALL_CATEGORY_GAMEPLAY).CallLater(ProcessOutput, GetCPConfig().CompostTime*1000, false);	
 	}
 	
 	void ProcessOutput()
@@ -83,7 +83,7 @@ class CP_Composter extends Container_Base
 			NumCargo = cargo.GetItemCount();
 			if (NumCargo >= 17)
 			{
-				for (j = 0; j < 18; j++)
+				for (j = 0; j < GetCPConfig().PlantPerBag; j++)
 				{
 					item = ItemBase.Cast(cargo.GetItem(j));
 					if (item)
