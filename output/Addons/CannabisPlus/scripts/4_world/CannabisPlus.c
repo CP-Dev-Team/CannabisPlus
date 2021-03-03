@@ -821,8 +821,7 @@ modded class SeedPackBase
 				break;
 			
 			default:
-				seeds_quantity_max = 9;
-				break;
+				return;
 		}
 		
 		seeds_quantity = Math.Round( seeds_quantity_max * GetHealth01("","") );

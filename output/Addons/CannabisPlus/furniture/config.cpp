@@ -190,6 +190,7 @@ class CfgVehicles
 		displayName = "Raw Skunk Plant";
 		descriptionShort = "A raw Skunk plant";
 		model="\CannabisPlus\furniture\CannabisPlantHanging.p3d";
+            itemSize[]={4,4};
         inventorySlot[]=
         {
             "HangingPlants",
@@ -204,6 +205,7 @@ class CfgVehicles
 		displayName = "Raw Blue God  Plant";
 		descriptionShort = "A raw Blue God plant";
 		model="\CannabisPlus\furniture\CannabisPlantHanging.p3d";
+            itemSize[]={4,4};
         inventorySlot[]=
         {
             "HangingPlants",
@@ -218,6 +220,7 @@ class CfgVehicles
 		displayName = "Raw Kush Plant";
 		descriptionShort = "A raw Kush plant";
 		model="\CannabisPlus\furniture\CannabisPlantHanging.p3d";
+            itemSize[]={4,4};
         inventorySlot[]=
         {
             "HangingPlants",
@@ -232,6 +235,7 @@ class CfgVehicles
 		displayName = "Raw Stardawg Plant";
 		descriptionShort = "A raw Stardawg plant";
 		model="\CannabisPlus\furniture\CannabisPlantHanging.p3d";
+            itemSize[]={4,4};
         inventorySlot[]=
         {
             "HangingPlants",
@@ -246,6 +250,7 @@ class CfgVehicles
 		displayName = "Raw Future Plant";
 		descriptionShort = "A raw Future plant";
 		model="\CannabisPlus\furniture\CannabisPlantHanging.p3d";
+            itemSize[]={4,4};
         inventorySlot[]=
         {
             "HangingPlants",
@@ -260,6 +265,7 @@ class CfgVehicles
 		displayName = "Raw Nomad Plant";
 		descriptionShort = "A raw Nomad plant";
 		model="\CannabisPlus\furniture\CannabisPlantHanging.p3d";
+            itemSize[]={4,4};
         inventorySlot[]=
         {
             "HangingPlants",
@@ -274,6 +280,7 @@ class CfgVehicles
 		displayName = "Raw S1 Plant";
 		descriptionShort = "A raw S1 plant";
 		model="\CannabisPlus\furniture\CannabisPlantHanging.p3d";
+            itemSize[]={4,4};
         inventorySlot[]=
         {
             "HangingPlants",
@@ -288,6 +295,7 @@ class CfgVehicles
 		displayName = "Raw Black Frost Plant";
 		descriptionShort = "A raw Black Frost plant";
 		model="\CannabisPlus\furniture\CannabisPlantHanging.p3d";
+            itemSize[]={4,4};
         inventorySlot[]=
         {
             "HangingPlants",
@@ -302,6 +310,7 @@ class CfgVehicles
 		displayName = "Dried Cannabis Plant";
 		descriptionShort = "A dried cannabis plant";
 		model="\CannabisPlus\furniture\CannabisPlantHanging.p3d";
+            itemSize[]={1,2};
         inventorySlot[]=
         {
             "HangingPlants",
