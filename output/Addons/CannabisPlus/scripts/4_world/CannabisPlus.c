@@ -386,11 +386,9 @@ modded class PlantBase
 				m_growtime = m_pumpkin_growtime;
 				m_CropsCount = m_pumpkin_cropcount;
 				break;
-
+			//not a CP plant, exit function to avoid messing up other plants
 			default:
-				m_growtime = 8;		
-				m_CropsCount = 5;	
-				break;
+				return;
 
 		}
 
@@ -665,10 +663,9 @@ modded class SeedPackBase
 			case "PumpkinSeedsPack":
 				seeds_quantity_max = m_pumpkinSeed_count;
 				break;
-			
+			//not a CP plant, exit function to avoid messing up other plants
 			default:
-				seeds_quantity_max = 9;
-				break;
+				return;;
 		}
 		
 		seeds_quantity = Math.Round( seeds_quantity_max * GetHealth01("","") );
