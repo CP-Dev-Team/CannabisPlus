@@ -583,7 +583,7 @@ modded class SeedPackBase
 		
 		//int seeds_quantity_max = GetGame().ConfigGetInt( "cfgVehicles " + pack_type + " Horticulture ContainsSeedsQuantity" );
 		int seeds_quantity_max;
-		int seeds_quantity = seeds_quantity_max;
+		int seeds_quantity;
 		// read seed count values from config file
 		m_tobaccoSeed_count 			=  GetCPConfig().tobaccoSeed_count;		
 		m_cannabisSkunkSeed_count 		=  GetCPConfig().cannabisSkunkSeed_count;	
@@ -665,7 +665,8 @@ modded class SeedPackBase
 				break;
 			//not a CP plant, exit function to avoid messing up other plants
 			default:
-				return;;
+                        super.EmptySeedPack(player);
+				return;
 		}
 		
 		seeds_quantity = Math.Round( seeds_quantity_max * GetHealth01("","") );
