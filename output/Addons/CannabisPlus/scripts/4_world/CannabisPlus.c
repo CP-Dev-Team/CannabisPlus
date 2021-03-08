@@ -388,6 +388,7 @@ modded class PlantBase
 				break;
 			//not a CP plant, exit function to avoid messing up other plants
 			default:
+                        super.Init( garden_base, fertility, harvesting_efficiency, water)
 				return;
 
 		}
