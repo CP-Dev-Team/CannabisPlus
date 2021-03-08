@@ -57,7 +57,7 @@ class CP_Composter extends Container_Base
 			if (!m_IsLocked)
 			{  
 				ProcessCompost();
-				Print("[CP] processing compost with " + NumItems + " material");
+				Print("[CP] " + this + " processing compost with " + NumItems + " material");
 			}	
 		}
 	
@@ -88,14 +88,14 @@ class CP_Composter extends Container_Base
 					item = ItemBase.Cast(cargo.GetItem(j));
 					if (item)
 					{
-						Print("[CP] deleting " + item + " from compost bin");
+						Print("[CP] " + this + " deleting " + item + " from compost bin");
 						item.Delete();	
 					}	
 				}
 				ItemBase output = ItemBase.Cast(GetGame().CreateObject("GardenLime", output_position, false ));
 			}	
 		}
-		syncronize();
+		Syncronize();
 		GetGame().GetCallQueue(CALL_CATEGORY_GAMEPLAY).CallLater(UnlockInventory, 1000, false);
 	}
 	
@@ -114,7 +114,7 @@ class CP_Composter extends Container_Base
         	return super.CanPutIntoHands(parent);
     	}
 	
-	void syncronize()
+	void Syncronize()
 	{
 		if ( GetGame() && GetGame().IsServer() )
 		{

@@ -414,17 +414,8 @@ modded class PlantBase
 				break;
 			//not a CP plant, exit function to avoid messing up other plants
 			default:
-<<<<<<< HEAD
-				m_growtime = 8;		
-				m_CropsCount = 5;
-				currentYield = 1;	
-				break;
-			m_CropsCount = 1;
-=======
                         super.Init( garden_base, fertility, harvesting_efficiency, water)
 				return;
-
->>>>>>> 8980ceb46f014d6691d2b6b2df492819a3ccbded
 		}
 
 		// if the plant is fertilized reduce time that the plant is full-grown
@@ -827,10 +818,7 @@ modded class SeedPackBase
 				break;
 			//not a CP plant, exit function to avoid messing up other plants
 			default:
-<<<<<<< HEAD
-=======
                         super.EmptySeedPack(player);
->>>>>>> 8980ceb46f014d6691d2b6b2df492819a3ccbded
 				return;
 		}
 		
