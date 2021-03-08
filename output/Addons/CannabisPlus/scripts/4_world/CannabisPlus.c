@@ -412,13 +412,19 @@ modded class PlantBase
 				m_CropsCount = m_pumpkin_cropcount;
 				currentYield = 1;
 				break;
-
+			//not a CP plant, exit function to avoid messing up other plants
 			default:
+<<<<<<< HEAD
 				m_growtime = 8;		
 				m_CropsCount = 5;
 				currentYield = 1;	
 				break;
 			m_CropsCount = 1;
+=======
+                        super.Init( garden_base, fertility, harvesting_efficiency, water)
+				return;
+
+>>>>>>> 8980ceb46f014d6691d2b6b2df492819a3ccbded
 		}
 
 		// if the plant is fertilized reduce time that the plant is full-grown
@@ -739,7 +745,7 @@ modded class SeedPackBase
 		
 		//int seeds_quantity_max = GetGame().ConfigGetInt( "cfgVehicles " + pack_type + " Horticulture ContainsSeedsQuantity" );
 		int seeds_quantity_max;
-		int seeds_quantity = seeds_quantity_max;
+		int seeds_quantity;
 		// read seed count values from config file
 		m_tobaccoSeed_count 			=  GetCPConfig().tobaccoSeed_count;		
 		m_cannabisSkunkSeed_count 		=  GetCPConfig().cannabisSkunkSeed_count;	
@@ -819,8 +825,12 @@ modded class SeedPackBase
 			case "PumpkinSeedsPack":
 				seeds_quantity_max = m_pumpkinSeed_count;
 				break;
-			
+			//not a CP plant, exit function to avoid messing up other plants
 			default:
+<<<<<<< HEAD
+=======
+                        super.EmptySeedPack(player);
+>>>>>>> 8980ceb46f014d6691d2b6b2df492819a3ccbded
 				return;
 		}
 		
