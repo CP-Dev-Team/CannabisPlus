@@ -36,7 +36,7 @@ class CfgVehicles
             varStackMax=1;
             //inventorySlot[]={};
             physLayer="item_heavy";
-		itemsCargoSize[] = {10,10};
+		itemsCargoSize[] = {10,14};
             hiddenSelections[]=
 		{
 			"zbytek"

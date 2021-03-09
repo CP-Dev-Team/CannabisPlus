@@ -114,6 +114,23 @@ class CP_Composter extends Container_Base
         	return super.CanPutIntoHands(parent);
     	}
 	
+	override bool CanReceiveItemIntoCargo( EntityAI item )
+	{
+		ItemBase plant = ItemBase.Cast(item);
+		if (plant)
+		{
+			string ItemName = plant.GetType();
+			if (ItemName.IndexOf("PlantMaterial") >= 0 || ItemName.IndexOf("CP_Dried") >= 0)
+			{
+				return true;
+			} else 
+			{
+				return false;
+			}	
+		}
+		return super.CanReceiveItemIntoCargo(item);		
+	}
+	
 	void Syncronize()
 	{
 		if ( GetGame() && GetGame().IsServer() )

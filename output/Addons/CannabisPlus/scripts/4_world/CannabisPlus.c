@@ -509,6 +509,7 @@ modded class PlantBase
 				string ItemName  = item.GetType();
                         
                         if (ItemName.IndexOf("CP_") >= 0)
+				{
 				      Print("[CP] harvested " + item);
                         }      
 				
