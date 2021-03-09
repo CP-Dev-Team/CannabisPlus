@@ -414,7 +414,7 @@ modded class PlantBase
 				break;
 			//not a CP plant, exit function to avoid messing up other plants
 			default:
-                        super.Init( garden_base, fertility, harvesting_efficiency, water)
+                        super.Init( garden_base, fertility, harvesting_efficiency, water);
 				return;
 		}
 
@@ -507,7 +507,10 @@ modded class PlantBase
 				ItemBase item = ItemBase.Cast( GetGame().CreateObjectEx( m_CropsType, pos, ECE_PLACE_ON_SURFACE ) );
 				item.SetQuantity( item.GetQuantityMax() );
 				string ItemName  = item.GetType();
-				Print("[CP] harvested " + item);
+                        
+                        if (ItemName.IndexOf("CP_") >= 0)
+				      Print("[CP] harvested " + item);
+                        }      
 				
 				switch(ItemName){
 				      // cannabis skunk
@@ -583,7 +586,9 @@ modded class PlantBase
 						}	
 						break;
 					default:
-						break;
+                                    //not a CP item, skip out
+                                    super.Harvest(player);
+						return;
 				}
 				if ( IsSpoiled() )
 				{
@@ -599,37 +604,7 @@ modded class PlantBase
 			UpdatePlant();
 			GetGame().GetCallQueue( CALL_CATEGORY_SYSTEM ).CallLater( clearSpamCheck, 5000, true );
 		}	
-	}
-	
-	/*void Harvest( PlayerBase player )
-	{
-		//TODO Boris: Add soft skill 2.0
-		//PluginExperience module_exp = GetPlugin(PluginExperience);
-		//float harvesting_efficiency = module_exp.GetExpParamNumber(player, PluginExperience.EXP_FARMER_HARVESTING, "efficiency");
-		
-		//m_CropsCount = m_CropsCount * harvesting_efficiency;
-		
-		for ( int i = 0; i < m_CropsCount; i++ )
-		{
-			vector pos = player.GetPosition();
-			ItemBase item = ItemBase.Cast( GetGame().CreateObjectEx( m_CropsType, pos, ECE_PLACE_ON_SURFACE ) );
-			item.SetQuantity( item.GetQuantityMax() );
-			
-			if ( IsSpoiled() )
-			{
-				Edible_Base food_item = Edible_Base.Cast( item );
-				if ( food_item )
-				{
-					food_item.ChangeFoodStage( FoodStageType.ROTTEN );
-				}
-			}
-		}
-		
-		m_HasCrops = false;
-		SetSynchDirty();
-		UpdatePlant();
-	}*/
-	
+	}	
 	
 	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 	// 
