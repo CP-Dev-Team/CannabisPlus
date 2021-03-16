@@ -19,7 +19,7 @@ class CfgVehicles
 {
     class Inventory_Base;
     class Container_Base;
-    class CP_Composter : Container_Base
+    class CP_CompostBin : Container_Base
     {
             scope = 2;
 		displayName = "Compost Bin";
@@ -60,6 +60,21 @@ class CfgVehicles
 					id=898;
 				};
 			};
+		};
+    };
+
+    class GardenLime: Inventory_Base{};
+    class CP_Compost: GardenLime
+    {
+          scope=2;
+          displayName = "Compost";
+	    descriptionShort = "Composted plant material used for fertilizing.";
+
+          class Horticulture
+		{
+			TexId=1;
+			AddEnergyToSlot=0.75;
+			ConsumedQuantity=250;
 		};
     };
 };
