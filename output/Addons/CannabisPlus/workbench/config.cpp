@@ -55,7 +55,7 @@ class CfgSlots
 class CfgVehicles
 {
       class WoodenCrate;
-	class Workbench_Kit: WoodenCrate
+	class CP_Workbench_Kit: WoodenCrate
 	{
 		scope = 2;
 		displayName = "Workbench Kit";
@@ -99,7 +99,7 @@ class CfgVehicles
 		//inventorySlot[]={};
 		physLayer="item_heavy";
             itemsCargoSize[] = {10,4};
-		hiddenSelections[]=
+            hiddenSelections[]=
 		{
 			"zbytek"
 		};
@@ -137,5 +137,9 @@ class CfgVehicles
 				attachmentSlots[] = {"Bricks"};
 			};
             };      
+	};
+      class CP_Workbench_Holo: CP_Workbench
+	{
+		scope = 0;
 	};	
 };
