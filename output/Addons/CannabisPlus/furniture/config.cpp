@@ -81,11 +81,11 @@ class CfgVehicles
         varStackMax=1;
         //inventorySlot[]={};
         physLayer="item_large";
-		itemsCargoSize[] = {10,4};
+      itemsCargoSize[] = {10,4};
         attachments[]=
 		{
-            "HangingPlants",
-            "HangingPlants2",
+                  "HangingPlants",
+                  "HangingPlants2",
 			"HangingPlants3",
 			"Rope"
 		};

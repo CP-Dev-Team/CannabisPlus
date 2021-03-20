@@ -18,10 +18,9 @@ class CfgPatches
 class CfgVehicles
 {
     class Inventory_Base;
-    class Container_Base;
-    class CP_Wrapper : Container_Base
+    class CP_Wrapper : Inventory_Base
     {
-        scope = 2;
+            scope = 2;
 		displayName = "Shrink Wrapper";
 		descriptionShort = "A shrink wrapper for packaging of illicit drugs.";
 		model="\CannabisPlus\boxes\box_medium.p3d";
@@ -35,7 +34,7 @@ class CfgVehicles
 		varQuantityMax=1;
 		varStackMax=1;
 		//inventorySlot[]={};
-		physLayer="item_heavy";
+		physLayer="item_small";
 		hiddenSelections[]=
 		{
 			"zbytek"

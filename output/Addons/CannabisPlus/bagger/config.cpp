@@ -18,8 +18,7 @@ class CfgPatches
 class CfgVehicles
 {
     class Inventory_Base;
-    class Container_Base;
-    class CP_Bagger : Container_Base
+    class CP_Bagger : Inventory_Base
     {
         scope = 2;
 		displayName = "Vacuum Bagger";
@@ -35,7 +34,7 @@ class CfgVehicles
 		varQuantityMax=1;
 		varStackMax=1;
 		//inventorySlot[]={};
-		physLayer="item_heavy";
+		physLayer="item_small";
 		hiddenSelections[]=
 		{
 			"zbytek"
