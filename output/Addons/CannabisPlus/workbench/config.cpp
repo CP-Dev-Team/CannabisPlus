@@ -87,7 +87,7 @@ class CfgVehicles
 		displayName = "Workbench";
 		descriptionShort = "A workbench for packaging of illicit drugs.";
 		model="\CannabisPlus\workbench\workbench.p3d";
-		weight=5000;
+		weight=50000;
 		itemSize[]={6,6};
 		varQuantityDestroyOnMin=1;
 		itemBehaviour=0;
