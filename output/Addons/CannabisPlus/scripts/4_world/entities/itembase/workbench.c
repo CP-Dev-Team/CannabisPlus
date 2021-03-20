@@ -50,18 +50,13 @@ class CP_Workbench_Kit extends ItemBase
 	{
 		super.OnPlacementComplete( player );
 		
-		PlayerBase pb = PlayerBase.Cast( player );
 		if ( GetGame().IsServer() )
 		{
-			PlayerBase player_base = PlayerBase.Cast( player );
-			vector newPosition = player_base.GetLocalProjectionPosition();
-			vector newOrientation = player_base.GetLocalProjectionOrientation();
-				
-			Workbench_Kit1 = GetGame().CreateObject("CP_Workbench", pb.GetLocalProjectionPosition(), false );
+			Workbench_Kit1 = GetGame().CreateObjectEx( "CP_Workbench", GetPosition(), ECE_PLACE_ON_SURFACE );
 			Workbench_Kit1.SetPosition( position );
 			Workbench_Kit1.SetOrientation( orientation );
 		}	
-		
+		HideAllSelections();
 		SetIsDeploySound( true );
 		SetLifetime(3888000);
 	}
