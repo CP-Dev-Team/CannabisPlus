@@ -22,10 +22,10 @@ class CfgVehicles
     {
         scope = 2;
 		displayName = "Vacuum Bagger";
-		descriptionShort = "A vacuum sealer for packaging of illicit drugs.";
-		model="\CannabisPlus\boxes\box_small.p3d";
+		descriptionShort = "A vacuum sealer for packaging things.";
+		model="CannabisPlus\bagger\VacuumSealer.p3d";
 		weight=200;
-		itemSize[]={2,4};
+		itemSize[]={4,2};
 		varQuantityDestroyOnMin=1;
 		itemBehaviour=0;
 		canBeSplit=1;
@@ -33,7 +33,7 @@ class CfgVehicles
 		varQuantityMin=0;
 		varQuantityMax=1;
 		varStackMax=1;
-		//inventorySlot[]={};
+/*		//inventorySlot[]={};
 		physLayer="item_small";
 		hiddenSelections[]=
 		{
@@ -43,5 +43,5 @@ class CfgVehicles
 		{
 			"CannabisPlus\boxes\data\Caja_Color.paa"
 		};
-	};	
+*/	};	
 };
