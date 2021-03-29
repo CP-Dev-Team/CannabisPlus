@@ -38,5 +38,9 @@ class CP_CannabisBlackFrost extends ItemBase
 
 }
 
+class CP_Tobacco extends ItemBase
+{	
+
+}
 
 
