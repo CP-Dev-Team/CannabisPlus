@@ -141,7 +141,7 @@ class ActionSmokeJointSelf: ActionContinuousBase {
 			
 			if (clhealth <= 0) {
 				//Print("[CP] Deleting Joint");
-				CPApi().Increment("SmokedJoint");
+				CPApi().Log("Smoked", joint.GetType());
 				joint.SetSmokingState(ESmokeState.NOT_SMOKING);
 				joint.UpdateParticles();
 				joint.Delete();
