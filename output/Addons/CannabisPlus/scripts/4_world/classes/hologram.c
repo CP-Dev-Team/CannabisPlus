@@ -1,6 +1,6 @@
 modded class Hologram
 {		
-	EntityAI PlaceEntity( EntityAI entity_for_placing )
+	override EntityAI PlaceEntity( EntityAI entity_for_placing )
 	{
 		if ( entity_for_placing.IsInherited( CP_Workbench_Kit ))
 		{

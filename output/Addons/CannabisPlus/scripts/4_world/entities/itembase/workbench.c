@@ -108,7 +108,7 @@ class CP_Workbench_Holo extends ItemBase
 }
 
 
-class CP_Workbench extends ItemBase
+class CP_Workbench extends Container_Base
 {
 	
 	override bool CanPutInCargo( EntityAI parent )
@@ -119,5 +119,37 @@ class CP_Workbench extends ItemBase
 	override bool CanPutIntoHands(EntityAI parent)
 	{
 		return false;
+	}
+	
+	override bool CanReceiveAttachment(EntityAI attachment, int slotId)
+	{
+		ItemBase item = ItemBase.Cast(attachment);
+		if (slotId == FindAttachmentBySlotName("DuctTape")
+		{
+			if(item)
+			{
+				string ItemName = item.GetType();
+				if (ItemName.IndexOf("DuctTape") >= 0)
+					return true;
+			}
+		}
+		
+		return super.CanReceiveAttachment(attachment, slotId);
+	}
+	override bool CanReceiveItemIntoCargo( EntityAI item )
+	{
+		ItemBase cargo = ItemBase.Cast(item);
+		if (cargo)
+		{
+			string ItemName = cargo.GetType();
+			if (ItemName.IndexOf("CP_Cannabis") >= 0 && (ItemName.IndexOf("Bag") == 0 && ItemName.IndexOf("Brick") == 0))
+			{
+				return true;
+			} else
+			{
+				return false;
+			}
+		}
+		return false;		
 	}
 }      
