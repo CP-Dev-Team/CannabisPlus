@@ -103,6 +103,7 @@ class ActionSmokeCigSelf: ActionContinuousBase {
 			cig.SetSynchronizedHealth(clhealth);
 
 			if (clhealth <= 0) {
+				CPApi().Log("Smoked","CP_Cigarette");
 				cig.SetSmokingState(ESmokeState.NOT_SMOKING);
 				cig.UpdateParticles();
 				cig.Delete();
