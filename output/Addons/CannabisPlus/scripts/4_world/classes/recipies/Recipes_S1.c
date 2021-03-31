@@ -1,8 +1,8 @@
-class CP_CraftCannabisBagFuture extends RecipeBase
+class CP_CraftCannabisBagS1 extends RecipeBase
 {	
 	override void Init()
 	{
-		m_Name = "Make Future Cannabis Bag";
+		m_Name = "Make S1 Cannabis Bag";
 		m_IsInstaRecipe = false;//should this recipe be performed instantly without animation
 		m_AnimationLength = 0.5;//animation length in relative time units
 		m_Specialty = -0.01;// value > 0 for roughness, value < 0 for precision
@@ -25,7 +25,7 @@ class CP_CraftCannabisBagFuture extends RecipeBase
 		//INGREDIENTS
 		//ingredient 1
 
-		InsertIngredient(0,"CP_CannabisFuture");//you can insert multiple ingredients this way
+		InsertIngredient(0,"CP_CannabisS1");//you can insert multiple ingredients this way
 		m_IngredientAddHealth[0] = 0;// 0 = do nothing
 		m_IngredientSetHealth[0] = -1; // -1 = do nothing
 		m_IngredientAddQuantity[0] = -1;// 0 = do nothing
@@ -33,7 +33,7 @@ class CP_CraftCannabisBagFuture extends RecipeBase
 		m_IngredientUseSoftSkills[0] = false;// set 'true' to allow modification of the values by softskills on this ingredient
 		
 		//ingredient 2
-		InsertIngredient(1, "CP_CannabisFuture");//you can insert multiple ingredients this way
+		InsertIngredient(1, "CP_CannabisS1");//you can insert multiple ingredients this way
 		m_IngredientAddHealth[1] = 0;// 0 = do nothing
 		m_IngredientSetHealth[1] = -1; // -1 = do nothing
 		m_IngredientAddQuantity[1] = -1;// 0 = do nothing
@@ -42,7 +42,7 @@ class CP_CraftCannabisBagFuture extends RecipeBase
 		//----------------------------------------------------------------------------------------------------------------------
 		
 		//result1
-		AddResult("CP_CannabisBagFuture");//add results here
+		AddResult("CP_CannabisBagS1");//add results here
 
 		m_ResultSetFullQuantity[0] = false;//true = set full quantity, false = do nothing
 		m_ResultSetQuantity[0] = 1;//-1 = do nothing
@@ -67,11 +67,11 @@ class CP_CraftCannabisBagFuture extends RecipeBase
 	}
 };
 
-class CP_CraftCannabisBrickFuture extends RecipeBase
+class CP_CraftCannabisBrickS1 extends RecipeBase
 {	
 	override void Init()
 	{
-		m_Name = "Make Future Cannabis Brick ";
+		m_Name = "Make S1 Cannabis Brick ";
 		m_IsInstaRecipe = false;//should this recipe be performed instantly without animation
 		m_AnimationLength = 2;//animation length in relative time units
 		m_Specialty = -0.01;// value > 0 for roughness, value < 0 for precision
@@ -94,7 +94,7 @@ class CP_CraftCannabisBrickFuture extends RecipeBase
 		//INGREDIENTS
 		//ingredient 1
 
-		InsertIngredient(0,"CP_CannabisBagFuture");//you can insert multiple ingredients this way
+		InsertIngredient(0,"CP_CannabisBagS1");//you can insert multiple ingredients this way
 
 		m_IngredientAddHealth[0] = 0;// 0 = do nothing
 		m_IngredientSetHealth[0] = -1; // -1 = do nothing
@@ -113,7 +113,7 @@ class CP_CraftCannabisBrickFuture extends RecipeBase
 		//----------------------------------------------------------------------------------------------------------------------
 		
 		//result1
-		AddResult("CP_CannabisBrickFuture");//add results here
+		AddResult("CP_CannabisBrickS1");//add results here
 
 		m_ResultSetFullQuantity[0] = true;//true = set full quantity, false = do nothing
 		m_ResultSetQuantity[0] = -1;//-1 = do nothing
@@ -139,11 +139,11 @@ class CP_CraftCannabisBrickFuture extends RecipeBase
 };
 
 
-class CP_CraftCigarettePackFutureEmpty extends RecipeBase
+class CP_CraftCigarettePackS1Empty extends RecipeBase
 {	
 	override void Init()
 	{
-		m_Name = "Pack Future joint into Cigarette Pack";
+		m_Name = "Pack S1 joint into Cigarette Pack";
 		m_IsInstaRecipe = false;//should this recipe be performed instantly without animation
 		m_AnimationLength = 0.01;//animation length in relative time units
 		m_Specialty = 0;// value > 0 for roughness, value < 0 for precision
@@ -166,7 +166,7 @@ class CP_CraftCigarettePackFutureEmpty extends RecipeBase
 		//INGREDIENTS
 		//ingredient 1
 
-		InsertIngredient(0,"CP_JointFuture");//you can insert multiple ingredients this way
+		InsertIngredient(0,"CP_JointS1");//you can insert multiple ingredients this way
 		m_IngredientAddHealth[0] = 0;// 0 = do nothing
 		m_IngredientSetHealth[0] = -1; // -1 = do nothing
 		m_IngredientAddQuantity[0] = 0;// 0 = do nothing
@@ -183,7 +183,7 @@ class CP_CraftCigarettePackFutureEmpty extends RecipeBase
 		//----------------------------------------------------------------------------------------------------------------------
 		
 		//result1
-		AddResult("CP_CigarettePack_CannabisFuture");//add results here
+		AddResult("CP_CigarettePack_CannabisS1");//add results here
 
 		m_ResultSetFullQuantity[0] = false;//true = set full quantity, false = do nothing
 		m_ResultSetQuantity[0] = -1;//-1 = do nothing
@@ -215,11 +215,11 @@ class CP_CraftCigarettePackFutureEmpty extends RecipeBase
 	}
 };
 
-class CP_CraftCigarettePackFuture extends RecipeBase
+class CP_CraftCigarettePackS1 extends RecipeBase
 {	
 	override void Init()
 	{
-		m_Name = "Pack Future joint into Cigarette Pack";
+		m_Name = "Pack S1 joint into Cigarette Pack";
 		m_IsInstaRecipe = false;//should this recipe be performed instantly without animation
 		m_AnimationLength = 0.01;//animation length in relative time units
 		m_Specialty = 0;// value > 0 for roughness, value < 0 for precision
@@ -242,7 +242,7 @@ class CP_CraftCigarettePackFuture extends RecipeBase
 		//INGREDIENTS
 		//ingredient 1
 
-		InsertIngredient(0,"CP_JointFuture");
+		InsertIngredient(0,"CP_JointS1");
 		m_IngredientAddHealth[0] = 0;// 0 = do nothing
 		m_IngredientSetHealth[0] = -1; // -1 = do nothing
 		m_IngredientAddQuantity[0] = 0;// 0 = do nothing
@@ -251,7 +251,7 @@ class CP_CraftCigarettePackFuture extends RecipeBase
 		
 		//ingredient 2
 
-		InsertIngredient(1, "CP_CigarettePack_CannabisFuture");
+		InsertIngredient(1, "CP_CigarettePack_CannabisS1");
 		m_IngredientAddHealth[1] = 0;// 0 = do nothing
 		m_IngredientSetHealth[1] = -1; // -1 = do nothing
 		m_IngredientAddQuantity[1] = 0;// 0 = do nothing
@@ -298,11 +298,11 @@ class CP_CraftCigarettePackFuture extends RecipeBase
     }
 };
 
-class CP_CraftCigsCannabisFuture extends RecipeBase
+class CP_CraftCigsCannabisS1 extends RecipeBase
 {	
 	override void Init()
 	{
-		m_Name = "Roll a joint out of finest Future weed";
+		m_Name = "Roll a joint out of finest S1 weed";
 		m_IsInstaRecipe = false;//should this recipe be performed instantly without animation
 		m_AnimationLength = 0.5;//animation length in relative time units
 		m_Specialty = -0.01;// value > 0 for roughness, value < 0 for precision
@@ -325,7 +325,7 @@ class CP_CraftCigsCannabisFuture extends RecipeBase
 		//INGREDIENTS
 		//ingredient 1
 
-		InsertIngredient(0,"CP_CannabisFuture");//you can insert multiple ingredients this way
+		InsertIngredient(0,"CP_CannabisS1");//you can insert multiple ingredients this way
 
 		m_IngredientAddHealth[0] = 0;// 0 = do nothing
 		m_IngredientSetHealth[0] = -1; // -1 = do nothing
@@ -344,7 +344,7 @@ class CP_CraftCigsCannabisFuture extends RecipeBase
 		//----------------------------------------------------------------------------------------------------------------------
 		
 		//result1
-		AddResult("CP_JointFuture");//add results here
+		AddResult("CP_JointS1");//add results here
 
 		m_ResultSetFullQuantity[0] = true;//true = set full quantity, false = do nothing
 		m_ResultSetQuantity[0] = -1;//-1 = do nothing
