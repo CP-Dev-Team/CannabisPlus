@@ -34,9 +34,9 @@ class CfgVehicles
 		};
 		weight=40;
 		isMeleeWeapon=1;
-		varQuantityInit=12;
+		varQuantityInit=24;
 		varQuantityMin=0;
-		varQuantityMax=12;
+		varQuantityMax=24;
 		quantityBar=1;
 		varQuantityDestroyOnMin=1;
 		rotationFlags=17;
