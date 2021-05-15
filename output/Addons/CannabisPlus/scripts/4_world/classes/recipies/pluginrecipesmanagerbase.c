@@ -68,6 +68,8 @@ modded class PluginRecipesManager
 	RegisterRecipe(new CP_CraftCannabisBrickBlackFrost);       
 	RegisterRecipe(new CP_CraftCigarettePackBlackFrostEmpty);
 	RegisterRecipe(new CP_CraftCigarettePackBlackFrost);
+//	RegisterRecipe(new CP_DeCraftCigsCannabisBlackFrost);
+//	RegisterRecipe(new CP_DeCraftCannabisBagBlackFrost);
 
     }
 }
