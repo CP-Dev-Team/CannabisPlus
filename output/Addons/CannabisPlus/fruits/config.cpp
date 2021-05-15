@@ -625,9 +625,9 @@ class CfgVehicles
 	class CP_Tobacco: Inventory_Base
 	{
 		scope=2;
-		displayName="Tobaccoleaf";
-		descriptionShort="A Tobaccoleaf for rolling Cigarettes";
-		model="CannabisPlus\fruits\tobacco.p3d";
+		displayName="Tobacco Leaf";
+		descriptionShort="Some tobacco leaves for rolling cigarettes";
+		model="CannabisPlus\fruits\TobaccoLeaf.p3d";
 		rotationFlags=17;
 		lootCategory="Crafted";
 		weight=14;

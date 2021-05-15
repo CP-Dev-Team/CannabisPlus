@@ -32,16 +32,16 @@ class CfgVehicles
 		{
 			"CannabisPlus\cbd\data\relief_balm_ca.paa"
 		};
-		weight=60;
+		weight=40;
 		isMeleeWeapon=1;
-		varQuantityInit=35;
+		varQuantityInit=24;
 		varQuantityMin=0;
-		varQuantityMax=35;
+		varQuantityMax=24;
 		quantityBar=1;
 		varQuantityDestroyOnMin=1;
 		rotationFlags=17;
 		absorbency=0.89999998;
-		itemSize[]={2,2};
+		itemSize[]={1,2};
 		class DamageSystem
 		{
 			class GlobalHealth

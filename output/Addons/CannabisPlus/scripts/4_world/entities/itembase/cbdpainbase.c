@@ -43,14 +43,14 @@ class CP_Relief_Balm extends Inventory_Base
                 }
             }
             if (CBDCreamPickedUp && CBDCreamDropped && player_new != player_old ) { //Also making sure the player isn't just moving it around in the inventory 
-            //          Print("CBDCream stolen off a deady player's body");
-            CPApi().Increment("PickedUp.CBDReliefBalm");
+//          Print("CBDCream stolen off a deady player's body");
+          	CPApi().Log("PickedUp","CBDReliefBalm");
             } else if (CBDCreamPickedUp && player_new != player_old ){
-            //          Print("Player has picked up CBDCream");
-            CPApi().Increment("PickedUp.CBDReliefBalm");
+//          Print("Player has picked up CBDCream");
+          	CPApi().Log("PickedUp","CBDReliefBalm");
             } else if (CBDCreamDropped && player_new != player_old) {
-            Print("Player has dropped CBDCream");
-            //          CPApi().Increment("PickedUp.CBDReliefBalm");
+//          Print("Player has dropped CBDCream");
+          	CPApi().Log("Dropped","CBDReliefBalm");
         }
       }
     }
