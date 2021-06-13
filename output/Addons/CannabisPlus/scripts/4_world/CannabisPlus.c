@@ -225,6 +225,8 @@ modded class PlantBase
 	private int m_tomato_cropcount;
 	private int m_zucchini_cropcount;
 	private int m_pumpkin_cropcount;
+
+	private int m_spoiltime;
 	
 	ref Timer m_DeleteDryPlantTimer = NULL;
 	
@@ -300,6 +302,8 @@ modded class PlantBase
 		m_tomato_cropcount 				= GetCPConfig().tomato_cropcount;
 		m_zucchini_cropcount 			= GetCPConfig().zucchini_cropcount;
 		m_pumpkin_cropcount 			= GetCPConfig().pumpkin_cropcount;
+
+		m_spoiltime					= GetCPConfig().spoiltime;
 
 		m_GardenBase = garden_base;
 		
@@ -399,8 +403,9 @@ modded class PlantBase
 		} else {
 			m_FullMaturityTime = (float) ((48 * m_growtime) + Math.RandomInt(0, 30)); 
 		}
-		
-		m_SpoilAfterFullMaturityTime 	= (float) ((60 * 30) + Math.RandomInt(0, 60 * 30)) * fertility;
+
+//		m_SpoilAfterFullMaturityTime 	= (float) ((60 * 30) + Math.RandomInt(0, 60 * 30)) * fertility;		
+		m_SpoilAfterFullMaturityTime 	= m_spoiltime * 60;
 
 		m_StateChangeTime 				= (float) ((float)m_FullMaturityTime / ((float)m_GrowthStagesCount - 2.0));
 

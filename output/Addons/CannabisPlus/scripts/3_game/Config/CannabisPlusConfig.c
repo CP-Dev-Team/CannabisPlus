@@ -55,6 +55,8 @@ class CannabisPlusConfigManager
 	int pumpkin_growtime;
 	int pumpkin_cropcount;
 	int pumpkinSeed_count;
+
+	int spoiltime;
 	
 	// smoke effect settings
 	int activateCigaretteSmokingEffect; 	// reduces the fluctuation/sway in aiming when a cigarette is smoked
@@ -127,6 +129,9 @@ class CannabisPlusConfigManager
 		pumpkin_growtime 					= 8;
 		pumpkin_cropcount 					= 2;
 		pumpkinSeed_count 					= 9;
+
+		spoiltime						= 60;
+
 		activateCigaretteSmokingEffect 		= false;
 		smokingCigaretteEffectDuration 		= 20;
 		cigaretteCyclesToActivateEffect 	= 8;
