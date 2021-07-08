@@ -1,6 +1,6 @@
 class CfgPatches
 {
-    class CP_Wrapper
+    class CP_PlasticWrapper
     {
         units[] =
         {
@@ -18,12 +18,12 @@ class CfgPatches
 class CfgVehicles
 {
     class Inventory_Base;
-    class CP_Wrapper : Inventory_Base
+    class CP_PlasticWrapper : Inventory_Base
     {
             scope = 2;
 		displayName = "Shrink Wrapper";
-		descriptionShort = "A shrink wrapper for packaging of illicit drugs.";
-		model="\CannabisPlus\boxes\box_medium.p3d";
+		descriptionShort = "A shrink wrapper for wrapping your favourite sandwiches.. and perhaps other things.";
+		model="\CannabisPlus\plasticWrapper\plasticWrapper.p3d";
 		weight=200;
 		itemSize[]={4,4};
 		varQuantityDestroyOnMin=1;
@@ -37,11 +37,11 @@ class CfgVehicles
 		physLayer="item_small";
 		hiddenSelections[]=
 		{
-			"zbytek"
+			"plasticWrapper"
 		};
 		hiddenSelectionsTextures[]=
 		{
-			"CannabisPlus\boxes\data\Caja_Color.paa"
+			"CannabisPlus\plasticWrapper\data\PlasticWrapper_co.paa"
 		};
 	};	
 };
