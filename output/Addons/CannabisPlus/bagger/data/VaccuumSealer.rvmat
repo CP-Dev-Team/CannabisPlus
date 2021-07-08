@@ -8,7 +8,7 @@ PixelShaderID="Super";
 VertexShaderID="Super";
 class Stage1
 {
-	texture="E:\`DayZProjects\Mod - CannabisPlus\Media\Models\VacuumSealer\textures\VacuumSealer_nohq.paa";
+	texture="CannabisPlus\bagger\data\VacuumSealer_nohq.paa";
 	uvSource="tex";
 	class uvTransform
 	{
@@ -45,7 +45,7 @@ class Stage3
 };
 class Stage4
 {
-	texture="E:\`DayZProjects\Mod - CannabisPlus\Media\Models\VacuumSealer\textures\VacuumSealer_as.paa";
+	texture="CannabisPlus\bagger\data\VacuumSealer_as.paa";
 	uvSource="tex";
 	class uvTransform
 	{
@@ -57,7 +57,7 @@ class Stage4
 };
 class Stage5
 {
-	texture="E:\`DayZProjects\Mod - CannabisPlus\Media\Models\VacuumSealer\textures\VacuumSealer_smdi.paa";
+	texture="CannabisPlus\bagger\data\VacuumSealer_smdi.paa";
 	uvSource="tex";
 	class uvTransform
 	{
