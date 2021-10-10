@@ -25,7 +25,12 @@ class CfgPatches
 class CfgVehicles
 {
 	class Inventory_Base;
-	class CP_CannabisBagSkunk: Inventory_Base
+	class CP_CannabisBags:Inventory_Base{
+		inventorySlot[]={
+			"CP_CannabisBags"
+		};
+	};
+	class CP_CannabisBagSkunk: CP_CannabisBags
 	{
 		scope=2;
 		displayName="Bag of Skunk Weed";
@@ -119,7 +124,7 @@ class CfgVehicles
 			};
 		};
 	};
-	class CP_CannabisBagBlue: Inventory_Base
+	class CP_CannabisBagBlue: CP_CannabisBags
 	{
 		scope=2;
 		displayName="Bag of Blue God Weed";
@@ -213,7 +218,7 @@ class CfgVehicles
 			};
 		};
 	};
-	class CP_CannabisBagKush: Inventory_Base
+	class CP_CannabisBagKush: CP_CannabisBags
 	{
 		scope=2;
 		displayName="Bag of Purple Kush Weed";
@@ -307,7 +312,7 @@ class CfgVehicles
 			};
 		};
 	};
-	class CP_CannabisBagStardawg: Inventory_Base
+	class CP_CannabisBagStardawg: CP_CannabisBags
 	{
 		scope=2;
 		displayName="Bag of Stardawg Weed";
@@ -401,7 +406,7 @@ class CfgVehicles
 			};
 		};
 	};
-	class CP_CannabisBagFuture: Inventory_Base
+	class CP_CannabisBagFuture: CP_CannabisBags
 	{
 		scope=2;
 		displayName="Bag of Future Weed";
@@ -495,7 +500,7 @@ class CfgVehicles
 			};
 		};
 	};
-	class CP_CannabisBagS1: Inventory_Base
+	class CP_CannabisBagS1: CP_CannabisBags
 	{
 		scope=2;
 		displayName="Bag of S1 Hemp";
@@ -589,7 +594,7 @@ class CfgVehicles
 			};
 		};
 	};
-	class CP_CannabisBagNomad: Inventory_Base
+	class CP_CannabisBagNomad: CP_CannabisBags
 	{
 		scope=2;
 		displayName="Bag of Nomad Weed";
@@ -683,7 +688,7 @@ class CfgVehicles
 			};
 		};
 	};
-	class CP_CannabisBagBlackFrost: Inventory_Base
+	class CP_CannabisBagBlackFrost: CP_CannabisBags
 	{
 		scope=2;
 		displayName="Bag of Black Frost Weed";

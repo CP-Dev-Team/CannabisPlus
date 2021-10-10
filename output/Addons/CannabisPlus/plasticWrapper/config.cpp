@@ -20,7 +20,7 @@ class CfgVehicles
     class Inventory_Base;
     class CP_PlasticWrapper : Inventory_Base
     {
-            scope = 2;
+		scope = 2;
 		displayName = "Shrink Wrapper";
 		descriptionShort = "A shrink wrapper for wrapping your favourite sandwiches.. and perhaps other things.";
 		model="\CannabisPlus\plasticWrapper\plasticWrapper.p3d";
@@ -33,7 +33,9 @@ class CfgVehicles
 		varQuantityMin=0;
 		varQuantityMax=1;
 		varStackMax=1;
-		//inventorySlot[]={};
+		inventorySlot[]={
+			"CP_PlasticWrapper"
+		};
 		physLayer="item_small";
 		hiddenSelections[]=
 		{

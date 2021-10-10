@@ -33,8 +33,10 @@ class CfgVehicles
 		varQuantityMin=0;
 		varQuantityMax=1;
 		varStackMax=1;
-/*		//inventorySlot[]={};
-		physLayer="item_small";
+		inventorySlot[]={
+			"CP_Bagger"
+		};
+/*		physLayer="item_small";
 		hiddenSelections[]=
 		{
 			"zbytek"
