@@ -429,11 +429,11 @@ class CP_DeCraftCannabisBagBlackFrost extends RecipeBase
 		InsertIngredient(1,"Mosin_Bayonet");
 		InsertIngredient(1,"SKS_Bayonet");	
 	
-		m_IngredientAddHealth[0] = -1;// 0 = do nothing
-		m_IngredientSetHealth[0] = -1; // -1 = do nothing
-		m_IngredientAddQuantity[0] = 0;// 0 = do nothing
-		m_IngredientDestroy[0] = false;//true = destroy, false = do nothing
-		m_IngredientUseSoftSkills[0] = true;// set 'true' to allow modification of the values by softskills on this ingredient
+		m_IngredientAddHealth[1] = -1;// 0 = do nothing
+		m_IngredientSetHealth[1] = -1; // -1 = do nothing
+		m_IngredientAddQuantity[1] = 0;// 0 = do nothing
+		m_IngredientDestroy[1] = false;//true = destroy, false = do nothing
+		m_IngredientUseSoftSkills[1] = true;// set 'true' to allow modification of the values by softskills on this ingredient
 		//----------------------------------------------------------------------------------------------------------------------
 		
 		//result1
@@ -508,8 +508,8 @@ class CP_DeCraftCannabisBrickBlackFrost extends RecipeBase
 
 		m_IngredientAddHealth[0] = 0;// 0 = do nothing
 		m_IngredientSetHealth[0] = -1; // -1 = do nothing
-		m_IngredientAddQuantity[0] = -1;// 0 = do nothing
-		m_IngredientDestroy[0] = false;//true = destroy, false = do nothing
+		m_IngredientAddQuantity[0] = 0;// 0 = do nothing
+		m_IngredientDestroy[0] = true;//true = destroy, false = do nothing
 		m_IngredientUseSoftSkills[0] = false;// set 'true' to allow modification of the values by softskills on this ingredient
 		
 		//ingredient 2
@@ -538,11 +538,11 @@ class CP_DeCraftCannabisBrickBlackFrost extends RecipeBase
 		InsertIngredient(1,"Mosin_Bayonet");
 		InsertIngredient(1,"SKS_Bayonet");	
 	
-		m_IngredientAddHealth[0] = -1;// 0 = do nothing
-		m_IngredientSetHealth[0] = -1; // -1 = do nothing
-		m_IngredientAddQuantity[0] = 0;// 0 = do nothing
-		m_IngredientDestroy[0] = false;//true = destroy, false = do nothing
-		m_IngredientUseSoftSkills[0] = true;// set 'true' to allow modification of the values by softskills on this ingredient
+		m_IngredientAddHealth[1] = 0;// 0 = do nothing
+		m_IngredientSetHealth[1] = -1; // -1 = do nothing
+		m_IngredientAddQuantity[1] = 0;// 0 = do nothing
+		m_IngredientDestroy[1] = false;//true = destroy, false = do nothing
+		m_IngredientUseSoftSkills[1] = false;// set 'true' to allow modification of the values by softskills on this ingredient
 		//----------------------------------------------------------------------------------------------------------------------
 		
 		//result1
