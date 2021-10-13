@@ -19,6 +19,9 @@ modded class PluginRecipesManager
 	RegisterRecipe(new CP_CraftCannabisBrickSkunk);
 	RegisterRecipe(new CP_CraftCigarettePackSkunkEmpty);
 	RegisterRecipe(new CP_CraftCigarettePackSkunk);
+	RegisterRecipe(new CP_DeCraftCannabisBrickSkunk);
+	RegisterRecipe(new CP_DeCraftCannabisBagSkunk);
+
 
 	// BlueGod
 	RegisterRecipe(new CP_CraftCigsCannabisBlue);
@@ -26,6 +29,8 @@ modded class PluginRecipesManager
 	RegisterRecipe(new CP_CraftCannabisBrickBlue);
 	RegisterRecipe(new CP_CraftCigarettePackBlueEmpty);
       RegisterRecipe(new CP_CraftCigarettePackBlue);
+	RegisterRecipe(new CP_DeCraftCannabisBrickBlue);
+	RegisterRecipe(new CP_DeCraftCannabisBagBlue);
 
 	// PurpleKush
 	RegisterRecipe(new CP_CraftCigsCannabisKush);
@@ -33,6 +38,8 @@ modded class PluginRecipesManager
 	RegisterRecipe(new CP_CraftCannabisBrickKush);
       RegisterRecipe(new CP_CraftCigarettePackKushEmpty);
       RegisterRecipe(new CP_CraftCigarettePackKush);
+	RegisterRecipe(new CP_DeCraftCannabisBrickKush);
+	RegisterRecipe(new CP_DeCraftCannabisBagKush);
 
 	// Stardawg
 	RegisterRecipe(new CP_CraftCigsCannabisStardawg);
@@ -40,6 +47,8 @@ modded class PluginRecipesManager
 	RegisterRecipe(new CP_CraftCannabisBrickStardawg);
 	RegisterRecipe(new CP_CraftCigarettePackStardawgEmpty);
 	RegisterRecipe(new CP_CraftCigarettePackStardawg);
+	RegisterRecipe(new CP_DeCraftCannabisBrickStardawg);
+	RegisterRecipe(new CP_DeCraftCannabisBagStardawg);
 
 	// Future
 	RegisterRecipe(new CP_CraftCigsCannabisFuture);
@@ -47,6 +56,8 @@ modded class PluginRecipesManager
 	RegisterRecipe(new CP_CraftCannabisBrickFuture);
 	RegisterRecipe(new CP_CraftCigarettePackFutureEmpty);
 	RegisterRecipe(new CP_CraftCigarettePackFuture);
+	RegisterRecipe(new CP_DeCraftCannabisBrickFuture);
+	RegisterRecipe(new CP_DeCraftCannabisBagFuture);
 
 	// S1
 	RegisterRecipe(new CP_CraftCigsCannabisS1);
@@ -54,6 +65,8 @@ modded class PluginRecipesManager
 	RegisterRecipe(new CP_CraftCannabisBrickS1);
 	RegisterRecipe(new CP_CraftCigarettePackS1Empty);
 	RegisterRecipe(new CP_CraftCigarettePackS1);
+	RegisterRecipe(new CP_DeCraftCannabisBrickS1);
+	RegisterRecipe(new CP_DeCraftCannabisBagS1);
 
 	// Nomad
 	RegisterRecipe(new CP_CraftCigsCannabisNomad);
@@ -61,6 +74,8 @@ modded class PluginRecipesManager
 	RegisterRecipe(new CP_CraftCannabisBrickNomad);
 	RegisterRecipe(new CP_CraftCigarettePackNomadEmpty);
 	RegisterRecipe(new CP_CraftCigarettePackNomad);
+	RegisterRecipe(new CP_DeCraftCannabisBrickNomad);
+	RegisterRecipe(new CP_DeCraftCannabisBagNomad);
 
 	// BlackFrost
 	RegisterRecipe(new CP_CraftCigsCannabisBlackFrost);
