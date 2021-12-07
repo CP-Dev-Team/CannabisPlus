@@ -8,11 +8,10 @@ class CfgPatches
         };
         weapons[] = {};
         requiredVersion = 0.1;
-		requiredAddons[] = 
-		{
-			"DZ_Data",
-			"DZ_Scripts"
-		};
+        requiredAddons[] = 
+        {
+            "DZ_Data"
+        };
     };
 };
 	
@@ -23,21 +22,21 @@ class CfgSlots
         name="HangingPlants";
         displayName="HangingPlants";
 		selection="HangingPlants";
-        ghostIcon="set:dayz_inventory image:plant";
+        ghostIcon="plant";
     };
     class Slot_HangingPlants2
     {
         name="HangingPlants2";
         displayName="HangingPlants2";
 		selection="HangingPlants2";
-        ghostIcon="set:dayz_inventory image:plant";
+        ghostIcon="plant";
     };
     class Slot_HangingPlants3
     {
         name="HangingPlants3";
         displayName="HangingPlants3";
 		selection="HangingPlants3";
-        ghostIcon="set:dayz_inventory image:plant";
+        ghostIcon="plant";
     };
 };
 
@@ -65,41 +64,7 @@ class CfgVehicles
 {
     class Inventory_Base;
 	class Container_Base;
-	class CP_DryPostKit : Inventory_Base
-    {
-        scope = 2;
-		displayName = "Drying Post Kit";
-		descriptionShort = "A post for drying cannabis and other plants.";
-		model="\CannabisPlus\furniture\DryPost_Kit.p3d";
-		weight=20000;
-		itemSize[]={3,11};
-		varQuantityDestroyOnMin=1;
-		itemBehaviour=0;
-        physLayer="item_large";
-		rotationFlags = 12;
-		class AnimationSources
-		{
-			class AnimSourceShown
-			{
-				source="user";
-				animPeriod=0.0099999998;
-				initPhase=0;
-			};
-			class AnimSourceHidden
-			{
-				source="user";
-				animPeriod=0.0099999998;
-				initPhase=1;
-			};
-			class Inventory: AnimSourceShown
-			{
-			};
-			class Placing: AnimSourceHidden
-			{
-			};
-		};
-    };
-    class CP_DryPost : Inventory_Base
+    class CP_DryPost : Container_Base
     {
         scope = 2;
 		displayName = "Drying Post";
@@ -109,13 +74,18 @@ class CfgVehicles
 		itemSize[]={3,11};
 		varQuantityDestroyOnMin=1;
 		itemBehaviour=0;
+		canBeSplit=1;
+		varQuantityInit=1;
+		varQuantityMin=0;
+		varQuantityMax=50;
+        varStackMax=1;
+        //inventorySlot[]={};
         physLayer="item_large";
-		itemsCargoSize[] = {10,4};
-		rotationFlags = 17;
+      itemsCargoSize[] = {10,4};
         attachments[]=
 		{
-            "HangingPlants",
-            "HangingPlants2",
+                  "HangingPlants",
+                  "HangingPlants2",
 			"HangingPlants3",
 			"Rope"
 		};
@@ -132,7 +102,6 @@ class CfgVehicles
 					"HangingPlants3",
 					"Rope"
                 };
-				icon="set:dayz_inventory image:plant";
             };
         };
 		class AnimationSources

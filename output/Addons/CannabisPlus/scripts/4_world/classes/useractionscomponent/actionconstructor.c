@@ -18,6 +18,6 @@ modded class ActionConstructor
 		// turn on the wrapper on workbench
 		actions.Insert(ActionTurnOnWrapper);
 		// turn off the wrapper on workbench
-		actions.Insert(ActionTurnOffWrapper);
+		actions.Insert(ActionTurnOffWrapper);		
 	}
 };

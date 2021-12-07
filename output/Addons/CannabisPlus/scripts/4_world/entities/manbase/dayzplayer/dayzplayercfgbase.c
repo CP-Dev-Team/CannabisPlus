@@ -4,13 +4,6 @@
 */
 modded class ModItemRegisterCallbacks
 {
-	   override void RegisterHeavy(DayZPlayerType pType, DayzPlayerItemBehaviorCfg pBehavior)
-    {
-        super.RegisterHeavy(pType, pBehavior);
-        pType.AddItemInHandsProfileIK("CP_DryPost", "dz/anims/workspaces/player/player_main/player_main_heavy.asi", pBehavior, "dz/anims/anm/player/ik/heavy/55galDrum.anm");
-		pType.AddItemInHandsProfileIK("CP_DryPostKit", "dz/anims/workspaces/player/player_main/player_main_heavy.asi", pBehavior, "dz/anims/anm/player/ik/heavy/55galDrum.anm");
-    };
-	
     override void RegisterOneHanded(DayZPlayerType pType, DayzPlayerItemBehaviorCfg pBehavior)
     {
 		super.RegisterOneHanded(pType, pBehavior);
