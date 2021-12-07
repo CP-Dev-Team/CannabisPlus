@@ -144,7 +144,8 @@ class CP_Workbench_Kit extends ItemBase {
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 // The workbench class provides all methods for processing and production of the goods.
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-class CP_Workbench extends ItemBase {
+class CP_Workbench extends ItemBase 
+{
 	
 	// timer to get bagger working
 	protected ref Timer m_BaggerWorkingTimer;
@@ -185,7 +186,8 @@ class CP_Workbench extends ItemBase {
 	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 	// activate the wrapper
 	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-	void TurnWrapperOn() {
+	void TurnWrapperOn() 
+	{
 		this.m_IsWrapperActive = true;
 		this.m_WrapperWorkingTimer = new Timer(CALL_CATEGORY_GAMEPLAY);
 		this.m_WrapperWorkingTimer.Run(5, this, "WrapperWorking", null, true);
@@ -197,7 +199,8 @@ class CP_Workbench extends ItemBase {
 	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 	// deactivate the bagger
 	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-	void TurnBaggerOff() {
+	void TurnBaggerOff() 
+	{
 		this.m_IsBaggerActive = false;
 		this.m_BaggerWorkingTimer.Stop();
 		Print("Bagger is OFF");
@@ -208,7 +211,8 @@ class CP_Workbench extends ItemBase {
 	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 	// deactivate the wrapper
 	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~	
-	void TurnWrapperOff() {
+	void TurnWrapperOff() 
+	{
 		this.m_IsWrapperActive = false;
 		this.m_WrapperWorkingTimer.Stop();
 		Print("Wrapper is OFF");
@@ -219,7 +223,8 @@ class CP_Workbench extends ItemBase {
 	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 	// Method called in a loop to produce items from bagger.
 	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-	void BaggerWorking() {
+	void BaggerWorking() 
+	{
 		Print("Bagger is Working");
 	}
 	
@@ -228,7 +233,8 @@ class CP_Workbench extends ItemBase {
 	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 	// Method called in a loop to produce items from wrapper.
 	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-	void WrapperWorking() {
+	void WrapperWorking() 
+	{
 		Print("Wrapper is Working");
 	}
 	
@@ -237,17 +243,13 @@ class CP_Workbench extends ItemBase {
 	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 	// determines the actions that the player can perform at the workbench
 	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-	override void SetActions() {		
+	override void SetActions() 
+	{		
 		super.SetActions();
 		AddAction(ActionTurnOnBagger);
 		AddAction(ActionTurnOffBagger);
 		AddAction(ActionTurnOnWrapper);
-		AddAction(ActionTurnOffWrapper);		
-		AddAction(ActionDeployObject);
-		
-		AddAction(ActionTogglePlaceObject);
-		AddAction(ActionPlaceObject);
-		
+		AddAction(ActionTurnOffWrapper);
 	}
 	
 	

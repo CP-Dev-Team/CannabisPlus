@@ -107,7 +107,6 @@ class CfgVehicles
 		varStackMax=1;		
 		physLayer="item_heavy";
 		itemsCargoSize[] = {10,4};
-		placement = "ForceSlopeOnTerrain";
 		hiddenSelections[]=
 		{
 			"zbytek"

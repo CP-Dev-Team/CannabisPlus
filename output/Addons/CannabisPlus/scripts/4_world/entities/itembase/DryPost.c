@@ -1,4 +1,47 @@
-class CP_DryPost extends Container_Base
+class CP_DryPostKit extends ItemBase
+{
+	//================================================================
+	// ADVANCED PLACEMENT
+	//================================================================	
+	
+	override void OnPlacementComplete( Man player, vector position = "0 0 0", vector orientation = "0 0 0"  )
+	{
+		super.OnPlacementComplete( player, position, orientation );
+		
+		if ( GetGame().IsServer() )
+		{
+			PlayerBase player_base = PlayerBase.Cast( player );
+
+			CP_DryPost CPPost = CP_DryPost.Cast( GetGame().CreateObjectEx( "CP_DryPost", GetPosition(), ECE_PLACE_ON_SURFACE ) );
+			
+			CPPost.SetPosition( position);
+			CPPost.SetOrientation( orientation );
+			
+			//make the kit invisible, so it can be destroyed from deploy UA when action ends
+			HideAllSelections();
+			
+			this.Delete();
+			SetIsDeploySound( true );
+		}	
+	}
+	
+	override string GetPlaceSoundset()
+	{
+		return "seachest_drop_SoundSet";
+	}
+	
+	override bool IsDeployable()
+	{
+		return true;
+	}
+	override void SetActions()
+	{
+		super.SetActions();
+		AddAction(ActionTogglePlaceObject);
+		AddAction(ActionDeployObject);
+	}
+}
+class CP_DryPost extends ItemBase
 {	
 	bool m_IsLocked = false;
 	ref Timer m_PlantDryTime;
@@ -25,6 +68,11 @@ class CP_DryPost extends Container_Base
 	{
 		
 	}
+		
+	override void EEInit() 
+	{
+		GetInventory().CreateAttachment("Rope");
+	}
 	
 	override void EEItemAttached(EntityAI item, string slot_name)
 	{
@@ -34,13 +82,16 @@ class CP_DryPost extends Container_Base
 		{    				
 			SetAnimationPhase ("Rope", 0);  // Shows the rope on the model when rope is attached.+
 			RopeAttached = true;
-		} else if (slot_name == "HangingPlants") 
+		}
+		else if (slot_name == "HangingPlants") 
 		{
 			Plant1Attached = true;
-		} else if (slot_name == "HangingPlants2") 
+		}
+		else if (slot_name == "HangingPlants2") 
 		{
 			Plant2Attached = true;
-		} else if (slot_name == "HangingPlants3") 
+		}
+		else if (slot_name == "HangingPlants3") 
 		{
 			Plant3Attached = true;
 		}
@@ -58,13 +109,16 @@ class CP_DryPost extends Container_Base
 		{    				
 			SetAnimationPhase ("Rope", 1);  // Shows the rope on the model when rope is attached.+
 			RopeAttached = false;
-		} else if (slot_name == "HangingPlants") 
+		}
+		else if (slot_name == "HangingPlants") 
 		{
 			Plant1Attached = false;
-		} else if (slot_name == "HangingPlants2") 
+		}
+		else if (slot_name == "HangingPlants2") 
 		{
 			Plant2Attached = false;
-		} else if (slot_name == "HangingPlants3") 
+		}
+		else if (slot_name == "HangingPlants3") 
 		{
 			Plant3Attached = false;
 		}	
@@ -76,13 +130,13 @@ class CP_DryPost extends Container_Base
 		{
 			return true;
 		}
-		return false;
-    	}
+			return false;
+    }
 	
 	CP_RawSkunkCannabisPlant  GetCannibisBase()
-    	{
+    {
       	return CP_RawSkunkCannabisPlant.Cast( GetAttachmentByType (CP_RawSkunkCannabisPlant) );
-    	};
+    };
 	
 	void CheckStart()
 	{
@@ -102,28 +156,28 @@ class CP_DryPost extends Container_Base
 			{
 				Print("[CP] all items attached to post " + this + " ...starting to dry");
 				GetGame().GetCallQueue(CALL_CATEGORY_GAMEPLAY).CallLater(FinishDrying, GetCPConfig().cannabis_drytime*1000, false);
-				m_IsLocked = true;
+				m_IsLocked = false;
 			}
 		}		
 	}
 	
-	override bool CanReleaseAttachment(EntityAI attachment)
-	{
-		if ( m_IsLocked )
-		{
-			return false;
-		}
-		return super.CanReleaseAttachment(attachment);
-	}
-
+	//override bool CanReleaseAttachment(EntityAI attachment)
+	//{
+	//	if ( m_IsLocked )
+	//	{
+	//		return true;
+	//	}
+	//	return super.CanReleaseAttachment(attachment);
+	//}
+	
+    override bool CanPutInCargo( EntityAI parent )
+    {
+        return false;
+    }
 	override bool CanPutIntoHands(EntityAI parent)
-    	{
-        	if ( m_IsLocked || RopeAttached || Plant1Attached || Plant2Attached || Plant3Attached)
-        	{
-            	return false;
-        	}
-        	return super.CanPutIntoHands(parent);
-    	}
+    {		
+        return false;
+    }
 	
 	void AddToMap(string item, int value)
 	{
@@ -145,7 +199,9 @@ class CP_DryPost extends Container_Base
 			BudSpawn.Remove(item);
 			BudSpawn.Insert(item,NewValue);
 				
-		} else {		
+		}
+		else
+		{		
 			BudSpawn.Insert(item,NewValue);
 		}	
 	}
@@ -246,10 +302,10 @@ class CP_DryPost extends Container_Base
 		            attachment = ItemBase.Cast( GetInventory().GetAttachmentFromIndex( i ) );
 		            ItemName = attachment.GetType();
 				if (ItemName.IndexOf("CP_Raw") >= 0)
-		            {
-		            	GetInventory().CreateInInventory("CP_DriedCannabisPlant");
+		        {
+		           	GetInventory().CreateInInventory("CP_DriedCannabisPlant");
 					Print("[CP] " + this + " spawning CP_DriedCannabisPlant");
-		            }    
+		        }    
 			}
 	
 			Print("[CP] The plant has " + BudSpawn.Count() + " items");
@@ -310,12 +366,26 @@ class CP_DryPost extends Container_Base
 	{
 		return "woodenlog_drop_SoundSet";
 	}
-    
+	
+    override bool IsDeployable()
+	{
+		return true;
+	}
+	
+	override void OnPlacementComplete( Man player, vector position = "0 0 0", vector orientation = "0 0 0" )
+	{		
+		super.OnPlacementComplete( player, position, orientation );
+
+		SetIsPlaceSound( true );
+
+	}
+	
 	override void SetActions()
 	{
 		super.SetActions();
 		
 		AddAction(ActionTogglePlaceObject);
 		AddAction(ActionPlaceObject);
+		//AddAction(ActionDeployObject);
 	}
 }
