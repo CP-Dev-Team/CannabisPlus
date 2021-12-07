@@ -242,7 +242,12 @@ class CP_Workbench extends ItemBase {
 		AddAction(ActionTurnOnBagger);
 		AddAction(ActionTurnOffBagger);
 		AddAction(ActionTurnOnWrapper);
-		AddAction(ActionTurnOffWrapper);
+		AddAction(ActionTurnOffWrapper);		
+		AddAction(ActionDeployObject);
+		
+		AddAction(ActionTogglePlaceObject);
+		AddAction(ActionPlaceObject);
+		
 	}
 	
 	

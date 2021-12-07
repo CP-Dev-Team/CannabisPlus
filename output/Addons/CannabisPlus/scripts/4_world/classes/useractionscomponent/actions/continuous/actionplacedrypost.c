@@ -5,12 +5,10 @@ modded class ActionTogglePlaceObject: ActionSingleUseBase
         if ( item && item.IsKindOf("CP_DryPost") ) 
         {
             Rope theRope; 
-            if ( Class.CastTo(theRope, item.FindAttachmentBySlotName("Rope") ) )
-            {
+            if ( Class.CastTo(theRope, item.FindAttachmentBySlotName("Rope") ) ) {
                 return true;
             } 
-            else 
-            {
+            else {
                 return false;
             }
         }
@@ -25,15 +23,13 @@ modded class ActionPlaceObject : ActionDeployObject
         if ( item && item.IsKindOf("CP_DryPost") ) 
         {
             Rope theRope; 
-            if ( Class.CastTo(theRope, item.FindAttachmentBySlotName("Rope") ) )
-            {
+            if ( Class.CastTo(theRope, item.FindAttachmentBySlotName("Rope"))) {
                 return true;
             } 
-            else 
-            {
+            else {
                 return false;
             }
-        }
+        }		
         return super.ActionCondition( player, target, item );
     }
 }
