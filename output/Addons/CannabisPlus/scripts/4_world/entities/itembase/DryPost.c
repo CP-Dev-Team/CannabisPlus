@@ -98,9 +98,14 @@ class CP_DryPost extends Container_Base
 		{
 			Plant3Attached = true;
 		}
+		
 		if (RopeAttached && Plant1Attached && Plant2Attached && Plant3Attached ) 
 		{	
 			CheckStart();
+		}
+		if (slot_name == "DriedPlantPile")
+		{    				
+			SetAnimationPhase ("DryPile", 0);  // Shows the Pile when dried cannbis is put in dryed slot
 		}		
 	}
     
@@ -122,6 +127,10 @@ class CP_DryPost extends Container_Base
 		{
 			Plant3Attached = false;
 		}
+		if (slot_name == "DriedPlantPile")
+		{    				
+			SetAnimationPhase ("DryPile", 1);  // Shows the Pile when dried cannbis is put in dryed slot
+		}	
 
 		PlayerBase player = PlayerBase.Cast(GetHierarchyRootPlayer());
 		if ( player && player.IsPlayerDisconnected() )
@@ -314,7 +323,7 @@ class CP_DryPost extends Container_Base
 		            ItemName = attachment.GetType();
 				if (ItemName.IndexOf("CP_Raw") >= 0)
 		            {
-		            	GetInventory().CreateInInventory("CP_DriedCannabisPlant");
+		            	GetInventory().CreateAttachment("CP_DriedCannabisPlant");
 					Print("[CP] " + this + " spawning CP_DriedCannabisPlant");
 		            }    
 			}

@@ -60,6 +60,13 @@ class CfgSlots
 		selection="HangingPlants3";
 		ghostIcon="set:dayz_inventory image:plant";
     };
+	class Slot_DriedPlantPile
+	{
+        name="DriedPlantPile";
+        displayName="Dried Plant Pile";
+		ghostIcon="set:dayz_inventory image:plant";
+		stackMax=50;
+    };
 };
 
 class CfgNonAIVehicles
@@ -165,6 +172,7 @@ class CfgVehicles
             "HangingPlants4",
             "HangingPlants5",
 			"HangingPlants6",
+			"DriedPlantPile",
 			"Rope"
 		};
         class GUIInventoryAttachmentsProps
@@ -181,6 +189,7 @@ class CfgVehicles
 					"HangingPlants4",
 					"HangingPlants5",
 					"HangingPlants6",
+					"DriedPlantPile",
 					"Rope"
                 };
             };
@@ -189,6 +198,12 @@ class CfgVehicles
         {
             class Rope
             {
+                source="user";
+                initPhase=1;
+                animPeriod=0.2;
+            };
+			class DryPile
+			{
                 source="user";
                 initPhase=1;
                 animPeriod=0.2;
@@ -265,139 +280,120 @@ class CfgVehicles
 		};
     };
 
-    class CP_RawSkunkCannabisPlant : Inventory_Base
-    {
-        scope = 2;
-		displayName = "Raw Skunk Plant";
-		descriptionShort = "A raw Skunk plant";
-		model="\CannabisPlus\furniture\CannabisPlantHanging.p3d";
-            itemSize[]={4,4};
-        inventorySlot[]=
-        {
-            "HangingPlants",
-            "HangingPlants2",
-			"HangingPlants3"
-        };
-    };
 
-	class CP_RawBlueCannabisPlant : Inventory_Base
+	class CP_CannabisPlant_Base : Inventory_Base
     {
         scope = 2;
 		displayName = "Raw Blue God  Plant";
 		descriptionShort = "A raw Blue God plant";
 		model="\CannabisPlus\furniture\CannabisPlantHanging.p3d";
-            itemSize[]={4,4};
+        itemSize[]={4,4};
         inventorySlot[]=
         {
             "HangingPlants",
             "HangingPlants2",
-			"HangingPlants3"
+			"HangingPlants3",
+            "HangingPlants4",
+            "HangingPlants5",
+			"HangingPlants6"
         };
     };
+	class CP_DriedCannabisPlant : CP_CannabisPlant_Base
+	{
+		scope = 2;
+		displayName = "Dried Plant";
+		descriptionShort = "A Dried up Cannabis plant with all the buds picked off.";
+		model="\CannabisPlus\furniture\DriedCannabisPlantHanging.p3d";
+        itemSize[]={3,3};
+		canBeSplit=1;
+		varQuantityInit=1;
+		varQuantityMin=0;
+		varQuantityMax=50;
+		varQuantityDestroyOnMin=1;
+		varStackMax=1;
+		inventorySlot[]=
+		{
+			"DriedPlantPile"
+		};
+	}
+	
+	class CP_RawSkunkCannabisPlant : CP_CannabisPlant_Base
+    {
+        scope = 2;
+		displayName = "Raw Skunk Plant";
+		descriptionShort = "A raw Skunk plant";
+		model="\CannabisPlus\furniture\CannabisPlantHanging.p3d";
+        itemSize[]={4,4};
 
-	class CP_RawKushCannabisPlant : Inventory_Base
+    };
+	class CP_RawBlueCannabisPlant : CP_CannabisPlant_Base
+    {
+        scope = 2;
+		displayName = "Raw Blue God  Plant";
+		descriptionShort = "A raw Blue God plant";
+		model="\CannabisPlus\furniture\CannabisPlantHanging.p3d";
+        itemSize[]={4,4};
+
+    };
+
+	class CP_RawKushCannabisPlant : CP_CannabisPlant_Base
     {
         scope = 2;
 		displayName = "Raw Kush Plant";
 		descriptionShort = "A raw Kush plant";
 		model="\CannabisPlus\furniture\CannabisPlantHanging.p3d";
-            itemSize[]={4,4};
-        inventorySlot[]=
-        {
-            "HangingPlants",
-            "HangingPlants2",
-			"HangingPlants3"
-        };
+        itemSize[]={4,4};
+
     };
 
-	class CP_RawStardawgCannabisPlant : Inventory_Base
+	class CP_RawStardawgCannabisPlant : CP_CannabisPlant_Base
     {
         scope = 2;
 		displayName = "Raw Stardawg Plant";
 		descriptionShort = "A raw Stardawg plant";
 		model="\CannabisPlus\furniture\CannabisPlantHanging.p3d";
-            itemSize[]={4,4};
-        inventorySlot[]=
-        {
-            "HangingPlants",
-            "HangingPlants2",
-			"HangingPlants3"
-        };
+        itemSize[]={4,4};
+ 
     };
 
-	class CP_RawFutureCannabisPlant : Inventory_Base
+	class CP_RawFutureCannabisPlant : CP_CannabisPlant_Base
     {
         scope = 2;
 		displayName = "Raw Future Plant";
 		descriptionShort = "A raw Future plant";
 		model="\CannabisPlus\furniture\CannabisPlantHanging.p3d";
-            itemSize[]={4,4};
-        inventorySlot[]=
-        {
-            "HangingPlants",
-            "HangingPlants2",
-			"HangingPlants3"
-        };
+        itemSize[]={4,4};
+
     };
 
-	class CP_RawNomadCannabisPlant : Inventory_Base
+	class CP_RawNomadCannabisPlant : CP_CannabisPlant_Base
     {
         scope = 2;
 		displayName = "Raw Nomad Plant";
 		descriptionShort = "A raw Nomad plant";
 		model="\CannabisPlus\furniture\CannabisPlantHanging.p3d";
-            itemSize[]={4,4};
-        inventorySlot[]=
-        {
-            "HangingPlants",
-            "HangingPlants2",
-			"HangingPlants3"
-        };
+       itemSize[]={4,4};
+
     };
 
-	class CP_RawS1CannabisPlant : Inventory_Base
+	class CP_RawS1CannabisPlant : CP_CannabisPlant_Base
     {
         scope = 2;
 		displayName = "Raw S1 Plant";
 		descriptionShort = "A raw S1 plant";
 		model="\CannabisPlus\furniture\CannabisPlantHanging.p3d";
             itemSize[]={4,4};
-        inventorySlot[]=
-        {
-            "HangingPlants",
-            "HangingPlants2",
-			"HangingPlants3"
-        };
+
     };
 
-	class CP_RawBlackFrostCannabisPlant : Inventory_Base
+	class CP_RawBlackFrostCannabisPlant : CP_CannabisPlant_Base
     {
         scope = 2;
 		displayName = "Raw Black Frost Plant";
 		descriptionShort = "A raw Black Frost plant";
 		model="\CannabisPlus\furniture\CannabisPlantHanging.p3d";
             itemSize[]={4,4};
-        inventorySlot[]=
-        {
-            "HangingPlants",
-            "HangingPlants2",
-			"HangingPlants3"
-        };
-    };
 
-	class CP_DriedCannabisPlant : Inventory_Base
-    {
-        scope = 2;
-		displayName = "Dried Cannabis Plant";
-		descriptionShort = "A dried cannabis plant";
-		model="\CannabisPlus\furniture\CannabisPlantHanging.p3d";
-            itemSize[]={1,2};
-        inventorySlot[]=
-        {
-            "HangingPlants",
-            "HangingPlants2",
-			"HangingPlants3"
-        };
     };
 
 };
