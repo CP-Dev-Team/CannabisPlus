@@ -1,4 +1,4 @@
-class CP_DryPost extends Container_Base
+class CP_DryPost extends ItemBase
 {	
 	bool m_IsLocked = false;
 	ref Timer m_PlantDryTime;
@@ -174,7 +174,7 @@ class CP_DryPost extends Container_Base
 				}	
 			}	
 			
-			if (NumPlants==3)
+			if (NumPlants==6)
 			{
 				Print("[CP] all items attached to post " + this + " ...starting to dry");
 				GetGame().GetCallQueue(CALL_CATEGORY_GAMEPLAY).CallLater(FinishDrying, GetCPConfig().cannabis_drytime*1000, false);
@@ -323,8 +323,9 @@ class CP_DryPost extends Container_Base
 		            ItemName = attachment.GetType();
 				if (ItemName.IndexOf("CP_Raw") >= 0)
 		            {
-		            	GetInventory().CreateAttachment("CP_DriedCannabisPlant");
-					Print("[CP] " + this + " spawning CP_DriedCannabisPlant");
+		            	ItemBase DeadPlant = GetInventory().CreateAttachment("CP_DriedCannabisPlant");
+						DeadPlant.SetQuantity( NumItems - 1 );
+						Print("[CP] " + this + " spawning CP_DriedCannabisPlant");
 		            }    
 			}
 	
@@ -379,14 +380,7 @@ class CP_DryPost extends Container_Base
 	{
 		return "woodenlog_drop_SoundSet";
 	}
-    
-	override void SetActions()
-	{
-		super.SetActions();
-		
-		AddAction(ActionTogglePlaceObject);
-		AddAction(ActionPlaceObject);
-	}
+
 }
 class CP_DryPost_Kit extends ItemBase
 {	

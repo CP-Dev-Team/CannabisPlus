@@ -49,21 +49,21 @@ class CfgSlots
 	class Slot_HangingPlants5
     {
         name="HangingPlants5";
-        displayName="Slot_HangingPlants5";
+        displayName="HangingPlants5";
 		selection="HangingPlants3";
         ghostIcon="set:dayz_inventory image:plant";
     };
 	class Slot_HangingPlants6
     {
         name="HangingPlants6";
-        displayName="Slot_HangingPlants6";
+        displayName="HangingPlants6";
 		selection="HangingPlants3";
 		ghostIcon="set:dayz_inventory image:plant";
     };
 	class Slot_DriedPlantPile
 	{
         name="DriedPlantPile";
-        displayName="Dried Plant Pile";
+        displayName="DriedPlantPile";
 		ghostIcon="set:dayz_inventory image:plant";
 		stackMax=50;
     };
