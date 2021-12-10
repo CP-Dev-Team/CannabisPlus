@@ -14,7 +14,6 @@ class CP_DryPost extends ItemBase
 	ItemBase attachment;
 	int i, j, k
 	EntityAI target
-	protected float Lock;
 	
 	void CP_DryPost()
 	{
@@ -26,12 +25,6 @@ class CP_DryPost extends ItemBase
 	{
 		
 	}
-	
-	bool IsLocked()
-	{
-		return m_IsLocked;
-	}
-	
 	override void EEInit()
 	{
 		super.EEInit();
@@ -96,6 +89,23 @@ class CP_DryPost extends ItemBase
 			SetAnimationPhase ("Rope", 0);  // Shows the rope on the model when rope is attached.+
 			RopeAttached = true;
 		} 
+		else if (slot_name == "HangingPlants") 
+		{
+			Plant1Attached = true;
+		}
+		else if (slot_name == "HangingPlants2") 
+		{
+			Plant2Attached = true;
+		}
+		else if (slot_name == "HangingPlants3") 
+		{
+			Plant3Attached = true;
+		}
+		
+		if (RopeAttached && Plant1Attached && Plant2Attached && Plant3Attached ) 
+		{	
+			CheckStart();
+		}
 		if (slot_name == "DriedPlantPile")
 		{    				
 			SetAnimationPhase ("DryPile", 0);  // Shows the Pile when dried cannbis is put in dryed slot
@@ -110,6 +120,18 @@ class CP_DryPost extends ItemBase
 		{    				
 			SetAnimationPhase ("Rope", 1);  // Shows the rope on the model when rope is attached.+
 			RopeAttached = false;
+		}
+		else if (slot_name == "HangingPlants") 
+		{
+			Plant1Attached = false;
+		}
+		else if (slot_name == "HangingPlants2") 
+		{
+			Plant2Attached = false;
+		}
+		else if (slot_name == "HangingPlants3") 
+		{
+			Plant3Attached = false;
 		}
 		if (slot_name == "DriedPlantPile")
 		{    				
@@ -158,14 +180,11 @@ class CP_DryPost extends ItemBase
 				}	
 			}	
 			
-			if (NumPlants>=1)
+			if (NumPlants==6)
 			{
 				Print("[CP] all items attached to post " + this + " ...starting to dry");
 				GetGame().GetCallQueue(CALL_CATEGORY_GAMEPLAY).CallLater(FinishDrying, GetCPConfig().cannabis_drytime*1000, false);
 				m_IsLocked = true;
-				LockDryingSlots(true);
-
-				
 			}
 		}		
 	}
@@ -217,6 +236,7 @@ class CP_DryPost extends ItemBase
 	{
 		Print("[CP] finished drying...");
 		NumItems = GetInventory().AttachmentCount();
+		
 		for ( j = 0; j < NumItems; j++ )
 		{
 			attachment = ItemBase.Cast( GetInventory().GetAttachmentFromIndex( j ) );
@@ -310,7 +330,7 @@ class CP_DryPost extends ItemBase
 				if (ItemName.IndexOf("CP_Raw") >= 0)
 		            {
 		            	ItemBase DeadPlant = GetInventory().CreateAttachment("CP_DriedCannabisPlant");
-						DeadPlant.AddQuantity( NumItems - 1 );
+						DeadPlant.SetQuantity( NumItems - 1 );
 						Print("[CP] " + this + " spawning CP_DriedCannabisPlant");
 		            }    
 			}
@@ -350,7 +370,6 @@ class CP_DryPost extends ItemBase
 			NumPlants = 0;
 			BudSpawn.Clear();
 		}
-		LockDryingSlots(false);
 		m_IsLocked = false;	
 		syncronize();	
 	}
@@ -367,35 +386,7 @@ class CP_DryPost extends ItemBase
 	{
 		return "woodenlog_drop_SoundSet";
 	}
-	
-	void LockDryingSlots(bool do_lock)
-    {
-        ItemBase CannabisPlantBase = GetCannabisPlantBase();
-        if (do_lock)
-        {
-            if ( CannabisPlantBase )
-			{
-				Print("Locked parent")
-                CannabisPlantBase.LockToParent();
-            }
-        }
-        else
-        {
-            if ( CannabisPlantBase )
-			{
-                CannabisPlantBase.UnlockFromParent();
-            }
-        }
-    };
-	CP_CannabisPlant_Base GetCannabisPlantBase()
-    {
-        return CP_CannabisPlant_Base.Cast( GetAttachmentByType (CP_CannabisPlant_Base) );
-    };
-	override void SetActions()
-	{
-		super.SetActions();
-		AddAction(ActionDryPlants);
-	}
+
 }
 class CP_DryPost_Kit extends ItemBase
 {	
@@ -524,6 +515,5 @@ class CP_DryPost_Kit extends ItemBase
 		super.SetActions();
 		AddAction(ActionTogglePlaceObject);
 		AddAction(ActionDeployObject);
-		
 	}
 };

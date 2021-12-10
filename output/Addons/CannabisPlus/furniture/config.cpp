@@ -10,8 +10,7 @@ class CfgPatches
         requiredVersion = 0.1;
         requiredAddons[] = 
         {
-            "DZ_Data",
-			"DZ_Scripts"
+            "DZ_Data"
         };
     };
 };
@@ -21,8 +20,7 @@ class CfgSlots
     class Slot_HangingPlants
     {
         name="HangingPlants";
-        displayName="HangingPlants";
-		selection="HangingPlants";
+        displayName="Hanging Plants";
         ghostIcon="set:dayz_inventory image:plant";
     };
     class Slot_HangingPlants2
@@ -74,6 +72,7 @@ class CfgNonAIVehicles
     class ProxyAttachment;
 	class ProxyHangingPlants : ProxyAttachment
     {
+		scope = 2;
 		inventorySlot="HangingPlants";
 		model="CannabisPlus\furniture\CannabisPlantHanging.p3d";
     };
@@ -153,14 +152,7 @@ class CfgVehicles
 		model="\CannabisPlus\furniture\DryPost.p3d";
 		weight=20000;
 		itemSize[]={3,11};
-		varQuantityDestroyOnMin=1;
-		itemBehaviour=0;
-		canBeSplit=1;
-		varQuantityInit=1;
-		varQuantityMin=0;
-		varQuantityMax=50;
-        varStackMax=1;
-        //inventorySlot[]={};
+		itemBehaviour=2;
         physLayer="item_large";
 		itemsCargoSize[] = {10,4};
 		rotationFlags = 12;
@@ -192,6 +184,7 @@ class CfgVehicles
 					"DriedPlantPile",
 					"Rope"
                 };
+				ghostIcon="set:dayz_inventory image:plant";
             };
         };
 		class AnimationSources
@@ -392,7 +385,7 @@ class CfgVehicles
 		displayName = "Raw Black Frost Plant";
 		descriptionShort = "A raw Black Frost plant";
 		model="\CannabisPlus\furniture\CannabisPlantHanging.p3d";
-            itemSize[]={4,4};
+        itemSize[]={4,4};
 
     };
 
