@@ -50,7 +50,7 @@ class ActionTurnOffBagger: ActionInteractBase {
 	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 	override void OnExecuteServer( ActionData action_data ) {		
 		CP_Workbench workbench = CP_Workbench.Cast( action_data.m_Target.GetObject() ); // cast to workbench class
-		workbench.TurnBaggerOff();		
+		//workbench.TurnBaggerOff();		
 	}
 	
 	

@@ -243,7 +243,6 @@ class CP_Workbench extends ItemBase {
 		AddAction(ActionTurnOffBagger);
 		AddAction(ActionTurnOnWrapper);
 		AddAction(ActionTurnOffWrapper);		
-		AddAction(ActionDeployObject);
 		
 		AddAction(ActionTogglePlaceObject);
 		AddAction(ActionPlaceObject);
@@ -271,11 +270,22 @@ class CP_Workbench extends ItemBase {
 	
 	
 	override bool CanReceiveAttachment(EntityAI attachment, int slotId) {
+		Print("CAN RECEIVE ATTACHEMENT");
+		
+		if ( !super.CanReceiveAttachment(attachment, slotId) )
+			return false;
+
+		ItemBase item = ItemBase.Cast( attachment );
+		Print(item.Type());
+		
+		
 		if((this.m_IsBaggerActive == true) || (this.m_IsWrapperActive == true)){
 			return false;
 		} else {
 			return true;
 		}
+		
+		return true;		
 	}
 	
 

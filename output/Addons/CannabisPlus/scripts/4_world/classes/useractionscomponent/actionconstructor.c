@@ -1,12 +1,9 @@
-modded class ActionConstructor 
-{   	 
+modded class ActionConstructor {   	 
 	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 	// register all new actions which the player will perform
 	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-	override void RegisterActions(TTypenameArray actions) 
-	{		
+	override void RegisterActions(TTypenameArray actions) {		
 		super.RegisterActions(actions);
-
         actions.Insert(ActionSmokeJointSelf);
 		actions.Insert(ActionSmokeCigSelf); 
 		actions.Insert(ActionUnpackCigaretteBox);
@@ -18,8 +15,6 @@ modded class ActionConstructor
 		// turn on the wrapper on workbench
 		actions.Insert(ActionTurnOnWrapper);
 		// turn off the wrapper on workbench
-		actions.Insert(ActionTurnOffWrapper);
-		// starts drying process on Drypost
-		actions.Insert(ActionDryPlants);
+		actions.Insert(ActionTurnOffWrapper);		
 	}
 };

@@ -1,4 +1,4 @@
-class CP_CannabisPlant_Base extends CP_RawPlantBase{}
+
 class CP_RawPlantBase extends ItemBase
 {
 	int yield=0;

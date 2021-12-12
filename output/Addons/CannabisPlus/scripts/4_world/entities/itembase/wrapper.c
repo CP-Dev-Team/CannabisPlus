@@ -10,4 +10,33 @@ class CP_PlasticWrapper extends ItemBase {
 	void CP_PlasticWrapper(){
 		Print("INIT WRAPPER");
 	}
+	
+	override bool CanPutAsAttachment( EntityAI parent )
+	{
+		/*
+		if (!super.CanPutAsAttachment(parent))
+			return false;
+		
+		string obj_type = parent.GetType();
+		if ( parent.IsInherited(CP_Workbench) )
+		{
+			CP_Workbench workbench = CP_Workbench.Cast( parent );
+			return workbench.CanReceiveAttachment(this, InventorySlots.INVALID);
+		}
+		
+		if (GetCompEM().GetPluggedDevice())
+			return false;
+		*/
+		Print("CAN ATTACH");
+		return true;
+	}
+	
+	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+	// constructor of CP_PlasticWrapper class
+	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+	override void SetActions() {
+		super.SetActions();
+		AddAction(ActionAttach);
+		AddAction(ActionDetach);
+	}
 }      
