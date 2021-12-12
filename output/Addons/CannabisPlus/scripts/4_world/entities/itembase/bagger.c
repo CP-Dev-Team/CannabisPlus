@@ -3,32 +3,21 @@
 // Currently, the class is only required for the item to be available in the game.
 // All methods to use the plastic wrapper are in the class CP_Workbench.
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-class CP_Bagger extends ItemBase
-{
+class CP_Bagger extends ItemBase {
 	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 	// constructor of CP_PlasticWrapper class
 	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 	void CP_Bagger(){
-		Print("INIT bagggggger");
+		
 	}
 	
-	override bool CanPutAsAttachment( EntityAI parent )
-	{
-		/*
+	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+	// 
+	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+	override bool CanPutAsAttachment( EntityAI parent )	{
+		
 		if (!super.CanPutAsAttachment(parent))
-			return false;
-		
-		string obj_type = parent.GetType();
-		if ( parent.IsInherited(CP_Workbench) )
-		{
-			CP_Workbench workbench = CP_Workbench.Cast( parent );
-			return workbench.CanReceiveAttachment(this, InventorySlots.INVALID);
-		}
-		
-		if (GetCompEM().GetPluggedDevice())
-			return false;
-		*/
-		Print("CAN ATTACH");
+			return false;				
 		return true;
 	}
 	

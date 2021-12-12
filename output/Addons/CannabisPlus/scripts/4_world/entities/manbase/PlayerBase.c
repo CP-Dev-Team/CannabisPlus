@@ -8,7 +8,7 @@ modded class PlayerBase {
 	protected const string SMOKE_SOUND  = "Smoking_SoundSet";
 
 	protected EffectSound m_TurnOff;
-      protected EffectSound m_TurnOn;
+    protected EffectSound m_TurnOn;
 	
 	bool m_HasConsumedCigarette = false;	// has the player consumed a hole cigarette	
 	int m_cigaretteValue;					// the quantity of the cigarette, what the player consumed
@@ -29,10 +29,8 @@ modded class PlayerBase {
 		return m_jointValue;
 	}
 	
-	override void Init()
-	{
-		super.Init();
-		
+	override void Init() {
+		super.Init();		
 		RegisterNetSyncVariableInt("m_jointValue");
 	}
 	

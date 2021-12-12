@@ -176,8 +176,7 @@ class CP_Workbench extends ItemBase {
 	void TurnBaggerOn() {
 		this.m_IsBaggerActive = true;
 		m_BaggerWorkingTimer = new Timer(CALL_CATEGORY_GAMEPLAY);
-		m_BaggerWorkingTimer.Run(5, this, "BaggerWorking", null, true);		
-		Print("Bagger is ON");
+		m_BaggerWorkingTimer.Run(5, this, "BaggerWorking", null, true);				
 	}
 	
 	
@@ -188,8 +187,7 @@ class CP_Workbench extends ItemBase {
 	void TurnWrapperOn() {
 		this.m_IsWrapperActive = true;
 		this.m_WrapperWorkingTimer = new Timer(CALL_CATEGORY_GAMEPLAY);
-		this.m_WrapperWorkingTimer.Run(5, this, "WrapperWorking", null, true);
-		Print("Wrapper is ON");
+		this.m_WrapperWorkingTimer.Run(5, this, "WrapperWorking", null, true);		
 	}
 	
 	
@@ -199,8 +197,7 @@ class CP_Workbench extends ItemBase {
 	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 	void TurnBaggerOff() {
 		this.m_IsBaggerActive = false;
-		this.m_BaggerWorkingTimer.Stop();
-		Print("Bagger is OFF");
+		this.m_BaggerWorkingTimer.Stop();		
 	}
 	
 	
@@ -210,8 +207,7 @@ class CP_Workbench extends ItemBase {
 	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~	
 	void TurnWrapperOff() {
 		this.m_IsWrapperActive = false;
-		this.m_WrapperWorkingTimer.Stop();
-		Print("Wrapper is OFF");
+		this.m_WrapperWorkingTimer.Stop();		
 	}
 	
 	
@@ -242,11 +238,9 @@ class CP_Workbench extends ItemBase {
 		AddAction(ActionTurnOnBagger);
 		AddAction(ActionTurnOffBagger);
 		AddAction(ActionTurnOnWrapper);
-		AddAction(ActionTurnOffWrapper);		
-		
+		AddAction(ActionTurnOffWrapper);				
 		AddAction(ActionTogglePlaceObject);
-		AddAction(ActionPlaceObject);
-		
+		AddAction(ActionPlaceObject);		
 	}
 	
 	
@@ -268,7 +262,9 @@ class CP_Workbench extends ItemBase {
 	}
 	
 	
-	
+	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+	// 
+	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 	override bool CanReceiveAttachment(EntityAI attachment, int slotId) {
 		Print("CAN RECEIVE ATTACHEMENT");
 		
@@ -276,8 +272,6 @@ class CP_Workbench extends ItemBase {
 			return false;
 
 		ItemBase item = ItemBase.Cast( attachment );
-		Print(item.Type());
-		
 		
 		if((this.m_IsBaggerActive == true) || (this.m_IsWrapperActive == true)){
 			return false;
