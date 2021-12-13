@@ -16,17 +16,27 @@ class CP_DryPost extends ItemBase
 	EntityAI target
 	protected float Lock;
 	
+	autoptr array<int> plant_slots = new array<int>;
+
 	void CP_DryPost()
 	{
 		BudSpawn = new map<string, int>;
 		BudSpawn.Clear();
+		
+		plant_slots.Insert(InventorySlots.GetSlotIdFromString("HangingPlants")); 
+        plant_slots.Insert(InventorySlots.GetSlotIdFromString("HangingPlants2")); 
+        plant_slots.Insert(InventorySlots.GetSlotIdFromString("HangingPlants3")); 
+        plant_slots.Insert(InventorySlots.GetSlotIdFromString("HangingPlants4")); 
+        plant_slots.Insert(InventorySlots.GetSlotIdFromString("HangingPlants5")); 
+        plant_slots.Insert(InventorySlots.GetSlotIdFromString("HangingPlants6")); 
 	}
 	
 	void ~CP_DryPost()
 	{
 		
+		
 	}
-	-	bool IsLocked()
+	bool IsLocked()
 	{
 		return m_IsLocked;
 	}
@@ -36,6 +46,7 @@ class CP_DryPost extends ItemBase
 		super.EEInit();
 		
 		GetGame().GetCallQueue( CALL_CATEGORY_GAMEPLAY ).Call( AssemblePost );
+		m_IsLocked = false;
 	}
 	
 	override bool CanReceiveAttachment(EntityAI attachment, int slotId)
@@ -110,15 +121,10 @@ class CP_DryPost extends ItemBase
 		{    				
 			SetAnimationPhase ("Rope", 1);  // Shows the rope on the model when rope is attached.+
 			RopeAttached = false;
-		} else if (slot_name == "HangingPlants") 
-		{
-			Plant1Attached = false;
-		} else if (slot_name == "HangingPlants2") 
-		{
-			Plant2Attached = false;
-		} else if (slot_name == "HangingPlants3") 
-		{
-			Plant3Attached = false;
+		}
+		if (slot_name == "DriedPlantPile")
+		{    				
+			SetAnimationPhase ("DryPile", 1);  // Shows the Pile when dried cannbis is put in dryed slot
 		}	
 	}
 	
@@ -129,12 +135,12 @@ class CP_DryPost extends ItemBase
 			return true;
 		}
 		return false;
-    	}
+	};
 	
 	CP_RawSkunkCannabisPlant  GetCannibisBase()
-    	{
-      	return CP_RawSkunkCannabisPlant.Cast( GetAttachmentByType (CP_RawSkunkCannabisPlant) );
-    	};
+    {
+		return CP_RawSkunkCannabisPlant.Cast( GetAttachmentByType (CP_RawSkunkCannabisPlant) );
+    };
 	
 	void CheckStart()
 	{
@@ -160,14 +166,14 @@ class CP_DryPost extends ItemBase
 		}		
 	}
 	
-	override bool CanReleaseAttachment(EntityAI attachment)
-	{
-		if ( m_IsLocked )
-		{
-			return false;
-		}
-		return super.CanReleaseAttachment(attachment);
-	}
+	//override bool CanReleaseAttachment(EntityAI attachment)
+	//{
+	//	if ( m_IsLocked )
+	//	{
+	//		return false;
+	//	}
+	//	return super.CanReleaseAttachment(attachment);
+	//}
 
 	override bool CanPutIntoHands(EntityAI parent)
     	{
@@ -207,7 +213,7 @@ class CP_DryPost extends ItemBase
 	{
 		Print("[CP] finished drying...");
 		NumItems = GetInventory().AttachmentCount();
-		
+		LockDryingSlots(true);
 		for ( j = 0; j < NumItems; j++ )
 		{
 			attachment = ItemBase.Cast( GetInventory().GetAttachmentFromIndex( j ) );
@@ -223,6 +229,7 @@ class CP_DryPost extends ItemBase
 						if (skunkplant)
 						{
 							AddToMap("CP_CannabisSkunk",	skunkplant.GetYield());
+
 						}
 						break;
 					// cannabis blue
@@ -319,6 +326,7 @@ class CP_DryPost extends ItemBase
 			}  	
 		}	
 		GetGame().GetCallQueue(CALL_CATEGORY_GAMEPLAY).CallLater(CleanUp, 500, false);
+		LockDryingSlots(false);
     }
 
     void CleanUp()
@@ -360,26 +368,29 @@ class CP_DryPost extends ItemBase
 	
 	void LockDryingSlots(bool do_lock)
     {
-        ItemBase CannabisPlantBase = GetCannabisPlantBase();
+		ItemBase item;
         if (do_lock)
         {
-            if ( CannabisPlantBase )
-			{
-				Print("Locked parent")
-                CannabisPlantBase.LockToParent();
+
+            for (int i = 0; i < plant_slots.Count(); i++)
+            {
+                if (Class.CastTo(item, GetInventory().FindAttachment(plant_slots.Get(i) ))
+                {
+                      item.LockToParent();
+                }
             }
+
         }
         else
         {
-            if ( CannabisPlantBase )
-			{
-                CannabisPlantBase.UnlockFromParent();
+            for (int j = 0; j < plant_slots.Count(); j++)
+            {
+                if (Class.CastTo(item, GetInventory().FindAttachment(plant_slots.Get(j) ))
+                {
+                      item.UnlockFromParent(); //I don't think this is the right function
+                }
             }
         }
-    };
-	CP_CannabisPlant_Base GetCannabisPlantBase()
-    {
-        return CP_CannabisPlant_Base.Cast( GetAttachmentByType (CP_CannabisPlant_Base) );
     };
 	override void SetActions()
 	{
@@ -495,7 +506,7 @@ class CP_DryPost_Kit extends ItemBase
 		}
 	}
 	override void EEItemDetached(EntityAI item, string slot_name)
-    	{
+    {
 		super.EEItemDetached( item, slot_name );
 		
 		PlayerBase player = PlayerBase.Cast(GetHierarchyRootPlayer());

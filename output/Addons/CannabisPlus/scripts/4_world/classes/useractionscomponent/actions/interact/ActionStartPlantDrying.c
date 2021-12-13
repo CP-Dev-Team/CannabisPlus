@@ -1,6 +1,6 @@
 class ActionDryPlants: ActionInteractBase
 {	
-	void ActionTannLeather()
+	void ActionDryPlants()
 	{
 		m_CommandUID        = DayZPlayerConstants.CMD_ACTIONMOD_INTERACTONCE;
 		m_StanceMask        = DayZPlayerConstants.STANCEMASK_CROUCH | DayZPlayerConstants.STANCEMASK_ERECT;
@@ -16,12 +16,15 @@ class ActionDryPlants: ActionInteractBase
 		EntityAI target_entity = EntityAI.Cast( target.GetObject() );
 		Object target_object = target.GetObject();
 		string selection = target_object.GetActionComponentName( target.GetComponentIndex() );
-		CP_CannabisPlant_Base CPPlant = CP_CannabisPlant_Base.Cast( target_entity.GetAttachmentByType(CP_CannabisPlant_Base) );
+		
+		CP_RawPlantBase CPPlant = CP_RawPlantBase.Cast( target_entity.GetAttachmentByType(CP_RawPlantBase) );
+		
 		CP_DriedCannabisPlant CPDriedPlants = CP_DriedCannabisPlant.Cast( target_entity.GetAttachmentByType(CP_DriedCannabisPlant) );
+		
 		CP_DryPost DryingPost = CP_DryPost.Cast( target.GetObject() );
 		
 		//if (!DryingPost.IsLocked() && CPPlant && CPDriedPlants && CPDriedPlants.GetQuantity() < 50 )
-		if (DryingPost)
+		if(!DryingPost.IsLocked() && CPPlant && (!CPDriedPlants || CPDriedPlants.GetQuantity() < 50) )
 		{
 			return true;
 		}

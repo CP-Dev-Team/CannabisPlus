@@ -274,11 +274,11 @@ class CfgVehicles
     };
 
 
-	class CP_CannabisPlant_Base : Inventory_Base
+	class CP_RawPlantBase : Inventory_Base
     {
         scope = 2;
-		displayName = "Raw Blue God  Plant";
-		descriptionShort = "A raw Blue God plant";
+		displayName = "CorePlant";
+		descriptionShort = "CorePlant";
 		model="\CannabisPlus\furniture\CannabisPlantHanging.p3d";
         itemSize[]={4,4};
         inventorySlot[]=
@@ -291,7 +291,7 @@ class CfgVehicles
 			"HangingPlants6"
         };
     };
-	class CP_DriedCannabisPlant : CP_CannabisPlant_Base
+	class CP_DriedCannabisPlant : CP_RawPlantBase
 	{
 		scope = 2;
 		displayName = "Dried Plant";
@@ -310,7 +310,7 @@ class CfgVehicles
 		};
 	}
 	
-	class CP_RawSkunkCannabisPlant : CP_CannabisPlant_Base
+	class CP_RawSkunkCannabisPlant : CP_RawPlantBase
     {
         scope = 2;
 		displayName = "Raw Skunk Plant";
@@ -319,7 +319,7 @@ class CfgVehicles
         itemSize[]={4,4};
 
     };
-	class CP_RawBlueCannabisPlant : CP_CannabisPlant_Base
+	class CP_RawBlueCannabisPlant : CP_RawPlantBase
     {
         scope = 2;
 		displayName = "Raw Blue God  Plant";
@@ -329,7 +329,7 @@ class CfgVehicles
 
     };
 
-	class CP_RawKushCannabisPlant : CP_CannabisPlant_Base
+	class CP_RawKushCannabisPlant : CP_RawPlantBase
     {
         scope = 2;
 		displayName = "Raw Kush Plant";
@@ -339,7 +339,7 @@ class CfgVehicles
 
     };
 
-	class CP_RawStardawgCannabisPlant : CP_CannabisPlant_Base
+	class CP_RawStardawgCannabisPlant : CP_RawPlantBase
     {
         scope = 2;
 		displayName = "Raw Stardawg Plant";
@@ -349,7 +349,7 @@ class CfgVehicles
  
     };
 
-	class CP_RawFutureCannabisPlant : CP_CannabisPlant_Base
+	class CP_RawFutureCannabisPlant : CP_RawPlantBase
     {
         scope = 2;
 		displayName = "Raw Future Plant";
@@ -359,7 +359,7 @@ class CfgVehicles
 
     };
 
-	class CP_RawNomadCannabisPlant : CP_CannabisPlant_Base
+	class CP_RawNomadCannabisPlant : CP_RawPlantBase
     {
         scope = 2;
 		displayName = "Raw Nomad Plant";
@@ -369,7 +369,7 @@ class CfgVehicles
 
     };
 
-	class CP_RawS1CannabisPlant : CP_CannabisPlant_Base
+	class CP_RawS1CannabisPlant : CP_RawPlantBase
     {
         scope = 2;
 		displayName = "Raw S1 Plant";
@@ -379,7 +379,7 @@ class CfgVehicles
 
     };
 
-	class CP_RawBlackFrostCannabisPlant : CP_CannabisPlant_Base
+	class CP_RawBlackFrostCannabisPlant : CP_RawPlantBase
     {
         scope = 2;
 		displayName = "Raw Black Frost Plant";
