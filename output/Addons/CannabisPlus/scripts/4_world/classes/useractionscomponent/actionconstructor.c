@@ -4,10 +4,13 @@ modded class ActionConstructor {
 	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 	override void RegisterActions(TTypenameArray actions) {		
 		super.RegisterActions(actions);
-        actions.Insert(ActionSmokeJointSelf);
+		
+        	actions.Insert(ActionSmokeJointSelf);
 		actions.Insert(ActionSmokeCigSelf); 
 		actions.Insert(ActionUnpackCigaretteBox);
 		actions.Insert(ActionApplyCream);
+		// starts drying process on Drypost
+		actions.Insert(ActionDryPlants);
 		// turn on the bagger on workbench
 		actions.Insert(ActionTurnOnBagger);
 		// turn off the bagger on workbench
