@@ -164,7 +164,13 @@ class CP_Workbench extends ItemBase
 	// timer to get wrapper working
 	protected ref Timer m_WrapperWorkingTimer;	
 	// indicates whether bagger is currently working
-
+	bool m_IsBaggerActive  = false;
+	// indicates whether wrapper is currently working
+	bool m_IsWrapperActive = false;
+	// Interval in which the wrapper produces new objects.(not implemented yet)
+	int m_WrapperProductionInterval = 5;
+	// Interval in which the bagger produces new objects.(not implemented yet)
+	int m_BaggerProductionInterval = 5;
 	
 	int m_UseCPWorkbench = 0;
 	//Defines a int used for action switching
@@ -188,132 +194,71 @@ class CP_Workbench extends ItemBase
       super.EEInit();
 	  RegisterNetSyncVariableInt("m_UseCPWorkbench");
     };
-
-	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-	// A on Work Function to Make sure its powered or has Power if not Shut off.
-	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-	override void OnWork( float consumed_energy  )
-	{
-		
-		if ( GetGame() && GetGame().IsServer()  )
-		{
-			if(GetCompEM().GetEnergy() <= 1)
-			{
-				OnWorkStop()
-			}
-		}		
-	};
 	
 	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-	// Start of Step based Variables to change outcome and Text shown for actions. not complicated but very handy
+	// activate the bagger
 	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-	string GetDrillTendancyText()
+	void TurnBaggerOn() 
 	{
-        if (m_UseCPWorkbench == 0)
-		{
-          return "Fix Heli Plug Core";
-        }
-		if (m_UseCPWorkbench == 1)
-		{
-          return "Broken as F***";
-        }
-        return ""
-    };
-	
-    string GetDrillTendancyCreationType()
-	{
-        if (m_UseCPWorkbench == 0)
-		{
-          return "ExpansionIgniterPlug";
-        }
-		if (m_UseCPWorkbench == 1)
-		{
-          return "";
-        }
-        return ""
-    };
-	
-	void StepBenchTendancy()
-	{
-      m_UseCPWorkbench++;
-      if (m_UseCPWorkbench > 0)
-	  {
-         m_UseCPWorkbench = 0;
-      }
-      SetSynchDirty();
-    };
-	
-	int CPWorkbenchTendancy()
-	{
-      return m_UseCPWorkbench;
-    };
-	
-	void CreationPartsPliers(string CreationType)
-	{
-		string thingName =  FindAttachmentBySlotName("CorePlug").GetType();
-		
-		Pliers Ply = m_Player.GetItemInHands()
-		if(m_UseCPWorkbench == 0 )
-		{
-			if (thingName == "NDHeliPlugCore" )
-			{
-				GetGame().ObjectDelete( GetHeliPlugCore() );
-				GetInventory().CreateAttachment( CreationType ); 
-			};
-		};
-	};
-	
-	int IsOccupiedandPowered()
-	{
-		CP_Workbench thing = CP_Workbench.Cast(FindAttachmentBySlotName("Wrapper"));
-		
-		if(HasEnergyManager() && GetCompEM().IsWorking())
-		{
-			return true;
-		}
-		return false;
-	};
-	
-	int GetInPutOccupied()
-	{
-		ItemBase thing = ItemBase.Cast(FindAttachmentBySlotName("Bricks"));
-		if(thing)
-		{
-			return 1;
-		}
-		return 0;
-	};
-	
-	int GetOutPutOccupied()
-	{
-		ItemBase thing = ItemBase.Cast(FindAttachmentBySlotName("Bricks"));
-		if(thing)
-		{
-			return 1;
-		}
-		return 0;
-	};
-	
-	int AttachmentCountinTotal()
-	{
-		ItemBase attachments = ItemBase.Cast(FindAttachmentBySlotName("ND_DrillPress"));
-		ItemBase attachments1 = ItemBase.Cast(FindAttachmentBySlotName("ND_BenchGrinder"));
-		ItemBase attachments2 = ItemBase.Cast(FindAttachmentBySlotName("ND_BenchVice"));
-		ItemBase attachments3 = ItemBase.Cast(FindAttachmentBySlotName("ND_Metal_Chop_Saw"));
-		
-		if(attachments && attachments1 && attachments2 && attachments3)
-		{
-			return true;	
-		}
-		return false;
-		
+		this.m_IsBaggerActive = true;
+		m_BaggerWorkingTimer = new Timer(CALL_CATEGORY_GAMEPLAY);
+		m_BaggerWorkingTimer.Run(5, this, "BaggerWorking", null, true);				
 	}
 	
 	
-	override bool IsElectricAppliance()
+	
+	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+	// activate the wrapper
+	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+	void TurnWrapperOn() 
 	{
-		return true;
+		this.m_IsWrapperActive = true;
+		this.m_WrapperWorkingTimer = new Timer(CALL_CATEGORY_GAMEPLAY);
+		this.m_WrapperWorkingTimer.Run(5, this, "WrapperWorking", null, true);		
 	}
+	
+	
+	
+	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+	// deactivate the bagger
+	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+	void TurnBaggerOff() 
+	{
+		this.m_IsBaggerActive = false;
+		this.m_BaggerWorkingTimer.Stop();		
+	}
+	
+	
+	
+	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+	// deactivate the wrapper
+	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~	
+	void TurnWrapperOff() 
+	{
+		this.m_IsWrapperActive = false;
+		this.m_WrapperWorkingTimer.Stop();		
+	}
+	
+	
+	
+	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+	// Method called in a loop to produce items from bagger.
+	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+	void BaggerWorking() 
+	{
+		Print("Bagger is Working");
+	}
+	
+	
+	
+	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+	// Method called in a loop to produce items from wrapper.
+	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+	void WrapperWorking() {
+		Print("Wrapper is Working");
+	}
+	
+	
 	
 	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 	// determines the actions that the player can perform at the workbench
@@ -321,7 +266,12 @@ class CP_Workbench extends ItemBase
 	override void SetActions() 
 	{		
 		super.SetActions();
-		
+		AddAction(ActionTurnOnBagger);
+		AddAction(ActionTurnOffBagger);
+		AddAction(ActionTurnOnWrapper);
+		AddAction(ActionTurnOffWrapper);				
+		AddAction(ActionTogglePlaceObject);
+		AddAction(ActionPlaceObject);		
 	}
 	
 	
@@ -336,8 +286,7 @@ class CP_Workbench extends ItemBase
 			return false;
 		
 		// check if any item is in the attachment-slots OR if any item is in cargo space
-		if(IsAnyItemAttached() || !IsCargoEmpty())
-		{
+		if(IsAnyItemAttached() || !IsCargoEmpty()){
 			return false;
 		} else {
 			return true;
@@ -384,7 +333,26 @@ class CP_Workbench extends ItemBase
 	{		
 		return ( GetInventory().GetCargo().GetItemCount() == 0 );
 	}
-
+	
+	
+	
+	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+	// 
+	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+	void LockInventory() 
+	{
+		GetInventory().LockInventory(HIDE_INV_FROM_SCRIPT);
+	}
+	
+	
+	
+	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+	// 
+	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+	void UnlockInventory() 
+	{
+		GetInventory().UnlockInventory(HIDE_INV_FROM_SCRIPT);
+	}
 }
 
 

@@ -19,41 +19,55 @@ class CfgPatches
 
 class CfgSlots
 { 
-      class Slot_Wrapper
-      {
-            name="CP_PlasticWrapper";
-            displayName="Wrapper";
-            ghostIcon="missing";
-      };
-      class Slot_Bagger
-      {
-            name="CP_Bagger";
-            displayName="Bagger";
-            ghostIcon="missing";
-      };	  
-      class Slot_Tape
-      {
-            name="DuctTapes";
-            displayName="Klebeband";
-            ghostIcon="missing";
-            stackMax=5;
-      };
-      class Slot_Bags
-      {
-            name="CP_CannabisBags";
-            displayName="Bags";
-            ghostIcon="missing";
-            stackMax=25;
-      };
-      class Slot_Bricks
-      {
-            name="Bricks";
-            displayName="Bricks";
-            ghostIcon="missing";
-            stackMax=5;
-      };	  
+    class Slot_Wrapper
+    {
+          name="Wrapper";
+          displayName="Wrapper";
+          ghostIcon="set:dayz_inventory image:plant";
+    };
+    class Slot_Bagger
+    {
+          name="Bagger";
+          displayName="Bagger";
+          ghostIcon="missing";
+    };	  
+    class Slot_Tape
+    {
+          name="Tape";
+          displayName="Klebeband";
+          ghostIcon="missing";
+          stackMax=5;
+    };
+    class Slot_Bags
+    {
+          name="Bags";
+          displayName="Bags";
+          ghostIcon="missing";
+          stackMax=25;
+    };
+    class Slot_Bricks
+    {
+          name="Bricks";
+          displayName="Bricks";
+          ghostIcon="missing";
+          stackMax=5;
+    };	  
 };   
-
+class CfgNonAIVehicles
+{
+    class ProxyAttachment;
+	class ProxyPlasticWrapper : ProxyAttachment
+    {
+		scope = 2;
+		inventorySlot="Wrapper";
+		model="CannabisPlus\plasticWrapper\PlasticWrapper.p3d";
+    };
+	class ProxyVacuumSealer : ProxyAttachment
+    {
+		inventorySlot="Bagger";
+		model="CannabisPlus\plasticWrapper\VacuumSealer.p3d";
+    };
+};
 class CfgVehicles
 {
 	class Inventory_Base;
@@ -76,11 +90,9 @@ class CfgVehicles
 		simulation = "inventoryItem";
 		physLayer = "item_small";
 		rotationFlags = 2;
-		InteractActions[] = {};
 		weight = 300;
 		itemBehaviour = 2;
-		class Cargo{};
-            hiddenSelections[]=
+        hiddenSelections[]=
 		{
 			"zbytek"
 		};
@@ -118,8 +130,8 @@ class CfgVehicles
 		};		
 		attachments[]=
 		{
-			  "CP_PlasticWrapper",
-			  "CP_Bagger",
+			  "Wrapper",
+			  "Bagger",
 			  "DuctTapes",
 			  "CarBattery",			  
 			  "CP_CannabisBags",
@@ -132,7 +144,7 @@ class CfgVehicles
 			{
 				name = "Inputs";
 				description = "";
-				attachmentSlots[] = {"CP_PlasticWrapper","CP_Bagger","DuctTapes", "CarBattery"};
+				attachmentSlots[] = {"Wrapper","Bagger","DuctTapes", "CarBattery"};
 				//icon="knife";
 			};
 			class Bags

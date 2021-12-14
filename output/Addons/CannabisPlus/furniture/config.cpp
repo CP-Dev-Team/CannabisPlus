@@ -281,6 +281,7 @@ class CfgVehicles
 		descriptionShort = "CorePlant";
 		model="\CannabisPlus\furniture\CannabisPlantHanging.p3d";
         itemSize[]={4,4};
+		rotationFlags = 12;
         inventorySlot[]=
         {
             "HangingPlants",

@@ -14,7 +14,8 @@ class CP_Bagger extends ItemBase {
 	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 	// 
 	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-	override bool CanPutAsAttachment( EntityAI parent )	{
+	override bool CanPutAsAttachment( EntityAI parent )	
+	{
 		
 		if (!super.CanPutAsAttachment(parent))
 			return false;				
@@ -24,7 +25,8 @@ class CP_Bagger extends ItemBase {
 	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 	// constructor of CP_PlasticWrapper class
 	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-	override void SetActions() {		
+	override void SetActions() 
+	{		
 		super.SetActions();		
 		AddAction(ActionAttach);
 		AddAction(ActionDetach);

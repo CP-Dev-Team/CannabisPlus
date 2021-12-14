@@ -21,7 +21,7 @@ class CfgVehicles
     class Container_Base;
     class CP_CompostBin : Container_Base
     {
-            scope = 2;
+        scope = 2;
 		displayName = "Compost Bin";
 		descriptionShort = "A bin for converting plant material into compost for fertilizer.";
 		model="\CannabisPlus\compost\compost_bin2.p3d";
@@ -33,9 +33,9 @@ class CfgVehicles
 		varQuantityInit=1;
 		varQuantityMin=0;
 		varQuantityMax=50;
-            varStackMax=1;
-            //inventorySlot[]={};
-            physLayer="item_heavy";
+        varStackMax=1;
+        //inventorySlot[]={};
+        physLayer="item_heavy";
 		itemsCargoSize[] = {10,14};
             hiddenSelections[]=
 		{

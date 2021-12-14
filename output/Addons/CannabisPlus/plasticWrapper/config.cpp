@@ -33,8 +33,13 @@ class CfgVehicles
 		varQuantityMin=0;
 		varQuantityMax=1;
 		varStackMax=1;
-		inventorySlot[]={
-			"CP_PlasticWrapper"
+		inventorySlot[]=
+		{
+			"Wrapper"
+		};
+		attachments[]=
+		{
+			  "PlasticRoll"
 		};
 		physLayer="item_small";
 		hiddenSelections[]=
@@ -44,6 +49,24 @@ class CfgVehicles
 		hiddenSelectionsTextures[]=
 		{
 			"CannabisPlus\plasticWrapper\data\PlasticWrapper_co.paa"
+		};		
+		class GUIInventoryAttachmentsProps
+		{
+			class Inputs
+			{
+				name = "Inputs";
+				description = "";
+				attachmentSlots[] = {"CP_PlasticRoll"};
+				//icon="knife";
+			};
+			class Bricks
+			{
+				name = "Brick Output";
+				description = "";
+				attachmentSlots[] = {"Bricks"};
+				//icon="knife";
+			};
 		};
-	};	
+	};
+	
 };

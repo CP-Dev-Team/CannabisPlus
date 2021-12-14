@@ -33,8 +33,9 @@ class CfgVehicles
 		varQuantityMin=0;
 		varQuantityMax=1;
 		varStackMax=1;
-		inventorySlot[]={
-			"CP_Bagger"
+		inventorySlot[]=
+		{
+			"Bagger"
 		};
 /*		physLayer="item_small";
 		hiddenSelections[]=
