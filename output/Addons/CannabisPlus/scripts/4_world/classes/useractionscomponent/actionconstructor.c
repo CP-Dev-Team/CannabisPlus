@@ -12,12 +12,14 @@ modded class ActionConstructor {
 		// starts drying process on Drypost
 		actions.Insert(ActionDryPlants);
 		// turn on the bagger on workbench
-		actions.Insert(ActionTurnOnBagger);
+		//actions.Insert(ActionTurnOnBagger);
 		// turn off the bagger on workbench
-		actions.Insert(ActionTurnOffBagger);
+		//actions.Insert(ActionTurnOffBagger);
 		// turn on the wrapper on workbench
-		actions.Insert(ActionTurnOnWrapper);
+		//actions.Insert(ActionTurnOnWrapper);
 		// turn off the wrapper on workbench
-		actions.Insert(ActionTurnOffWrapper);		
+		//actions.Insert(ActionTurnOffWrapper);
+		//WorkBench actions
+		actions.Insert(ActionUsePlasticWrapper);
 	}
 };

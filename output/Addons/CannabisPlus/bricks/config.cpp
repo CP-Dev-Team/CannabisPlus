@@ -37,6 +37,7 @@ class CfgVehicles
 		itemSize[]={3,3};
 		absorbency=0.2;
 		isMeleeWeapon=1;
+		inventorySlot[]={"CP_Cannabus_Bricks"};
 		hiddenSelections[]=
 		{
 			"zbytek"

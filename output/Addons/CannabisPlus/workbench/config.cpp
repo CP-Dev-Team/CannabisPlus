@@ -31,10 +31,10 @@ class CfgSlots
           displayName="Bagger";
           ghostIcon="missing";
     };	  
-    class Slot_Tape
+    class Slot_BudsBuds
     {
-          name="Tape";
-          displayName="Klebeband";
+          name="BudsBuds";
+          displayName="Bud Input";
           ghostIcon="missing";
           stackMax=5;
     };
@@ -130,37 +130,25 @@ class CfgVehicles
 		};		
 		attachments[]=
 		{
-			  "Wrapper",
-			  "Bagger",
-			  "DuctTapes",
-			  "CarBattery",			  
-			  "CP_CannabisBags",
-			  "Bricks"
+			"Wrapper",
+			"Bagger",
+			"BudsBuds",
+			"CarBattery",			  
+			"CP_CannabisBags",
+			"Bricks"
 		};
-		
-		class GUIInventoryAttachmentsProps
+		class EnergyManager
 		{
-			class Inputs
-			{
-				name = "Inputs";
-				description = "";
-				attachmentSlots[] = {"Wrapper","Bagger","DuctTapes", "CarBattery"};
-				//icon="knife";
-			};
-			class Bags
-			{
-				name = "Bag Output";
-				description = "";
-				attachmentSlots[] = {"CP_CannabisBags"};
-				//icon="knife";
-			};
-			class Bricks
-			{
-				name = "Brick Output";
-				description = "";
-				attachmentSlots[] = {"Bricks"};
-				//icon="knife";
-			};
+			hasIcon=1;
+			energyUsagePerSecond=0.85;
+			energyStorageMax=0;
+			isPassiveDevice=0;
+			cordTextureFile="DZ\gear\camping\Data\plug_yellow_CO.paa";
+			cordLength=5;
+			powerSocketsCount=0;
+			plugType=2;
+			attachmentAction=2;
+			updateInterval=10;
 		};
 	};
 	

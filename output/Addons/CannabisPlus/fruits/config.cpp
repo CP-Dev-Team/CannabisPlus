@@ -36,7 +36,13 @@ class CfgVehicles
 		lootCategory="Crafted";
 		weight=14;
 		itemSize[]={1,1};
-		inventorySlot[]={"DryPlant"};
+		varQuantityDestroyOnMin=1;
+		canBeSplit=1;
+		varQuantityInit=1;
+		varQuantityMin=0;
+		varQuantityMax=1;
+		varStackMax=1;
+		inventorySlot[]={"DryPlant","CP_Cannabus_Buds"};
 		hiddenSelections[]=
 		{
 			"cs_raw"

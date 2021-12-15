@@ -5,6 +5,8 @@
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 class CP_PlasticWrapper extends ItemBase 
 {
+	int m_UseWrapper = 0;
+	//Defines a int used for action switching
 	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 	// constructor of CP_PlasticWrapper class
 	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -12,7 +14,42 @@ class CP_PlasticWrapper extends ItemBase
 	{
 		
 	}
+	string GetWrapperTendancyText()
+	{
+         return "Wrap Brick";
+    };
+	string GetWrapperTendancyCreationType()
+	{
+        return "CannabisBrickSkunk";
+    };
+	CP_CannabisSkunk GetCannibusBud()
+	{
+		return CP_CannabisSkunk.Cast( GetAttachmentByType( CP_CannabisSkunk ) );
+	};
 	
+	void CreationWrapperItems(string CreationType)
+	{
+		Print ("trigger");
+
+		string thingName =  FindAttachmentBySlotName("CP_Cannabus_Buds").GetType();
+		
+		Print(thingName);
+				
+		if (thingName == "CP_CannabisSkunk" )
+		{
+			GetGame().ObjectDelete( GetCannibusBud() );
+			GetInventory().CreateAttachment("CP_" + CreationType ); 
+		};
+	
+	};
+	int IsOccupiedandPowered()
+	{		
+		if(HasEnergyManager() && GetCompEM().IsWorking())
+		{
+			return true;
+		}
+		return false;
+	};
 	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 	// 
 	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -23,7 +60,7 @@ class CP_PlasticWrapper extends ItemBase
 			return false;		
 		return true;
 	}
-	
+
 	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 	// constructor of CP_PlasticWrapper class
 	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -32,7 +69,7 @@ class CP_PlasticWrapper extends ItemBase
 		super.SetActions();
 		AddAction(ActionAttach);
 		AddAction(ActionDetach);
-		AddAction(ActionUseDrillPress);
-		AddAction(ActionChangeDrillPressAction);
+		//AddAction(ActionUsePlasticWrapper);
+		//AddAction(ActionChangeDrillPressAction);
 	}
 }      

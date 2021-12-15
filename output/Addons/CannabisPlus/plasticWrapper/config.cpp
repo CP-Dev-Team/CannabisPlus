@@ -10,11 +10,47 @@ class CfgPatches
         requiredVersion = 0.1;
         requiredAddons[] = 
         {
-            "DZ_Data"
+            "DZ_Data",
+			"DZ_Scripts"
         };
     };
 };
-
+class CfgSlots
+{ 
+    class Slot_CP_Cannabus_Buds
+    {
+          name="CP_Cannabus_Buds";
+          displayName="Buds Storage";
+          ghostIcon="set:dayz_inventory image:plant";
+    };
+	class Slot_CP_Cannabus_Bricks
+    {
+          name="CP_Cannabus_Bricks";
+          displayName="Bricks Storage";
+          ghostIcon="set:dayz_inventory image:plant";
+    };
+    class Slot_CP_PlasticRoll
+    {
+          name="CP_PlasticRoll";
+          displayName="Roll";
+          ghostIcon="missing";
+    };
+};
+//class CfgNonAIVehicles
+//{
+//    class ProxyAttachment;
+//	class ProxyPlasticWrapper : ProxyAttachment
+//    {
+//		scope = 2;
+//		inventorySlot="Wrapper";
+//		model="CannabisPlus\plasticWrapper\PlasticWrapper.p3d";
+//    };
+//	class ProxyVacuumSealer : ProxyAttachment
+//    {
+//		inventorySlot="Bagger";
+//		model="CannabisPlus\plasticWrapper\VacuumSealer.p3d";
+//    };
+//};  
 class CfgVehicles
 {
     class Inventory_Base;
@@ -39,7 +75,9 @@ class CfgVehicles
 		};
 		attachments[]=
 		{
-			  "PlasticRoll"
+			"CP_PlasticRoll",
+			"CP_Cannabus_Buds",
+			"CP_Cannabus_Bricks"
 		};
 		physLayer="item_small";
 		hiddenSelections[]=
@@ -49,24 +87,16 @@ class CfgVehicles
 		hiddenSelectionsTextures[]=
 		{
 			"CannabisPlus\plasticWrapper\data\PlasticWrapper_co.paa"
-		};		
-		class GUIInventoryAttachmentsProps
-		{
-			class Inputs
-			{
-				name = "Inputs";
-				description = "";
-				attachmentSlots[] = {"CP_PlasticRoll"};
-				//icon="knife";
-			};
-			class Bricks
-			{
-				name = "Brick Output";
-				description = "";
-				attachmentSlots[] = {"Bricks"};
-				//icon="knife";
-			};
 		};
+		class EnergyManager
+		{
+			hasIcon=1;
+			energyUsagePerSecond=0.85;
+			energyStorageMax=0;
+			isPassiveDevice=1;
+			plugType=2;
+			attachmentAction=1;
+		};		
 	};
 	
 };

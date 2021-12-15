@@ -207,11 +207,11 @@ class CP_Workbench extends ItemBase
 	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 	// Start of Step based Variables to change outcome and Text shown for actions. not complicated but very handy
 	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-	string GetDrillTendancyText()
+	string GetWrapperTendancyText()
 	{
         if (m_UseCPWorkbench == 0)
 		{
-          return "Fix Heli Plug Core";
+          return "Wrap Brick";
         }
 		if (m_UseCPWorkbench == 1)
 		{
@@ -220,20 +220,14 @@ class CP_Workbench extends ItemBase
         return ""
     };
 	
-    string GetDrillTendancyCreationType()
+    string GetWrapperTendancyCreationType()
 	{
-        if (m_UseCPWorkbench == 0)
-		{
-          return "ExpansionIgniterPlug";
-        }
-		if (m_UseCPWorkbench == 1)
-		{
-          return "";
-        }
-        return ""
+		Print ("Create CP_CannabisBrickSkunk");
+        return "CP_CannabisBrickSkunk";
+        
     };
 	
-	void StepBenchTendancy()
+	void StepWrapperTendancy()
 	{
       m_UseCPWorkbench++;
       if (m_UseCPWorkbench > 0)
@@ -248,19 +242,24 @@ class CP_Workbench extends ItemBase
       return m_UseCPWorkbench;
     };
 	
-	void CreationPartsPliers(string CreationType)
+	CP_CannabisSkunk GetCannibusBud()
 	{
-		string thingName =  FindAttachmentBySlotName("CorePlug").GetType();
+		return CP_CannabisSkunk.Cast( GetAttachmentByType( CP_CannabisSkunk ) );
+	};
+	
+	void CreationWrapperItems(string CreationType)
+	{
+		Print ("trigger");
+		
+		string thingName =  FindAttachmentBySlotName("CP_Bag_Output").GetType();
 		
 		Pliers Ply = m_Player.GetItemInHands()
-		if(m_UseCPWorkbench == 0 )
+		if (thingName == "CP_CannabisSkunk" )
 		{
-			if (thingName == "NDHeliPlugCore" )
-			{
-				GetGame().ObjectDelete( GetHeliPlugCore() );
-				GetInventory().CreateAttachment( CreationType ); 
-			};
+			GetGame().ObjectDelete( GetCannibusBud() );
+			GetInventory().CreateAttachment( CreationType ); 
 		};
+	
 	};
 	
 	int IsOccupiedandPowered()
@@ -276,7 +275,7 @@ class CP_Workbench extends ItemBase
 	
 	int GetInPutOccupied()
 	{
-		ItemBase thing = ItemBase.Cast(FindAttachmentBySlotName("Bricks"));
+		ItemBase thing = ItemBase.Cast(FindAttachmentBySlotName("BudsBuds"));
 		if(thing)
 		{
 			return 1;
@@ -309,23 +308,11 @@ class CP_Workbench extends ItemBase
 		
 	}
 	
-	
 	override bool IsElectricAppliance()
 	{
 		return true;
 	}
-	
-	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-	// determines the actions that the player can perform at the workbench
-	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-	override void SetActions() 
-	{		
-		super.SetActions();
-		
-	}
-	
-	
-	 
+		 
 	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~	
 	// checks if the player can get the workbench into his hands
 	// - if any item is in attachment-slots or in cargo, the player can´t get the workbench into his hands
@@ -352,17 +339,17 @@ class CP_Workbench extends ItemBase
 	{
 		Print("CAN RECEIVE ATTACHEMENT");
 		
-		if ( !super.CanReceiveAttachment(attachment, slotId) )
-			return false;
-
-		ItemBase item = ItemBase.Cast( attachment );
-		
-		if((this.m_IsBaggerActive == true) || (this.m_IsWrapperActive == true)){
-			return false;
-		} else {
-			return true;
-		}
-		
+		//if ( !super.CanReceiveAttachment(attachment, slotId) )
+		//	return false;
+		//
+		//ItemBase item = ItemBase.Cast( attachment );
+		//
+		//if((this.m_IsBaggerActive == true) || (this.m_IsWrapperActive == true)){
+		//	return false;
+		//} else {
+		//	return true;
+		//}
+		//
 		return true;		
 	}
 	
@@ -383,6 +370,19 @@ class CP_Workbench extends ItemBase
 	bool IsCargoEmpty()	
 	{		
 		return ( GetInventory().GetCargo().GetItemCount() == 0 );
+	}
+	
+	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+	// determines the actions that the player can perform at the workbench
+	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~	
+	override void SetActions()
+	{
+		super.SetActions();
+		
+		AddAction(ActionPlugIn);
+		AddAction(ActionTurnOnWhileOnGround);
+		AddAction(ActionTurnOffWhileOnGround);
+		AddAction(ActionUsePlasticWrapper);
 	}
 
 }

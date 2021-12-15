@@ -1,5 +1,5 @@
 
-
+/*
 class ActionChangeDrillPressAction: ActionSingleUseBase
 {
     void ActionChangeSmithIngotAction()
@@ -44,3 +44,4 @@ class ActionChangeDrillPressAction: ActionSingleUseBase
         }
     };
 };
+*/

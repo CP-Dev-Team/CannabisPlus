@@ -1,30 +1,9 @@
-class ActionDrillPressCB : ActionContinuousBaseCB
-{
-	override void CreateActionComponent()
-	{
-		
-		m_ActionData.m_ActionComponent = new CAContinuousTime( 10 );//120
-
-	};
-};
-class ActionDrillPressLongerCB : ActionContinuousBaseCB
-{
-	override void CreateActionComponent()
-	{
-		
-		m_ActionData.m_ActionComponent = new CAContinuousTime( 70 );//120
-
-	};
-};
-class ActionUseDrillPress: ActionContinuousBase
+class ActionUsePlasticWrapper: ActionInteractBase
 {	
-	void ActionUseDrillPress()
+	void ActionUsePlasticWrapper()
 	{
-		m_CallbackClass = ActionDrillPressCB;
-		m_CommandUID = DayZPlayerConstants.CMD_ACTIONFB_INTERACT;
-		m_FullBody = true;
-		m_StanceMask = DayZPlayerConstants.STANCEMASK_ERECT;
-		m_SpecialtyWeight = UASoftSkillsWeight.ROUGH_HIGH;
+		m_CommandUID        = DayZPlayerConstants.CMD_ACTIONMOD_INTERACTONCE;
+		m_StanceMask        = DayZPlayerConstants.STANCEMASK_CROUCH | DayZPlayerConstants.STANCEMASK_ERECT;
 	};
 	int SpamCounter = 0;
     string TendancyText = "";
@@ -36,34 +15,27 @@ class ActionUseDrillPress: ActionContinuousBase
 
 	override bool ActionCondition( PlayerBase player, ActionTarget target, ItemBase item )
 	{
-		int currenttime = GetGame().GetTime();
 		
 		EntityAI target_entity = EntityAI.Cast( target.GetObject() );
         Object target_object = target.GetObject();
-		ND_MetalFabbench Bench = ND_MetalFabbench.Cast( target_object );
-		NDHeliPlugCore CheckSpark = NDHeliPlugCore.Cast( target_entity.GetAttachmentByType(NDHeliPlugCore) );
 		
-		if (Bench && Bench.IsOccupiedandPowered() && CheckSpark && !Bench.GetOutPutOccupied())//Bench.AttachmentCountinTotal()
+		CP_PlasticWrapper Wrapper = CP_PlasticWrapper.Cast( target_object );
+		CP_Workbench parent = CP_Workbench.Cast(Wrapper.GetParent());
+		CP_CannabisSkunk Buds = CP_CannabisSkunk.Cast( target_entity.GetAttachmentByType(CP_CannabisSkunk) );
+		
+		if (Wrapper && Buds)
 		{
-			TendancyText = Bench.GetDrillTendancyText()
-			if(Bench.m_UseMetalFabBench == 0)
-			{
-				m_CallbackClass = ActionDrillPressCB;
-			}
-			else if(Bench.m_UseMetalFabBench == 1)
-			{
-				m_CallbackClass = ActionDrillPressLongerCB;
-			}
+			TendancyText = Wrapper.GetWrapperTendancyText()
 			return true;
 		}
 		return false;
 	};
 
-	override void OnFinishProgressServer( ActionData action_data )
+	override void OnExecuteServer( ActionData action_data )
 	{
-		ND_MetalFabbench Bench = ND_MetalFabbench.Cast( action_data.m_Target.GetObject() );
+		CP_PlasticWrapper Bench = CP_PlasticWrapper.Cast( action_data.m_Target.GetObject() );
 		
-		Bench.CreationPartsPliers(Bench.GetDrillTendancyCreationType())
+		Bench.CreationWrapperItems(Bench.GetWrapperTendancyCreationType())
 
 	};
 };
