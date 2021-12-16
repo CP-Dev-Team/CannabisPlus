@@ -18,19 +18,18 @@ class CfgPatches
 		requiredVersion=0.1;
 		requiredAddons[]=
 		{
-			"DZ_Data",
-			"DZ_Gear_Food"
+			"DZ_Data"
 		};
 	};
 };
 class CfgVehicles
 {
 	class Inventory_Base;
-	class CP_CannabisSkunk: Inventory_Base
+	class CP_CannabisBud: Inventory_Base
 	{
 		scope=2;
-		displayName="Cannabis";
-		descriptionShort="Some cannabis bud. Skunk variety";
+		displayName="Base base base";
+		descriptionShort="Base bud";
 		model="\dz\gear\food\cannabis_seedman.p3d";
 		rotationFlags=34;
 		lootCategory="Crafted";
@@ -40,7 +39,7 @@ class CfgVehicles
 		canBeSplit=1;
 		varQuantityInit=1;
 		varQuantityMin=0;
-		varQuantityMax=1;
+		varQuantityMax=100;
 		varStackMax=1;
 		inventorySlot[]={"DryPlant","CP_Cannabus_Buds"};
 		hiddenSelections[]=
@@ -49,20 +48,11 @@ class CfgVehicles
 		};
 		hiddenSelectionsTextures[]=
 		{
-			"CannabisPlus\fruits\data\cannabis_seedman_raw_skunk_co.paa",
-			"CannabisPlus\fruits\data\cannabis_seedman_baked_skunk_co.paa",
-			"CannabisPlus\fruits\data\cannabis_seedman_raw_skunk_co.paa",
-			"CannabisPlus\fruits\data\cannabis_seedman_raw_skunk_co.paa",
-			"CannabisPlus\fruits\data\cannabis_seedman_baked_skunk_co.paa"
+			"CannabisPlus\fruits\data\cannabis_seedman_raw_skunk_co.paa"
 		};
 		hiddenSelectionsMaterials[]=
 		{
-			"CannabisPlus\fruits\data\cannabis_seedman_raw.rvmat",
-			"CannabisPlus\fruits\data\cannabis_seedman_baked.rvmat",
-			"CannabisPlus\fruits\data\cannabis_seedman_raw.rvmat",
-			"CannabisPlus\fruits\data\cannabis_seedman_dried.rvmat",
-			"CannabisPlus\fruits\data\cannabis_seedman_burnt.rvmat",
-			"CannabisPlus\fruits\data\cannabis_seedman_rotten.rvmat"
+			"CannabisPlus\fruits\data\cannabis_seedman_raw.rvmat"
 		};
 		class DamageSystem
 		{
@@ -139,497 +129,120 @@ class CfgVehicles
 			};
 		};
 	};
-	class CP_CannabisBlue: Inventory_Base
+	class CP_CannabisSkunk: CP_CannabisBud
+	{
+		scope=2;
+		displayName="Cannabis";
+		descriptionShort="Some cannabis bud. Skunk variety";
+		hiddenSelectionsTextures[]=
+		{
+			"CannabisPlus\fruits\data\cannabis_seedman_raw_skunk_co.paa"
+		};
+		hiddenSelectionsMaterials[]=
+		{
+			"CannabisPlus\fruits\data\cannabis_seedman_raw.rvmat"
+		};
+	};
+	class CP_CannabisBlue: CP_CannabisBud
 	{
 		scope=2;
 		displayName="Blue God";
 		descriptionShort="Some cannabis bud.  Blue God variety.";
-		model="\dz\gear\food\cannabis_seedman.p3d";
-		rotationFlags=34;
-		lootCategory="Crafted";
-		weight=14;
-		itemSize[]={1,1};
-		hiddenSelections[]=
-		{
-			"cs_raw"
-		};
 		hiddenSelectionsTextures[]=
 		{
-			"CannabisPlus\fruits\data\cannabis_seedman_raw_blue_co.paa",
-			"CannabisPlus\fruits\data\cannabis_seedman_baked_blue_co.paa",
-			"CannabisPlus\fruits\data\cannabis_seedman_raw_blue_co.paa",
-			"CannabisPlus\fruits\data\cannabis_seedman_raw_blue_co.paa",
-			"CannabisPlus\fruits\data\cannabis_seedman_baked_blue_co.paa"
+			"CannabisPlus\fruits\data\cannabis_seedman_raw_blue_co.paa"
 		};
 		hiddenSelectionsMaterials[]=
 		{
-			"CannabisPlus\fruits\data\cannabis_seedman_raw.rvmat",
-			"CannabisPlus\fruits\data\cannabis_seedman_baked.rvmat",
-			"CannabisPlus\fruits\data\cannabis_seedman_raw.rvmat",
-			"CannabisPlus\fruits\data\cannabis_seedman_dried.rvmat",
-			"CannabisPlus\fruits\data\cannabis_seedman_burnt.rvmat",
-			"CannabisPlus\fruits\data\cannabis_seedman_rotten.rvmat"
-		};
-		class DamageSystem
-		{
-			class GlobalHealth
-			{
-				class Health
-				{
-					hitpoints=10;
-					healthLevels[]=
-					{
-						
-						{
-							1,
-							{}
-						},
-						
-						{
-							0.69999999,
-							{}
-						},
-						
-						{
-							0.5,
-							{}
-						},
-						
-						{
-							0.30000001,
-							{}
-						},
-						
-						{
-							0,
-							{}
-						}
-					};
-				};
-			};
+			"CannabisPlus\fruits\data\cannabis_seedman_raw.rvmat"
 		};
 	};
-	class CP_CannabisKush: Inventory_Base
+	class CP_CannabisKush: CP_CannabisBud
 	{
 		scope=2;
 		displayName="Purple Kush";
 		descriptionShort="Some cannabis bud.  Purple Kush variety.";
-		model="\dz\gear\food\cannabis_seedman.p3d";
-		rotationFlags=34;
-		lootCategory="Crafted";
-		weight=14;
-		itemSize[]={1,1};
-		hiddenSelections[]=
-		{
-			"cs_raw"
-		};
 		hiddenSelectionsTextures[]=
 		{
-			"CannabisPlus\fruits\data\cannabis_seedman_raw_kush_co.paa",
-			"CannabisPlus\fruits\data\cannabis_seedman_baked_kush_co.paa",
-			"CannabisPlus\fruits\data\cannabis_seedman_raw_kush_co.paa",
-			"CannabisPlus\fruits\data\cannabis_seedman_raw_kush_co.paa",
-			"CannabisPlus\fruits\data\cannabis_seedman_baked_kush_co.paa"
+			"CannabisPlus\fruits\data\cannabis_seedman_raw_kush_co.paa"
 		};
 		hiddenSelectionsMaterials[]=
 		{
-			"CannabisPlus\fruits\data\cannabis_seedman_raw.rvmat",
-			"CannabisPlus\fruits\data\cannabis_seedman_baked.rvmat",
-			"CannabisPlus\fruits\data\cannabis_seedman_raw.rvmat",
-			"CannabisPlus\fruits\data\cannabis_seedman_dried.rvmat",
-			"CannabisPlus\fruits\data\cannabis_seedman_burnt.rvmat",
-			"CannabisPlus\fruits\data\cannabis_seedman_rotten.rvmat"
-		};
-		class DamageSystem
-		{
-			class GlobalHealth
-			{
-				class Health
-				{
-					hitpoints=10;
-					healthLevels[]=
-					{
-						
-						{
-							1,
-							{}
-						},
-						
-						{
-							0.69999999,
-							{}
-						},
-						
-						{
-							0.5,
-							{}
-						},
-						
-						{
-							0.30000001,
-							{}
-						},
-						
-						{
-							0,
-							{}
-						}
-					};
-				};
-			};
+			"CannabisPlus\fruits\data\cannabis_seedman_raw.rvmat"
 		};
 	};
-	class CP_CannabisStardawg: Inventory_Base
+	class CP_CannabisStardawg: CP_CannabisBud
 	{
 		scope=2;
 		displayName="Stardawg";
 		descriptionShort="Some cannabis bud.  Stardawg variety.";
-		model="\dz\gear\food\cannabis_seedman.p3d";
-		rotationFlags=34;
-		lootCategory="Crafted";
-		weight=14;
-		itemSize[]={1,1};
-		hiddenSelections[]=
-		{
-			"cs_raw"
-		};
 		hiddenSelectionsTextures[]=
 		{
-			"CannabisPlus\fruits\data\cannabis_seedman_raw_Stardawg_co.paa",
-			"CannabisPlus\fruits\data\cannabis_seedman_baked_Stardawg_co.paa",
-			"CannabisPlus\fruits\data\cannabis_seedman_raw_Stardawg_co.paa",
-			"CannabisPlus\fruits\data\cannabis_seedman_raw_Stardawg_co.paa",
-			"CannabisPlus\fruits\data\cannabis_seedman_baked_Stardawg_co.paa"
+			"CannabisPlus\fruits\data\cannabis_seedman_raw_Stardawg_co.paa"
 		};
 		hiddenSelectionsMaterials[]=
 		{
-			"CannabisPlus\fruits\data\cannabis_seedman_raw.rvmat",
-			"CannabisPlus\fruits\data\cannabis_seedman_baked.rvmat",
-			"CannabisPlus\fruits\data\cannabis_seedman_raw.rvmat",
-			"CannabisPlus\fruits\data\cannabis_seedman_dried.rvmat",
-			"CannabisPlus\fruits\data\cannabis_seedman_burnt.rvmat",
-			"CannabisPlus\fruits\data\cannabis_seedman_rotten.rvmat"
-		};
-		class DamageSystem
-		{
-			class GlobalHealth
-			{
-				class Health
-				{
-					hitpoints=10;
-					healthLevels[]=
-					{
-						
-						{
-							1,
-							{}
-						},
-						
-						{
-							0.69999999,
-							{}
-						},
-						
-						{
-							0.5,
-							{}
-						},
-						
-						{
-							0.30000001,
-							{}
-						},
-						
-						{
-							0,
-							{}
-						}
-					};
-				};
-			};
+			"CannabisPlus\fruits\data\cannabis_seedman_raw.rvmat"
 		};
 	};
-	class CP_CannabisFuture: Inventory_Base
+	class CP_CannabisFuture: CP_CannabisBud
 	{
 		scope=2;
 		displayName="Future";
 		descriptionShort="Some cannabis bud.  Future variety.";
-		model="\dz\gear\food\cannabis_seedman.p3d";
-		rotationFlags=34;
-		lootCategory="Crafted";
-		weight=14;
-		itemSize[]={1,1};
-		hiddenSelections[]=
-		{
-			"cs_raw"
-		};
 		hiddenSelectionsTextures[]=
 		{
-			"CannabisPlus\fruits\data\cannabis_seedman_raw_future_co.paa",
-			"CannabisPlus\fruits\data\cannabis_seedman_raw_future_co.paa",
-			"CannabisPlus\fruits\data\cannabis_seedman_raw_future_co.paa",
-			"CannabisPlus\fruits\data\cannabis_seedman_raw_future_co.paa",
 			"CannabisPlus\fruits\data\cannabis_seedman_raw_future_co.paa"
 		};
 		hiddenSelectionsMaterials[]=
 		{
-			"CannabisPlus\fruits\data\cannabis_seedman_raw.rvmat",
-			"CannabisPlus\fruits\data\cannabis_seedman_baked.rvmat",
-			"CannabisPlus\fruits\data\cannabis_seedman_raw.rvmat",
-			"CannabisPlus\fruits\data\cannabis_seedman_dried.rvmat",
-			"CannabisPlus\fruits\data\cannabis_seedman_burnt.rvmat",
-			"CannabisPlus\fruits\data\cannabis_seedman_rotten.rvmat"
-		};
-		class DamageSystem
-		{
-			class GlobalHealth
-			{
-				class Health
-				{
-					hitpoints=10;
-					healthLevels[]=
-					{
-						
-						{
-							1,
-							{}
-						},
-						
-						{
-							0.69999999,
-							{}
-						},
-						
-						{
-							0.5,
-							{}
-						},
-						
-						{
-							0.30000001,
-							{}
-						},
-						
-						{
-							0,
-							{}
-						}
-					};
-				};
-			};
+			"CannabisPlus\fruits\data\cannabis_seedman_raw.rvmat"
 		};
 	};
-	class CP_CannabisS1: Inventory_Base
+	class CP_CannabisS1: CP_CannabisBud
 	{
 		scope=2;
 		displayName="S1";
 		descriptionShort="Some cannabis bud.  S1 variety.  Sponsored by StevesGoods.com";
-		model="\dz\gear\food\cannabis_seedman.p3d";
-		rotationFlags=34;
-		lootCategory="Crafted";
-		weight=14;
-		itemSize[]={1,1};
-		hiddenSelections[]=
-		{
-			"cs_raw"
-		};
 		hiddenSelectionsTextures[]=
 		{
-			"CannabisPlus\fruits\data\cannabis_seedman_raw_S1_co.paa",
-			"CannabisPlus\fruits\data\cannabis_seedman_baked_skunk_co.paa",
-			"CannabisPlus\fruits\data\cannabis_seedman_raw_S1_co.paa",
-			"CannabisPlus\fruits\data\cannabis_seedman_raw_S1_co.paa",
-			"CannabisPlus\fruits\data\cannabis_seedman_baked_skunk_co.paa"
+			"CannabisPlus\fruits\data\cannabis_seedman_raw_S1_co.paa"
 		};
 		hiddenSelectionsMaterials[]=
 		{
-			"CannabisPlus\fruits\data\cannabis_seedman_raw.rvmat",
-			"CannabisPlus\fruits\data\cannabis_seedman_baked.rvmat",
-			"CannabisPlus\fruits\data\cannabis_seedman_raw.rvmat",
-			"CannabisPlus\fruits\data\cannabis_seedman_dried.rvmat",
-			"CannabisPlus\fruits\data\cannabis_seedman_burnt.rvmat",
-			"CannabisPlus\fruits\data\cannabis_seedman_rotten.rvmat"
-		};
-		class DamageSystem
-		{
-			class GlobalHealth
-			{
-				class Health
-				{
-					hitpoints=10;
-					healthLevels[]=
-					{
-						
-						{
-							1,
-							{}
-						},
-						
-						{
-							0.69999999,
-							{}
-						},
-						
-						{
-							0.5,
-							{}
-						},
-						
-						{
-							0.30000001,
-							{}
-						},
-						
-						{
-							0,
-							{}
-						}
-					};
-				};
-			};
+			"CannabisPlus\fruits\data\cannabis_seedman_raw.rvmat"
 		};
 	};
-	class CP_CannabisNomad: Inventory_Base
+	class CP_CannabisNomad: CP_CannabisBud
 	{
 		scope=2;
 		displayName="Nomad";
 		descriptionShort="Some cannabis bud.  Nomad variety.";
-		model="\dz\gear\food\cannabis_seedman.p3d";
-		rotationFlags=34;
-		lootCategory="Crafted";
-		weight=14;
-		itemSize[]={1,1};
-		hiddenSelections[]=
-		{
-			"cs_raw"
-		};
+
 		hiddenSelectionsTextures[]=
 		{
-			"CannabisPlus\fruits\data\cannabis_seedman_raw_Nomad_co.paa",
-			"CannabisPlus\fruits\data\cannabis_seedman_baked_skunk_co.paa",
-			"CannabisPlus\fruits\data\cannabis_seedman_raw_Nomad_co.paa",
-			"CannabisPlus\fruits\data\cannabis_seedman_raw_Nomad_co.paa",
-			"CannabisPlus\fruits\data\cannabis_seedman_baked_skunk_co.paa"
+			"CannabisPlus\fruits\data\cannabis_seedman_raw_Nomad_co.paa"
 		};
 		hiddenSelectionsMaterials[]=
 		{
-			"CannabisPlus\fruits\data\cannabis_seedman_raw.rvmat",
-			"CannabisPlus\fruits\data\cannabis_seedman_baked.rvmat",
-			"CannabisPlus\fruits\data\cannabis_seedman_raw.rvmat",
-			"CannabisPlus\fruits\data\cannabis_seedman_dried.rvmat",
-			"CannabisPlus\fruits\data\cannabis_seedman_burnt.rvmat",
-			"CannabisPlus\fruits\data\cannabis_seedman_rotten.rvmat"
-		};
-		class DamageSystem
-		{
-			class GlobalHealth
-			{
-				class Health
-				{
-					hitpoints=10;
-					healthLevels[]=
-					{
-						
-						{
-							1,
-							{}
-						},
-						
-						{
-							0.69999999,
-							{}
-						},
-						
-						{
-							0.5,
-							{}
-						},
-						
-						{
-							0.30000001,
-							{}
-						},
-						
-						{
-							0,
-							{}
-						}
-					};
-				};
-			};
+			"CannabisPlus\fruits\data\cannabis_seedman_raw.rvmat"
 		};
 	};
-	class CP_CannabisBlackFrost: Inventory_Base
+	class CP_CannabisBlackFrost: CP_CannabisBud
 	{
 		scope=2;
 		displayName="Black Frost";
 		descriptionShort="Some cannabis bud.  Black Frost variety.";
-		model="\dz\gear\food\cannabis_seedman.p3d";
-		rotationFlags=34;
-		lootCategory="Crafted";
-		weight=14;
-		itemSize[]={1,1};
-		hiddenSelections[]=
-		{
-			"cs_raw"
-		};
 		hiddenSelectionsTextures[]=
 		{
-			"CannabisPlus\fruits\data\cannabis_seedman_raw_BlackFrost_co.paa",
-			"CannabisPlus\fruits\data\cannabis_seedman_baked_skunk_co.paa",
-			"CannabisPlus\fruits\data\cannabis_seedman_raw_BlackFrost_co.paa",
-			"CannabisPlus\fruits\data\cannabis_seedman_raw_BlackFrost_co.paa",
-			"CannabisPlus\fruits\data\cannabis_seedman_baked_skunk_co.paa"
+			"CannabisPlus\fruits\data\cannabis_seedman_raw_BlackFrost_co.paa"
 		};
 		hiddenSelectionsMaterials[]=
 		{
-			"CannabisPlus\fruits\data\cannabis_seedman_raw.rvmat",
-			"CannabisPlus\fruits\data\cannabis_seedman_baked.rvmat",
-			"CannabisPlus\fruits\data\cannabis_seedman_raw.rvmat",
-			"CannabisPlus\fruits\data\cannabis_seedman_dried.rvmat",
-			"CannabisPlus\fruits\data\cannabis_seedman_burnt.rvmat",
-			"CannabisPlus\fruits\data\cannabis_seedman_rotten.rvmat"
-		};
-		class DamageSystem
-		{
-			class GlobalHealth
-			{
-				class Health
-				{
-					hitpoints=10;
-					healthLevels[]=
-					{
-						
-						{
-							1,
-							{}
-						},
-						
-						{
-							0.69999999,
-							{}
-						},
-						
-						{
-							0.5,
-							{}
-						},
-						
-						{
-							0.30000001,
-							{}
-						},
-						
-						{
-							0,
-							{}
-						}
-					};
-				};
-			};
+			"CannabisPlus\fruits\data\cannabis_seedman_raw.rvmat"
 		};
 	};
-	class CP_Tobacco: Inventory_Base
+	class CP_Tobacco: CP_CannabisBud
 	{
 		scope=2;
 		displayName="Tobacco Leaf";

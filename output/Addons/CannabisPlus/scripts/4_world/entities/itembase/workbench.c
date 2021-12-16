@@ -178,7 +178,7 @@ class CP_Workbench extends ItemBase
 	void CP_Workbench() 
 	{
 		RegisterNetSyncVariableBool("m_IsPlaceSound");
-		RegisterNetSyncVariableBool("m_UseCPWorkbench")
+		//RegisterNetSyncVariableBool("m_UseCPWorkbench")
 	}
 	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 	// Entity entry Intilize
@@ -186,7 +186,7 @@ class CP_Workbench extends ItemBase
 	override void EEInit()
 	{
       super.EEInit();
-	  RegisterNetSyncVariableInt("m_UseCPWorkbench");
+	 // RegisterNetSyncVariableInt("m_UseCPWorkbench");
     };
 
 	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -382,7 +382,7 @@ class CP_Workbench extends ItemBase
 		AddAction(ActionPlugIn);
 		AddAction(ActionTurnOnWhileOnGround);
 		AddAction(ActionTurnOffWhileOnGround);
-		AddAction(ActionUsePlasticWrapper);
+		//AddAction(ActionUsePlasticWrapper);
 	}
 
 }

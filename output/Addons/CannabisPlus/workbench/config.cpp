@@ -44,14 +44,7 @@ class CfgSlots
           displayName="Bags";
           ghostIcon="missing";
           stackMax=25;
-    };
-    class Slot_Bricks
-    {
-          name="Bricks";
-          displayName="Bricks";
-          ghostIcon="missing";
-          stackMax=5;
-    };	  
+    };  
 };   
 class CfgNonAIVehicles
 {
@@ -110,13 +103,7 @@ class CfgVehicles
 		model="\CannabisPlus\workbench\workbench.p3d";
 		weight=50000;
 		itemSize[]={6,6};
-		varQuantityDestroyOnMin=1;
 		itemBehaviour=0;
-		canBeSplit=1;
-		varQuantityInit=1;
-		varQuantityMin=0;
-		varQuantityMax=1;
-		varStackMax=1;		
 		physLayer="item_heavy";
 		itemsCargoSize[] = {10,4};
 		placement = "ForceSlopeOnTerrain";
@@ -131,16 +118,13 @@ class CfgVehicles
 		attachments[]=
 		{
 			"Wrapper",
-			"Bagger",
-			"BudsBuds",
-			"CarBattery",			  
-			"CP_CannabisBags",
-			"Bricks"
+			"Bagger"
 		};
 		class EnergyManager
 		{
 			hasIcon=1;
-			energyUsagePerSecond=0.85;
+			autoSwitchOff=1;
+			energyUsagePerSecond=0.0085;
 			energyStorageMax=0;
 			isPassiveDevice=0;
 			cordTextureFile="DZ\gear\camping\Data\plug_yellow_CO.paa";

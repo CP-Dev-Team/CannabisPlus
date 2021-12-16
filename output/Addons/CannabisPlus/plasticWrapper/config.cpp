@@ -19,21 +19,23 @@ class CfgSlots
 { 
     class Slot_CP_Cannabus_Buds
     {
-          name="CP_Cannabus_Buds";
-          displayName="Buds Storage";
-          ghostIcon="set:dayz_inventory image:plant";
+        name="CP_Cannabus_Buds";
+        displayName="Buds Storage";
+        ghostIcon="set:dayz_inventory image:plant";
+		stackMax=100;
     };
 	class Slot_CP_Cannabus_Bricks
     {
-          name="CP_Cannabus_Bricks";
-          displayName="Bricks Storage";
-          ghostIcon="set:dayz_inventory image:plant";
+        name="CP_Cannabus_Bricks";
+        displayName="Bricks Storage";
+        ghostIcon="set:dayz_inventory image:plant";
+		stackMax=25;
     };
     class Slot_CP_PlasticRoll
     {
-          name="CP_PlasticRoll";
-          displayName="Roll";
-          ghostIcon="missing";
+        name="CP_PlasticRoll";
+        displayName="Roll";
+        ghostIcon="missing";
     };
 };
 //class CfgNonAIVehicles
@@ -62,13 +64,7 @@ class CfgVehicles
 		model="\CannabisPlus\plasticWrapper\plasticWrapper.p3d";
 		weight=200;
 		itemSize[]={4,4};
-		varQuantityDestroyOnMin=1;
 		itemBehaviour=0;
-		canBeSplit=1;
-		varQuantityInit=1;
-		varQuantityMin=0;
-		varQuantityMax=1;
-		varStackMax=1;
 		inventorySlot[]=
 		{
 			"Wrapper"
@@ -87,16 +83,7 @@ class CfgVehicles
 		hiddenSelectionsTextures[]=
 		{
 			"CannabisPlus\plasticWrapper\data\PlasticWrapper_co.paa"
-		};
-		class EnergyManager
-		{
-			hasIcon=1;
-			energyUsagePerSecond=0.85;
-			energyStorageMax=0;
-			isPassiveDevice=1;
-			plugType=2;
-			attachmentAction=1;
-		};		
+		};	
 	};
 	
 };

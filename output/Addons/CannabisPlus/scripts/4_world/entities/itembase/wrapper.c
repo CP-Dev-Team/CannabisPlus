@@ -20,11 +20,13 @@ class CP_PlasticWrapper extends ItemBase
     };
 	string GetWrapperTendancyCreationType()
 	{
-        return "CannabisBrickSkunk";
+
+		return "Skunk";
+
     };
-	CP_CannabisSkunk GetCannibusBud()
+	CP_CannabisBud GetCannibusBud()
 	{
-		return CP_CannabisSkunk.Cast( GetAttachmentByType( CP_CannabisSkunk ) );
+		return CP_CannabisBud.Cast( GetAttachmentByType( CP_CannabisBud ) );
 	};
 	
 	void CreationWrapperItems(string CreationType)
@@ -32,16 +34,24 @@ class CP_PlasticWrapper extends ItemBase
 		Print ("trigger");
 
 		string thingName =  FindAttachmentBySlotName("CP_Cannabus_Buds").GetType();
+		ItemBase CannabisBud = GetCannibusBud();
+		
 		
 		Print(thingName);
 				
 		if (thingName == "CP_CannabisSkunk" )
 		{
+			//m_UseWrapper = 1;
 			GetGame().ObjectDelete( GetCannibusBud() );
-			GetInventory().CreateAttachment("CP_" + CreationType ); 
+			CP_CannabisBrickBase Brick = CP_CannabisBrickBase.Cast(GetInventory().CreateAttachment("CP_CannabisBrick" + CreationType ) );
+			Brick.AddQuantity(1);
+			AddHealth("","Health",-1);
+			CannabisBud.AddQuantity(-20);			
 		};
 	
 	};
+
+	
 	int IsOccupiedandPowered()
 	{		
 		if(HasEnergyManager() && GetCompEM().IsWorking())
@@ -53,13 +63,7 @@ class CP_PlasticWrapper extends ItemBase
 	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 	// 
 	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-	override bool CanPutAsAttachment( EntityAI parent ) 
-	{
-		
-		if (!super.CanPutAsAttachment(parent))
-			return false;		
-		return true;
-	}
+
 
 	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 	// constructor of CP_PlasticWrapper class
@@ -69,7 +73,7 @@ class CP_PlasticWrapper extends ItemBase
 		super.SetActions();
 		AddAction(ActionAttach);
 		AddAction(ActionDetach);
-		//AddAction(ActionUsePlasticWrapper);
+		AddAction(ActionUsePlasticWrapper);
 		//AddAction(ActionChangeDrillPressAction);
 	}
 }      
