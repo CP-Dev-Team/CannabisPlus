@@ -197,6 +197,10 @@ class CfgVehicles
 		{
 			"CannabisPlus\seeds\data\cannabis_seeds_pack_skunk_co.paa"
 		};
+		hiddenSelectionsMaterials[]=
+		{
+			"CannabisPlus\seeds\data\skunk_seeds.rvmat"
+		};
 		class DamageSystem
 		{
 			class GlobalHealth
@@ -211,7 +215,7 @@ class CfgVehicles
 							1,
 							
 							{
-								"DZ\gear\cultivation\data\cannabis_seeds.rvmat"
+								"CannabisPlus\seeds\data\skunk_seeds.rvmat"
 							}
 						},
 						
@@ -219,7 +223,7 @@ class CfgVehicles
 							0.69999999,
 							
 							{
-								"DZ\gear\cultivation\data\cannabis_seeds.rvmat"
+								"CannabisPlus\seeds\data\skunk_seeds.rvmat"
 							}
 						},
 						
@@ -305,6 +309,10 @@ class CfgVehicles
 		{
 			"CannabisPlus\seeds\data\cannabis_seeds_pack_blue_co.paa"
 		};
+		hiddenSelectionsMaterials[]=
+		{
+			"CannabisPlus\seeds\data\blue_seeds.rvmat"
+		};
 		class DamageSystem
 		{
 			class GlobalHealth
@@ -319,7 +327,7 @@ class CfgVehicles
 							1,
 							
 							{
-								"DZ\gear\cultivation\data\cannabis_seeds.rvmat"
+								"CannabisPlus\seeds\data\blue_seeds.rvmat"
 							}
 						},
 						
@@ -327,7 +335,7 @@ class CfgVehicles
 							0.69999999,
 							
 							{
-								"DZ\gear\cultivation\data\cannabis_seeds.rvmat"
+								"CannabisPlus\seeds\data\blue_seeds.rvmat"
 							}
 						},
 						
@@ -413,6 +421,10 @@ class CfgVehicles
 		{
 			"CannabisPlus\seeds\data\cannabis_seeds_pack_kush_co.paa"
 		};
+		hiddenSelectionsMaterials[]=
+		{
+			"CannabisPlus\seeds\data\kush_seeds.rvmat"
+		};
 		class DamageSystem
 		{
 			class GlobalHealth
@@ -427,7 +439,7 @@ class CfgVehicles
 							1,
 							
 							{
-								"DZ\gear\cultivation\data\cannabis_seeds.rvmat"
+								"CannabisPlus\seeds\data\kush_seeds.rvmat"
 							}
 						},
 						
@@ -435,7 +447,7 @@ class CfgVehicles
 							0.69999999,
 							
 							{
-								"DZ\gear\cultivation\data\cannabis_seeds.rvmat"
+								"CannabisPlus\seeds\data\kush_seeds.rvmat"
 							}
 						},
 						
@@ -521,6 +533,10 @@ class CfgVehicles
 		{
 			"CannabisPlus\seeds\data\cannabis_seeds_pack_stardawg_co.paa"
 		};
+		hiddenSelectionsMaterials[]=
+		{
+			"CannabisPlus\seeds\data\stardawg_seeds.rvmat"
+		};
 		class DamageSystem
 		{
 			class GlobalHealth
@@ -535,7 +551,7 @@ class CfgVehicles
 							1,
 							
 							{
-								"DZ\gear\cultivation\data\cannabis_seeds.rvmat"
+								"CannabisPlus\seeds\data\stardawg_seeds.rvmat"
 							}
 						},
 						
@@ -543,7 +559,7 @@ class CfgVehicles
 							0.69999999,
 							
 							{
-								"DZ\gear\cultivation\data\cannabis_seeds.rvmat"
+								"CannabisPlus\seeds\data\stardawg_seeds.rvmat"
 							}
 						},
 						
@@ -629,6 +645,10 @@ class CfgVehicles
 		{
 			"CannabisPlus\seeds\data\cannabis_seeds_pack_Future_co.paa"
 		};
+		hiddenSelectionsMaterials[]=
+		{
+			"CannabisPlus\seeds\data\future_seeds.rvmat"
+		};
 		class DamageSystem
 		{
 			class GlobalHealth
@@ -643,7 +663,7 @@ class CfgVehicles
 							1,
 							
 							{
-								"DZ\gear\cultivation\data\cannabis_seeds.rvmat"
+								"CannabisPlus\seeds\data\future_seeds.rvmat"
 							}
 						},
 						
@@ -651,7 +671,7 @@ class CfgVehicles
 							0.69999999,
 							
 							{
-								"DZ\gear\cultivation\data\cannabis_seeds.rvmat"
+								"CannabisPlus\seeds\data\future_seeds.rvmat"
 							}
 						},
 						
@@ -737,6 +757,10 @@ class CfgVehicles
 		{
 			"CannabisPlus\seeds\data\cannabis_seeds_pack_s1_co.paa"
 		};
+		hiddenSelectionsMaterials[]=
+		{
+			"CannabisPlus\seeds\data\s1_seeds.rvmat"
+		};
 		class DamageSystem
 		{
 			class GlobalHealth
@@ -751,7 +775,7 @@ class CfgVehicles
 							1,
 							
 							{
-								"DZ\gear\cultivation\data\cannabis_seeds.rvmat"
+								"CannabisPlus\seeds\data\s1_seeds.rvmat"
 							}
 						},
 						
@@ -759,7 +783,7 @@ class CfgVehicles
 							0.69999999,
 							
 							{
-								"DZ\gear\cultivation\data\cannabis_seeds.rvmat"
+								"CannabisPlus\seeds\data\s1_seeds.rvmat"
 							}
 						},
 						
@@ -845,6 +869,10 @@ class CfgVehicles
 		{
 			"CannabisPlus\seeds\data\cannabis_seeds_pack_nomad_co.paa"
 		};
+		hiddenSelectionsMaterials[]=
+		{
+			"CannabisPlus\seeds\data\nomad_seeds.rvmat"
+		};
 		class DamageSystem
 		{
 			class GlobalHealth
@@ -859,7 +887,7 @@ class CfgVehicles
 							1,
 							
 							{
-								"DZ\gear\cultivation\data\cannabis_seeds.rvmat"
+								"CannabisPlus\seeds\data\nomad_seeds.rvmat"
 							}
 						},
 						
@@ -867,7 +895,7 @@ class CfgVehicles
 							0.69999999,
 							
 							{
-								"DZ\gear\cultivation\data\cannabis_seeds.rvmat"
+								"CannabisPlus\seeds\data\nomad_seeds.rvmat"
 							}
 						},
 						
@@ -953,6 +981,10 @@ class CfgVehicles
 		{
 			"CannabisPlus\seeds\data\cannabis_seeds_pack_blackfrost_co.paa"
 		};
+		hiddenSelectionsMaterials[]=
+		{
+			"CannabisPlus\seeds\data\blackfrost_seeds.rvmat"
+		};
 		class DamageSystem
 		{
 			class GlobalHealth
@@ -967,7 +999,7 @@ class CfgVehicles
 							1,
 							
 							{
-								"DZ\gear\cultivation\data\cannabis_seeds.rvmat"
+								"CannabisPlus\seeds\data\blackfrost_seeds.rvmat"
 							}
 						},
 						
@@ -975,7 +1007,7 @@ class CfgVehicles
 							0.69999999,
 							
 							{
-								"DZ\gear\cultivation\data\cannabis_seeds.rvmat"
+								"CannabisPlus\seeds\data\blackfrost_seeds.rvmat"
 							}
 						},
 						
@@ -1061,6 +1093,10 @@ class CfgVehicles
 		{
 			"CannabisPlus\seeds\data\tobacco_seeds_pack_co.paa"
 		};
+		hiddenSelectionsMaterials[]=
+		{
+			"CannabisPlus\seeds\data\tobacco_seeds.rvmat"
+		};
 		class DamageSystem
 		{
 			class GlobalHealth
@@ -1075,7 +1111,7 @@ class CfgVehicles
 							1,
 							
 							{
-								"DZ\gear\cultivation\data\zucchini_seeds.rvmat"
+								"CannabisPlus\seeds\data\tobacco_seeds.rvmat"
 							}
 						},
 						
@@ -1083,7 +1119,7 @@ class CfgVehicles
 							0.69999999,
 							
 							{
-								"DZ\gear\cultivation\data\zucchini_seeds.rvmat"
+								"CannabisPlus\seeds\data\tobacco_seeds.rvmat"
 							}
 						},
 						
