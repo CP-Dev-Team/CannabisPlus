@@ -25,156 +25,71 @@ class CfgPatches
 class CfgVehicles
 {
 	class Inventory_Base;
-	class CP_JointSkunk: Inventory_Base
+	class CP_Joint_Base: Inventory_Base
+	{
+		scope=0;
+		displayName="A Joint";
+		descriptionShort="Have a puff and see!";
+		model="CannabisPlus\joints\CP_joint.p3d";
+		inventorySlot="Ingredient";
+		rotationFlags=16;
+		weight=30;
+		itemSize[]={1,2};
+		hiddenSelections[]=
+		{
+			"camo"
+		};
+		hiddenSelectionsTextures[]=
+		{
+			"CannabisPlus\joints\data\joint_co.paa"
+		};
+	};
+	class CP_JointSkunk: CP_Joint_Base
 	{
 		scope=2;
 		displayName="Skunk Joint";
 		descriptionShort="A joint made out of finest Skunk weed";
-		model="\CannabisPlus\joints\joint_new.p3d";
-		inventorySlot="Ingredient";
-		rotationFlags=16;
-		weight=30;
-		itemSize[]={1,2};
-		hiddenSelections[]=
-		{
-			"zbytek"
-		};
-		hiddenSelectionsTextures[]=
-		{
-			"CannabisPlus\joints\data\Joint_New.paa"
-		};
 	};
-	class CP_JointBlue: Inventory_Base
+	class CP_JointBlue: CP_Joint_Base
 	{
 		scope=2;
 		displayName="Blue God Joint";
 		descriptionShort="A joint made out of finest Blue God weed";
-		model="\CannabisPlus\joints\joint_new.p3d";
-		inventorySlot="Ingredient";
-		rotationFlags=16;
-		weight=30;
-		itemSize[]={1,2};
-		hiddenSelections[]=
-		{
-			"zbytek"
-		};
-		hiddenSelectionsTextures[]=
-		{
-			"CannabisPlus\joints\data\Joint_New.paa"
-		};
 	};
-	class CP_JointKush: Inventory_Base
+	class CP_JointKush: CP_Joint_Base
 	{
 		scope=2;
 		displayName="Purple Kush Joint";
 		descriptionShort="A joint made out of finest Purple Kush weed";
-		model="\CannabisPlus\joints\joint_new.p3d";
-		inventorySlot="Ingredient";
-		rotationFlags=16;
-		weight=30;
-		itemSize[]={1,2};
-		hiddenSelections[]=
-		{
-			"zbytek"
-		};
-		hiddenSelectionsTextures[]=
-		{
-			"CannabisPlus\joints\data\Joint_New.paa"
-		};
 	};
-	class CP_JointStardawg: Inventory_Base
+	class CP_JointStardawg: CP_Joint_Base
 	{
 		scope=2;
 		displayName="Stardawg Joint";
 		descriptionShort="A joint made out of finest Stardawg weed";
-		model="\CannabisPlus\joints\joint_new.p3d";
-		inventorySlot="Ingredient";
-		rotationFlags=16;
-		weight=30;
-		itemSize[]={1,2};
-		hiddenSelections[]=
-		{
-			"zbytek"
-		};
-		hiddenSelectionsTextures[]=
-		{
-			"CannabisPlus\joints\data\Joint_New.paa"
-		};
 	};
-	class CP_JointFuture: Inventory_Base
+	class CP_JointFuture: CP_Joint_Base
 	{
 		scope=2;
 		displayName="Future Joint";
 		descriptionShort="A joint made out of finest Future weed";
-		model="\CannabisPlus\joints\joint_new.p3d";
-		inventorySlot="Ingredient";
-		rotationFlags=16;
-		weight=30;
-		itemSize[]={1,2};
-		hiddenSelections[]=
-		{
-			"zbytek"
-		};
-		hiddenSelectionsTextures[]=
-		{
-			"CannabisPlus\joints\data\Joint_New.paa"
-		};
 	};
-	class CP_JointS1: Inventory_Base
+	class CP_JointS1: CP_Joint_Base
 	{
 		scope=2;
 		displayName="S1 Joint";
 		descriptionShort="A joint made out of the finest S1 hemp.  Sponsored by StevesGoods.com";
-		model="\CannabisPlus\joints\joint_new.p3d";
-		inventorySlot="Ingredient";
-		rotationFlags=16;
-		weight=30;
-		itemSize[]={1,2};
-		hiddenSelections[]=
-		{
-			"zbytek"
-		};
-		hiddenSelectionsTextures[]=
-		{
-			"CannabisPlus\joints\data\Joint_New.paa"
-		};
 	};
-	class CP_JointNomad: Inventory_Base
+	class CP_JointNomad: CP_Joint_Base
 	{
 		scope=2;
 		displayName="Nomad Joint";
 		descriptionShort="A joint made out of finest Nomad weed";
-		model="\CannabisPlus\joints\joint_new.p3d";
-		inventorySlot="Ingredient";
-		rotationFlags=16;
-		weight=30;
-		itemSize[]={1,2};
-		hiddenSelections[]=
-		{
-			"zbytek"
-		};
-		hiddenSelectionsTextures[]=
-		{
-			"CannabisPlus\joints\data\Joint_New.paa"
-		};
 	};
-	class CP_JointBlackFrost: Inventory_Base
+	class CP_JointBlackFrost: CP_Joint_Base
 	{
 		scope=2;
 		displayName="BlackFrost Joint";
 		descriptionShort="A joint made out of finest BlackFrost weed";
-		model="\CannabisPlus\joints\joint_new.p3d";
-		inventorySlot="Ingredient";
-		rotationFlags=16;
-		weight=30;
-		itemSize[]={1,2};
-		hiddenSelections[]=
-		{
-			"zbytek"
-		};
-		hiddenSelectionsTextures[]=
-		{
-			"CannabisPlus\joints\data\Joint_New.paa"
-		};
 	};
 };
