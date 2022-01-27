@@ -5,7 +5,7 @@ modded class ActionConstructor {
 	override void RegisterActions(TTypenameArray actions) {		
 		super.RegisterActions(actions);
 		
-        	actions.Insert(ActionSmokeJointSelf);
+        actions.Insert(ActionSmokeJointSelf);
 		actions.Insert(ActionSmokeCigSelf); 
 		actions.Insert(ActionUnpackCigaretteBox);
 		actions.Insert(ActionApplyCream);
@@ -21,5 +21,5 @@ modded class ActionConstructor {
 		//actions.Insert(ActionTurnOffWrapper);
 		//WorkBench actions
 		actions.Insert(ActionUsePlasticWrapper);
-	}
+	};
 };
