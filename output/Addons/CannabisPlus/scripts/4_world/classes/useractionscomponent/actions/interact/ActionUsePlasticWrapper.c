@@ -10,7 +10,7 @@ class ActionUsePlasticWrapper: ActionInteractBase
     override string GetText()
 	{
 		
-        return TendancyText;
+        return  TendancyText;
     };
 
 	override bool ActionCondition( PlayerBase player, ActionTarget target, ItemBase item )
@@ -19,23 +19,24 @@ class ActionUsePlasticWrapper: ActionInteractBase
 		EntityAI target_entity = EntityAI.Cast( target.GetObject() );
         Object target_object = target.GetObject();
 		
-		CP_PlasticWrapper Wrapper = CP_PlasticWrapper.Cast( target_object );
-		CP_Workbench parent = CP_Workbench.Cast(Wrapper.GetParent());
-		//CP_CannabisBud Buds = CP_CannabisBud.Cast( target_entity.GetAttachmentByType(CP_CannabisBud) );
+		CP_Workbench Bench = CP_Workbench.Cast( target_object );
+		//CP_Workbench parent = CP_Workbench.Cast(Wrapper.GetParent());
+		CP_CannabisBud Buds = CP_CannabisBud.Cast( target_entity.GetAttachmentByType(CP_CannabisBud) );
 		
-		if (Wrapper && parent.GetCompEM().IsWorking())
+		if (Bench && Bench.IsPowered() && Buds.GetQuantity() >= 20 )
 		{
-			TendancyText = Wrapper.GetWrapperTendancyText()
+			TendancyText = Bench.GetBrickTendancyText()
 			return true;
 		}
 		return false;
 	};
 
-	override void OnExecuteServer( ActionData action_data )
+	override void OnStartServer( ActionData action_data )
 	{
 		CP_Workbench Bench = CP_Workbench.Cast( action_data.m_Target.GetObject() );
 		
-		Bench.CreationWrapperItems(Bench.GetWrapperTendancyCreationType())
+		//Bench.CreateBricks(Bench.GetWrapperTendancyCreationType())
+		Bench.CreateBricks();
 
 	};
 };

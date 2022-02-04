@@ -181,7 +181,6 @@ class CP_Workbench extends ItemBase
 	{
 		RegisterNetSyncVariableBool("m_IsPlaceSound");
 		//RegisterNetSyncVariableBool("m_UseCPWorkbench")
-			  m_UseCPWorkbench = 0;// remove me
 	}
 	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 	// Entity entry Intilize
@@ -210,11 +209,11 @@ class CP_Workbench extends ItemBase
 	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 	// Start of Step based Variables to change outcome and Text shown for actions. not complicated but very handy
 	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-	string GetWrapperTendancyText()
+	string GetBrickTendancyText()
 	{
         if (m_UseCPWorkbench == 0)
 		{
-          return "Wrap Brick";
+          return "Create Skunk Brick";
         }
 		if (m_UseCPWorkbench == 1)
 		{
@@ -223,10 +222,18 @@ class CP_Workbench extends ItemBase
         return ""
     };
 	
-	string GetWrapperTendancyCreationType()
+
+	string CannibusBudAttachedCreationType(string bud)
 	{
-		return "Skunk";
-    };
+		switch(bud)
+		{
+			case "CP_CannabisSkunk":
+				return "Skunk";
+			case "CP_CannabisBlue":
+				return "Blue";
+		}
+		return "";
+	}
 	
 	void StepWrapperTendancy()
 	{
@@ -243,12 +250,15 @@ class CP_Workbench extends ItemBase
       return m_UseCPWorkbench;
     };
 	
-	CP_CannabisSkunk GetCannibusBud()
+	CP_CannabisBud GetCannibusBud()
 	{
-		return CP_CannabisSkunk.Cast( GetAttachmentByType( CP_CannabisSkunk ) );
+		return CP_CannabisBud.Cast( GetAttachmentByType( CP_CannabisBud ) );
 	};
 	
-	void CreationWrapperItems(string CreationType)
+	
+	
+/*
+	void CreateBricks()//string CreationType
 	{
 		Print ("trigger");
 
@@ -269,6 +279,18 @@ class CP_Workbench extends ItemBase
 		};
 	
 	};
+*/
+	void CreateBricks(string CreationType)
+	{
+		//string thingName =  FindAttachmentBySlotName("CP_Cannabus_Buds").GetType();
+		ItemBase CannabisBud = GetCannibusBud();
+		
+		GetGame().ObjectDelete( GetCannibusBud() );
+		CP_CannabisBrickBase Brick = CP_CannabisBrickBase.Cast(GetInventory().CreateAttachment("CP_CannabisBrick" + CreationType)); 
+		Brick.AddQuantity(1);
+		CannabisBud.AddQuantity(-20);            
+	};
+	
 	bool IsPowered()
 	{		
 		if(HasEnergyManager() && GetCompEM().IsWorking())
@@ -406,7 +428,7 @@ class CP_Workbench extends ItemBase
 		AddAction(ActionPlugIn);
 		AddAction(ActionTurnOnWhileOnGround);
 		AddAction(ActionTurnOffWhileOnGround);
-		//AddAction(ActionUsePlasticWrapper);
+		AddAction(ActionUsePlasticWrapper);
 	}
 
 }

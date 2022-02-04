@@ -5,14 +5,14 @@
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 class CP_PlasticWrapper extends ItemBase 
 {
+	protected ItemBase 			m_Parent;
 	int m_UseWrapper = 0;
 	//Defines a int used for action switching
 	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 	// constructor of CP_PlasticWrapper class
 	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 	void CP_PlasticWrapper()
-	{
-		
+	{		
 	}
 	string GetWrapperTendancyText()
 	{
@@ -51,8 +51,16 @@ class CP_PlasticWrapper extends ItemBase
 	
 	};
 
+	bool IsAttachedToPoweredItem()
+	{
+		if(m_Parent.GetCompEM().IsWorking())
+			return true;
+		return false;
+		
+	}
 	
-	int IsOccupiedandPowered()
+	
+	bool IsOccupiedandPowered()
 	{		
 		if(HasEnergyManager() && GetCompEM().IsWorking())
 		{
