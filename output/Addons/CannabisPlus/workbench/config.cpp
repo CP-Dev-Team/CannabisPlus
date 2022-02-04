@@ -58,7 +58,7 @@ class CfgNonAIVehicles
 	class ProxyVacuumSealer : ProxyAttachment
     {
 		inventorySlot="Bagger";
-		model="CannabisPlus\plasticWrapper\VacuumSealer.p3d";
+		model="CannabisPlus\bagger\VacuumSealer.p3d";
     };
 };
 class CfgVehicles
@@ -93,7 +93,7 @@ class CfgVehicles
 		{
 			"CannabisPlus\boxes\data\Caja_Color.paa"
 		};
-      };
+    };
 	  
       class CP_Workbench : Inventory_Base
       {
@@ -118,7 +118,36 @@ class CfgVehicles
 		attachments[]=
 		{
 			"Wrapper",
-			"Bagger"
+			"Bagger",
+			"CP_PlasticRoll",
+			"CP_Cannabus_Buds",
+			"CP_Cannabus_Bricks"
+		};
+		class GUIInventoryAttachmentsProps
+		{
+			class CP_Machines
+			{
+				name="Machines";
+				description="";
+				attachmentSlots[]=
+				{
+					"Wrapper",
+					"Bagger"
+				};
+				icon="";
+			};
+			class CP_Wrapper
+			{
+				name="Wrapper";
+				description="";
+				attachmentSlots[]=
+				{
+					"CP_PlasticRoll",
+					"CP_Cannabus_Buds",
+					"CP_Cannabus_Bricks"
+				};
+				icon="set:BuildingFortIcons image:WindowBarricade";
+			};
 		};
 		class EnergyManager
 		{

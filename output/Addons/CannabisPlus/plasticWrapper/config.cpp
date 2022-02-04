@@ -69,12 +69,6 @@ class CfgVehicles
 		{
 			"Wrapper"
 		};
-		attachments[]=
-		{
-			"CP_PlasticRoll",
-			"CP_Cannabus_Buds",
-			"CP_Cannabus_Bricks"
-		};
 		physLayer="item_small";
 		hiddenSelections[]=
 		{

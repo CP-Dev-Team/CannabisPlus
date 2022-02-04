@@ -21,9 +21,9 @@ class ActionUsePlasticWrapper: ActionInteractBase
 		
 		CP_PlasticWrapper Wrapper = CP_PlasticWrapper.Cast( target_object );
 		CP_Workbench parent = CP_Workbench.Cast(Wrapper.GetParent());
-		CP_CannabisBud Buds = CP_CannabisBud.Cast( target_entity.GetAttachmentByType(CP_CannabisBud) );
+		//CP_CannabisBud Buds = CP_CannabisBud.Cast( target_entity.GetAttachmentByType(CP_CannabisBud) );
 		
-		if (Wrapper && Buds && Buds.GetQuantity() < 21 && parent.GetCompEM().IsWorking())
+		if (Wrapper && parent.GetCompEM().IsWorking())
 		{
 			TendancyText = Wrapper.GetWrapperTendancyText()
 			return true;
@@ -33,7 +33,7 @@ class ActionUsePlasticWrapper: ActionInteractBase
 
 	override void OnExecuteServer( ActionData action_data )
 	{
-		CP_PlasticWrapper Bench = CP_PlasticWrapper.Cast( action_data.m_Target.GetObject() );
+		CP_Workbench Bench = CP_Workbench.Cast( action_data.m_Target.GetObject() );
 		
 		Bench.CreationWrapperItems(Bench.GetWrapperTendancyCreationType())
 

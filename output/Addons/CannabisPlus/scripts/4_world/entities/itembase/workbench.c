@@ -159,6 +159,8 @@ class CP_Workbench_Kit extends ItemBase
 class CP_Workbench extends ItemBase 
 {
 	
+	const string ATTACHMENT_SLOT_CROSSBOARD 	    = "Wrapper";
+	
 	// timer to get bagger working
 	protected ref Timer m_BaggerWorkingTimer;
 	// timer to get wrapper working
@@ -179,6 +181,7 @@ class CP_Workbench extends ItemBase
 	{
 		RegisterNetSyncVariableBool("m_IsPlaceSound");
 		//RegisterNetSyncVariableBool("m_UseCPWorkbench")
+			  m_UseCPWorkbench = 0;// remove me
 	}
 	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 	// Entity entry Intilize
@@ -220,11 +223,9 @@ class CP_Workbench extends ItemBase
         return ""
     };
 	
-    string GetWrapperTendancyCreationType()
+	string GetWrapperTendancyCreationType()
 	{
-		Print ("Create CP_CannabisBrickSkunk");
-        return "CP_CannabisBrickSkunk";
-        
+		return "Skunk";
     };
 	
 	void StepWrapperTendancy()
@@ -250,22 +251,26 @@ class CP_Workbench extends ItemBase
 	void CreationWrapperItems(string CreationType)
 	{
 		Print ("trigger");
+
+		string thingName =  FindAttachmentBySlotName("CP_Cannabus_Buds").GetType();
+		ItemBase CannabisBud = GetCannibusBud();
 		
-		string thingName =  FindAttachmentBySlotName("CP_Bag_Output").GetType();
 		
-		Pliers Ply = m_Player.GetItemInHands()
+		Print(thingName);
+				
 		if (thingName == "CP_CannabisSkunk" )
 		{
+			//m_UseWrapper = 1;
 			GetGame().ObjectDelete( GetCannibusBud() );
-			GetInventory().CreateAttachment( CreationType ); 
+			CP_CannabisBrickBase Brick = CP_CannabisBrickBase.Cast(GetInventory().CreateAttachment("CP_CannabisBrickSkunk") );  //+ CreationType 
+			Brick.AddQuantity(1);
+			AddHealth("","Health",-1);
+			CannabisBud.AddQuantity(-20);			
 		};
 	
 	};
-	
-	int IsOccupiedandPowered()
-	{
-		CP_Workbench thing = CP_Workbench.Cast(FindAttachmentBySlotName("Wrapper"));
-		
+	bool IsPowered()
+	{		
 		if(HasEnergyManager() && GetCompEM().IsWorking())
 		{
 			return true;
@@ -292,6 +297,25 @@ class CP_Workbench extends ItemBase
 		}
 		return 0;
 	};
+	
+	bool Wrapper_Attached()
+	{
+		if(FindAttachmentBySlotName( ATTACHMENT_SLOT_CROSSBOARD))
+		{
+			return true;
+		}
+		return false;
+	}
+	
+	override bool CanDisplayAttachmentCategory(string category_name) 
+	{	
+		if ( category_name == "CP_Machines")
+			return true;
+		else if ( category_name == "CP_Wrapper" && Wrapper_Attached() )
+			return true;
+		else
+			return false;
+    }
 	
 	int AttachmentCountinTotal()
 	{

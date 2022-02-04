@@ -125,7 +125,19 @@ class CP_DryPost extends ItemBase
 		if (slot_name == "DriedPlantPile")
 		{    				
 			SetAnimationPhase ("DryPile", 1);  // Shows the Pile when dried cannbis is put in dryed slot
-		}	
+		}
+		PlayerBase player = PlayerBase.Cast(GetHierarchyRootPlayer());
+		if ( player && player.IsPlayerDisconnected() )
+			return;
+		
+		if (item && slot_name == "Rope")
+		{
+			if (GetGame().IsServer())
+			{
+				DisassembleKit(ItemBase.Cast(item));
+				Delete();
+			}
+		}		
 	}
 	
 	bool IsItemTypeAttached( typename item_type )
@@ -392,6 +404,16 @@ class CP_DryPost extends ItemBase
             }
         }
     };
+	void DisassembleKit(ItemBase item)
+	{
+		if (!IsHologram())
+		{
+			ItemBase Log = ItemBase.Cast(GetGame().CreateObjectEx("WoodenLog",GetPosition(),ECE_PLACE_ON_SURFACE));
+			MiscGameplayFunctions.TransferItemProperties(this, Log);
+			Rope rope = Rope.Cast(item);
+			CreateRope(rope);
+		}
+	}
 	override void SetActions()
 	{
 		super.SetActions();

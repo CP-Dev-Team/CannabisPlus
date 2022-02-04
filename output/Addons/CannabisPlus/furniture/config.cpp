@@ -1,6 +1,6 @@
 class CfgPatches
 {
-    class CP_DryPost
+    class CP_Dry_Post
     {
         units[] =
         {
@@ -10,7 +10,8 @@ class CfgPatches
         requiredVersion = 0.1;
         requiredAddons[] = 
         {
-            "DZ_Data"
+            "DZ_Data",
+			"DZ_Scripts"
         };
     };
 };
@@ -169,7 +170,7 @@ class CfgVehicles
 		};
         class GUIInventoryAttachmentsProps
         {
-            class CP_DryingPost
+            class CP_Post
             {
                 name="Drying Post";
                 description="A post for drying plants.";
@@ -309,7 +310,7 @@ class CfgVehicles
 		{
 			"DriedPlantPile"
 		};
-	}
+	};
 	
 	class CP_RawSkunkCannabisPlant : CP_RawPlantBase
     {

@@ -8,6 +8,7 @@ class CfgPatches
 		requiredAddons[]=
 		{
 			"DZ_Data",
+			"DZ_Scripts",
 			"JM_CF_Scripts",
 			"CPtoken"
 		};
@@ -22,13 +23,13 @@ class CfgMods
 		action="";
 		hideName=1;
 		hidePicture=1;
-		name="CannabisPlus";
+		name="Cannabis Plus";
 		credits="IceBlade, bombjack, Gloser";
 		author="IceBlade";
 		authorID="0";
 		version="3.0";
 		extra=0;
-		type="mod";
+		type="Mod";
 		dependencies[]=
 		{
 			"Game",
