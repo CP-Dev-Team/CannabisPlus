@@ -31,13 +31,19 @@ class CfgSlots
           displayName="Bagger";
           ghostIcon="missing";
     };
-	
     class Slot_CP_Cannabus_Bags
     {
-          name="CP_Cannabus_Bags";
-          displayName="Bags";
-          ghostIcon="missing";
-          stackMax=25;
+        name="CP_Cannabus_Bags";
+        displayName="Bags";
+        ghostIcon="missing";
+        stackMax=25;
+    };
+	class Slot_CP_CannabusWrapper_Bags
+	{
+        name="CP_CannabusWrapper_Bags";
+        displayName="Bags";
+        ghostIcon="missing";
+        stackMax=25;
     };
 
     class Slot_CP_Cannabus_Buds
@@ -135,6 +141,8 @@ class CfgVehicles
 			"Wrapper",
 			"Bagger",
 			"CP_PlasticRoll",
+			"CP_Cannabus_Bags",
+			"CP_CannabusWrapper_Bags",
 			"CP_Cannabus_Buds",
 			"CP_Cannabus_Bricks"
 		};
@@ -158,7 +166,7 @@ class CfgVehicles
 				attachmentSlots[]=
 				{
 					"CP_PlasticRoll",
-					"CP_Cannabus_Buds",
+					"CP_CannabusWrapper_Bags",
 					"CP_Cannabus_Bricks"
 				};
 				icon="set:BuildingFortIcons image:WindowBarricade";
@@ -170,7 +178,7 @@ class CfgVehicles
 				attachmentSlots[]=
 				{
 					"CP_Cannabus_Buds",
-					"CP_Cannabus_Bricks"
+					"CP_Cannabus_Bags"
 				};
 				icon="set:BuildingFortIcons image:WindowBarricade";
 			};

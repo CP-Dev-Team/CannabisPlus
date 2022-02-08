@@ -33,9 +33,9 @@ class CfgVehicles
 		varStackMax=16;
 		inventorySlot[]=
 		{
-			"CP_CannabisBags","CP_Cannabus_Buds"
+			"CP_Cannabus_Bags","CP_CannabusWrapper_Bags"
 		};
-		cpBrick="";
+		cpStepUpToBrick="";
 		//cpBuds="";
 	};
 	class CP_CannabisBagSkunk: CP_CannabisBags
@@ -51,7 +51,7 @@ class CfgVehicles
 		itemSize[]={2,2};
 		absorbency=0.2;
 
-		cpBrick="CP_CannabisBrickSkunk";
+		cpStepUpToBrick="CP_CannabisBrickSkunk";
 		hiddenSelections[]=
 		{
 			"zbytek"
@@ -142,7 +142,7 @@ class CfgVehicles
 		weight=28;
 		itemSize[]={2,2};
 		absorbency=0.2;
-		cpBrick="CP_CannabisBrickBlue";
+		cpStepUpToBrick="CP_CannabisBrickBlue";
 		hiddenSelections[]=
 		{
 			"zbytek"
@@ -233,7 +233,7 @@ class CfgVehicles
 		weight=28;
 		itemSize[]={2,2};
 		absorbency=0.2;
-		cpBrick="CP_CannabisBrickKush";
+		cpStepUpToBrick="CP_CannabisBrickKush";
 		hiddenSelections[]=
 		{
 			"zbytek"
@@ -324,7 +324,7 @@ class CfgVehicles
 		weight=28;
 		itemSize[]={2,2};
 		absorbency=0.2;
-		cpBrick="CP_CannabisBrickStardawg";
+		cpStepUpToBrick="CP_CannabisBrickStardawg";
 		hiddenSelections[]=
 		{
 			"zbytek"
@@ -416,7 +416,7 @@ class CfgVehicles
 		itemSize[]={2,2};
 		absorbency=0.2;
 		varQuantityDestroyOnMin=1;
-		cpBrick="CP_CannabisBrickFuture"
+		cpStepUpToBrick="CP_CannabisBrickFuture"
 		hiddenSelections[]=
 		{
 			"zbytek"
@@ -508,7 +508,7 @@ class CfgVehicles
 		itemSize[]={2,2};
 		absorbency=0.2;
 		varQuantityDestroyOnMin=1;
-		cpBrick="CP_CannabisBrickS1"
+		cpStepUpToBrick="CP_CannabisBrickS1"
 		hiddenSelections[]=
 		{
 			"zbytek"
@@ -599,7 +599,7 @@ class CfgVehicles
 		weight=28;
 		itemSize[]={2,2};
 		absorbency=0.2;
-		cpBrick="CP_CannabisBrickNomad";
+		cpStepUpToBrick="CP_CannabisBrickNomad";
 		hiddenSelections[]=
 		{
 			"zbytek"
@@ -690,7 +690,7 @@ class CfgVehicles
 		weight=28;
 		itemSize[]={2,2};
 		absorbency=0.2;
-		cpBrick="CP_CannabisBrickBlackFrost"
+		cpStepUpToBrick="CP_CannabisBrickBlackFrost"
 		hiddenSelections[]=
 		{
 			"zbytek"
