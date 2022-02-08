@@ -162,6 +162,8 @@ class CP_Workbench extends ItemBase
 	const string ATTACHMENT_SLOT_CROSSBOARD 	    = "Wrapper";
 	const string ATTACHMENT_SLOT_BAGS 				= "CP_Cannabus_Buds";
 	const string ATTACHMENT_SLOT_BRICKS 			= "CP_Cannabus_Bricks";
+	const string 
+	
 	// timer to get bagger working
 	protected ref Timer m_BaggerWorkingTimer;
 	// timer to get wrapper working
@@ -253,25 +255,6 @@ class CP_Workbench extends ItemBase
 	};
 
 	
-	void StepWrapperTendancy()
-	{
-      m_UseCPWorkbench++;
-      if (m_UseCPWorkbench > 0)
-	  {
-         m_UseCPWorkbench = 0;
-      }
-      SetSynchDirty();
-    };
-	
-	
-	int CPWorkbenchTendancy()
-	{
-		
-       return m_UseCPWorkbench;
-	   
-    };
-	
-	
 	void CreateBricks()
 	{
 		ItemBase CannabisBud = GetCannibusBags();
@@ -284,14 +267,18 @@ class CP_Workbench extends ItemBase
 		
 		//GetGame().ObjectDelete( GetCannibusBags() );
 		
-		if(GetCannibusBricks())
+		if(!GetCannibusBricks())
 		{
 
-			GetCannibusBricks().AddQuantity(1);
+			GetInventory().CreateAttachment(Brickname);
+		}
+		else if (GetCannibusBricks() && GetCannibusBricks().GetType() == Brickname)
+		{
+			GetCannibusBricks().AddQuantity(1); 
 		}
 		else
 		{
-			GetInventory().CreateAttachment(Brickname);
+			return;
 		}
         CannabisBud.AddQuantity(-1); 
 	};
@@ -435,7 +422,7 @@ class CP_Workbench extends ItemBase
 	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 	bool IsAnyItemAttached() 
 	{		
-		return !( GetInventory().GetCargo().GetItemCount() == 0 && GetInventory().AttachmentCount() == 0 );
+		return (GetInventory().AttachmentCount() >= 0 );
 	}
 	
 	

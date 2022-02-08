@@ -40,7 +40,7 @@ class CfgVehicles
 		canBeSplit=0;
 		varQuantityInit=1;
 		varQuantityMin=0;
-		varQuantityMax=1;
+		varQuantityMax=25;
 		varStackMax=1;
 		inventorySlot[]={"CP_Cannabus_Bricks"};
 		hiddenSelections[]=
@@ -127,12 +127,6 @@ class CfgVehicles
 		scope=2;
 		displayName="Brick of Skunk Weed";
 		descriptionShort="One pound of Skunk weed.";
-		varQuantityDestroyOnMin=1;
-		canBeSplit=0;
-		varQuantityInit=1;
-		varQuantityMin=0;
-		varQuantityMax=1;
-		varStackMax=1;
 		hiddenSelectionsTextures[]=
 		{
 			"CannabisPlus\bricks\data\cannabis_brick_skunk_co.paa"

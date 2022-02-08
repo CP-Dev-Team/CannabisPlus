@@ -28,7 +28,7 @@ class CfgVehicles
 	{
 		varQuantityInit=1;
 		varQuantityMin=0;
-		varQuantityMax=16;
+		varQuantityMax=100;
 		varQuantityDestroyOnMin=1;
 		varStackMax=16;
 		inventorySlot[]=
@@ -142,10 +142,6 @@ class CfgVehicles
 		weight=28;
 		itemSize[]={2,2};
 		absorbency=0.2;
-		varQuantityInit=1;
-		varQuantityMin=0;
-		varQuantityMax=16;
-		varQuantityDestroyOnMin=1;
 		cpBrick="CP_CannabisBrickBlue";
 		hiddenSelections[]=
 		{
@@ -237,10 +233,6 @@ class CfgVehicles
 		weight=28;
 		itemSize[]={2,2};
 		absorbency=0.2;
-		varQuantityInit=1;
-		varQuantityMin=0;
-		varQuantityMax=16;
-		varQuantityDestroyOnMin=1;
 		cpBrick="CP_CannabisBrickKush";
 		hiddenSelections[]=
 		{
@@ -332,10 +324,6 @@ class CfgVehicles
 		weight=28;
 		itemSize[]={2,2};
 		absorbency=0.2;
-		varQuantityInit=1;
-		varQuantityMin=0;
-		varQuantityMax=16;
-		varQuantityDestroyOnMin=1;
 		cpBrick="CP_CannabisBrickStardawg";
 		hiddenSelections[]=
 		{
@@ -427,9 +415,6 @@ class CfgVehicles
 		weight=28;
 		itemSize[]={2,2};
 		absorbency=0.2;
-		varQuantityInit=1;
-		varQuantityMin=0;
-		varQuantityMax=16;
 		varQuantityDestroyOnMin=1;
 		cpBrick="CP_CannabisBrickFuture"
 		hiddenSelections[]=
@@ -522,9 +507,6 @@ class CfgVehicles
 		weight=28;
 		itemSize[]={2,2};
 		absorbency=0.2;
-		varQuantityInit=1;
-		varQuantityMin=0;
-		varQuantityMax=16;
 		varQuantityDestroyOnMin=1;
 		cpBrick="CP_CannabisBrickS1"
 		hiddenSelections[]=
@@ -617,10 +599,6 @@ class CfgVehicles
 		weight=28;
 		itemSize[]={2,2};
 		absorbency=0.2;
-		varQuantityInit=1;
-		varQuantityMin=0;
-		varQuantityMax=16;
-		varQuantityDestroyOnMin=1;
 		cpBrick="CP_CannabisBrickNomad";
 		hiddenSelections[]=
 		{
@@ -712,10 +690,6 @@ class CfgVehicles
 		weight=28;
 		itemSize[]={2,2};
 		absorbency=0.2;
-		varQuantityInit=1;
-		varQuantityMin=0;
-		varQuantityMax=16;
-		varQuantityDestroyOnMin=1;
 		cpBrick="CP_CannabisBrickBlackFrost"
 		hiddenSelections[]=
 		{

@@ -31,6 +31,7 @@ class CfgVehicles
 		displayName="Base base base";
 		descriptionShort="Base bud";
 		model="\dz\gear\food\cannabis_seedman.p3d";
+		cpBag="";
 		rotationFlags=34;
 		lootCategory="Crafted";
 		weight=14;
@@ -134,6 +135,7 @@ class CfgVehicles
 		scope=2;
 		displayName="Cannabis";
 		descriptionShort="Some cannabis bud. Skunk variety";
+		cpBag="CP_CannabisBagSkunk";
 		hiddenSelectionsTextures[]=
 		{
 			"CannabisPlus\fruits\data\cannabis_seedman_raw_skunk_co.paa"
@@ -148,6 +150,7 @@ class CfgVehicles
 		scope=2;
 		displayName="Blue God";
 		descriptionShort="Some cannabis bud.  Blue God variety.";
+		cpBag="CP_CannabisBagBlue";
 		hiddenSelectionsTextures[]=
 		{
 			"CannabisPlus\fruits\data\cannabis_seedman_raw_blue_co.paa"
@@ -162,6 +165,7 @@ class CfgVehicles
 		scope=2;
 		displayName="Purple Kush";
 		descriptionShort="Some cannabis bud.  Purple Kush variety.";
+		cpBag="CP_CannabisBagKush";
 		hiddenSelectionsTextures[]=
 		{
 			"CannabisPlus\fruits\data\cannabis_seedman_raw_kush_co.paa"
@@ -176,6 +180,7 @@ class CfgVehicles
 		scope=2;
 		displayName="Stardawg";
 		descriptionShort="Some cannabis bud.  Stardawg variety.";
+		cpBag="CP_CannabisBagStardawg";
 		hiddenSelectionsTextures[]=
 		{
 			"CannabisPlus\fruits\data\cannabis_seedman_raw_Stardawg_co.paa"
@@ -190,6 +195,7 @@ class CfgVehicles
 		scope=2;
 		displayName="Future";
 		descriptionShort="Some cannabis bud.  Future variety.";
+		cpBag="CP_CannabisBagFuture";
 		hiddenSelectionsTextures[]=
 		{
 			"CannabisPlus\fruits\data\cannabis_seedman_raw_future_co.paa"
@@ -204,6 +210,7 @@ class CfgVehicles
 		scope=2;
 		displayName="S1";
 		descriptionShort="Some cannabis bud.  S1 variety.  Sponsored by StevesGoods.com";
+		cpBag="CP_CannabisBagS1";
 		hiddenSelectionsTextures[]=
 		{
 			"CannabisPlus\fruits\data\cannabis_seedman_raw_S1_co.paa"
@@ -218,7 +225,7 @@ class CfgVehicles
 		scope=2;
 		displayName="Nomad";
 		descriptionShort="Some cannabis bud.  Nomad variety.";
-
+		cpBag="CP_CannabisBagNomad";
 		hiddenSelectionsTextures[]=
 		{
 			"CannabisPlus\fruits\data\cannabis_seedman_raw_Nomad_co.paa"
@@ -233,6 +240,7 @@ class CfgVehicles
 		scope=2;
 		displayName="Black Frost";
 		descriptionShort="Some cannabis bud.  Black Frost variety.";
+		cpBag="CP_CannabisBagBlackFrost";
 		hiddenSelectionsTextures[]=
 		{
 			"CannabisPlus\fruits\data\cannabis_seedman_raw_BlackFrost_co.paa"
@@ -248,6 +256,7 @@ class CfgVehicles
 		displayName="Tobacco Leaf";
 		descriptionShort="Some tobacco leaves for rolling cigarettes";
 		model="CannabisPlus\fruits\TobaccoLeaf.p3d";
+		cpBag="CP_CannabisBagTabacco";
 		rotationFlags=17;
 		lootCategory="Crafted";
 		weight=14;

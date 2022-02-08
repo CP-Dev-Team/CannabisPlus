@@ -1,4 +1,28 @@
-class CP_CannabisBud extends ItemBase{};
+class CP_CannabisBud extends ItemBase
+{
+	   
+    protected string m_cpBags= "";
+    
+    void CP_CannabisBags ()
+	{
+        
+        if ( ConfigIsExisting("cpBag") ) 
+		{
+            m_cpBags= ConfigGetString("cpBag");
+        }
+		else
+		{
+            m_cpBags= "";
+        }
+    }
+    
+    string GetcpBrick()
+	{
+        return m_cpBags;
+    }
+	
+	
+};
 
 class CP_CannabisSkunk extends CP_CannabisBud{};
 

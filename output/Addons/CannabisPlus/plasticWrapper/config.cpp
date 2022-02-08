@@ -14,45 +14,7 @@ class CfgPatches
 			"DZ_Scripts"
         };
     };
-};
-class CfgSlots
-{ 
-    class Slot_CP_Cannabus_Buds
-    {
-        name="CP_Cannabus_Buds";
-        displayName="Buds Storage";
-        ghostIcon="set:dayz_inventory image:plant";
-		stackMax=100;
-    };
-	class Slot_CP_Cannabus_Bricks
-    {
-        name="CP_Cannabus_Bricks";
-        displayName="Bricks Storage";
-        ghostIcon="set:dayz_inventory image:plant";
-		stackMax=25;
-    };
-    class Slot_CP_PlasticRoll
-    {
-        name="CP_PlasticRoll";
-        displayName="Roll";
-        ghostIcon="missing";
-    };
-};
-//class CfgNonAIVehicles
-//{
-//    class ProxyAttachment;
-//	class ProxyPlasticWrapper : ProxyAttachment
-//    {
-//		scope = 2;
-//		inventorySlot="Wrapper";
-//		model="CannabisPlus\plasticWrapper\PlasticWrapper.p3d";
-//    };
-//	class ProxyVacuumSealer : ProxyAttachment
-//    {
-//		inventorySlot="Bagger";
-//		model="CannabisPlus\plasticWrapper\VacuumSealer.p3d";
-//    };
-//};  
+}; 
 class CfgVehicles
 {
     class Inventory_Base;

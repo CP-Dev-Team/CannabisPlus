@@ -30,21 +30,36 @@ class CfgSlots
           name="Bagger";
           displayName="Bagger";
           ghostIcon="missing";
-    };	  
-    class Slot_BudsBuds
-    {
-          name="BudsBuds";
-          displayName="Bud Input";
-          ghostIcon="missing";
-          stackMax=5;
     };
-    class Slot_Bags
+	
+    class Slot_CP_Cannabus_Bags
     {
-          name="Bags";
+          name="CP_Cannabus_Bags";
           displayName="Bags";
           ghostIcon="missing";
           stackMax=25;
-    };  
+    };
+
+    class Slot_CP_Cannabus_Buds
+    {
+        name="CP_Cannabus_Buds";
+        displayName="Buds Storage";
+        ghostIcon="set:dayz_inventory image:plant";
+		stackMax=100;
+    };
+	class Slot_CP_Cannabus_Bricks
+    {
+        name="CP_Cannabus_Bricks";
+        displayName="Bricks Storage";
+        ghostIcon="set:dayz_inventory image:plant";
+		stackMax=25;
+    };
+    class Slot_CP_PlasticRoll
+    {
+        name="CP_PlasticRoll";
+        displayName="Roll";
+        ghostIcon="missing";
+    };	
 };   
 class CfgNonAIVehicles
 {
@@ -148,6 +163,18 @@ class CfgVehicles
 				};
 				icon="set:BuildingFortIcons image:WindowBarricade";
 			};
+			class CP_Bagger
+			{
+				name="Bagger";
+				description="";
+				attachmentSlots[]=
+				{
+					"CP_Cannabus_Buds",
+					"CP_Cannabus_Bricks"
+				};
+				icon="set:BuildingFortIcons image:WindowBarricade";
+			};
+			
 		};
 		class EnergyManager
 		{
