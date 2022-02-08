@@ -1,39 +1,64 @@
-class CP_CannabisBagSkunk extends ItemBase
+class CP_CannabisBags extends ItemBase
+{
+   
+    protected string m_cpBrick= "";
+    
+    void CP_CannabisBags ()
+	{
+        
+        if ( ConfigIsExisting("cpBrick") ) 
+		{
+            m_cpBrick= ConfigGetString("cpBrick");
+        }
+		else
+		{
+            m_cpBrick= "";
+        }
+    }
+    
+    string GetcpBrick()
+	{
+        return m_cpBrick;
+    }
+	
+}
+
+class CP_CannabisBagSkunk extends CP_CannabisBags
 {
 
 }
 
-class CP_CannabisBagBlue extends ItemBase
+class CP_CannabisBagBlue extends CP_CannabisBags
 {
 
 }
 
-class CP_CannabisBagKush extends ItemBase
+class CP_CannabisBagKush extends CP_CannabisBags
 {
 
 }
 
-class CP_CannabisBagStardawg extends ItemBase
+class CP_CannabisBagStardawg extends CP_CannabisBags
 {
 
 }
 
-class CP_CannabisBagFuture extends ItemBase
+class CP_CannabisBagFuture extends CP_CannabisBags
 {
 
 }
 
-class CP_CannabisBagS1 extends ItemBase
+class CP_CannabisBagS1 extends CP_CannabisBags
 {
 
 }
 
-class CP_CannabisBagNomad extends ItemBase
+class CP_CannabisBagNomad extends CP_CannabisBags
 {
 
 }
 
-class CP_CannabisBagBlackFrost extends ItemBase
+class CP_CannabisBagBlackFrost extends CP_CannabisBags
 {
 
 }

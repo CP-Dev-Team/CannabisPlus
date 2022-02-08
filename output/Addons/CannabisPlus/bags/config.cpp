@@ -17,18 +17,26 @@ class CfgPatches
 		requiredVersion=0.1;
 		requiredAddons[]=
 		{
-			"DZ_Data",
-			"DZ_Gear_Tools"
+			"DZ_Data"
 		};
 	};
 };
 class CfgVehicles
 {
 	class Inventory_Base;
-	class CP_CannabisBags:Inventory_Base{
-		inventorySlot[]={
-			"CP_CannabisBags"
+	class CP_CannabisBags:Inventory_Base
+	{
+		varQuantityInit=1;
+		varQuantityMin=0;
+		varQuantityMax=16;
+		varQuantityDestroyOnMin=1;
+		varStackMax=16;
+		inventorySlot[]=
+		{
+			"CP_CannabisBags","CP_Cannabus_Buds"
 		};
+		cpBrick="";
+		//cpBuds="";
 	};
 	class CP_CannabisBagSkunk: CP_CannabisBags
 	{
@@ -42,10 +50,8 @@ class CfgVehicles
 		weight=28;
 		itemSize[]={2,2};
 		absorbency=0.2;
-		varQuantityInit=1;
-		varQuantityMin=0;
-		varQuantityMax=16;
-		varQuantityDestroyOnMin=1;
+
+		cpBrick="CP_CannabisBrickSkunk";
 		hiddenSelections[]=
 		{
 			"zbytek"
@@ -140,6 +146,7 @@ class CfgVehicles
 		varQuantityMin=0;
 		varQuantityMax=16;
 		varQuantityDestroyOnMin=1;
+		cpBrick="CP_CannabisBrickBlue";
 		hiddenSelections[]=
 		{
 			"zbytek"
@@ -234,6 +241,7 @@ class CfgVehicles
 		varQuantityMin=0;
 		varQuantityMax=16;
 		varQuantityDestroyOnMin=1;
+		cpBrick="CP_CannabisBrickKush";
 		hiddenSelections[]=
 		{
 			"zbytek"
@@ -328,6 +336,7 @@ class CfgVehicles
 		varQuantityMin=0;
 		varQuantityMax=16;
 		varQuantityDestroyOnMin=1;
+		cpBrick="CP_CannabisBrickStardawg";
 		hiddenSelections[]=
 		{
 			"zbytek"
@@ -422,6 +431,7 @@ class CfgVehicles
 		varQuantityMin=0;
 		varQuantityMax=16;
 		varQuantityDestroyOnMin=1;
+		cpBrick="CP_CannabisBrickFuture"
 		hiddenSelections[]=
 		{
 			"zbytek"
@@ -516,6 +526,7 @@ class CfgVehicles
 		varQuantityMin=0;
 		varQuantityMax=16;
 		varQuantityDestroyOnMin=1;
+		cpBrick="CP_CannabisBrickS1"
 		hiddenSelections[]=
 		{
 			"zbytek"
@@ -610,6 +621,7 @@ class CfgVehicles
 		varQuantityMin=0;
 		varQuantityMax=16;
 		varQuantityDestroyOnMin=1;
+		cpBrick="CP_CannabisBrickNomad";
 		hiddenSelections[]=
 		{
 			"zbytek"
@@ -704,6 +716,7 @@ class CfgVehicles
 		varQuantityMin=0;
 		varQuantityMax=16;
 		varQuantityDestroyOnMin=1;
+		cpBrick="CP_CannabisBrickBlackFrost"
 		hiddenSelections[]=
 		{
 			"zbytek"

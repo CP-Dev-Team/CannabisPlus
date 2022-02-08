@@ -20,10 +20,9 @@ class ActionUsePlasticWrapper: ActionInteractBase
         Object target_object = target.GetObject();
 		
 		CP_Workbench Bench = CP_Workbench.Cast( target_object );
-		//CP_Workbench parent = CP_Workbench.Cast(Wrapper.GetParent());
-		CP_CannabisBud Buds = CP_CannabisBud.Cast( target_entity.GetAttachmentByType(CP_CannabisBud) );
+		CP_CannabisBags Bags = CP_CannabisBags.Cast( target_entity.GetAttachmentByType(CP_CannabisBags) );
 		
-		if (Bench && Bench.IsPowered() && Buds.GetQuantity() >= 20 )
+		if (Bench && Bench.Wrapper_Attached() && Bench.IsPowered() && Bags.GetQuantity() >= 1 )
 		{
 			TendancyText = Bench.GetBrickTendancyText()
 			return true;

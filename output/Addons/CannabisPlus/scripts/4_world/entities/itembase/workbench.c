@@ -88,7 +88,7 @@ class CP_Workbench_Kit extends ItemBase
 		HideAllSelections();
 		SetIsDeploySound( true );
 		// Should be removed so that the workbench does not disappear?
-		SetLifetime(3888000);
+		//SetLifetime(3888000);
 	}
 	
 	
@@ -160,7 +160,8 @@ class CP_Workbench extends ItemBase
 {
 	
 	const string ATTACHMENT_SLOT_CROSSBOARD 	    = "Wrapper";
-	
+	const string ATTACHMENT_SLOT_BAGS 				= "CP_Cannabus_Buds";
+	const string ATTACHMENT_SLOT_BRICKS 			= "CP_Cannabus_Bricks";
 	// timer to get bagger working
 	protected ref Timer m_BaggerWorkingTimer;
 	// timer to get wrapper working
@@ -209,17 +210,33 @@ class CP_Workbench extends ItemBase
 	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 	// Start of Step based Variables to change outcome and Text shown for actions. not complicated but very handy
 	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+	
+		
+	CP_CannabisBud GetCannibusBud()
+	{
+		return CP_CannabisBud.Cast( GetAttachmentByType( CP_CannabisBud ) );
+	};
+	
+	CP_CannabisBags GetCannibusBags()
+	{
+		return CP_CannabisBags.Cast(FindAttachmentBySlotName(ATTACHMENT_SLOT_BAGS));
+	}
+	CP_CannabisBrickBase GetCannibusBricks()
+	{
+		return CP_CannabisBrickBase.Cast(FindAttachmentBySlotName(ATTACHMENT_SLOT_BRICKS));
+	}
+	
+	
 	string GetBrickTendancyText()
 	{
-        if (m_UseCPWorkbench == 0)
-		{
-          return "Create Skunk Brick";
-        }
-		if (m_UseCPWorkbench == 1)
-		{
-          return "Broken as F***";
-        }
-        return ""
+		if(!GetCannibusBags())
+			return "";
+		
+		string Brickname = GetCannibusBags().GetDisplayName();
+
+		
+        return "Wrap " + Brickname;
+
     };
 	
 
@@ -233,7 +250,8 @@ class CP_Workbench extends ItemBase
 				return "Blue";
 		}
 		return "";
-	}
+	};
+
 	
 	void StepWrapperTendancy()
 	{
@@ -245,17 +263,38 @@ class CP_Workbench extends ItemBase
       SetSynchDirty();
     };
 	
+	
 	int CPWorkbenchTendancy()
 	{
-      return m_UseCPWorkbench;
+		
+       return m_UseCPWorkbench;
+	   
     };
 	
-	CP_CannabisBud GetCannibusBud()
+	
+	void CreateBricks()
 	{
-		return CP_CannabisBud.Cast( GetAttachmentByType( CP_CannabisBud ) );
+		ItemBase CannabisBud = GetCannibusBags();
+		
+		
+		if(!GetCannibusBags())
+			return;
+		
+		string Brickname = GetCannibusBags().GetcpBrick(); 
+		
+		//GetGame().ObjectDelete( GetCannibusBags() );
+		
+		if(GetCannibusBricks())
+		{
+
+			GetCannibusBricks().AddQuantity(1);
+		}
+		else
+		{
+			GetInventory().CreateAttachment(Brickname);
+		}
+        CannabisBud.AddQuantity(-1); 
 	};
-	
-	
 	
 /*
 	void CreateBricks()//string CreationType
@@ -280,16 +319,7 @@ class CP_Workbench extends ItemBase
 	
 	};
 */
-	void CreateBricks(string CreationType)
-	{
-		//string thingName =  FindAttachmentBySlotName("CP_Cannabus_Buds").GetType();
-		ItemBase CannabisBud = GetCannibusBud();
-		
-		GetGame().ObjectDelete( GetCannibusBud() );
-		CP_CannabisBrickBase Brick = CP_CannabisBrickBase.Cast(GetInventory().CreateAttachment("CP_CannabisBrick" + CreationType)); 
-		Brick.AddQuantity(1);
-		CannabisBud.AddQuantity(-20);            
-	};
+
 	
 	bool IsPowered()
 	{		
