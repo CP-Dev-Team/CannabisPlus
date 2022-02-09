@@ -21,7 +21,7 @@ class ActionUseBagger: ActionInteractBase
 		CP_Workbench Bench = CP_Workbench.Cast( target_object );
 		CP_CannabisBud Buds = CP_CannabisBud.Cast( target_entity.GetAttachmentByType(CP_CannabisBud) );
 		
-		if (Bench && Bench.BaggerAttached() )// &&  Buds.GetQuantity() >= 1 ) //Bench.IsPowered() &&
+		if (Bench && Bench.BaggerAttached() && Buds.GetQuantity() >= 2 ) //Bench.IsPowered() &&
 		{
 			TendancyText = Bench.GetBagTendancyText()
 			return true;

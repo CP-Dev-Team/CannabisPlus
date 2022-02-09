@@ -272,7 +272,9 @@ class CP_Workbench extends ItemBase
 		
 		
 		if(!GetCannibusBud())
+		{
 			return;
+		}
 		
 		string CPBagName = GetCannibusBud().GetcpBag(); 
 		
@@ -298,29 +300,35 @@ class CP_Workbench extends ItemBase
 	{
 		ItemBase Cannabisbags = GetCannibusWrapperBags();
 		
-				Print("Create bricks Function Triggered")
+		Print("Create bricks Function Triggered")
 		
 		if(!GetCannibusWrapperBags())
+		{
+			Print("Failed to find Bags")
 			return;
+		}
 		
-		string Brickname = GetCannibusWrapperBags().GetcpBrick(); 
+		string Brick = GetCannibusWrapperBags().GetcpBrick(); 
 		
 		if(!GetCannibusBricks())
 		{
 			Print("Create Bag if empty slot")
-			GetInventory().CreateAttachment(Brickname);
-			Print(Brickname)
+			
+			GetInventory().CreateAttachment(Brick);
+			Print(Brick)
 		}
-		else if (GetCannibusBricks() && GetCannibusWrapperBags().GetType() == Brickname)
+		else if (GetCannibusBricks() && GetCannibusWrapperBags().GetType() == Brick)
 		{
 			Print("Create bag if slot is full")
+			
 			GetCannibusBricks().AddQuantity(1); 
 		}
 		else
 		{
+			Print("Return Nothing")
 			return;
 		}
-        Cannabisbags.AddQuantity(-1); 
+        Cannabisbags.AddQuantity(-16); 
 	};
 	
 
@@ -393,10 +401,28 @@ class CP_Workbench extends ItemBase
 		if(IsAnyItemAttached() || !IsCargoEmpty())
 		{
 			return false;
-		} else {
+		}
+		else 
+		{
 			return true;
 		}
-	}
+	};
+	
+	override bool CanPutInCargo( EntityAI parent )
+    {
+		if ( !super.CanPutIntoHands( parent ) )
+			return false;
+		
+		// check if any item is in the attachment-slots OR if any item is in cargo space
+		if(IsAnyItemAttached() || !IsCargoEmpty())
+		{
+			return false;
+		}
+		else 
+		{
+			return true;
+		}
+    }
 	
 	
 	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
