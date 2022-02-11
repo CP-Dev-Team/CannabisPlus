@@ -28,7 +28,7 @@ class CfgVehicles
 	{
 		varQuantityInit=1;
 		varQuantityMin=0;
-		varQuantityMax=100;
+		varQuantityMax=16;
 		varQuantityDestroyOnMin=1;
 		varStackMax=16;
 		inventorySlot[]=
@@ -142,7 +142,15 @@ class CfgVehicles
 		weight=28;
 		itemSize[]={2,2};
 		absorbency=0.2;
+<<<<<<< HEAD
 		cpStepUpToBrick="CP_CannabisBrickBlue";
+=======
+		varQuantityInit=1;
+		varQuantityMin=0;
+		varQuantityMax=16;
+		varQuantityDestroyOnMin=1;
+		cpBrick="CP_CannabisBrickBlue";
+>>>>>>> parent of b9f99c4 (Full working dynamic Brick wrapping system - compliments to daemonforge)
 		hiddenSelections[]=
 		{
 			"zbytek"
@@ -233,7 +241,15 @@ class CfgVehicles
 		weight=28;
 		itemSize[]={2,2};
 		absorbency=0.2;
+<<<<<<< HEAD
 		cpStepUpToBrick="CP_CannabisBrickKush";
+=======
+		varQuantityInit=1;
+		varQuantityMin=0;
+		varQuantityMax=16;
+		varQuantityDestroyOnMin=1;
+		cpBrick="CP_CannabisBrickKush";
+>>>>>>> parent of b9f99c4 (Full working dynamic Brick wrapping system - compliments to daemonforge)
 		hiddenSelections[]=
 		{
 			"zbytek"
@@ -324,7 +340,15 @@ class CfgVehicles
 		weight=28;
 		itemSize[]={2,2};
 		absorbency=0.2;
+<<<<<<< HEAD
 		cpStepUpToBrick="CP_CannabisBrickStardawg";
+=======
+		varQuantityInit=1;
+		varQuantityMin=0;
+		varQuantityMax=16;
+		varQuantityDestroyOnMin=1;
+		cpBrick="CP_CannabisBrickStardawg";
+>>>>>>> parent of b9f99c4 (Full working dynamic Brick wrapping system - compliments to daemonforge)
 		hiddenSelections[]=
 		{
 			"zbytek"
@@ -415,6 +439,9 @@ class CfgVehicles
 		weight=28;
 		itemSize[]={2,2};
 		absorbency=0.2;
+		varQuantityInit=1;
+		varQuantityMin=0;
+		varQuantityMax=16;
 		varQuantityDestroyOnMin=1;
 		cpStepUpToBrick="CP_CannabisBrickFuture"
 		hiddenSelections[]=
@@ -507,6 +534,9 @@ class CfgVehicles
 		weight=28;
 		itemSize[]={2,2};
 		absorbency=0.2;
+		varQuantityInit=1;
+		varQuantityMin=0;
+		varQuantityMax=16;
 		varQuantityDestroyOnMin=1;
 		cpStepUpToBrick="CP_CannabisBrickS1"
 		hiddenSelections[]=
@@ -599,7 +629,15 @@ class CfgVehicles
 		weight=28;
 		itemSize[]={2,2};
 		absorbency=0.2;
+<<<<<<< HEAD
 		cpStepUpToBrick="CP_CannabisBrickNomad";
+=======
+		varQuantityInit=1;
+		varQuantityMin=0;
+		varQuantityMax=16;
+		varQuantityDestroyOnMin=1;
+		cpBrick="CP_CannabisBrickNomad";
+>>>>>>> parent of b9f99c4 (Full working dynamic Brick wrapping system - compliments to daemonforge)
 		hiddenSelections[]=
 		{
 			"zbytek"
@@ -690,7 +728,15 @@ class CfgVehicles
 		weight=28;
 		itemSize[]={2,2};
 		absorbency=0.2;
+<<<<<<< HEAD
 		cpStepUpToBrick="CP_CannabisBrickBlackFrost"
+=======
+		varQuantityInit=1;
+		varQuantityMin=0;
+		varQuantityMax=16;
+		varQuantityDestroyOnMin=1;
+		cpBrick="CP_CannabisBrickBlackFrost"
+>>>>>>> parent of b9f99c4 (Full working dynamic Brick wrapping system - compliments to daemonforge)
 		hiddenSelections[]=
 		{
 			"zbytek"

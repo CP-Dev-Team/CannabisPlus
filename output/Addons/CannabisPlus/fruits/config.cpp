@@ -31,7 +31,10 @@ class CfgVehicles
 		displayName="Base base base";
 		descriptionShort="Base bud";
 		model="\dz\gear\food\cannabis_seedman.p3d";
+<<<<<<< HEAD
 		cpStepUpToBag="";
+=======
+>>>>>>> parent of b9f99c4 (Full working dynamic Brick wrapping system - compliments to daemonforge)
 		rotationFlags=34;
 		lootCategory="Crafted";
 		weight=14;
@@ -135,7 +138,10 @@ class CfgVehicles
 		scope=2;
 		displayName="Skunk";
 		descriptionShort="Some cannabis bud. Skunk variety";
+<<<<<<< HEAD
 		cpStepUpToBag="CP_CannabisBagSkunk";
+=======
+>>>>>>> parent of b9f99c4 (Full working dynamic Brick wrapping system - compliments to daemonforge)
 		hiddenSelectionsTextures[]=
 		{
 			"CannabisPlus\fruits\data\cannabis_seedman_raw_skunk_co.paa"
@@ -150,7 +156,10 @@ class CfgVehicles
 		scope=2;
 		displayName="Blue God";
 		descriptionShort="Some cannabis bud.  Blue God variety.";
+<<<<<<< HEAD
 		cpStepUpToBag="CP_CannabisBagBlue";
+=======
+>>>>>>> parent of b9f99c4 (Full working dynamic Brick wrapping system - compliments to daemonforge)
 		hiddenSelectionsTextures[]=
 		{
 			"CannabisPlus\fruits\data\cannabis_seedman_raw_blue_co.paa"
@@ -165,7 +174,10 @@ class CfgVehicles
 		scope=2;
 		displayName="Purple Kush";
 		descriptionShort="Some cannabis bud.  Purple Kush variety.";
+<<<<<<< HEAD
 		cpStepUpToBag="CP_CannabisBagKush";
+=======
+>>>>>>> parent of b9f99c4 (Full working dynamic Brick wrapping system - compliments to daemonforge)
 		hiddenSelectionsTextures[]=
 		{
 			"CannabisPlus\fruits\data\cannabis_seedman_raw_kush_co.paa"
@@ -180,7 +192,10 @@ class CfgVehicles
 		scope=2;
 		displayName="Stardawg";
 		descriptionShort="Some cannabis bud.  Stardawg variety.";
+<<<<<<< HEAD
 		cpStepUpToBag="CP_CannabisBagStardawg";
+=======
+>>>>>>> parent of b9f99c4 (Full working dynamic Brick wrapping system - compliments to daemonforge)
 		hiddenSelectionsTextures[]=
 		{
 			"CannabisPlus\fruits\data\cannabis_seedman_raw_Stardawg_co.paa"
@@ -195,7 +210,10 @@ class CfgVehicles
 		scope=2;
 		displayName="Future";
 		descriptionShort="Some cannabis bud.  Future variety.";
+<<<<<<< HEAD
 		cpStepUpToBag="CP_CannabisBagFuture";
+=======
+>>>>>>> parent of b9f99c4 (Full working dynamic Brick wrapping system - compliments to daemonforge)
 		hiddenSelectionsTextures[]=
 		{
 			"CannabisPlus\fruits\data\cannabis_seedman_raw_future_co.paa"
@@ -210,7 +228,10 @@ class CfgVehicles
 		scope=2;
 		displayName="S1";
 		descriptionShort="Some cannabis bud.  S1 variety.  Sponsored by StevesGoods.com";
+<<<<<<< HEAD
 		cpStepUpToBag="CP_CannabisBagS1";
+=======
+>>>>>>> parent of b9f99c4 (Full working dynamic Brick wrapping system - compliments to daemonforge)
 		hiddenSelectionsTextures[]=
 		{
 			"CannabisPlus\fruits\data\cannabis_seedman_raw_S1_co.paa"
@@ -225,7 +246,11 @@ class CfgVehicles
 		scope=2;
 		displayName="Nomad";
 		descriptionShort="Some cannabis bud.  Nomad variety.";
+<<<<<<< HEAD
 		cpStepUpToBag="CP_CannabisBagNomad";
+=======
+
+>>>>>>> parent of b9f99c4 (Full working dynamic Brick wrapping system - compliments to daemonforge)
 		hiddenSelectionsTextures[]=
 		{
 			"CannabisPlus\fruits\data\cannabis_seedman_raw_Nomad_co.paa"
@@ -240,7 +265,10 @@ class CfgVehicles
 		scope=2;
 		displayName="Black Frost";
 		descriptionShort="Some cannabis bud.  Black Frost variety.";
+<<<<<<< HEAD
 		cpStepUpToBag="CP_CannabisBagBlackFrost";
+=======
+>>>>>>> parent of b9f99c4 (Full working dynamic Brick wrapping system - compliments to daemonforge)
 		hiddenSelectionsTextures[]=
 		{
 			"CannabisPlus\fruits\data\cannabis_seedman_raw_BlackFrost_co.paa"
@@ -256,7 +284,10 @@ class CfgVehicles
 		displayName="Tobacco Leaf";
 		descriptionShort="Some tobacco leaves for rolling cigarettes";
 		model="CannabisPlus\fruits\TobaccoLeaf.p3d";
+<<<<<<< HEAD
 		cpStepUpToBag="CP_CannabisBagTabacco";
+=======
+>>>>>>> parent of b9f99c4 (Full working dynamic Brick wrapping system - compliments to daemonforge)
 		rotationFlags=17;
 		lootCategory="Crafted";
 		weight=14;

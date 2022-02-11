@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 class CP_CannabisBud extends ItemBase
 {
 	   
@@ -22,6 +23,9 @@ class CP_CannabisBud extends ItemBase
     }
 	
 };
+=======
+class CP_CannabisBud extends ItemBase{};
+>>>>>>> parent of b9f99c4 (Full working dynamic Brick wrapping system - compliments to daemonforge)
 
 class CP_CannabisSkunk extends CP_CannabisBud{};
 

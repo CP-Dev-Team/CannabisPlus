@@ -5,7 +5,6 @@
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 class CP_PlasticWrapper extends ItemBase 
 {
-/*
 	protected ItemBase 			m_Parent;
 	int m_UseWrapper = 0;
 	//Defines a int used for action switching
@@ -85,5 +84,4 @@ class CP_PlasticWrapper extends ItemBase
 		AddAction(ActionUsePlasticWrapper);
 		//AddAction(ActionChangeDrillPressAction);
 	}
-*/
 }      
