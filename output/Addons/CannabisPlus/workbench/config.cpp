@@ -30,29 +30,14 @@ class CfgSlots
           name="Bagger";
           displayName="Bagger";
           ghostIcon="missing";
-    };	  
-    class Slot_BudsBuds
-    {
-          name="BudsBuds";
-          displayName="Bud Input";
-          ghostIcon="missing";
-          stackMax=5;
     };
-<<<<<<< HEAD
-<<<<<<< HEAD
+	
     class Slot_CP_Cannabus_Bags
     {
-        name="CP_Cannabus_Bags";
-        displayName="Bags";
-        ghostIcon="missing";
-        stackMax=25;
-    };
-	class Slot_CP_CannabusWrapper_Bags
-	{
-        name="CP_CannabusWrapper_Bags";
-        displayName="Bags";
-        ghostIcon="missing";
-        stackMax=25;
+          name="CP_Cannabus_Bags";
+          displayName="Bags";
+          ghostIcon="missing";
+          stackMax=25;
     };
 
     class Slot_CP_Cannabus_Buds
@@ -75,22 +60,6 @@ class CfgSlots
         displayName="Roll";
         ghostIcon="missing";
     };	
-=======
-    class Slot_Bags
-    {
-=======
-    class Slot_Bags
-    {
->>>>>>> parent of b9f99c4 (Full working dynamic Brick wrapping system - compliments to daemonforge)
-          name="Bags";
-          displayName="Bags";
-          ghostIcon="missing";
-          stackMax=25;
-    };  
-<<<<<<< HEAD
->>>>>>> parent of b9f99c4 (Full working dynamic Brick wrapping system - compliments to daemonforge)
-=======
->>>>>>> parent of b9f99c4 (Full working dynamic Brick wrapping system - compliments to daemonforge)
 };   
 class CfgNonAIVehicles
 {
@@ -166,8 +135,6 @@ class CfgVehicles
 			"Wrapper",
 			"Bagger",
 			"CP_PlasticRoll",
-			"CP_Cannabus_Bags",
-			"CP_CannabusWrapper_Bags",
 			"CP_Cannabus_Buds",
 			"CP_Cannabus_Bricks"
 		};
@@ -191,13 +158,11 @@ class CfgVehicles
 				attachmentSlots[]=
 				{
 					"CP_PlasticRoll",
-					"CP_CannabusWrapper_Bags",
+					"CP_Cannabus_Buds",
 					"CP_Cannabus_Bricks"
 				};
 				icon="set:BuildingFortIcons image:WindowBarricade";
 			};
-<<<<<<< HEAD
-<<<<<<< HEAD
 			class CP_Bagger
 			{
 				name="Bagger";
@@ -205,15 +170,11 @@ class CfgVehicles
 				attachmentSlots[]=
 				{
 					"CP_Cannabus_Buds",
-					"CP_Cannabus_Bags"
+					"CP_Cannabus_Bricks"
 				};
 				icon="set:BuildingFortIcons image:WindowBarricade";
 			};
 			
-=======
->>>>>>> parent of b9f99c4 (Full working dynamic Brick wrapping system - compliments to daemonforge)
-=======
->>>>>>> parent of b9f99c4 (Full working dynamic Brick wrapping system - compliments to daemonforge)
 		};
 		class EnergyManager
 		{

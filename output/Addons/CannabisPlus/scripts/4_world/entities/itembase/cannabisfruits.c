@@ -1,16 +1,14 @@
-<<<<<<< HEAD
-<<<<<<< HEAD
 class CP_CannabisBud extends ItemBase
 {
 	   
     protected string m_cpBags= "";
     
-    void CP_CannabisBud ()
+    void CP_CannabisBags ()
 	{
         
-        if ( ConfigIsExisting("cpStepUpToBag") ) 
+        if ( ConfigIsExisting("cpBag") ) 
 		{
-            m_cpBags = ConfigGetString("cpStepUpToBag");
+            m_cpBags= ConfigGetString("cpBag");
         }
 		else
 		{
@@ -18,18 +16,13 @@ class CP_CannabisBud extends ItemBase
         }
     }
     
-    string GetcpBag()
+    string GetcpBrick()
 	{
         return m_cpBags;
     }
 	
+	
 };
-=======
-class CP_CannabisBud extends ItemBase{};
->>>>>>> parent of b9f99c4 (Full working dynamic Brick wrapping system - compliments to daemonforge)
-=======
-class CP_CannabisBud extends ItemBase{};
->>>>>>> parent of b9f99c4 (Full working dynamic Brick wrapping system - compliments to daemonforge)
 
 class CP_CannabisSkunk extends CP_CannabisBud{};
 

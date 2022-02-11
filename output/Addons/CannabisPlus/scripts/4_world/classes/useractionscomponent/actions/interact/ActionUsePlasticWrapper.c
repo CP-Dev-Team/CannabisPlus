@@ -1,6 +1,6 @@
-class ActionUseBagger: ActionInteractBase
+class ActionUsePlasticWrapper: ActionInteractBase
 {	
-	void ActionUseBagger()
+	void ActionUsePlasticWrapper()
 	{
 		m_CommandUID        = DayZPlayerConstants.CMD_ACTIONMOD_INTERACTONCE;
 		m_StanceMask        = DayZPlayerConstants.STANCEMASK_CROUCH | DayZPlayerConstants.STANCEMASK_ERECT;
@@ -9,6 +9,7 @@ class ActionUseBagger: ActionInteractBase
     string TendancyText = "";
     override string GetText()
 	{
+		
         return  TendancyText;
     };
 
@@ -19,11 +20,11 @@ class ActionUseBagger: ActionInteractBase
         Object target_object = target.GetObject();
 		
 		CP_Workbench Bench = CP_Workbench.Cast( target_object );
-		CP_CannabisBud Buds = CP_CannabisBud.Cast( target_entity.GetAttachmentByType(CP_CannabisBud) );
+		CP_CannabisBags Bags = CP_CannabisBags.Cast( target_entity.GetAttachmentByType(CP_CannabisBags) );
 		
-		if (Bench && Bench.BaggerAttached() && Buds.GetQuantity() >= 2 ) //Bench.IsPowered() &&
+		if (Bench && Bench.Wrapper_Attached() )
 		{
-			TendancyText = Bench.GetBagTendancyText()
+			TendancyText = Bench.GetBrickTendancyText()
 			return true;
 		}
 		return false;
@@ -33,7 +34,7 @@ class ActionUseBagger: ActionInteractBase
 	{
 		CP_Workbench Bench = CP_Workbench.Cast( action_data.m_Target.GetObject() );
 		
-		Bench.CreateBags();
+		Bench.CreateBricks();
 
 	};
 };

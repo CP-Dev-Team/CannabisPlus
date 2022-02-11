@@ -9,9 +9,17 @@ modded class ActionConstructor {
 		actions.Insert(ActionSmokeCigSelf); 
 		actions.Insert(ActionUnpackCigaretteBox);
 		actions.Insert(ActionApplyCream);
+		// starts drying process on Drypost
 		actions.Insert(ActionDryPlants);
-
+		// turn on the bagger on workbench
+		//actions.Insert(ActionTurnOnBagger);
+		// turn off the bagger on workbench
+		//actions.Insert(ActionTurnOffBagger);
+		// turn on the wrapper on workbench
+		//actions.Insert(ActionTurnOnWrapper);
+		// turn off the wrapper on workbench
+		//actions.Insert(ActionTurnOffWrapper);
+		//WorkBench actions
 		actions.Insert(ActionUsePlasticWrapper);
-		actions.Insert(ActionUseBagger);
 	};
 };
