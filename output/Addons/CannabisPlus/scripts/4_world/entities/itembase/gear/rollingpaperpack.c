@@ -39,4 +39,10 @@ class CP_RollingPapers: Inventory_Base
         }
       }
     }
+	override void SetActions()
+	{
+		super.SetActions();
+
+		AddAction(ActionCPUsePlasticWrapper);
+	}
 };

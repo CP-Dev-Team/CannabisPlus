@@ -37,7 +37,7 @@ class CfgVehicles
 		absorbency=0.2;
 		isMeleeWeapon=1;
 		varQuantityDestroyOnMin=1;
-		canBeSplit=0;
+		canBeSplit=1;
 		varQuantityInit=1;
 		varQuantityMin=0;
 		varQuantityMax=25;

@@ -220,12 +220,13 @@ class CP_Workbench extends ItemBase
 	
 	CP_CannabisBags GetCannibusBags()
 	{
-		return CP_CannabisBags.Cast(FindAttachmentBySlotName(ATTACHMENT_SLOT_BAGS));
-	}
+		return CP_CannabisBags.Cast(FindAttachmentBySlotName(ATTACHMENT_SLOT_BAGS) );
+	};
+	
 	CP_CannabisBrickBase GetCannibusBricks()
 	{
-		return CP_CannabisBrickBase.Cast(FindAttachmentBySlotName(ATTACHMENT_SLOT_BRICKS));
-	}
+		return CP_CannabisBrickBase.Cast(FindAttachmentBySlotName(ATTACHMENT_SLOT_BRICKS) );
+	};
 	
 	
 	string GetBrickTendancyText()
@@ -239,19 +240,7 @@ class CP_Workbench extends ItemBase
         return "Wrap " + Brickname;
 
     };
-	
 
-	string CannibusBudAttachedCreationType(string bud)
-	{
-		switch(bud)
-		{
-			case "CP_CannabisSkunk":
-				return "Skunk";
-			case "CP_CannabisBlue":
-				return "Blue";
-		}
-		return "";
-	};
 
 	
 	void CreateBricks()
@@ -264,11 +253,9 @@ class CP_Workbench extends ItemBase
 		
 		string Brickname = GetCannibusBags().GetcpBrick(); 
 		
-		//GetGame().ObjectDelete( GetCannibusBags() );
 		
 		if(!GetCannibusBricks())
 		{
-
 			GetInventory().CreateAttachment(Brickname);
 		}
 		else if (GetCannibusBricks() && GetCannibusBricks().GetType() == Brickname)
@@ -444,7 +431,6 @@ class CP_Workbench extends ItemBase
 		AddAction(ActionPlugIn);
 		AddAction(ActionTurnOnWhileOnGround);
 		AddAction(ActionTurnOffWhileOnGround);
-		AddAction(ActionUsePlasticWrapper);
 	}
 
 }

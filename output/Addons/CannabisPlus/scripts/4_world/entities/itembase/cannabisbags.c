@@ -6,9 +6,9 @@ class CP_CannabisBags extends ItemBase
     void CP_CannabisBags ()
 	{
         
-        if ( ConfigIsExisting("cpBrick") ) 
+        if ( ConfigIsExisting("cpStepUpToBrick") ) 
 		{
-            m_cpBrick= ConfigGetString("cpBrick");
+            m_cpBrick= ConfigGetString("cpStepUpToBrick");
         }
 		else
 		{

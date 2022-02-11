@@ -1,10 +1,31 @@
-class ActionUsePlasticWrapper: ActionInteractBase
+modded class UATimeSpent
+{
+	const float CPWrapBag = 4;
+}
+class ActionCPWrapBrickCB : ActionContinuousBaseCB
 {	
-	void ActionUsePlasticWrapper()
+	override void CreateActionComponent()
 	{
-		m_CommandUID        = DayZPlayerConstants.CMD_ACTIONMOD_INTERACTONCE;
-		m_StanceMask        = DayZPlayerConstants.STANCEMASK_CROUCH | DayZPlayerConstants.STANCEMASK_ERECT;
-	};
+		m_ActionData.m_ActionComponent = new CAContinuousRepeat( UATimeSpent.CPWrapBag/ActionCPUsePlasticWrapper.Cast(m_ActionData.m_Action).CYCLES );
+	}
+};
+class ActionCPUsePlasticWrapper: ActionContinuousBase
+{	
+	static int CYCLES = 2;
+	void ActionCPUsePlasticWrapper()
+	{
+		m_CallbackClass = ActionCPWrapBrickCB;
+		m_CommandUID = DayZPlayerConstants.CMD_ACTIONFB_INTERACT;
+		m_FullBody = true;
+		m_StanceMask = DayZPlayerConstants.STANCEMASK_ERECT;		
+		
+		m_SpecialtyWeight = UASoftSkillsWeight.ROUGH_HIGH;
+	}	
+	override void CreateConditionComponents()  
+	{	
+		m_ConditionItem = new CCINonRuined;
+		m_ConditionTarget = new CCTNonRuined( UAMaxDistances.BASEBUILDING );
+	}
 	int SpamCounter = 0;
     string TendancyText = "";
     override string GetText()
@@ -29,12 +50,23 @@ class ActionUsePlasticWrapper: ActionInteractBase
 		}
 		return false;
 	};
-
+/*
 	override void OnStartServer( ActionData action_data )
 	{
 		CP_Workbench Bench = CP_Workbench.Cast( action_data.m_Target.GetObject() );
 		
 		Bench.CreateBricks();
-
+		
 	};
+*/
+	override void OnFinishProgressServer( ActionData action_data )
+    {    
+		CP_Workbench Bench = CP_Workbench.Cast( action_data.m_Target.GetObject() );
+		
+		Bench.CreateBricks();
+    }
+	override string GetAdminLogMessage(ActionData action_data)
+	{
+		return " Wrapped Brick of " + action_data.m_Target.GetObject().GetDisplayName();
+	}
 };
