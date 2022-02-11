@@ -39,6 +39,7 @@ class CfgSlots
           stackMax=5;
     };
 <<<<<<< HEAD
+<<<<<<< HEAD
     class Slot_CP_Cannabus_Bags
     {
         name="CP_Cannabus_Bags";
@@ -77,11 +78,18 @@ class CfgSlots
 =======
     class Slot_Bags
     {
+=======
+    class Slot_Bags
+    {
+>>>>>>> parent of b9f99c4 (Full working dynamic Brick wrapping system - compliments to daemonforge)
           name="Bags";
           displayName="Bags";
           ghostIcon="missing";
           stackMax=25;
     };  
+<<<<<<< HEAD
+>>>>>>> parent of b9f99c4 (Full working dynamic Brick wrapping system - compliments to daemonforge)
+=======
 >>>>>>> parent of b9f99c4 (Full working dynamic Brick wrapping system - compliments to daemonforge)
 };   
 class CfgNonAIVehicles
@@ -189,6 +197,7 @@ class CfgVehicles
 				icon="set:BuildingFortIcons image:WindowBarricade";
 			};
 <<<<<<< HEAD
+<<<<<<< HEAD
 			class CP_Bagger
 			{
 				name="Bagger";
@@ -201,6 +210,8 @@ class CfgVehicles
 				icon="set:BuildingFortIcons image:WindowBarricade";
 			};
 			
+=======
+>>>>>>> parent of b9f99c4 (Full working dynamic Brick wrapping system - compliments to daemonforge)
 =======
 >>>>>>> parent of b9f99c4 (Full working dynamic Brick wrapping system - compliments to daemonforge)
 		};

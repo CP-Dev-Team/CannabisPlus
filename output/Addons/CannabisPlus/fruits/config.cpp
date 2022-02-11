@@ -32,7 +32,10 @@ class CfgVehicles
 		descriptionShort="Base bud";
 		model="\dz\gear\food\cannabis_seedman.p3d";
 <<<<<<< HEAD
+<<<<<<< HEAD
 		cpStepUpToBag="";
+=======
+>>>>>>> parent of b9f99c4 (Full working dynamic Brick wrapping system - compliments to daemonforge)
 =======
 >>>>>>> parent of b9f99c4 (Full working dynamic Brick wrapping system - compliments to daemonforge)
 		rotationFlags=34;
@@ -139,7 +142,10 @@ class CfgVehicles
 		displayName="Skunk";
 		descriptionShort="Some cannabis bud. Skunk variety";
 <<<<<<< HEAD
+<<<<<<< HEAD
 		cpStepUpToBag="CP_CannabisBagSkunk";
+=======
+>>>>>>> parent of b9f99c4 (Full working dynamic Brick wrapping system - compliments to daemonforge)
 =======
 >>>>>>> parent of b9f99c4 (Full working dynamic Brick wrapping system - compliments to daemonforge)
 		hiddenSelectionsTextures[]=
@@ -157,7 +163,10 @@ class CfgVehicles
 		displayName="Blue God";
 		descriptionShort="Some cannabis bud.  Blue God variety.";
 <<<<<<< HEAD
+<<<<<<< HEAD
 		cpStepUpToBag="CP_CannabisBagBlue";
+=======
+>>>>>>> parent of b9f99c4 (Full working dynamic Brick wrapping system - compliments to daemonforge)
 =======
 >>>>>>> parent of b9f99c4 (Full working dynamic Brick wrapping system - compliments to daemonforge)
 		hiddenSelectionsTextures[]=
@@ -175,7 +184,10 @@ class CfgVehicles
 		displayName="Purple Kush";
 		descriptionShort="Some cannabis bud.  Purple Kush variety.";
 <<<<<<< HEAD
+<<<<<<< HEAD
 		cpStepUpToBag="CP_CannabisBagKush";
+=======
+>>>>>>> parent of b9f99c4 (Full working dynamic Brick wrapping system - compliments to daemonforge)
 =======
 >>>>>>> parent of b9f99c4 (Full working dynamic Brick wrapping system - compliments to daemonforge)
 		hiddenSelectionsTextures[]=
@@ -193,7 +205,10 @@ class CfgVehicles
 		displayName="Stardawg";
 		descriptionShort="Some cannabis bud.  Stardawg variety.";
 <<<<<<< HEAD
+<<<<<<< HEAD
 		cpStepUpToBag="CP_CannabisBagStardawg";
+=======
+>>>>>>> parent of b9f99c4 (Full working dynamic Brick wrapping system - compliments to daemonforge)
 =======
 >>>>>>> parent of b9f99c4 (Full working dynamic Brick wrapping system - compliments to daemonforge)
 		hiddenSelectionsTextures[]=
@@ -211,7 +226,10 @@ class CfgVehicles
 		displayName="Future";
 		descriptionShort="Some cannabis bud.  Future variety.";
 <<<<<<< HEAD
+<<<<<<< HEAD
 		cpStepUpToBag="CP_CannabisBagFuture";
+=======
+>>>>>>> parent of b9f99c4 (Full working dynamic Brick wrapping system - compliments to daemonforge)
 =======
 >>>>>>> parent of b9f99c4 (Full working dynamic Brick wrapping system - compliments to daemonforge)
 		hiddenSelectionsTextures[]=
@@ -229,7 +247,10 @@ class CfgVehicles
 		displayName="S1";
 		descriptionShort="Some cannabis bud.  S1 variety.  Sponsored by StevesGoods.com";
 <<<<<<< HEAD
+<<<<<<< HEAD
 		cpStepUpToBag="CP_CannabisBagS1";
+=======
+>>>>>>> parent of b9f99c4 (Full working dynamic Brick wrapping system - compliments to daemonforge)
 =======
 >>>>>>> parent of b9f99c4 (Full working dynamic Brick wrapping system - compliments to daemonforge)
 		hiddenSelectionsTextures[]=
@@ -247,7 +268,11 @@ class CfgVehicles
 		displayName="Nomad";
 		descriptionShort="Some cannabis bud.  Nomad variety.";
 <<<<<<< HEAD
+<<<<<<< HEAD
 		cpStepUpToBag="CP_CannabisBagNomad";
+=======
+
+>>>>>>> parent of b9f99c4 (Full working dynamic Brick wrapping system - compliments to daemonforge)
 =======
 
 >>>>>>> parent of b9f99c4 (Full working dynamic Brick wrapping system - compliments to daemonforge)
@@ -266,7 +291,10 @@ class CfgVehicles
 		displayName="Black Frost";
 		descriptionShort="Some cannabis bud.  Black Frost variety.";
 <<<<<<< HEAD
+<<<<<<< HEAD
 		cpStepUpToBag="CP_CannabisBagBlackFrost";
+=======
+>>>>>>> parent of b9f99c4 (Full working dynamic Brick wrapping system - compliments to daemonforge)
 =======
 >>>>>>> parent of b9f99c4 (Full working dynamic Brick wrapping system - compliments to daemonforge)
 		hiddenSelectionsTextures[]=
@@ -285,7 +313,10 @@ class CfgVehicles
 		descriptionShort="Some tobacco leaves for rolling cigarettes";
 		model="CannabisPlus\fruits\TobaccoLeaf.p3d";
 <<<<<<< HEAD
+<<<<<<< HEAD
 		cpStepUpToBag="CP_CannabisBagTabacco";
+=======
+>>>>>>> parent of b9f99c4 (Full working dynamic Brick wrapping system - compliments to daemonforge)
 =======
 >>>>>>> parent of b9f99c4 (Full working dynamic Brick wrapping system - compliments to daemonforge)
 		rotationFlags=17;

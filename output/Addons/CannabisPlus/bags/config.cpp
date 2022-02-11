@@ -143,8 +143,11 @@ class CfgVehicles
 		itemSize[]={2,2};
 		absorbency=0.2;
 <<<<<<< HEAD
+<<<<<<< HEAD
 		cpStepUpToBrick="CP_CannabisBrickBlue";
 =======
+=======
+>>>>>>> parent of b9f99c4 (Full working dynamic Brick wrapping system - compliments to daemonforge)
 		varQuantityInit=1;
 		varQuantityMin=0;
 		varQuantityMax=16;
@@ -242,8 +245,11 @@ class CfgVehicles
 		itemSize[]={2,2};
 		absorbency=0.2;
 <<<<<<< HEAD
+<<<<<<< HEAD
 		cpStepUpToBrick="CP_CannabisBrickKush";
 =======
+=======
+>>>>>>> parent of b9f99c4 (Full working dynamic Brick wrapping system - compliments to daemonforge)
 		varQuantityInit=1;
 		varQuantityMin=0;
 		varQuantityMax=16;
@@ -341,8 +347,11 @@ class CfgVehicles
 		itemSize[]={2,2};
 		absorbency=0.2;
 <<<<<<< HEAD
+<<<<<<< HEAD
 		cpStepUpToBrick="CP_CannabisBrickStardawg";
 =======
+=======
+>>>>>>> parent of b9f99c4 (Full working dynamic Brick wrapping system - compliments to daemonforge)
 		varQuantityInit=1;
 		varQuantityMin=0;
 		varQuantityMax=16;
@@ -630,8 +639,11 @@ class CfgVehicles
 		itemSize[]={2,2};
 		absorbency=0.2;
 <<<<<<< HEAD
+<<<<<<< HEAD
 		cpStepUpToBrick="CP_CannabisBrickNomad";
 =======
+=======
+>>>>>>> parent of b9f99c4 (Full working dynamic Brick wrapping system - compliments to daemonforge)
 		varQuantityInit=1;
 		varQuantityMin=0;
 		varQuantityMax=16;
@@ -729,8 +741,11 @@ class CfgVehicles
 		itemSize[]={2,2};
 		absorbency=0.2;
 <<<<<<< HEAD
+<<<<<<< HEAD
 		cpStepUpToBrick="CP_CannabisBrickBlackFrost"
 =======
+=======
+>>>>>>> parent of b9f99c4 (Full working dynamic Brick wrapping system - compliments to daemonforge)
 		varQuantityInit=1;
 		varQuantityMin=0;
 		varQuantityMax=16;

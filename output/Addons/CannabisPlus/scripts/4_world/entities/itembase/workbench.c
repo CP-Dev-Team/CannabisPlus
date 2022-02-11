@@ -166,7 +166,10 @@ class CP_Workbench extends ItemBase
 	const string ATTACHMENT_SLOT_BAGSWRAPPER        = "CP_CannabusWrapper_Bags";
 	const string ATTACHMENT_SLOT_BRICKS 			= "CP_Cannabus_Bricks";
 <<<<<<< HEAD
+<<<<<<< HEAD
 	
+=======
+>>>>>>> parent of b9f99c4 (Full working dynamic Brick wrapping system - compliments to daemonforge)
 =======
 >>>>>>> parent of b9f99c4 (Full working dynamic Brick wrapping system - compliments to daemonforge)
 	// timer to get bagger working
@@ -318,6 +321,25 @@ class CP_Workbench extends ItemBase
     };
 	
 	
+	void StepWrapperTendancy()
+	{
+      m_UseCPWorkbench++;
+      if (m_UseCPWorkbench > 0)
+	  {
+         m_UseCPWorkbench = 0;
+      }
+      SetSynchDirty();
+    };
+	
+	
+	int CPWorkbenchTendancy()
+	{
+		
+       return m_UseCPWorkbench;
+	   
+    };
+	
+	
 	void CreateBricks()
 	{
 		ItemBase Cannabisbags = GetCannibusWrapperBags();
@@ -335,6 +357,7 @@ class CP_Workbench extends ItemBase
 		if(GetCannibusBricks())
 		{
 <<<<<<< HEAD
+<<<<<<< HEAD
 			Print("Create Bag if empty slot")
 			
 			GetInventory().CreateAttachment(Brick);
@@ -351,6 +374,22 @@ class CP_Workbench extends ItemBase
 			Print("Return Nothing")
 			return;
 =======
+=======
+
+			GetCannibusBricks().AddQuantity(1);
+		}
+		else
+		{
+			GetInventory().CreateAttachment(Brickname);
+		}
+        CannabisBud.AddQuantity(-1); 
+	};
+	
+/*
+	void CreateBricks()//string CreationType
+	{
+		Print ("trigger");
+>>>>>>> parent of b9f99c4 (Full working dynamic Brick wrapping system - compliments to daemonforge)
 
 			GetCannibusBricks().AddQuantity(1);
 		}
