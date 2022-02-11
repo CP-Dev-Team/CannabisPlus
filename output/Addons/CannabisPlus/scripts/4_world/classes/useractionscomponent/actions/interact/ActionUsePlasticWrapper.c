@@ -62,11 +62,25 @@ class ActionCPUsePlasticWrapper: ActionContinuousBase
 	override void OnFinishProgressServer( ActionData action_data )
     {    
 		CP_Workbench Bench = CP_Workbench.Cast( action_data.m_Target.GetObject() );
+		PlayerBase target = PlayerBase.Cast(action_data.m_Player);
 		
+		MinusQuantity( action_data.m_MainItem, target );
 		Bench.CreateBricks();
     }
 	override string GetAdminLogMessage(ActionData action_data)
 	{
 		return " Wrapped Brick of " + action_data.m_Target.GetObject().GetDisplayName();
+	}
+	void MinusQuantity( ItemBase item, PlayerBase player )
+	{
+		
+		if(item.GetQuantity() >= 2)
+		{
+			item.AddQuantity(-1,false);// some reason repeats the -# twice no clue.
+		}
+		else
+		{
+			GetGame().ObjectDelete(item);
+		}
 	}
 };

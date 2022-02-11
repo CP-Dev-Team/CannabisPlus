@@ -36,8 +36,37 @@ class CfgVehicles
 			"CP_CannabisBags","CP_Cannabus_Buds"
 		};
 		cpStepUpToBrick="";
-		//cpBuds="";
+		//cpStepDownToBuds="";
 	};
+	class CP_EmptyBag : Inventory_Base
+	{
+		scope=2;
+		displayName="Empty 1oz Bag";
+		descriptionShort="Empty bag that holds 1oz of an item.";
+		model="\DZ\gear\tools\Heatpack.p3d";
+		rotationFlags=17;
+		canBeSplit=1;
+		varQuantityInit=1;
+		varQuantityMin=0;
+		varQuantityMax=16;
+		varQuantityDestroyOnMin=1;
+		varStackMax=16;
+		lootCategory="Crafted";
+		weight=28;
+		itemSize[]={2,2};
+		absorbency=0.2;
+
+		cpStepUpToBrick="CP_CannabisBrickSkunk";
+		hiddenSelections[]=
+		{
+			"zbytek"
+		};
+		hiddenSelectionsTextures[]=
+		{
+			"CannabisPlus\bags\data\empty_bag_ca.paa"
+		};
+	};
+	
 	class CP_CannabisBagSkunk: CP_CannabisBags
 	{
 		scope=2;

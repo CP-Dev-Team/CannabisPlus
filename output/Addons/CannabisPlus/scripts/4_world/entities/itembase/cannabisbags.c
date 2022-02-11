@@ -22,6 +22,23 @@ class CP_CannabisBags extends ItemBase
     }
 	
 }
+class CP_EmptyBag extends ItemBase
+{
+	void CP_EmptyBag()
+	{
+	}
+	
+	override void SetActions()
+	{
+		super.SetActions();
+
+		AddAction(ActionCPUsePlasticWrapper);
+	}
+	void RemoveBaggy()
+	{
+		AddQuantity(-1);
+	}
+}
 
 class CP_CannabisBagSkunk extends CP_CannabisBags
 {
