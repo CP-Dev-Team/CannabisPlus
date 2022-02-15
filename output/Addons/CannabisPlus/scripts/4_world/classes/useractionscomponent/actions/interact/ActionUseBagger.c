@@ -21,8 +21,9 @@ class ActionCPUseBagger: ActionInteractBase
 		
 		CP_Workbench Bench = CP_Workbench.Cast( target_object );
 		CP_CannabisBud Buds = CP_CannabisBud.Cast( target_entity.GetAttachmentByType(CP_CannabisBud) );
+		VehicleBattery Batteries = VehicleBattery.Cast( target_entity.GetAttachmentByType(VehicleBattery) );
 		
-		if (Bench && Bench.Bagger_Attachments() &&  Buds.GetQuantity() >= 1 )//Bench.IsPowered() &&
+		if (Bench && Bench.Bagger_Attachments() &&  Buds.GetQuantity() >= 2 && Batteries && Batteries.GetCompEM().GetEnergy() >= 150 )//Bench.IsPowered() &&
 		{
 			TendancyText = Bench.GetBagTendancyText()
 			return true;

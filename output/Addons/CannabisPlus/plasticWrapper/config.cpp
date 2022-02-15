@@ -41,5 +41,23 @@ class CfgVehicles
 			"CannabisPlus\plasticWrapper\data\PlasticWrapper_co.paa"
 		};	
 	};
+	class CP_PlasticRoll: Inventory_Base
+	{
+		scope=2;
+		displayName="Base base base";
+		descriptionShort="Base bud";
+		model="\CannabisPlus\plasticWrapper\CP_EmptyROll_DeleteMep3d.p3d";
+		rotationFlags=34;
+		lootCategory="Crafted";
+		weight=14;
+		itemSize[]={1,4};
+		quantityBar=1;
+		varQuantityDestroyOnMin=1;
+		canBeSplit=0;
+		varQuantityInit=100;
+		varQuantityMin=0;
+		varQuantityMax=100;
+		inventorySlot[]={"CP_PlasticRoll"};
+	};
 	
 };

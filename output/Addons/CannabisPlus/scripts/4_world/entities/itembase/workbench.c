@@ -161,6 +161,8 @@ class CP_Workbench extends ItemBase
 	
 	const string ATTACHMENT_SLOT_WRAPPER	 	    = "Wrapper";
 	const string ATTACHMENT_SLOT_BAGGER	 	        = "Bagger";
+	const string ATTACHMENT_SLOT_BATTERIES			= "LargeBattery";
+	const string ATTACHMENT_SLOT_PLASTICWRAP		= "CP_PlasticRoll";
 	const string ATTACHMENT_SLOT_EMPTYBAGS          = "CP_Empty_Bags";
 	const string ATTACHMENT_SLOT_BUDS 				= "CP_Cannabus_Buds";
 	const string ATTACHMENT_SLOT_BAGS				= "CP_Cannabus_Bags";
@@ -230,10 +232,17 @@ class CP_Workbench extends ItemBase
 	{
 		return CP_EmptyBag.Cast(FindAttachmentBySlotName( ATTACHMENT_SLOT_EMPTYBAGS ) );
 	};
-	
+	CP_PlasticRoll GetPlasticRoll()
+	{
+		return CP_PlasticRoll.Cast(FindAttachmentBySlotName(ATTACHMENT_SLOT_PLASTICWRAP) );
+	};
 	CP_CannabisBrickBase GetCannibusBricks()
 	{
 		return CP_CannabisBrickBase.Cast(FindAttachmentBySlotName( ATTACHMENT_SLOT_BRICKS ) );
+	};
+	VehicleBattery GetBattieries()
+	{
+		return VehicleBattery.Cast(FindAttachmentBySlotName( ATTACHMENT_SLOT_BATTERIES ) );
 	};
 	
 	string GetBagTendancyText()
@@ -250,10 +259,10 @@ class CP_Workbench extends ItemBase
 	
 	string GetBrickTendancyText()
 	{
-		if(!GetCannibusBags())
+		if(!GetCannibusBricks())
 			return "";
 		
-		string Brickname = GetCannibusBags().GetDisplayName();
+		string Brickname = GetCannibusBricks().GetDisplayName();
 
 		
         return "Wrap " + Brickname;
@@ -264,6 +273,7 @@ class CP_Workbench extends ItemBase
 	{
 		ItemBase CannabisBud = GetCannibusBud();
 		ItemBase EmptyBags = GetEmptyBags();
+		ItemBase Batteries = GetBattieries();
 		
 		
 		if(!GetCannibusBud())
@@ -285,12 +295,15 @@ class CP_Workbench extends ItemBase
 			return;
 		}
 		EmptyBags.AddQuantity(-1);
-        CannabisBud.AddQuantity(-1); 
+        CannabisBud.AddQuantity(-2); 
+		Batteries.GetCompEM().AddEnergy( -150 );
 	};
 	
 	void CreateBricks()
 	{
 		ItemBase CannabisBag = GetCannibusBags();
+		ItemBase PlasticWrap = GetPlasticRoll();
+		ItemBase Batteries = GetBattieries();
 		
 		
 		if(!GetCannibusBags())
@@ -311,7 +324,9 @@ class CP_Workbench extends ItemBase
 		{
 			return;
 		}
-        CannabisBag.AddQuantity(-1); 
+        CannabisBag.AddQuantity(-16);
+		PlasticWrap.AddQuantity(-25);
+		Batteries.GetCompEM().AddEnergy( -150 );
 	};
 
 

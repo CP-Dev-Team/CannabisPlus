@@ -81,16 +81,26 @@ class CfgNonAIVehicles
 		inventorySlot="Bagger";
 		model="CannabisPlus\bagger\VacuumSealer.p3d";
     };
+	class ProxyCP_EmptyROll_DeleteMep3d : ProxyAttachment
+	{
+		inventorySlot="CP_PlasticRoll";
+		model="CannabisPlus\plasticWrapper\CP_EmptyROll_DeleteMep3d.p3d";
+	};
 	class Proxyheatpack : ProxyAttachment
     {
 		inventorySlot="CP_Empty_Bags";
 		model="DZ\gear\tools\heatpack.p3d";
     };
-	class Proxyfirstaidkit : Proxyheatpack
+	class Proxyfirstaidkit : ProxyAttachment
     {
 		inventorySlot="CP_Cannabus_Bricks";
 		model="\DZ\gear\containers\firstaidkit.p3d";
     };
+	class Proxybattery_truck : ProxyAttachment
+	{
+		inventorySlot="LargeBattery";
+		model="\dz\vehicles\parts\battery_truck.p3d";
+	};
 };
 class CfgVehicles
 {
@@ -150,6 +160,7 @@ class CfgVehicles
 		{
 			"Wrapper",
 			"Bagger",
+			"LargeBattery",
 			"CP_Empty_Bags",
 			"CP_PlasticRoll",
 			"CP_Cannabus_Buds",
@@ -165,7 +176,8 @@ class CfgVehicles
 				attachmentSlots[]=
 				{
 					"Wrapper",
-					"Bagger"
+					"Bagger",
+					"LargeBattery"
 				};
 				icon="";
 			};

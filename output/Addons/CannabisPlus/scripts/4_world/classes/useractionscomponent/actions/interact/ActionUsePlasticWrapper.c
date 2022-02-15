@@ -21,8 +21,9 @@ class ActionCPUsePlasticWrapper: ActionInteractBase
 		
 		CP_Workbench Bench = CP_Workbench.Cast( target_object );
 		CP_CannabisBags Bags = CP_CannabisBags.Cast( target_entity.GetAttachmentByType(CP_CannabisBags) );
+		VehicleBattery Batteries = VehicleBattery.Cast( target_entity.GetAttachmentByType(VehicleBattery) );
 		
-		if (Bench && Bench.Wrapper_Attachments() &&  Bags.GetQuantity() >= 1 )//Bench.IsPowered() &&
+		if (Bench && Bench.Wrapper_Attachments() &&  Bags.GetQuantity() >= 16 && Batteries && Batteries.GetCompEM().GetEnergy() >= 150 )//Bench.IsPowered() &&
 		{
 			TendancyText = Bench.GetBrickTendancyText()
 			return true;
