@@ -3,12 +3,12 @@ class CP_CannabisBud extends ItemBase
 	   
     protected string m_cpBags= "";
     
-    void CP_CannabisBags ()
+    void CP_CannabisBud ()
 	{
         
-        if ( ConfigIsExisting("cpBag") ) 
+        if ( ConfigIsExisting("cpStepUpToBag") ) 
 		{
-            m_cpBags= ConfigGetString("cpBag");
+            m_cpBags= ConfigGetString("cpStepUpToBag");
         }
 		else
 		{
@@ -16,7 +16,7 @@ class CP_CannabisBud extends ItemBase
         }
     }
     
-    string GetcpBrick()
+    string GetcpBag()
 	{
         return m_cpBags;
     }

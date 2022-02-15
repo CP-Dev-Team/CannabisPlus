@@ -32,20 +32,19 @@ class CfgSlots
           ghostIcon="missing";
     };
 	
-    class Slot_CP_Cannabus_Bags
-    {
-          name="CP_Cannabus_Bags";
-          displayName="Bags";
-          ghostIcon="missing";
-          stackMax=25;
-    };
-
     class Slot_CP_Cannabus_Buds
     {
         name="CP_Cannabus_Buds";
         displayName="Buds Storage";
         ghostIcon="set:dayz_inventory image:plant";
 		stackMax=100;
+    };	
+    class Slot_CP_Cannabus_Bags
+    {
+          name="CP_Cannabus_Bags";
+          displayName="Bags";
+          ghostIcon="missing";
+          stackMax=25;
     };
 	class Slot_CP_Cannabus_Bricks
     {
@@ -59,7 +58,14 @@ class CfgSlots
         name="CP_PlasticRoll";
         displayName="Roll";
         ghostIcon="missing";
-    };	
+    };
+	class Slot_CP_Empty_Bags
+	{
+		name="CP_Empty_Bags";
+        displayName="Empty Bags";
+        ghostIcon="missing";
+		
+	}
 };   
 class CfgNonAIVehicles
 {
@@ -74,6 +80,16 @@ class CfgNonAIVehicles
     {
 		inventorySlot="Bagger";
 		model="CannabisPlus\bagger\VacuumSealer.p3d";
+    };
+	class Proxyheatpack : ProxyAttachment
+    {
+		inventorySlot="CP_Empty_Bags";
+		model="DZ\gear\tools\heatpack.p3d";
+    };
+	class Proxyfirstaidkit : Proxyheatpack
+    {
+		inventorySlot="CP_Cannabus_Bricks";
+		model="\DZ\gear\containers\firstaidkit.p3d";
     };
 };
 class CfgVehicles
@@ -110,8 +126,8 @@ class CfgVehicles
 		};
     };
 	  
-      class CP_Workbench : Inventory_Base
-      {
+    class CP_Workbench : Inventory_Base
+    {
 		scope = 2;
 		displayName = "Workbench";
 		descriptionShort = "A workbench for packaging of illicit drugs.";
@@ -134,8 +150,10 @@ class CfgVehicles
 		{
 			"Wrapper",
 			"Bagger",
+			"CP_Empty_Bags",
 			"CP_PlasticRoll",
 			"CP_Cannabus_Buds",
+			"CP_Cannabus_Bags",
 			"CP_Cannabus_Bricks"
 		};
 		class GUIInventoryAttachmentsProps
@@ -151,6 +169,17 @@ class CfgVehicles
 				};
 				icon="";
 			};
+			class CP_Bagger
+			{
+				name="Bagger";
+				description="";
+				attachmentSlots[]=
+				{
+					"CP_Empty_Bags",
+					"CP_Cannabus_Buds"
+				};
+				icon="set:BuildingFortIcons image:WindowBarricade";
+			};
 			class CP_Wrapper
 			{
 				name="Wrapper";
@@ -158,22 +187,12 @@ class CfgVehicles
 				attachmentSlots[]=
 				{
 					"CP_PlasticRoll",
-					"CP_Cannabus_Buds",
+					"CP_Cannabus_Bags",
 					"CP_Cannabus_Bricks"
 				};
 				icon="set:BuildingFortIcons image:WindowBarricade";
 			};
-			class CP_Bagger
-			{
-				name="Bagger";
-				description="";
-				attachmentSlots[]=
-				{
-					"CP_Cannabus_Buds",
-					"CP_Cannabus_Bricks"
-				};
-				icon="set:BuildingFortIcons image:WindowBarricade";
-			};
+
 			
 		};
 		class EnergyManager

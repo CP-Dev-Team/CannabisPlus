@@ -13,5 +13,6 @@ modded class ActionConstructor {
 		actions.Insert(ActionDryPlants);
 		//WorkBench actions
 		actions.Insert(ActionCPUsePlasticWrapper);
+		actions.Insert(ActionCPUseBagger);
 	};
 };

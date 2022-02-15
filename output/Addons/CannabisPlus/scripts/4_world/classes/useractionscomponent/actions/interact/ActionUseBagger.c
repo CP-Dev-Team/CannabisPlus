@@ -1,6 +1,6 @@
-class ActionCPUsePlasticWrapper: ActionInteractBase
+class ActionCPUseBagger: ActionInteractBase
 {	
-	void ActionCPUsePlasticWrapper()
+	void ActionCPUseBagger()
 	{
 		m_CommandUID        = DayZPlayerConstants.CMD_ACTIONMOD_INTERACTONCE;
 		m_StanceMask        = DayZPlayerConstants.STANCEMASK_CROUCH | DayZPlayerConstants.STANCEMASK_ERECT;
@@ -20,11 +20,11 @@ class ActionCPUsePlasticWrapper: ActionInteractBase
         Object target_object = target.GetObject();
 		
 		CP_Workbench Bench = CP_Workbench.Cast( target_object );
-		CP_CannabisBags Bags = CP_CannabisBags.Cast( target_entity.GetAttachmentByType(CP_CannabisBags) );
+		CP_CannabisBud Buds = CP_CannabisBud.Cast( target_entity.GetAttachmentByType(CP_CannabisBud) );
 		
-		if (Bench && Bench.Wrapper_Attachments() &&  Bags.GetQuantity() >= 1 )//Bench.IsPowered() &&
+		if (Bench && Bench.Bagger_Attachments() &&  Buds.GetQuantity() >= 1 )//Bench.IsPowered() &&
 		{
-			TendancyText = Bench.GetBrickTendancyText()
+			TendancyText = Bench.GetBagTendancyText()
 			return true;
 		}
 		return false;
@@ -35,13 +35,13 @@ class ActionCPUsePlasticWrapper: ActionInteractBase
 		CP_Workbench Bench = CP_Workbench.Cast( action_data.m_Target.GetObject() );
 		
 		//Bench.CreateBricks(Bench.GetWrapperTendancyCreationType())
-		Bench.CreateBricks();
+		Bench.CreateBags();
 
 	};
 	
 	override string GetAdminLogMessage(ActionData action_data)
 	{
-		return " Wrapped Brick of " + action_data.m_Target.GetObject().GetDisplayName();
+		return " Filled " + action_data.m_Target.GetObject().GetDisplayName();
 	}
 };
 
