@@ -204,22 +204,6 @@ class CfgVehicles
 				};
 				icon="set:BuildingFortIcons image:WindowBarricade";
 			};
-
-			
-		};
-		class EnergyManager
-		{
-			hasIcon=1;
-			autoSwitchOff=1;
-			energyUsagePerSecond=0.0085;
-			energyStorageMax=0;
-			isPassiveDevice=0;
-			cordTextureFile="DZ\gear\camping\Data\plug_yellow_CO.paa";
-			cordLength=5;
-			powerSocketsCount=0;
-			plugType=2;
-			attachmentAction=2;
-			updateInterval=10;
 		};
 	};
 	

@@ -15,7 +15,6 @@ class CP_CannabisBags extends ItemBase
             m_cpBrick= "";
         }
     }
-    
     string GetcpBrick()
 	{
         return m_cpBrick;
