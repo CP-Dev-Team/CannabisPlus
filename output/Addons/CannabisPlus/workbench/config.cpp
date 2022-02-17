@@ -86,15 +86,15 @@ class CfgNonAIVehicles
 		inventorySlot="CP_PlasticRoll";
 		model="CannabisPlus\plasticWrapper\CP_EmptyROll_DeleteMep3d.p3d";
 	};
-	class Proxyheatpack : ProxyAttachment
+	class ProxyCP_baggy : ProxyAttachment
     {
 		inventorySlot="CP_Empty_Bags";
-		model="DZ\gear\tools\heatpack.p3d";
+		model="CannabisPlus\bags\CP_baggy.p3d";
     };
-	class Proxyfirstaidkit : ProxyAttachment
+	class ProxyCP_brick : ProxyAttachment
     {
 		inventorySlot="CP_Cannabus_Bricks";
-		model="\DZ\gear\containers\firstaidkit.p3d";
+		model="CannabisPlus\bricks\CP_brick.p3d";
     };
 	class Proxybattery_truck : ProxyAttachment
 	{

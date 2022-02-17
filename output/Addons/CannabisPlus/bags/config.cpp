@@ -29,7 +29,7 @@ class CfgVehicles
 		scope=1;
 		displayName="base bag";
 		descriptionShort="Ignore me , Ignore me";
-		model="\DZ\gear\tools\Heatpack.p3d";
+		model="CannabisPlus\bags\CP_baggy.p3d";
 		rotationFlags=17;
 		canBeSplit=1;
 		varQuantityInit=1;
@@ -40,6 +40,10 @@ class CfgVehicles
 		weight=28;
 		itemSize[]={1,3};
 		lootCategory="Crafted";
+		hiddenSelections[]=
+		{
+			"zbytek"
+		};
 		inventorySlot[]=
 		{
 			"CP_Cannabus_Bags"
@@ -52,7 +56,7 @@ class CfgVehicles
 		scope=2;
 		displayName="Empty 1oz Bag";
 		descriptionShort="Empty bag that holds 1oz of an item.";
-		model="\DZ\gear\tools\Heatpack.p3d";
+		model="CannabisPlus\bags\CP_baggy.p3d";
 		rotationFlags=17;
 		canBeSplit=1;
 		varQuantityInit=1;

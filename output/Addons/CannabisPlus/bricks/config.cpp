@@ -29,7 +29,7 @@ class CfgVehicles
 		scope=2;
 		displayName="Brick Base";
 		descriptionShort="Base";
-		model="\dz\gear\containers\FirstAidKit.p3d";
+		model="CannabisPlus\bricks\CP_brick.p3d";
 		rotationFlags=17;
 		lootCategory="Crafted";
 		weight=450;
@@ -45,11 +45,18 @@ class CfgVehicles
 		inventorySlot[]={"CP_Cannabus_Bricks"};
 		hiddenSelections[]=
 		{
-			"zbytek"
+			"SeedPack",
+			"Brick"
 		};
 		hiddenSelectionsTextures[]=
 		{
-			"CannabisPlus\bricks\data\cannabis_brick_skunk_co.paa"
+			"dz\gear\cultivation\data\cannabis_seeds_co.paa",
+			"CannabisPlus\bricks\data\cannabis_brick_co.paa"
+		};
+		hiddenSelectionsMaterials[]=
+		{
+			"dz\gear\cultivation\data\cannabis_seeds.rvmat",
+			"CannabisPlus\bricks\data\brick.rvmat"
 		};
 		
 		class DamageSystem
@@ -129,7 +136,13 @@ class CfgVehicles
 		descriptionShort="One pound of Skunk weed.";
 		hiddenSelectionsTextures[]=
 		{
-			"CannabisPlus\bricks\data\cannabis_brick_skunk_co.paa"
+			"CannabisPlus\seeds\data\cannabis_seeds_pack_skunk_co.paa",
+			"CannabisPlus\bricks\data\cannabis_brick_co.paa"
+		};
+		hiddenSelectionsMaterials[]=
+		{
+			"CannabisPlus\seeds\data\cannabis_seeds.rvmat",
+			"CannabisPlus\bricks\data\brick.rvmat"
 		};
 	};
 	class CP_CannabisBrickBlue: CP_CannabisBrickBase
@@ -139,7 +152,13 @@ class CfgVehicles
 		descriptionShort="One pound of Blue God weed.";
 		hiddenSelectionsTextures[]=
 		{
-			"CannabisPlus\bricks\data\cannabis_brick_blue_co.paa"
+			"CannabisPlus\seeds\data\cannabis_seeds_pack_blue_co.paa",
+			"CannabisPlus\bricks\data\cannabis_brick_co.paa"
+		};
+		hiddenSelectionsMaterials[]=
+		{
+			"CannabisPlus\seeds\data\cannabis_seeds.rvmat",
+			"CannabisPlus\bricks\data\brick.rvmat"
 		};
 	};
 	class CP_CannabisBrickKush: CP_CannabisBrickBase
@@ -149,7 +168,13 @@ class CfgVehicles
 		descriptionShort="One pound of Purple Kush weed.";
 		hiddenSelectionsTextures[]=
 		{
-			"CannabisPlus\bricks\data\cannabis_brick_kush_co.paa"
+			"CannabisPlus\seeds\data\cannabis_seeds_pack_kush_co.paa",
+			"CannabisPlus\bricks\data\cannabis_brick_co.paa"
+		};
+		hiddenSelectionsMaterials[]=
+		{
+			"CannabisPlus\seeds\data\cannabis_seeds.rvmat",
+			"CannabisPlus\bricks\data\brick.rvmat"
 		};
 	};
 	class CP_CannabisBrickStardawg: CP_CannabisBrickBase
@@ -159,7 +184,13 @@ class CfgVehicles
 		descriptionShort="One pound of Stardawg weed.";
 		hiddenSelectionsTextures[]=
 		{
-			"CannabisPlus\bricks\data\cannabis_brick_stardawg_co.paa"
+			"CannabisPlus\seeds\data\cannabis_seeds_pack_stardawg_co.paa",
+			"CannabisPlus\bricks\data\cannabis_brick_co.paa"
+		};
+		hiddenSelectionsMaterials[]=
+		{
+			"CannabisPlus\seeds\data\cannabis_seeds.rvmat",
+			"CannabisPlus\bricks\data\brick.rvmat"
 		};
 	};
 	class CP_CannabisBrickFuture: CP_CannabisBrickBase
@@ -169,7 +200,13 @@ class CfgVehicles
 		descriptionShort="One pound of Future weed.";
 		hiddenSelectionsTextures[]=
 		{
-			"CannabisPlus\bricks\data\cannabis_brick_future_co.paa"
+			"CannabisPlus\seeds\data\cannabis_seeds_pack_Future_co.paa",
+			"CannabisPlus\bricks\data\cannabis_brick_co.paa"
+		};
+		hiddenSelectionsMaterials[]=
+		{
+			"CannabisPlus\seeds\data\cannabis_seeds.rvmat",
+			"CannabisPlus\bricks\data\brick.rvmat"
 		};
 	};
 	class CP_CannabisBrickS1: CP_CannabisBrickBase
@@ -179,7 +216,13 @@ class CfgVehicles
 		descriptionShort="One pound of S1 hemp.  Sponsored by StevesGoods.com";
 		hiddenSelectionsTextures[]=
 		{
-			"CannabisPlus\bricks\data\cannabis_brick_s1_co.paa"
+			"CannabisPlus\seeds\data\cannabis_seeds_pack_s1_co.paa",
+			"CannabisPlus\bricks\data\cannabis_brick_co.paa"
+		};
+		hiddenSelectionsMaterials[]=
+		{
+			"CannabisPlus\seeds\data\cannabis_seeds.rvmat",
+			"CannabisPlus\bricks\data\brick.rvmat"
 		};
 	};
 	class CP_CannabisBrickNomad: CP_CannabisBrickBase
@@ -189,7 +232,13 @@ class CfgVehicles
 		descriptionShort="One pound of Nomad weed.";
 		hiddenSelectionsTextures[]=
 		{
-			"CannabisPlus\bricks\data\cannabis_brick_nomad_co.paa"
+			"CannabisPlus\seeds\data\cannabis_seeds_pack_nomad_co.paa",
+			"CannabisPlus\bricks\data\cannabis_brick_co.paa"
+		};
+		hiddenSelectionsMaterials[]=
+		{
+			"CannabisPlus\seeds\data\cannabis_seeds.rvmat",
+			"CannabisPlus\bricks\data\brick.rvmat"
 		};
 	};
 	class CP_CannabisBrickBlackFrost: CP_CannabisBrickBase
@@ -199,7 +248,13 @@ class CfgVehicles
 		descriptionShort="One pound of Black Frost weed.";
 		hiddenSelectionsTextures[]=
 		{
-			"CannabisPlus\bricks\data\cannabis_brick_blackfrost_co.paa"
+			"CannabisPlus\seeds\data\cannabis_seeds_pack_blackfrost_co.paa",
+			"CannabisPlus\bricks\data\cannabis_brick_co.paa"
+		};
+		hiddenSelectionsMaterials[]=
+		{
+			"CannabisPlus\seeds\data\cannabis_seeds.rvmat",
+			"CannabisPlus\bricks\data\brick.rvmat"
 		};
 	};
 };
