@@ -19,8 +19,24 @@ class CP_CannabisBags extends ItemBase
 	{
         return m_cpBrick;
     }
+	override void SetActions()
+	{
+		super.SetActions();
+		
+		AddAction(ActionAttach);
+		AddAction(ActionDetach);
+	}
 };
-class CP_EmptyBag extends ItemBase{};
+class CP_EmptyBag extends ItemBase
+{
+	override void SetActions()
+	{
+		super.SetActions();
+		
+		AddAction(ActionAttach);
+		AddAction(ActionDetach);
+	}
+};
 
 class CP_CannabisBagSkunk extends CP_CannabisBags{};
 

@@ -20,7 +20,13 @@ class CP_CannabisBud extends ItemBase
 	{
         return m_cpBags;
     }
-	
+	override void SetActions()
+	{
+		super.SetActions();
+		
+		AddAction(ActionAttach);
+		AddAction(ActionDetach);
+	}
 	
 };
 

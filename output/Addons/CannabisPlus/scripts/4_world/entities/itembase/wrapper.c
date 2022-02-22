@@ -4,4 +4,13 @@
 // All methods to use the plastic wrapper are in the class CP_Workbench.
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 class CP_PlasticRoll extends ItemBase{};
-class CP_PlasticWrapper extends ItemBase {}      
+class CP_PlasticWrapper extends ItemBase 
+{
+	override void SetActions()
+	{
+		super.SetActions();
+		
+		AddAction(ActionAttach);
+		AddAction(ActionDetach);
+	}
+}      

@@ -70,6 +70,12 @@ class CfgSlots
 class CfgNonAIVehicles
 {
     class ProxyAttachment;
+	class Proxycannabis_seedman : ProxyAttachment
+    {
+		scope = 2;
+		inventorySlot="CP_Cannabus_Buds";
+		model="DZ\gear\food\cannabis_seedman.p3d";
+    };
 	class ProxyPlasticWrapper : ProxyAttachment
     {
 		scope = 2;
@@ -90,6 +96,11 @@ class CfgNonAIVehicles
     {
 		inventorySlot="CP_Empty_Bags";
 		model="CannabisPlus\bags\CP_baggy.p3d";
+    };
+	class ProxyCP_Proxybaggy : ProxyAttachment
+    {
+		inventorySlot="CP_Cannabus_Bags";
+		model="CannabisPlus\bags\Proxies\CP_Proxybaggy.p3d";
     };
 	class ProxyCP_brick : ProxyAttachment
     {

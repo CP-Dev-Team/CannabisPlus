@@ -1,6 +1,12 @@
 class CP_CannabisBrickBase extends ItemBase 
 {
-	
+	override void SetActions()
+	{
+		super.SetActions();
+		
+		AddAction(ActionAttach);
+		AddAction(ActionDetach);
+	}
 };
 class CP_CannabisBrickSkunk extends CP_CannabisBrickBase{};
 
