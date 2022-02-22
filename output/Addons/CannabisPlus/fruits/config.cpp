@@ -241,6 +241,11 @@ class CfgVehicles
 		displayName="Black Frost";
 		descriptionShort="Some cannabis bud.  Black Frost variety.";
 		cpStepUpToBag="CP_CannabisBagBlackFrost";
+		varQuantityInit=1;
+		varQuantityMin=0;
+		varQuantityMax=16;
+		varQuantityDestroyOnMin=1;
+		varStackMax=16;
 		hiddenSelectionsTextures[]=
 		{
 			"CannabisPlus\fruits\data\cannabis_seedman_raw_BlackFrost_co.paa"

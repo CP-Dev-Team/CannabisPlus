@@ -2,8 +2,9 @@ class CP_CannabisBags extends ItemBase
 {
    
     protected string m_cpBrick= "";
+	protected string m_CpRipBag="";
     
-    void CP_CannabisBags ()
+    void CP_CannabisBags()
 	{
         
         if ( ConfigIsExisting("cpStepUpToBrick") ) 
@@ -14,15 +15,48 @@ class CP_CannabisBags extends ItemBase
 		{
             m_cpBrick= "";
         }
+		
+		if ( ConfigIsExisting("cpStepDownToBud") ) 
+		{
+            m_CpRipBag = ConfigGetString("cpStepDownToBud");
+        }
+		else
+		{
+            m_CpRipBag = "";
+        }
+		
     }
-    string GetcpBrick()
+		
+	string GetcpBrick()
 	{
         return m_cpBrick;
     }
+	
+	string GetCPRipBag()
+	{
+        return m_CpRipBag;
+    }
+	
+	string GetBagTendancyText()
+	{		
+        return "Rip open " + GetDisplayName();
+    };
+	
+
+
+	
+	
+	//void RipOpenBag()
+	//{
+	//	string Bagname = GetCPRipBag(); 
+	//	
+	//	ReplaceEdibleWithNew("Bagname");
+	//};
+	
 	override void SetActions()
 	{
 		super.SetActions();
-		
+		AddAction(ActionCP_RipOpenBrickOrBag);
 		AddAction(ActionAttach);
 		AddAction(ActionDetach);
 	}

@@ -43,6 +43,7 @@ class CfgVehicles
 		varQuantityMax=25;
 		varStackMax=1;
 		inventorySlot[]={"CP_Cannabus_Bricks"};
+		cpStepDownToBag="";
 		hiddenSelections[]=
 		{
 			"SeedPack",
@@ -134,6 +135,7 @@ class CfgVehicles
 		scope=2;
 		displayName="Brick of Skunk Weed";
 		descriptionShort="One pound of Skunk weed.";
+		cpStepDownToBag="CP_CannabisBagSkunk";
 		hiddenSelectionsTextures[]=
 		{
 			"CannabisPlus\seeds\data\cannabis_seeds_pack_skunk_co.paa",
@@ -150,6 +152,7 @@ class CfgVehicles
 		scope=2;
 		displayName="Brick of Blue God Weed";
 		descriptionShort="One pound of Blue God weed.";
+		cpStepDownToBag="CP_CannabisBagBlue";
 		hiddenSelectionsTextures[]=
 		{
 			"CannabisPlus\seeds\data\cannabis_seeds_pack_blue_co.paa",
@@ -166,6 +169,7 @@ class CfgVehicles
 		scope=2;
 		displayName="Brick of Purple Kush Weed";
 		descriptionShort="One pound of Purple Kush weed.";
+		cpStepDownToBag="CP_CannabisBagKush";
 		hiddenSelectionsTextures[]=
 		{
 			"CannabisPlus\seeds\data\cannabis_seeds_pack_kush_co.paa",
@@ -182,6 +186,7 @@ class CfgVehicles
 		scope=2;
 		displayName="Brick of Stardawg Weed";
 		descriptionShort="One pound of Stardawg weed.";
+		cpStepDownToBag="CP_CannabisBagStardawg";
 		hiddenSelectionsTextures[]=
 		{
 			"CannabisPlus\seeds\data\cannabis_seeds_pack_stardawg_co.paa",
@@ -198,6 +203,7 @@ class CfgVehicles
 		scope=2;
 		displayName="Brick of Future Weed";
 		descriptionShort="One pound of Future weed.";
+		cpStepDownToBag="CP_CannabisBagFuture";
 		hiddenSelectionsTextures[]=
 		{
 			"CannabisPlus\seeds\data\cannabis_seeds_pack_Future_co.paa",
@@ -214,6 +220,7 @@ class CfgVehicles
 		scope=2;
 		displayName="Brick of S1 Hemp";
 		descriptionShort="One pound of S1 hemp.  Sponsored by StevesGoods.com";
+		cpStepDownToBag="CP_CannabisBagS1";
 		hiddenSelectionsTextures[]=
 		{
 			"CannabisPlus\seeds\data\cannabis_seeds_pack_s1_co.paa",
@@ -230,6 +237,7 @@ class CfgVehicles
 		scope=2;
 		displayName="Brick of Nomad Weed";
 		descriptionShort="One pound of Nomad weed.";
+		cpStepDownToBag="CP_CannabisBagNomad";
 		hiddenSelectionsTextures[]=
 		{
 			"CannabisPlus\seeds\data\cannabis_seeds_pack_nomad_co.paa",
@@ -246,6 +254,8 @@ class CfgVehicles
 		scope=2;
 		displayName="Brick of Black Frost Weed";
 		descriptionShort="One pound of Black Frost weed.";
+		cpStepDownToBag="CP_CannabisBagBlackFrost";
+
 		hiddenSelectionsTextures[]=
 		{
 			"CannabisPlus\seeds\data\cannabis_seeds_pack_blackfrost_co.paa",

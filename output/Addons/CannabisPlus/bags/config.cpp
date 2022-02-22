@@ -49,6 +49,7 @@ class CfgVehicles
 			"CP_Cannabus_Bags"
 		};
 		cpStepUpToBrick="";
+		cpStepDownToBud="";
 		//cpStepDownToBuds="";
 	};
 	class CP_EmptyBag : Inventory_Base
@@ -86,6 +87,7 @@ class CfgVehicles
 		displayName="Bag of Skunk Weed";
 		descriptionShort="About an ounce of Skunk weed.";
 		cpStepUpToBrick="CP_CannabisBrickSkunk";
+		cpStepDownToBud="CP_CannabisSkunk";
 		hiddenSelections[]=
 		{
 			"zbytek"
@@ -101,6 +103,7 @@ class CfgVehicles
 		displayName="Bag of Blue God Weed";
 		descriptionShort="About an ounce of Blue God weed.";
 		cpStepUpToBrick="CP_CannabisBrickBlue";
+		cpStepDownToBud="CP_CannabisBlue";
 		hiddenSelections[]=
 		{
 			"zbytek"
@@ -116,6 +119,7 @@ class CfgVehicles
 		displayName="Bag of Purple Kush Weed";
 		descriptionShort="About an ounce of Purple Kush weed.";
 		cpStepUpToBrick="CP_CannabisBrickKush";
+		cpStepDownToBud="CP_CannabisKush";
 		hiddenSelections[]=
 		{
 			"zbytek"
@@ -131,6 +135,7 @@ class CfgVehicles
 		displayName="Bag of Stardawg Weed";
 		descriptionShort="About an ounce of Stardawg weed.";
 		cpStepUpToBrick="CP_CannabisBrickStardawg";
+		cpStepDownToBud="CP_CannabisStardawg";
 		hiddenSelections[]=
 		{
 			"zbytek"
@@ -145,7 +150,8 @@ class CfgVehicles
 		scope=2;
 		displayName="Bag of Future Weed";
 		descriptionShort="About an ounce of Future weed.";
-		cpStepUpToBrick="CP_CannabisBrickFuture"
+		cpStepUpToBrick="CP_CannabisBrickFuture";
+		cpStepDownToBud="CP_CannabisFuture";
 		hiddenSelections[]=
 		{
 			"zbytek"
@@ -160,7 +166,8 @@ class CfgVehicles
 		scope=2;
 		displayName="Bag of S1 Hemp";
 		descriptionShort="About an ounce of S1 hemp.  Sponsored by StevesGoods.com";
-		cpStepUpToBrick="CP_CannabisBrickS1"
+		cpStepUpToBrick="CP_CannabisBrickS1";
+		cpStepDownToBud="CP_CannabisS1";
 		hiddenSelections[]=
 		{
 			"zbytek"
@@ -176,6 +183,7 @@ class CfgVehicles
 		displayName="Bag of Nomad Weed";
 		descriptionShort="About an ounce of Nomad weed.";
 		cpStepUpToBrick="CP_CannabisBrickNomad";
+		cpStepDownToBud="CP_CannabisNomad";
 		hiddenSelections[]=
 		{
 			"zbytek"
@@ -190,7 +198,16 @@ class CfgVehicles
 		scope=2;
 		displayName="Bag of Black Frost Weed";
 		descriptionShort="About an ounce of black frost weed.";
-		cpStepUpToBrick="CP_CannabisBrickBlackFrost"
+		cpStepUpToBrick="CP_CannabisBrickBlackFrost";
+		cpStepDownToBud="CP_CannabisBlackFrost";
+		class Resources
+		{
+			class CP_CannabisBlackFrost
+			{
+				value=16;
+				variable="quantity";
+			};
+		};
 		hiddenSelections[]=
 		{
 			"zbytek"
