@@ -50,7 +50,6 @@ class CfgVehicles
 		};
 		cpStepUpToBrick="";
 		cpStepDownToBud="";
-		//cpStepDownToBuds="";
 	};
 	class CP_EmptyBag : Inventory_Base
 	{

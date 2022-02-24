@@ -4,9 +4,15 @@ class CP_CannabisBrickBase extends ItemBase
 	{
 		super.SetActions();
 		
+		AddAction(ActionCP_RipOpenBrickOrBag);
 		AddAction(ActionAttach);
 		AddAction(ActionDetach);
 	}
+	string GetCPitemTendancyText()
+	{		
+        return "UnWrap " + GetDisplayName();
+    };
+	
 };
 class CP_CannabisBrickSkunk extends CP_CannabisBrickBase{};
 

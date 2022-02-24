@@ -37,7 +37,7 @@ class CP_CannabisBags extends ItemBase
         return m_CpRipBag;
     }
 	
-	string GetBagTendancyText()
+	string GetCPitemTendancyText()
 	{		
         return "Rip open " + GetDisplayName();
     };

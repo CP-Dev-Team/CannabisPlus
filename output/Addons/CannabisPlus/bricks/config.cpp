@@ -255,7 +255,14 @@ class CfgVehicles
 		displayName="Brick of Black Frost Weed";
 		descriptionShort="One pound of Black Frost weed.";
 		cpStepDownToBag="CP_CannabisBagBlackFrost";
-
+		class Resources
+		{
+			class CP_CannabisBagBlackFrost
+			{
+				value=16;
+				variable="quantity";
+			};
+		};
 		hiddenSelectionsTextures[]=
 		{
 			"CannabisPlus\seeds\data\cannabis_seeds_pack_blackfrost_co.paa",
