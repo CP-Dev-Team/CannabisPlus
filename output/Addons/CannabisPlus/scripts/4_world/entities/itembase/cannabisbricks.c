@@ -1,5 +1,7 @@
-class CP_CannabisBrickBase extends ItemBase 
+class CP_CannabisBrickBase extends CP_CoreClass 
 {
+	void CP_CannabisBrickBase(){}
+	
 	override void SetActions()
 	{
 		super.SetActions();
@@ -8,7 +10,7 @@ class CP_CannabisBrickBase extends ItemBase
 		AddAction(ActionAttach);
 		AddAction(ActionDetach);
 	}
-	string GetCPitemTendancyText()
+	override string GetCPitemTendancyText()
 	{		
         return "UnWrap " + GetDisplayName();
     };

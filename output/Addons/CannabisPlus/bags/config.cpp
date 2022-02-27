@@ -24,6 +24,7 @@ class CfgPatches
 class CfgVehicles
 {
 	class Inventory_Base;
+
 	class CP_CannabisBags:Inventory_Base
 	{
 		scope=1;
@@ -87,6 +88,14 @@ class CfgVehicles
 		descriptionShort="About an ounce of Skunk weed.";
 		cpStepUpToBrick="CP_CannabisBrickSkunk";
 		cpStepDownToBud="CP_CannabisSkunk";
+		class Resources
+		{
+			class CP_CannabisSkunk
+			{
+				value=2;
+				variable="quantity";
+			};
+		};
 		hiddenSelections[]=
 		{
 			"zbytek"
@@ -103,6 +112,14 @@ class CfgVehicles
 		descriptionShort="About an ounce of Blue God weed.";
 		cpStepUpToBrick="CP_CannabisBrickBlue";
 		cpStepDownToBud="CP_CannabisBlue";
+		class Resources
+		{
+			class CP_CannabisBlue
+			{
+				value=2;
+				variable="quantity";
+			};
+		};
 		hiddenSelections[]=
 		{
 			"zbytek"
@@ -119,6 +136,14 @@ class CfgVehicles
 		descriptionShort="About an ounce of Purple Kush weed.";
 		cpStepUpToBrick="CP_CannabisBrickKush";
 		cpStepDownToBud="CP_CannabisKush";
+		class Resources
+		{
+			class CP_CannabisKush
+			{
+				value=2;
+				variable="quantity";
+			};
+		};
 		hiddenSelections[]=
 		{
 			"zbytek"
@@ -135,6 +160,14 @@ class CfgVehicles
 		descriptionShort="About an ounce of Stardawg weed.";
 		cpStepUpToBrick="CP_CannabisBrickStardawg";
 		cpStepDownToBud="CP_CannabisStardawg";
+		class Resources
+		{
+			class CP_CannabisStardawg
+			{
+				value=2;
+				variable="quantity";
+			};
+		};
 		hiddenSelections[]=
 		{
 			"zbytek"
@@ -151,6 +184,14 @@ class CfgVehicles
 		descriptionShort="About an ounce of Future weed.";
 		cpStepUpToBrick="CP_CannabisBrickFuture";
 		cpStepDownToBud="CP_CannabisFuture";
+		class Resources
+		{
+			class CP_CannabisFuture
+			{
+				value=2;
+				variable="quantity";
+			};
+		};
 		hiddenSelections[]=
 		{
 			"zbytek"
@@ -167,6 +208,14 @@ class CfgVehicles
 		descriptionShort="About an ounce of S1 hemp.  Sponsored by StevesGoods.com";
 		cpStepUpToBrick="CP_CannabisBrickS1";
 		cpStepDownToBud="CP_CannabisS1";
+		class Resources
+		{
+			class CP_CannabisS1
+			{
+				value=2;
+				variable="quantity";
+			};
+		};
 		hiddenSelections[]=
 		{
 			"zbytek"
@@ -183,6 +232,14 @@ class CfgVehicles
 		descriptionShort="About an ounce of Nomad weed.";
 		cpStepUpToBrick="CP_CannabisBrickNomad";
 		cpStepDownToBud="CP_CannabisNomad";
+		class Resources
+		{
+			class CP_CannabisNomad
+			{
+				value=2;
+				variable="quantity";
+			};
+		};
 		hiddenSelections[]=
 		{
 			"zbytek"
@@ -203,7 +260,7 @@ class CfgVehicles
 		{
 			class CP_CannabisBlackFrost
 			{
-				value=16;
+				value=2;
 				variable="quantity";
 			};
 		};

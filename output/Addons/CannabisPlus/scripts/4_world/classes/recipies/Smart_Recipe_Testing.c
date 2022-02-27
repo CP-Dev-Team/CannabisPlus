@@ -1,8 +1,24 @@
 class CP_CraftCannabisBagBlackFrost extends RecipeBase
-{	
+{
+    protected string m_cpBags= "";
+	
+	string FetchName(ItemBase item)
+	{
+		CP_CannabisBags Bag = item;
+		
+		string BagName = Bag.GetDisplayName();
+		
+		return "Fill " + BagName;
+	}
+	
+	//override string GetName()
+	//{		
+	//	return "Fill " + FetchName(ItemBase item);
+	//}
+	
 	override void Init()
 	{
-		m_Name = "Make BlackFrost Cannabis Bag";
+		m_Name = "Testing Smart Recipe";
 		m_IsInstaRecipe = false;//should this recipe be performed instantly without animation
 		m_AnimationLength = 0.5;//animation length in relative time units
 		m_Specialty = -0.01;// value > 0 for roughness, value < 0 for precision
@@ -25,7 +41,7 @@ class CP_CraftCannabisBagBlackFrost extends RecipeBase
 		//INGREDIENTS
 		//ingredient 1
 
-		InsertIngredient(0,"CP_CannabisBlackFrost");//you can insert multiple ingredients this way
+		InsertIngredient(0,"CP_CannabisBud");//you can insert multiple ingredients this way
 		m_IngredientAddHealth[0] = 0;// 0 = do nothing
 		m_IngredientSetHealth[0] = -1; // -1 = do nothing
 		m_IngredientAddQuantity[0] = -1;// 0 = do nothing
@@ -33,7 +49,7 @@ class CP_CraftCannabisBagBlackFrost extends RecipeBase
 		m_IngredientUseSoftSkills[0] = false;// set 'true' to allow modification of the values by softskills on this ingredient
 		
 		//ingredient 2
-		InsertIngredient(1, "CP_CannabisBlackFrost");//you can insert multiple ingredients this way
+		InsertIngredient(1, "CP_EmptyBag");//you can insert multiple ingredients this way
 		m_IngredientAddHealth[1] = 0;// 0 = do nothing
 		m_IngredientSetHealth[1] = -1; // -1 = do nothing
 		m_IngredientAddQuantity[1] = -1;// 0 = do nothing
@@ -42,7 +58,7 @@ class CP_CraftCannabisBagBlackFrost extends RecipeBase
 		//----------------------------------------------------------------------------------------------------------------------
 		
 		//result1
-		AddResult("CP_CannabisBagBlackFrost");//add results here
+		AddResult("");//add results here
 
 		m_ResultSetFullQuantity[0] = false;//true = set full quantity, false = do nothing
 		m_ResultSetQuantity[0] = 1;//-1 = do nothing
@@ -63,7 +79,12 @@ class CP_CraftCannabisBagBlackFrost extends RecipeBase
 
 	override void Do(ItemBase ingredients[], PlayerBase player,array<ItemBase> results, float specialty_weight)//gets called upon recipe's completion
 	{
-		Debug.Log("Recipe Do method called","recipes");
+		CP_CannabisBud ingredient1 = CP_CannabisBud.Cast(ingredients[0]);		
+		ItemBase Buds;
+		string Bagname = ingredient1.GetcpBag(); 
+		
+		Buds = ItemBase.Cast(GetGame().CreateObject(Bagname, Buds.GetPosition()));
+		Buds.SetQuantity(1);
 	}
 };
 

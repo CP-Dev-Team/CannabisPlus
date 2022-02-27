@@ -1,4 +1,4 @@
-class CP_CannabisBud extends ItemBase
+class CP_CannabisBud extends CP_CoreClass
 {
 	   
     protected string m_cpBags= "";

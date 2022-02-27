@@ -25,6 +25,13 @@ class CfgPatches
 class CfgVehicles
 {
 	class Inventory_Base;
+	class CP_CoreClass:Inventory_Base
+	{
+		scope=2;
+		displayName="";
+		descriptionShort="";
+	}
+	
 	class CP_CannabisBud: Inventory_Base
 	{
 		scope=2;

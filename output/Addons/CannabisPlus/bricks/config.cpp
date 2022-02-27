@@ -136,6 +136,14 @@ class CfgVehicles
 		displayName="Brick of Skunk Weed";
 		descriptionShort="One pound of Skunk weed.";
 		cpStepDownToBag="CP_CannabisBagSkunk";
+		class Resources
+		{
+			class CP_CannabisBagSkunk
+			{
+				value=8;
+				variable="quantity";
+			};
+		};
 		hiddenSelectionsTextures[]=
 		{
 			"CannabisPlus\seeds\data\cannabis_seeds_pack_skunk_co.paa",
@@ -153,6 +161,14 @@ class CfgVehicles
 		displayName="Brick of Blue God Weed";
 		descriptionShort="One pound of Blue God weed.";
 		cpStepDownToBag="CP_CannabisBagBlue";
+		class Resources
+		{
+			class CP_CannabisBagBlue
+			{
+				value=8;
+				variable="quantity";
+			};
+		};
 		hiddenSelectionsTextures[]=
 		{
 			"CannabisPlus\seeds\data\cannabis_seeds_pack_blue_co.paa",
@@ -170,6 +186,14 @@ class CfgVehicles
 		displayName="Brick of Purple Kush Weed";
 		descriptionShort="One pound of Purple Kush weed.";
 		cpStepDownToBag="CP_CannabisBagKush";
+		class Resources
+		{
+			class CP_CannabisBagKush
+			{
+				value=8;
+				variable="quantity";
+			};
+		};
 		hiddenSelectionsTextures[]=
 		{
 			"CannabisPlus\seeds\data\cannabis_seeds_pack_kush_co.paa",
@@ -187,6 +211,14 @@ class CfgVehicles
 		displayName="Brick of Stardawg Weed";
 		descriptionShort="One pound of Stardawg weed.";
 		cpStepDownToBag="CP_CannabisBagStardawg";
+		class Resources
+		{
+			class CP_CannabisStardawg
+			{
+				value=8;
+				variable="quantity";
+			};
+		};
 		hiddenSelectionsTextures[]=
 		{
 			"CannabisPlus\seeds\data\cannabis_seeds_pack_stardawg_co.paa",
@@ -204,6 +236,14 @@ class CfgVehicles
 		displayName="Brick of Future Weed";
 		descriptionShort="One pound of Future weed.";
 		cpStepDownToBag="CP_CannabisBagFuture";
+		class Resources
+		{
+			class CP_CannabisBagFuture
+			{
+				value=8;
+				variable="quantity";
+			};
+		};
 		hiddenSelectionsTextures[]=
 		{
 			"CannabisPlus\seeds\data\cannabis_seeds_pack_Future_co.paa",
@@ -221,6 +261,14 @@ class CfgVehicles
 		displayName="Brick of S1 Hemp";
 		descriptionShort="One pound of S1 hemp.  Sponsored by StevesGoods.com";
 		cpStepDownToBag="CP_CannabisBagS1";
+		class Resources
+		{
+			class CP_CannabisBagS1
+			{
+				value=8;
+				variable="quantity";
+			};
+		};
 		hiddenSelectionsTextures[]=
 		{
 			"CannabisPlus\seeds\data\cannabis_seeds_pack_s1_co.paa",
@@ -238,6 +286,14 @@ class CfgVehicles
 		displayName="Brick of Nomad Weed";
 		descriptionShort="One pound of Nomad weed.";
 		cpStepDownToBag="CP_CannabisBagNomad";
+		class Resources
+		{
+			class CP_CannabisBagNomad
+			{
+				value=8;
+				variable="quantity";
+			};
+		};
 		hiddenSelectionsTextures[]=
 		{
 			"CannabisPlus\seeds\data\cannabis_seeds_pack_nomad_co.paa",
@@ -259,7 +315,7 @@ class CfgVehicles
 		{
 			class CP_CannabisBagBlackFrost
 			{
-				value=16;
+				value=8;
 				variable="quantity";
 			};
 		};

@@ -16,6 +16,8 @@ class ActionCP_RipOpenBrickOrBag: ActionContinuousBase
 		m_SpecialtyWeight = UASoftSkillsWeight.PRECISE_LOW;
 	}
 	
+	int m_ChangeGetText = 0;
+	
 	string TendancyText = "";
 	
 	override void CreateConditionComponents()  
@@ -42,21 +44,14 @@ class ActionCP_RipOpenBrickOrBag: ActionContinuousBase
 	override bool ActionCondition( PlayerBase player, ActionTarget target, ItemBase item )
 	{
 		CP_CannabisBags Bag = item;
-		CP_CannabisBrickBase Brick = item;
-		
+		CP_CoreClass CPCORE = item;
+
 		if(Bag && Bag.GetQuantity() <= 1)
 		{
-			TendancyText = Bag.GetCPitemTendancyText()
-			
+			TendancyText = CPCORE.GetCPitemTendancyText()
+	
 			return true;
-		}
-		else if(Brick)
-		{
-			TendancyText = Brick.GetCPitemTendancyText()
-			return true;
-		}
-		else
-			
+		}	
 		return false;
 
 	};

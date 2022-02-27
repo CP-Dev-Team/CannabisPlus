@@ -1,4 +1,4 @@
-class CP_CannabisBags extends ItemBase
+class CP_CannabisBags extends CP_CoreClass
 {
    
     protected string m_cpBrick= "";
@@ -37,7 +37,7 @@ class CP_CannabisBags extends ItemBase
         return m_CpRipBag;
     }
 	
-	string GetCPitemTendancyText()
+	override string GetCPitemTendancyText()
 	{		
         return "Rip open " + GetDisplayName();
     };
