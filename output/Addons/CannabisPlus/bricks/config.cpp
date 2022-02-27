@@ -140,7 +140,7 @@ class CfgVehicles
 		{
 			class CP_CannabisBagSkunk
 			{
-				value=8;
+				value=16;
 				variable="quantity";
 			};
 		};
@@ -165,7 +165,7 @@ class CfgVehicles
 		{
 			class CP_CannabisBagBlue
 			{
-				value=8;
+				value=16;
 				variable="quantity";
 			};
 		};
@@ -190,7 +190,7 @@ class CfgVehicles
 		{
 			class CP_CannabisBagKush
 			{
-				value=8;
+				value=16;
 				variable="quantity";
 			};
 		};
@@ -215,7 +215,7 @@ class CfgVehicles
 		{
 			class CP_CannabisStardawg
 			{
-				value=8;
+				value=16;
 				variable="quantity";
 			};
 		};
@@ -240,7 +240,7 @@ class CfgVehicles
 		{
 			class CP_CannabisBagFuture
 			{
-				value=8;
+				value=16;
 				variable="quantity";
 			};
 		};
@@ -265,7 +265,7 @@ class CfgVehicles
 		{
 			class CP_CannabisBagS1
 			{
-				value=8;
+				value=16;
 				variable="quantity";
 			};
 		};
@@ -290,7 +290,7 @@ class CfgVehicles
 		{
 			class CP_CannabisBagNomad
 			{
-				value=8;
+				value=16;
 				variable="quantity";
 			};
 		};
@@ -315,7 +315,7 @@ class CfgVehicles
 		{
 			class CP_CannabisBagBlackFrost
 			{
-				value=8;
+				value=16;
 				variable="quantity";
 			};
 		};

@@ -35,9 +35,9 @@ class CfgVehicles
 		canBeSplit=1;
 		varQuantityInit=1;
 		varQuantityMin=0;
-		varQuantityMax=25;
+		varQuantityMax=160;
 		varQuantityDestroyOnMin=1;
-		varStackMax=8;
+		varStackMax=16;
 		weight=28;
 		itemSize[]={1,3};
 		lootCategory="Crafted";

@@ -38,7 +38,6 @@ class CfgVehicles
 		displayName="Base base base";
 		descriptionShort="Base bud";
 		model="\dz\gear\food\cannabis_seedman.p3d";
-		cpStepUpToBag="";
 		rotationFlags=34;
 		lootCategory="Crafted";
 		weight=14;
@@ -48,8 +47,10 @@ class CfgVehicles
 		varQuantityInit=1;
 		varQuantityMin=0;
 		varQuantityMax=100;
-		varStackMax=1;
+		varStackMax=2;
 		inventorySlot[]={"DryPlant","CP_Cannabus_Buds"};
+		cpStepUpToBag="";
+		cpStepUpToJoint="";
 		hiddenSelections[]=
 		{
 			"cs_raw"
@@ -143,6 +144,7 @@ class CfgVehicles
 		displayName="Skunk";
 		descriptionShort="Some cannabis bud. Skunk variety";
 		cpStepUpToBag="CP_CannabisBagSkunk";
+		cpStepUpToJoint="CP_JointSkunk";
 		hiddenSelectionsTextures[]=
 		{
 			"CannabisPlus\fruits\data\cannabis_seedman_raw_skunk_co.paa"
@@ -158,6 +160,7 @@ class CfgVehicles
 		displayName="Blue God";
 		descriptionShort="Some cannabis bud.  Blue God variety.";
 		cpStepUpToBag="CP_CannabisBagBlue";
+		cpStepUpToJoint="CP_JointBlue";
 		hiddenSelectionsTextures[]=
 		{
 			"CannabisPlus\fruits\data\cannabis_seedman_raw_blue_co.paa"
@@ -173,6 +176,7 @@ class CfgVehicles
 		displayName="Purple Kush";
 		descriptionShort="Some cannabis bud.  Purple Kush variety.";
 		cpStepUpToBag="CP_CannabisBagKush";
+		cpStepUpToJoint="CP_JointKush";
 		hiddenSelectionsTextures[]=
 		{
 			"CannabisPlus\fruits\data\cannabis_seedman_raw_kush_co.paa"
@@ -188,6 +192,7 @@ class CfgVehicles
 		displayName="Stardawg";
 		descriptionShort="Some cannabis bud.  Stardawg variety.";
 		cpStepUpToBag="CP_CannabisBagStardawg";
+		cpStepUpToJoint="CP_JointStardawg";
 		hiddenSelectionsTextures[]=
 		{
 			"CannabisPlus\fruits\data\cannabis_seedman_raw_Stardawg_co.paa"
@@ -203,6 +208,7 @@ class CfgVehicles
 		displayName="Future";
 		descriptionShort="Some cannabis bud.  Future variety.";
 		cpStepUpToBag="CP_CannabisBagFuture";
+		cpStepUpToJoint="CP_JointFuture";
 		hiddenSelectionsTextures[]=
 		{
 			"CannabisPlus\fruits\data\cannabis_seedman_raw_future_co.paa"
@@ -218,6 +224,7 @@ class CfgVehicles
 		displayName="S1";
 		descriptionShort="Some cannabis bud.  S1 variety.  Sponsored by StevesGoods.com";
 		cpStepUpToBag="CP_CannabisBagS1";
+		cpStepUpToJoint="CP_JointS1";
 		hiddenSelectionsTextures[]=
 		{
 			"CannabisPlus\fruits\data\cannabis_seedman_raw_S1_co.paa"
@@ -233,6 +240,7 @@ class CfgVehicles
 		displayName="Nomad";
 		descriptionShort="Some cannabis bud.  Nomad variety.";
 		cpStepUpToBag="CP_CannabisBagNomad";
+		cpStepUpToJoint="CP_JointNomad";
 		hiddenSelectionsTextures[]=
 		{
 			"CannabisPlus\fruits\data\cannabis_seedman_raw_Nomad_co.paa"
@@ -248,11 +256,7 @@ class CfgVehicles
 		displayName="Black Frost";
 		descriptionShort="Some cannabis bud.  Black Frost variety.";
 		cpStepUpToBag="CP_CannabisBagBlackFrost";
-		varQuantityInit=1;
-		varQuantityMin=0;
-		varQuantityMax=16;
-		varQuantityDestroyOnMin=1;
-		varStackMax=16;
+		cpStepUpToJoint="CP_JointBlackFrost";
 		hiddenSelectionsTextures[]=
 		{
 			"CannabisPlus\fruits\data\cannabis_seedman_raw_BlackFrost_co.paa"
@@ -262,13 +266,13 @@ class CfgVehicles
 			"CannabisPlus\fruits\data\cannabis_seedman_raw.rvmat"
 		};
 	};
-	class CP_Tobacco: CP_CannabisBud
+	class CP_Tobacco: Inventory_Base
 	{
 		scope=2;
 		displayName="Tobacco Leaf";
 		descriptionShort="Some tobacco leaves for rolling cigarettes";
 		model="CannabisPlus\fruits\TobaccoLeaf.p3d";
-		cpStepUpToBag="CP_CannabisBagTabacco";
+		cpStepUpToBag="";
 		rotationFlags=17;
 		lootCategory="Crafted";
 		weight=14;

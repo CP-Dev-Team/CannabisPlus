@@ -13,7 +13,8 @@ enum ESmokeState {
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 // 
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-class CP_JointBase extends ItemBase {
+class CP_JointBase extends ItemBase 
+{
 
 	protected Particle m_SmokeParticle;
 	
@@ -23,17 +24,49 @@ class CP_JointBase extends ItemBase {
 	vector m_ParticleLocalPos = Vector(0, 0.2, 0);
 	protected int health;
 	
-	
-	
+	protected string m_cpJointPack= "";
+	protected string m_cpJointNames= "";
+
+
 	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 	// 
 	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-	void CP_JointBase() {							
+	void CP_JointBase() 
+	{							
 		m_JointSmokeState = ESmokeState.NOT_SMOKING;
 		RegisterNetSyncVariableInt("health", 0, 100);
 		RegisterNetSyncVariableInt("m_JointSmokeState", ESmokeState.NOT_SMOKING, ESmokeState.COUNT); //only 2 states, 0 and 1
+		
+		        
+        if ( ConfigIsExisting("cpPackJoint") ) 
+		{
+            m_cpJointPack= ConfigGetString("cpPackJoint");
+        }
+		else
+		{
+            m_cpJointPack= "";
+        }
+		
+				        
+        if ( ConfigIsExisting("cpCheckJoint") ) 
+		{
+            m_cpJointNames= ConfigGetString("cpCheckJoint");
+        }
+		else
+		{
+            m_cpJointNames= "";
+        }
+		
 	}
-
+	
+    string GetcpJointPack()
+	{
+        return m_cpJointPack;
+	}
+	string GetCpJointName()
+	{
+		return m_cpJointNames
+	}
 	
 	
 	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~

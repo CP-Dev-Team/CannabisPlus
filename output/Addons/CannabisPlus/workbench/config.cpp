@@ -44,7 +44,7 @@ class CfgSlots
           name="CP_Cannabus_Bags";
           displayName="Bags";
           ghostIcon="missing";
-          stackMax=25;
+          stackMax=50;
     };
 	class Slot_CP_Cannabus_Bricks
     {
