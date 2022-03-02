@@ -368,12 +368,17 @@ class CP_CraftCigarettePackBlackFrost extends RecipeBase
 
 	override bool CanDo(ItemBase ingredients[], PlayerBase player)
 	{
-		CP_JointBase ingredient0 = CP_JointBase.Cast(ingredients[0]);		
-		string JointName = ingredient0.GetCpJointName(); 
+		CP_JointBase ingredient0 = CP_JointBase.Cast(ingredients[0]);
+		CP_JointPack ingredient1 = CP_JointPack.Cast(ingredients[1]);
 		
-		CP_JointPack ingredient1 = CP_JointPack.Cast(ingredients[1]);		
+		if(!ingredient0 || !ingredient1)
+			return false;
+					
+		string JointName = ingredient0.GetCpJointName(); 
 		string PackName = ingredient1.GetCpPackageName(); 
 		
+		Print(JointName);
+		Print(PackName);
 		
 		if(JointName == PackName)
 		{

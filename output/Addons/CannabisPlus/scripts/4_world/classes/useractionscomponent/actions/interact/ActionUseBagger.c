@@ -36,7 +36,7 @@ class ActionCPUseBagger: ActionInteractBase
 		CP_Workbench Bench = CP_Workbench.Cast( action_data.m_Target.GetObject() );
 		
 		//Bench.CreateBricks(Bench.GetWrapperTendancyCreationType())
-		Bench.CreateBags();
+		Bench.start_processing();
 
 	};
 	

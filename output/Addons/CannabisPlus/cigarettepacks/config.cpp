@@ -123,7 +123,7 @@ class CfgVehicles
 		varQuantityMax=20;
 		varQuantityDestroyOnMin=0;
 		quantityBar=1;
-		cpCheckPack="";
+		cpCheckPack="empty";
 		hiddenSelections[]=
 		{
 			"camoGround",

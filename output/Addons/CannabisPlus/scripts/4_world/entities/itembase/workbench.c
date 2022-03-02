@@ -169,11 +169,9 @@ class CP_Workbench extends ItemBase
 	const string ATTACHMENT_SLOT_BRICKS 			= "CP_Cannabus_Bricks";
 	
 	// timer to get bagger working
-	protected ref Timer m_BaggerWorkingTimer;
-	// timer to get wrapper working
-	protected ref Timer m_WrapperWorkingTimer;	
-	// indicates whether bagger is currently working
+	protected ref Timer m_CP_Processing;
 
+	protected bool CP_TimerisRunning
 	
 	int m_UseCPWorkbench = 0;
 	//Defines a int used for action switching
@@ -188,6 +186,7 @@ class CP_Workbench extends ItemBase
 	{
 		RegisterNetSyncVariableBool("m_IsPlaceSound");
 		//RegisterNetSyncVariableBool("m_UseCPWorkbench")
+		RegisterNetSyncVariableBool("CP_TimerisRunning");
 	}
 	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 	// Entity entry Intilize
@@ -268,6 +267,43 @@ class CP_Workbench extends ItemBase
         return "Wrap " + Brickname;
 
     };
+
+	void start_processing()
+	{
+		
+		if(m_CP_Processing && m_CP_Processing.IsRunning())
+			return;
+		if(!m_CP_Processing)
+		   m_CP_Processing = new Timer;
+		if(can_processing())
+		{
+		   m_CP_Processing.Run(30,this,"Do_processing",NULL,true);
+			CP_TimerisRunning = true;
+		}
+		SetSynchDirty();	
+	}
+	
+	void Do_processing()
+	{
+		if(!can_processing())
+		{
+		  m_CP_Processing.Stop();
+		  CP_TimerisRunning = false;
+		}
+		SetSynchDirty();
+		CreateBags();
+	}
+	
+	bool can_processing()
+	{
+		ItemBase CannabisBud = GetCannibusBud();
+	
+		ItemBase EmptyBags = GetEmptyBags();
+	
+		if(CannabisBud.GetQuantity() < 2 || EmptyBags.GetQuantity() < 1)
+			return false;
+		return true;
+	}
 
 	void CreateBags()
 	{
