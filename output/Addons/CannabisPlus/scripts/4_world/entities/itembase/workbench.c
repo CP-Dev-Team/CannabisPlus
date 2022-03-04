@@ -58,7 +58,7 @@ class CP_Workbench_Kit extends ItemBase
 		if ( m_DeployLoopSound && !CanPlayDeployLoopSound() ) {
 			StopDeployLoopSound();
 		}
-	}
+	};
 	
 	
 	
@@ -197,20 +197,7 @@ class CP_Workbench extends ItemBase
 	 // RegisterNetSyncVariableInt("m_UseCPWorkbench");
     };
 
-	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-	// A on Work Function to Make sure its powered or has Power if not Shut off.
-	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-	override void OnWork( float consumed_energy  )
-	{
-		
-		if ( GetGame() && GetGame().IsServer()  )
-		{
-			if(GetCompEM().GetEnergy() <= 1)
-			{
-				OnWorkStop()
-			}
-		}		
-	};
+
 	
 	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 	// Start of Step based Variables to change outcome and Text shown for actions. not complicated but very handy
@@ -269,40 +256,57 @@ class CP_Workbench extends ItemBase
     };
 
 	void start_processing()
-	{
-		
+	{		
 		if(m_CP_Processing && m_CP_Processing.IsRunning())
 			return;
 		if(!m_CP_Processing)
-		   m_CP_Processing = new Timer;
-		if(can_processing())
 		{
-		   m_CP_Processing.Run(30,this,"Do_processing",NULL,true);
+		   	m_CP_Processing = new Timer;
+			m_CP_Processing.Run(20,this,"Do_processing",NULL,true);
 			CP_TimerisRunning = true;
+			
+			Print(CP_TimerisRunning);
 		}
+
+		
+		
 		SetSynchDirty();	
 	}
 	
 	void Do_processing()
 	{
-		if(!can_processing())
-		{
-		  m_CP_Processing.Stop();
-		  CP_TimerisRunning = false;
-		}
-		SetSynchDirty();
-		CreateBags();
-	}
 	
-	bool can_processing()
-	{
 		ItemBase CannabisBud = GetCannibusBud();
 	
 		ItemBase EmptyBags = GetEmptyBags();
+		
+		ItemBase Batteries = GetBattieries();
 	
-		if(CannabisBud.GetQuantity() < 2 || EmptyBags.GetQuantity() < 1)
-			return false;
-		return true;
+		Print("Working ");
+		
+		
+		if(Batteries && Batteries.GetCompEM().GetEnergy() > 10)
+		{
+			if(CannabisBud && CannabisBud.GetQuantity() > 2 || EmptyBags && EmptyBags.GetQuantity() > 1)
+			{
+				Print("Running Running");
+				CP_TimerisRunning = true;
+				CreateBags();
+			};
+		}
+		Print(CP_TimerisRunning);
+		Print("Stoped Processing");
+		m_CP_Processing.Stop();
+		CP_TimerisRunning = false;
+		SetSynchDirty();
+	}
+	bool RunningOrNot()
+	{
+		if(CP_TimerisRunning)
+		{
+		  return true;
+		}
+		return false;
 	}
 
 	void CreateBags()
@@ -332,7 +336,7 @@ class CP_Workbench extends ItemBase
 		}
 		EmptyBags.AddQuantity(-1);
         CannabisBud.AddQuantity(-2); 
-		Batteries.GetCompEM().AddEnergy( -150 );
+		Batteries.GetCompEM().AddEnergy( -10 );
 	};
 	
 	void CreateBricks()
@@ -362,7 +366,7 @@ class CP_Workbench extends ItemBase
 		}
         CannabisBag.AddQuantity(-16);
 		PlasticWrap.AddQuantity(-25);
-		Batteries.GetCompEM().AddEnergy( -150 );
+		Batteries.GetCompEM().AddEnergy( -10 );
 	};
 
 
@@ -475,7 +479,9 @@ class CP_Workbench extends ItemBase
 		if(IsAnyItemAttached() || !IsCargoEmpty())
 		{
 			return false;
-		} else {
+		}
+		else
+		 {
 			return true;
 		}
 	}
@@ -484,6 +490,7 @@ class CP_Workbench extends ItemBase
 	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 	// 
 	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+	/*
 	override bool CanReceiveAttachment(EntityAI attachment, int slotId) 
 	{
 		Print("CAN RECEIVE ATTACHEMENT");
@@ -501,6 +508,7 @@ class CP_Workbench extends ItemBase
 		//
 		return true;		
 	}
+	*/
 	
 
 	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~		
@@ -519,6 +527,49 @@ class CP_Workbench extends ItemBase
 	bool IsCargoEmpty()	
 	{		
 		return ( GetInventory().GetCargo().GetItemCount() == 0 );
+	}
+	
+	override void EEItemAttached(EntityAI item, string slot_name)
+	{
+		super.EEItemAttached( item, slot_name );
+		
+		ItemBase CannabisBud = GetCannibusBud();
+		ItemBase EmptyBags = GetEmptyBags();
+		
+		if(GetEmptyBags().GetQuantity() > 1 || GetCannibusBud().GetQuantity() > 2 )
+		{
+			Print(EmptyBags.GetQuantity());
+			Print(CannabisBud.GetQuantity());
+		}
+	}
+	
+	override void EEItemDetached(EntityAI item, string slot_name)
+	{
+		super.EEItemDetached( item, slot_name );
+		
+		ItemBase CannabisBud = GetCannibusBud();
+		ItemBase EmptyBags = GetEmptyBags();
+		
+		
+		if(GetEmptyBags().GetQuantity() < 1)
+		{
+
+			m_CP_Processing.Stop();
+			CP_TimerisRunning = false;
+			Print(CP_TimerisRunning);
+			Print("Stoped Processing do to removal of empty bags");
+			Print("Removed Buds " + CannabisBud.GetQuantity());
+		}
+		if( GetCannibusBud().GetQuantity() < 2 )
+		{
+
+			m_CP_Processing.Stop();
+			CP_TimerisRunning = false;
+			Print(CP_TimerisRunning);
+			Print("Stoped Processing do to removal of buds");
+			Print("Removed Buds " + EmptyBags.GetQuantity());
+		}
+
 	}
 	
 	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
