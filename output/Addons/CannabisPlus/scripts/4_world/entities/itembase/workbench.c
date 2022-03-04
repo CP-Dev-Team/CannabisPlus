@@ -172,6 +172,7 @@ class CP_Workbench extends ItemBase
 	protected ref Timer m_CP_Processing;
 
 	protected bool CP_TimerisRunning
+	protected bool CP_TimerIsPaused
 	
 	int m_UseCPWorkbench = 0;
 	//Defines a int used for action switching
@@ -187,6 +188,7 @@ class CP_Workbench extends ItemBase
 		RegisterNetSyncVariableBool("m_IsPlaceSound");
 		//RegisterNetSyncVariableBool("m_UseCPWorkbench")
 		RegisterNetSyncVariableBool("CP_TimerisRunning");
+		RegisterNetSyncVariableBool("CP_TimerIsPaused");
 	}
 	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 	// Entity entry Intilize
@@ -259,11 +261,13 @@ class CP_Workbench extends ItemBase
 	{		
 		if(m_CP_Processing && m_CP_Processing.IsRunning())
 			return;
+			Print(CP_TimerisRunning);
 		if(!m_CP_Processing)
 		{
 		   	m_CP_Processing = new Timer;
 			m_CP_Processing.Run(20,this,"Do_processing",NULL,true);
 			CP_TimerisRunning = true;
+			CP_TimerIsPaused = false;
 			
 			Print(CP_TimerisRunning);
 		}
@@ -272,7 +276,45 @@ class CP_Workbench extends ItemBase
 		
 		SetSynchDirty();	
 	}
+	void PauseOrResume()
+	{
+		if(CP_TimerisRunning == true && CP_TimerIsPaused == false)
+		{
+			m_CP_Processing.Pause();
+			CP_TimerIsPaused = true;
+			Print("Paused " + CP_TimerisRunning );
+		}
+		else if(CP_TimerIsPaused == true)
+		{
+			m_CP_Processing.Continue();
+			CP_TimerIsPaused = false;
+			Print("Resumed " + CP_TimerisRunning);
+		}
 	
+	}
+		
+	bool RunningOrNot()
+	{
+		if(CP_TimerisRunning)
+		{
+		  return true;
+		}
+		return false;
+	}
+	bool PausedOrNot()
+	{
+		if(CP_TimerisRunning && !CP_TimerIsPaused)
+		{
+			Print("PausedOrNot = true");
+		  return true;
+		}
+		else if(CP_TimerisRunning && CP_TimerIsPaused)
+		{
+			Print("PausedOrNot = false");
+			return false;
+		}
+		return false;
+	}
 	void Do_processing()
 	{
 	
@@ -285,29 +327,26 @@ class CP_Workbench extends ItemBase
 		Print("Working ");
 		
 		
-		if(Batteries && Batteries.GetCompEM().GetEnergy() > 10)
+		if(GetBattieries().GetCompEM().GetEnergy() > 10)
 		{
-			if(CannabisBud && CannabisBud.GetQuantity() > 2 || EmptyBags && EmptyBags.GetQuantity() > 1)
+			Print("Battery Check");
+			if(GetCannibusBud() && GetCannibusBud().GetQuantity() > 2 || GetEmptyBags() && GetEmptyBags().GetQuantity() > 1)
 			{
 				Print("Running Running");
 				CP_TimerisRunning = true;
 				CreateBags();
 			};
 		}
+		else
+		{
+			m_CP_Processing.Stop();
+			CP_TimerisRunning = false;
+		};
 		Print(CP_TimerisRunning);
 		Print("Stoped Processing");
-		m_CP_Processing.Stop();
-		CP_TimerisRunning = false;
 		SetSynchDirty();
 	}
-	bool RunningOrNot()
-	{
-		if(CP_TimerisRunning)
-		{
-		  return true;
-		}
-		return false;
-	}
+
 
 	void CreateBags()
 	{
@@ -529,19 +568,6 @@ class CP_Workbench extends ItemBase
 		return ( GetInventory().GetCargo().GetItemCount() == 0 );
 	}
 	
-	override void EEItemAttached(EntityAI item, string slot_name)
-	{
-		super.EEItemAttached( item, slot_name );
-		
-		ItemBase CannabisBud = GetCannibusBud();
-		ItemBase EmptyBags = GetEmptyBags();
-		
-		if(GetEmptyBags().GetQuantity() > 1 || GetCannibusBud().GetQuantity() > 2 )
-		{
-			Print(EmptyBags.GetQuantity());
-			Print(CannabisBud.GetQuantity());
-		}
-	}
 	
 	override void EEItemDetached(EntityAI item, string slot_name)
 	{
@@ -558,19 +584,19 @@ class CP_Workbench extends ItemBase
 			CP_TimerisRunning = false;
 			Print(CP_TimerisRunning);
 			Print("Stoped Processing do to removal of empty bags");
-			Print("Removed Buds " + CannabisBud.GetQuantity());
+			Print("Removed bags " + "buds still attached = " + CannabisBud.GetQuantity());
 		}
-		if( GetCannibusBud().GetQuantity() < 2 )
+		else if( GetCannibusBud().GetQuantity() < 2 )
 		{
 
 			m_CP_Processing.Stop();
 			CP_TimerisRunning = false;
 			Print(CP_TimerisRunning);
 			Print("Stoped Processing do to removal of buds");
-			Print("Removed Buds " + EmptyBags.GetQuantity());
+			Print("Removed buds " + "Bags still attached = "  + EmptyBags.GetQuantity());
 		}
 
-	}
+	};
 	
 	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 	// determines the actions that the player can perform at the workbench
@@ -582,9 +608,10 @@ class CP_Workbench extends ItemBase
 		AddAction(ActionPlugIn);
 		AddAction(ActionTurnOnWhileOnGround);
 		AddAction(ActionTurnOffWhileOnGround);
+		AddAction(ActionCPResumeAndPause);
 		AddAction(ActionCPUsePlasticWrapper);
 		AddAction(ActionCPUseBagger);
-	}
+	};
 
 }
 

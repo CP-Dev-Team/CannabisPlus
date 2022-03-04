@@ -1,6 +1,6 @@
-class ActionCPUseBagger: ActionInteractBase
+class ActionCPResumeAndPause: ActionInteractBase
 {	
-	void ActionCPUseBagger()
+	void ActionCPResumeAndPause()
 	{
 		m_CommandUID        = DayZPlayerConstants.CMD_ACTIONMOD_INTERACTONCE;
 		m_StanceMask        = DayZPlayerConstants.STANCEMASK_CROUCH | DayZPlayerConstants.STANCEMASK_ERECT;
@@ -23,9 +23,15 @@ class ActionCPUseBagger: ActionInteractBase
 		CP_CannabisBud Buds = CP_CannabisBud.Cast( target_entity.GetAttachmentByType(CP_CannabisBud) );
 		VehicleBattery Batteries = VehicleBattery.Cast( target_entity.GetAttachmentByType(VehicleBattery) );
 		
-		if (Bench && Bench.Bagger_Attachments() &&  Buds.GetQuantity() >= 2 && Batteries && Batteries.GetCompEM().GetEnergy() >= 10 && !Bench.RunningOrNot())
+		if (Bench && Bench.RunningOrNot() && Bench.PausedOrNot())
 		{
-			TendancyText = Bench.GetBagTendancyText();
+			TendancyText = "Pause Production";
+			return true;
+		}
+		else if (Bench && !Bench.PausedOrNot())
+		{
+			
+			TendancyText = "Resume Production";
 			return true;
 		}
 		return false;
@@ -36,7 +42,7 @@ class ActionCPUseBagger: ActionInteractBase
 		CP_Workbench Bench = CP_Workbench.Cast( action_data.m_Target.GetObject() );
 		
 		//Bench.CreateBricks(Bench.GetWrapperTendancyCreationType())
-		Bench.start_processing();
+		Bench.PauseOrResume();
 
 	};
 	

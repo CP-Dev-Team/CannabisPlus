@@ -14,6 +14,7 @@ modded class ActionConstructor {
 		//WorkBench actions
 		actions.Insert(ActionCPUsePlasticWrapper);
 		actions.Insert(ActionCPUseBagger);
+		actions.Insert(ActionCPResumeAndPause);
 		actions.Insert(ActionCP_RipOpenBrickOrBag);
 	};
 };

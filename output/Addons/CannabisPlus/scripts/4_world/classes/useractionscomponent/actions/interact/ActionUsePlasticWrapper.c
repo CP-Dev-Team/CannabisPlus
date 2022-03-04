@@ -25,7 +25,7 @@ class ActionCPUsePlasticWrapper: ActionInteractBase
 		
 		if (Bench && Bench.Wrapper_Attachments() &&  Bags.GetQuantity() >= 16 && Batteries && Batteries.GetCompEM().GetEnergy() >= 150 )//Bench.IsPowered() &&
 		{
-			TendancyText = Bench.GetBrickTendancyText()
+			TendancyText = Bench.GetBrickTendancyText();
 			return true;
 		}
 		return false;
