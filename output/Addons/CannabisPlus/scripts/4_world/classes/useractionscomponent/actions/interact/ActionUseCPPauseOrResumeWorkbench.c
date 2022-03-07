@@ -23,16 +23,12 @@ class ActionCPResumeAndPause: ActionInteractBase
 		CP_CannabisBud Buds = CP_CannabisBud.Cast( target_entity.GetAttachmentByType(CP_CannabisBud) );
 		VehicleBattery Batteries = VehicleBattery.Cast( target_entity.GetAttachmentByType(VehicleBattery) );
 		
-		if (Bench && Bench.RunningOrNot() && Bench.PausedOrNot())
+		if (Bench && Bench.RunningOrNot())
 		{
-			TendancyText = "Pause Production";
+				
+			TendancyText = Bench.GetPauseOrResumeText();
 			return true;
-		}
-		else if (Bench && !Bench.PausedOrNot())
-		{
-			
-			TendancyText = "Resume Production";
-			return true;
+
 		}
 		return false;
 	};
@@ -41,7 +37,8 @@ class ActionCPResumeAndPause: ActionInteractBase
 	{
 		CP_Workbench Bench = CP_Workbench.Cast( action_data.m_Target.GetObject() );
 		
-		//Bench.CreateBricks(Bench.GetWrapperTendancyCreationType())
+		Print("Action Process " + Bench.RunningOrNot());
+		Print(TendancyText);
 		Bench.PauseOrResume();
 
 	};

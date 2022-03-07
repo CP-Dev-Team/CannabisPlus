@@ -233,6 +233,19 @@ class CP_Workbench extends ItemBase
 		return VehicleBattery.Cast(FindAttachmentBySlotName( ATTACHMENT_SLOT_BATTERIES ) );
 	};
 	
+	string GetPauseOrResumeText()
+	{
+		if(CP_TimerIsPaused == false)
+		{		
+			return "Pause Production";
+		}
+		else if(CP_TimerIsPaused == true)
+			return "Resume Production";
+			
+		return "";
+		
+	}
+	
 	string GetBagTendancyText()
 	{
 		if(!GetCannibusBud())
@@ -265,56 +278,51 @@ class CP_Workbench extends ItemBase
 		if(!m_CP_Processing)
 		{
 		   	m_CP_Processing = new Timer;
-			m_CP_Processing.Run(20,this,"Do_processing",NULL,true);
+			m_CP_Processing.Run(2000,this,"Do_processing",NULL,true);
 			CP_TimerisRunning = true;
 			CP_TimerIsPaused = false;
 			
 			Print(CP_TimerisRunning);
+			Print("Void start_processing " + CP_TimerIsPaused);
 		}
 
 		
 		
 		SetSynchDirty();	
 	}
+
+		
 	void PauseOrResume()
 	{
-		if(CP_TimerisRunning == true && CP_TimerIsPaused == false)
+		if(CP_TimerIsPaused == false)
 		{
 			m_CP_Processing.Pause();
 			CP_TimerIsPaused = true;
-			Print("Paused " + CP_TimerisRunning );
+			Print("Void PauseorResume " + CP_TimerIsPaused);
 		}
 		else if(CP_TimerIsPaused == true)
 		{
 			m_CP_Processing.Continue();
 			CP_TimerIsPaused = false;
-			Print("Resumed " + CP_TimerisRunning);
+			Print("Void PauseorResume " + CP_TimerIsPaused);
 		}
 	
 	}
-		
+	
 	bool RunningOrNot()
 	{
-		if(CP_TimerisRunning)
+		if(CP_TimerisRunning == true)
 		{
+		  Print("Timer is Paused " + CP_TimerIsPaused);
 		  return true;
+		  Print("Void RunningOrNot " + RunningOrNot());
 		}
+		else
+		Print("Timer is Paused " + CP_TimerIsPaused);
 		return false;
+		Print("Void RunningOrNot " + RunningOrNot());		
 	}
-	bool PausedOrNot()
-	{
-		if(CP_TimerisRunning && !CP_TimerIsPaused)
-		{
-			Print("PausedOrNot = true");
-		  return true;
-		}
-		else if(CP_TimerisRunning && CP_TimerIsPaused)
-		{
-			Print("PausedOrNot = false");
-			return false;
-		}
-		return false;
-	}
+
 	void Do_processing()
 	{
 	
@@ -341,9 +349,9 @@ class CP_Workbench extends ItemBase
 		{
 			m_CP_Processing.Stop();
 			CP_TimerisRunning = false;
+			Print(CP_TimerisRunning);
+			Print("Stoped Processing");
 		};
-		Print(CP_TimerisRunning);
-		Print("Stoped Processing");
 		SetSynchDirty();
 	}
 
@@ -510,17 +518,18 @@ class CP_Workbench extends ItemBase
 	// - if any item is in attachment-slots or in cargo, the player can´t get the workbench into his hands
 	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 	override bool CanPutIntoHands(EntityAI parent) 
-	{		
-		if ( !super.CanPutIntoHands( parent ) )
-			return false;
-		
+	{				
 		// check if any item is in the attachment-slots OR if any item is in cargo space
-		if(IsAnyItemAttached() || !IsCargoEmpty())
+		if(IsAnyItemAttached())
+		{
+			return false;
+		}
+		else if(!IsCargoEmpty())
 		{
 			return false;
 		}
 		else
-		 {
+		{
 			return true;
 		}
 	}
