@@ -168,6 +168,14 @@ class CP_Workbench extends ItemBase
 	const string ATTACHMENT_SLOT_BAGS				= "CP_Cannabus_Bags";
 	const string ATTACHMENT_SLOT_BRICKS 			= "CP_Cannabus_Bricks";
 	
+	int BatteryRequired = GetCPConfig().RequireBattery;
+	
+	
+	
+	/*Math is hard DayZAnimalCommandLookAt*/
+	float BatterPercentUsed = GetCPConfig().WorkBench_PowerUsed / 100;
+	float PlasticWrapUsed = GetCPConfig().Plastic_Wrap_Usage / 100;
+	
 	// timer to get bagger working
 	protected ref Timer m_CP_Processing;
 
@@ -274,16 +282,13 @@ class CP_Workbench extends ItemBase
 	{		
 		if(m_CP_Processing && m_CP_Processing.IsRunning())
 			return;
-			Print(CP_TimerisRunning);
 		if(!m_CP_Processing)
 		{
 		   	m_CP_Processing = new Timer;
-			m_CP_Processing.Run(2000,this,"Do_processing",NULL,true);
+			m_CP_Processing.Run(5,this,"Do_processing",NULL,true);
 			CP_TimerisRunning = true;
 			CP_TimerIsPaused = false;
-			
-			Print(CP_TimerisRunning);
-			Print("Void start_processing " + CP_TimerIsPaused);
+
 		}
 
 		
@@ -298,29 +303,25 @@ class CP_Workbench extends ItemBase
 		{
 			m_CP_Processing.Pause();
 			CP_TimerIsPaused = true;
-			Print("Void PauseorResume " + CP_TimerIsPaused);
 		}
 		else if(CP_TimerIsPaused == true)
 		{
 			m_CP_Processing.Continue();
 			CP_TimerIsPaused = false;
-			Print("Void PauseorResume " + CP_TimerIsPaused);
 		}
-	
+		SetSynchDirty();	
 	}
 	
 	bool RunningOrNot()
 	{
 		if(CP_TimerisRunning == true)
 		{
-		  Print("Timer is Paused " + CP_TimerIsPaused);
+
 		  return true;
-		  Print("Void RunningOrNot " + RunningOrNot());
 		}
 		else
-		Print("Timer is Paused " + CP_TimerIsPaused);
-		return false;
-		Print("Void RunningOrNot " + RunningOrNot());		
+		return false;	
+
 	}
 
 	void Do_processing()
@@ -332,26 +333,41 @@ class CP_Workbench extends ItemBase
 		
 		ItemBase Batteries = GetBattieries();
 	
-		Print("Working ");
 		
-		
-		if(GetBattieries().GetCompEM().GetEnergy() > 10)
+		if(BatteryRequired == 1)
 		{
-			Print("Battery Check");
+		
+			if(GetBattieries().GetCompEM().GetEnergy() > 10)
+			{
+				Print("Battery Check");
+				if(GetCannibusBud() && GetCannibusBud().GetQuantity() > 2 || GetEmptyBags() && GetEmptyBags().GetQuantity() > 1)
+				{
+					CP_TimerisRunning = true;
+					CreateBags();
+					CreateBricks();
+				}
+			}
+			else
+			{
+				m_CP_Processing.Stop();
+				CP_TimerisRunning = false;
+			}
+		}
+		else if (BatteryRequired == 0)
+		{
 			if(GetCannibusBud() && GetCannibusBud().GetQuantity() > 2 || GetEmptyBags() && GetEmptyBags().GetQuantity() > 1)
 			{
-				Print("Running Running");
 				CP_TimerisRunning = true;
 				CreateBags();
+				CreateBricks();
+			}
+			else
+			{
+				m_CP_Processing.Stop();
+				CP_TimerisRunning = false;
 			};
 		}
-		else
-		{
-			m_CP_Processing.Stop();
-			CP_TimerisRunning = false;
-			Print(CP_TimerisRunning);
-			Print("Stoped Processing");
-		};
+				
 		SetSynchDirty();
 	}
 
@@ -368,22 +384,47 @@ class CP_Workbench extends ItemBase
 		
 		string Bagname = GetCannibusBud().GetcpBag(); 
 		
-		
-		if(!GetCannibusBags())
+		if(BatteryRequired == 1)
 		{
-			GetInventory().CreateAttachment(Bagname);
+			if(GetCannibusBud().GetQuantity() > 1)
+			{		
+				if(!GetCannibusBags())
+				{
+					GetInventory().CreateAttachment(Bagname);
+				}
+				else if (GetCannibusBags() && GetCannibusBags().GetType() == Bagname)
+				{
+					GetCannibusBags().AddQuantity(1); 
+				}
+				else
+				{
+					return;
+				}
+				EmptyBags.AddQuantity(-1);
+	        	CannabisBud.AddQuantity(-2); 
+				Batteries.GetCompEM().AddEnergy( -BatterPercentUsed );
+			}
 		}
-		else if (GetCannibusBags() && GetCannibusBags().GetType() == Bagname)
+		else if(BatteryRequired == 0)
 		{
-			GetCannibusBags().AddQuantity(1); 
-		}
-		else
-		{
-			return;
-		}
-		EmptyBags.AddQuantity(-1);
-        CannabisBud.AddQuantity(-2); 
-		Batteries.GetCompEM().AddEnergy( -10 );
+			if(GetCannibusBud().GetQuantity() > 1)
+			{
+				if(!GetCannibusBags())
+				{
+					GetInventory().CreateAttachment(Bagname);
+				}
+				else if (GetCannibusBags() && GetCannibusBags().GetType() == Bagname)
+				{
+					GetCannibusBags().AddQuantity(1); 
+				}
+				else
+				{
+					return;
+				}
+				EmptyBags.AddQuantity(-1);
+	        	CannabisBud.AddQuantity(-2);
+			} 
+		};
 	};
 	
 	void CreateBricks()
@@ -392,35 +433,65 @@ class CP_Workbench extends ItemBase
 		ItemBase PlasticWrap = GetPlasticRoll();
 		ItemBase Batteries = GetBattieries();
 		
+
+		
 		
 		if(!GetCannibusBags())
 			return;
 		
 		string Brickname = GetCannibusBags().GetcpBrick(); 
 		
+		if(BatteryRequired == 1)
+		{
 		
-		if(!GetCannibusBricks())
-		{
-			GetInventory().CreateAttachment(Brickname);
+			if(GetCannibusBags().GetQuantity() > 15)
+			{
+				if(!GetCannibusBricks())
+				{
+					GetInventory().CreateAttachment(Brickname);
+				}
+				else if (GetCannibusBricks() && GetCannibusBricks().GetType() == Brickname)
+				{
+					GetCannibusBricks().AddQuantity(1); 
+				}
+				else
+				{
+					return;
+				}
+        		CannabisBag.AddQuantity(-16);
+				PlasticWrap.AddQuantity(-PlasticWrapUsed);
+				Batteries.GetCompEM().AddEnergy( -BatterPercentUsed );
+			};
 		}
-		else if (GetCannibusBricks() && GetCannibusBricks().GetType() == Brickname)
+	    else if(BatteryRequired == 0)
 		{
-			GetCannibusBricks().AddQuantity(1); 
-		}
-		else
-		{
-			return;
-		}
-        CannabisBag.AddQuantity(-16);
-		PlasticWrap.AddQuantity(-25);
-		Batteries.GetCompEM().AddEnergy( -10 );
+			if(GetCannibusBags().GetQuantity() > 15)
+			{
+		
+				if(!GetCannibusBricks())
+				{
+					GetInventory().CreateAttachment(Brickname);
+				}
+				else if (GetCannibusBricks() && GetCannibusBricks().GetType() == Brickname)
+				{
+					GetCannibusBricks().AddQuantity(1); 
+				}
+				else
+				{
+					return;
+				}
+        		CannabisBag.AddQuantity(-16);
+				PlasticWrap.AddQuantity(-25);
+			}
+		};
+	
 	};
 
 
 	
 	bool IsPowered()
 	{		
-		if(HasEnergyManager() && GetCompEM().IsWorking())
+		if(BatteryRequired == true && HasEnergyManager() && GetCompEM().IsWorking() )
 		{
 			return true;
 		}
@@ -516,47 +587,29 @@ class CP_Workbench extends ItemBase
 	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~	
 	// checks if the player can get the workbench into his hands
 	// - if any item is in attachment-slots or in cargo, the player can´t get the workbench into his hands
-	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 	override bool CanPutIntoHands(EntityAI parent) 
 	{				
 		// check if any item is in the attachment-slots OR if any item is in cargo space
-		if(IsAnyItemAttached())
-		{
-			return false;
-		}
-		else if(!IsCargoEmpty())
+		if(IsAnyItemAttached() || IsCargoEmpty())
 		{
 			return false;
 		}
 		else
-		{
 			return true;
-		}
 	}
-	
-	
-	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-	// 
-	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-	/*
-	override bool CanReceiveAttachment(EntityAI attachment, int slotId) 
+	override bool CanPutInCargo( EntityAI parent )
 	{
-		Print("CAN RECEIVE ATTACHEMENT");
-		
-		//if ( !super.CanReceiveAttachment(attachment, slotId) )
-		//	return false;
-		//
-		//ItemBase item = ItemBase.Cast( attachment );
-		//
-		//if((this.m_IsBaggerActive == true) || (this.m_IsWrapperActive == true)){
-		//	return false;
-		//} else {
-		//	return true;
-		//}
-		//
-		return true;		
+		// check if any item is in the attachment-slots OR if any item is in cargo space
+		if(IsAnyItemAttached() || IsCargoEmpty())
+		{
+			return false;
+		}
+		else
+			return true;
+	
 	}
-	*/
+	
 	
 
 	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~		
@@ -564,9 +617,13 @@ class CP_Workbench extends ItemBase
 	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 	bool IsAnyItemAttached() 
 	{		
-		return (GetInventory().AttachmentCount() >= 0 );
+		if(GetInventory().AttachmentCount() > 0)
+		{
+			return true;		
+		}
+		return false;
 	}
-	
+
 	
 	
 	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -574,9 +631,12 @@ class CP_Workbench extends ItemBase
 	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 	bool IsCargoEmpty()	
 	{		
-		return ( GetInventory().GetCargo().GetItemCount() == 0 );
+		if(GetInventory().GetCargo().GetItemCount() > 0 )
+		{
+			return true;		
+		}
+		return false;
 	}
-	
 	
 	override void EEItemDetached(EntityAI item, string slot_name)
 	{

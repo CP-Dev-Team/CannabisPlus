@@ -15,6 +15,7 @@ class ActionCPUsePlasticWrapper: ActionInteractBase
 
 	override bool ActionCondition( PlayerBase player, ActionTarget target, ItemBase item )
 	{
+		int BatteryRequired = GetCPConfig().RequireBattery;	
 		
 		EntityAI target_entity = EntityAI.Cast( target.GetObject() );
         Object target_object = target.GetObject();
@@ -23,12 +24,26 @@ class ActionCPUsePlasticWrapper: ActionInteractBase
 		CP_CannabisBags Bags = CP_CannabisBags.Cast( target_entity.GetAttachmentByType(CP_CannabisBags) );
 		VehicleBattery Batteries = VehicleBattery.Cast( target_entity.GetAttachmentByType(VehicleBattery) );
 		
-		if (Bench && Bench.Wrapper_Attachments() &&  Bags.GetQuantity() >= 16 && Batteries && Batteries.GetCompEM().GetEnergy() >= 150 )//Bench.IsPowered() &&
+		if(BatteryRequired == 1)
 		{
-			TendancyText = Bench.GetBrickTendancyText();
-			return true;
+		
+			if (Bench && Bench.Wrapper_Attachments() &&  Bags.GetQuantity() >= 16 && Batteries && Batteries.GetCompEM().GetEnergy() >= 150 )//Bench.IsPowered() &&
+			{
+				TendancyText = Bench.GetBrickTendancyText();
+				return true;
+			}
+			return false;
 		}
-		return false;
+		else if(BatteryRequired == 0)
+		{
+		
+			if (Bench && Bench.Wrapper_Attachments() &&  Bags.GetQuantity() >= 16)
+			{
+				TendancyText = Bench.GetBrickTendancyText();
+				return true;
+			}
+		}
+		return false;	
 	};
 
 	override void OnStartServer( ActionData action_data )

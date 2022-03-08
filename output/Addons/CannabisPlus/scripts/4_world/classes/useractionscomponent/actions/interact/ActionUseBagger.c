@@ -15,6 +15,9 @@ class ActionCPUseBagger: ActionInteractBase
 
 	override bool ActionCondition( PlayerBase player, ActionTarget target, ItemBase item )
 	{
+		int BatteryRequired = GetCPConfig().RequireBattery;
+		
+		
 		
 		EntityAI target_entity = EntityAI.Cast( target.GetObject() );
         Object target_object = target.GetObject();
@@ -23,10 +26,23 @@ class ActionCPUseBagger: ActionInteractBase
 		CP_CannabisBud Buds = CP_CannabisBud.Cast( target_entity.GetAttachmentByType(CP_CannabisBud) );
 		VehicleBattery Batteries = VehicleBattery.Cast( target_entity.GetAttachmentByType(VehicleBattery) );
 		
-		if (Bench && Bench.Bagger_Attachments() &&  Buds.GetQuantity() >= 2 && Batteries && Batteries.GetCompEM().GetEnergy() >= 10 && !Bench.RunningOrNot())
+		if(BatteryRequired == 1)
 		{
-			TendancyText = Bench.GetBagTendancyText();
-			return true;
+		
+			if (Bench && Bench.Bagger_Attachments() &&  Buds.GetQuantity() >= 2 && Batteries && Batteries.GetCompEM().GetEnergy() >= 10 && !Bench.RunningOrNot())
+			{
+				TendancyText = Bench.GetBagTendancyText();
+				return true;
+			}
+		}
+		else if(BatteryRequired == 0)
+		{
+		
+			if (Bench && Bench.Bagger_Attachments() &&  Buds.GetQuantity() >= 2)
+			{
+				TendancyText = Bench.GetBagTendancyText();
+				return true;
+			}
 		}
 		return false;
 	};

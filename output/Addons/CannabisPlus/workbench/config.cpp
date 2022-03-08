@@ -216,6 +216,7 @@ class CfgVehicles
 				icon="set:BuildingFortIcons image:WindowBarricade";
 			};
 		};
+
 	};
 	
     class CP_Workbench_Holo: CP_Workbench

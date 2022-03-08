@@ -2,6 +2,11 @@ class CannabisPlusConfigManager
 {
 	int configVersion;
 	
+	bool RequireBattery = true; 
+	float  WorkBench_PowerUsed = 1;
+	float  Plastic_Wrap_Usage = 10;	
+	
+	
 	bool removeAfterHarvest;
 	
 	int tobacco_growtime;
@@ -82,12 +87,19 @@ class CannabisPlusConfigManager
 	}	
 	
 	void LoadDefaultSettings() {
-		configVersion						= GetModVersion();		
-		removeAfterHarvest 					= true;	
+			configVersion						= GetModVersion();
+		
+			RequireBattery = true; 
+			WorkBench_PowerUsed = 1;
+			Plastic_Wrap_Usage = 10;		
+		
+			RequireBattery 					= true; 
+		
+			removeAfterHarvest 				= true;	
 
             tobacco_growtime 				= 8;
-            tobacco_cropcount 			= 2;
-            tobaccoSeed_count 			= 9;
+            tobacco_cropcount 				= 2;
+            tobaccoSeed_count 				= 9;
 
             cannabisSkunk_growtime 			= 8;
             cannabisSkunk_cropcount 		= 2;
@@ -146,8 +158,8 @@ class CannabisPlusConfigManager
 
             cannabis_drytime                    =60;
 		
-		PlantPerBag					=18;
-		CompostTime					=360; 
+			PlantPerBag					=18;
+			CompostTime					=360; 
 
 		SaveConfig();
 	};
@@ -186,8 +198,8 @@ class CannabisPlusConfigManager
 	};
 
 	//Dont use that to load the config!
-	static ref CannabisPlusConfigManager LoadConfig() {
-            ref CannabisPlusConfigManager settings = new CannabisPlusConfigManager();
+	static CannabisPlusConfigManager LoadConfig() {
+            CannabisPlusConfigManager settings = new CannabisPlusConfigManager();
 
             if(!FileExist(m_CPProfileFolder))
                   MakeDirectory(m_CPProfileFolder);
@@ -212,7 +224,7 @@ class CannabisPlusConfigManager
 /* Global Getter for config */
 static ref CannabisPlusConfigManager g_CannabisPlusConfig;
 static ref CannabisPlusConfigManager g_ClientCannabisPlusConfig;
-static ref CannabisPlusConfigManager GetCPConfig()
+static CannabisPlusConfigManager GetCPConfig()
 {
       if (g_Game.IsServer() && !g_CannabisPlusConfig) 
       {
