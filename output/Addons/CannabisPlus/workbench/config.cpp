@@ -2,17 +2,12 @@ class CfgPatches
 {
     class CP_Workbench
     {
-        units[] =
-        {
-            ""
-        };
+        units[]={};
         weapons[] = {};
         requiredVersion = 0.1;
         requiredAddons[] = 
         {
-            "DZ_Data",
-			"DZ_Gear_Medical",
-			"DZ_Gear_Consumables"
+            "DZ_Data"
         };
     };
 };
@@ -44,7 +39,7 @@ class CfgSlots
           name="CP_Cannabus_Bags";
           displayName="Bags";
           ghostIcon="missing";
-          stackMax=50;
+          stackMax=160;
     };
 	class Slot_CP_Cannabus_Bricks
     {
@@ -64,6 +59,7 @@ class CfgSlots
 		name="CP_Empty_Bags";
         displayName="Empty Bags";
         ghostIcon="missing";
+		stackMax=160;
 		
 	}
 };   

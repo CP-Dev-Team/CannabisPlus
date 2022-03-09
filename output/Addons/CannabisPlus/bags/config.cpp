@@ -62,7 +62,7 @@ class CfgVehicles
 		canBeSplit=1;
 		varQuantityInit=1;
 		varQuantityMin=0;
-		varQuantityMax=16;
+		varQuantityMax=160;
 		varQuantityDestroyOnMin=1;
 		varStackMax=16;
 		weight=28;

@@ -8,8 +8,6 @@ class CfgPatches
 		requiredAddons[]=
 		{
 			"DZ_Data",
-			"DZ_Scripts",
-			"JM_CF_Scripts",
 			"CPtoken"
 		};
 	};
@@ -19,11 +17,11 @@ class CfgMods
 	class CannabisPlus
 	{
 		dir="CannabisPlus";
+		name="Cannabis Plus";		
 		picture="";
 		action="";
 		hideName=1;
 		hidePicture=1;
-		name="Cannabis Plus";
 		credits="IceBlade, bombjack, Gloser";
 		author="IceBlade";
 		authorID="0";
@@ -32,12 +30,18 @@ class CfgMods
 		type="Mod";
 		dependencies[]=
 		{
+			"gui",
 			"Game",
 			"World",
 			"Mission"
 		};
 		class defs
 		{
+			class imageSets
+            {
+                files[]=
+                {"BuildingFortifications\GUI\BuldingFortIcons.imageset"};
+            };
 			class gameScriptModule
 			{
 				value="";
