@@ -2,7 +2,7 @@ class CP_CarveWoodenPost extends RecipeBase
 {	
 	override void Init()
 	{
-		m_Name = "Carve Wooden Drying Post";
+		m_Name = "Make Wooden Drying Post";
 		m_IsInstaRecipe = false;//should this recipe be performed instantly without animation
 		m_AnimationLength = 1;//animation length in relative time units
 		m_Specialty = -0.01;// value > 0 for roughness, value < 0 for precision
@@ -33,25 +33,7 @@ class CP_CarveWoodenPost extends RecipeBase
 		m_IngredientUseSoftSkills[0] = false;// set 'true' to allow modification of the values by softskills on this ingredient
 		
 		//ingredient 2
-		InsertIngredient(1,"Sickle");//you can insert multiple ingredients this way
-		InsertIngredient(1,"Hacksaw");
-		InsertIngredient(1,"HandSaw");
-		InsertIngredient(1,"KitchenKnife");
-		InsertIngredient(1,"SteakKnife");
-		InsertIngredient(1,"StoneKnife");
-		InsertIngredient(1,"Cleaver");
-		InsertIngredient(1,"CombatKnife");
-		InsertIngredient(1,"HuntingKnife");
-		InsertIngredient(1,"Machete");
-		InsertIngredient(1,"WoodAxe");
-		InsertIngredient(1,"Hatchet");
-		InsertIngredient(1,"FirefighterAxe");
-		InsertIngredient(1,"Sword");
-		InsertIngredient(1,"AK_Bayonet");
-		InsertIngredient(1,"M9A1_Bayonet");
-		InsertIngredient(1,"Mosin_Bayonet");
-		InsertIngredient(1,"SKS_Bayonet");
-		
+		InsertIngredient(1,"Rope");//you can insert multiple ingredients this way
 		m_IngredientAddHealth[1] = -5;// 0 = do nothing
 		m_IngredientSetHealth[1] = -1; // -1 = do nothing
 		m_IngredientAddQuantity[1] = 0;// 0 = do nothing
@@ -60,7 +42,7 @@ class CP_CarveWoodenPost extends RecipeBase
 		//----------------------------------------------------------------------------------------------------------------------
 		
 		//result1
-		AddResult("CP_DryPost");//add results here
+		AddResult("CP_DryPost_Kit");//add results here
 
 		m_ResultSetFullQuantity[0] = false;//true = set full quantity, false = do nothing
 		m_ResultSetQuantity[0] = 1;//-1 = do nothing

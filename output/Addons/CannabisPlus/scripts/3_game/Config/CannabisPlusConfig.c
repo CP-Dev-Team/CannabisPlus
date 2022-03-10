@@ -100,8 +100,6 @@ class CannabisPlusConfigManager
 			Buds_To_Bags_Required = 2;
 			Bags_To_Bricks_Required= 16;
 		
-			RequireBattery 					= true; 
-		
 			removeAfterHarvest 				= true;	
 
             tobacco_growtime 				= 8;
@@ -163,7 +161,8 @@ class CannabisPlusConfigManager
             weedRadBlurYPower 			= 2;
             weedRotBlurPow 				= 10;
 
-            cannabis_drytime                    =60;
+            cannabis_drytime            = 600;
+
 		
 			PlantPerBag					=18;
 			CompostTime					=360; 

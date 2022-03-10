@@ -1,12 +1,14 @@
 class CP_CraftCannabisBagBlackFrost extends RecipeBase
 {
+
+
     protected string m_cpBags= "";
 
 	override void Init()
 	{
-		m_Name = "Testing Bag Smart Recipe";
+		m_Name = "Fill Bag";
 		m_IsInstaRecipe = false;//should this recipe be performed instantly without animation
-		m_AnimationLength = 0.5;//animation length in relative time units
+		m_AnimationLength = 0.25;//animation length in relative time units
 		m_Specialty = -0.01;// value > 0 for roughness, value < 0 for precision
 		
 		
@@ -14,7 +16,7 @@ class CP_CraftCannabisBagBlackFrost extends RecipeBase
 		m_MinDamageIngredient[0] = -1;//-1 = disable check
 		m_MaxDamageIngredient[0] = -1;//-1 = disable check
 		
-		m_MinQuantityIngredient[0] = -2;//-1 = disable check
+		m_MinQuantityIngredient[0] = -1;//-1 = disable check
 		m_MaxQuantityIngredient[0] = -1;//-1 = disable check
 		
 		m_MinDamageIngredient[1] = -1;//-1 = disable check
@@ -60,7 +62,17 @@ class CP_CraftCannabisBagBlackFrost extends RecipeBase
 
 	override bool CanDo(ItemBase ingredients[], PlayerBase player)//final check for recipe's validity
 	{
-		return true;
+		int BudsToBagsUsage = GetCPConfig().Buds_To_Bags_Required;
+	
+		CP_CannabisBud ingredient1 = CP_CannabisBud.Cast(ingredients[0]);
+	
+		CP_EmptyBag ingredient2 = CP_EmptyBag.Cast(ingredients[1]);
+	
+		if(ingredient1.GetQuantity() >= BudsToBagsUsage)
+		{
+			return true;
+		}
+		return false;
 	}
 
 	override void Do(ItemBase ingredients[], PlayerBase player,array<ItemBase> results, float specialty_weight)//gets called upon recipe's completion
@@ -80,9 +92,9 @@ class CP_CraftCannabisBrickBlackFrost extends RecipeBase
 
 	override void Init()
 	{
-		m_Name = "Make Brick Smart Test";
+		m_Name = "Wrap Brick";
 		m_IsInstaRecipe = false;//should this recipe be performed instantly without animation
-		m_AnimationLength = 2;//animation length in relative time units
+		m_AnimationLength = 2.25;//animation length in relative time units
 		m_Specialty = -0.01;// value > 0 for roughness, value < 0 for precision
 		
 		
@@ -96,7 +108,7 @@ class CP_CraftCannabisBrickBlackFrost extends RecipeBase
 		m_MinDamageIngredient[1] = -1;//-1 = disable check
 		m_MaxDamageIngredient[1] = -1;//-1 = disable check
 		
-		m_MinQuantityIngredient[1] = 1;//-1 = disable check
+		m_MinQuantityIngredient[1] = 25;//-1 = disable check
 		m_MaxQuantityIngredient[1] = -1;//-1 = disable check
 		//----------------------------------------------------------------------------------------------------------------------
 		
@@ -116,7 +128,7 @@ class CP_CraftCannabisBrickBlackFrost extends RecipeBase
 
 		m_IngredientAddHealth[1] = 0;// 0 = do nothing
 		m_IngredientSetHealth[1] = -1; // -1 = do nothing
-		m_IngredientAddQuantity[1] = -10;// 0 = do nothing
+		m_IngredientAddQuantity[1] = -25;// 0 = do nothing
 		m_IngredientDestroy[1] = false;// false = do nothing
 		m_IngredientUseSoftSkills[1] = false;// set 'true' to allow modification of the values by softskills on this ingredient
 		//----------------------------------------------------------------------------------------------------------------------
@@ -138,7 +150,16 @@ class CP_CraftCannabisBrickBlackFrost extends RecipeBase
 
 	override bool CanDo(ItemBase ingredients[], PlayerBase player)//final check for recipe's validity
 	{
-		return true;
+		int BagsToBricksUsage = GetCPConfig().Bags_To_Bricks_Required;
+	
+		CP_CannabisBags ingredient1 = CP_CannabisBags.Cast(ingredients[0]);
+	
+		if(ingredient1.GetQuantity() >= BagsToBricksUsage)
+		{
+			return true;
+		}
+		return false;
+		
 	}
 
 	override void Do(ItemBase ingredients[], PlayerBase player,array<ItemBase> results, float specialty_weight)//gets called upon recipe's completion
@@ -156,7 +177,7 @@ class CP_CraftCigsCannabisBlackFrost extends RecipeBase
 	
 	override void Init()
 	{
-		m_Name = "Make Joint Smart Test";
+		m_Name = "Roll Joint";
 		m_IsInstaRecipe = false;//should this recipe be performed instantly without animation
 		m_AnimationLength = 0.5;//animation length in relative time units
 		m_Specialty = -0.01;// value > 0 for roughness, value < 0 for precision
@@ -231,7 +252,7 @@ class CP_CraftCigarettePackBlackFrostEmpty extends RecipeBase
 {	
 	override void Init()
 	{
-		m_Name = "Smart testing joint to Pack";
+		m_Name = "Create joint to Pack";
 		m_IsInstaRecipe = false;//should this recipe be performed instantly without animation
 		m_AnimationLength = 0.01;//animation length in relative time units
 		m_Specialty = 0;// value > 0 for roughness, value < 0 for precision

@@ -3,151 +3,132 @@
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 class CP_Workbench_Kit extends ItemBase 
 {
-	ref protected EffectSound	m_DeployLoopSound;
-	protected Object			Workbench_Kit1;
-	
-	
-
-	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-	// constructor for class CP_Workbench_Kit to initialize the necessary
-	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-	void CP_Workbench_Kit()	
-	{
-		RegisterNetSyncVariableBool("m_IsSoundSynchRemote");
-	}
-	
-	
-	
-	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-	// Called upon object creation.
-	// Can be removed at the moment, so no changes are made to the method in the modded class.
-	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-	override void EEInit() 
+	override void EEInit()
 	{
 		super.EEInit();
-	}
-	
-	
-	
-	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-	// Event handler that is fired if location of workbench kit is changed. 
-	// Can be removed at the moment, so no changes are made to the method in the modded class.
-	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-	override void OnItemLocationChanged( EntityAI old_owner, EntityAI new_owner ) 
-	{
-		super.OnItemLocationChanged( old_owner, new_owner );
-	}	
-	
-	
-	
-	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-	// Syncronize deployment sound for workbench kit. 
-	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-	override void OnVariablesSynchronized()	
-	{
-		super.OnVariablesSynchronized();
 		
-		if ( IsDeploySound() ) {
-			PlayDeploySound();
-		}
-				
-		if ( CanPlayDeployLoopSound() )	{
-			PlayDeployLoopSound();
-		}
-					
-		if ( m_DeployLoopSound && !CanPlayDeployLoopSound() ) {
-			StopDeployLoopSound();
-		}
-	};
-	
-	
-	
-	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-	// set actions to place the workbench kit
-	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-	override void SetActions() 
-	{		
-		super.SetActions();		
-		AddAction(ActionTogglePlaceObject);
-		AddAction(ActionPlaceObject);
-	}		
-	
-	
-	
+		GetGame().GetCallQueue( CALL_CATEGORY_GAMEPLAY ).Call( AssembleKit );
+	}
+
+	override bool CanReceiveAttachment(EntityAI attachment, int slotId)
+	{
+		if ( !super.CanReceiveAttachment(attachment, slotId) )
+			return false;
+		
+		ItemBase att = ItemBase.Cast(GetInventory().FindAttachment(slotId));
+		if (att)
+			return false;
+		
+		return true;
+	}
 	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 	// Event handler that is fired if placement of workbenchkit is complete.
 	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~	
 	override void OnPlacementComplete( Man player, vector position = "0 0 0", vector orientation = "0 0 0" ) 
 	{		
 		super.OnPlacementComplete( player );		
-		if ( GetGame().IsServer() )	{
-			Workbench_Kit1 = GetGame().CreateObjectEx( "CP_Workbench", GetPosition(), ECE_PLACE_ON_SURFACE );
-			Workbench_Kit1.SetPosition( position );
-			Workbench_Kit1.SetOrientation( orientation );
+		
+		if ( GetGame().IsServer() )
+		{
+			PlayerBase player_base = PlayerBase.Cast( player );
+
+			CP_Workbench CPWorkbench = CP_Workbench.Cast( GetGame().CreateObjectEx( "CP_Workbench", GetPosition(), ECE_PLACE_ON_SURFACE ) );
+			
+			CPWorkbench.SetPosition( position);
+			CPWorkbench.SetOrientation( orientation );
+			
+			//make the kit invisible, so it can be destroyed from deploy UA when action ends
+			HideAllSelections();
+			
+			this.Delete();
+			SetIsDeploySound( true );
 		}	
-		HideAllSelections();
-		SetIsDeploySound( true );
-		// Should be removed so that the workbench does not disappear?
-		//SetLifetime(3888000);
 	}
 	
-	
-	
-	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-	// Indicates whether the workbench kit can be deployed.
-	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-	override bool IsDeployable() 
-	{		
-		return true;
-	}	
-	
-	
-	
-	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-	// Sets the appropriate sound effects when object is placed.
-	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-	override string GetDeploySoundset() 
-	{		
-		return "putDown_FenceKit_SoundSet";
-	}
-	
-	
-	
-	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-	// returns soundset for deploying the the workbench kit
-	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-	override string GetLoopDeploySoundset() 
-	{		
-		return "BarbedWire_Deploy_loop_SoundSet";
-	}
-	
-	
-	
-	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-	// starts playing the sound for deploying the workbench_kit
-	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-	void PlayDeployLoopSound() 
-	{	
-		// check if its currently a multiplayer-game and the code is executed on the client?	
-		if ( GetGame().IsMultiplayer() && GetGame().IsClient() || !GetGame().IsMultiplayer() ) {		
-			m_DeployLoopSound = SEffectManager.PlaySound( GetLoopDeploySoundset(), GetPosition() );
-		}
-	}
-	
-	
-	
-	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-	// stops playing the sound for deploying the workbench_kit
-	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-	void StopDeployLoopSound() 
+	override void OnPlacementStarted( Man player )
+    	{
+        	super.OnPlacementStarted( player );
+        
+		SetAnimationPhase ("Rope", 0);  // Shows the rope on the model when rope is attached.
+    	}
+
+	override string GetPlaceSoundset()
 	{
-		// check if its currently a multiplayer-game and the code is executed on the client?
-		if ( GetGame().IsMultiplayer() && GetGame().IsClient() || !GetGame().IsMultiplayer() ) {
-			// deplyment sound is stoping
-			m_DeployLoopSound.SoundStop();
-			// Destroy object instance of deployment sound
-			delete m_DeployLoopSound;
+		return "seachest_drop_SoundSet";
+	}
+	
+	override bool IsDeployable()
+	{
+		return true;
+	}
+
+	override bool DoPlacingHeightCheck()
+	{
+		return false;
+	}
+	override float HeightCheckOverride()
+	{
+		return 20;
+	}
+	void AssembleKit()
+	{
+		if (!IsHologram())
+		{
+			Rope rope = Rope.Cast(GetInventory().CreateAttachment("Rope"));
 		}
+	}
+	void CreateRope(Rope rope)
+	{
+		if (!rope)
+			return;
+		
+		InventoryLocation targetLoc = rope.GetTargetLocation();
+		if (targetLoc && targetLoc.GetType() != InventoryLocationType.GROUND)
+		{
+			MiscGameplayFunctions.TransferItemProperties(this, rope);
+			return;
+		}
+		
+		EntityAI newRope = EntityAI.Cast(GetGame().CreateObjectEx(rope.GetType(), GetPosition(), ECE_PLACE_ON_SURFACE));
+		
+		if (newRope)
+			MiscGameplayFunctions.TransferItemProperties(this, newRope);
+		
+		rope.Delete();
+	}
+	void DisassembleKit(ItemBase item)
+	{
+		if (!IsHologram())
+		{
+			ItemBase Log = ItemBase.Cast(GetGame().CreateObjectEx("WoodenLog",GetPosition(),ECE_PLACE_ON_SURFACE));
+			MiscGameplayFunctions.TransferItemProperties(this, Log);
+			Rope rope = Rope.Cast(item);
+			CreateRope(rope);
+		}
+	}
+	override void EEItemDetached(EntityAI item, string slot_name)
+    {
+		super.EEItemDetached( item, slot_name );
+		
+		PlayerBase player = PlayerBase.Cast(GetHierarchyRootPlayer());
+		if ( player && player.IsPlayerDisconnected() )
+			return;
+		
+		if (item && slot_name == "Rope")
+		{
+			if (GetGame().IsServer())
+			{
+				DisassembleKit(ItemBase.Cast(item));
+				Delete();
+			}
+		}
+	}
+	override void SetActions()
+	{
+		super.SetActions();
+		
+		AddAction(ActionTogglePlaceObject);
+		AddAction(ActionDeployObject);
 	}
 }
 
@@ -174,6 +155,7 @@ class CP_Workbench extends ItemBase
 	///////////////////////////////////////////////////////////////////*/
 	
 	/*                   Whole # Config Options                        */
+	/////////////////////////////////////////////////////////////////////
 		int BatteryRequired = GetCPConfig().RequireBattery;
 		int Workbench_Timer_Repeat = GetCPConfig().Workbench_Processing_Time;
 		int BudsToBagsUsage = GetCPConfig().Buds_To_Bags_Required;
@@ -186,8 +168,14 @@ class CP_Workbench extends ItemBase
 	
 	
 	/*				Percentile Config Options 0% - 100%                */
-		float BatterPercentUsed = GetCPConfig().WorkBench_PowerUsed / 100;
-		float PlasticWrapUsed = GetCPConfig().Plastic_Wrap_Usage / 100;
+	/////////////////////////////////////////////////////////////////////
+	
+	    float Battery_Percent = GetCPConfig().WorkBench_PowerUsed / 100;
+	
+		float PlaticWrap_Percent = GetCPConfig().Plastic_Wrap_Usage / 100;
+	
+		float  BatteryPercent = (1 - Battery_Percent);
+		float  PlaticWrapPercent = (1 - PlaticWrap_Percent);
 
 	
 	/*///////////////////////////////////////////////////////////////////
@@ -216,7 +204,7 @@ class CP_Workbench extends ItemBase
 		//RegisterNetSyncVariableBool("m_UseCPWorkbench")
 		RegisterNetSyncVariableBool("CP_TimerisRunning");
 		RegisterNetSyncVariableBool("CP_TimerIsPaused");
-
+		m_CP_Processing.Stop();
 	}
 	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 	// Entity entry Intilize
@@ -375,21 +363,19 @@ class CP_Workbench extends ItemBase
 		if(BatteryRequired == 1)
 		{
 		
-			if(GetBattieries().GetCompEM().GetEnergy() > BatterPercentUsed)
+			if(GetBattieries().GetCompEM().GetEnergy() > BatteryPercent)
 			{
 				Print("Battery Check");
-				if(GetCannibusBud() && GetCannibusBud().GetQuantity() >= BudsToBagsUsage || GetEmptyBags() && GetEmptyBags().GetQuantity() > 1)
+				if(GetCannibusBud() && GetCannibusBud().GetQuantity() >= BudsToBagsUsage && GetCannibusBags().GetQuantity() < 160 && GetEmptyBags() && GetEmptyBags().GetQuantity() > 0)
 				{
 					CP_TimerisRunning = true;
 					LockCPWorkbenchSlots(true);					
 					CreateBags();
-					CreateBricks();
 				}
-				else if(GetCannibusBags() && GetCannibusBags().GetQuantity() >= BagsToBricksUsage || GetPlasticRoll() && GetPlasticRoll().GetQuantity() > PlasticWrapUsed)
+				else if(GetCannibusBags() && GetCannibusBags().GetQuantity() >= BagsToBricksUsage && GetCannibusBricks().GetQuantity() < 25 && GetPlasticRoll() && GetPlasticRoll().GetQuantity() > PlaticWrapPercent)
 				{
 					CP_TimerisRunning = true;
 					LockCPWorkbenchSlots(true);					
-					CreateBags();
 					CreateBricks();
 				}	
 					
@@ -403,18 +389,19 @@ class CP_Workbench extends ItemBase
 		}
 		else if (BatteryRequired == 0)
 		{
-			if(GetCannibusBud() && GetCannibusBud().GetQuantity() >= BudsToBagsUsage || GetEmptyBags() && GetEmptyBags().GetQuantity() > 1)
+			if(GetCannibusBud() && GetCannibusBud().GetQuantity() >= BudsToBagsUsage && GetCannibusBags().GetQuantity() < 160 && GetEmptyBags() && GetEmptyBags().GetQuantity() > 0)
 			{
 				CP_TimerisRunning = true;
+				LockCPWorkbenchSlots(true);	
 				CreateBags();
-				CreateBricks();
 			}
-			else if(GetCannibusBags() && GetCannibusBags().GetQuantity() >= BagsToBricksUsage || GetPlasticRoll() && GetPlasticRoll().GetQuantity() > PlasticWrapUsed)
+			else if(GetCannibusBags() && GetCannibusBags().GetQuantity() >= BagsToBricksUsage  && GetCannibusBricks().GetQuantity() < 25 && GetPlasticRoll() && GetPlasticRoll().GetQuantity() > PlaticWrapPercent)
 			{
+
 				CP_TimerisRunning = true;
 				LockCPWorkbenchSlots(true);					
-				CreateBags();
 				CreateBricks();
+				
 			}	
 			else
 			{
@@ -442,7 +429,7 @@ class CP_Workbench extends ItemBase
 		
 		if(BatteryRequired == 1)
 		{
-			if(GetBattieries().GetCompEM().GetEnergy() >= BatterPercentUsed)
+			if(GetBattieries().GetCompEM().GetEnergy() >= BatteryPercent)
 			{	
 			
 				if(GetCannibusBud().GetQuantity() >= BudsToBagsUsage)
@@ -461,7 +448,7 @@ class CP_Workbench extends ItemBase
 					}
 					EmptyBags.AddQuantity(-1);
 	        		CannabisBud.AddQuantity(-BudsToBagsUsage); 
-					Batteries.GetCompEM().AddEnergy( -BatterPercentUsed );
+					Batteries.GetCompEM().AddEnergy( -BatteryPercent );
 				};
 			};
 		}
@@ -504,7 +491,7 @@ class CP_Workbench extends ItemBase
 		if(BatteryRequired == 1)
 		{
 		
-			if(GetCannibusBags().GetQuantity() >= BagsToBricksUsage && GetPlasticRoll().GetQuantity() >= PlasticWrapUsed)
+			if(GetCannibusBags().GetQuantity() >= BagsToBricksUsage && GetPlasticRoll().GetQuantity() >= PlaticWrapPercent)
 			{
 				if(!GetCannibusBricks())
 				{
@@ -519,13 +506,13 @@ class CP_Workbench extends ItemBase
 					return;
 				}
         		CannabisBag.AddQuantity(-BagsToBricksUsage);
-				PlasticWrap.AddQuantity(-PlasticWrapUsed);
-				Batteries.GetCompEM().AddEnergy( -BatterPercentUsed );
+				PlasticWrap.AddQuantity(-PlaticWrapPercent);
+				Batteries.GetCompEM().AddEnergy( -BatteryPercent );
 			};
 		}
 	    else if(BatteryRequired == 0)
 		{
-			if(GetCannibusBags().GetQuantity() >= BagsToBricksUsage && GetPlasticRoll().GetQuantity() >= PlasticWrapUsed)
+			if(GetCannibusBags().GetQuantity() >= BagsToBricksUsage && GetPlasticRoll().GetQuantity() >= PlaticWrapPercent)
 			{
 		
 				if(!GetCannibusBricks())
@@ -541,7 +528,7 @@ class CP_Workbench extends ItemBase
 					return;
 				}
         		CannabisBag.AddQuantity(-BagsToBricksUsage);
-				PlasticWrap.AddQuantity(-PlasticWrapUsed);
+				PlasticWrap.AddQuantity(-PlaticWrapPercent);
 			}
 		};
 	
@@ -558,18 +545,12 @@ class CP_Workbench extends ItemBase
 		
 		if (do_lock)
 		{
-			Buds.LockToParent();
-			EmptyBags.LockToParent();
-			FilledBags.LockToParent();
 			PlasticWrap.LockToParent();
 			Bagger.LockToParent();
 			Wrapper.LockToParent();
 		}
 		else
 		{
-			Buds.UnlockFromParent();
-			EmptyBags.UnlockFromParent();
-			FilledBags.UnlockFromParent();
 			PlasticWrap.UnlockFromParent();
 			Bagger.UnlockFromParent();
 			Wrapper.UnlockFromParent();
@@ -652,6 +633,7 @@ class CP_Workbench extends ItemBase
 		else
 			return false;
     }
+	/*
 	override bool CanDisplayAttachmentSlot( string slot_name )
 	{
 		if (!super.CanDisplayAttachmentSlot(slot_name))
@@ -663,19 +645,21 @@ class CP_Workbench extends ItemBase
 			{
 				return true;
 			}
-			return false;
+			else
+			 return false;
 		}
 		if ( slot_name == "LargeBattery" )
 		{
-			if(BatteryRequired == 1)
+			if(BatteryRequired == true)
 			{
 				return true;
 			}
-			return false;
+			else
+			 return false;
 		}
 		return true;
 	}
-	
+		*/
 	override bool IsElectricAppliance()
 	{
 		return true;

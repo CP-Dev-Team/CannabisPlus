@@ -124,7 +124,7 @@ class CfgVehicles
 		scope = 2;
 		displayName = "Workbench Kit";
 		descriptionShort = "A workbench kit for packaging of illicit drugs.";
-		model="\CannabisPlus\boxes\box_medium.p3d";
+		model="\CannabisPlus\workbench\workbenchKit.p3d";
 		itemSize[] = {5,3};
 		carveNavmesh = 1;
 		canBeDigged = 0;
@@ -133,13 +133,30 @@ class CfgVehicles
 		rotationFlags = 2;
 		weight = 300;
 		itemBehaviour = 2;
-        hiddenSelections[]=
+		attachments[]=
 		{
-			"zbytek"
+			"Rope"
 		};
-		hiddenSelectionsTextures[]=
+		class AnimationSources
 		{
-			"CannabisPlus\boxes\data\Caja_Color.paa"
+			class AnimSourceShown
+			{
+				source="user";
+				animPeriod=0.0099999998;
+				initPhase=0;
+			};
+			class AnimSourceHidden
+			{
+				source="user";
+				animPeriod=0.0099999998;
+				initPhase=1;
+			};
+			class Inventory: AnimSourceShown
+			{
+			};
+			class Placing: AnimSourceHidden
+			{
+			};
 		};
     };
 	  

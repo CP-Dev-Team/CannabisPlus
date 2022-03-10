@@ -33,12 +33,12 @@ class ActionCPUseBagger: ActionInteractBase
 		if(BatteryRequired == 1)
 		{
 		
-			if (Bench && Bench.Bagger_Attachments() &&  Buds.GetQuantity() >= BudsToBagsUsage && Batteries && Batteries.GetCompEM().GetEnergy() >= BatterPercentUsed && !Bench.RunningOrNot())
+			if (Bench && Bench.Bagger_Attachments() && Buds &&  Buds.GetQuantity() >= BudsToBagsUsage && Batteries && Batteries.GetCompEM().GetEnergy() >= BatterPercentUsed && !Bench.RunningOrNot())
 			{
 				TendancyText = Bench.GetBagTendancyText();
 				return true;
 			}
-			else if (Bench && Bench.Wrapper_Attachments() &&  Bags.GetQuantity() >= BagsToBricksUsage && Batteries && Batteries.GetCompEM().GetEnergy() >= BatterPercentUsed && !Bench.RunningOrNot() )
+			else if (Bench && Bench.Wrapper_Attachments() && Bags &&  Bags.GetQuantity() >= BagsToBricksUsage && Batteries && Batteries.GetCompEM().GetEnergy() >= BatterPercentUsed && !Bench.RunningOrNot() )
 			{
 				TendancyText = Bench.GetBrickTendancyText();
 				return true;
@@ -47,12 +47,12 @@ class ActionCPUseBagger: ActionInteractBase
 		else if(BatteryRequired == 0)
 		{
 		
-			if (Bench && Bench.Bagger_Attachments() &&  Buds.GetQuantity() >= BudsToBagsUsage  && !Bench.RunningOrNot() )
+			if (Bench && Bench.Bagger_Attachments() && Buds && Buds.GetQuantity() >= BudsToBagsUsage  && !Bench.RunningOrNot() )
 			{
 				TendancyText = Bench.GetBagTendancyText();
 				return true;
 			}
-			else if (Bench && Bench.Wrapper_Attachments() &&  Bags.GetQuantity() >= BagsToBricksUsage  && !Bench.RunningOrNot() )
+			else if (Bench && Bench.Wrapper_Attachments() && Bags && Bags.GetQuantity() >= BagsToBricksUsage  && !Bench.RunningOrNot() )
 			{
 				TendancyText = Bench.GetBrickTendancyText();
 				return true;

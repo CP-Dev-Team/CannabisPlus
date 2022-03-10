@@ -5,7 +5,7 @@ modded class PluginRecipesManager
       super.RegisterRecipies();
 	
 		RegisterRecipe(new CP_CraftCBDCrudeOil);
-	
+		RegisterRecipe(new CP_CarveWoodenPost);
 		// Tobacco
 		RegisterRecipe(new CP_CraftCigsTobacco);
 		RegisterRecipe(new CP_CraftCigarettePackChernamorkaEmpty);
