@@ -2,7 +2,7 @@ class CannabisPlusConfigManager
 {
 	int configVersion;
 	
-	bool   RequireBattery = true; 
+	bool   RequireBattery = 1; 
 	float  WorkBench_PowerUsed = 1;
 	float  Plastic_Wrap_Usage = 10;
 	int    Workbench_Processing_Time = 5;
@@ -93,7 +93,7 @@ class CannabisPlusConfigManager
 	void LoadDefaultSettings() {
 			configVersion						= GetModVersion();
 		
-			RequireBattery = true; 
+			RequireBattery = 1; 
 			WorkBench_PowerUsed = 1;
 			Plastic_Wrap_Usage = 10;
 			Workbench_Processing_Time = 5;

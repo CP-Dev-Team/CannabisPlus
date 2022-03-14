@@ -57,6 +57,7 @@ class CfgVehicles
 		varQuantityInit=100;
 		varQuantityMin=0;
 		varQuantityMax=100;
+		stackedUnit="percentage";
 		inventorySlot[]={"CP_PlasticRoll"};
 	};
 	

@@ -169,13 +169,12 @@ class CP_Workbench extends ItemBase
 	
 	/*				Percentile Config Options 0% - 100%                */
 	/////////////////////////////////////////////////////////////////////
+
 	
-	    float Battery_Percent = GetCPConfig().WorkBench_PowerUsed / 100;
+	    float Battery_Percent = GetCPConfig().WorkBench_PowerUsed / 100 * 1500;
 	
-		float PlaticWrap_Percent = GetCPConfig().Plastic_Wrap_Usage / 100;
-	
-		float  BatteryPercent = (1 - Battery_Percent);
-		float  PlaticWrapPercent = (1 - PlaticWrap_Percent);
+		float PlaticWrap_Percent = GetCPConfig().Plastic_Wrap_Usage;
+
 
 	
 	/*///////////////////////////////////////////////////////////////////
@@ -355,6 +354,22 @@ class CP_Workbench extends ItemBase
 		}
 		else
 		return false;	
+	}
+	bool EnabledStop()
+	{
+		if(CP_TimerisRunning == true)
+		{
+			return true;
+		}
+		return false;
+	}	
+	void StopProduction()
+	{
+		m_CP_Processing.Stop();
+		CP_TimerisRunning = false;
+		CP_TimerIsPaused = false;
+		LockCPWorkbenchSlots(false);
+		SetSynchDirty();	
 	}	
 
 	void Do_processing()
@@ -363,7 +378,7 @@ class CP_Workbench extends ItemBase
 		if(BatteryRequired == 1)
 		{
 		
-			if(GetBattieries().GetCompEM().GetEnergy() > BatteryPercent)
+			if(GetBattieries().GetCompEM().GetEnergy() > Battery_Percent)
 			{
 				Print("Battery Check");
 				if(GetCannibusBud() && GetCannibusBud().GetQuantity() >= BudsToBagsUsage && GetCannibusBags().GetQuantity() < 160 && GetEmptyBags() && GetEmptyBags().GetQuantity() > 0)
@@ -372,7 +387,7 @@ class CP_Workbench extends ItemBase
 					LockCPWorkbenchSlots(true);					
 					CreateBags();
 				}
-				else if(GetCannibusBags() && GetCannibusBags().GetQuantity() >= BagsToBricksUsage && GetCannibusBricks().GetQuantity() < 25 && GetPlasticRoll() && GetPlasticRoll().GetQuantity() > PlaticWrapPercent)
+				else if(GetCannibusBags() && GetCannibusBags().GetQuantity() >= BagsToBricksUsage && GetCannibusBricks().GetQuantity() < 25 && GetPlasticRoll() && GetPlasticRoll().GetQuantity() > PlaticWrap_Percent)
 				{
 					CP_TimerisRunning = true;
 					LockCPWorkbenchSlots(true);					
@@ -395,7 +410,7 @@ class CP_Workbench extends ItemBase
 				LockCPWorkbenchSlots(true);	
 				CreateBags();
 			}
-			else if(GetCannibusBags() && GetCannibusBags().GetQuantity() >= BagsToBricksUsage  && GetCannibusBricks().GetQuantity() < 25 && GetPlasticRoll() && GetPlasticRoll().GetQuantity() > PlaticWrapPercent)
+			else if(GetCannibusBags() && GetCannibusBags().GetQuantity() >= BagsToBricksUsage  && GetCannibusBricks().GetQuantity() < 25 && GetPlasticRoll() && GetPlasticRoll().GetQuantity() > PlaticWrap_Percent)
 			{
 
 				CP_TimerisRunning = true;
@@ -429,7 +444,7 @@ class CP_Workbench extends ItemBase
 		
 		if(BatteryRequired == 1)
 		{
-			if(GetBattieries().GetCompEM().GetEnergy() >= BatteryPercent)
+			if(GetBattieries().GetCompEM().GetEnergy() >= Battery_Percent)
 			{	
 			
 				if(GetCannibusBud().GetQuantity() >= BudsToBagsUsage)
@@ -448,7 +463,7 @@ class CP_Workbench extends ItemBase
 					}
 					EmptyBags.AddQuantity(-1);
 	        		CannabisBud.AddQuantity(-BudsToBagsUsage); 
-					Batteries.GetCompEM().AddEnergy( -BatteryPercent );
+					Batteries.GetCompEM().AddEnergy( -Battery_Percent );
 				};
 			};
 		}
@@ -491,7 +506,7 @@ class CP_Workbench extends ItemBase
 		if(BatteryRequired == 1)
 		{
 		
-			if(GetCannibusBags().GetQuantity() >= BagsToBricksUsage && GetPlasticRoll().GetQuantity() >= PlaticWrapPercent)
+			if(GetCannibusBags().GetQuantity() >= BagsToBricksUsage && GetPlasticRoll().GetQuantity() >= PlaticWrap_Percent)
 			{
 				if(!GetCannibusBricks())
 				{
@@ -506,13 +521,13 @@ class CP_Workbench extends ItemBase
 					return;
 				}
         		CannabisBag.AddQuantity(-BagsToBricksUsage);
-				PlasticWrap.AddQuantity(-PlaticWrapPercent);
-				Batteries.GetCompEM().AddEnergy( -BatteryPercent );
+				PlasticWrap.AddQuantity(-PlaticWrap_Percent);
+				Batteries.GetCompEM().AddEnergy( -Battery_Percent );
 			};
 		}
 	    else if(BatteryRequired == 0)
 		{
-			if(GetCannibusBags().GetQuantity() >= BagsToBricksUsage && GetPlasticRoll().GetQuantity() >= PlaticWrapPercent)
+			if(GetCannibusBags().GetQuantity() >= BagsToBricksUsage && GetPlasticRoll().GetQuantity() >= PlaticWrap_Percent)
 			{
 		
 				if(!GetCannibusBricks())
@@ -528,7 +543,7 @@ class CP_Workbench extends ItemBase
 					return;
 				}
         		CannabisBag.AddQuantity(-BagsToBricksUsage);
-				PlasticWrap.AddQuantity(-PlaticWrapPercent);
+				PlasticWrap.AddQuantity(-PlaticWrap_Percent);
 			}
 		};
 	
@@ -750,11 +765,9 @@ class CP_Workbench extends ItemBase
 	{
 		super.SetActions();
 		
-		AddAction(ActionPlugIn);
-		AddAction(ActionTurnOnWhileOnGround);
-		AddAction(ActionTurnOffWhileOnGround);
-		AddAction(ActionCPResumeAndPause);
+
 		AddAction(ActionCPUseBagger);
+		AddAction(ActionCPResumeAndPause);	
 	};
 
 }

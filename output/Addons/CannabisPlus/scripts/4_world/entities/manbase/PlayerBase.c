@@ -132,4 +132,9 @@ modded class PlayerBase {
                   CameraEffects.changeRotationBlurPower(0);	
             }
       }
+	void SetActions(out TInputActionMap InputActionMap)
+	{
+		super.SetActions(InputActionMap);
+		AddAction(ActionStopCPWorkbench, InputActionMap);
+	}
 }
