@@ -161,7 +161,7 @@ class CannabisPlusConfigManager
             weedRadBlurYPower 			= 2;
             weedRotBlurPow 				= 10;
 
-            cannabis_drytime            = 600;
+            cannabis_drytime            = 60;
 
 		
 			PlantPerBag					=18;
