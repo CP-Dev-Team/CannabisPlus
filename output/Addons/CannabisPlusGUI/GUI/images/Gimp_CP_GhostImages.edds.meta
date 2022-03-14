@@ -1,0 +1,16 @@
+MetaFileClass {
+ Name "{EA3C266BB36CEDF6}CannabisPlus/GUI/images/Gimp_CP_GhostImages.edds"
+ Author "desktop-2rdfoul"
+ ChangeDate 850635886
+ Configurations {
+  PNGResourceClass PC {
+   SourceFile "Gimp_CP_GhostImages.png"
+  }
+  PNGResourceClass XBOX_ONE : PC {
+  }
+  PNGResourceClass PS4 : PC {
+  }
+  PNGResourceClass LINUX : PC {
+  }
+ }
+}

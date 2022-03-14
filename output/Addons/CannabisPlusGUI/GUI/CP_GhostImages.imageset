@@ -1,0 +1,50 @@
+ImageSetClass {
+ Name "CP_GhostImages"
+ RefSize 1920 1920
+ Textures {
+  ImageSetTextureClass {
+   mpix 1
+   path "{0C9DE25649F96F79}CannabisPlusGUI/GUI/images/Gimp_CP_GhostImages.edds"
+  }
+ }
+ Images {
+  ImageSetDefClass Wrapper {
+   Name "Wrapper"
+   Pos 56 50
+   Size 400 303
+   Flags 0
+  }
+  ImageSetDefClass Bagger {
+   Name "Bagger"
+   Pos 524 91
+   Size 482 245
+   Flags 0
+  }
+  ImageSetDefClass HangingPlant {
+   Name "HangingPlant"
+   Pos 1127 20
+   Size 198 505
+   Flags 0
+  }
+  ImageSetDefClass PlasticWrap {
+   Name "PlasticWrap"
+   Pos 1439 131
+   Size 418 272
+   Flags 0
+  }
+  ImageSetDefClass bags {
+   Name "bags"
+   Pos 108 628
+   Size 300 397
+   Flags 0
+  }
+  ImageSetDefClass Bricks {
+   Name "Bricks"
+   Pos 613 577
+   Size 373 517
+   Flags 0
+  }
+ }
+ Groups {
+ }
+}

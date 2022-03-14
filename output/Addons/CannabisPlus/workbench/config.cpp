@@ -12,57 +12,6 @@ class CfgPatches
     };
 };
 
-class CfgSlots
-{ 
-    class Slot_Wrapper
-    {
-          name="Wrapper";
-          displayName="Wrapper";
-          ghostIcon="set:dayz_inventory image:plant";
-    };
-    class Slot_Bagger
-    {
-          name="Bagger";
-          displayName="Bagger";
-          ghostIcon="missing";
-    };
-	
-    class Slot_CP_Cannabus_Buds
-    {
-        name="CP_Cannabus_Buds";
-        displayName="Buds Storage";
-        ghostIcon="set:dayz_inventory image:plant";
-		stackMax=100;
-    };	
-    class Slot_CP_Cannabus_Bags
-    {
-          name="CP_Cannabus_Bags";
-          displayName="Bags";
-          ghostIcon="missing";
-          stackMax=160;
-    };
-	class Slot_CP_Cannabus_Bricks
-    {
-        name="CP_Cannabus_Bricks";
-        displayName="Bricks Storage";
-        ghostIcon="set:dayz_inventory image:plant";
-		stackMax=25;
-    };
-    class Slot_CP_PlasticRoll
-    {
-        name="CP_PlasticRoll";
-        displayName="Roll";
-        ghostIcon="missing";
-    };
-	class Slot_CP_Empty_Bags
-	{
-		name="CP_Empty_Bags";
-        displayName="Empty Bags";
-        ghostIcon="missing";
-		stackMax=160;
-		
-	}
-};   
 class CfgNonAIVehicles
 {
     class ProxyAttachment;
@@ -170,7 +119,6 @@ class CfgVehicles
 		itemSize[]={6,6};
 		itemBehaviour=0;
 		physLayer="item_heavy";
-		itemsCargoSize[] = {10,4};
 		placement = "ForceSlopeOnTerrain";
 		hiddenSelections[]=
 		{
@@ -189,7 +137,8 @@ class CfgVehicles
 			"CP_PlasticRoll",
 			"CP_Cannabus_Buds",
 			"CP_Cannabus_Bags",
-			"CP_Cannabus_Bricks"
+			"CP_Cannabus_Bricks",
+			"Truck_01_WoodenCrate1"
 		};
 		class GUIInventoryAttachmentsProps
 		{
@@ -201,7 +150,8 @@ class CfgVehicles
 				{
 					"Wrapper",
 					"Bagger",
-					"LargeBattery"
+					"LargeBattery",
+					"Truck_01_WoodenCrate1"
 				};
 				icon="";
 			};

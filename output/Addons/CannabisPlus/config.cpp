@@ -1,13 +1,12 @@
 class CfgPatches
 {
-	class CP_scripts
+	class CannabisPlus
 	{
 		units[]={};
 		weapons[]={};
 		requiredVersion=0.1;
 		requiredAddons[]=
 		{
-			"DZ_Data",
 			"CPtoken"
 		};
 	};
@@ -18,36 +17,26 @@ class CfgMods
 	{
 		dir="CannabisPlus";
 		name="Cannabis Plus";		
-		picture="";
-		action="";
-		hideName=1;
-		hidePicture=1;
 		credits="IceBlade, bombjack, Gloser";
 		author="IceBlade";
 		authorID="0";
 		version="3.0";
 		extra=0;
 		type="Mod";
-		dependencies[]=
-		{
-			"gui",
-			"Game",
-			"World",
-			"Mission"
-		};
+		dependencies[]={"gui","Game","World","Mission"};
 		class defs
 		{
 			class imageSets
             {
                 files[]=
-                {"BuildingFortifications\GUI\BuldingFortIcons.imageset"};
+                {"CannabisPlus\GUI\CP_GhostImages.imageset"};
             };
 			class gameScriptModule
 			{
 				value="";
 				files[]=
 				{
-					"CannabisPlus/scripts/3_game"
+					"CannabisPlus/scripts/3_Game"
 				};
 			};
 			class worldScriptModule
@@ -55,7 +44,7 @@ class CfgMods
 				value="";
 				files[]=
 				{
-					"CannabisPlus/scripts/4_world"
+					"CannabisPlus/scripts/4_World"
 				};
 			};
 			class missionScriptModule
@@ -63,7 +52,7 @@ class CfgMods
 				value="";
 				files[]=
 				{
-					"CannabisPlus/scripts/5_mission"
+					"CannabisPlus/scripts/5_Mission"
 				};
 			};
 		};

@@ -6,6 +6,7 @@ modded class PluginRecipesManager
 	
 		RegisterRecipe(new CP_CraftCBDCrudeOil);
 		RegisterRecipe(new CP_CarveWoodenPost);
+		RegisterRecipe(new CP_WorkBenchCraftKit);
 		// Tobacco
 		RegisterRecipe(new CP_CraftCigsTobacco);
 		RegisterRecipe(new CP_CraftCigarettePackChernamorkaEmpty);
