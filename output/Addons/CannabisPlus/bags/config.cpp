@@ -253,7 +253,7 @@ class CfgVehicles
 	{
 		scope=2;
 		displayName="Bag of Black Frost Weed";
-		descriptionShort="About an ounce of black frost weed.";
+		descriptionShort="About an ounce of Black Frost weed.";
 		cpStepUpToBrick="CP_CannabisBrickBlackFrost";
 		cpStepDownToBud="CP_CannabisBlackFrost";
 		class Resources
