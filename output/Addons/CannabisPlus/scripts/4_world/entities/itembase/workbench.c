@@ -306,6 +306,7 @@ class CP_Workbench extends ItemBase
 			CP_TimerisRunning = true;
 			CP_TimerIsPaused = false;
 			LockCPWorkbenchSlots(true);
+			Print("Processing is started.")
 
 		}
 
@@ -369,7 +370,8 @@ class CP_Workbench extends ItemBase
 		CP_TimerisRunning = false;
 		CP_TimerIsPaused = false;
 		LockCPWorkbenchSlots(false);
-		SetSynchDirty();	
+		SetSynchDirty();
+		Print("StopProduction() executed.")	
 	}	
 
 	void Do_processing()
@@ -386,12 +388,14 @@ class CP_Workbench extends ItemBase
 					CP_TimerisRunning = true;
 					LockCPWorkbenchSlots(true);					
 					CreateBags();
+					Print("Create bags")
 				}
 				else if(GetCannibusBags() && GetCannibusBags().GetQuantity() >= BagsToBricksUsage && GetCannibusBricks().GetQuantity() < 25 && GetPlasticRoll() && GetPlasticRoll().GetQuantity() > PlaticWrap_Percent)
 				{
 					CP_TimerisRunning = true;
 					LockCPWorkbenchSlots(true);					
 					CreateBricks();
+					Print("Create bricks")
 				}	
 					
 			}
@@ -400,6 +404,7 @@ class CP_Workbench extends ItemBase
 				m_CP_Processing.Stop();
 				CP_TimerisRunning = false;
 				LockCPWorkbenchSlots(false);
+				Print("Out of materials.")
 			}
 		}
 		else if (BatteryRequired == 0)
