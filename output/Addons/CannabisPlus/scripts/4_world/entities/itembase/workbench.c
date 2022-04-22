@@ -88,7 +88,7 @@ class CP_Workbench_Kit extends ItemBase
 			MiscGameplayFunctions.TransferItemProperties(this, rope);
 			return;
 		}
-		
+
 		EntityAI newRope = EntityAI.Cast(GetGame().CreateObjectEx(rope.GetType(), GetPosition(), ECE_PLACE_ON_SURFACE));
 		
 		if (newRope)
@@ -374,30 +374,50 @@ class CP_Workbench extends ItemBase
 		Print("StopProduction() executed.")	
 	}	
 
+
+	bool CanCreateBags()
+	{
+		if(GetCannibusBud() && GetCannibusBud().GetQuantity() >= BudsToBagsUsage && GetCannibusBags().GetQuantity() < 160 && GetEmptyBags() && GetEmptyBags().GetQuantity() > 0)
+		{
+			return true;
+		}
+		else
+			return false;
+	}
+	
+	bool CanCreateBricks()
+	{
+		if(GetCannibusBags() && GetCannibusBags().GetQuantity() >= BagsToBricksUsage && GetCannibusBricks().GetQuantity() < 25 && GetPlasticRoll() && GetPlasticRoll().GetQuantity() > PlaticWrap_Percent)
+		{
+			return true;
+		}
+		else
+			return false;
+	}
+
 	void Do_processing()
 	{
 
 		if(BatteryRequired == 1)
 		{
 		
-			if(GetBattieries().GetCompEM().GetEnergy() > Battery_Percent)
+			if(GetBattieries().GetCompEM().GetEnergy() > Battery_Percent && ( CanCreateBags() == true || CanCreateBricks() == true ) )
 			{
 				Print("Battery Check");
-				if(GetCannibusBud() && GetCannibusBud().GetQuantity() >= BudsToBagsUsage && GetCannibusBags().GetQuantity() < 160 && GetEmptyBags() && GetEmptyBags().GetQuantity() > 0)
+				if(CanCreateBags() == true )
 				{
 					CP_TimerisRunning = true;
 					LockCPWorkbenchSlots(true);					
 					CreateBags();
 					Print("Create bags")
 				}
-				else if(GetCannibusBags() && GetCannibusBags().GetQuantity() >= BagsToBricksUsage && GetCannibusBricks().GetQuantity() < 25 && GetPlasticRoll() && GetPlasticRoll().GetQuantity() > PlaticWrap_Percent)
+				else if(CanCreateBricks() == true )
 				{
 					CP_TimerisRunning = true;
 					LockCPWorkbenchSlots(true);					
 					CreateBricks();
 					Print("Create bricks")
 				}	
-					
 			}
 			else
 			{
@@ -758,9 +778,7 @@ class CP_Workbench extends ItemBase
 
 			m_CP_Processing.Stop();
 			CP_TimerisRunning = false;
-
 		}
-
 	};
 	
 	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
