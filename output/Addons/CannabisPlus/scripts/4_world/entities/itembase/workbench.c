@@ -205,6 +205,13 @@ class CP_Workbench extends ItemBase
 		RegisterNetSyncVariableBool("CP_TimerIsPaused");
 		m_CP_Processing.Stop();
 	}
+
+	void ~CP_Workbench()
+	{
+		if ( m_CP_Processing )
+			delete m_CP_Processing;
+	}
+
 	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 	// Entity entry Intilize
 	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -298,6 +305,8 @@ class CP_Workbench extends ItemBase
 	{		
 		if(m_CP_Processing && m_CP_Processing.IsRunning())
 			return;
+		Print("Processing is ongoing.");
+		Print("Is Running not canceled" + m_CP_Processing);
 		
 		if(!m_CP_Processing)
 		{
@@ -306,13 +315,23 @@ class CP_Workbench extends ItemBase
 			CP_TimerisRunning = true;
 			CP_TimerIsPaused = false;
 			LockCPWorkbenchSlots(true);
-			Print("Processing is started.")
+			Print("Processing is started.");
+			Print(m_CP_Processing);
 
 		}
 
+		if(m_CP_Processing && !m_CP_Processing.IsRunning())
+		{
+			m_CP_Processing.Continue();
+			CP_TimerisRunning = true;
+			CP_TimerIsPaused = false;
+			LockCPWorkbenchSlots(true);
+			Print("Processing is started.");
+			Print(m_CP_Processing);
+		}
+
 		//LockCPWorkbenchSlots(false);
-		
-		SetSynchDirty();	
+
 	}
 
 		
@@ -332,8 +351,6 @@ class CP_Workbench extends ItemBase
 		}
 		SetSynchDirty();	
 	}
-
-	
 	
 	bool RunningOrNot()
 	{
@@ -346,6 +363,7 @@ class CP_Workbench extends ItemBase
 		return false;	
 
 	}
+
 	bool Pausedornot()
 	{
 		if(CP_TimerIsPaused == true)
@@ -356,6 +374,7 @@ class CP_Workbench extends ItemBase
 		else
 		return false;	
 	}
+
 	bool EnabledStop()
 	{
 		if(CP_TimerisRunning == true)
@@ -364,9 +383,10 @@ class CP_Workbench extends ItemBase
 		}
 		return false;
 	}	
+
 	void StopProduction()
 	{
-		m_CP_Processing.Stop();
+		delete m_CP_Processing;
 		CP_TimerisRunning = false;
 		CP_TimerIsPaused = false;
 		LockCPWorkbenchSlots(false);
@@ -374,10 +394,9 @@ class CP_Workbench extends ItemBase
 		Print("StopProduction() executed.")	
 	}	
 
-
 	bool CanCreateBags()
 	{
-		if(GetCannibusBud() && GetCannibusBud().GetQuantity() >= BudsToBagsUsage && GetCannibusBags().GetQuantity() < 160 && GetEmptyBags() && GetEmptyBags().GetQuantity() > 0)
+		if(GetCannibusBud() && GetCannibusBud().GetQuantity() >= 2 && GetCannibusBags().GetQuantity() < 160 && GetEmptyBags() && GetEmptyBags().GetQuantity() > 0)
 		{
 			return true;
 		}
@@ -387,7 +406,7 @@ class CP_Workbench extends ItemBase
 	
 	bool CanCreateBricks()
 	{
-		if(GetCannibusBags() && GetCannibusBags().GetQuantity() >= BagsToBricksUsage && GetCannibusBricks().GetQuantity() < 25 && GetPlasticRoll() && GetPlasticRoll().GetQuantity() > PlaticWrap_Percent)
+		if(GetCannibusBags() && GetCannibusBags().GetQuantity() >= 16 && GetCannibusBricks().GetQuantity() < 25 && GetPlasticRoll() && GetPlasticRoll().GetQuantity() > 5)
 		{
 			return true;
 		}
@@ -401,7 +420,7 @@ class CP_Workbench extends ItemBase
 		if(BatteryRequired == 1)
 		{
 		
-			if(GetBattieries().GetCompEM().GetEnergy() > Battery_Percent && ( CanCreateBags() == true || CanCreateBricks() == true ) )
+			if(GetBattieries().GetCompEM().GetEnergy() > Battery_Percent )
 			{
 				Print("Battery Check");
 				if(CanCreateBags() == true )
@@ -410,22 +429,26 @@ class CP_Workbench extends ItemBase
 					LockCPWorkbenchSlots(true);					
 					CreateBags();
 					Print("Create bags")
+					Print(m_CP_Processing)
 				}
 				else if(CanCreateBricks() == true )
 				{
 					CP_TimerisRunning = true;
 					LockCPWorkbenchSlots(true);					
-					CreateBricks();
+					CreateBricks(); 
 					Print("Create bricks")
-				}	
+					Print(m_CP_Processing)
+				}
+				else
+				{
+					StopProduction();
+					//CP_TimerisRunning = false;
+					//LockCPWorkbenchSlots(false);
+					Print("Out of materials.")
+					Print(m_CP_Processing)
+				}
 			}
-			else
-			{
-				m_CP_Processing.Stop();
-				CP_TimerisRunning = false;
-				LockCPWorkbenchSlots(false);
-				Print("Out of materials.")
-			}
+
 		}
 		else if (BatteryRequired == 0)
 		{
@@ -450,6 +473,12 @@ class CP_Workbench extends ItemBase
 				CP_TimerisRunning = false;
 				LockCPWorkbenchSlots(false);
 			};
+		}
+		else 
+		{
+			m_CP_Processing.Stop();
+			CP_TimerisRunning = false;
+			LockCPWorkbenchSlots(false);
 		}
 		SetSynchDirty();
 	}
@@ -772,12 +801,16 @@ class CP_Workbench extends ItemBase
 
 			m_CP_Processing.Stop();
 			CP_TimerisRunning = false;
+			LockCPWorkbenchSlots(false);
+			Print("Bag slot less then 1")
 		}
 		else if( GetCannibusBud().GetQuantity() < 2 )
 		{
 
 			m_CP_Processing.Stop();
 			CP_TimerisRunning = false;
+			LockCPWorkbenchSlots(false);
+			Print("Bud slot less then 1")
 		}
 	};
 	
