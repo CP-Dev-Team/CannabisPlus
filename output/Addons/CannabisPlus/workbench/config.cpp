@@ -61,31 +61,22 @@ class CfgNonAIVehicles
 class CfgVehicles
 {
 	class Inventory_Base;
-	class WoodenCrate;
 	
 	class DuctTape: Inventory_Base 
 	{
 		inventorySlot[] = {"DuctTapes"};
 	};
 	
-	class CP_Workbench_Kit: WoodenCrate
+	class CP_Workbench_Kit: Inventory_Base
 	{
 		scope = 2;
 		displayName = "Workbench Kit";
 		descriptionShort = "A workbench kit for packaging of illicit drugs.";
 		model="\CannabisPlus\workbench\workbenchKit.p3d";
 		itemSize[] = {5,3};
-		carveNavmesh = 1;
-		canBeDigged = 0;
-		simulation = "inventoryItem";
-		physLayer = "item_small";
 		rotationFlags = 2;
+		itemBehaviour=0;
 		weight = 300;
-		itemBehaviour = 2;
-		attachments[]=
-		{
-			"Rope"
-		};
 		class AnimationSources
 		{
 			class AnimSourceShown
