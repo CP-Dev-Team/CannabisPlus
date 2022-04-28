@@ -112,8 +112,8 @@ class CfgVehicles
 	class CP_DryPost_Kit: Inventory_Base
 	{
 		scope=2;
-		displayName="Dry Pot Kit";
-		descriptionShort="Used in Preparing for Barricading Windows";
+		displayName="Dry Post Kit";
+		descriptionShort="Used to place a dry post.";
 		model="\CannabisPlus\furniture\DryPostKit.p3d";
 		weight=300;
 		rotationFlags=17;

@@ -178,14 +178,14 @@ class CP_DryPost extends ItemBase
 		}		
 	}
 	
-	//override bool CanReleaseAttachment(EntityAI attachment)
-	//{
-	//	if ( m_IsLocked )
-	//	{
-	//		return false;
-	//	}
-	//	return super.CanReleaseAttachment(attachment);
-	//}
+	override bool CanReleaseAttachment(EntityAI attachment)
+	{
+		if ( m_IsLocked )
+		{
+			return false;
+		}
+		return super.CanReleaseAttachment(attachment);
+	}
 
 	override bool CanPutIntoHands(EntityAI parent)
     	{
