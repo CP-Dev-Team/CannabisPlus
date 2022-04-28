@@ -1,5 +1,7 @@
 class ActionDryPlants: ActionInteractBase
 {	
+	string returntext = ""
+
 	void ActionDryPlants()
 	{
 		m_CommandUID        = DayZPlayerConstants.CMD_ACTIONMOD_INTERACTONCE;
@@ -8,7 +10,7 @@ class ActionDryPlants: ActionInteractBase
 
 	override string GetText()
 	{
-		return "Leave to Dry";
+		return returntext;
 	}
 
 	override bool ActionCondition( PlayerBase player, ActionTarget target, ItemBase item )
@@ -24,11 +26,19 @@ class ActionDryPlants: ActionInteractBase
 		CP_DryPost DryingPost = CP_DryPost.Cast( target.GetObject() );
 		
 		//if (!DryingPost.IsLocked() && CPPlant && CPDriedPlants && CPDriedPlants.GetQuantity() < 50 )
-		if(!DryingPost.IsLocked() && CPPlant && (!CPDriedPlants || CPDriedPlants.GetQuantity() < 50) )
+		if( DryingPost && !DryingPost.IsLocked() && CPPlant )
 		{
 			return true;
+			returntext = "Leave to Dry."
+			Print( "Drying post locked: " + DryingPost.IsLocked() );
+		}
+		else if ( CPDriedPlants && CPDriedPlants.GetQuantity() >= 50 )
+		{
+			return false;
+			returntext = "Too Many Dried Plants."
 		}
 		return false;
+		returntext = "Is Drying."
 	}
 
 	override void OnExecuteServer( ActionData action_data )
