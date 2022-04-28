@@ -212,6 +212,13 @@ class CP_Workbench extends ItemBase
 			delete m_CP_Processing;
 	}
 
+	override void AfterStoreLoad()
+	{
+		super.AfterStoreLoad();
+
+		UpdateLockState();
+	}
+
 	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 	// Entity entry Intilize
 	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -314,7 +321,7 @@ class CP_Workbench extends ItemBase
 			m_CP_Processing.Run(Workbench_Timer_Repeat,this,"Do_processing",NULL,true);
 			CP_TimerisRunning = true;
 			CP_TimerIsPaused = false;
-			LockCPWorkbenchSlots(true);
+			UpdateLockState();
 			Print("Processing is started.");
 			Print(m_CP_Processing);
 
@@ -325,14 +332,14 @@ class CP_Workbench extends ItemBase
 			m_CP_Processing.Continue();
 			CP_TimerisRunning = true;
 			CP_TimerIsPaused = false;
-			LockCPWorkbenchSlots(true);
+			UpdateLockState();
 			Print("Processing is started.");
 			Print(m_CP_Processing);
 		}
 
-		//LockCPWorkbenchSlots(false);
+		//UpdateLockState();
 
-	}
+	};
 
 		
 	void PauseOrResume()
@@ -341,16 +348,16 @@ class CP_Workbench extends ItemBase
 		{
 			m_CP_Processing.Pause();
 			CP_TimerIsPaused = true;
-			LockCPWorkbenchSlots(false);
+			UpdateLockState();
 		}
 		else if(CP_TimerIsPaused == true)
 		{
 			m_CP_Processing.Continue();
 			CP_TimerIsPaused = false;
-			LockCPWorkbenchSlots(true);
+			UpdateLockState();
 		}
 		SetSynchDirty();	
-	}
+	};
 	
 	bool RunningOrNot()
 	{
@@ -362,7 +369,7 @@ class CP_Workbench extends ItemBase
 		else
 		return false;	
 
-	}
+	};
 
 	bool Pausedornot()
 	{
@@ -373,7 +380,7 @@ class CP_Workbench extends ItemBase
 		}
 		else
 		return false;	
-	}
+	};
 
 	bool EnabledStop()
 	{
@@ -382,17 +389,17 @@ class CP_Workbench extends ItemBase
 			return true;
 		}
 		return false;
-	}	
+	};
 
 	void StopProduction()
 	{
 		delete m_CP_Processing;
 		CP_TimerisRunning = false;
 		CP_TimerIsPaused = false;
-		LockCPWorkbenchSlots(false);
+		UpdateLockState();
 		SetSynchDirty();
 		Print("StopProduction() executed.")	
-	}	
+	};
 
 	bool CanCreateBags()
 	{
@@ -402,7 +409,7 @@ class CP_Workbench extends ItemBase
 		}
 		else
 			return false;
-	}
+	};
 	
 	bool CanCreateBricks()
 	{
@@ -412,7 +419,7 @@ class CP_Workbench extends ItemBase
 		}
 		else
 			return false;
-	}
+	};
 
 	void Do_processing()
 	{
@@ -426,7 +433,7 @@ class CP_Workbench extends ItemBase
 				if(CanCreateBags() == true )
 				{
 					CP_TimerisRunning = true;
-					LockCPWorkbenchSlots(true);					
+					//UpdateLockState();					
 					CreateBags();
 					Print("Create bags")
 					Print(m_CP_Processing)
@@ -434,7 +441,7 @@ class CP_Workbench extends ItemBase
 				else if(CanCreateBricks() == true )
 				{
 					CP_TimerisRunning = true;
-					LockCPWorkbenchSlots(true);					
+					//UpdateLockState();					
 					CreateBricks(); 
 					Print("Create bricks")
 					Print(m_CP_Processing)
@@ -443,26 +450,25 @@ class CP_Workbench extends ItemBase
 				{
 					StopProduction();
 					//CP_TimerisRunning = false;
-					//LockCPWorkbenchSlots(false);
+					//UpdateLockState();
 					Print("Out of materials.")
 					Print(m_CP_Processing)
 				}
 			}
-
 		}
 		else if (BatteryRequired == 0)
 		{
 			if(GetCannibusBud() && GetCannibusBud().GetQuantity() >= BudsToBagsUsage && GetCannibusBags().GetQuantity() < 160 && GetEmptyBags() && GetEmptyBags().GetQuantity() > 0)
 			{
 				CP_TimerisRunning = true;
-				LockCPWorkbenchSlots(true);	
+				UpdateLockState();	
 				CreateBags();
 			}
 			else if(GetCannibusBags() && GetCannibusBags().GetQuantity() >= BagsToBricksUsage  && GetCannibusBricks().GetQuantity() < 25 && GetPlasticRoll() && GetPlasticRoll().GetQuantity() > PlaticWrap_Percent)
 			{
 
 				CP_TimerisRunning = true;
-				LockCPWorkbenchSlots(true);					
+				UpdateLockState();					
 				CreateBricks();
 				
 			}	
@@ -471,17 +477,17 @@ class CP_Workbench extends ItemBase
 
 				m_CP_Processing.Stop();
 				CP_TimerisRunning = false;
-				LockCPWorkbenchSlots(false);
+				UpdateLockState();
 			};
 		}
 		else 
 		{
 			m_CP_Processing.Stop();
 			CP_TimerisRunning = false;
-			LockCPWorkbenchSlots(false);
+			UpdateLockState();
 		}
 		SetSynchDirty();
-	}
+	};
 
 
 	void CreateBags()
@@ -602,31 +608,158 @@ class CP_Workbench extends ItemBase
 		};
 	
 	};
-
-	void LockCPWorkbenchSlots(bool do_lock)
+	
+	void LockCPBaggerSlots(bool do_lock)
 	{
 		ItemBase Buds = GetCannibusBud();
 		ItemBase EmptyBags = GetEmptyBags();	
 		ItemBase FilledBags = GetCannibusBags();
-		ItemBase PlasticWrap = GetPlasticRoll();
-		ItemBase Wrapper = GetWrapper();
 		ItemBase Bagger = GetBagger();		
 		
-		if (do_lock)
+		if ( Bagger )
 		{
-			PlasticWrap.LockToParent();
-			Bagger.LockToParent();
-			Wrapper.LockToParent();
+			if (do_lock)
+			{
+				Buds.LockToParent();
+				EmptyBags.LockToParent();
+				FilledBags.LockToParent();
+			}
+			else
+			{
+				Buds.UnlockFromParent();
+				EmptyBags.UnlockFromParent();
+				FilledBags.UnlockFromParent();
+			}
+			SetSynchDirty();
 		}
-		else
-		{
-			PlasticWrap.UnlockFromParent();
-			Bagger.UnlockFromParent();
-			Wrapper.UnlockFromParent();
-			
-		};
-		SetSynchDirty();
 	};
+
+	void LockCPWrapperSlots(bool do_lock)
+	{
+		ItemBase FilledBags = GetCannibusBags();
+		ItemBase PlasticWrap = GetPlasticRoll();
+		ItemBase Wrapper = GetWrapper();		
+		
+		if ( Wrapper )
+		{
+			if (do_lock)
+			{
+				FilledBags.LockToParent();
+				PlasticWrap.LockToParent();
+			}
+			else
+			{
+				FilledBags.UnlockFromParent();
+				PlasticWrap.UnlockFromParent();
+			}
+			SetSynchDirty();
+		}
+	};	
+
+	void LockCPBagger(bool do_lock)
+	{
+		ItemBase Bagger = GetBagger();	
+
+		if ( Bagger )
+		{
+			if (do_lock)
+			{
+				Bagger.LockToParent();
+			}
+			else
+			{
+				Bagger.UnlockFromParent();
+			}
+			SetSynchDirty();
+		}
+	};
+
+	void LockCPWrapper(bool do_lock)
+	{
+		ItemBase Wrapper = GetWrapper();			
+
+		if ( Wrapper )
+		{
+			if (do_lock)
+			{
+				Wrapper.LockToParent();
+			}
+			else
+			{
+				Wrapper.UnlockFromParent();
+			}
+			SetSynchDirty();
+		}
+	};
+	
+	bool BaggerOccupied()
+	{
+		if ( GetBagger() && ( GetEmptyBags() || GetCannibusBud() || GetCannibusBags() ) )
+			return true;
+
+		return false;
+	};
+
+	bool WrapperOccupied()
+	{
+		if ( GetWrapper() && ( GetCannibusBags() || GetPlasticRoll() ) )
+			return true;
+			
+		return false;
+	};
+
+    bool IsBaggerLocked()
+    {
+		ItemBase Bagger = GetBagger();		
+		
+        if ( Bagger && Bagger.IsLockedInSlot() )
+            return true;
+
+        return false;
+    };
+
+    bool IsWrapperLocked()
+    {
+		ItemBase Wrapper = GetWrapper();		
+		
+        if ( Wrapper && Wrapper.IsLockedInSlot() )
+            return true;
+
+        return false;
+    };
+
+    void UpdateLockState()
+    {
+		ItemBase Bagger = GetBagger();
+		ItemBase Wrapper = GetWrapper();		
+
+		if ( Bagger )
+		{
+			if ( !BaggerOccupied() && IsBaggerLocked() && !m_CP_Processing )
+			{
+				LockCPBaggerSlots(false);
+				LockCPBagger(false);
+			}
+			else if ( ( BaggerOccupied() && !IsBaggerLocked() ) || ( m_CP_Processing && m_CP_Processing.IsRunning() ) )
+			{
+				LockCPBaggerSlots(true);
+				LockCPBagger(true);
+			}
+		}
+		else if ( Wrapper )
+		{
+			if ( !WrapperOccupied() && IsWrapperLocked() && !m_CP_Processing )
+			{
+				LockCPWrapperSlots(false);
+				LockCPWrapper(false);
+			}
+			else if ( WrapperOccupied() && !IsWrapperLocked() || ( m_CP_Processing && m_CP_Processing.IsRunning() ) )
+			{
+				LockCPWrapperSlots(true);
+				LockCPWrapper(true);
+			}
+		}		
+    };
 	
 	bool IsPowered()
 	{		
@@ -787,7 +920,14 @@ class CP_Workbench extends ItemBase
 		}
 		return false;
 	}
-	
+
+    override void EEItemAttached(EntityAI item, string slot_name)
+    {
+        super.EEItemAttached(item,slot_name);
+
+        UpdateLockState();
+    }
+
 	override void EEItemDetached(EntityAI item, string slot_name)
 	{
 		super.EEItemDetached( item, slot_name );
@@ -798,20 +938,17 @@ class CP_Workbench extends ItemBase
 		
 		if(GetEmptyBags().GetQuantity() < 1)
 		{
-
 			m_CP_Processing.Stop();
 			CP_TimerisRunning = false;
-			LockCPWorkbenchSlots(false);
 			Print("Bag slot less then 1")
 		}
 		else if( GetCannibusBud().GetQuantity() < 2 )
 		{
-
 			m_CP_Processing.Stop();
 			CP_TimerisRunning = false;
-			LockCPWorkbenchSlots(false);
-			Print("Bud slot less then 1")
+			Print("Bud slot less then 2")
 		}
+		UpdateLockState();
 	};
 	
 	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
