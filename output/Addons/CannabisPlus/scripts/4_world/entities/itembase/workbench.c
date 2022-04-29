@@ -735,16 +735,28 @@ class CP_Workbench extends ItemBase
 
 		if ( Bagger )
 		{
-			if ( !BaggerOccupied() && IsBaggerLocked() && !m_CP_Processing )
+			if ( BaggerOccupied() && ( m_CP_Processing && m_CP_Processing.IsRunning() ) )
+			{
+				if ( !IsBaggerLocked() )
+				{
+					LockCPBagger(true);					
+				}
+				LockCPBaggerSlots(true);
+			}
+			else if ( !BaggerOccupied() && ( !m_CP_Processing || !m_CP_Processing.IsRunning() ) )
+			{
+				if ( IsBaggerLocked() )
+				{
+					LockCPBagger(false);
+				}
+				LockCPBaggerSlots(false);
+			}
+			else
 			{
 				LockCPBaggerSlots(false);
 				LockCPBagger(false);
 			}
-			else if ( ( BaggerOccupied() && !IsBaggerLocked() ) || ( m_CP_Processing && m_CP_Processing.IsRunning() ) )
-			{
-				LockCPBaggerSlots(true);
-				LockCPBagger(true);
-			}
+
 		}
 		else if ( Wrapper )
 		{
