@@ -204,20 +204,20 @@ class CP_Workbench extends ItemBase
 		RegisterNetSyncVariableBool("CP_TimerisRunning");
 		RegisterNetSyncVariableBool("CP_TimerIsPaused");
 		m_CP_Processing.Stop();
-	}
+	};
 
 	void ~CP_Workbench()
 	{
 		if ( m_CP_Processing )
 			delete m_CP_Processing;
-	}
+	};
 
 	override void AfterStoreLoad()
 	{
 		super.AfterStoreLoad();
 
 		UpdateLockState();
-	}
+	};
 
 	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 	// Entity entry Intilize
@@ -282,7 +282,7 @@ class CP_Workbench extends ItemBase
 			
 		return "";
 		
-	}
+	};
 	
 	string GetBagTendancyText()
 	{
@@ -735,42 +735,46 @@ class CP_Workbench extends ItemBase
 
 		if ( Bagger )
 		{
-			if ( BaggerOccupied() && ( m_CP_Processing && m_CP_Processing.IsRunning() ) )
+			if ( m_CP_Processing && m_CP_Processing.IsRunning() )
 			{
 				if ( !IsBaggerLocked() )
 				{
-					LockCPBagger(true);					
+					LockCPBagger(true);
 				}
 				LockCPBaggerSlots(true);
 			}
-			else if ( !BaggerOccupied() && ( !m_CP_Processing || !m_CP_Processing.IsRunning() ) )
+			else if ( BaggerOccupied() )
 			{
-				if ( IsBaggerLocked() )
-				{
-					LockCPBagger(false);
-				}
 				LockCPBaggerSlots(false);
+				LockCPBagger(true);
 			}
 			else
 			{
 				LockCPBaggerSlots(false);
 				LockCPBagger(false);
 			}
-
 		}
-		else if ( Wrapper )
+		if ( Wrapper )
 		{
-			if ( !WrapperOccupied() && IsWrapperLocked() && !m_CP_Processing )
+			if ( m_CP_Processing && m_CP_Processing.IsRunning() )
+			{
+				if ( !IsWrapperLocked() )
+				{
+					LockCPWrapper(true);
+				}
+				LockCPWrapperSlots(true);
+			}
+			else if ( WrapperOccupied() )
+			{
+				LockCPWrapperSlots(false);
+				LockCPWrapper(true);
+			}
+			else
 			{
 				LockCPWrapperSlots(false);
 				LockCPWrapper(false);
 			}
-			else if ( WrapperOccupied() && !IsWrapperLocked() || ( m_CP_Processing && m_CP_Processing.IsRunning() ) )
-			{
-				LockCPWrapperSlots(true);
-				LockCPWrapper(true);
-			}
-		}		
+		}
     };
 	
 	bool IsPowered()
@@ -809,7 +813,7 @@ class CP_Workbench extends ItemBase
 			return true;
 		}
 		return false;
-	}
+	};
 	bool Bagger_Attached()
 	{
 		if(FindAttachmentBySlotName( ATTACHMENT_SLOT_BAGGER))
@@ -817,7 +821,7 @@ class CP_Workbench extends ItemBase
 			return true;
 		}
 		return false;
-	}
+	};
 	
 	bool Wrapper_Attachments()
 	{
@@ -826,7 +830,7 @@ class CP_Workbench extends ItemBase
 			return true;
 		}
 		return false;
-	}
+	};
 	bool Bagger_Attachments()
 	{
 		if(FindAttachmentBySlotName( ATTACHMENT_SLOT_BAGGER) && FindAttachmentBySlotName(ATTACHMENT_SLOT_EMPTYBAGS))
@@ -834,19 +838,19 @@ class CP_Workbench extends ItemBase
 			return true;
 		}
 		return false;
-	}
+	};
 	
 	override bool CanDisplayAttachmentCategory(string category_name) 
 	{	
 		if ( category_name == "CP_Machines")
 			return true;
-		else if ( category_name == "CP_Wrapper" && Wrapper_Attached() )
+		else if ( category_name == "CP_Wrapper" && ( Wrapper_Attached() || ( GetBagger() && GetCannibusBags() ) ) )
 			return true;
 		else if ( category_name == "CP_Bagger" && Bagger_Attached() )
 			return true;
 		else
 			return false;
-    }
+    };
 	/*
 	override bool CanDisplayAttachmentSlot( string slot_name )
 	{
@@ -877,7 +881,7 @@ class CP_Workbench extends ItemBase
 	override bool IsElectricAppliance()
 	{
 		return true;
-	}
+	};
 		 
 	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~	
 	// checks if the player can get the workbench into his hands
@@ -892,7 +896,7 @@ class CP_Workbench extends ItemBase
 		}
 		else
 			return true;
-	}
+	};
 	override bool CanPutInCargo( EntityAI parent )
 	{
 		// check if any item is in the attachment-slots OR if any item is in cargo space
@@ -903,7 +907,7 @@ class CP_Workbench extends ItemBase
 		else
 			return true;
 	
-	}
+	};
 	
 	
 
@@ -917,7 +921,7 @@ class CP_Workbench extends ItemBase
 			return true;		
 		}
 		return false;
-	}
+	};
 
 	
 	
@@ -931,14 +935,14 @@ class CP_Workbench extends ItemBase
 			return true;		
 		}
 		return false;
-	}
+	};
 
     override void EEItemAttached(EntityAI item, string slot_name)
     {
         super.EEItemAttached(item,slot_name);
 
         UpdateLockState();
-    }
+    };
 
 	override void EEItemDetached(EntityAI item, string slot_name)
 	{
@@ -947,7 +951,8 @@ class CP_Workbench extends ItemBase
 		ItemBase CannabisBud = GetCannibusBud();
 		ItemBase EmptyBags = GetEmptyBags();
 		
-		
+		UpdateLockState();
+
 		if(GetEmptyBags().GetQuantity() < 1)
 		{
 			m_CP_Processing.Stop();
@@ -960,7 +965,6 @@ class CP_Workbench extends ItemBase
 			CP_TimerisRunning = false;
 			Print("Bud slot less then 2")
 		}
-		UpdateLockState();
 	};
 	
 	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -989,7 +993,7 @@ class CP_Workbench_Holo extends ItemBase {
 	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 	override bool CanPutInCargo( EntityAI parent ) {
 		return false;
-	}
+	};
     
 	
 	
@@ -998,5 +1002,5 @@ class CP_Workbench_Holo extends ItemBase {
 	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 	override bool CanPutIntoHands(EntityAI parent) {
 		return false;
-	}
+	};
 }
