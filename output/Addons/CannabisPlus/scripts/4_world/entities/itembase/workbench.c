@@ -450,14 +450,17 @@ class CP_Workbench extends ItemBase
 				}
 				else
 				{
+
 					m_CP_Processing.Stop();
 					CP_TimerIsPaused = true
+					DeleteAttachmentsifEmpty();
 					UpdateLockState();
 					//StopProduction();
 					//CP_TimerisRunning = false;
 					//UpdateLockState();
 					Print("Out of materials.")
 					//Print(m_CP_Processing)
+					SetSynchDirty();
 				}
 				//UpdateLockState();
 			}
@@ -512,7 +515,7 @@ class CP_Workbench extends ItemBase
 			if(GetBattieries().GetCompEM().GetEnergy() >= Battery_Percent)
 			{	
 			
-				if(GetCannibusBud().GetQuantity() >= BudsToBagsUsage)
+				if(GetCannibusBud().GetQuantity() >= 2)
 				{		
 					if(!GetCannibusBags())
 					{
@@ -526,10 +529,12 @@ class CP_Workbench extends ItemBase
 					{
 						return;
 					}
+
 					EmptyBags.AddQuantity(-1);
-	        		CannabisBud.AddQuantity(-BudsToBagsUsage); 
+	        		CannabisBud.AddQuantity(-2); 
 					Batteries.GetCompEM().AddEnergy( -Battery_Percent );
 				};
+
 			};
 		}
 		else if(BatteryRequired == 0)
@@ -608,9 +613,24 @@ class CP_Workbench extends ItemBase
 				PlasticWrap.AddQuantity(-PlaticWrap_Percent);
 			}
 		};
-	
 	};
 	
+	void DeleteAttachmentsifEmpty()
+	{
+		if(GetCannibusBud() || GetEmptyBags())
+		{
+			if(GetCannibusBud().GetQuantity() < 1)
+			{
+				GetGame().ObjectDelete(GetCannibusBud() );
+			}
+			else if(GetEmptyBags().GetQuantity() < 1)
+			{
+				GetGame().ObjectDelete(GetEmptyBags() );
+			};
+		};	
+	};
+
+
 	void LockCPBaggerSlots(bool do_lock)
 	{
 		ItemBase Buds = GetCannibusBud();
@@ -631,9 +651,9 @@ class CP_Workbench extends ItemBase
 				Buds.UnlockFromParent();
 				EmptyBags.UnlockFromParent();
 				FilledBags.UnlockFromParent();
-			}
+			};
 			SetSynchDirty();
-		}
+		};
 	};
 
 	void LockCPWrapperSlots(bool do_lock)
@@ -653,9 +673,9 @@ class CP_Workbench extends ItemBase
 			{
 				FilledBags.UnlockFromParent();
 				PlasticWrap.UnlockFromParent();
-			}
+			};
 			SetSynchDirty();
-		}
+		};
 	};	
 
 	void LockCPBagger(bool do_lock)
@@ -671,9 +691,9 @@ class CP_Workbench extends ItemBase
 			else
 			{
 				Bagger.UnlockFromParent();
-			}
+			};
 			SetSynchDirty();
-		}
+		};
 	};
 
 	void LockCPWrapper(bool do_lock)
@@ -689,9 +709,9 @@ class CP_Workbench extends ItemBase
 			else
 			{
 				Wrapper.UnlockFromParent();
-			}
+			};
 			SetSynchDirty();
-		}
+		};
 	};
 
 	void LockCPBattery(bool do_lock)
@@ -707,9 +727,9 @@ class CP_Workbench extends ItemBase
 			else
 			{
 				Battery.UnlockFromParent();
-			}
+			};
 			SetSynchDirty();
-		}
+		};
 	};
 	
 	
@@ -780,8 +800,8 @@ class CP_Workbench extends ItemBase
 				LockCPBagger(false);
 				LockCPBattery(false);
 				Print("All slots unlocked.");
-			}
-		}
+			};
+		};
 		if ( Wrapper )
 		{
 			if ( m_CP_Processing && m_CP_Processing.IsRunning() )
@@ -801,8 +821,8 @@ class CP_Workbench extends ItemBase
 			{
 				LockCPWrapperSlots(false);
 				LockCPWrapper(false);
-			}
-		}
+			};
+		};
     };
 	
 	bool IsPowered()
