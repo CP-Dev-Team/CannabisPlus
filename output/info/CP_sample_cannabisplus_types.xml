@@ -889,4 +889,66 @@
         <value name="Tier3"/>
         <value name="Tier4"/>
     </type>
+
+<!-- V3 - 2022 -->
+    <type name="CP_Workbench_Kit">
+        <nominal>40</nominal>
+        <lifetime>7200</lifetime>
+        <restock>1800</restock>
+        <min>20</min>
+        <quantmin>-1</quantmin>
+        <quantmax>-1</quantmax>
+        <cost>100</cost>
+        <flags count_in_cargo="0" count_in_hoarder="0" count_in_map="1" count_in_player="0" crafted="0" deloot="0"/>
+        <usage name="Industrial"/>
+        <usage name="Farm"/>
+        <usage name="Office"/>
+        <usage name="School"/>
+        <usage name="Prison"/>
+        <value name="Tier3"/>
+        <value name="Tier4"/>
+    </type>
+    <type name="CP_Workbench">
+        <lifetime>3888000</lifetime>
+        <flags count_in_cargo="0" count_in_hoarder="0" count_in_map="1" count_in_player="0" crafted="1" deloot="0"/>
+    </type>
+    <type name="CP_Bagger">
+        <nominal>20</nominal>
+        <lifetime>7200</lifetime>
+        <restock>1800</restock>
+        <min>10</min>
+        <quantmin>-1</quantmin>
+        <quantmax>-1</quantmax>
+        <cost>100</cost>
+        <flags count_in_cargo="0" count_in_hoarder="0" count_in_map="1" count_in_player="0" crafted="0" deloot="0"/>
+        <category name="food"/>
+        <value name="Tier3"/>
+        <value name="Tier4"/>
+    </type>
+    <type name="CP_PlasticWrapper">
+        <nominal>20</nominal>
+        <lifetime>7200</lifetime>
+        <restock>1800</restock>
+        <min>10</min>
+        <quantmin>-1</quantmin>
+        <quantmax>-1</quantmax>
+        <cost>100</cost>
+        <flags count_in_cargo="0" count_in_hoarder="0" count_in_map="1" count_in_player="0" crafted="0" deloot="0"/>
+        <category name="food"/>
+        <value name="Tier3"/>
+        <value name="Tier4"/>
+    </type>    
+
+
+    <type name="CP_EmptyBag">
+        <nominal>40</nominal>
+        <lifetime>7200</lifetime>
+        <restock>1800</restock>
+        <min>30</min>
+        <quantmin>20</quantmin>
+        <quantmax>100</quantmax>
+        <cost>100</cost>
+        <flags count_in_cargo="0" count_in_hoarder="0" count_in_map="1" count_in_player="0" crafted="0" deloot="0"/>
+        <usage name="Medic"/>
+    </type>
 </types>
