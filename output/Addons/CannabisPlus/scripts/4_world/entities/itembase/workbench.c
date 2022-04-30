@@ -321,7 +321,7 @@ class CP_Workbench extends ItemBase
 			m_CP_Processing.Run(Workbench_Timer_Repeat,this,"Do_processing",NULL,true);
 			CP_TimerisRunning = true;
 			CP_TimerIsPaused = false;
-			UpdateLockState();
+			//UpdateLockState();
 			Print("Processing is started.");
 			Print(m_CP_Processing);
 
@@ -332,13 +332,12 @@ class CP_Workbench extends ItemBase
 			m_CP_Processing.Continue();
 			CP_TimerisRunning = true;
 			CP_TimerIsPaused = false;
-			UpdateLockState();
+			//UpdateLockState();
 			Print("Processing is started.");
 			Print(m_CP_Processing);
 		}
 
-		//UpdateLockState();
-
+		UpdateLockState();
 	};
 
 		
@@ -396,7 +395,7 @@ class CP_Workbench extends ItemBase
 		delete m_CP_Processing;
 		CP_TimerisRunning = false;
 		CP_TimerIsPaused = false;
-		UpdateLockState();
+		//UpdateLockState();
 		SetSynchDirty();
 		Print("StopProduction() executed.")	
 	};
@@ -429,21 +428,21 @@ class CP_Workbench extends ItemBase
 		
 			if(GetBattieries().GetCompEM().GetEnergy() > Battery_Percent )
 			{
-				Print("Battery Check");
+				Print("Battery Check.");
 				if(CanCreateBags() == true )
 				{
 					CP_TimerisRunning = true;
-					//UpdateLockState();					
+					//UpdateLockState();
 					CreateBags();
-					Print("Create bags")
+					Print("Create bags.")
 					Print(m_CP_Processing)
 				}
 				else if(CanCreateBricks() == true )
 				{
 					CP_TimerisRunning = true;
-					//UpdateLockState();					
+					//UpdateLockState();
 					CreateBricks(); 
-					Print("Create bricks")
+					Print("Create bricks.")
 					Print(m_CP_Processing)
 				}
 				else
@@ -454,6 +453,7 @@ class CP_Workbench extends ItemBase
 					Print("Out of materials.")
 					Print(m_CP_Processing)
 				}
+				UpdateLockState();
 			}
 		}
 		else if (BatteryRequired == 0)
@@ -495,7 +495,6 @@ class CP_Workbench extends ItemBase
 		ItemBase CannabisBud = GetCannibusBud();
 		ItemBase EmptyBags = GetEmptyBags();
 		ItemBase Batteries = GetBattieries();
-		
 		
 		if(!GetCannibusBud())
 			return;
@@ -554,9 +553,6 @@ class CP_Workbench extends ItemBase
 		ItemBase CannabisBag = GetCannibusBags();
 		ItemBase PlasticWrap = GetPlasticRoll();
 		ItemBase Batteries = GetBattieries();
-		
-
-		
 		
 		if(!GetCannibusBags())
 			return;
@@ -691,6 +687,25 @@ class CP_Workbench extends ItemBase
 			SetSynchDirty();
 		}
 	};
+
+	void LockCPBattery(bool do_lock)
+	{
+		ItemBase Battery = GetBattieries();			
+
+		if ( Battery )
+		{
+			if (do_lock)
+			{
+				Battery.LockToParent();
+			}
+			else
+			{
+				Battery.UnlockFromParent();
+			}
+			SetSynchDirty();
+		}
+	};
+	
 	
 	bool BaggerOccupied()
 	{
@@ -731,7 +746,8 @@ class CP_Workbench extends ItemBase
     void UpdateLockState()
     {
 		ItemBase Bagger = GetBagger();
-		ItemBase Wrapper = GetWrapper();		
+		ItemBase Wrapper = GetWrapper();
+		
 
 		if ( Bagger )
 		{
@@ -742,16 +758,22 @@ class CP_Workbench extends ItemBase
 					LockCPBagger(true);
 				}
 				LockCPBaggerSlots(true);
+				LockCPBattery(true);
+				Print("All slots locked.");
 			}
 			else if ( BaggerOccupied() )
 			{
 				LockCPBaggerSlots(false);
 				LockCPBagger(true);
+				LockCPBattery(false);
+				Print("Bagger locked.");
 			}
 			else
 			{
 				LockCPBaggerSlots(false);
 				LockCPBagger(false);
+				LockCPBattery(false);
+				Print("All slots unlocked.");
 			}
 		}
 		if ( Wrapper )
