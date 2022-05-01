@@ -1,0 +1,27 @@
+New Items
+- Drying Post
+- Drying Post Kit
+- Dried Cannabis Plant
+- Raw Cannabis Plant of all varieties
+- Workbench
+- Workbench Kit
+- Bagger
+- Plastic Wrapper
+- Empty Plastic Bags
+- Plastic Wrap Roll
+
+New Systems
+- Players can now unwrap baggies and bricks in their hands.
+- New crafting recipe; WoodenLog + Rope = Drying Post Kit.
+- Harvesting cannabis plants now results in a Raw Cannabis Plant.
+- Players can hang Raw Cannabis Plants on a Drying Post to receive Dried Cannabis Plants and Dried Bud.
+- Custom ghost icons for attachments.
+
+Updates
+- New custom brick model and texture.
+- New custom baggy model.
+- Completely reworked and refined the recipe scripts, reducing recipes from 47 to 17.
+- Laid the base work for a 'Lite' version of the mod and new strain packs.
+- Bud can now be stacked to 2.
+- Changed bag inventory size from 2x2 to 1x3.
+- Changed bricks inventory size from 3x3 to 2x2.
