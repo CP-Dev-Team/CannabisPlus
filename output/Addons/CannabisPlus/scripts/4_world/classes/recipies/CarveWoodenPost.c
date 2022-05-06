@@ -37,7 +37,7 @@ class CP_CarveWoodenPost extends RecipeBase
 		m_IngredientAddHealth[1] = -5;// 0 = do nothing
 		m_IngredientSetHealth[1] = -1; // -1 = do nothing
 		m_IngredientAddQuantity[1] = 0;// 0 = do nothing
-		m_IngredientDestroy[1] = false;// false = do nothing
+		m_IngredientDestroy[1] = true;// false = do nothing
 		m_IngredientUseSoftSkills[1] = true;// set 'true' to allow modification of the values by softskills on this ingredient
 		//----------------------------------------------------------------------------------------------------------------------
 		
