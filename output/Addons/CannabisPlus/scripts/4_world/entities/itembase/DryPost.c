@@ -15,6 +15,14 @@ class CP_DryPost extends ItemBase
 	int i, j, k
 	EntityAI target
 	protected float Lock;
+
+	const string ATTACHMENT_SLOT_HANGINGPLANTS1 				= "HangingPlants";
+	const string ATTACHMENT_SLOT_HANGINGPLANTS2 				= "HangingPlants2";
+	const string ATTACHMENT_SLOT_HANGINGPLANTS3 				= "HangingPlants3";
+	const string ATTACHMENT_SLOT_HANGINGPLANTS4 				= "HangingPlants4";
+	const string ATTACHMENT_SLOT_HANGINGPLANTS5 				= "HangingPlants5";
+	const string ATTACHMENT_SLOT_HANGINGPLANTS6 				= "HangingPlants6";
+
 	
 	autoptr array<int> plant_slots = new array<int>;
 
@@ -34,8 +42,34 @@ class CP_DryPost extends ItemBase
 	void ~CP_DryPost()
 	{
 		
-		
 	}
+
+	CP_RawPlantBase GetHangingPlants1()
+	{
+		return CP_RawPlantBase.Cast( FindAttachmentBySlotName( ATTACHMENT_SLOT_HANGINGPLANTS1 ) );
+	};
+	CP_RawPlantBase GetHangingPlants2()
+	{
+		return CP_RawPlantBase.Cast( FindAttachmentBySlotName( ATTACHMENT_SLOT_HANGINGPLANTS2 ) );
+	};	
+	CP_RawPlantBase GetHangingPlants3()
+	{
+		return CP_RawPlantBase.Cast( FindAttachmentBySlotName( ATTACHMENT_SLOT_HANGINGPLANTS3 ) );
+	};	
+	CP_RawPlantBase GetHangingPlants4()
+	{
+		return CP_RawPlantBase.Cast( FindAttachmentBySlotName( ATTACHMENT_SLOT_HANGINGPLANTS4 ) );
+	};	
+	CP_RawPlantBase GetHangingPlants5()
+	{
+		return CP_RawPlantBase.Cast( FindAttachmentBySlotName( ATTACHMENT_SLOT_HANGINGPLANTS5 ) );
+	};	
+	CP_RawPlantBase GetHangingPlants6()
+	{
+		return CP_RawPlantBase.Cast( FindAttachmentBySlotName( ATTACHMENT_SLOT_HANGINGPLANTS6 ) );
+	};	
+
+
 	bool IsLocked()
 	{
 		return m_IsLocked;
@@ -380,10 +414,16 @@ class CP_DryPost extends ItemBase
 	
 	void LockDryingSlots(bool do_lock)
     {
-		ItemBase item;
+		ItemBase HangingPlants1;
+		ItemBase HangingPlants2;
+		ItemBase HangingPlants3;
+		ItemBase HangingPlants4;
+		ItemBase HangingPlants5;
+		ItemBase HangingPlants6;
+
         if (do_lock)
         {
-
+			/*
             for (int i = 0; i < plant_slots.Count(); i++)
             {
                 if (Class.CastTo(item, GetInventory().FindAttachment(plant_slots.Get(i) ))
@@ -391,19 +431,34 @@ class CP_DryPost extends ItemBase
                       item.LockToParent();
                 }
             }
-
+			*/
+			HangingPlants1.LockToParent();
+			HangingPlants2.LockToParent();
+			HangingPlants3.LockToParent();
+			HangingPlants4.LockToParent();
+			HangingPlants5.LockToParent();
+			HangingPlants6.LockToParent();
         }
         else
         {
-            for (int j = 0; j < plant_slots.Count(); j++)
+            /*
+			for (int j = 0; j < plant_slots.Count(); j++)
             {
                 if (Class.CastTo(item, GetInventory().FindAttachment(plant_slots.Get(j) ))
                 {
                       item.UnlockFromParent(); //I don't think this is the right function
                 }
             }
+			*/
+			HangingPlants1.UnlockFromParent();
+			HangingPlants2.UnlockFromParent();
+			HangingPlants3.UnlockFromParent();
+			HangingPlants4.UnlockFromParent();
+			HangingPlants5.UnlockFromParent();
+			HangingPlants6.UnlockFromParent();
         }
     };
+
 	void DisassembleKit(ItemBase item)
 	{
 		if (!IsHologram())
