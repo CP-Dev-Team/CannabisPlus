@@ -281,8 +281,8 @@ class CfgVehicles
 		displayName = "CorePlant";
 		descriptionShort = "CorePlant";
 		model="\CannabisPlus\furniture\CannabisPlantHanging.p3d";
-        itemSize[]={4,4};
-		rotationFlags = 12;
+        itemSize[]={1,4};
+		rotationFlags = 32;
         inventorySlot[]=
         {
             "HangingPlants",
@@ -292,6 +292,8 @@ class CfgVehicles
             "HangingPlants5",
 			"HangingPlants6"
         };
+		hiddenSelections[]={""};
+		hiddenSelectionsTextures[]={""};
     };
 	class CP_DriedCannabisPlant : CP_RawPlantBase
 	{
@@ -299,7 +301,7 @@ class CfgVehicles
 		displayName = "Dried Plant";
 		descriptionShort = "A Dried up Cannabis plant with all the buds picked off.";
 		model="\CannabisPlus\furniture\DriedCannabisPlantHanging.p3d";
-        itemSize[]={3,3};
+        itemSize[]={1,4};
 		canBeSplit=1;
 		varQuantityInit=1;
 		varQuantityMin=0;
@@ -317,18 +319,28 @@ class CfgVehicles
         scope = 2;
 		displayName = "Raw Skunk Plant";
 		descriptionShort = "A raw Skunk plant";
-		model="\CannabisPlus\furniture\CannabisPlantHanging.p3d";
-        itemSize[]={4,4};
-
+		hiddenSelections[]=
+		{
+			"CannabisPlantHanging"
+		};
+		hiddenSelectionsTextures[]=
+		{
+			"CannabisPlus\plants\data\cannabis_plant_skunk_co.paa"
+		};
     };
 	class CP_RawBlueCannabisPlant : CP_RawPlantBase
     {
         scope = 2;
-		displayName = "Raw Blue God  Plant";
+		displayName = "Raw Blue God Plant";
 		descriptionShort = "A raw Blue God plant";
-		model="\CannabisPlus\furniture\CannabisPlantHanging.p3d";
-        itemSize[]={4,4};
-
+		hiddenSelections[]=
+		{
+			"CannabisPlantHanging"
+		};
+		hiddenSelectionsTextures[]=
+		{
+			"CannabisPlus\plants\data\cannabis_plant_blue_co.paa"
+		};
     };
 
 	class CP_RawKushCannabisPlant : CP_RawPlantBase
@@ -336,9 +348,14 @@ class CfgVehicles
         scope = 2;
 		displayName = "Raw Kush Plant";
 		descriptionShort = "A raw Kush plant";
-		model="\CannabisPlus\furniture\CannabisPlantHanging.p3d";
-        itemSize[]={4,4};
-
+		hiddenSelections[]=
+		{
+			"CannabisPlantHanging"
+		};
+		hiddenSelectionsTextures[]=
+		{
+			"CannabisPlus\plants\data\cannabis_plant_kush_co.paa"
+		};
     };
 
 	class CP_RawStardawgCannabisPlant : CP_RawPlantBase
@@ -346,9 +363,14 @@ class CfgVehicles
         scope = 2;
 		displayName = "Raw Stardawg Plant";
 		descriptionShort = "A raw Stardawg plant";
-		model="\CannabisPlus\furniture\CannabisPlantHanging.p3d";
-        itemSize[]={4,4};
- 
+		hiddenSelections[]=
+		{
+			"CannabisPlantHanging"
+		};
+		hiddenSelectionsTextures[]=
+		{
+			"CannabisPlus\plants\data\cannabis_plant_stardawg_co.paa"
+		};
     };
 
 	class CP_RawFutureCannabisPlant : CP_RawPlantBase
@@ -356,9 +378,14 @@ class CfgVehicles
         scope = 2;
 		displayName = "Raw Future Plant";
 		descriptionShort = "A raw Future plant";
-		model="\CannabisPlus\furniture\CannabisPlantHanging.p3d";
-        itemSize[]={4,4};
-
+		hiddenSelections[]=
+		{
+			"CannabisPlantHanging"
+		};
+		hiddenSelectionsTextures[]=
+		{
+			"CannabisPlus\plants\data\cannabis_plant_future_co.paa"
+		};
     };
 
 	class CP_RawNomadCannabisPlant : CP_RawPlantBase
@@ -366,9 +393,14 @@ class CfgVehicles
         scope = 2;
 		displayName = "Raw Nomad Plant";
 		descriptionShort = "A raw Nomad plant";
-		model="\CannabisPlus\furniture\CannabisPlantHanging.p3d";
-       itemSize[]={4,4};
-
+		hiddenSelections[]=
+		{
+			"CannabisPlantHanging"
+		};
+		hiddenSelectionsTextures[]=
+		{
+			"CannabisPlus\plants\data\cannabis_plant_nomad_co.paa"
+		};
     };
 
 	class CP_RawS1CannabisPlant : CP_RawPlantBase
@@ -376,9 +408,14 @@ class CfgVehicles
         scope = 2;
 		displayName = "Raw S1 Plant";
 		descriptionShort = "A raw S1 plant";
-		model="\CannabisPlus\furniture\CannabisPlantHanging.p3d";
-            itemSize[]={4,4};
-
+		hiddenSelections[]=
+		{
+			"CannabisPlantHanging"
+		};
+		hiddenSelectionsTextures[]=
+		{
+			"CannabisPlus\plants\data\cannabis_plant_s1_co.paa"
+		};
     };
 
 	class CP_RawBlackFrostCannabisPlant : CP_RawPlantBase
@@ -386,9 +423,13 @@ class CfgVehicles
         scope = 2;
 		displayName = "Raw Black Frost Plant";
 		descriptionShort = "A raw Black Frost plant";
-		model="\CannabisPlus\furniture\CannabisPlantHanging.p3d";
-        itemSize[]={4,4};
-
+		hiddenSelections[]=
+		{
+			"CannabisPlantHanging"
+		};
+		hiddenSelectionsTextures[]=
+		{
+			"CannabisPlus\plants\data\cannabis_plant_blackfrost_co.paa"
+		};
     };
-
 };
