@@ -22,7 +22,6 @@ class CP_DryPost extends ItemBase
 	{
 		BudSpawn = new map<string, int>;
 		BudSpawn.Clear();
-		m_IsLocked = false;
 		
 		plant_slots.Insert(InventorySlots.GetSlotIdFromString("HangingPlants")); 
         plant_slots.Insert(InventorySlots.GetSlotIdFromString("HangingPlants2")); 
@@ -37,14 +36,9 @@ class CP_DryPost extends ItemBase
 		
 		
 	}
-
 	bool IsLocked()
 	{
-		if ( m_IsLocked == true );		
-		{
-			return true;
-		}
-		return false;
+		return m_IsLocked;
 	}
 	
 	override void EEInit()
