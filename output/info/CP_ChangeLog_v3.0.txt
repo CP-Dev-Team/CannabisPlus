@@ -20,6 +20,7 @@ New Systems
 Updates
 - New custom brick model and texture.
 - New custom baggy model.
+- Plants now blow in the wind, look much more vibrant and have proper normal maps applied.  (Thank you Spud for help with this.)
 - Completely reworked and refined the recipe scripts, reducing recipes from 47 to 17.
 - Laid the base work for a 'Lite' version of the mod and new strain packs.
 - Bud can now be stacked to 2.

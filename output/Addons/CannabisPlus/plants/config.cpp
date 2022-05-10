@@ -39,56 +39,56 @@ class CfgHorticulture
 			infestedTex="dz\gear\cultivation\data\cannabis_plant_insect_co.paa";
 			infestedMat="dz\gear\cultivation\data\cannabis_plant_insect.rvmat";
 			healthyTex="CannabisPlus\plants\data\cannabis_plant_skunk_co.paa";
-			healthyMat="dz\gear\cultivation\data\cannabis_plant.rvmat";
+			healthyMat="CannabisPlus\plants\data\cannabis_plant_skunk.rvmat";
 		};
 		class CP_Plant_CannabisKush
 		{
 			infestedTex="dz\gear\cultivation\data\cannabis_plant_insect_co.paa";
 			infestedMat="dz\gear\cultivation\data\cannabis_plant_insect.rvmat";
 			healthyTex="CannabisPlus\plants\data\cannabis_plant_kush_co.paa";
-			healthyMat="dz\gear\cultivation\data\cannabis_plant.rvmat";
+			healthyMat="dz\gear\cultivation\data\cannabis_plant_kush.rvmat";
 		};
 		class CP_Plant_CannabisBlue
 		{
 			infestedTex="dz\gear\cultivation\data\cannabis_plant_insect_co.paa";
 			infestedMat="dz\gear\cultivation\data\cannabis_plant_insect.rvmat";
 			healthyTex="CannabisPlus\plants\data\cannabis_plant_blue_co.paa";
-			healthyMat="dz\gear\cultivation\data\cannabis_plant.rvmat";
+			healthyMat="CannabisPlus\plants\data\cannabis_plant_blue.rvmat";
 		};
 		class CP_Plant_CannabisStardawg
 		{
 			infestedTex="dz\gear\cultivation\data\cannabis_plant_insect_co.paa";
 			infestedMat="dz\gear\cultivation\data\cannabis_plant_insect.rvmat";
 			healthyTex="CannabisPlus\plants\data\cannabis_plant_stardawg_co.paa";
-			healthyMat="dz\gear\cultivation\data\cannabis_plant.rvmat";
+			healthyMat="dz\gear\cultivation\data\cannabis_plant_stardawg.rvmat";
 		};
 		class CP_Plant_CannabisFuture
 		{
 			infestedTex="dz\gear\cultivation\data\cannabis_plant_insect_co.paa";
 			infestedMat="dz\gear\cultivation\data\cannabis_plant_insect.rvmat";
 			healthyTex="CannabisPlus\plants\data\cannabis_plant_future_co.paa";
-			healthyMat="dz\gear\cultivation\data\cannabis_plant.rvmat";
+			healthyMat="dz\gear\cultivation\data\cannabis_plant_future.rvmat";
 		};
 		class CP_Plant_CannabisS1
 		{
 			infestedTex="dz\gear\cultivation\data\cannabis_plant_insect_co.paa";
 			infestedMat="dz\gear\cultivation\data\cannabis_plant_insect.rvmat";
 			healthyTex="CannabisPlus\plants\data\cannabis_plant_s1_co.paa";
-			healthyMat="dz\gear\cultivation\data\cannabis_plant.rvmat";
+			healthyMat="dz\gear\cultivation\data\cannabis_plant_s1.rvmat";
 		};
 		class CP_Plant_CannabisNomad
 		{
 			infestedTex="dz\gear\cultivation\data\cannabis_plant_insect_co.paa";
 			infestedMat="dz\gear\cultivation\data\cannabis_plant_insect.rvmat";
 			healthyTex="CannabisPlus\plants\data\cannabis_plant_nomad_co.paa";
-			healthyMat="dz\gear\cultivation\data\cannabis_plant.rvmat";
+			healthyMat="dz\gear\cultivation\data\cannabis_plant_nomad.rvmat";
 		};
 		class CP_Plant_CannabisBlackFrost
 		{
 			infestedTex="dz\gear\cultivation\data\cannabis_plant_insect_co.paa";
 			infestedMat="dz\gear\cultivation\data\cannabis_plant_insect.rvmat";
 			healthyTex="CannabisPlus\plants\data\cannabis_plant_blackfrost_co.paa";
-			healthyMat="dz\gear\cultivation\data\cannabis_plant.rvmat";
+			healthyMat="dz\gear\cultivation\data\cannabis_plant_blackfrost.rvmat";
 		};
 	};
 };
@@ -121,7 +121,12 @@ class CfgVehicles
 		};
 		hiddenSelectionsMaterials[]=
 		{
-			"dz\gear\cultivation\data\Cannabis_plant.rvmat"
+			"CannabisPlus\plants\data\cannabis_plant_skunk.rvmat",
+			"CannabisPlus\plants\data\cannabis_plant_skunk.rvmat",
+			"CannabisPlus\plants\data\cannabis_plant_skunk.rvmat",
+			"CannabisPlus\plants\data\cannabis_plant_skunk.rvmat",
+			"CannabisPlus\plants\data\cannabis_plant_skunk.rvmat",
+			"CannabisPlus\plants\data\cannabis_plant_skunk.rvmat"
 		};
 		class Horticulture
 		{
@@ -155,7 +160,12 @@ class CfgVehicles
 		};
 		hiddenSelectionsMaterials[]=
 		{
-			"dz\gear\cultivation\data\Cannabis_plant.rvmat"
+			"CannabisPlus\plants\data\cannabis_plant_blue.rvmat",
+			"CannabisPlus\plants\data\cannabis_plant_blue.rvmat",
+			"CannabisPlus\plants\data\cannabis_plant_blue.rvmat",
+			"CannabisPlus\plants\data\cannabis_plant_blue.rvmat",
+			"CannabisPlus\plants\data\cannabis_plant_blue.rvmat",
+			"CannabisPlus\plants\data\cannabis_plant_blue.rvmat"
 		};
 		class Horticulture
 		{
@@ -189,7 +199,12 @@ class CfgVehicles
 		};
 		hiddenSelectionsMaterials[]=
 		{
-			"dz\gear\cultivation\data\Cannabis_plant.rvmat"
+			"CannabisPlus\plants\data\cannabis_plant_kush.rvmat",
+			"CannabisPlus\plants\data\cannabis_plant_kush.rvmat",
+			"CannabisPlus\plants\data\cannabis_plant_kush.rvmat",
+			"CannabisPlus\plants\data\cannabis_plant_kush.rvmat",
+			"CannabisPlus\plants\data\cannabis_plant_kush.rvmat",
+			"CannabisPlus\plants\data\cannabis_plant_kush.rvmat"
 		};
 		class Horticulture
 		{
@@ -223,7 +238,12 @@ class CfgVehicles
 		};
 		hiddenSelectionsMaterials[]=
 		{
-			"dz\gear\cultivation\data\Cannabis_plant.rvmat"
+			"CannabisPlus\plants\data\cannabis_plant_stardawg.rvmat",
+			"CannabisPlus\plants\data\cannabis_plant_stardawg.rvmat",
+			"CannabisPlus\plants\data\cannabis_plant_stardawg.rvmat",
+			"CannabisPlus\plants\data\cannabis_plant_stardawg.rvmat",
+			"CannabisPlus\plants\data\cannabis_plant_stardawg.rvmat",
+			"CannabisPlus\plants\data\cannabis_plant_stardawg.rvmat"
 		};
 		class Horticulture
 		{
@@ -257,7 +277,12 @@ class CfgVehicles
 		};
 		hiddenSelectionsMaterials[]=
 		{
-			"dz\gear\cultivation\data\Cannabis_plant.rvmat"
+			"CannabisPlus\plants\data\cannabis_plant_future.rvmat",
+			"CannabisPlus\plants\data\cannabis_plant_future.rvmat",
+			"CannabisPlus\plants\data\cannabis_plant_future.rvmat",
+			"CannabisPlus\plants\data\cannabis_plant_future.rvmat",
+			"CannabisPlus\plants\data\cannabis_plant_future.rvmat",
+			"CannabisPlus\plants\data\cannabis_plant_future.rvmat"
 		};
 		class Horticulture
 		{
@@ -291,7 +316,12 @@ class CfgVehicles
 		};
 		hiddenSelectionsMaterials[]=
 		{
-			"dz\gear\cultivation\data\Cannabis_plant.rvmat"
+			"CannabisPlus\plants\data\cannabis_plant_s1.rvmat",
+			"CannabisPlus\plants\data\cannabis_plant_s1.rvmat",
+			"CannabisPlus\plants\data\cannabis_plant_s1.rvmat",
+			"CannabisPlus\plants\data\cannabis_plant_s1.rvmat",
+			"CannabisPlus\plants\data\cannabis_plant_s1.rvmat",
+			"CannabisPlus\plants\data\cannabis_plant_s1.rvmat"
 		};
 		class Horticulture
 		{
@@ -325,7 +355,12 @@ class CfgVehicles
 		};
 		hiddenSelectionsMaterials[]=
 		{
-			"dz\gear\cultivation\data\Cannabis_plant.rvmat"
+			"CannabisPlus\plants\data\cannabis_plant_nomad.rvmat",
+			"CannabisPlus\plants\data\cannabis_plant_nomad.rvmat",
+			"CannabisPlus\plants\data\cannabis_plant_nomad.rvmat",
+			"CannabisPlus\plants\data\cannabis_plant_nomad.rvmat",
+			"CannabisPlus\plants\data\cannabis_plant_nomad.rvmat",
+			"CannabisPlus\plants\data\cannabis_plant_nomad.rvmat"
 		};
 		class Horticulture
 		{
@@ -359,7 +394,12 @@ class CfgVehicles
 		};
 		hiddenSelectionsMaterials[]=
 		{
-			"dz\gear\cultivation\data\Cannabis_plant.rvmat"
+			"CannabisPlus\plants\data\cannabis_plant_blackfrost.rvmat",
+			"CannabisPlus\plants\data\cannabis_plant_blackfrost.rvmat",
+			"CannabisPlus\plants\data\cannabis_plant_blackfrost.rvmat",
+			"CannabisPlus\plants\data\cannabis_plant_blackfrost.rvmat",
+			"CannabisPlus\plants\data\cannabis_plant_blackfrost.rvmat",
+			"CannabisPlus\plants\data\cannabis_plant_blackfrost.rvmat"
 		};
 		class Horticulture
 		{
