@@ -65,7 +65,7 @@ class CP_JointBase extends ItemBase
 	}
 	string GetCpJointName()
 	{
-		return m_cpJointNames
+		return m_cpJointNames;
 	}
 	
 	

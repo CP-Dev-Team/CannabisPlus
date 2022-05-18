@@ -26,3 +26,13 @@ Updates
 - Bud can now be stacked to 2.
 - Changed bag inventory size from 2x2 to 1x3.
 - Changed bricks inventory size from 3x3 to 2x2.
+- Updated samples and documentation.
+
+Bug Fixes
+- Fixed issue where you couldn't replant into an already used garden plot.
+- Fixed an issue where you couldn't water the plant enough in some situations.
+
+Known Issues
+- Dried plants don't increase the quantity in the slot if the slot is already occupied.
+- Can add raw plants to the Drying Post after drying process is started.
+- Have to look at the base of the plant to Harvest it.

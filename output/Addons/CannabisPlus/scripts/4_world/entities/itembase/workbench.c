@@ -397,8 +397,8 @@ class CP_Workbench extends ItemBase
 		SetSynchDirty();
 		if(!m_CP_Processing.IsRunning())
 		{
-		    Print("StopProduction() executed.")	
-			Print("m_CP_Processing is deleted " + m_CP_Processing)	
+		    Print("StopProduction() executed.");
+			Print("m_CP_Processing is deleted " + m_CP_Processing);
 		}
 
 	};
@@ -437,28 +437,28 @@ class CP_Workbench extends ItemBase
 					CP_TimerisRunning = true;
 					//UpdateLockState();
 					CreateBags();
-					Print("Create bags.")
-					Print("CanCreateBags = true +" + m_CP_Processing)
+					Print("Create bags.");
+					Print("CanCreateBags = true +" + m_CP_Processing);
 				}
 				else if(CanCreateBricks() == true )
 				{
 					CP_TimerisRunning = true;
 					//UpdateLockState();
 					CreateBricks(); 
-					Print("Create bricks.")
-					Print("CanCreateBricks = true +" + m_CP_Processing)
+					Print("Create bricks.");
+					Print("CanCreateBricks = true +" + m_CP_Processing);
 				}
 				else
 				{
 
 					m_CP_Processing.Stop();
-					CP_TimerIsPaused = true
+					CP_TimerIsPaused = true;
 					DeleteAttachmentsifEmpty();
 					UpdateLockState();
 					//StopProduction();
 					//CP_TimerisRunning = false;
 					//UpdateLockState();
-					Print("Out of materials.")
+					Print("Out of materials.");
 					//Print(m_CP_Processing)
 					SetSynchDirty();
 				}

@@ -386,7 +386,7 @@ class CP_DryPost extends ItemBase
 
             for (int i = 0; i < plant_slots.Count(); i++)
             {
-                if (Class.CastTo(item, GetInventory().FindAttachment(plant_slots.Get(i) ))
+                if (Class.CastTo(item, GetInventory().FindAttachment(plant_slots.Get(i) )))
                 {
                       item.LockToParent();
                 }
@@ -397,7 +397,7 @@ class CP_DryPost extends ItemBase
         {
             for (int j = 0; j < plant_slots.Count(); j++)
             {
-                if (Class.CastTo(item, GetInventory().FindAttachment(plant_slots.Get(j) ))
+                if (Class.CastTo(item, GetInventory().FindAttachment(plant_slots.Get(j) )))
                 {
                       item.UnlockFromParent(); //I don't think this is the right function
                 }

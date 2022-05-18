@@ -48,7 +48,7 @@ class ActionCP_RipOpenBrickOrBag: ActionContinuousBase
 
 		if(Bag && Bag.GetQuantity() <= 1)
 		{
-			TendancyText = CPCORE.GetCPitemTendancyText()
+			TendancyText = CPCORE.GetCPitemTendancyText();
 	
 			return true;
 		}	
