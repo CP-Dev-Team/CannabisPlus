@@ -17,7 +17,7 @@ class CfgMods
 	{
 		dir="CannabisPlus";
 		name="Cannabis Plus";		
-		credits="IceBlade, bombjack, Gloser";
+		credits="IceBlade, bombjack, Gloser, Kuli, Dumpgrah";
 		author="IceBlade";
 		authorID="0";
 		version="3.0";
