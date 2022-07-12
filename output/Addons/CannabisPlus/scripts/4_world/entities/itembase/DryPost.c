@@ -12,7 +12,7 @@ class CP_DryPost extends ItemBase
 	string NewPlantName;
 	ref map<string, int> BudSpawn;
 	ItemBase attachment;
-	int i, j, k
+	int i, j, k, p
 	EntityAI target
 	protected float Lock;
 	
@@ -153,7 +153,10 @@ class CP_DryPost extends ItemBase
     {
 		return CP_RawSkunkCannabisPlant.Cast( GetAttachmentByType (CP_RawSkunkCannabisPlant) );
     };
-	
+	CP_DriedCannabisPlant  GetCannibisDried()
+    {
+		return CP_DriedCannabisPlant.Cast( GetAttachmentByType (CP_DriedCannabisPlant) );
+    };
 	void CheckStart()
 	{
 		if (!m_IsLocked)	
@@ -313,17 +316,24 @@ class CP_DryPost extends ItemBase
 		{
 			NumItems = GetInventory().AttachmentCount();
 			
-			for ( i = 0; i < NumItems; i++ )
+			for (i = 0; i < NumItems; i++ )
 			{
-		            attachment = ItemBase.Cast( GetInventory().GetAttachmentFromIndex( i ) );
-		            ItemName = attachment.GetType();
+		        attachment = ItemBase.Cast( GetInventory().GetAttachmentFromIndex( i ) );
+		        ItemName = attachment.GetType();
 				if (ItemName.IndexOf("CP_Raw") >= 0)
-		            {
-					ItemBase DeadPlant = GetInventory().CreateAttachment("CP_DriedCannabisPlant");
-					DeadPlant.AddQuantity( NumItems - 1 );
-					Print("[CP] " + this + " spawning CP_DriedCannabisPlant");		            }    
-				}
-	
+		        {
+
+				}    
+			}
+			if( i >= 1)
+			{
+				GetCannibisDried().AddQuantity( i );
+				Print("[CP] " + this + " spawning CP_DriedCannabisPlant");
+
+				Print("Created Dried plant = " + i)
+					
+				i = 0;  
+			}
 			Print("[CP] The plant has " + BudSpawn.Count() + " items");
 			
 			for (j = 0; j < BudSpawn.Count(); j++)
@@ -384,9 +394,9 @@ class CP_DryPost extends ItemBase
         if (do_lock)
         {
 
-            for (int i = 0; i < plant_slots.Count(); i++)
+            for (int p = 0; p < plant_slots.Count(); p++)
             {
-                if (Class.CastTo(item, GetInventory().FindAttachment(plant_slots.Get(i) )))
+                if (Class.CastTo(item, GetInventory().FindAttachment(plant_slots.Get(p) )))
                 {
                       item.LockToParent();
                 }
@@ -550,5 +560,6 @@ class CP_DryPost_Kit extends ItemBase
 		
 		AddAction(ActionTogglePlaceObject);
 		AddAction(ActionDeployObject);
+		
 	}
 }
