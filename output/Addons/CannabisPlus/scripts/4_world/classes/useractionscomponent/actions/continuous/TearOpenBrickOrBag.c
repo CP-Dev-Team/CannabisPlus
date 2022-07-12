@@ -87,7 +87,7 @@ class ActionCP_RipOpenBrickOrBag: ActionContinuousBase
 				action_data.m_Player.ServerReplaceItemInHandsWithNew(lambda);
 				
 				//spawns wrapping Paper
-				ItemBase paper = ItemBase.Cast( GetGame().CreateObjectEx("Paper", action_data.m_Player.GetPosition(), ECE_PLACE_ON_SURFACE) );
+				//ItemBase paper = ItemBase.Cast( GetGame().CreateObjectEx("Paper", action_data.m_Player.GetPosition(), ECE_PLACE_ON_SURFACE) );
 				
 				action_data.m_Player.GetSoftSkillsManager().AddSpecialty( m_SpecialtyWeight );
 			}
