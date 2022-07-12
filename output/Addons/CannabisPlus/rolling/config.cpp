@@ -23,6 +23,7 @@ class CfgVehicles
 		displayName="Fizla Rolling Papers";
 		descriptionShort="A pack of Fizla Original rolling papers";
 		model="CannabisPlus\rolling\CPlus_Papers.p3d";
+		inventorySlot[]={"CP_RollingPapers"};
 		rotationFlags=17;
 		canBeSplit=0;
 		weight=20;

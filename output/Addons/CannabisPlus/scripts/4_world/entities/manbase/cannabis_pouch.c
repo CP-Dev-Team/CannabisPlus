@@ -52,7 +52,7 @@ class CP_Pouch extends FirstAidKit
 		"CP_CannabisNomad",
 		"CP_CannabisBlackFrost",
 		"CP_Tobacco",
-		"CP_Joint_Base",
+		"CP_JointBase",
 		"CP_RollingPapers"
 	};
 	

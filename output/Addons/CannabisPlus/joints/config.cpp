@@ -22,7 +22,7 @@ class CfgVehicles
 		displayName="Skunk Joint";
 		descriptionShort="A joint made out of finest Skunk weed";
 		model="\CannabisPlus\joints\joint_new.p3d";
-		inventorySlot="Ingredient";
+		inventorySlot[]={"CP_Joint_Base"};
 		rotationFlags=16;
 		weight=30;
 		itemSize[]={1,2};
