@@ -1,4 +1,4 @@
-class CP_CigarettePack_CannabisKush: Box_Base 
+class CP_CigarettePack_CannabisKush : CP_JointPack
 {
 	override void SetActions()	{
 		

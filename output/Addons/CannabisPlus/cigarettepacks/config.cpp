@@ -21,7 +21,8 @@ class CfgPatches
 		requiredVersion=0.1;
 		requiredAddons[]=
 		{
-			"DZ_Data"
+			"DZ_Data",
+			"DZ_Gear_Medical"
 		};
 	};
 };
@@ -118,8 +119,8 @@ class CfgVehicles
 		itemSize[]={1,1};
 		weight=50;
 		canBeSplit=0;
-		varQuantityInit=0;
-		varQuantityMin=0;
+		varQuantityInit=1;
+		varQuantityMin=1;
 		varQuantityMax=20;
 		varQuantityDestroyOnMin=0;
 		quantityBar=1;

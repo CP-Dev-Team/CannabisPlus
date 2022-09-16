@@ -252,7 +252,7 @@ class CP_CraftCigarettePackBlackFrostEmpty extends RecipeBase
 {	
 	override void Init()
 	{
-		m_Name = "Create joint to Pack";
+		m_Name = "Create a pack of joints.";
 		m_IsInstaRecipe = false;//should this recipe be performed instantly without animation
 		m_AnimationLength = 0.01;//animation length in relative time units
 		m_Specialty = 0;// value > 0 for roughness, value < 0 for precision
@@ -332,7 +332,7 @@ class CP_CraftCigarettePackBlackFrost extends RecipeBase
 {	
 	override void Init()
 	{
-		m_Name = "Smart joint Pack";
+		m_Name = "Put joint into pack.";
 		m_IsInstaRecipe = false;//should this recipe be performed instantly without animation
 		m_AnimationLength = 0.01;//animation length in relative time units
 		m_Specialty = 0;// value > 0 for roughness, value < 0 for precision
@@ -342,13 +342,13 @@ class CP_CraftCigarettePackBlackFrost extends RecipeBase
 		m_MinDamageIngredient[0] = -1;//-1 = disable check
 		m_MaxDamageIngredient[0] = 1;//-1 = disable check
 		
-		m_MinQuantityIngredient[0] = 5;//-1 = disable check
+		m_MinQuantityIngredient[0] = -1;//-1 = disable check
 		m_MaxQuantityIngredient[0] = -1;//-1 = disable check
 		
 		m_MinDamageIngredient[1] = -1;//-1 = disable check
 		m_MaxDamageIngredient[1] = -1;//-1 = disable check
 		
-		m_MinQuantityIngredient[1] = 1;//-1 = disable check
+		m_MinQuantityIngredient[1] = -1;//-1 = disable check
 		m_MaxQuantityIngredient[1] = 20;//-1 = disable check
 		//----------------------------------------------------------------------------------------------------------------------
 		
