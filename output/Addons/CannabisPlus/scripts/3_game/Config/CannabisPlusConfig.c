@@ -152,6 +152,8 @@ class CannabisPlusConfigManager
             pumpkin_growtime 				= 8;
             pumpkin_cropcount 			= 2;
             pumpkinSeed_count 			= 9;
+
+            spoiltime					= 60;
             activateCigaretteSmokingEffect 	= false;
             smokingCigaretteEffectDuration 	= 20;
             cigaretteCyclesToActivateEffect 	= 8;
