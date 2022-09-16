@@ -197,6 +197,16 @@ modded class Plant_Pumpkin
 	}
 }
 
+modded class Plant_Potato
+{
+	override void Harvest( PlayerBase player )
+	{
+		super.Harvest(player);
+		if(GetGame().IsServer() && GetCPConfig().removeAfterHarvest==true){
+			GetGame().GetCallQueue( CALL_CATEGORY_SYSTEM ).CallLater( RemovePlant, 10, true );
+		}
+	}
+}
 
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 // 
@@ -219,6 +229,7 @@ modded class PlantBase
 	private int m_tomato_growtime;
 	private int m_zucchini_growtime;
 	private int m_pumpkin_growtime;
+	private int m_potato_growtime;
 	
 	private int m_tabacco_cropcount;
 	private int m_cannabisSkunk_cropcount;
@@ -234,6 +245,7 @@ modded class PlantBase
 	private int m_tomato_cropcount;
 	private int m_zucchini_cropcount;
 	private int m_pumpkin_cropcount;
+	private int m_potato_cropcount;
 
 	private int m_spoiltime;
 	
@@ -300,6 +312,7 @@ modded class PlantBase
 		m_tomato_growtime 				= GetCPConfig().tomato_growtime;
 		m_zucchini_growtime 			= GetCPConfig().zucchini_growtime;
 		m_pumpkin_growtime 				= GetCPConfig().pumpkin_growtime;
+		m_potato_growtime 				= GetCPConfig().potato_growtime;
 	
 		m_tabacco_cropcount 			= GetCPConfig().tobacco_cropcount;
 		m_cannabisSkunk_cropcount 		= GetCPConfig().cannabisSkunk_cropcount;
@@ -315,6 +328,7 @@ modded class PlantBase
 		m_tomato_cropcount 				= GetCPConfig().tomato_cropcount;
 		m_zucchini_cropcount 			= GetCPConfig().zucchini_cropcount;
 		m_pumpkin_cropcount 			= GetCPConfig().pumpkin_cropcount;
+		m_potato_cropcount 				= GetCPConfig().potato_cropcount;
 
 		m_spoiltime					= GetCPConfig().spoiltime;
 
@@ -423,6 +437,12 @@ modded class PlantBase
 			case "Plant_Pumpkin":
 				m_growtime = m_pumpkin_growtime;
 				m_CropsCount = m_pumpkin_cropcount;
+				currentYield = 1;
+				break;
+			// potato
+			case "Plant_Potato":
+				m_growtime = m_potato_growtime;
+				m_CropsCount = m_potato_cropcount;
 				currentYield = 1;
 				break;
 			//not a CP plant, exit function to avoid messing up other plants

@@ -108,7 +108,7 @@ class CP_CompostBin extends Container_Base
 		if (plant)
 		{
 			string ItemName = plant.GetType();
-			if (ItemName.IndexOf("PlantMaterial") >= 0 || ItemName.IndexOf("CP_Dried") >= 0 || ItemName.IndexOf("Tomato") >= 0 || ItemName.IndexOf("Pepper") >= 0 || ItemName.IndexOf("Pumpkin") >= 0 || ItemName.IndexOf("Zuccini") >= 0)
+			if (ItemName.IndexOf("PlantMaterial") >= 0 || ItemName.IndexOf("CP_Dried") >= 0 || ItemName.IndexOf("Tomato") >= 0 || ItemName.IndexOf("Pepper") >= 0 || ItemName.IndexOf("Pumpkin") >= 0 || ItemName.IndexOf("Zuccini") >= 0 || ItemName.IndexOf("Potato") >= 0)
 			{
 				return true;
 			} else 

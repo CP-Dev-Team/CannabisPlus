@@ -65,6 +65,9 @@ class CannabisPlusConfigManager
 	int pumpkin_cropcount;
 	int pumpkinSeed_count;
 
+	int potato_growtime;
+	int potato_cropcount;
+
 	int spoiltime;
 	
 	// smoke effect settings
@@ -152,6 +155,8 @@ class CannabisPlusConfigManager
             pumpkin_growtime 				= 8;
             pumpkin_cropcount 			= 2;
             pumpkinSeed_count 			= 9;
+            potato_growtime 				= 8;
+            potato_cropcount 				= 2;
 
             spoiltime					= 60;
             activateCigaretteSmokingEffect 	= false;
