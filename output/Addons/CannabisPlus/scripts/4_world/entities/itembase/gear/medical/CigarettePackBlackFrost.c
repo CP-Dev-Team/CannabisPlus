@@ -1,4 +1,4 @@
-class CP_CigarettePack_CannabisBlackFrost: Box_Base {
+class CP_CigarettePack_CannabisBlackFrost: CP_JointPack {
 	override void SetActions()	{
 		AddAction(ActionUnpackCigaretteBox);
 		super.SetActions();

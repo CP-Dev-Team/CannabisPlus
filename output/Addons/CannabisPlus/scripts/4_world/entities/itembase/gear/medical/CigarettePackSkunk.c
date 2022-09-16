@@ -1,4 +1,4 @@
-class CP_CigarettePack_CannabisSkunk: Box_Base 
+class CP_CigarettePack_CannabisSkunk: CP_JointPack 
 {
 	override void SetActions()	{
 		

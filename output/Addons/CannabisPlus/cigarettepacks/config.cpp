@@ -194,6 +194,8 @@ class CfgVehicles
 		scope=2;
 		displayName="Chernamorka Cigarettes";
 		descriptionShort="A pack of finest Chernamorka Cigarettes";
+		varQuantityInit=1;
+		varQuantityMin=1;
 		hiddenSelections[]=
 		{
 			"camoGround",
@@ -210,6 +212,8 @@ class CfgVehicles
 		scope=2;
 		displayName="Merkur Cigarettes";
 		descriptionShort="A pack of finest Merkur Cigarettes";
+		varQuantityInit=1;
+		varQuantityMin=1;
 		hiddenSelections[]=
 		{
 			"camoGround",
@@ -226,6 +230,8 @@ class CfgVehicles
 		scope=2;
 		displayName="Partyzanka Cigarettes";
 		descriptionShort="A pack of finest Partyzanka Cigarettes";
+		varQuantityInit=1;
+		varQuantityMin=1;
 		hiddenSelections[]=
 		{
 			"camoGround",
