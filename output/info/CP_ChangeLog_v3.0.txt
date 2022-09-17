@@ -26,11 +26,13 @@ Updates
 - Bud can now be stacked to 2.
 - Changed bag inventory size from 2x2 to 1x3.
 - Changed bricks inventory size from 3x3 to 2x2.
+- Adding compatibility for potatoes (growtime and cropcount is configurable).
 - Updated samples and documentation.
 
 Bug Fixes
 - Fixed issue where you couldn't replant into an already used garden plot.
 - Fixed an issue where you couldn't water the plant enough in some situations.
+- Fixed an issue with cigarette and joint packs not packing properly.
 
 Known Issues
 - Dried plants don't increase the quantity in the slot if the slot is already occupied.
