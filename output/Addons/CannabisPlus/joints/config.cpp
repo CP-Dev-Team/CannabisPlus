@@ -21,11 +21,11 @@ class CfgVehicles
 		scope=2;
 		displayName="Skunk Joint";
 		descriptionShort="A joint made out of finest Skunk weed";
-		model="\CannabisPlus\joints\joint_new.p3d";
+		model="\CannabisPlus\joints\CP_joint.p3d";
 		inventorySlot[]={"CP_Joint_Base"};
 		rotationFlags=16;
 		weight=30;
-		itemSize[]={1,2};
+		itemSize[]={1,1};
 		cpPackJoint="CP_CigarettePack_Empty";
 		cpCheckJoint="";
 		hiddenSelections[]=
@@ -34,7 +34,7 @@ class CfgVehicles
 		};
 		hiddenSelectionsTextures[]=
 		{
-			"CannabisPlus\joints\data\Joint_New.paa"
+			"CannabisPlus\joints\data\joint_co.paa"
 		};
 	}
 	class CP_JointSkunk: CP_JointBase
@@ -50,7 +50,7 @@ class CfgVehicles
 		};
 		hiddenSelectionsTextures[]=
 		{
-			"CannabisPlus\joints\data\Joint_New.paa"
+			"CannabisPlus\joints\data\joint_co.paa"
 		};
 	};
 	class CP_JointBlue: CP_JointBase
@@ -66,7 +66,7 @@ class CfgVehicles
 		};
 		hiddenSelectionsTextures[]=
 		{
-			"CannabisPlus\joints\data\Joint_New.paa"
+			"CannabisPlus\joints\data\joint_co.paa"
 		};
 	};
 	class CP_JointKush: CP_JointBase
@@ -82,7 +82,7 @@ class CfgVehicles
 		};
 		hiddenSelectionsTextures[]=
 		{
-			"CannabisPlus\joints\data\Joint_New.paa"
+			"CannabisPlus\joints\data\joint_co.paa"
 		};
 	};
 	class CP_JointStardawg: CP_JointBase
@@ -98,7 +98,7 @@ class CfgVehicles
 		};
 		hiddenSelectionsTextures[]=
 		{
-			"CannabisPlus\joints\data\Joint_New.paa"
+			"CannabisPlus\joints\data\joint_co.paa"
 		};
 	};
 	class CP_JointFuture: CP_JointBase
@@ -114,7 +114,7 @@ class CfgVehicles
 		};
 		hiddenSelectionsTextures[]=
 		{
-			"CannabisPlus\joints\data\Joint_New.paa"
+			"CannabisPlus\joints\data\joint_co.paa"
 		};
 	};
 	class CP_JointS1: CP_JointBase
@@ -130,7 +130,7 @@ class CfgVehicles
 		};
 		hiddenSelectionsTextures[]=
 		{
-			"CannabisPlus\joints\data\Joint_New.paa"
+			"CannabisPlus\joints\data\joint_co.paa"
 		};
 	};
 	class CP_JointNomad: CP_JointBase
@@ -146,7 +146,7 @@ class CfgVehicles
 		};
 		hiddenSelectionsTextures[]=
 		{
-			"CannabisPlus\joints\data\Joint_New.paa"
+			"CannabisPlus\joints\data\joint_co.paa"
 		};
 	};
 	class CP_JointBlackFrost: CP_JointBase
@@ -162,7 +162,7 @@ class CfgVehicles
 		};
 		hiddenSelectionsTextures[]=
 		{
-			"CannabisPlus\joints\data\Joint_New.paa"
+			"CannabisPlus\joints\data\joint_co.paa"
 		};
 	};
 };
