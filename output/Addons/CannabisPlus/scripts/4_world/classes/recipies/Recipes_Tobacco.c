@@ -104,8 +104,8 @@ class CP_CraftCigarettePackChernamorka extends RecipeBase
 		InsertIngredient(0,"CP_Cigarette");
 		m_IngredientAddHealth[0] = 0;// 0 = do nothing
 		m_IngredientSetHealth[0] = -1; // -1 = do nothing
-		m_IngredientAddQuantity[0] = 0;// 0 = do nothing
-		m_IngredientDestroy[0] = true;//true = destroy, false = do nothing
+		m_IngredientAddQuantity[0] = -1;// 0 = do nothing
+		m_IngredientDestroy[0] = false;//true = destroy, false = do nothing
 		m_IngredientUseSoftSkills[0] = false;// set 'true' to allow modification of the values by softskills on this ingredient
 		
 		//ingredient 2
@@ -250,8 +250,8 @@ class CP_CraftCigarettePackMerkur extends RecipeBase
 		InsertIngredient(0,"CP_Cigarette");
 		m_IngredientAddHealth[0] = 0;// 0 = do nothing
 		m_IngredientSetHealth[0] = -1; // -1 = do nothing
-		m_IngredientAddQuantity[0] = 0;// 0 = do nothing
-		m_IngredientDestroy[0] = true;//true = destroy, false = do nothing
+		m_IngredientAddQuantity[0] = -1;// 0 = do nothing
+		m_IngredientDestroy[0] = false;//true = destroy, false = do nothing
 		m_IngredientUseSoftSkills[0] = false;// set 'true' to allow modification of the values by softskills on this ingredient
 		
 		//ingredient 2
@@ -396,8 +396,8 @@ class CP_CraftCigarettePackPartyzanka extends RecipeBase
 		InsertIngredient(0,"CP_Cigarette");
 		m_IngredientAddHealth[0] = 0;// 0 = do nothing
 		m_IngredientSetHealth[0] = -1; // -1 = do nothing
-		m_IngredientAddQuantity[0] = 0;// 0 = do nothing
-		m_IngredientDestroy[0] = true;//true = destroy, false = do nothing
+		m_IngredientAddQuantity[0] = -1;// 0 = do nothing
+		m_IngredientDestroy[0] = false;//true = destroy, false = do nothing
 		m_IngredientUseSoftSkills[0] = false;// set 'true' to allow modification of the values by softskills on this ingredient
 		
 		//ingredient 2

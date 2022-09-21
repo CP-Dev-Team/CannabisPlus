@@ -16,7 +16,7 @@ class CP_CraftCannabisBagBlackFrost extends RecipeBase
 		m_MinDamageIngredient[0] = -1;//-1 = disable check
 		m_MaxDamageIngredient[0] = -1;//-1 = disable check
 		
-		m_MinQuantityIngredient[0] = -1;//-1 = disable check
+		m_MinQuantityIngredient[0] = 2;//-1 = disable check
 		m_MaxQuantityIngredient[0] = -1;//-1 = disable check
 		
 		m_MinDamageIngredient[1] = -1;//-1 = disable check
@@ -32,7 +32,7 @@ class CP_CraftCannabisBagBlackFrost extends RecipeBase
 		InsertIngredient(0,"CP_CannabisBud");//you can insert multiple ingredients this way
 		m_IngredientAddHealth[0] = 0;// 0 = do nothing
 		m_IngredientSetHealth[0] = -1; // -1 = do nothing
-		m_IngredientAddQuantity[0] = -1;// 0 = do nothing
+		m_IngredientAddQuantity[0] = 0;// 0 = do nothing
 		m_IngredientDestroy[0] = true;//true = destroy, false = do nothing
 		m_IngredientUseSoftSkills[0] = false;// set 'true' to allow modification of the values by softskills on this ingredient
 		
@@ -62,13 +62,13 @@ class CP_CraftCannabisBagBlackFrost extends RecipeBase
 
 	override bool CanDo(ItemBase ingredients[], PlayerBase player)//final check for recipe's validity
 	{
-		int BudsToBagsUsage = GetCPConfig().Buds_To_Bags_Required;
+		//int BudsToBagsUsage = GetCPConfig().Buds_To_Bags_Required;
 	
-		CP_CannabisBud ingredient1 = CP_CannabisBud.Cast(ingredients[0]);
+		//CP_CannabisBud ingredient1 = CP_CannabisBud.Cast(ingredients[0]);
 	
-		CP_EmptyBag ingredient2 = CP_EmptyBag.Cast(ingredients[1]);
+		//CP_EmptyBag ingredient2 = CP_EmptyBag.Cast(ingredients[1]);
 	
-		if(ingredient1.GetQuantity() >= BudsToBagsUsage)
+		//if(ingredient1.GetQuantity() >= BudsToBagsUsage)
 		{
 			return true;
 		}
@@ -262,7 +262,7 @@ class CP_CraftCigarettePackBlackFrostEmpty extends RecipeBase
 		m_MinDamageIngredient[0] = -1;//-1 = disable check
 		m_MaxDamageIngredient[0] = -1;//-1 = disable check
 		
-		m_MinQuantityIngredient[0] = 500;//-1 = disable check
+		m_MinQuantityIngredient[0] = 1;//-1 = disable check
 		m_MaxQuantityIngredient[0] = -1;//-1 = disable check
 		
 		m_MinDamageIngredient[1] = -1;//-1 = disable check
@@ -313,9 +313,8 @@ class CP_CraftCigarettePackBlackFrostEmpty extends RecipeBase
 		//Print("[DEBUG] " + item.GetDamage());		
 		if( item.GetDamage() == 0) {
 			return true;
-		} else {
-			return false;
 		}
+		return false;
 	}
 
 	override void Do(ItemBase ingredients[], PlayerBase player,array<ItemBase> results, float specialty_weight)//gets called upon recipe's completion
@@ -325,6 +324,11 @@ class CP_CraftCigarettePackBlackFrostEmpty extends RecipeBase
 		string PackName = ingredient1.GetcpJointPack(); 
 		
 		PackHolder = ItemBase.Cast(GetGame().CreateObject(PackName, PackHolder.GetPosition()));
+		
+		if( PackHolder )
+		{
+			PackHolder.SetQuantity( 1 );
+		}
 	}
 };
 
@@ -342,7 +346,7 @@ class CP_CraftCigarettePackBlackFrost extends RecipeBase
 		m_MinDamageIngredient[0] = -1;//-1 = disable check
 		m_MaxDamageIngredient[0] = 1;//-1 = disable check
 		
-		m_MinQuantityIngredient[0] = -1;//-1 = disable check
+		m_MinQuantityIngredient[0] = 1;//-1 = disable check
 		m_MaxQuantityIngredient[0] = -1;//-1 = disable check
 		
 		m_MinDamageIngredient[1] = -1;//-1 = disable check
@@ -358,8 +362,8 @@ class CP_CraftCigarettePackBlackFrost extends RecipeBase
 		InsertIngredient(0,"CP_JointBase");
 		m_IngredientAddHealth[0] = 0;// 0 = do nothing
 		m_IngredientSetHealth[0] = -1; // -1 = do nothing
-		m_IngredientAddQuantity[0] = 0;// 0 = do nothing
-		m_IngredientDestroy[0] = true;//true = destroy, false = do nothing
+		m_IngredientAddQuantity[0] = -1;// 0 = do nothing
+		m_IngredientDestroy[0] = false;//true = destroy, false = do nothing
 		m_IngredientUseSoftSkills[0] = false;// set 'true' to allow modification of the values by softskills on this ingredient
 		
 		//ingredient 2
