@@ -145,9 +145,9 @@ class CP_Workbench extends ItemBase
 	const string ATTACHMENT_SLOT_BATTERIES			= "LargeBattery";
 	const string ATTACHMENT_SLOT_PLASTICWRAP		= "CP_PlasticRoll";
 	const string ATTACHMENT_SLOT_EMPTYBAGS          = "CP_Empty_Bags";
-	const string ATTACHMENT_SLOT_BUDS 				= "CP_Cannabus_Buds";
-	const string ATTACHMENT_SLOT_BAGS				= "CP_Cannabus_Bags";
-	const string ATTACHMENT_SLOT_BRICKS 			= "CP_Cannabus_Bricks";
+	const string ATTACHMENT_SLOT_BUDS 				= "CP_Cannabis_Buds";
+	const string ATTACHMENT_SLOT_BAGS				= "CP_Cannabis_Bags";
+	const string ATTACHMENT_SLOT_BRICKS 			= "CP_Cannabis_Bricks";
 	
 	/*///////////////////////////////////////////////////////////////////
 	////					Start of Config Control                 /////
@@ -235,12 +235,12 @@ class CP_Workbench extends ItemBase
 
 	
 		
-	CP_CannabisBud GetCannibusBud()
+	CP_CannabisBud GetCannabisBud()
 	{
 		return CP_CannabisBud.Cast( FindAttachmentBySlotName( ATTACHMENT_SLOT_BUDS ) );
 	};
 
-	CP_CannabisBags GetCannibusBags()
+	CP_CannabisBags GetCannabisBags()
 	{
 		return CP_CannabisBags.Cast(FindAttachmentBySlotName( ATTACHMENT_SLOT_BAGS ) );
 	};
@@ -253,7 +253,7 @@ class CP_Workbench extends ItemBase
 	{
 		return CP_PlasticRoll.Cast(FindAttachmentBySlotName(ATTACHMENT_SLOT_PLASTICWRAP) );
 	};
-	CP_CannabisBrickBase GetCannibusBricks()
+	CP_CannabisBrickBase GetCannabisBricks()
 	{
 		return CP_CannabisBrickBase.Cast(FindAttachmentBySlotName( ATTACHMENT_SLOT_BRICKS ) );
 	};
@@ -285,10 +285,10 @@ class CP_Workbench extends ItemBase
 	
 	string GetBagTendancyText()
 	{
-		if(!GetCannibusBud())
+		if(!GetCannabisBud())
 			return "";
 		
-		string BagName = GetCannibusBud().GetDisplayName();
+		string BagName = GetCannabisBud().GetDisplayName();
 
 		
         return "Fill bag with " + BagName;
@@ -297,10 +297,10 @@ class CP_Workbench extends ItemBase
 	
 	string GetBrickTendancyText()
 	{
-		if(!GetCannibusBags())
+		if(!GetCannabisBags())
 			return "";
 		
-		string Brickname = GetCannibusBags().GetDisplayName();
+		string Brickname = GetCannabisBags().GetDisplayName();
 
 		
         return "Wrap " + Brickname;
@@ -381,7 +381,7 @@ class CP_Workbench extends ItemBase
 
 	bool EnabledStop()
 	{
-		if(CP_TimerisRunning == true)
+		if(CP_TimerisRunning == false)
 		{
 			return true;
 		}
@@ -405,7 +405,7 @@ class CP_Workbench extends ItemBase
 
 	bool CanCreateBags()
 	{
-        if ((GetCannibusBud() && GetCannibusBud().GetQuantity() >= 2) && (GetEmptyBags() && GetEmptyBags().GetQuantity() > 0) && (!GetCannibusBags() || GetCannibusBags().GetQuantity() < 160))
+        if ((GetCannabisBud() && GetCannabisBud().GetQuantity() >= 2) && (GetEmptyBags() && GetEmptyBags().GetQuantity() > 0) && (!GetCannabisBags() || GetCannabisBags().GetQuantity() < 160))
         {
             return true;
         }
@@ -417,7 +417,7 @@ class CP_Workbench extends ItemBase
 	
 	bool CanCreateBricks()
 	{
-		if(GetCannibusBags() && GetCannibusBags().GetQuantity() >= 16 && GetCannibusBricks().GetQuantity() < 25 && GetPlasticRoll() && GetPlasticRoll().GetQuantity() > 5)
+		if(GetCannabisBags() && GetCannabisBags().GetQuantity() >= 16 && GetCannabisBricks().GetQuantity() < 25 && GetPlasticRoll() && GetPlasticRoll().GetQuantity() > 5)
 		{
 			return true;
 		}
@@ -500,31 +500,31 @@ class CP_Workbench extends ItemBase
 
     void CreateBags()
     {
-        ItemBase CannabisBud = GetCannibusBud();
+        ItemBase CannabisBud = GetCannabisBud();
         ItemBase EmptyBags = GetEmptyBags();
         ItemBase Batteries = GetBattieries();
         
-        if(!GetCannibusBud())
+        if(!GetCannabisBud())
             return;
         
-        string Bagname = GetCannibusBud().GetcpBag(); 
+        string Bagname = GetCannabisBud().GetcpBag(); 
         
         if (BatteryRequired == 1)
         {
             if (GetBattieries().GetCompEM().GetEnergy() >= Battery_Percent)
             {
-                if(GetCannibusBud().GetQuantity() >= 2)
+                if(GetCannabisBud().GetQuantity() >= 2)
                 {        
-                    if(!GetCannibusBags())
+                    if(!GetCannabisBags())
                     {
                         Print("Creating attachment.");
 						GetInventory().SetSlotLock(InventorySlots.GetSlotIdFromString(ATTACHMENT_SLOT_BAGS), false);
                         GetInventory().CreateAttachment(Bagname);
                         GetInventory().SetSlotLock(InventorySlots.GetSlotIdFromString(ATTACHMENT_SLOT_BAGS), true);
                     }
-                    else if (GetCannibusBags() && GetCannibusBags().GetType() == Bagname)
+                    else if (GetCannabisBags() && GetCannabisBags().GetType() == Bagname)
                     {
-                        GetCannibusBags().AddQuantity(1); 
+                        GetCannabisBags().AddQuantity(1); 
                         Print("Adding quantity.");
                     }
                     else
@@ -542,18 +542,18 @@ class CP_Workbench extends ItemBase
         }
         else if(BatteryRequired == 0)
         {
-                if(GetCannibusBud().GetQuantity() >= 2)
+                if(GetCannabisBud().GetQuantity() >= 2)
                 {        
-                    if(!GetCannibusBags())
+                    if(!GetCannabisBags())
                     {
                         Print("Creating attachment.");
 						GetInventory().SetSlotLock(InventorySlots.GetSlotIdFromString(ATTACHMENT_SLOT_BAGS), false);
                         GetInventory().CreateAttachment(Bagname);
                         GetInventory().SetSlotLock(InventorySlots.GetSlotIdFromString(ATTACHMENT_SLOT_BAGS), true);
                     }
-                    else if (GetCannibusBags() && GetCannibusBags().GetType() == Bagname)
+                    else if (GetCannabisBags() && GetCannabisBags().GetType() == Bagname)
                     {
-                        GetCannibusBags().AddQuantity(1); 
+                        GetCannabisBags().AddQuantity(1); 
                         Print("Adding quantity.");
                     }
                     else
@@ -570,27 +570,27 @@ class CP_Workbench extends ItemBase
 
 	void CreateBricks()
 	{
-		ItemBase CannabisBag = GetCannibusBags();
+		ItemBase CannabisBag = GetCannabisBags();
 		ItemBase PlasticWrap = GetPlasticRoll();
 		ItemBase Batteries = GetBattieries();
 		
-		if(!GetCannibusBags())
+		if(!GetCannabisBags())
 			return;
 		
-		string Brickname = GetCannibusBags().GetcpBrick(); 
+		string Brickname = GetCannabisBags().GetcpBrick(); 
 		
 		if(BatteryRequired == 1)
 		{
 		
-			if(GetCannibusBags().GetQuantity() >= BagsToBricksUsage && GetPlasticRoll().GetQuantity() >= PlaticWrap_Percent)
+			if(GetCannabisBags().GetQuantity() >= BagsToBricksUsage && GetPlasticRoll().GetQuantity() >= PlaticWrap_Percent)
 			{
-				if(!GetCannibusBricks())
+				if(!GetCannabisBricks())
 				{
 					GetInventory().CreateAttachment(Brickname);
 				}
-				else if (GetCannibusBricks() && GetCannibusBricks().GetType() == Brickname)
+				else if (GetCannabisBricks() && GetCannabisBricks().GetType() == Brickname)
 				{
-					GetCannibusBricks().AddQuantity(1); 
+					GetCannabisBricks().AddQuantity(1); 
 				}
 				else
 				{
@@ -603,16 +603,16 @@ class CP_Workbench extends ItemBase
 		}
 	    else if(BatteryRequired == 0)
 		{
-			if(GetCannibusBags().GetQuantity() >= BagsToBricksUsage && GetPlasticRoll().GetQuantity() >= PlaticWrap_Percent)
+			if(GetCannabisBags().GetQuantity() >= BagsToBricksUsage && GetPlasticRoll().GetQuantity() >= PlaticWrap_Percent)
 			{
 		
-				if(!GetCannibusBricks())
+				if(!GetCannabisBricks())
 				{
 					GetInventory().CreateAttachment(Brickname);
 				}
-				else if (GetCannibusBricks() && GetCannibusBricks().GetType() == Brickname)
+				else if (GetCannabisBricks() && GetCannabisBricks().GetType() == Brickname)
 				{
-					GetCannibusBricks().AddQuantity(1); 
+					GetCannabisBricks().AddQuantity(1); 
 				}
 				else
 				{
@@ -626,14 +626,14 @@ class CP_Workbench extends ItemBase
 	
 	void DeleteAttachmentsifEmpty()
 	{
-		if(GetCannibusBud() || GetEmptyBags())
+		if(GetCannabisBud() || GetEmptyBags())
 		{
-			if(GetCannibusBud().GetQuantity() < 1)
+			if(GetCannabisBud().GetQuantity() < 1)
 			{
-				ItemBase Buds = GetCannibusBud();
+				ItemBase Buds = GetCannabisBud();
 
 				Buds.SetQuantity(0);
-				//GetGame().ObjectDelete(GetCannibusBud() );
+				//GetGame().ObjectDelete(GetCannabisBud() );
 			}
 			else if(GetEmptyBags().GetQuantity() < 1)
 			{
@@ -726,7 +726,7 @@ class CP_Workbench extends ItemBase
 	
 	bool BaggerOccupied()
 	{
-		if ( GetBagger() && ( GetEmptyBags() || GetCannibusBud() || GetCannibusBags() ) )
+		if ( GetBagger() && ( GetEmptyBags() || GetCannabisBud() || GetCannabisBags() ) )
 			return true;
 
 		return false;
@@ -734,7 +734,7 @@ class CP_Workbench extends ItemBase
 
 	bool WrapperOccupied()
 	{
-		if ( GetWrapper() && ( GetCannibusBags() || GetPlasticRoll() )   )
+		if ( GetWrapper() && ( GetCannabisBags() || GetPlasticRoll() )   )
 			return true;
 			
 		return false;
@@ -883,7 +883,7 @@ class CP_Workbench extends ItemBase
 	{	
 		if ( category_name == "CP_Machines")
 			return true;
-		else if ( category_name == "CP_Wrapper" && ( Wrapper_Attached() || ( GetBagger() && GetCannibusBags() ) ) )
+		else if ( category_name == "CP_Wrapper" && ( Wrapper_Attached() || ( GetBagger() && GetCannabisBags() ) ) )
 			return true;
 		else if ( category_name == "CP_Bagger" && Bagger_Attached() )
 			return true;
@@ -896,7 +896,7 @@ class CP_Workbench extends ItemBase
 		if (!super.CanDisplayAttachmentSlot(slot_name))
 			return false;
 		
-		if ( slot_name == "CP_Cannabus_Bags" )
+		if ( slot_name == "CP_Cannabis_Bags" )
 		{
 			if ( Bagger_Attached() )
 			{

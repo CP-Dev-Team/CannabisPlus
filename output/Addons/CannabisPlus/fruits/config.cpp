@@ -48,7 +48,7 @@ class CfgVehicles
 		varQuantityMin=0;
 		varQuantityMax=100;
 		varStackMax=2;
-		inventorySlot[]={"DryPlant","CP_Cannabus_Buds"};
+		inventorySlot[]={"DryPlant","CP_Cannabis_Buds"};
 		cpStepUpToBag="";
 		cpStepUpToJoint="";
 		hiddenSelections[]=

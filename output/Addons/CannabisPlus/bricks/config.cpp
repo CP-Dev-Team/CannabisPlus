@@ -42,7 +42,7 @@ class CfgVehicles
 		varQuantityMin=0;
 		varQuantityMax=25;
 		varStackMax=1;
-		inventorySlot[]={"CP_Cannabus_Bricks"};
+		inventorySlot[]={"CP_Cannabis_Bricks"};
 		cpStepDownToBag="";
 		hiddenSelections[]=
 		{

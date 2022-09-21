@@ -18,7 +18,7 @@ class CfgNonAIVehicles
 	class Proxycannabis_seedman : ProxyAttachment
     {
 		scope = 2;
-		inventorySlot="CP_Cannabus_Buds";
+		inventorySlot="CP_Cannabis_Buds";
 		model="DZ\gear\food\cannabis_seedman.p3d";
     };
 	class ProxyPlasticWrapper : ProxyAttachment
@@ -44,12 +44,12 @@ class CfgNonAIVehicles
     };
 	class ProxyCP_Proxybaggy : ProxyAttachment
     {
-		inventorySlot="CP_Cannabus_Bags";
+		inventorySlot="CP_Cannabis_Bags";
 		model="CannabisPlus\bags\Proxies\CP_Proxybaggy.p3d";
     };
 	class ProxyCP_brick : ProxyAttachment
     {
-		inventorySlot="CP_Cannabus_Bricks";
+		inventorySlot="CP_Cannabis_Bricks";
 		model="CannabisPlus\bricks\CP_brick.p3d";
     };
 	class Proxybattery_truck : ProxyAttachment
@@ -126,9 +126,9 @@ class CfgVehicles
 			"LargeBattery",
 			"CP_Empty_Bags",
 			"CP_PlasticRoll",
-			"CP_Cannabus_Buds",
-			"CP_Cannabus_Bags",
-			"CP_Cannabus_Bricks",
+			"CP_Cannabis_Buds",
+			"CP_Cannabis_Bags",
+			"CP_Cannabis_Bricks",
 			"Truck_01_WoodenCrate1"
 		};
 		class GUIInventoryAttachmentsProps
@@ -153,7 +153,7 @@ class CfgVehicles
 				attachmentSlots[]=
 				{
 					"CP_Empty_Bags",
-					"CP_Cannabus_Buds"
+					"CP_Cannabis_Buds"
 				};
 				icon="set:BuildingFortIcons image:WindowBarricade";
 			};
@@ -164,8 +164,8 @@ class CfgVehicles
 				attachmentSlots[]=
 				{
 					"CP_PlasticRoll",
-					"CP_Cannabus_Bags",
-					"CP_Cannabus_Bricks"
+					"CP_Cannabis_Bags",
+					"CP_Cannabis_Bricks"
 				};
 				icon="set:BuildingFortIcons image:WindowBarricade";
 			};

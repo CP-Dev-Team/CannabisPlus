@@ -47,7 +47,7 @@ class CfgVehicles
 		};
 		inventorySlot[]=
 		{
-			"CP_Cannabus_Bags"
+			"CP_Cannabis_Bags"
 		};
 		cpStepUpToBrick="";
 		cpStepDownToBud="";
