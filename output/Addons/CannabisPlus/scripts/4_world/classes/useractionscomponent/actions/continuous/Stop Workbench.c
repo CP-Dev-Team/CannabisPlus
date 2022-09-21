@@ -37,7 +37,7 @@ class ActionStopCPWorkbench : ActionContinuousBase
 		
 		CP_Workbench Bench = CP_Workbench.Cast( target_object );
 		
-		if( Bench && Bench.EnabledStop() == true)
+		if( Bench && Bench.RunningOrNot() == true)
 		{
 			return true;
 		}
