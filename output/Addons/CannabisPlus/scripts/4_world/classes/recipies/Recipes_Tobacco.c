@@ -86,9 +86,9 @@ class CP_CraftCigarettePackChernamorka extends RecipeBase
 		
 		//conditions
 		m_MinDamageIngredient[0] = -1;//-1 = disable check
-		m_MaxDamageIngredient[0] = -1;//-1 = disable check
+		m_MaxDamageIngredient[0] = 0;//-1 = disable check
 		
-		m_MinQuantityIngredient[0] = 500;//-1 = disable check
+		m_MinQuantityIngredient[0] = 1;//-1 = disable check
 		m_MaxQuantityIngredient[0] = -1;//-1 = disable check
 		
 		m_MinDamageIngredient[1] = -1;//-1 = disable check
@@ -113,7 +113,7 @@ class CP_CraftCigarettePackChernamorka extends RecipeBase
 		InsertIngredient(1, "CigarettePack_Chernamorka");
 		m_IngredientAddHealth[1] = 0;// 0 = do nothing
 		m_IngredientSetHealth[1] = -1; // -1 = do nothing
-		m_IngredientAddQuantity[1] = 0;// 0 = do nothing
+		m_IngredientAddQuantity[1] = 1;// 0 = do nothing
 		m_IngredientDestroy[1] = false;// false = do nothing
 		m_IngredientUseSoftSkills[1] = false;// set 'true' to allow modification of the values by softskills on this ingredient
 		//----------------------------------------------------------------------------------------------------------------------
@@ -135,24 +135,11 @@ class CP_CraftCigarettePackChernamorka extends RecipeBase
 
 	override bool CanDo(ItemBase ingredients[], PlayerBase player)//final check for recipe's validity
     {
-		ItemBase item;
-		ItemBase pack;
-		Class.CastTo(item ,ingredients[0]);
-		Class.CastTo(pack, ingredients[1]);
-		
-        if( pack.GetQuantity() == 5 || item.GetDamage() > 0) {
-			return false;			
-		} else {
-			return true;
-		} 	
+		return true;
     }
 
     override void Do(ItemBase ingredients[], PlayerBase player,array<ItemBase> results, float specialty_weight)//gets called upon recipe's completion
     {
-        ItemBase ingredient1;
-        Class.CastTo(ingredient1, ingredients[1]);
-        ingredient1.AddQuantity(1);
-        
         Debug.Log("Recipe Do method called","recipes");
     }
 };
@@ -170,7 +157,7 @@ class CP_CraftCigarettePackMerkurEmpty extends RecipeBase
 		m_MinDamageIngredient[0] = -1;//-1 = disable check
 		m_MaxDamageIngredient[0] = -1;//-1 = disable check
 		
-		m_MinQuantityIngredient[0] = 500;//-1 = disable check
+		m_MinQuantityIngredient[0] = 1;//-1 = disable check
 		m_MaxQuantityIngredient[0] = -1;//-1 = disable check
 		
 		m_MinDamageIngredient[1] = -1;//-1 = disable check
@@ -243,10 +230,11 @@ class CP_CraftCigarettePackMerkur extends RecipeBase
 		
 		
 		//conditions
+		//conditions
 		m_MinDamageIngredient[0] = -1;//-1 = disable check
-		m_MaxDamageIngredient[0] = -1;//-1 = disable check
+		m_MaxDamageIngredient[0] = 0;//-1 = disable check
 		
-		m_MinQuantityIngredient[0] = 500;//-1 = disable check
+		m_MinQuantityIngredient[0] = 1;//-1 = disable check
 		m_MaxQuantityIngredient[0] = -1;//-1 = disable check
 		
 		m_MinDamageIngredient[1] = -1;//-1 = disable check
@@ -271,7 +259,7 @@ class CP_CraftCigarettePackMerkur extends RecipeBase
 		InsertIngredient(1, "CigarettePack_Merkur");
 		m_IngredientAddHealth[1] = 0;// 0 = do nothing
 		m_IngredientSetHealth[1] = -1; // -1 = do nothing
-		m_IngredientAddQuantity[1] = 0;// 0 = do nothing
+		m_IngredientAddQuantity[1] = 1;// 0 = do nothing
 		m_IngredientDestroy[1] = false;// false = do nothing
 		m_IngredientUseSoftSkills[1] = false;// set 'true' to allow modification of the values by softskills on this ingredient
 		//----------------------------------------------------------------------------------------------------------------------
@@ -293,24 +281,11 @@ class CP_CraftCigarettePackMerkur extends RecipeBase
 
 	override bool CanDo(ItemBase ingredients[], PlayerBase player)//final check for recipe's validity
     {
-		ItemBase item;
-		ItemBase pack;
-		Class.CastTo(item ,ingredients[0]);
-		Class.CastTo(pack, ingredients[1]);
-		
-        if( pack.GetQuantity() == 5 || item.GetDamage() > 0) {
-			return false;			
-		} else {
-			return true;
-		} 
+		return true;
     }
 
     override void Do(ItemBase ingredients[], PlayerBase player,array<ItemBase> results, float specialty_weight)//gets called upon recipe's completion
     {
-        ItemBase ingredient1;
-        Class.CastTo(ingredient1, ingredients[1]);
-        ingredient1.AddQuantity(1);
-        
         Debug.Log("Recipe Do method called","recipes");
     }
 };
@@ -403,9 +378,9 @@ class CP_CraftCigarettePackPartyzanka extends RecipeBase
 		
 		//conditions
 		m_MinDamageIngredient[0] = -1;//-1 = disable check
-		m_MaxDamageIngredient[0] = -1;//-1 = disable check
+		m_MaxDamageIngredient[0] = 0;//-1 = disable check
 		
-		m_MinQuantityIngredient[0] = 500;//-1 = disable check
+		m_MinQuantityIngredient[0] = 1;//-1 = disable check
 		m_MaxQuantityIngredient[0] = -1;//-1 = disable check
 		
 		m_MinDamageIngredient[1] = -1;//-1 = disable check
@@ -430,7 +405,7 @@ class CP_CraftCigarettePackPartyzanka extends RecipeBase
 		InsertIngredient(1, "CigarettePack_Partyzanka");
 		m_IngredientAddHealth[1] = 0;// 0 = do nothing
 		m_IngredientSetHealth[1] = -1; // -1 = do nothing
-		m_IngredientAddQuantity[1] = 0;// 0 = do nothing
+		m_IngredientAddQuantity[1] = 1;// 0 = do nothing
 		m_IngredientDestroy[1] = false;// false = do nothing
 		m_IngredientUseSoftSkills[1] = false;// set 'true' to allow modification of the values by softskills on this ingredient
 		//----------------------------------------------------------------------------------------------------------------------
@@ -452,24 +427,11 @@ class CP_CraftCigarettePackPartyzanka extends RecipeBase
 
 	override bool CanDo(ItemBase ingredients[], PlayerBase player)//final check for recipe's validity
     {
-		ItemBase item;
-		ItemBase pack;
-		Class.CastTo(item ,ingredients[0]);
-		Class.CastTo(pack, ingredients[1]);
-		
-        if( pack.GetQuantity() == 5 || item.GetDamage() > 0) {
-			return false;			
-		} else {
-			return true;
-		} 
+		return true;
     }
 
     override void Do(ItemBase ingredients[], PlayerBase player,array<ItemBase> results, float specialty_weight)//gets called upon recipe's completion
     {
-        ItemBase ingredient1;
-        Class.CastTo(ingredient1, ingredients[1]);
-        ingredient1.AddQuantity(1);
-        
         Debug.Log("Recipe Do method called","recipes");
     }
 };

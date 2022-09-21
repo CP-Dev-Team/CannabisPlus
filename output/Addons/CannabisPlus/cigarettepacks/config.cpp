@@ -41,7 +41,7 @@ class CfgVehicles
 		canBeSplit=0;
 		varQuantityInit=0;
 		varQuantityMin=0;
-		varQuantityMax=20;
+		varQuantityMax=0;
 		varQuantityDestroyOnMin=0;
 		quantityBar=1;
 		cpCheckPack="";
@@ -119,7 +119,7 @@ class CfgVehicles
 		itemSize[]={1,1};
 		weight=50;
 		canBeSplit=0;
-		varQuantityInit=1;
+		varQuantityInit=20;
 		varQuantityMin=1;
 		varQuantityMax=20;
 		varQuantityDestroyOnMin=0;
@@ -194,8 +194,9 @@ class CfgVehicles
 		scope=2;
 		displayName="Chernamorka Cigarettes";
 		descriptionShort="A pack of finest Chernamorka Cigarettes";
-		varQuantityInit=1;
+		varQuantityInit=20;
 		varQuantityMin=1;
+		varQuantityMax=20;
 		hiddenSelections[]=
 		{
 			"camoGround",
@@ -212,8 +213,9 @@ class CfgVehicles
 		scope=2;
 		displayName="Merkur Cigarettes";
 		descriptionShort="A pack of finest Merkur Cigarettes";
-		varQuantityInit=1;
+		varQuantityInit=20;
 		varQuantityMin=1;
+		varQuantityMax=20;
 		hiddenSelections[]=
 		{
 			"camoGround",
@@ -230,8 +232,9 @@ class CfgVehicles
 		scope=2;
 		displayName="Partyzanka Cigarettes";
 		descriptionShort="A pack of finest Partyzanka Cigarettes";
-		varQuantityInit=1;
+		varQuantityInit=20;
 		varQuantityMin=1;
+		varQuantityMax=20;
 		hiddenSelections[]=
 		{
 			"camoGround",
