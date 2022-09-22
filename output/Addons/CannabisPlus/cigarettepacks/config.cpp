@@ -111,7 +111,7 @@ class CfgVehicles
 	};
 	class CP_JointPack: Inventory_Base
 	{
-		scope=2;
+		scope=0;
 		displayName="Empty Cigarettespack";
 		descriptionShort="Looking shaby but still usable";
 		model="\dz\gear\medical\cigarette_pack.p3d";

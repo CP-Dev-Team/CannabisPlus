@@ -27,7 +27,7 @@ class CfgVehicles
 
 	class CP_CannabisBags:Inventory_Base
 	{
-		scope=1;
+		scope=0;
 		displayName="base bag";
 		descriptionShort="Ignore me , Ignore me";
 		model="CannabisPlus\bags\CP_baggy.p3d";

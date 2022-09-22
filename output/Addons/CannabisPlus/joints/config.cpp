@@ -18,7 +18,7 @@ class CfgVehicles
 	class Inventory_Base;
 	class CP_JointBase: Inventory_Base
 	{
-		scope=2;
+		scope=0;
 		displayName="Skunk Joint";
 		descriptionShort="A joint made out of finest Skunk weed";
 		model="\CannabisPlus\joints\CP_joint.p3d";

@@ -27,14 +27,14 @@ class CfgVehicles
 	class Inventory_Base;
 	class CP_CoreClass:Inventory_Base
 	{
-		scope=2;
+		scope=0;
 		displayName="";
 		descriptionShort="";
 	}
 	
 	class CP_CannabisBud: Inventory_Base
 	{
-		scope=2;
+		scope=0;
 		displayName="Base base base";
 		descriptionShort="Base bud";
 		model="\dz\gear\food\cannabis_seedman.p3d";

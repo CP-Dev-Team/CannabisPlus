@@ -26,7 +26,7 @@ class CfgVehicles
 	class Container_Base;
 	class CP_CannabisBrickBase: Container_Base
 	{
-		scope=2;
+		scope=0;
 		displayName="Brick Base";
 		descriptionShort="Base";
 		model="CannabisPlus\bricks\CP_brick.p3d";
