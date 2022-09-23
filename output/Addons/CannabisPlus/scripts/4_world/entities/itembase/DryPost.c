@@ -149,11 +149,11 @@ class CP_DryPost extends ItemBase
 		return false;
 	};
 	
-	CP_RawSkunkCannabisPlant  GetCannibisBase()
+	CP_RawSkunkCannabisPlant  GetCannabisBase()
     {
 		return CP_RawSkunkCannabisPlant.Cast( GetAttachmentByType (CP_RawSkunkCannabisPlant) );
     };
-	CP_DriedCannabisPlant  GetCannibisDried()
+	CP_DriedCannabisPlant  GetCannabisDried()
     {
 		return CP_DriedCannabisPlant.Cast( GetAttachmentByType (CP_DriedCannabisPlant) );
     };
@@ -327,8 +327,8 @@ class CP_DryPost extends ItemBase
 			}
 			if( i >= 1)
 			{
-				GetCannibisDried().AddQuantity( i );
-				Print("[CP] " + this + " spawning CP_DriedCannabisPlant");
+				GetCannabisDried().AddQuantity( i );
+				Print("[CP] " + this + " spawning "+CP_DriedCannabisPlant );
 
 				Print("Created Dried plant = " + i)
 					

@@ -161,7 +161,7 @@ class CP_DryPost extends ItemBase
 		return false;
     }
 	
-	CP_RawSkunkCannabisPlant  GetCannibisBase()
+	CP_RawSkunkCannabisPlant  GetCannabisBase()
 	{
       	return CP_RawSkunkCannabisPlant.Cast( GetAttachmentByType (CP_RawSkunkCannabisPlant) );
 	};

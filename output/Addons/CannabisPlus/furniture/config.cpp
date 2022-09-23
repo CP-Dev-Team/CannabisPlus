@@ -277,7 +277,7 @@ class CfgVehicles
 
 	class CP_RawPlantBase : Inventory_Base
     {
-        scope = 2;
+        scope = 0;
 		displayName = "CorePlant";
 		descriptionShort = "CorePlant";
 		model="\CannabisPlus\furniture\CannabisPlantHanging.p3d";
