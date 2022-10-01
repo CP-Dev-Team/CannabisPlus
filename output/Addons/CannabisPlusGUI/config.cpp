@@ -50,23 +50,23 @@ class CfgSlots
           ghostIcon="set:CP_GhostImages image:Bagger";
     };
 	
-    class Slot_CP_Cannabus_Buds
+    class Slot_CP_Cannabis_Buds
     {
-        name="CP_Cannabus_Buds";
+        name="CP_Cannabis_Buds";
         displayName="Buds Storage";
         ghostIcon="set:dayz_inventory image:plant";
 		stackMax=100;
     };	
-    class Slot_CP_Cannabus_Bags
+    class Slot_CP_Cannabis_Bags
     {
-          name="CP_Cannabus_Bags";
+          name="CP_Cannabis_Bags";
           displayName="Bags";
           ghostIcon="missing";
           stackMax=160;
     };
-	class Slot_CP_Cannabus_Bricks
+	class Slot_CP_Cannabis_Bricks
     {
-        name="CP_Cannabus_Bricks";
+        name="CP_Cannabis_Bricks";
         displayName="Bricks Storage";
         ghostIcon="set:dayz_inventory image:plant";
 		stackMax=25;
