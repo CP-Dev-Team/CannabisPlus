@@ -116,7 +116,7 @@ class CfgVehicles
 		descriptionShort="Used to place a dry post.";
 		model="\CannabisPlus\furniture\DryPostKit.p3d";
 		weight=300;
-		rotationFlags=17;
+		rotationFlags=2;
 		itemSize[]={1,4};
 		itemBehaviour=1;
 		attachments[]=

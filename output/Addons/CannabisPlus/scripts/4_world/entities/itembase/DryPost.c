@@ -104,7 +104,7 @@ class CP_DryPost extends ItemBase
 	        
 		if (slot_name == "Rope")
 		{    				
-			SetAnimationPhase ("Rope", 0);  // Shows the rope on the model when rope is attached.+
+			SetAnimationPhase ("Rope", 0);  // Shows the rope on the model when rope is attached.
 			RopeAttached = true;
 		} 
 		if (slot_name == "DriedPlantPile")
@@ -119,7 +119,7 @@ class CP_DryPost extends ItemBase
 		
 		if (slot_name == "Rope")
 		{    				
-			SetAnimationPhase ("Rope", 1);  // Shows the rope on the model when rope is attached.+
+			SetAnimationPhase ("Rope", 1);  // Hides the rope on the model when rope is attached.
 			RopeAttached = false;
 		}
 		if (slot_name == "DriedPlantPile")
@@ -409,7 +409,7 @@ class CP_DryPost extends ItemBase
             {
                 if (Class.CastTo(item, GetInventory().FindAttachment(plant_slots.Get(j) )))
                 {
-                      item.UnlockFromParent(); //I don't think this is the right function
+                      item.UnlockFromParent(); //I don't think this is the right function.  ToDo>> Ice: I agree.  Can't UnlockFromParent since the RawCannabisPlant is deleted and thus you can't have a "Parent" of nothing.  Need to unlock by slotID.
                 }
             }
         }
