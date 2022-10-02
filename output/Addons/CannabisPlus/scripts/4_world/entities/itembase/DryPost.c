@@ -365,7 +365,7 @@ class CP_DryPost extends ItemBase
 					Print("[CP] deleting " + attachment);
 					GetGame().ObjectDelete(attachment);	
 				}	
-	        	}
+	        }
 	
 			NumPlants = 0;
 			BudSpawn.Clear();
@@ -387,21 +387,20 @@ class CP_DryPost extends ItemBase
 	{
 		return "woodenlog_drop_SoundSet";
 	}
-	
+
 	void LockDryingSlots(bool do_lock)
     {
 		ItemBase item;
+		
         if (do_lock)
         {
-
             for (int p = 0; p < plant_slots.Count(); p++)
             {
                 if (Class.CastTo(item, GetInventory().FindAttachment(plant_slots.Get(p) )))
                 {
-                      item.LockToParent();
+                      item.LockToParent();  // ToDo: Need to lock ALL slots by SlotID, not just occupied slots.  See Issue#20
                 }
             }
-
         }
         else
         {
@@ -409,7 +408,7 @@ class CP_DryPost extends ItemBase
             {
                 if (Class.CastTo(item, GetInventory().FindAttachment(plant_slots.Get(j) )))
                 {
-                      item.UnlockFromParent(); //I don't think this is the right function.  ToDo>> Ice: I agree.  Can't UnlockFromParent since the RawCannabisPlant is deleted and thus you can't have a "Parent" of nothing.  Need to unlock by slotID.
+                      item.UnlockFromParent(); // ToDo: I don't think this is the right function.  >> Ice: I agree.  Can't UnlockFromParent since the RawCannabisPlant is deleted and thus you can't have a "Parent" of nothing.  Need to unlock by slotID.
                 }
             }
         }
