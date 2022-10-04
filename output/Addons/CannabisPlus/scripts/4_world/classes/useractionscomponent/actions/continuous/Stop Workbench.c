@@ -41,6 +41,7 @@ class ActionStopCPWorkbench : ActionContinuousBase
 		{
 			return true;
 		}
+		
 		return false;
 	};
 

@@ -184,6 +184,7 @@ class CP_Workbench extends ItemBase
 	
 	// timer to get bagger working
 	protected ref Timer m_CP_Processing;
+	protected ref Timer m_CP_ProcessingCheck;
 
 	protected bool CP_TimerisRunning
 	protected bool CP_TimerIsPaused
@@ -209,6 +210,8 @@ class CP_Workbench extends ItemBase
 	{
 		if ( m_CP_Processing )
 			delete m_CP_Processing;
+		if (m_CP_ProcessingCheck)
+		    delete m_CP_ProcessingCheck;
 	};
 
 	override void AfterStoreLoad()
@@ -311,6 +314,7 @@ class CP_Workbench extends ItemBase
 	{		
 		if(m_CP_Processing && m_CP_Processing.IsRunning())
 			return;
+
 		Print("Processing is ongoing.");
 		Print("Is Running not canceled" + m_CP_Processing);
 		
@@ -337,7 +341,21 @@ class CP_Workbench extends ItemBase
 
 		UpdateLockState();
 	};
-
+	void End_Processing(float actiontime)
+	{
+		if( m_CP_ProcessingCheck.IsRunning())
+		   return;
+		if (!m_CP_Processing.IsRunning()  && !m_CP_ProcessingCheck)
+		{
+			m_CP_ProcessingCheck = new Timer;
+			m_CP_ProcessingCheck.Run(actiontime,this,"Do_Timer_ProcessingCheck",NULL,false);
+		}
+		else
+		{
+		   m_CP_ProcessingCheck.Run(actiontime,this,"Do_Timer_ProcessingCheck",NULL,false);
+		};
+		
+    };
 		
 	void PauseOrResume()
 	{
@@ -398,12 +416,20 @@ class CP_Workbench extends ItemBase
 		SetSynchDirty();
 		if(!m_CP_Processing.IsRunning())
 		{
+
+			
 		    Print("StopProduction() executed.");
 			Print("m_CP_Processing is deleted " + m_CP_Processing);
 		}
 
 	};
+	void KillProductionCheckTimer()
+	{
+		m_CP_ProcessingCheck.Stop();
 
+		SetSynchDirty();
+
+	};
 	bool CanCreateBags()
 	{
         if ((GetCannabisBud() && GetCannabisBud().GetQuantity() >= 2) && (GetEmptyBags() && GetEmptyBags().GetQuantity() > 0) && (!GetCannabisBags() || GetCannabisBags().GetQuantity() < 160))
@@ -425,7 +451,13 @@ class CP_Workbench extends ItemBase
 		else
 			return false;
 	};
-
+		
+    void Do_Timer_ProcessingCheck()
+	{
+	  StopProduction();
+	  KillProductionCheckTimer();
+    };
+	
 	void Do_processing()
 	{
 		if(BatteryRequired == 1)
@@ -452,15 +484,10 @@ class CP_Workbench extends ItemBase
 				else
 				{
 					m_CP_Processing.Stop();
-					CP_TimerisRunning = false;
-					CP_TimerIsPaused = false;
 					DeleteAttachmentsifEmpty();
 					UpdateLockState();
-					//StopProduction();
-					//CP_TimerisRunning = false;
-					//UpdateLockState();
+					End_Processing(1);
 					Print("Out of materials.");
-					//Print(m_CP_Processing)
 					SetSynchDirty();
 				}
 				//UpdateLockState();
@@ -486,16 +513,12 @@ class CP_Workbench extends ItemBase
 			}
 			else
 			{
-				m_CP_Processing.Stop();
-				CP_TimerisRunning = false;
-				CP_TimerIsPaused = false;
 				DeleteAttachmentsifEmpty();
 				UpdateLockState();
-				//StopProduction();
+				End_Processing(1);
 				//CP_TimerisRunning = false;
 				//UpdateLockState();
 				Print("Out of materials.");
-				delete m_CP_Processing;
 				SetSynchDirty();
 			}
 		};
