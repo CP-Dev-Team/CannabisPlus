@@ -33,7 +33,7 @@ class CfgVehicles
 		model="CannabisPlus\bags\CP_baggy.p3d";
 		rotationFlags=17;
 		canBeSplit=1;
-		varQuantityInit=1;
+		varQuantityInit=16;
 		varQuantityMin=0;
 		varQuantityMax=160;
 		varQuantityDestroyOnMin=1;
