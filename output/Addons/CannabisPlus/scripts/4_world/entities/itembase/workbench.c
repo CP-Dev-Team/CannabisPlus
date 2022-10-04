@@ -924,33 +924,26 @@ class CP_Workbench extends ItemBase
 		else
 			return false;
     };
-	/*
-	override bool CanDisplayAttachmentSlot( string slot_name )
+	
+	override bool CanDisplayAttachmentSlot( int slot_id )
 	{
-		if (!super.CanDisplayAttachmentSlot(slot_name))
-			return false;
+		//if (!super.CanDisplayAttachmentSlot(slot_id))
+			//return false;
 		
-		if ( slot_name == "CP_Cannabis_Bags" )
-		{
-			if ( Bagger_Attached() )
-			{
+		string slot_name = InventorySlots.GetSlotName(slot_id);
+		
+		if ( slot_name == "LargeBattery" ) {
+			if(BatteryRequired == 1) {
 				return true;
+				Print("Battery required")
+			} else {
+				return false;
+				Print("Battery not required.")
 			}
-			else
-			 return false;
-		}
-		if ( slot_name == "LargeBattery" )
-		{
-			if(BatteryRequired == true)
-			{
-				return true;
-			}
-			else
-			 return false;
 		}
 		return true;
 	}
-		*/
+
 	override bool IsElectricAppliance()
 	{
 		return true;
