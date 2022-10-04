@@ -551,6 +551,7 @@ class CP_Workbench extends ItemBase
                         Print("Creating attachment.");
 						GetInventory().SetSlotLock(InventorySlots.GetSlotIdFromString(ATTACHMENT_SLOT_BAGS), false);
                         GetInventory().CreateAttachment(Bagname);
+						GetCannabisBags().SetQuantity(1);
                         GetInventory().SetSlotLock(InventorySlots.GetSlotIdFromString(ATTACHMENT_SLOT_BAGS), true);
                     }
                     else if (GetCannabisBags() && GetCannabisBags().GetType() == Bagname)
