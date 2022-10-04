@@ -115,7 +115,8 @@ class CP_DryPost extends ItemBase
 		{
 			dp++;
 			Print("dp = " + dp);
-		}		
+		}
+		LockRope();
 	}
     
 	override void EEItemDetached(EntityAI item, string slot_name)
@@ -154,7 +155,8 @@ class CP_DryPost extends ItemBase
 			  dp = 0;
 			}
 			Print("dp = " + dp);
-		}		
+		}
+		LockRope();
 	}
 	
 	bool IsItemTypeAttached( typename item_type )
@@ -419,6 +421,21 @@ class CP_DryPost extends ItemBase
 		return "woodenlog_drop_SoundSet";
 	}
 
+	void LockRope()
+	{
+		ItemBase rope = ItemBase.Cast(FindAttachmentBySlotName("Rope"));
+
+		if ( HasAnyCargo() && GetInventory().AttachmentCount() > 1 )
+		{
+			if (rope)
+            {
+                rope.LockToParent();
+            } else {
+				rope.UnlockFromParent();
+			}
+		}
+	}
+	
 	void LockDryingSlots(bool do_lock)
     {
 		ItemBase item;
@@ -446,7 +463,7 @@ class CP_DryPost extends ItemBase
     };
 	void DisassembleKit(ItemBase item)
 	{
-		if (!IsHologram())
+		if (!IsHologram() && GetInventory().AttachmentCount() > 1 )
 		{
 			ItemBase Log = ItemBase.Cast(GetGame().CreateObjectEx("WoodenLog",GetPosition(),ECE_PLACE_ON_SURFACE));
 			MiscGameplayFunctions.TransferItemProperties(this, Log);
