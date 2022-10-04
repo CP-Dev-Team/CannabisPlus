@@ -12,7 +12,7 @@ class CP_DryPost extends ItemBase
 	string NewPlantName;
 	ref map<string, int> BudSpawn;
 	ItemBase attachment;
-	int i, j, k, p
+	int i, j, k, p, dp
 	EntityAI target
 	protected float Lock;
 	
@@ -110,6 +110,11 @@ class CP_DryPost extends ItemBase
 		if (slot_name == "DriedPlantPile")
 		{    				
 			SetAnimationPhase ("DryPile", 0);  // Shows the Pile when dried cannbis is put in dryed slot
+		}
+		if(item.IsKindOf("CP_RawPlantBase") && !item.IsKindOf("CP_DriedCannabisPlant"))
+		{
+			dp++;
+			Print("dp = " + dp);
 		}		
 	}
     
@@ -137,6 +142,18 @@ class CP_DryPost extends ItemBase
 				DisassembleKit(ItemBase.Cast(item));
 				Delete();
 			}
+		}
+		if(item.IsKindOf("CP_RawPlantBase") && !item.IsKindOf("CP_DriedCannabisPlant"))
+		{
+			if(dp > 0)
+			{
+				dp--;
+			}
+			else if (dp < 0)
+			{
+			  dp = 0;
+			}
+			Print("dp = " + dp);
 		}		
 	}
 	
@@ -325,14 +342,15 @@ class CP_DryPost extends ItemBase
 
 				}    
 			}
-			if( i >= 1)
+			if( dp >= 1)
 			{
-				GetCannabisDried().AddQuantity( i );
-				Print("[CP] " + this + " spawning "+CP_DriedCannabisPlant );
+				GetInventory().CreateAttachment("CP_DriedCannabisPlant");
+				GetCannabisDried().AddQuantity( dp );
+				Print("[CP] " + this + " spawning "+ CP_DriedCannabisPlant );
 
-				Print("Created Dried plant = " + i)
+				Print("Created Dried plant = " + dp);
 					
-				i = 0;  
+				dp = 0;  
 			}
 			Print("[CP] The plant has " + BudSpawn.Count() + " items");
 			
@@ -350,6 +368,7 @@ class CP_DryPost extends ItemBase
 		GetGame().GetCallQueue(CALL_CATEGORY_GAMEPLAY).CallLater(CleanUp, 500, false);
 		LockDryingSlots(false);
     }
+	
 
     void CleanUp()
 	{	
