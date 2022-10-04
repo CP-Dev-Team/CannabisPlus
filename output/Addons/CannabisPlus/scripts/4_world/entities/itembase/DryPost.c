@@ -423,17 +423,30 @@ class CP_DryPost extends ItemBase
 
 	void LockRope()
 	{
-		ItemBase rope = ItemBase.Cast(FindAttachmentBySlotName("Rope"));
+		Rope rope = Rope.Cast(GetAttachmentByType(Rope));
 
-		if ( HasAnyCargo() && GetInventory().AttachmentCount() > 1 )
+		if ( GetInventory().GetCargo().GetItemCount() > 0 || GetInventory().AttachmentCount() > 1 )
 		{
 			if (rope)
             {
                 rope.LockToParent();
-            } else {
-				rope.UnlockFromParent();
-			}
+            } 
+
 		}
+		else 
+			rope.UnlockFromParent();
+	}
+		
+	override void EECargoIn(EntityAI item)
+	{		
+		super.EECargoIn(item);
+		LockRope();
+	}
+
+	override void EECargoOut(EntityAI item)
+	{
+		super.EECargoOut(item);
+		LockRope();
 	}
 	
 	void LockDryingSlots(bool do_lock)
@@ -463,7 +476,7 @@ class CP_DryPost extends ItemBase
     };
 	void DisassembleKit(ItemBase item)
 	{
-		if (!IsHologram() && GetInventory().AttachmentCount() > 1 )
+		if (!IsHologram())
 		{
 			ItemBase Log = ItemBase.Cast(GetGame().CreateObjectEx("WoodenLog",GetPosition(),ECE_PLACE_ON_SURFACE));
 			MiscGameplayFunctions.TransferItemProperties(this, Log);
