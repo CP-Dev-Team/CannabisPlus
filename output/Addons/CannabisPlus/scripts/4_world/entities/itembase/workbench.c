@@ -432,7 +432,7 @@ class CP_Workbench extends ItemBase
 	};
 	bool CanCreateBags()
 	{
-        if ((GetCannabisBud() && GetCannabisBud().GetQuantity() > 0) && (GetEmptyBags() && GetEmptyBags().GetQuantity() > 0) && (!GetCannabisBags() || GetCannabisBags().GetQuantity() < 160))
+        if ((GetCannabisBud() && GetCannabisBud().GetQuantity() > 1) && (GetEmptyBags() && GetEmptyBags().GetQuantity() > 0) && (!GetCannabisBags() || GetCannabisBags().GetQuantity() < 160))
         {
             return true;
         }
@@ -490,13 +490,15 @@ class CP_Workbench extends ItemBase
 				}
 				//UpdateLockState();
 			}
-			else 
+			else if ( GetBattieries().GetCompEM().GetEnergy() < Battery_Percent )
+			{
 				m_CP_Processing.Stop();
 				DeleteAttachmentsifEmpty();
 				UpdateLockState();
 				End_Processing(1);
 				Print("Out of Battery Juice.");
 				SetSynchDirty();
+			}
 		}
 		else if (BatteryRequired == 0)
 		{
