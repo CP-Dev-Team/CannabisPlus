@@ -221,9 +221,9 @@ class CP_DryPost extends ItemBase
 		private int CurrentValue = 0;
 		private int NewValue = 0;
 		
-		if (value < 2)
+		if (value < 1)
 		{
-			NewValue = 2;
+			NewValue = 1;
 		} else
 		{
 			NewValue = value;
@@ -344,13 +344,25 @@ class CP_DryPost extends ItemBase
 			}
 			if( dp >= 1)
 			{
-				GetInventory().CreateAttachment("CP_DriedCannabisPlant");
-				GetCannabisDried().AddQuantity( dp );
-				Print("[CP] " + this + " spawning "+ CP_DriedCannabisPlant );
+				if ( GetCannabisDried() )
+				{
+					//GetInventory().CreateAttachment("CP_DriedCannabisPlant");
+					GetCannabisDried().AddQuantity( dp );
+					Print("[CP] " + this + " spawning "+ CP_DriedCannabisPlant );
 
-				Print("Created Dried plant = " + dp);
-					
-				dp = 0;  
+					Print("Created Dried plant = " + dp);
+						
+					dp = 0;
+				} else {
+					GetInventory().CreateAttachment("CP_DriedCannabisPlant");
+					GetCannabisDried().SetQuantity( dp );
+					Print("[CP] " + this + " spawning "+ CP_DriedCannabisPlant );
+
+					Print("Created Dried plant = " + dp);
+						
+					dp = 0;
+
+				}
 			}
 			Print("[CP] The plant has " + BudSpawn.Count() + " items");
 			
