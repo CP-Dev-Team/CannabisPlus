@@ -364,7 +364,8 @@ class CP_Workbench extends ItemBase
 		  return true;
 		}
 		else
-		return false;	
+		return false;
+		SetSynchDirty();	
 
 	};
 
@@ -451,7 +452,8 @@ class CP_Workbench extends ItemBase
 				else
 				{
 					m_CP_Processing.Stop();
-					CP_TimerIsPaused = true;
+					CP_TimerisRunning = false;
+					CP_TimerIsPaused = false;
 					DeleteAttachmentsifEmpty();
 					UpdateLockState();
 					//StopProduction();
@@ -485,14 +487,15 @@ class CP_Workbench extends ItemBase
 			else
 			{
 				m_CP_Processing.Stop();
-				CP_TimerIsPaused = true;
+				CP_TimerisRunning = false;
+				CP_TimerIsPaused = false;
 				DeleteAttachmentsifEmpty();
 				UpdateLockState();
 				//StopProduction();
 				//CP_TimerisRunning = false;
 				//UpdateLockState();
 				Print("Out of materials.");
-				//Print(m_CP_Processing)
+				delete m_CP_Processing;
 				SetSynchDirty();
 			}
 		};
