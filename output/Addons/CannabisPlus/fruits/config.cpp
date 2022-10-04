@@ -44,7 +44,7 @@ class CfgVehicles
 		itemSize[]={1,1};
 		varQuantityDestroyOnMin=1;
 		canBeSplit=1;
-		varQuantityInit=1;
+		varQuantityInit=2;
 		varQuantityMin=0;
 		varQuantityMax=100;
 		varStackMax=2;
