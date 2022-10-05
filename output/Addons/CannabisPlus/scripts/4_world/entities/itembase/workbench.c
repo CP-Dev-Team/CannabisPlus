@@ -625,6 +625,7 @@ class CP_Workbench extends ItemBase
 				else if (GetCannabisBricks() && GetCannabisBricks().GetType() == Brickname)
 				{
 					GetCannabisBricks().AddQuantity(1); 
+                        Print("Adding quantity.");
 				}
 				else
 				{
@@ -810,7 +811,7 @@ class CP_Workbench extends ItemBase
 				}
 				LockCPBaggerSlots(true);
 				LockCPBattery(true);
-				Print("All slots locked.");
+				Print("All bagger slots locked.");
 			}
 			else if ( BaggerOccupied() )
 			{
@@ -824,7 +825,7 @@ class CP_Workbench extends ItemBase
 				LockCPBaggerSlots(false);
 				LockCPBagger(false);
 				LockCPBattery(false);
-				Print("All slots unlocked.");
+				Print("All bagger slots unlocked.");
 			};
 		};
 		if ( Wrapper )
@@ -836,16 +837,19 @@ class CP_Workbench extends ItemBase
 					LockCPWrapper(true);
 				}
 				LockCPWrapperSlots(true);
+				Print("All wrapper slots locked.");
 			}
 			else if ( WrapperOccupied() )
 			{
 				LockCPWrapperSlots(false);
 				LockCPWrapper(true);
+				Print("Wrapper locked.");
 			}
 			else
 			{
 				LockCPWrapperSlots(false);
 				LockCPWrapper(false);
+				Print("All wrapper slots unlocked.");
 			};
 		};
     };
