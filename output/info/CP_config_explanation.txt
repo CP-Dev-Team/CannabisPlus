@@ -18,8 +18,6 @@ Explanation of CannabisPlus.json:
 	"pepper_cropcount": 2,				// Amount of Pepper crop to harvest
 	"pepperSeed_count": 9,				// Amount of Pepper seeds in a seedpack
 	"tomato_growtime... etc.
-
-	"spoiltime": 60,					// Amount of time it takes for plants to spoil after they become harvestable.
 	
 	"activateCigaretteSmokingEffect": 0,	// [Currently Disabled]1 = Activates effects when smoking cigarettes; 0 = No effect
 	"smokingCigaretteEffectDuration": 20,	// [Currently Disabled]Duration the effect will last, in seconds
@@ -28,9 +26,18 @@ Explanation of CannabisPlus.json:
 	"smokingJointEffectDuration": 360,		// Duration the effect will last, in seconds
 	"jointCyclesToActivateEffect": 10		// How many cycles to activate the effect  20 = One joint
 
-	// The following are for visual effects.  Probably shouldn't change.
-
+	// The following four settings are for visual effects.  Probably shouldn't change.
 	"weedHueIntensity": 58.0,			// Manipulating the hue.
 	"weedRadBlurXPower": 2,				// Manipulating the blur for the x-axis.
 	"weedRadBlurYPower": 2,				// Manipulating the blur for the y-axis.
 	"weedRotBlurPow": 10				// Manipulating the rotation blur.
+
+
+	"spoiltime": 60,					// Amount of time in minutes it takes for plants to spoil after they become harvestable.
+
+	"cannabis_drytime": 30,				// Amount of time in minutes it takes for raw cannabis plants to dry on the drying post.
+    "RequireBattery": 1,				// 1 = Require battery to be attached to workbench to use workbench.  0 = No battery needed.
+    "WorkBench_PowerUsed": 1.0,			// How much energy is subtracted from the battery per use.
+    "Plastic_Wrap_Usage": 10.0,			// How much plastic wrap is subtracted per use.
+    "Workbench_Processing_Time": 5,		// Time in seconds to process a bag or brick.
+    "Bags_To_Bricks_Required": 16,		// How many bags required to make a brick.

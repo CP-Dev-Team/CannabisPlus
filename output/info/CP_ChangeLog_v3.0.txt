@@ -31,9 +31,10 @@ Updates
 - Updated samples and documentation.
 
 Bug Fixes
-- Fixed issue where you couldn't replant into an already used garden plot.
+- Fixed an issue where you couldn't replant into an already used garden plot.
 - Fixed an issue where you couldn't water the plant enough in some situations.
 - Fixed an issue with cigarette and joint packs not packing properly.
+- Fixed the sample types.xml file where crafted=1 stopped some items from spawning.
 
 Known Issues
 - Dried plants don't increase the quantity in the slot if the slot is already occupied.

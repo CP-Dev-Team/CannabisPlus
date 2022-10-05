@@ -1,5 +1,5 @@
 {
-	"configVersion": 252,
+	"configVersion": 300,
 	"removeAfterHarvest": 1,
 	"tobacco_growtime": 8,
 	"tobacco_cropcount": 2,
@@ -40,7 +40,8 @@
 	"pumpkin_growtime": 8,
 	"pumpkin_cropcount": 2,
 	"pumpkinSeed_count": 9,
-	"spoiltime": 60,
+    "potato_growtime": 8,
+    "potato_cropcount": 2,
 	"activateCigaretteSmokingEffect": 0,
 	"smokingCigaretteEffectDuration": 20,
 	"cigaretteCyclesToActivateEffect": 8,
@@ -50,5 +51,12 @@
 	"weedHueIntensity": 58.0,
 	"weedRadBlurXPower": 2,
 	"weedRadBlurYPower": 2,
-	"weedRotBlurPow": 10
+	"weedRotBlurPow": 10,
+    "spoiltime": 60,
+    "cannabis_drytime": 30,
+    "RequireBattery": 0,
+    "WorkBench_PowerUsed": 1.0,
+    "Plastic_Wrap_Usage": 10.0,
+    "Workbench_Processing_Time": 5,
+    "Bags_To_Bricks_Required": 16
   }
