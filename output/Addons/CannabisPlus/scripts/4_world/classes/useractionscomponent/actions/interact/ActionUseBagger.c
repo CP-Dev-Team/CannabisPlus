@@ -17,7 +17,7 @@ class ActionCPUseBagger: ActionInteractBase
 	{
 		int BatteryRequired = GetCPConfig().RequireBattery;
 		float BatterPercentUsed = GetCPConfig().WorkBench_PowerUsed / 100;
-		int BudsToBagsUsage = GetCPConfig().Buds_To_Bags_Required;
+		//int BudsToBagsUsage = GetCPConfig().Buds_To_Bags_Required;
 		int BagsToBricksUsage = GetCPConfig().Bags_To_Bricks_Required;
 		
 		
@@ -33,7 +33,7 @@ class ActionCPUseBagger: ActionInteractBase
 		if(BatteryRequired == 1)
 		{
 		
-			if (Bench && Bench.Bagger_Attachments() && Buds &&  Buds.GetQuantity() >= BudsToBagsUsage && Batteries && Batteries.GetCompEM().GetEnergy() >= BatterPercentUsed && !Bench.RunningOrNot())
+			if (Bench && Bench.Bagger_Attachments() && Buds && Buds.GetQuantity() >= 2 /* BudsToBagsUsage */ && Batteries && Batteries.GetCompEM().GetEnergy() >= BatterPercentUsed && !Bench.RunningOrNot())
 			{
 				TendancyText = Bench.GetBagTendancyText();
 				return true;
@@ -47,7 +47,7 @@ class ActionCPUseBagger: ActionInteractBase
 		else if(BatteryRequired == 0)
 		{
 		
-			if (Bench && Bench.Bagger_Attachments() && Buds && Buds.GetQuantity() >= BudsToBagsUsage  && !Bench.RunningOrNot() )
+			if (Bench && Bench.Bagger_Attachments() && Buds && Buds.GetQuantity() >= 2 /* BudsToBagsUsage */ && !Bench.RunningOrNot() )
 			{
 				TendancyText = Bench.GetBagTendancyText();
 				return true;
