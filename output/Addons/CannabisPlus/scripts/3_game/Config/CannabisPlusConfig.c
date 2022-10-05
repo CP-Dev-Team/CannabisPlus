@@ -88,8 +88,8 @@ class CannabisPlusConfigManager
 	int    Bags_To_Bricks_Required= 16;
 	
 	// Composting (Unused)
-	int PlantPerBag;
-	int CompostTime;
+	//int PlantPerBag;
+	//int CompostTime;
 	
 	void CannabisPlusConfigManager() 
 	{
@@ -174,8 +174,8 @@ class CannabisPlusConfigManager
 			//Buds_To_Bags_Required 		= 2;
 			Bags_To_Bricks_Required			= 16;
 		
-			PlantPerBag						= 18;
-			CompostTime						= 360; 
+			//PlantPerBag						= 18;
+			//CompostTime						= 360; 
 
 		SaveConfig();
 	};

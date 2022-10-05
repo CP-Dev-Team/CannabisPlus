@@ -7,11 +7,16 @@
 		CP_CannabisBagSkunk,					1,		465,		233
 		CP_CannabisBrickSkunk,					*,		7500,		3750
 		CP_Pouch,								*,		2500,		1000
+		CP_EmptyBag,							*,		200,		100
 //		CP_CannabisSeedsPackSkunk,				*,		-1, 		-1
 
 
 <Trader> Black Market
 	<Category> Cannabis
+		CP_Workbench_Kit,						*,		15000,		10000
+		CP_Bagger,								*,		2000,		1000
+		CP_PlasticWrapper,						*,		2000,		1000
+		CP_PlasticRoll,							*,		200,		100
 		CP_Relief_Balm,							*,		200,		175
 		CP_RollingPapers,						*,		200,		175	
 		CigarettePack_Chernamorka,				*,		900,		600
