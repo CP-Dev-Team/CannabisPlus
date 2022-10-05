@@ -442,7 +442,7 @@ class CP_Workbench extends ItemBase
 	
 	bool CanCreateBricks()
 	{
-		if(GetCannabisBags() && GetCannabisBags().GetQuantity() >= 16 && GetCannabisBricks().GetQuantity() < 25 && GetPlasticRoll() && GetPlasticRoll().GetQuantity() > 5)
+		if((GetCannabisBags() && GetCannabisBags().GetQuantity() >= 16 && GetPlasticRoll() && GetPlasticRoll().GetQuantity() > 5) || (GetCannabisBags() && GetCannabisBags().GetQuantity() >= 16 && GetCannabisBricks().GetQuantity() < 25 && GetPlasticRoll() && GetPlasticRoll().GetQuantity() > 5))
 		{
 			return true;
 		}
@@ -925,24 +925,25 @@ class CP_Workbench extends ItemBase
 			return false;
     };
 	
-	override bool CanDisplayAttachmentSlot( int slot_id )
-	{
-		//if (!super.CanDisplayAttachmentSlot(slot_id))
-			//return false;
-		
-		string slot_name = InventorySlots.GetSlotName(slot_id);
-		
-		if ( slot_name == "LargeBattery" ) {
-			if(BatteryRequired == 1) {
-				return true;
-				Print("Battery required")
-			} else {
-				return false;
-				Print("Battery not required.")
-			}
-		}
-		return true;
-	}
+    override bool CanDisplayAttachmentSlot( int slot_id )
+    {
+        //if (!super.CanDisplayAttachmentSlot(slot_id))
+            //return false;
+        int BatteryRequired = GetCPConfig().RequireBattery;
+        
+        string slot_name = InventorySlots.GetSlotName(slot_id);
+        
+        if ( slot_name == "LargeBattery" ) {
+            if( BatteryRequired == 1 ) {
+                return true;
+                Print("Battery required");
+            } else {
+                return false;
+                Print("Battery not required.");
+            }
+        }
+        return true;
+    }
 
 	override bool IsElectricAppliance()
 	{
