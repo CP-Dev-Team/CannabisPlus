@@ -483,7 +483,7 @@ class CP_Workbench extends ItemBase
 				{
 					m_CP_Processing.Stop();
 					DeleteAttachmentsifEmpty();
-					UpdateLockState();
+					//UpdateLockState();
 					End_Processing(1);
 					Print("Out of materials.");
 					SetSynchDirty();
@@ -494,7 +494,7 @@ class CP_Workbench extends ItemBase
 			{
 				m_CP_Processing.Stop();
 				DeleteAttachmentsifEmpty();
-				UpdateLockState();
+				//UpdateLockState();
 				End_Processing(1);
 				Print("Out of Battery Juice.");
 				SetSynchDirty();
@@ -521,14 +521,14 @@ class CP_Workbench extends ItemBase
 			else
 			{
 				DeleteAttachmentsifEmpty();
-				UpdateLockState();
+				//UpdateLockState();
 				End_Processing(1);
 				//CP_TimerisRunning = false;
-				//UpdateLockState();
 				Print("Out of materials.");
 				SetSynchDirty();
 			}
 		};
+		UpdateLockState();
 	};
 
     void CreateBags()
