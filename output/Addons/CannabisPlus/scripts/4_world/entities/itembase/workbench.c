@@ -482,7 +482,7 @@ class CP_Workbench extends ItemBase
 				else
 				{
 					m_CP_Processing.Stop();
-					DeleteAttachmentsifEmpty();
+					//DeleteAttachmentsifEmpty();
 					//UpdateLockState();
 					End_Processing(1);
 					Print("Out of materials.");
@@ -493,7 +493,7 @@ class CP_Workbench extends ItemBase
 			else if ( GetBattieries().GetCompEM().GetEnergy() < Battery_Percent )
 			{
 				m_CP_Processing.Stop();
-				DeleteAttachmentsifEmpty();
+				//DeleteAttachmentsifEmpty();
 				//UpdateLockState();
 				End_Processing(1);
 				Print("Out of Battery Juice.");
@@ -520,7 +520,7 @@ class CP_Workbench extends ItemBase
 			}
 			else
 			{
-				DeleteAttachmentsifEmpty();
+				//DeleteAttachmentsifEmpty();
 				//UpdateLockState();
 				End_Processing(1);
 				//CP_TimerisRunning = false;
@@ -677,31 +677,32 @@ class CP_Workbench extends ItemBase
 		};	
 	};
 
-	void LockCPBaggerSlots(bool do_lock)
-	{
+	void LockCPBaggerSlots(bool do_lock) {
 		ItemBase Bagger;
 	
-		if (Class.CastTo(Bagger, GetBagger()))
-		{
+		if (Class.CastTo(Bagger, GetBagger()) && do_lock ) {
 			GetInventory().SetSlotLock(InventorySlots.GetSlotIdFromString(ATTACHMENT_SLOT_BUDS), do_lock);
 			GetInventory().SetSlotLock(InventorySlots.GetSlotIdFromString(ATTACHMENT_SLOT_EMPTYBAGS), do_lock);
 			GetInventory().SetSlotLock(InventorySlots.GetSlotIdFromString(ATTACHMENT_SLOT_BAGS), do_lock);
-
-			SetSynchDirty();
-		};
+		} else {
+			GetInventory().SetSlotLock(InventorySlots.GetSlotIdFromString(ATTACHMENT_SLOT_BUDS), false);
+			GetInventory().SetSlotLock(InventorySlots.GetSlotIdFromString(ATTACHMENT_SLOT_EMPTYBAGS), false);
+			GetInventory().SetSlotLock(InventorySlots.GetSlotIdFromString(ATTACHMENT_SLOT_BAGS), false);
+		}
+		SetSynchDirty();
 	};
 
-	void LockCPWrapperSlots(bool do_lock)
-	{
+	void LockCPWrapperSlots(bool do_lock) {
 		ItemBase Wrapper;		
 		
-		if ( Class.CastTo(Wrapper, GetWrapper()))
-		{
+		if ( Class.CastTo(Wrapper, GetWrapper()) && do_lock ) {
 			GetInventory().SetSlotLock(InventorySlots.GetSlotIdFromString(ATTACHMENT_SLOT_PLASTICWRAP), do_lock);
 			GetInventory().SetSlotLock(InventorySlots.GetSlotIdFromString(ATTACHMENT_SLOT_BAGS), do_lock);
-
-			SetSynchDirty();
-		};
+		} else {
+			GetInventory().SetSlotLock(InventorySlots.GetSlotIdFromString(ATTACHMENT_SLOT_PLASTICWRAP), false);
+			GetInventory().SetSlotLock(InventorySlots.GetSlotIdFromString(ATTACHMENT_SLOT_BAGS), false);
+		}
+		SetSynchDirty();
 	};	
 
 	void LockCPBagger(bool do_lock)
@@ -837,6 +838,8 @@ class CP_Workbench extends ItemBase
 					LockCPWrapper(true);
 				}
 				LockCPWrapperSlots(true);
+				LockCPBattery(true);
+
 				Print("All wrapper slots locked.");
 			}
 			else if ( WrapperOccupied() )
