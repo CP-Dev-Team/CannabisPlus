@@ -587,6 +587,7 @@ class CP_Workbench extends ItemBase
                         Print("Creating attachment.");
 						GetInventory().SetSlotLock(InventorySlots.GetSlotIdFromString(ATTACHMENT_SLOT_BAGS), false);
                         GetInventory().CreateAttachment(Bagname);
+						GetCannabisBags().SetQuantity(1);
                         GetInventory().SetSlotLock(InventorySlots.GetSlotIdFromString(ATTACHMENT_SLOT_BAGS), true);
                     }
                     else if (GetCannabisBags() && GetCannabisBags().GetType() == Bagname)
@@ -684,7 +685,7 @@ class CP_Workbench extends ItemBase
 	void LockCPBaggerSlots(bool do_lock) {
 		ItemBase Bagger;
 	
-		if (Class.CastTo(Bagger, GetBagger()) && do_lock ) {
+		if (Class.CastTo(Bagger, GetBagger()) && do_lock && (m_CP_Processing && ( m_CP_Processing.IsRunning() || !Pausedornot() ) ) ) {
 			GetInventory().SetSlotLock(InventorySlots.GetSlotIdFromString(ATTACHMENT_SLOT_BUDS), do_lock);
 			GetInventory().SetSlotLock(InventorySlots.GetSlotIdFromString(ATTACHMENT_SLOT_EMPTYBAGS), do_lock);
 			GetInventory().SetSlotLock(InventorySlots.GetSlotIdFromString(ATTACHMENT_SLOT_BAGS), do_lock);
@@ -697,7 +698,7 @@ class CP_Workbench extends ItemBase
 	};
 
 	void LockCPWrapperSlots(bool do_lock) {
-		ItemBase Wrapper;		
+		ItemBase Wrapper;
 		
 		if ( Class.CastTo(Wrapper, GetWrapper()) && do_lock ) {
 			GetInventory().SetSlotLock(InventorySlots.GetSlotIdFromString(ATTACHMENT_SLOT_PLASTICWRAP), do_lock);
@@ -707,7 +708,7 @@ class CP_Workbench extends ItemBase
 			GetInventory().SetSlotLock(InventorySlots.GetSlotIdFromString(ATTACHMENT_SLOT_BAGS), false);
 		}
 		SetSynchDirty();
-	};	
+	};
 
 	void LockCPBagger(bool do_lock)
 	{
@@ -774,7 +775,7 @@ class CP_Workbench extends ItemBase
 
 	bool WrapperOccupied()
 	{
-		if ( GetWrapper() && ( GetCannabisBags() || GetPlasticRoll() )   )
+		if ( GetWrapper() && ( GetCannabisBags() || GetPlasticRoll() || GetCannabisBricks() )   )
 			return true;
 			
 		return false;
@@ -1026,8 +1027,10 @@ class CP_Workbench extends ItemBase
 	{
 		super.EEItemDetached( item, slot_name );
 
-		UpdateLockState();
+		if ( !RunningOrNot() ) {
 
+		UpdateLockState();
+		}
 	};
 	
 	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
