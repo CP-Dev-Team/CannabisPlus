@@ -343,16 +343,17 @@ class CP_Workbench extends ItemBase
 	};
 	void End_Processing(float actiontime)
 	{
-		if( m_CP_ProcessingCheck.IsRunning())
-		   return;
+
 		if (!m_CP_Processing.IsRunning()  && !m_CP_ProcessingCheck)
 		{
 			m_CP_ProcessingCheck = new Timer;
 			m_CP_ProcessingCheck.Run(actiontime,this,"Do_Timer_ProcessingCheck",NULL,false);
+			Print("m_CP_Processing  isnt runing start m_CP_ProcessingCheck = " + m_CP_ProcessingCheck);
 		}
 		else
 		{
 		   m_CP_ProcessingCheck.Run(actiontime,this,"Do_Timer_ProcessingCheck",NULL,false);
+			Print("m_CP_ProcessingCheck is existing");
 		};
 		
     };
@@ -482,6 +483,7 @@ class CP_Workbench extends ItemBase
 				else
 				{
 					m_CP_Processing.Stop();
+					CP_TimerisRunning == false;
 					//DeleteAttachmentsifEmpty();
 					//UpdateLockState();
 					End_Processing(1);
@@ -520,6 +522,8 @@ class CP_Workbench extends ItemBase
 			}
 			else
 			{
+				m_CP_Processing.Stop();
+				CP_TimerisRunning == false;
 				//DeleteAttachmentsifEmpty();
 				//UpdateLockState();
 				End_Processing(1);
