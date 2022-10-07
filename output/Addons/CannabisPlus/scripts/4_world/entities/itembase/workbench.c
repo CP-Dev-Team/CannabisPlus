@@ -564,7 +564,7 @@ class CP_Workbench extends ItemBase
                     Batteries.GetCompEM().AddEnergy( -Battery_Percent );
                 };
             };
-        };
+        }
         else if(BatteryRequired == 0)
         {
 			if(GetCannabisBud().GetQuantity() >= 2)
