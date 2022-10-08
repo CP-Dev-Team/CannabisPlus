@@ -115,7 +115,8 @@ class CP_DryPost extends ItemBase
 		{
 			dp++;
 			Print("dp = " + dp);
-		}		
+		}
+		LockRope();
 	}
     
 	override void EEItemDetached(EntityAI item, string slot_name)
@@ -154,7 +155,8 @@ class CP_DryPost extends ItemBase
 			  dp = 0;
 			}
 			Print("dp = " + dp);
-		}		
+		}
+		LockRope();
 	}
 	
 	bool IsItemTypeAttached( typename item_type )
@@ -436,6 +438,34 @@ class CP_DryPost extends ItemBase
 		return "woodenlog_drop_SoundSet";
 	}
 
+	void LockRope()
+	{
+		Rope rope = Rope.Cast(GetAttachmentByType(Rope));
+
+		if ( GetInventory().GetCargo().GetItemCount() > 0 || GetInventory().AttachmentCount() > 1 )
+		{
+			if (rope)
+            {
+                rope.LockToParent();
+            } 
+
+		}
+		else 
+			rope.UnlockFromParent();
+	}
+		
+	override void EECargoIn(EntityAI item)
+	{		
+		super.EECargoIn(item);
+		LockRope();
+	}
+
+	override void EECargoOut(EntityAI item)
+	{
+		super.EECargoOut(item);
+		LockRope();
+	}
+	
 	void LockDryingSlots(bool do_lock)
     {
 		ItemBase item;

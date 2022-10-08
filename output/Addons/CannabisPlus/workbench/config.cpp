@@ -128,8 +128,7 @@ class CfgVehicles
 			"CP_PlasticRoll",
 			"CP_Cannabis_Buds",
 			"CP_Cannabis_Bags",
-			"CP_Cannabis_Bricks",
-			"Truck_01_WoodenCrate1"
+			"CP_Cannabis_Bricks"
 		};
 		class GUIInventoryAttachmentsProps
 		{
@@ -141,8 +140,7 @@ class CfgVehicles
 				{
 					"Wrapper",
 					"Bagger",
-					"LargeBattery",
-					"Truck_01_WoodenCrate1"
+					"LargeBattery"
 				};
 				icon="";
 			};

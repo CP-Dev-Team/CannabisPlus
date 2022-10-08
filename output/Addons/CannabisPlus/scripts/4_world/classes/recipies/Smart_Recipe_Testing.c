@@ -82,7 +82,7 @@ class CP_CraftCannabisBagBlackFrost extends RecipeBase
 		string Bagname = ingredient1.GetcpBag(); 
 		
 		BudsHolder = ItemBase.Cast(GetGame().CreateObject(Bagname, BudsHolder.GetPosition()));
-		//Buds.SetQuantity(1);
+		BudsHolder.SetQuantity(1);
 	}
 };
 

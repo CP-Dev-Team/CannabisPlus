@@ -17,8 +17,9 @@ class ActionCPUseBagger: ActionInteractBase
 	{
 		int BatteryRequired = GetCPConfig().RequireBattery;
 		float BatterPercentUsed = GetCPConfig().WorkBench_PowerUsed / 100;
-		int BudsToBagsUsage = GetCPConfig().Buds_To_Bags_Required;
+		//int BudsToBagsUsage = GetCPConfig().Buds_To_Bags_Required;
 		int BagsToBricksUsage = GetCPConfig().Bags_To_Bricks_Required;
+		float PlaticWrap_Percent = GetCPConfig().Plastic_Wrap_Usage;
 		
 		
 		
@@ -28,34 +29,42 @@ class ActionCPUseBagger: ActionInteractBase
 		CP_Workbench Bench = CP_Workbench.Cast( target_object );
 		CP_CannabisBud Buds = CP_CannabisBud.Cast( target_entity.GetAttachmentByType(CP_CannabisBud) );
 		CP_CannabisBags Bags = CP_CannabisBags.Cast( target_entity.GetAttachmentByType(CP_CannabisBags) );
+		CP_PlasticRoll Plastic = CP_PlasticRoll.Cast( target_entity.GetAttachmentByType(CP_PlasticRoll) );
 		VehicleBattery Batteries = VehicleBattery.Cast( target_entity.GetAttachmentByType(VehicleBattery) );
 		
 		if(BatteryRequired == 1)
 		{
 		
-			if (Bench && Bench.Bagger_Attachments() && Buds &&  Buds.GetQuantity() >= BudsToBagsUsage && Batteries && Batteries.GetCompEM().GetEnergy() >= BatterPercentUsed && !Bench.RunningOrNot())
+			if (Bench && Bench.Bagger_Attachments() && Buds && Buds.GetQuantity() >= 2 /* BudsToBagsUsage */ && Batteries && Batteries.GetCompEM().GetEnergy() >= BatterPercentUsed && !Bench.RunningOrNot())
 			{
 				TendancyText = Bench.GetBagTendancyText();
 				return true;
+			
 			}
-			else if (Bench && Bench.Wrapper_Attachments() && Bags &&  Bags.GetQuantity() >= BagsToBricksUsage && Batteries && Batteries.GetCompEM().GetEnergy() >= BatterPercentUsed && !Bench.RunningOrNot() )
+			else if (Bench && Bench.Wrapper_Attachments() && Bags &&  Bags.GetQuantity() >= BagsToBricksUsage && Batteries && Batteries.GetCompEM().GetEnergy() >= BatterPercentUsed && !Bench.RunningOrNot()  )
 			{
-				TendancyText = Bench.GetBrickTendancyText();
-				return true;
-			}	
+				if(Plastic && Plastic.GetQuantity() > PlaticWrap_Percent)
+				{
+					TendancyText = Bench.GetBrickTendancyText();
+					return true;
+				};
+			};	
 		}
 		else if(BatteryRequired == 0)
 		{
 		
-			if (Bench && Bench.Bagger_Attachments() && Buds && Buds.GetQuantity() >= BudsToBagsUsage  && !Bench.RunningOrNot() )
+			if (Bench && Bench.Bagger_Attachments() && Buds && Buds.GetQuantity() >= 2 /* BudsToBagsUsage */ && !Bench.RunningOrNot() )
 			{
 				TendancyText = Bench.GetBagTendancyText();
 				return true;
 			}
 			else if (Bench && Bench.Wrapper_Attachments() && Bags && Bags.GetQuantity() >= BagsToBricksUsage  && !Bench.RunningOrNot() )
 			{
-				TendancyText = Bench.GetBrickTendancyText();
-				return true;
+				if(Plastic && Plastic.GetQuantity() > PlaticWrap_Percent)
+				{
+					TendancyText = Bench.GetBrickTendancyText();
+					return true;
+				};
 			}	
 		}
 		return false;

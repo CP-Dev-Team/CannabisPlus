@@ -2,15 +2,6 @@ class CannabisPlusConfigManager
 {
 	int configVersion;
 	
-	bool   RequireBattery = 1; 
-	float  WorkBench_PowerUsed = 1;
-	float  Plastic_Wrap_Usage = 10;
-	int    Workbench_Processing_Time = 5;
-	int    Buds_To_Bags_Required = 2;
-	int    Bags_To_Bricks_Required= 16;
-	
-	
-	
 	bool removeAfterHarvest;
 	
 	int tobacco_growtime;
@@ -68,7 +59,6 @@ class CannabisPlusConfigManager
 	int potato_growtime;
 	int potato_cropcount;
 
-	int spoiltime;
 	
 	// smoke effect settings
 	int activateCigaretteSmokingEffect; 	// reduces the fluctuation/sway in aiming when a cigarette is smoked
@@ -85,10 +75,21 @@ class CannabisPlusConfigManager
     int weedRadBlurYPower;
     int weedRotBlurPow;
 
-    int cannabis_drytime;
+	int spoiltime;							// Time until fully matured plants will spoil.
+
+    int cannabis_drytime;					// Time for raw plants to dry on drying post.
+
+	// Workbench
+	bool   RequireBattery = 1; 
+	float  WorkBench_PowerUsed = 1;
+	float  Plastic_Wrap_Usage = 10;
+	int    Workbench_Processing_Time = 5;
+	//int    Buds_To_Bags_Required = 2;
+	int    Bags_To_Bricks_Required= 16;
 	
-	int PlantPerBag;
-	int CompostTime;
+	// Composting (Unused)
+	//int PlantPerBag;
+	//int CompostTime;
 	
 	void CannabisPlusConfigManager() 
 	{
@@ -96,14 +97,7 @@ class CannabisPlusConfigManager
 	}	
 	
 	void LoadDefaultSettings() {
-			configVersion						= GetModVersion();
-		
-			RequireBattery = 1; 
-			WorkBench_PowerUsed = 1;
-			Plastic_Wrap_Usage = 10;
-			Workbench_Processing_Time = 5;
-			Buds_To_Bags_Required = 2;
-			Bags_To_Bricks_Required= 16;
+			configVersion					= GetModVersion();
 		
 			removeAfterHarvest 				= true;	
 
@@ -139,9 +133,9 @@ class CannabisPlusConfigManager
             cannabisNomad_cropcount 		= 2;
             cannabisNomadSeed_count 		= 9;
 
-            cannabisBlackFrost_growtime 		= 8;
-            cannabisBlackFrost_cropcount 		= 2;
-            cannabisBlackFrostSeed_count 		= 9;
+            cannabisBlackFrost_growtime 	= 8;
+            cannabisBlackFrost_cropcount 	= 2;
+            cannabisBlackFrostSeed_count 	= 9;
 
             pepper_growtime 				= 8;
             pepper_cropcount 				= 2;
@@ -149,32 +143,39 @@ class CannabisPlusConfigManager
             tomato_growtime 				= 8;
             tomato_cropcount 				= 2;
             tomatoSeed_count 				= 9;		
-            zucchini_growtime 			= 8;
-            zucchini_cropcount 			= 2;
-            zucchiniSeed_count 			= 9;
+            zucchini_growtime 				= 8;
+            zucchini_cropcount 				= 2;
+            zucchiniSeed_count 				= 9;
             pumpkin_growtime 				= 8;
-            pumpkin_cropcount 			= 2;
-            pumpkinSeed_count 			= 9;
+            pumpkin_cropcount 				= 2;
+            pumpkinSeed_count 				= 9;
             potato_growtime 				= 8;
             potato_cropcount 				= 2;
 
-            spoiltime					= 60;
             activateCigaretteSmokingEffect 	= false;
             smokingCigaretteEffectDuration 	= 20;
-            cigaretteCyclesToActivateEffect 	= 8;
+            cigaretteCyclesToActivateEffect = 8;
             activateJointSmokingEffect 		= true;
             smokingJointEffectDuration 		= 360;
-            jointCyclesToActivateEffect 		= 10;	
+            jointCyclesToActivateEffect 	= 10;	
             weedHueIntensity 				= 58.0;
-            weedRadBlurXPower 			= 2;
-            weedRadBlurYPower 			= 2;
-            weedRotBlurPow 				= 10;
+            weedRadBlurXPower 				= 2;
+            weedRadBlurYPower 				= 2;
+            weedRotBlurPow 					= 10;
 
-            cannabis_drytime            = 30;
+            spoiltime						= 60;
 
+            cannabis_drytime            	= 30;
+			
+			RequireBattery 					= 1; 
+			WorkBench_PowerUsed 			= 1;
+			Plastic_Wrap_Usage 				= 10;
+			Workbench_Processing_Time 		= 5;
+			//Buds_To_Bags_Required 		= 2;
+			Bags_To_Bricks_Required			= 16;
 		
-			PlantPerBag					=18;
-			CompostTime					=360; 
+			//PlantPerBag						= 18;
+			//CompostTime						= 360; 
 
 		SaveConfig();
 	};
