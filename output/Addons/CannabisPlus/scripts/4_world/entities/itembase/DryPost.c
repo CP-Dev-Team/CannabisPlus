@@ -370,10 +370,27 @@ class CP_DryPost extends ItemBase
 			{
 				string key = BudSpawn.GetKey(j);
 				Print("[CP] plant[" + j + "] is " + key + " with quantity " + BudSpawn.Get(key));
-				for (k = 0; k < BudSpawn.Get(key); k++)
+				int StackMax;
+				StackMax = GetGame().ConfigGetInt("CfgVehicles " + key + " varStackMax");
+				int stacks = Math.Floor(BudSpawn.Get(key) / StackMax);
+				int remainder = BudSpawn.Get(key) - (stacks * StackMax);
+				Print("[CP] " + this + " spawning " + stacks + " stacks" );
+				Print("[CP] " + this + " spawning " + remainder + " singles" );
+				for (k = 0; k <= stacks; k++)
 				{
-					Print("[CP] " + this + " spawning "+ BudSpawn.GetKey(j));
-					GetInventory().CreateInInventory(BudSpawn.GetKey(j));
+					CP_CannabisBud weed = CP_CannabisBud.Cast(this.GetInventory().CreateInInventory(key)); 					
+					if (stacks == 0)  //less than 1 stack, break out of for
+					{
+						weed.SetQuantity(remainder);
+						break;
+					}
+					else if ( k == stacks) // last stack	
+					{
+						weed.SetQuantity(remainder);
+					} else 
+					{
+						weed.SetQuantity(StackMax);	
+					}
 				}
 			}  	
 		}	
