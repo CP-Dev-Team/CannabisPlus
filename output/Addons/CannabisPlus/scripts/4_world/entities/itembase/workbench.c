@@ -235,8 +235,6 @@ class CP_Workbench extends ItemBase
 	// Start of Step based Variables to change outcome and Text shown for actions. not complicated but very handy
 	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 	
-
-	
 		
 	CP_CannabisBud GetCannabisBud()
 	{
