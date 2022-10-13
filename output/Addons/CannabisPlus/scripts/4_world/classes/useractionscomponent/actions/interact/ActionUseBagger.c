@@ -18,7 +18,7 @@ class ActionCPUseBagger: ActionInteractBase
 		int BatteryRequired = GetCPConfig().RequireBattery;
 		float BatterPercentUsed = GetCPConfig().WorkBench_PowerUsed / 100;
 		//int BudsToBagsUsage = GetCPConfig().Buds_To_Bags_Required;
-		int BagsToBricksUsage = GetCPConfig().Bags_To_Bricks_Required;
+		int BagsToBricksUsage = 16; //GetCPConfig().Bags_To_Bricks_Required;
 		float PlaticWrap_Percent = GetCPConfig().Plastic_Wrap_Usage;
 		
 		

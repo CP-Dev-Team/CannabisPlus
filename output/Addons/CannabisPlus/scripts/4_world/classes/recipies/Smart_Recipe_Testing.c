@@ -150,7 +150,7 @@ class CP_CraftCannabisBrickBlackFrost extends RecipeBase
 
 	override bool CanDo(ItemBase ingredients[], PlayerBase player)//final check for recipe's validity
 	{
-		int BagsToBricksUsage = GetCPConfig().Bags_To_Bricks_Required;
+		int BagsToBricksUsage = 16; //GetCPConfig().Bags_To_Bricks_Required;
 	
 		CP_CannabisBags ingredient1 = CP_CannabisBags.Cast(ingredients[0]);
 	

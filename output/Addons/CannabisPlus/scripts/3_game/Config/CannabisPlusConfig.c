@@ -85,7 +85,7 @@ class CannabisPlusConfigManager
 	float  Plastic_Wrap_Usage = 10;
 	int    Workbench_Processing_Time = 5;
 	//int    Buds_To_Bags_Required = 2;
-	int    Bags_To_Bricks_Required= 16;
+	//int    Bags_To_Bricks_Required = 16;
 	
 	// Composting (Unused)
 	//int PlantPerBag;
@@ -172,7 +172,7 @@ class CannabisPlusConfigManager
 			Plastic_Wrap_Usage 				= 10;
 			Workbench_Processing_Time 		= 5;
 			//Buds_To_Bags_Required 		= 2;
-			Bags_To_Bricks_Required			= 16;
+			//Bags_To_Bricks_Required			= 16;
 		
 			//PlantPerBag						= 18;
 			//CompostTime						= 360; 
