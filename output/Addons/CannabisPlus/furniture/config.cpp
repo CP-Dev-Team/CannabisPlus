@@ -15,59 +15,6 @@ class CfgPatches
         };
     };
 };
-	
-class CfgSlots
-{ 
-    class Slot_HangingPlants
-    {
-        name="HangingPlants";
-        displayName="Hanging Plants";
-        ghostIcon="set:dayz_inventory image:plant";
-    };
-    class Slot_HangingPlants2
-    {
-        name="HangingPlants2";
-        displayName="HangingPlants2";
-		selection="HangingPlants2";
-        ghostIcon="set:dayz_inventory image:plant";
-    };
-    class Slot_HangingPlants3
-    {
-        name="HangingPlants3";
-        displayName="HangingPlants3";
-		selection="HangingPlants3";
-        ghostIcon="set:dayz_inventory image:plant";
-    };
-	class Slot_HangingPlants4
-    {
-        name="HangingPlants4";
-        displayName="HangingPlants4";
-		selection="HangingPlants3";
-        ghostIcon="set:dayz_inventory image:plant";
-    };
-	class Slot_HangingPlants5
-    {
-        name="HangingPlants5";
-        displayName="HangingPlants5";
-		selection="HangingPlants3";
-        ghostIcon="set:dayz_inventory image:plant";
-    };
-	class Slot_HangingPlants6
-    {
-        name="HangingPlants6";
-        displayName="HangingPlants6";
-		selection="HangingPlants3";
-		ghostIcon="set:dayz_inventory image:plant";
-    };
-	class Slot_DriedPlantPile
-	{
-        name="DriedPlantPile";
-        displayName="DriedPlantPile";
-		ghostIcon="set:dayz_inventory image:plant";
-		stackMax=50;
-    };
-};
-
 class CfgNonAIVehicles
 {
     class ProxyAttachment;
