@@ -182,7 +182,7 @@ class CP_DryPost extends ItemBase
 			
 			if (NumPlants==6)
 			{
-				Print("[CP] all items attached to post " + this + " ...starting to dry");
+				//Print("[CP] all items attached to post " + this + " ...starting to dry");
 				GetGame().GetCallQueue(CALL_CATEGORY_GAMEPLAY).CallLater(FinishDrying, GetCPConfig().cannabis_drytime*1000, false);
 				m_IsLocked = true;
 			}
@@ -234,7 +234,7 @@ class CP_DryPost extends ItemBase
 
 	void FinishDrying()
 	{
-		Print("[CP] finished drying...");
+		//Print("[CP] finished drying...");
 		NumItems = GetInventory().AttachmentCount();
 		
 		for ( j = 0; j < NumItems; j++ )
@@ -331,19 +331,19 @@ class CP_DryPost extends ItemBase
 		            {
 		            	ItemBase DeadPlant = GetInventory().CreateAttachment("CP_DriedCannabisPlant");
 						DeadPlant.SetQuantity( NumItems - 1 );
-						Print("[CP] " + this + " spawning CP_DriedCannabisPlant");
+						//Print("[CP] " + this + " spawning CP_DriedCannabisPlant");
 		            }    
 			}
 	
-			Print("[CP] The plant has " + BudSpawn.Count() + " items");
+			//Print("[CP] The plant has " + BudSpawn.Count() + " items");
 			
 			for (j = 0; j < BudSpawn.Count(); j++)
 			{
 				string key = BudSpawn.GetKey(j);
-				Print("[CP] plant[" + j + "] is " + key + " with quantity " + BudSpawn.Get(key));
+				//Print("[CP] plant[" + j + "] is " + key + " with quantity " + BudSpawn.Get(key));
 				for (k = 0; k < BudSpawn.Get(key); k++)
 				{
-					Print("[CP] " + this + " spawning "+ BudSpawn.GetKey(j));
+					//Print("[CP] " + this + " spawning "+ BudSpawn.GetKey(j));
 					GetInventory().CreateInInventory(BudSpawn.GetKey(j));
 				}
 			}  	
@@ -362,7 +362,7 @@ class CP_DryPost extends ItemBase
 				ItemName = attachment.GetType();
 	            	if (ItemName.IndexOf("CP_Raw") >= 0)
 		            {
-					Print("[CP] deleting " + attachment);
+					//Print("[CP] deleting " + attachment);
 					GetGame().ObjectDelete(attachment);	
 				}	
 	        	}

@@ -40,7 +40,7 @@ class StonedMdfr: ModifierBase
 	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 	override protected void OnActivate(PlayerBase player)
 	{
-		Print("[CP] Stoned modifier activating on player: " + player);	
+		//Print("[CP] Stoned modifier activating on player: " + player);	
 	}
 	
 	
@@ -50,7 +50,7 @@ class StonedMdfr: ModifierBase
 	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 	override protected void OnDeactivate(PlayerBase player)
 	{
-		Print("[CP] Stoned modifier deactivating on player: " + player);
+		//Print("[CP] Stoned modifier deactivating on player: " + player);
 	}
 	
 	
@@ -92,7 +92,7 @@ class StonedMdfr: ModifierBase
 		int roll = Math.RandomInt(0, 100);	
 		if ( roll < CHANCE_OF_COUGH )
 		{
-			Print("[CP] Stoned modifier COUGHING");	
+			//Print("[CP] Stoned modifier COUGHING");	
 			SymptomBase cough_symptom = player.GetSymptomManager().QueueUpPrimarySymptom(SymptomIDs.SYMPTOM_COUGH);
 			if (cough_symptom)
 				cough_symptom.SetDuration(5);

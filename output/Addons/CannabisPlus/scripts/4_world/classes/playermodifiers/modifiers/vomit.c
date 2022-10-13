@@ -32,7 +32,7 @@ class VomitMdfr: ModifierBase
 
 	override void OnActivate(PlayerBase player)
 	{
-		Print("[CP] Vomit modifier activating on player: " + player);
+		//Print("[CP] Vomit modifier activating on player: " + player);
 		SymptomBase symptom = player.GetSymptomManager().QueueUpPrimarySymptom( SymptomIDs.SYMPTOM_VOMIT );
 		if( symptom )
 		{
@@ -42,6 +42,6 @@ class VomitMdfr: ModifierBase
 	
 	override protected void OnDeactivate(PlayerBase player)
 	{
-		Print("[CP] Vomit modifier deactivating on player: " + player);
+		//Print("[CP] Vomit modifier deactivating on player: " + player);
 	}		
 };

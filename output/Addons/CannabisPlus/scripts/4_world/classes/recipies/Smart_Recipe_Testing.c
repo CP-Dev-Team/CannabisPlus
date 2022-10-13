@@ -402,8 +402,8 @@ class CP_CraftCigarettePackBlackFrost extends RecipeBase
 		string JointName = ingredient0.GetCpJointName(); 
 		string PackName = ingredient1.GetCpPackageName(); 
 		
-		Print(JointName);
-		Print(PackName);
+		//Print(JointName);
+		//Print(PackName);
 		
 		if(JointName == PackName)
 		{
