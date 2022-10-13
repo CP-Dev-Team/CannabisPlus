@@ -24,6 +24,7 @@ modded class ModItemRegisterCallbacks
 		pType.AddItemInHandsProfileIK("CP_EmptyBag", "dz/anims/workspaces/player/player_main/player_main_1h.asi", pBehavior,"dz/anims/anm/player/ik/gear/Heatpack.anm");
 		pType.AddItemInHandsProfileIK("CP_RawPlantBase", "dz/anims/workspaces/player/player_main/player_main_1h.asi", pBehavior,"dz/anims/anm/player/ik/gear/banana.anm");
 		pType.AddItemInHandsProfileIK("CP_DriedCannabisPlant", "dz/anims/workspaces/player/player_main/player_main_1h.asi", pBehavior,"dz/anims/anm/player/ik/gear/banana.anm");
+		pType.AddItemInHandsProfileIK("CP_PlasticRoll", "dz/anims/workspaces/player/player_main/player_main_1h.asi", pBehavior,"dz/anims/anm/player/ik/gear/cleaning_kit_wood.anm");
     };
     override void RegisterHeavy(DayZPlayerType pType, DayzPlayerItemBehaviorCfg pBehavior)
     {
