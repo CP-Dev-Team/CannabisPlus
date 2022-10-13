@@ -57,6 +57,5 @@
     "RequireBattery": 0,
     "WorkBench_PowerUsed": 1.0,
     "Plastic_Wrap_Usage": 10.0,
-    "Workbench_Processing_Time": 5,
-    "Bags_To_Bricks_Required": 16
+    "Workbench_Processing_Time": 5
   }
