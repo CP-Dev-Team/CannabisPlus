@@ -150,7 +150,7 @@ class CP_CraftCannabisBrickBlackFrost extends RecipeBase
 
 	override bool CanDo(ItemBase ingredients[], PlayerBase player)//final check for recipe's validity
 	{
-		int BagsToBricksUsage = GetCPConfig().Bags_To_Bricks_Required;
+		int BagsToBricksUsage = 16; //GetCPConfig().Bags_To_Bricks_Required;
 	
 		CP_CannabisBags ingredient1 = CP_CannabisBags.Cast(ingredients[0]);
 	
@@ -402,8 +402,8 @@ class CP_CraftCigarettePackBlackFrost extends RecipeBase
 		string JointName = ingredient0.GetCpJointName(); 
 		string PackName = ingredient1.GetCpPackageName(); 
 		
-		Print(JointName);
-		Print(PackName);
+		//Print(JointName);
+		//Print(PackName);
 		
 		if(JointName == PackName)
 		{

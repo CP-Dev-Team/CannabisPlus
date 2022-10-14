@@ -37,7 +37,6 @@ Explanation of CannabisPlus.json:
 
 	"cannabis_drytime": 30,				// Amount of time in minutes it takes for raw cannabis plants to dry on the drying post.
     "RequireBattery": 1,				// 1 = Require battery to be attached to workbench to use workbench.  0 = No battery needed.
-    "WorkBench_PowerUsed": 1.0,			// How much energy is subtracted from the battery per use.
+    "WorkBench_PowerUsed": 1.0,			// How much energy is subtracted from the battery per use.  Ignored if RequireBattery = 0.
     "Plastic_Wrap_Usage": 10.0,			// How much plastic wrap is subtracted per use.
     "Workbench_Processing_Time": 5,		// Time in seconds to process a bag or brick.
-    "Bags_To_Bricks_Required": 16,		// How many bags required to make a brick.

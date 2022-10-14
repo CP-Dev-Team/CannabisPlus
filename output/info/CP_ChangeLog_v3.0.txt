@@ -37,6 +37,5 @@ Bug Fixes
 - Fixed the sample types.xml file where crafted=1 stopped some items from spawning.
 
 Known Issues
-- Dried plants don't increase the quantity in the slot if the slot is already occupied.
 - Can add raw plants to the Drying Post after drying process is started.
 - Have to look at the base of the plant to Harvest it.

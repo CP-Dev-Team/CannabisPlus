@@ -149,17 +149,17 @@ class CP_Workbench extends ItemBase
 	const string ATTACHMENT_SLOT_BAGS				= "CP_Cannabis_Bags";
 	const string ATTACHMENT_SLOT_BRICKS 			= "CP_Cannabis_Bricks";
 	
-	/*///////////////////////////////////////////////////////////////////
-	////					Start of Config Control                 /////
-	////           All Config Main Variables ill be put Below       /////
-	///////////////////////////////////////////////////////////////////*/
+	/*//////////////////////////////////////////////////////////////////////////
+	//						Start of Config Control                 		  //
+	//           	All Config Main Variables ill be put Below       		  //
+	//////////////////////////////////////////////////////////////////////////*/
 	
-	/*                   Whole # Config Options                        */
-	/////////////////////////////////////////////////////////////////////
+	/*                     	   Whole # Config Options                         */
+	////////////////////////////////////////////////////////////////////////////
 		int BatteryRequired = GetCPConfig().RequireBattery;
 		int Workbench_Timer_Repeat = GetCPConfig().Workbench_Processing_Time;
 		//int BudsToBagsUsage = GetCPConfig().Buds_To_Bags_Required;
-		int BagsToBricksUsage = GetCPConfig().Bags_To_Bricks_Required;	
+		int BagsToBricksUsage = 16; //GetCPConfig().Bags_To_Bricks_Required;	
 
 
 
@@ -167,8 +167,8 @@ class CP_Workbench extends ItemBase
 	
 	
 	
-	/*				Percentile Config Options 0% - 100%                */
-	/////////////////////////////////////////////////////////////////////
+	/*					 Percentile Config Options 0% - 100%                  */
+	////////////////////////////////////////////////////////////////////////////
 
 	
 	    float Battery_Percent = GetCPConfig().WorkBench_PowerUsed / 100 * 1500;
@@ -177,10 +177,10 @@ class CP_Workbench extends ItemBase
 
 
 	
-	/*///////////////////////////////////////////////////////////////////
-	////					End of Config Control                 ///////
-	////           All Config Main Variables ill be put Above     ///////
-	///////////////////////////////////////////////////////////////////*/
+	/*//////////////////////////////////////////////////////////////////////////
+	//						  End of Config Control                 		  //
+	//           	All Config Main Variables ill be put Above    			  //
+	//////////////////////////////////////////////////////////////////////////*/
 	
 	// timer to get bagger working
 	protected ref Timer m_CP_Processing;
@@ -234,8 +234,6 @@ class CP_Workbench extends ItemBase
 	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 	// Start of Step based Variables to change outcome and Text shown for actions. not complicated but very handy
 	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-	
-
 	
 		
 	CP_CannabisBud GetCannabisBud()
@@ -315,8 +313,8 @@ class CP_Workbench extends ItemBase
 		if(m_CP_Processing && m_CP_Processing.IsRunning())
 			return;
 
-		Print("Processing is ongoing.");
-		Print("Is Running not canceled" + m_CP_Processing);
+		//Print("Processing is ongoing.");
+		//Print("Is Running not canceled" + m_CP_Processing);
 		
 		if(!m_CP_Processing)
 		{
@@ -325,7 +323,7 @@ class CP_Workbench extends ItemBase
 			CP_TimerisRunning = true;
 			CP_TimerIsPaused = false;
 			//UpdateLockState();
-			Print("Processing is started." + m_CP_Processing);
+			//Print("Processing is started." + m_CP_Processing);
 
 		}
 
@@ -335,8 +333,8 @@ class CP_Workbench extends ItemBase
 		//	CP_TimerisRunning = true;
 		//	CP_TimerIsPaused = false;
 		//	//UpdateLockState();
-		//	Print("Processing is started.");
-		//	Print(m_CP_Processing);
+		//	//Print("Processing is started.");
+		//	//Print(m_CP_Processing);
 		//
 
 		UpdateLockState();
@@ -348,12 +346,12 @@ class CP_Workbench extends ItemBase
 		{
 			m_CP_ProcessingCheck = new Timer;
 			m_CP_ProcessingCheck.Run(actiontime,this,"Do_Timer_ProcessingCheck",NULL,false);
-			Print("m_CP_Processing  isnt runing start m_CP_ProcessingCheck = " + m_CP_ProcessingCheck);
+			//Print("m_CP_Processing  isnt runing start m_CP_ProcessingCheck = " + m_CP_ProcessingCheck);
 		}
 		else
 		{
 		   m_CP_ProcessingCheck.Run(actiontime,this,"Do_Timer_ProcessingCheck",NULL,false);
-			Print("m_CP_ProcessingCheck is existing");
+			//Print("m_CP_ProcessingCheck is existing");
 		};
 		
     };
@@ -419,8 +417,8 @@ class CP_Workbench extends ItemBase
 		{
 
 			
-		    Print("StopProduction() executed.");
-			Print("m_CP_Processing is deleted " + m_CP_Processing);
+		    //Print("StopProduction() executed.");
+			//Print("m_CP_Processing is deleted " + m_CP_Processing);
 		}
 
 	};
@@ -463,27 +461,27 @@ class CP_Workbench extends ItemBase
 		{
 			if(GetBattieries().GetCompEM().GetEnergy() > Battery_Percent )
 			{
-				Print("Battery Check.");
+				//Print("Battery Check.");
 				if(CanCreateBags() == true )
 				{
 					CP_TimerisRunning = true;
 					CreateBags();
-					Print("Create bags.");
-					Print("CanCreateBags = true +" + m_CP_Processing);
+					//Print("Create bags.");
+					//Print("CanCreateBags = true +" + m_CP_Processing);
 				}
 				else if(CanCreateBricks() == true )
 				{
 					CP_TimerisRunning = true;
 					CreateBricks(); 
-					Print("Create bricks.");
-					Print("CanCreateBricks = true +" + m_CP_Processing);
+					//Print("Create bricks.");
+					//Print("CanCreateBricks = true +" + m_CP_Processing);
 				}
 				else
 				{
 					m_CP_Processing.Stop();
 					CP_TimerisRunning == false;
 					End_Processing(1);
-					Print("Out of materials.");
+					//Print("Out of materials.");
 					SetSynchDirty();
 				}
 			}
@@ -491,7 +489,7 @@ class CP_Workbench extends ItemBase
 			{
 				m_CP_Processing.Stop();
 				End_Processing(1);
-				Print("Out of Battery Juice.");
+				//Print("Out of Battery Juice.");
 				SetSynchDirty();
 			}
 		}
@@ -501,22 +499,22 @@ class CP_Workbench extends ItemBase
 			{
 				CP_TimerisRunning = true;
 				CreateBags();
-				Print("Create bags.");
-				Print("CanCreateBags = true +" + m_CP_Processing);
+				//Print("Create bags.");
+				//Print("CanCreateBags = true +" + m_CP_Processing);
 			}
 			else if(CanCreateBricks() == true )
 			{
 				CP_TimerisRunning = true;
 				CreateBricks(); 
-				Print("Create bricks.");
-				Print("CanCreateBricks = true +" + m_CP_Processing);
+				//Print("Create bricks.");
+				//Print("CanCreateBricks = true +" + m_CP_Processing);
 			}
 			else
 			{
 				m_CP_Processing.Stop();
 				CP_TimerisRunning == false;
 				End_Processing(1);
-				Print("Out of materials.");
+				//Print("Out of materials.");
 				SetSynchDirty();
 			}
 		};
@@ -542,7 +540,7 @@ class CP_Workbench extends ItemBase
                 {        
                     if(!GetCannabisBags())
                     {
-                        Print("Creating attachment.");
+                        //Print("Creating attachment.");
 						GetInventory().SetSlotLock(InventorySlots.GetSlotIdFromString(ATTACHMENT_SLOT_BAGS), false);
                         GetInventory().CreateAttachment(Bagname);
 						GetCannabisBags().SetQuantity(1);
@@ -551,11 +549,11 @@ class CP_Workbench extends ItemBase
                     else if (GetCannabisBags() && GetCannabisBags().GetType() == Bagname)
                     {
                         GetCannabisBags().AddQuantity(1); 
-                        Print("Adding quantity.");
+                        //Print("Adding quantity.");
                     }
                     else
                     {
-                        Print("Fucking else.");
+                        //Print("Fucking else.");
                         return;
                     }
 
@@ -571,7 +569,7 @@ class CP_Workbench extends ItemBase
 			{        
 				if(!GetCannabisBags())
 				{
-					Print("Creating attachment.");
+					//Print("Creating attachment.");
 					GetInventory().SetSlotLock(InventorySlots.GetSlotIdFromString(ATTACHMENT_SLOT_BAGS), false);
 					GetInventory().CreateAttachment(Bagname);
 					GetCannabisBags().SetQuantity(1);
@@ -580,11 +578,11 @@ class CP_Workbench extends ItemBase
 				else if (GetCannabisBags() && GetCannabisBags().GetType() == Bagname)
 				{
 					GetCannabisBags().AddQuantity(1); 
-					Print("Adding quantity.");
+					//Print("Adding quantity.");
 				}
 				else
 				{
-					Print("Fucking else.");
+					//Print("Fucking else.");
 					return;
 				}
 
@@ -616,7 +614,7 @@ class CP_Workbench extends ItemBase
 				else if (GetCannabisBricks() && GetCannabisBricks().GetType() == Brickname)
 				{
 					GetCannabisBricks().AddQuantity(1); 
-                    Print("Adding quantity.");
+                    //Print("Adding quantity.");
 				}
 				else
 				{
@@ -784,21 +782,21 @@ class CP_Workbench extends ItemBase
 				}
 				LockCPBaggerSlots(true);
 				LockCPBattery(true);
-				Print("All bagger slots locked.");
+				//Print("All bagger slots locked.");
 			}
 			else if ( BaggerOccupied() )
 			{
 				LockCPBaggerSlots(false);
 				LockCPBagger(true);
 				LockCPBattery(false);
-				Print("Bagger locked.");
+				//Print("Bagger locked.");
 			}
 			else
 			{
 				LockCPBaggerSlots(false);
 				LockCPBagger(false);
 				LockCPBattery(false);
-				Print("All bagger slots unlocked.");
+				//Print("All bagger slots unlocked.");
 			};
 		};
 		if ( Wrapper )
@@ -812,19 +810,19 @@ class CP_Workbench extends ItemBase
 				LockCPWrapperSlots(true);
 				LockCPBattery(true);
 
-				Print("All wrapper slots locked.");
+				//Print("All wrapper slots locked.");
 			}
 			else if ( WrapperOccupied() )
 			{
 				LockCPWrapperSlots(false);
 				LockCPWrapper(true);
-				Print("Wrapper locked.");
+				//Print("Wrapper locked.");
 			}
 			else
 			{
 				LockCPWrapperSlots(false);
 				LockCPWrapper(false);
-				Print("All wrapper slots unlocked.");
+				//Print("All wrapper slots unlocked.");
 			};
 		};
     };
@@ -915,10 +913,10 @@ class CP_Workbench extends ItemBase
         if ( slot_name == "LargeBattery" ) {
             if( BatteryRequired == 1 ) {
                 return true;
-                Print("Battery required");
+                //Print("Battery required");
             } else {
                 return false;
-                Print("Battery not required.");
+                //Print("Battery not required.");
             }
         }
         return true;

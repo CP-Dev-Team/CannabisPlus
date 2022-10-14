@@ -45,7 +45,7 @@ class CP_CompostBin extends Container_Base
 			if (!m_IsLocked)
 			{  
 				ProcessCompost();
-				Print("[CP] " + this + " processing compost with " + NumItems + " material");
+				//Print("[CP] " + this + " processing compost with " + NumItems + " material");
 			}	
 		}
 	
@@ -76,7 +76,7 @@ class CP_CompostBin extends Container_Base
 					item = ItemBase.Cast(cargo.GetItem(j));
 					if (item)
 					{
-						Print("[CP] " + this + " deleting " + item + " from compost bin");
+						//Print("[CP] " + this + " deleting " + item + " from compost bin");
 						item.Delete();	
 					}	
 				}

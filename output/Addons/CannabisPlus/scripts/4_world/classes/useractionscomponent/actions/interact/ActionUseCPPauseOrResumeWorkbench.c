@@ -37,8 +37,8 @@ class ActionCPResumeAndPause: ActionInteractBase
 	{
 		CP_Workbench Bench = CP_Workbench.Cast( action_data.m_Target.GetObject() );
 		
-		Print("Action Process " + Bench.RunningOrNot());
-		Print(TendancyText);
+		//Print("Action Process " + Bench.RunningOrNot());
+		//Print(TendancyText);
 		Bench.PauseOrResume();
 
 	};

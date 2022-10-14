@@ -47,7 +47,7 @@ class CfgVehicles
 		displayName="Plastic Wrap";
 		descriptionShort="A roll of plastic wrap.  Can be used with a wrapping machine.";
 		model="\CannabisPlus\plasticWrapper\CP_EmptyROll_DeleteMep3d.p3d";
-		rotationFlags=34;
+		rotationFlags=12;
 		lootCategory="Crafted";
 		weight=14;
 		itemSize[]={1,4};

@@ -22,9 +22,9 @@ ImageSetClass {
   }
   ImageSetDefClass HangingPlant {
    Name "HangingPlant"
-   Pos 1127 20
-   Size 198 505
-   Flags 0
+   Pos 1069 33
+   Size 323 488
+   Flags ISVerticalTile
   }
   ImageSetDefClass PlasticWrap {
    Name "PlasticWrap"
@@ -34,8 +34,8 @@ ImageSetClass {
   }
   ImageSetDefClass bags {
    Name "bags"
-   Pos 108 628
-   Size 300 397
+   Pos 46 628
+   Size 415 397
    Flags 0
   }
   ImageSetDefClass Bricks {
