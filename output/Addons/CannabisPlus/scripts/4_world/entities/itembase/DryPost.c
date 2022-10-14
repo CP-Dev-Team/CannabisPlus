@@ -176,27 +176,40 @@ class CP_DryPost extends ItemBase
     {
 		return CP_DriedCannabisPlant.Cast( GetAttachmentByType (CP_DriedCannabisPlant) );
     };
-	void CheckStart()
+	
+	bool CanStart()
+	{
+		if ( GetGame() && GetGame().IsServer() )
+		{
+			SetSynchDirty();
+			if (!m_IsLocked)	
+			{
+				for ( k = 0; k < GetInventory().AttachmentCount(); k++ )
+				{
+					attachment = ItemBase.Cast( GetInventory().GetAttachmentFromIndex( k ) );
+					ItemName  = attachment.GetType();
+					if (ItemName.IndexOf("CP_Raw") >= 0)
+					{
+						return true;
+					}	
+				}	
+				return false;
+			}
+			return false;
+		} else 
+		{
+			return false;
+		}		
+	}
+	
+	void StartDrying()
 	{
 		if (!m_IsLocked)	
 		{
-			for ( k = 0; k < GetInventory().AttachmentCount(); k++ )
-			{
-				attachment = ItemBase.Cast( GetInventory().GetAttachmentFromIndex( k ) );
-				ItemName  = attachment.GetType();
-				if (ItemName.IndexOf("CP_Raw") >= 0)
-				{
-					NumPlants += 1;
-				}	
-			}	
-			
-			if (NumPlants>=1)
-			{
-				Print("[CP] all items attached to post " + this + " ...starting to dry");
-				GetGame().GetCallQueue(CALL_CATEGORY_GAMEPLAY).CallLater(FinishDrying, GetCPConfig().cannabis_drytime*1000, false);
-				m_IsLocked = true;
-				LockDryingSlots(true);
-			}
+			Print("[CP] all items attached to post " + this + " ...starting to dry");
+			GetGame().GetCallQueue(CALL_CATEGORY_GAMEPLAY).CallLater(FinishDrying, GetCPConfig().cannabis_drytime*1000, false);
+			m_IsLocked = true;
+			LockDryingSlots(true);
 		}		
 	}
 	
