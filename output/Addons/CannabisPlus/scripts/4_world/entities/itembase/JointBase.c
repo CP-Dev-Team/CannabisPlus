@@ -26,6 +26,8 @@ class CP_JointBase extends ItemBase
 	
 	protected string m_cpJointPack= "";
 	protected string m_cpJointNames= "";
+	
+	ref protected EffectSound 	m_SmokingLoopSound;
 
 
 	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -75,9 +77,23 @@ class CP_JointBase extends ItemBase
 	void ~CP_JointBase() {
 		if (m_SmokeParticle)
 			m_SmokeParticle.Stop();
+		
+		SEffectManager.DestroyEffect( m_SmokingLoopSound );
 	};
 	
+	void PlaySmokingingLoopSound()
+	{
+		if ( !m_SmokingLoopSound || !m_SmokingLoopSound.IsSoundPlaying() )
+		{
+			m_SmokingLoopSound = SEffectManager.PlaySound( "Smoking_SoundSet", GetPosition(),0.1,0.5,true );
+		}
+	}
 	
+	void StopSmokingingLoopSound()
+	{
+		m_SmokingLoopSound.SetSoundFadeOut(0.5);
+		m_SmokingLoopSound.SoundStop();
+	}
 	
 	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 	// 
@@ -137,6 +153,7 @@ class CP_JointBase extends ItemBase
 		
 		if( m_LastJointSmokeState != state ) {
 			if (state == ESmokeState.SMOKING) {
+				PlaySmokingingLoopSound();
 				if (m_SmokeParticle)
 				{	
 					m_SmokeParticle.ScaleParticleParamFromOriginal(EmitorParam.SIZE, 1.0);
@@ -159,6 +176,7 @@ class CP_JointBase extends ItemBase
 					m_SmokeParticle.ScaleParticleParamFromOriginal(EmitorParam.VELOCITY, 0.03);
 				}				
 			} else if (state == ESmokeState.NOT_SMOKING) {
+				StopSmokingingLoopSound();
 				m_SmokeParticle.Stop();
 			}	
 		}	

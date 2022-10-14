@@ -77,6 +77,45 @@ class CfgSoundShaders
         };
         volume = 1;
     };
+	
+	class Vacuum_SoundShader : Custom_SoundShader_Base
+    {
+        samples[] =
+        {
+        	{
+        		"CannabisPlus\sounds\vacuum_pump.ogg", 
+        		1
+        	}
+        };
+        volume = 1;
+		range = 100;
+    };
+	
+	class Plastic1_SoundShader : Custom_SoundShader_Base
+    {
+        samples[] =
+        {
+        	{
+        		"CannabisPlus\sounds\plastic1.ogg", 
+        		1
+        	}
+        };
+        volume = 1;
+		range = 100;
+    };
+	
+	class Plastic2_SoundShader : Custom_SoundShader_Base
+    {
+        samples[] =
+        {
+        	{
+        		"CannabisPlus\sounds\plastic2.ogg", 
+        		1
+        	}
+        };
+        volume = 1;
+		range = 100;
+    };
 };
 
 class CfgSoundSets
@@ -95,6 +134,42 @@ class CfgSoundSets
         soundShaders[] =
         {
             "Smoking_SoundShader"
+        };
+        
+        frequencyRandomizer = 0;
+        volumeRandomizer = 0;
+        volume = 0.5;
+    };
+	
+	class Vacuum_SoundSet : Custom_SoundSet_Base
+    {
+        soundShaders[] =
+        {
+            "Vacuum_SoundShader"
+        };
+        
+        frequencyRandomizer = 0;
+        volumeRandomizer = 0;
+        volume = 0.5;
+    };
+	
+	class Plastic1_SoundSet : Custom_SoundSet_Base
+    {
+        soundShaders[] =
+        {
+            "Plastic1_SoundShader"
+        };
+        
+        frequencyRandomizer = 0;
+        volumeRandomizer = 0;
+        volume = 0.5;
+    };
+	
+	class Plastic2_SoundSet : Custom_SoundSet_Base
+    {
+        soundShaders[] =
+        {
+            "Plastic2_SoundShader"
         };
         
         frequencyRandomizer = 0;

@@ -66,10 +66,6 @@ class CfgVehicles
 		rotationFlags=2;
 		itemSize[]={1,4};
 		itemBehaviour=1;
-		attachments[]=
-		{
-			"Rope"
-		};
 		class AnimationSources
 		{
 			class AnimSourceShown
@@ -117,7 +113,7 @@ class CfgVehicles
 		};
         class GUIInventoryAttachmentsProps
         {
-            class CP_Post
+            class CP_DryPost
             {
                 name="Drying Post";
                 description="A post for drying plants.";
