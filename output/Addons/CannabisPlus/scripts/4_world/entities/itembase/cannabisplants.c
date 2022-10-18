@@ -1,6 +1,33 @@
 class CP_RawPlantBase extends ItemBase
 {
-	int yield=0;
+
+	void CP_RawPlantBase()
+	{
+		RegisterNetSyncVariableBool( "yield" );
+	}
+	int yield = 0;
+
+	override bool OnStoreLoad( ParamsReadContext ctx, int version )
+	{
+		if ( !super.OnStoreLoad( ctx, version ) )
+			return false;
+		if (GetGame().IsServer() && !ctx.Read( yield ))
+		{
+			return false;
+		}
+		return true;
+	}
+	override void OnStoreSave( ParamsWriteContext ctx )
+	{
+		// call the inherited class
+		super.OnStoreSave( ctx );
+		if(GetGame().IsServer())
+		{
+			ctx.Write( yield );
+		}
+	}
+
+
 	
 	void SetYield(int value) 
 	{
