@@ -64,7 +64,7 @@ class CfgVehicles
 		model="\CannabisPlus\furniture\DryPostKit.p3d";
 		weight=300;
 		rotationFlags=2;
-		itemSize[]={1,4};
+		itemSize[]={3,11};
 		itemBehaviour=1;
 		attachments[]=
 		{
