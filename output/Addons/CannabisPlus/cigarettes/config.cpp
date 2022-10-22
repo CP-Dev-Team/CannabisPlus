@@ -26,7 +26,7 @@ class CfgVehicles
 		inventorySlot="Ingredient";
 		rotationFlags=16;
 		weight=30;
-		itemSize[]={1,2};
+		itemSize[]={1,1};
 		hiddenSelections[]=
 		{
 			"zbytek"

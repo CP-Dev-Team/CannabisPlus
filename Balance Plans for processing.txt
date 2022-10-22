@@ -1,0 +1,17 @@
+1 second to make bags by hand
+5 seconds to make bricks by hand
+
+
+dry time = 5 mins
+
+fertalizer = 20% boost
+
+Plant material = defualt
+
+workbench battery usage = 1% for both brick and battery
+
+Workbench battery required = true or false;
+
+Plastic wrap usage = 10%
+
+

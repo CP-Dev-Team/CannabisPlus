@@ -17,732 +17,317 @@ class CfgPatches
 		requiredVersion=0.1;
 		requiredAddons[]=
 		{
-			"DZ_Data",
-			"DZ_Gear_Containers"
+			"DZ_Data"
 		};
 	};
 };
 class CfgVehicles
 {
 	class Container_Base;
-	class CP_CannabisBrickSkunk: Container_Base
+	class CP_CannabisBrickBase: Container_Base
+	{
+		scope=0;
+		displayName="Brick Base";
+		descriptionShort="Base";
+		model="CannabisPlus\bricks\CP_brick.p3d";
+		rotationFlags=17;
+		lootCategory="Crafted";
+		weight=450;
+		itemSize[]={2,2};
+		absorbency=0.2;
+		isMeleeWeapon=1;
+		varQuantityDestroyOnMin=1;
+		canBeSplit=1;
+		varQuantityInit=1;
+		varQuantityMin=0;
+		varQuantityMax=25;
+		varStackMax=1;
+		inventorySlot[]={"CP_Cannabis_Bricks"};
+		cpStepDownToBag="";
+		hiddenSelections[]=
+		{
+			"SeedPack",
+			"Brick"
+		};
+		hiddenSelectionsTextures[]=
+		{
+			"dz\gear\cultivation\data\cannabis_seeds_co.paa",
+			"CannabisPlus\bricks\data\cannabis_brick_co.paa"
+		};
+		hiddenSelectionsMaterials[]=
+		{
+			"dz\gear\cultivation\data\cannabis_seeds.rvmat",
+			"CannabisPlus\bricks\data\brick.rvmat"
+		};
+		
+		class DamageSystem
+		{
+			class GlobalHealth
+			{
+				class Health
+				{
+					hitpoints=30;
+					healthLevels[]=
+					{
+						
+						{
+							1,
+							
+							{
+								"CannabisPlus\bricks\data\cannabis_brick.rvmat"
+							}
+						},
+						
+						{
+							0.69999999,
+							
+							{
+								"CannabisPlus\bricks\data\cannabis_brick.rvmat"
+							}
+						},
+						
+						{
+							0.5,
+							
+							{
+								"CannabisPlus\bricks\data\cannabis_brick_damage.rvmat"
+							}
+						},
+						
+						{
+							0.30000001,
+							
+							{
+								"CannabisPlus\bricks\data\cannabis_brick_damage.rvmat"
+							}
+						},
+						
+						{
+							0,
+							
+							{
+								"CannabisPlus\bricks\data\cannabis_brick_destruct.rvmat"
+							}
+						}
+					};
+				};
+			};
+		};
+		class AnimEvents
+		{
+			class SoundWeapon
+			{
+				class pickUpItem_Light
+				{
+					soundSet="pickUpCourierBag_Light_SoundSet";
+					id=796;
+				};
+				class pickUpItem
+				{
+					soundSet="pickUpCourierBag_SoundSet";
+					id=797;
+				};
+			};
+		};
+	};
+	class CP_CannabisBrickSkunk: CP_CannabisBrickBase
 	{
 		scope=2;
 		displayName="Brick of Skunk Weed";
 		descriptionShort="One pound of Skunk weed.";
-		model="\dz\gear\containers\FirstAidKit.p3d";
-		rotationFlags=17;
-		lootCategory="Crafted";
-		weight=450;
-		itemSize[]={3,3};
-		absorbency=0.2;
-		isMeleeWeapon=1;
-		hiddenSelections[]=
+		cpStepDownToBag="CP_CannabisBagSkunk";
+		class Resources
 		{
-			"zbytek"
+			class CP_CannabisBagSkunk
+			{
+				value=16;
+				variable="quantity";
+			};
 		};
 		hiddenSelectionsTextures[]=
 		{
-			"CannabisPlus\bricks\data\cannabis_brick_skunk_co.paa"
+			"CannabisPlus\seeds\data\cannabis_seeds_pack_skunk_co.paa",
+			"CannabisPlus\bricks\data\cannabis_brick_co.paa"
 		};
-		class DamageSystem
+		hiddenSelectionsMaterials[]=
 		{
-			class GlobalHealth
-			{
-				class Health
-				{
-					hitpoints=30;
-					healthLevels[]=
-					{
-						
-						{
-							1,
-							
-							{
-								"CannabisPlus\bricks\data\cannabis_brick.rvmat"
-							}
-						},
-						
-						{
-							0.69999999,
-							
-							{
-								"CannabisPlus\bricks\data\cannabis_brick.rvmat"
-							}
-						},
-						
-						{
-							0.5,
-							
-							{
-								"CannabisPlus\bricks\data\cannabis_brick_damage.rvmat"
-							}
-						},
-						
-						{
-							0.30000001,
-							
-							{
-								"CannabisPlus\bricks\data\cannabis_brick_damage.rvmat"
-							}
-						},
-						
-						{
-							0,
-							
-							{
-								"CannabisPlus\bricks\data\cannabis_brick_destruct.rvmat"
-							}
-						}
-					};
-				};
-			};
-		};
-		class AnimEvents
-		{
-			class SoundWeapon
-			{
-				class pickUpItem_Light
-				{
-					soundSet="pickUpCourierBag_Light_SoundSet";
-					id=796;
-				};
-				class pickUpItem
-				{
-					soundSet="pickUpCourierBag_SoundSet";
-					id=797;
-				};
-			};
+			"CannabisPlus\seeds\data\cannabis_seeds.rvmat",
+			"CannabisPlus\bricks\data\brick.rvmat"
 		};
 	};
-	class CP_CannabisBrickBlue: Container_Base
+	class CP_CannabisBrickBlue: CP_CannabisBrickBase
 	{
 		scope=2;
 		displayName="Brick of Blue God Weed";
 		descriptionShort="One pound of Blue God weed.";
-		model="\dz\gear\containers\FirstAidKit.p3d";
-		rotationFlags=17;
-		lootCategory="Crafted";
-		weight=450;
-		itemSize[]={3,3};
-		absorbency=0.2;
-		isMeleeWeapon=1;
-		hiddenSelections[]=
+		cpStepDownToBag="CP_CannabisBagBlue";
+		class Resources
 		{
-			"zbytek"
+			class CP_CannabisBagBlue
+			{
+				value=16;
+				variable="quantity";
+			};
 		};
 		hiddenSelectionsTextures[]=
 		{
-			"CannabisPlus\bricks\data\cannabis_brick_blue_co.paa"
+			"CannabisPlus\seeds\data\cannabis_seeds_pack_blue_co.paa",
+			"CannabisPlus\bricks\data\cannabis_brick_co.paa"
 		};
-		class DamageSystem
+		hiddenSelectionsMaterials[]=
 		{
-			class GlobalHealth
-			{
-				class Health
-				{
-					hitpoints=30;
-					healthLevels[]=
-					{
-						
-						{
-							1,
-							
-							{
-								"CannabisPlus\bricks\data\cannabis_brick.rvmat"
-							}
-						},
-						
-						{
-							0.69999999,
-							
-							{
-								"CannabisPlus\bricks\data\cannabis_brick.rvmat"
-							}
-						},
-						
-						{
-							0.5,
-							
-							{
-								"CannabisPlus\bricks\data\cannabis_brick_damage.rvmat"
-							}
-						},
-						
-						{
-							0.30000001,
-							
-							{
-								"CannabisPlus\bricks\data\cannabis_brick_damage.rvmat"
-							}
-						},
-						
-						{
-							0,
-							
-							{
-								"CannabisPlus\bricks\data\cannabis_brick_destruct.rvmat"
-							}
-						}
-					};
-				};
-			};
-		};
-		class AnimEvents
-		{
-			class SoundWeapon
-			{
-				class pickUpItem_Light
-				{
-					soundSet="pickUpCourierBag_Light_SoundSet";
-					id=796;
-				};
-				class pickUpItem
-				{
-					soundSet="pickUpCourierBag_SoundSet";
-					id=797;
-				};
-			};
+			"CannabisPlus\seeds\data\cannabis_seeds.rvmat",
+			"CannabisPlus\bricks\data\brick.rvmat"
 		};
 	};
-	class CP_CannabisBrickKush: Container_Base
+	class CP_CannabisBrickKush: CP_CannabisBrickBase
 	{
 		scope=2;
 		displayName="Brick of Purple Kush Weed";
 		descriptionShort="One pound of Purple Kush weed.";
-		model="\dz\gear\containers\FirstAidKit.p3d";
-		rotationFlags=17;
-		lootCategory="Crafted";
-		weight=450;
-		itemSize[]={3,3};
-		absorbency=0.2;
-		isMeleeWeapon=1;
-		hiddenSelections[]=
+		cpStepDownToBag="CP_CannabisBagKush";
+		class Resources
 		{
-			"zbytek"
+			class CP_CannabisBagKush
+			{
+				value=16;
+				variable="quantity";
+			};
 		};
 		hiddenSelectionsTextures[]=
 		{
-			"CannabisPlus\bricks\data\cannabis_brick_kush_co.paa"
+			"CannabisPlus\seeds\data\cannabis_seeds_pack_kush_co.paa",
+			"CannabisPlus\bricks\data\cannabis_brick_co.paa"
 		};
-		class DamageSystem
+		hiddenSelectionsMaterials[]=
 		{
-			class GlobalHealth
-			{
-				class Health
-				{
-					hitpoints=30;
-					healthLevels[]=
-					{
-						
-						{
-							1,
-							
-							{
-								"CannabisPlus\bricks\data\cannabis_brick.rvmat"
-							}
-						},
-						
-						{
-							0.69999999,
-							
-							{
-								"CannabisPlus\bricks\data\cannabis_brick.rvmat"
-							}
-						},
-						
-						{
-							0.5,
-							
-							{
-								"CannabisPlus\bricks\data\cannabis_brick_damage.rvmat"
-							}
-						},
-						
-						{
-							0.30000001,
-							
-							{
-								"CannabisPlus\bricks\data\cannabis_brick_damage.rvmat"
-							}
-						},
-						
-						{
-							0,
-							
-							{
-								"CannabisPlus\bricks\data\cannabis_brick_destruct.rvmat"
-							}
-						}
-					};
-				};
-			};
-		};
-		class AnimEvents
-		{
-			class SoundWeapon
-			{
-				class pickUpItem_Light
-				{
-					soundSet="pickUpCourierBag_Light_SoundSet";
-					id=796;
-				};
-				class pickUpItem
-				{
-					soundSet="pickUpCourierBag_SoundSet";
-					id=797;
-				};
-			};
+			"CannabisPlus\seeds\data\cannabis_seeds.rvmat",
+			"CannabisPlus\bricks\data\brick.rvmat"
 		};
 	};
-	class CP_CannabisBrickStardawg: Container_Base
+	class CP_CannabisBrickStardawg: CP_CannabisBrickBase
 	{
 		scope=2;
 		displayName="Brick of Stardawg Weed";
 		descriptionShort="One pound of Stardawg weed.";
-		model="\dz\gear\containers\FirstAidKit.p3d";
-		rotationFlags=17;
-		lootCategory="Crafted";
-		weight=450;
-		itemSize[]={3,3};
-		absorbency=0.2;
-		isMeleeWeapon=1;
-		hiddenSelections[]=
+		cpStepDownToBag="CP_CannabisBagStardawg";
+		class Resources
 		{
-			"zbytek"
+			class CP_CannabisStardawg
+			{
+				value=16;
+				variable="quantity";
+			};
 		};
 		hiddenSelectionsTextures[]=
 		{
-			"CannabisPlus\bricks\data\cannabis_brick_stardawg_co.paa"
+			"CannabisPlus\seeds\data\cannabis_seeds_pack_stardawg_co.paa",
+			"CannabisPlus\bricks\data\cannabis_brick_co.paa"
 		};
-		class DamageSystem
+		hiddenSelectionsMaterials[]=
 		{
-			class GlobalHealth
-			{
-				class Health
-				{
-					hitpoints=30;
-					healthLevels[]=
-					{
-						
-						{
-							1,
-							
-							{
-								"CannabisPlus\bricks\data\cannabis_brick.rvmat"
-							}
-						},
-						
-						{
-							0.69999999,
-							
-							{
-								"CannabisPlus\bricks\data\cannabis_brick.rvmat"
-							}
-						},
-						
-						{
-							0.5,
-							
-							{
-								"CannabisPlus\bricks\data\cannabis_brick_damage.rvmat"
-							}
-						},
-						
-						{
-							0.30000001,
-							
-							{
-								"CannabisPlus\bricks\data\cannabis_brick_damage.rvmat"
-							}
-						},
-						
-						{
-							0,
-							
-							{
-								"CannabisPlus\bricks\data\cannabis_brick_destruct.rvmat"
-							}
-						}
-					};
-				};
-			};
-		};
-		class AnimEvents
-		{
-			class SoundWeapon
-			{
-				class pickUpItem_Light
-				{
-					soundSet="pickUpCourierBag_Light_SoundSet";
-					id=796;
-				};
-				class pickUpItem
-				{
-					soundSet="pickUpCourierBag_SoundSet";
-					id=797;
-				};
-			};
+			"CannabisPlus\seeds\data\cannabis_seeds.rvmat",
+			"CannabisPlus\bricks\data\brick.rvmat"
 		};
 	};
-	class CP_CannabisBrickFuture: Container_Base
+	class CP_CannabisBrickFuture: CP_CannabisBrickBase
 	{
 		scope=2;
 		displayName="Brick of Future Weed";
 		descriptionShort="One pound of Future weed.";
-		model="\dz\gear\containers\FirstAidKit.p3d";
-		rotationFlags=17;
-		lootCategory="Crafted";
-		weight=450;
-		itemSize[]={3,3};
-		absorbency=0.2;
-		isMeleeWeapon=1;
-		hiddenSelections[]=
+		cpStepDownToBag="CP_CannabisBagFuture";
+		class Resources
 		{
-			"zbytek"
+			class CP_CannabisBagFuture
+			{
+				value=16;
+				variable="quantity";
+			};
 		};
 		hiddenSelectionsTextures[]=
 		{
-			"CannabisPlus\bricks\data\cannabis_brick_future_co.paa"
+			"CannabisPlus\seeds\data\cannabis_seeds_pack_Future_co.paa",
+			"CannabisPlus\bricks\data\cannabis_brick_co.paa"
 		};
-		class DamageSystem
+		hiddenSelectionsMaterials[]=
 		{
-			class GlobalHealth
-			{
-				class Health
-				{
-					hitpoints=30;
-					healthLevels[]=
-					{
-						
-						{
-							1,
-							
-							{
-								"CannabisPlus\bricks\data\cannabis_brick.rvmat"
-							}
-						},
-						
-						{
-							0.69999999,
-							
-							{
-								"CannabisPlus\bricks\data\cannabis_brick.rvmat"
-							}
-						},
-						
-						{
-							0.5,
-							
-							{
-								"CannabisPlus\bricks\data\cannabis_brick_damage.rvmat"
-							}
-						},
-						
-						{
-							0.30000001,
-							
-							{
-								"CannabisPlus\bricks\data\cannabis_brick_damage.rvmat"
-							}
-						},
-						
-						{
-							0,
-							
-							{
-								"CannabisPlus\bricks\data\cannabis_brick_destruct.rvmat"
-							}
-						}
-					};
-				};
-			};
-		};
-		class AnimEvents
-		{
-			class SoundWeapon
-			{
-				class pickUpItem_Light
-				{
-					soundSet="pickUpCourierBag_Light_SoundSet";
-					id=796;
-				};
-				class pickUpItem
-				{
-					soundSet="pickUpCourierBag_SoundSet";
-					id=797;
-				};
-			};
+			"CannabisPlus\seeds\data\cannabis_seeds.rvmat",
+			"CannabisPlus\bricks\data\brick.rvmat"
 		};
 	};
-	class CP_CannabisBrickS1: Container_Base
+	class CP_CannabisBrickS1: CP_CannabisBrickBase
 	{
 		scope=2;
 		displayName="Brick of S1 Hemp";
 		descriptionShort="One pound of S1 hemp.  Sponsored by StevesGoods.com";
-		model="\dz\gear\containers\FirstAidKit.p3d";
-		rotationFlags=17;
-		lootCategory="Crafted";
-		weight=450;
-		itemSize[]={3,3};
-		absorbency=0.2;
-		isMeleeWeapon=1;
-		hiddenSelections[]=
+		cpStepDownToBag="CP_CannabisBagS1";
+		class Resources
 		{
-			"zbytek"
+			class CP_CannabisBagS1
+			{
+				value=16;
+				variable="quantity";
+			};
 		};
 		hiddenSelectionsTextures[]=
 		{
-			"CannabisPlus\bricks\data\cannabis_brick_s1_co.paa"
+			"CannabisPlus\seeds\data\cannabis_seeds_pack_s1_co.paa",
+			"CannabisPlus\bricks\data\cannabis_brick_co.paa"
 		};
-		class DamageSystem
+		hiddenSelectionsMaterials[]=
 		{
-			class GlobalHealth
-			{
-				class Health
-				{
-					hitpoints=30;
-					healthLevels[]=
-					{
-						
-						{
-							1,
-							
-							{
-								"CannabisPlus\bricks\data\cannabis_brick.rvmat"
-							}
-						},
-						
-						{
-							0.69999999,
-							
-							{
-								"CannabisPlus\bricks\data\cannabis_brick.rvmat"
-							}
-						},
-						
-						{
-							0.5,
-							
-							{
-								"CannabisPlus\bricks\data\cannabis_brick_damage.rvmat"
-							}
-						},
-						
-						{
-							0.30000001,
-							
-							{
-								"CannabisPlus\bricks\data\cannabis_brick_damage.rvmat"
-							}
-						},
-						
-						{
-							0,
-							
-							{
-								"CannabisPlus\bricks\data\cannabis_brick_destruct.rvmat"
-							}
-						}
-					};
-				};
-			};
-		};
-		class AnimEvents
-		{
-			class SoundWeapon
-			{
-				class pickUpItem_Light
-				{
-					soundSet="pickUpCourierBag_Light_SoundSet";
-					id=796;
-				};
-				class pickUpItem
-				{
-					soundSet="pickUpCourierBag_SoundSet";
-					id=797;
-				};
-			};
+			"CannabisPlus\seeds\data\cannabis_seeds.rvmat",
+			"CannabisPlus\bricks\data\brick.rvmat"
 		};
 	};
-	class CP_CannabisBrickNomad: Container_Base
+	class CP_CannabisBrickNomad: CP_CannabisBrickBase
 	{
 		scope=2;
 		displayName="Brick of Nomad Weed";
 		descriptionShort="One pound of Nomad weed.";
-		model="\dz\gear\containers\FirstAidKit.p3d";
-		rotationFlags=17;
-		lootCategory="Crafted";
-		weight=450;
-		itemSize[]={3,3};
-		absorbency=0.2;
-		isMeleeWeapon=1;
-		hiddenSelections[]=
+		cpStepDownToBag="CP_CannabisBagNomad";
+		class Resources
 		{
-			"zbytek"
+			class CP_CannabisBagNomad
+			{
+				value=16;
+				variable="quantity";
+			};
 		};
 		hiddenSelectionsTextures[]=
 		{
-			"CannabisPlus\bricks\data\cannabis_brick_nomad_co.paa"
+			"CannabisPlus\seeds\data\cannabis_seeds_pack_nomad_co.paa",
+			"CannabisPlus\bricks\data\cannabis_brick_co.paa"
 		};
-		class DamageSystem
+		hiddenSelectionsMaterials[]=
 		{
-			class GlobalHealth
-			{
-				class Health
-				{
-					hitpoints=30;
-					healthLevels[]=
-					{
-						
-						{
-							1,
-							
-							{
-								"CannabisPlus\bricks\data\cannabis_brick.rvmat"
-							}
-						},
-						
-						{
-							0.69999999,
-							
-							{
-								"CannabisPlus\bricks\data\cannabis_brick.rvmat"
-							}
-						},
-						
-						{
-							0.5,
-							
-							{
-								"CannabisPlus\bricks\data\cannabis_brick_damage.rvmat"
-							}
-						},
-						
-						{
-							0.30000001,
-							
-							{
-								"CannabisPlus\bricks\data\cannabis_brick_damage.rvmat"
-							}
-						},
-						
-						{
-							0,
-							
-							{
-								"CannabisPlus\bricks\data\cannabis_brick_destruct.rvmat"
-							}
-						}
-					};
-				};
-			};
-		};
-		class AnimEvents
-		{
-			class SoundWeapon
-			{
-				class pickUpItem_Light
-				{
-					soundSet="pickUpCourierBag_Light_SoundSet";
-					id=796;
-				};
-				class pickUpItem
-				{
-					soundSet="pickUpCourierBag_SoundSet";
-					id=797;
-				};
-			};
+			"CannabisPlus\seeds\data\cannabis_seeds.rvmat",
+			"CannabisPlus\bricks\data\brick.rvmat"
 		};
 	};
-	class CP_CannabisBrickBlackFrost: Container_Base
+	class CP_CannabisBrickBlackFrost: CP_CannabisBrickBase
 	{
 		scope=2;
 		displayName="Brick of Black Frost Weed";
 		descriptionShort="One pound of Black Frost weed.";
-		model="\dz\gear\containers\FirstAidKit.p3d";
-		rotationFlags=17;
-		lootCategory="Crafted";
-		weight=450;
-		itemSize[]={3,3};
-		absorbency=0.2;
-		isMeleeWeapon=1;
-		hiddenSelections[]=
+		cpStepDownToBag="CP_CannabisBagBlackFrost";
+		class Resources
 		{
-			"zbytek"
+			class CP_CannabisBagBlackFrost
+			{
+				value=16;
+				variable="quantity";
+			};
 		};
 		hiddenSelectionsTextures[]=
 		{
-			"CannabisPlus\bricks\data\cannabis_brick_blackfrost_co.paa"
+			"CannabisPlus\seeds\data\cannabis_seeds_pack_blackfrost_co.paa",
+			"CannabisPlus\bricks\data\cannabis_brick_co.paa"
 		};
-		class DamageSystem
+		hiddenSelectionsMaterials[]=
 		{
-			class GlobalHealth
-			{
-				class Health
-				{
-					hitpoints=30;
-					healthLevels[]=
-					{
-						
-						{
-							1,
-							
-							{
-								"CannabisPlus\bricks\data\cannabis_brick.rvmat"
-							}
-						},
-						
-						{
-							0.69999999,
-							
-							{
-								"CannabisPlus\bricks\data\cannabis_brick.rvmat"
-							}
-						},
-						
-						{
-							0.5,
-							
-							{
-								"CannabisPlus\bricks\data\cannabis_brick_damage.rvmat"
-							}
-						},
-						
-						{
-							0.30000001,
-							
-							{
-								"CannabisPlus\bricks\data\cannabis_brick_damage.rvmat"
-							}
-						},
-						
-						{
-							0,
-							
-							{
-								"CannabisPlus\bricks\data\cannabis_brick_destruct.rvmat"
-							}
-						}
-					};
-				};
-			};
-		};
-		class AnimEvents
-		{
-			class SoundWeapon
-			{
-				class pickUpItem_Light
-				{
-					soundSet="pickUpCourierBag_Light_SoundSet";
-					id=796;
-				};
-				class pickUpItem
-				{
-					soundSet="pickUpCourierBag_SoundSet";
-					id=797;
-				};
-			};
+			"CannabisPlus\seeds\data\cannabis_seeds.rvmat",
+			"CannabisPlus\bricks\data\brick.rvmat"
 		};
 	};
 };

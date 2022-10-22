@@ -56,7 +56,9 @@ class CannabisPlusConfigManager
 	int pumpkin_cropcount;
 	int pumpkinSeed_count;
 
-	int spoiltime;
+	int potato_growtime;
+	int potato_cropcount;
+
 	
 	// smoke effect settings
 	int activateCigaretteSmokingEffect; 	// reduces the fluctuation/sway in aiming when a cigarette is smoked
@@ -72,76 +74,108 @@ class CannabisPlusConfigManager
     int weedRadBlurXPower;
     int weedRadBlurYPower;
     int weedRotBlurPow;
-	
-	void CannabisPlusConfigManager() {
-	};
-	
 
+	int spoiltime;							// Time until fully matured plants will spoil.
+
+    int cannabis_drytime;					// Time for raw plants to dry on drying post.
+
+	// Workbench
+	bool   RequireBattery = 1; 
+	float  WorkBench_PowerUsed = 1;
+	float  Plastic_Wrap_Usage = 10;
+	int    Workbench_Processing_Time = 5;
+	//int    Buds_To_Bags_Required = 2;
+	//int    Bags_To_Bricks_Required = 16;
+	
+	// Composting (Unused)
+	//int PlantPerBag;
+	//int CompostTime;
+	
+	void CannabisPlusConfigManager() 
+	{
+		
+	}	
+	
 	void LoadDefaultSettings() {
-		configVersion						= GetModVersion();		
-		removeAfterHarvest 					= true;		
+			configVersion					= GetModVersion();
+		
+			removeAfterHarvest 				= true;	
 
-		tobacco_growtime 					= 8;
-		tobacco_cropcount 					= 2;
-		tobaccoSeed_count 					= 9;
+            tobacco_growtime 				= 8;
+            tobacco_cropcount 				= 2;
+            tobaccoSeed_count 				= 9;
 
-		cannabisSkunk_growtime 				= 8;
-		cannabisSkunk_cropcount 			= 2;
-		cannabisSkunkSeed_count 			= 9;	
+            cannabisSkunk_growtime 			= 8;
+            cannabisSkunk_cropcount 		= 2;
+            cannabisSkunkSeed_count 		= 9;	
 
-		cannabisKush_growtime 				= 8;
-		cannabisKush_cropcount 				= 2;
-		cannabisKushSeed_count 				= 9;	
+            cannabisKush_growtime 			= 8;
+            cannabisKush_cropcount 			= 2;
+            cannabisKushSeed_count 			= 9;	
 
-		cannabisBlue_growtime 				= 8;
-		cannabisBlue_cropcount 				= 2;
-		cannabisBlueSeed_count 				= 9;	
+            cannabisBlue_growtime 			= 8;
+            cannabisBlue_cropcount 			= 2;
+            cannabisBlueSeed_count 			= 9;	
 
-		cannabisStardawg_growtime 			= 8;
-		cannabisStardawg_cropcount 			= 2;
-		cannabisStardawgSeed_count 			= 9;
+            cannabisStardawg_growtime 		= 8;
+            cannabisStardawg_cropcount 		= 2;
+            cannabisStardawgSeed_count 		= 9;
 
-		cannabisFuture_growtime 			= 8;
-		cannabisFuture_cropcount 			= 2;
-		cannabisFutureSeed_count 			= 9;		
+            cannabisFuture_growtime 		= 8;
+            cannabisFuture_cropcount 		= 2;
+            cannabisFutureSeed_count 		= 9;		
 
-		cannabisS1_growtime 				= 8;
-		cannabisS1_cropcount 				= 2;
-		cannabisS1Seed_count 				= 9;
+            cannabisS1_growtime 			= 8;
+            cannabisS1_cropcount 			= 2;
+            cannabisS1Seed_count 			= 9;
 
-		cannabisNomad_growtime 				= 8;
-		cannabisNomad_cropcount 			= 2;
-		cannabisNomadSeed_count 			= 9;
+            cannabisNomad_growtime 			= 8;
+            cannabisNomad_cropcount 		= 2;
+            cannabisNomadSeed_count 		= 9;
 
-		cannabisBlackFrost_growtime 		= 8;
-		cannabisBlackFrost_cropcount 		= 2;
-		cannabisBlackFrostSeed_count 		= 9;
+            cannabisBlackFrost_growtime 	= 8;
+            cannabisBlackFrost_cropcount 	= 2;
+            cannabisBlackFrostSeed_count 	= 9;
 
-		pepper_growtime 					= 8;
-		pepper_cropcount 					= 2;
-		pepperSeed_count 					= 9;		
-		tomato_growtime 					= 8;
-		tomato_cropcount 					= 2;
-		tomatoSeed_count 					= 9;		
-		zucchini_growtime 					= 8;
-		zucchini_cropcount 					= 2;
-		zucchiniSeed_count 					= 9;
-		pumpkin_growtime 					= 8;
-		pumpkin_cropcount 					= 2;
-		pumpkinSeed_count 					= 9;
+            pepper_growtime 				= 8;
+            pepper_cropcount 				= 2;
+            pepperSeed_count 				= 9;		
+            tomato_growtime 				= 8;
+            tomato_cropcount 				= 2;
+            tomatoSeed_count 				= 9;		
+            zucchini_growtime 				= 8;
+            zucchini_cropcount 				= 2;
+            zucchiniSeed_count 				= 9;
+            pumpkin_growtime 				= 8;
+            pumpkin_cropcount 				= 2;
+            pumpkinSeed_count 				= 9;
+            potato_growtime 				= 8;
+            potato_cropcount 				= 2;
 
-		spoiltime						= 60;
+            activateCigaretteSmokingEffect 	= false;
+            smokingCigaretteEffectDuration 	= 20;
+            cigaretteCyclesToActivateEffect = 8;
+            activateJointSmokingEffect 		= true;
+            smokingJointEffectDuration 		= 360;
+            jointCyclesToActivateEffect 	= 10;	
+            weedHueIntensity 				= 58.0;
+            weedRadBlurXPower 				= 2;
+            weedRadBlurYPower 				= 2;
+            weedRotBlurPow 					= 10;
 
-		activateCigaretteSmokingEffect 		= false;
-		smokingCigaretteEffectDuration 		= 20;
-		cigaretteCyclesToActivateEffect 	= 8;
-		activateJointSmokingEffect 			= true;
-		smokingJointEffectDuration 			= 360;
-		jointCyclesToActivateEffect 		= 10;	
-		weedHueIntensity 					= 58.0;
-        weedRadBlurXPower 					= 2;
-        weedRadBlurYPower 					= 2;
-        weedRotBlurPow 						= 10;
+            spoiltime						= 60;
+
+            cannabis_drytime            	= 30;
+			
+			RequireBattery 					= 1; 
+			WorkBench_PowerUsed 			= 1;
+			Plastic_Wrap_Usage 				= 10;
+			Workbench_Processing_Time 		= 5;
+			//Buds_To_Bags_Required 		= 2;
+			//Bags_To_Bricks_Required			= 16;
+		
+			//PlantPerBag						= 18;
+			//CompostTime						= 360; 
 
 		SaveConfig();
 	};
@@ -154,12 +188,12 @@ class CannabisPlusConfigManager
 
 	protected int GetModVersion() { 
 		string cfgversion = "CfgMods CannabisPlus version";
-        string ModVersion;
+            string ModVersion;
 	  	float modFloat;	
-        GetGame().ConfigGetText(cfgversion, ModVersion);
-        //Print("[CP->] ModConfig entry found Mod Version is: " + ModVersion);
-	    modFloat  = ModVersion.ToFloat()*100;	
-        return (int)modFloat;
+            GetGame().ConfigGetText(cfgversion, ModVersion);
+            //Print("[CP->] ModConfig entry found Mod Version is: " + ModVersion);
+            modFloat  = ModVersion.ToFloat()*100;	
+            return (int)modFloat;
 	}
 	
 	void SaveOldConfig() {
@@ -176,43 +210,45 @@ class CannabisPlusConfigManager
 	protected void SaveConfig() {
 		if (!FileExist(m_CPProfileDir + m_CPProfileFolder + "/"))
 			MakeDirectory(m_CPProfileDir + m_CPProfileFolder + "/");
-        JsonFileLoader<CannabisPlusConfigManager>.JsonSaveFile(m_CPConfigPath, this);
+            JsonFileLoader<CannabisPlusConfigManager>.JsonSaveFile(m_CPConfigPath, this);
 	};
 
 	//Dont use that to load the config!
-	static ref CannabisPlusConfigManager LoadConfig() {
-        ref CannabisPlusConfigManager settings = new CannabisPlusConfigManager();
-        if(!FileExist(m_CPProfileFolder))
-            MakeDirectory(m_CPProfileFolder);
-        if(FileExist(m_CPConfigPath))
-        {
-            JsonFileLoader<CannabisPlusConfigManager>.JsonLoadFile(m_CPConfigPath, settings);
-			if(settings.IsConfigOutdated())
-			{
-				settings.SaveOldConfig();
-				settings.LoadDefaultSettings();
-			}
-        }
-        else
-        {
-            settings.LoadDefaultSettings();
-        }
-        return settings;
-    }
+	static CannabisPlusConfigManager LoadConfig() {
+            CannabisPlusConfigManager settings = new CannabisPlusConfigManager();
+
+            if(!FileExist(m_CPProfileFolder))
+                  MakeDirectory(m_CPProfileFolder);
+
+            if(FileExist(m_CPConfigPath))
+            {
+                  JsonFileLoader<CannabisPlusConfigManager>.JsonLoadFile(m_CPConfigPath, settings);
+                  if(settings.IsConfigOutdated())
+                  {
+                        settings.SaveOldConfig();
+                        settings.LoadDefaultSettings();
+                  }
+            }
+            else
+            {
+                  settings.LoadDefaultSettings();
+            }
+            return settings;
+      }
 };
 
 /* Global Getter for config */
 static ref CannabisPlusConfigManager g_CannabisPlusConfig;
 static ref CannabisPlusConfigManager g_ClientCannabisPlusConfig;
-static ref CannabisPlusConfigManager GetCPConfig()
+static CannabisPlusConfigManager GetCPConfig()
 {
-    if (g_Game.IsServer() && !g_CannabisPlusConfig) 
-    {
-        g_CannabisPlusConfig = CannabisPlusConfigManager.LoadConfig();
-    }
-	else if(g_Game.IsClient())
-	{
-		return g_ClientCannabisPlusConfig; //GetsFilled on mission start with an RPC.
-	}
-    return g_CannabisPlusConfig;
+      if (g_Game.IsServer() && !g_CannabisPlusConfig) 
+      {
+            g_CannabisPlusConfig = CannabisPlusConfigManager.LoadConfig();
+      }
+            else if(g_Game.IsClient())
+            {
+                  return g_ClientCannabisPlusConfig; //GetsFilled on mission start with an RPC.
+            }
+      return g_CannabisPlusConfig;
 };

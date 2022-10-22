@@ -28,15 +28,16 @@ class CP_RollingPapers: Inventory_Base
                 }
             }
             if (PapesPickedUp && PapesDropped && player_new != player_old ) { //Also making sure the player isn't just moving it around in the inventory 
-//          Print("Papes stolen off a deady player's body");
+//          //Print("Papes stolen off a deady player's body");
 		CPApi().Log("PickedUp","RollingPapers");
             } else if (PapesPickedUp && player_new != player_old ){
-//          Print("Player has picked up Papes");
+//          //Print("Player has picked up Papes");
 		CPApi().Log("PickedUp","RollingPapers");
             } else if (PapesDropped && player_new != player_old) {
-//          Print("Player has dropped Papes");
+//          //Print("Player has dropped Papes");
 		CPApi().Log("Dropped","RollingPapers");
         }
       }
     }
+
 };

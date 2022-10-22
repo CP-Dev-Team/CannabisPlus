@@ -104,7 +104,7 @@ class ActionSmokeJointSelf: ActionContinuousBase {
 		CP_JointBase joint = CP_JointBase.Cast(action_data.m_MainItem);
 				
 		if (joint) {
-			Print("[CP] ApplyModifiers cycles " + action_data.m_Player.GetJointCycles() );
+			//Print("[CP] ApplyModifiers cycles " + action_data.m_Player.GetJointCycles() );
 			joint.MakeStoned(action_data.m_Player);
 			if (action_data.m_Player.GetJointCycles() >= 5)
 				joint.MakePuke(action_data.m_Player);
@@ -119,7 +119,7 @@ class ActionSmokeJointSelf: ActionContinuousBase {
 		
 		if (joint) {
 			player.AddValueToJointValue(1);
-			Print("[CP] OnFinishProgressClient cycles " + action_data.m_Player.GetJointCycles() );
+			//Print("[CP] OnFinishProgressClient cycles " + action_data.m_Player.GetJointCycles() );
 		}
 			
 		super.OnFinishProgressClient(action_data);
@@ -130,7 +130,7 @@ class ActionSmokeJointSelf: ActionContinuousBase {
 		
 		if (joint) {
 			ApplyModifiers(action_data);
-			Print("[CP] OnFinishProgressServer cycles " + action_data.m_Player.GetJointCycles() );
+			//Print("[CP] OnFinishProgressServer cycles " + action_data.m_Player.GetJointCycles() );
 			
 			joint.AddHealth("", "Health", -ReduceAmount);
 			
