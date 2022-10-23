@@ -933,26 +933,24 @@ class CP_Workbench extends ItemBase
 	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 	override bool CanPutIntoHands(EntityAI parent) 
 	{				
-		// check if any item is in the attachment-slots OR if any item is in cargo space
-		if(IsAnyItemAttached() || IsCargoEmpty())
-		{
-			return false;
-		}
-		else
+		if(super.CanPutIntoHands(parent))
+		{	
 			return true;
+		} 
+		
+		return false;
 	};
+	
 	override bool CanPutInCargo( EntityAI parent )
 	{
-		// check if any item is in the attachment-slots OR if any item is in cargo space
-		if(IsAnyItemAttached() || IsCargoEmpty())
-		{
-			return false;
-		}
-		else
+		if(super.CanPutInCargo(parent))
+		{	
 			return true;
+		} 
+		
+		return false;
 	
-	};
-	
+	};	
 	
 
 	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~		
