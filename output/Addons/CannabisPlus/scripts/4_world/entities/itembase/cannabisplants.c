@@ -3,7 +3,7 @@ class CP_RawPlantBase extends ItemBase
 
 	void CP_RawPlantBase()
 	{
-		RegisterNetSyncVariableBool( "yield" );
+		RegisterNetSyncVariableInt( "yield" );
 	}
 	int yield = 0;
 

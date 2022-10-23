@@ -5,7 +5,7 @@
 		CigarettePack_Partyzanka,				*,		900,		450
 		CP_CigarettePack_CannabisSkunk,			*,		1200,		600
 		CP_CannabisBagSkunk,					1,		465,		233
-		CP_CannabisBrickSkunk,					*,		7500,		3750
+		CP_CannabisBrickSkunk,					1,		7500,		3750
 		CP_Pouch,								*,		2500,		1000
 		CP_EmptyBag,							*,		200,		100
 //		CP_CannabisSeedsPackSkunk,				*,		-1, 		-1
@@ -25,33 +25,33 @@
 //		CP_TobaccoSeedsPack,					*,		-1, 		-1
 		CP_CigarettePack_CannabisSkunk,			*,		1200,		800
 		CP_CannabisBagSkunk,					1,		465,		310
-		CP_CannabisBrickSkunk,					*,		7500,		5000
+		CP_CannabisBrickSkunk,					1,		7500,		5000
 //		CP_CannabisSeedsPackSkunk,				*,		-1, 		-1
 		CP_CigarettePack_CannabisBlue,			*,		2400,		1600
 		CP_CannabisBagBlue,						1,		945,		630
-		CP_CannabisBrickBlue,					*,		15000,		10000
+		CP_CannabisBrickBlue,					1,		15000,		10000
 //		CP_CannabisSeedsPackBlue,				*,		-1, 		-1
 		CP_CigarettePack_CannabisKush,			*,		3525,		2350
 		CP_CannabisBagKush,						1,		1410,		940
-		CP_CannabisBrickKush,					*,		22500,		15000
+		CP_CannabisBrickKush,					1,		22500,		15000
 //		CP_CannabisSeedsPackKush,				*,		-1, 		-1
 		CP_CigarettePack_CannabisStardawg,		*,		4725,		3150
 		CP_CannabisBagStardawg,					1,		1875,		1250
-		CP_CannabisBrickStardawg,				*,		30000,		20000
+		CP_CannabisBrickStardawg,				1,		30000,		20000
 //		CP_CannabisSeedsPackStardawg,			*,		-1, 		-1
 		CP_CigarettePack_CannabisFuture,		*,		4725,		3150
 		CP_CannabisBagFuture,					1,		1875,		1250
-		CP_CannabisBrickFuture,					*,		30000,		20000		
+		CP_CannabisBrickFuture,					1,		30000,		20000		
 //		CP_CannabisSeedsPackFuture,				*,		-1, 		-1
 		CP_CigarettePack_CannabisS1,			*,		4725,		3150
 		CP_CannabisBagS1,						1,		1875,		1250
-		CP_CannabisBrickS1,						*,		30000,		20000
+		CP_CannabisBrickS1,						1,		30000,		20000
 //		CP_CannabisSeedsPackS1,					*,		-1, 		-1
 		CP_CigarettePack_CannabisNomad,			*,		4725,		3150
 		CP_CannabisBagNomad,					1,		1875,		1250
-		CP_CannabisBrickNomad,					*,		30000,		20000
+		CP_CannabisBrickNomad,					1,		30000,		20000
 //		CP_CannabisSeedsPackNomad,				*,		-1, 		-1
 		CP_CigarettePack_CannabisBlackFrost,	*,		4725,		3150
 		CP_CannabisBagBlackFrost,				1,		1875,		1250
-		CP_CannabisBrickBlackFrost,				*,		30000,		20000				
+		CP_CannabisBrickBlackFrost,				1,		30000,		20000				
 //		CP_CannabisSeedsPackBlackFrost,			*,		-1, 		-1

@@ -933,27 +933,12 @@ class CP_Workbench extends ItemBase
 	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 	override bool CanPutIntoHands(EntityAI parent) 
 	{				
-		// check if any item is in the attachment-slots OR if any item is in cargo space
-		if(IsAnyItemAttached() || IsCargoEmpty())
-		{
-			return false;
-		}
-		else
-			return true;
+		return false;
 	};
 	override bool CanPutInCargo( EntityAI parent )
 	{
-		// check if any item is in the attachment-slots OR if any item is in cargo space
-		if(IsAnyItemAttached() || IsCargoEmpty())
-		{
-			return false;
-		}
-		else
-			return true;
-	
+		return false;
 	};
-	
-	
 
 	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~		
 	// checks if has not additional items in it
@@ -972,14 +957,13 @@ class CP_Workbench extends ItemBase
 	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 	// checks if it has no items in cargo
 	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-	bool IsCargoEmpty()	
-	{		
-		if(GetInventory().GetCargo().GetItemCount() > 0 )
-		{
-			return true;		
-		}
-		return false;
-	};
+    bool IsCargoEmpty()    
+    {        
+        if(GetInventory() && GetInventory().GetCargo() && GetInventory().GetCargo().GetItemCount() > 0 )
+            return true;        
+
+        return false;
+    };
 
     override void EEItemAttached(EntityAI item, string slot_name)
     {

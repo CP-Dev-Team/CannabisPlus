@@ -213,7 +213,7 @@ class CfgVehicles
 		cpStepDownToBag="CP_CannabisBagStardawg";
 		class Resources
 		{
-			class CP_CannabisStardawg
+			class CP_CannabisBagStardawg
 			{
 				value=16;
 				variable="quantity";
