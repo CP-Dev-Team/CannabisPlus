@@ -972,14 +972,13 @@ class CP_Workbench extends ItemBase
 	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 	// checks if it has no items in cargo
 	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-	bool IsCargoEmpty()	
-	{		
-		if(GetInventory().GetCargo().GetItemCount() > 0 )
-		{
-			return true;		
-		}
-		return false;
-	};
+    bool IsCargoEmpty()    
+    {        
+        if(GetInventory() && GetInventory().GetCargo() && GetInventory().GetCargo().GetItemCount() > 0 )
+            return true;        
+
+        return false;
+    };
 
     override void EEItemAttached(EntityAI item, string slot_name)
     {
