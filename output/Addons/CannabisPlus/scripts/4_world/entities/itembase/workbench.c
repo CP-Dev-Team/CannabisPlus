@@ -933,25 +933,12 @@ class CP_Workbench extends ItemBase
 	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 	override bool CanPutIntoHands(EntityAI parent) 
 	{				
-		if(super.CanPutIntoHands(parent))
-		{	
-			return true;
-		} 
-		
 		return false;
 	};
-	
 	override bool CanPutInCargo( EntityAI parent )
 	{
-		if(super.CanPutInCargo(parent))
-		{	
-			return true;
-		} 
-		
 		return false;
-	
-	};	
-	
+	};
 
 	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~		
 	// checks if has not additional items in it
