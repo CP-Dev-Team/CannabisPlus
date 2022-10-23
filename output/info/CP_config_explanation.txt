@@ -35,7 +35,7 @@ Explanation of CannabisPlus.json:
 
 	"spoiltime": 60,					// Amount of time in minutes it takes for plants to spoil after they become harvestable.
 
-	"cannabis_drytime": 30,				// Amount of time in minutes it takes for raw cannabis plants to dry on the drying post.
+	"cannabis_drytime": 30,				// Amount of time in seconds it takes for raw cannabis plants to dry on the drying post.
     "RequireBattery": 1,				// 1 = Require battery to be attached to workbench to use workbench.  0 = No battery needed.
     "WorkBench_PowerUsed": 1.0,			// How much energy is subtracted from the battery per use.  Ignored if RequireBattery = 0.
     "Plastic_Wrap_Usage": 10.0,			// How much plastic wrap is subtracted per use.
