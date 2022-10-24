@@ -92,6 +92,7 @@ class CP_DryPost extends ItemBase
 		if (!IsHologram())
 		{
 			ItemBase stick = ItemBase.Cast(GetGame().CreateObjectEx("WoodenLog",GetPosition(),ECE_PLACE_ON_SURFACE));
+			stick.SetQuantity(1);
 			MiscGameplayFunctions.TransferItemProperties(this, stick);
 			Rope rope = Rope.Cast(item);
 			CreateRope(rope);
