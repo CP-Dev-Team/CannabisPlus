@@ -505,7 +505,7 @@ modded class PlantBase
 	{
 		if ( !super.OnStoreLoad( ctx, version ) )
 			return false;
-		if (GetGame().IsServer() && !ctx.Read( m_HasCrops ) ){
+		if (GetGame().IsServer() && (!ctx.Read( m_HasCrops ) || !ctx.Read( m_CropsCount ) || !ctx.Read( currentYield ))){
 			return false;
 		}
 		return true;
@@ -521,6 +521,8 @@ modded class PlantBase
 		super.OnStoreSave( ctx );
 		if(GetGame().IsServer()){
 			ctx.Write( m_HasCrops );
+			ctx.Write( m_CropsCount );
+			ctx.Write( currentYield );
 		}
 	}
 	
