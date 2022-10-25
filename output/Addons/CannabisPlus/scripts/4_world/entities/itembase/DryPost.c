@@ -177,6 +177,7 @@ class CP_DryPost extends ItemBase
     {
 		return CP_DriedCannabisPlant.Cast( GetAttachmentByType (CP_DriedCannabisPlant) );
     };
+	
 	void CheckStart()
 	{
 		if (!m_IsLocked)	
@@ -342,14 +343,21 @@ class CP_DryPost extends ItemBase
 		        ItemName = attachment.GetType();
 				if (ItemName.IndexOf("CP_Raw") >= 0)
 		        {
+					// spawn plant material for now 
+					ItemBase plant = ItemBase.Cast(GetGame().CreateObjectEx("PlantMaterial",GetPosition(),ECE_PLACE_ON_SURFACE));
+					plant.SetQuantity(1);
 
 				}    
 			}
+			
+			
+			
+			/*
 			if( dp >= 1)
 			{
 				if ( GetCannabisDried() )
 				{
-					//GetInventory().CreateAttachment("CP_DriedCannabisPlant");
+					//GetIn	ventory().CreateAttachment("CP_DriedCannabisPlant");
 					GetCannabisDried().AddQuantity( dp );
 					//Print("[CP] " + this + " spawning "+ CP_DriedCannabisPlant );
 
@@ -367,6 +375,7 @@ class CP_DryPost extends ItemBase
 
 				}
 			}
+			*/
 			//Print("[CP] The plant has " + BudSpawn.Count() + " items");
 			
 			for (j = 0; j < BudSpawn.Count(); j++)
