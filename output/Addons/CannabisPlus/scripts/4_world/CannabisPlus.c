@@ -475,8 +475,8 @@ modded class PlantBase
 			currentYield = currentYield * harvesting_efficiency;
 		}
 		
-		//m_PlantMaterialMultiplier 		= 0.1 * harvesting_efficiency;
-		m_PlantMaterialMultiplier 		= 0;
+		m_PlantMaterialMultiplier 		= 0.1 * harvesting_efficiency;
+		//m_PlantMaterialMultiplier 		= 0;
 		
 		float rain_intensity = GetGame().GetWeather().GetRain().GetActual();
 		
