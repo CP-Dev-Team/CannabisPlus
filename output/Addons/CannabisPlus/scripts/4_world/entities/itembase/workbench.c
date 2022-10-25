@@ -406,6 +406,13 @@ class CP_Workbench extends ItemBase
 		return false;
 	};
 
+	void CheckStopProductionCall()
+	{
+		m_CP_Processing.Stop();
+		StopProduction();
+		
+	};
+
 	void StopProduction()
 	{
 		CP_TimerisRunning = false;
@@ -413,13 +420,6 @@ class CP_Workbench extends ItemBase
 		delete m_CP_Processing;
 		UpdateLockState();
 		SetSynchDirty();
-		if(!m_CP_Processing.IsRunning())
-		{
-
-			
-		    //Print("StopProduction() executed.");
-			//Print("m_CP_Processing is deleted " + m_CP_Processing);
-		}
 
 	};
 	void KillProductionCheckTimer()

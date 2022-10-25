@@ -49,7 +49,7 @@ class ActionStopCPWorkbench : ActionContinuousBase
 	{
 		CP_Workbench Bench = CP_Workbench.Cast( action_data.m_Target.GetObject() );
 
-		Bench.StopProduction();
+		Bench.CheckStopProductionCall();
 
 	};
 	
