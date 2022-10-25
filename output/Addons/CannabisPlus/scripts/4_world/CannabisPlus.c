@@ -337,26 +337,31 @@ modded class PlantBase
 		// set fertility from default 1 to 2 if fertility larger then 1 to double income
 		if(fertility > 1.0) {
 			isFertilized = true;
-		}
+		}		
 		
 		//sets growtime and cropcount out of CannabisPlus.json
 		switch(this.GetType()){
 		    // cannabis skunk
 			case "CP_Plant_CannabisSkunk":
+				m_PlantMaterialMultiplier = 0;
 				m_growtime = m_cannabisSkunk_growtime;
 				currentYield = m_cannabisSkunk_cropcount;
 				m_CropsCount = 1;
 				IncreaseCrop = false;
 				break;
+			
 			// cannabis blue
 			case "CP_Plant_CannabisBlue":
+				m_PlantMaterialMultiplier = 0;
 				m_growtime = m_cannabisBlue_growtime;
 				currentYield = m_cannabisBlue_cropcount;
 				m_CropsCount = 1;
 				IncreaseCrop = false;
 				break;
+			
 			// cannabis kush
 			case "CP_Plant_CannabisKush":
+				m_PlantMaterialMultiplier = 0;
 				m_growtime = m_cannabisKush_growtime;
 				currentYield = m_cannabisKush_cropcount;
 				m_CropsCount = 1;
@@ -365,6 +370,7 @@ modded class PlantBase
 
 			// cannabis Stardawg
 			case "CP_Plant_CannabisStardawg":
+				m_PlantMaterialMultiplier = 0;
 				m_growtime = m_cannabisStardawg_growtime;
 				currentYield = m_cannabisStardawg_cropcount;
 				m_CropsCount = 1;
@@ -373,6 +379,7 @@ modded class PlantBase
 
 			// cannabis Future
 			case "CP_Plant_CannabisFuture":
+				m_PlantMaterialMultiplier = 0;
 				m_growtime = m_cannabisFuture_growtime;
 				currentYield = m_cannabisFuture_cropcount;
 				m_CropsCount = 1;
@@ -381,6 +388,7 @@ modded class PlantBase
 
 			// cannabis S1
 			case "CP_Plant_CannabisS1":
+				m_PlantMaterialMultiplier = 0;
 				m_growtime = m_cannabisS1_growtime;
 				currentYield = m_cannabisS1_cropcount;
 				m_CropsCount = 1;
@@ -389,6 +397,7 @@ modded class PlantBase
 
 			// cannabis Nomad
 			case "CP_Plant_CannabisNomad":
+				m_PlantMaterialMultiplier = 0;
 				m_growtime = m_cannabisNomad_growtime;
 				currentYield = m_cannabisNomad_cropcount;
 				m_CropsCount = 1;
@@ -397,6 +406,7 @@ modded class PlantBase
 
 			// cannabis BlackFrost
 			case "CP_Plant_CannabisBlackFrost":
+				m_PlantMaterialMultiplier = 0;
 				m_growtime = m_cannabisBlackFrost_growtime;
 				currentYield = m_cannabisBlackFrost_cropcount;
 				m_CropsCount = 1;
@@ -405,49 +415,63 @@ modded class PlantBase
 		
 			// tobacco
 			case "CP_Plant_Tobacco":
+				m_PlantMaterialMultiplier = 0.1 * harvesting_efficiency;
 				m_growtime = m_tabacco_growtime;
 				m_CropsCount = m_tabacco_cropcount;
 				currentYield = 1;
 				break;
+			
 			// deprecated
 			case "Plant_Tobacco":
+				m_PlantMaterialMultiplier = 0.1 * harvesting_efficiency;
 				m_growtime = m_tabacco_growtime;
 				m_CropsCount = m_tabacco_cropcount;
 				currentYield = 1;
 				break;	
+			
 			// pepper 
 			case "Plant_Pepper":
+				m_PlantMaterialMultiplier = 0.1 * harvesting_efficiency;
 				m_growtime = m_pepper_growtime;
 				m_CropsCount = m_pepper_cropcount;
 				currentYield = 1;
 				break;
+			
 			// tomato
 			case "Plant_Tomato":
+				m_PlantMaterialMultiplier = 0.1 * harvesting_efficiency;
 				m_growtime = m_tomato_growtime;
 				m_CropsCount = m_tomato_cropcount;
 				currentYield = 1;
 				break;
+			
 			// zucchini
 			case "Plant_Zucchini":
+				m_PlantMaterialMultiplier = 0.1 * harvesting_efficiency;
 				m_growtime = m_zucchini_growtime;
 				m_CropsCount = m_zucchini_cropcount;
 				currentYield = 1;
 				break;
+			
 			// pumpkin
 			case "Plant_Pumpkin":
+				m_PlantMaterialMultiplier = 0.1 * harvesting_efficiency;
 				m_growtime = m_pumpkin_growtime;
 				m_CropsCount = m_pumpkin_cropcount;
 				currentYield = 1;
 				break;
+			
 			// potato
 			case "Plant_Potato":
+				m_PlantMaterialMultiplier = 0.1 * harvesting_efficiency;
 				m_growtime = m_potato_growtime;
 				m_CropsCount = m_potato_cropcount;
 				currentYield = 1;
 				break;
+			
 			//not a CP plant, exit function to avoid messing up other plants
 			default:
-                        super.Init( garden_base, fertility, harvesting_efficiency, water);
+                super.Init( garden_base, fertility, harvesting_efficiency, water);
 				return;
 		}
 
@@ -475,7 +499,8 @@ modded class PlantBase
 			currentYield = currentYield * harvesting_efficiency;
 		}
 		
-		m_PlantMaterialMultiplier 		= 0.1 * harvesting_efficiency;
+		//moved up so that cannabis plants dont spawn it
+		//m_PlantMaterialMultiplier 		= 0.1 * harvesting_efficiency;
 		//m_PlantMaterialMultiplier 		= 0;
 		
 		float rain_intensity = GetGame().GetWeather().GetRain().GetActual();
