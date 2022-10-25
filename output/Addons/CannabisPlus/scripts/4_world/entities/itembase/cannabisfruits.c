@@ -41,7 +41,7 @@ class CP_CannabisBud extends CP_CoreClass
 	{
 		super.SetActions();
 		
-		AddAction(ActionAttach);
+		//AddAction(ActionAttach);
 		AddAction(ActionDetach);
 	}
 	

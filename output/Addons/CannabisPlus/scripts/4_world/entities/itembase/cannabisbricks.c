@@ -7,7 +7,7 @@ class CP_CannabisBrickBase extends CP_CoreClass
 		super.SetActions();
 		
 		AddAction(ActionCP_RipOpenBrickOrBag);
-		AddAction(ActionAttach);
+		//AddAction(ActionAttach);
 		AddAction(ActionDetach);
 	}
 	override string GetCPitemTendancyText()

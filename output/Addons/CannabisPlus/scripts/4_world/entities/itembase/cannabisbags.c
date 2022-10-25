@@ -47,7 +47,7 @@ class CP_CannabisBags extends CP_CoreClass
 	{
 		super.SetActions();
 		AddAction(ActionCP_RipOpenBrickOrBag);
-		AddAction(ActionAttach);
+		//AddAction(ActionAttach);
 		AddAction(ActionDetach);
 	}
 };
@@ -57,7 +57,7 @@ class CP_EmptyBag extends ItemBase
 	{
 		super.SetActions();
 		
-		AddAction(ActionAttach);
+		//AddAction(ActionAttach);
 		AddAction(ActionDetach);
 	}
 };
