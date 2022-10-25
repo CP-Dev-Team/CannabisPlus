@@ -43,16 +43,6 @@ class CP_CannabisBags extends CP_CoreClass
     };
 	
 
-
-	
-	
-	//void RipOpenBag()
-	//{
-	//	string Bagname = GetCPRipBag(); 
-	//	
-	//	ReplaceEdibleWithNew("Bagname");
-	//};
-	
 	override void SetActions()
 	{
 		super.SetActions();

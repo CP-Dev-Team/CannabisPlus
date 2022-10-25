@@ -69,10 +69,7 @@ class CP_CraftCannabisBagBlackFrost extends RecipeBase
 		//CP_EmptyBag ingredient2 = CP_EmptyBag.Cast(ingredients[1]);
 	
 		//if(ingredient1.GetQuantity() >= BudsToBagsUsage)
-		{
-			return true;
-		}
-		return false;
+		return true;
 	}
 
 	override void Do(ItemBase ingredients[], PlayerBase player,array<ItemBase> results, float specialty_weight)//gets called upon recipe's completion
