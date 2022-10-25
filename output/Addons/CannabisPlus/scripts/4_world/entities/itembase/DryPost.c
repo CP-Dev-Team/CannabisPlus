@@ -345,7 +345,6 @@ class CP_DryPost extends ItemBase
 		        {
 					// spawn plant material for now 
 					ItemBase plant = ItemBase.Cast(GetGame().CreateObjectEx("PlantMaterial",GetPosition(),ECE_PLACE_ON_SURFACE));
-					plant.SetQuantity(1);
 
 				}    
 			}
