@@ -991,7 +991,8 @@ class CP_Workbench extends ItemBase
 		
 
 		AddAction(ActionCPUseBagger);
-		AddAction(ActionCPResumeAndPause);	
+		AddAction(ActionCPResumeAndPause);
+		AddAction(ActionStopCPWorkbench);			
 	};
 
 }

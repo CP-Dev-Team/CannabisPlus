@@ -6,16 +6,13 @@ class ActionStopCPWorkbenchCB : ActionContinuousBaseCB
 	}
 };
 
-class ActionStopCPWorkbench : ActionContinuousBase
+class ActionStopCPWorkbench : ActionInteractBase
 {
 
 	void ActionStopCPWorkbench()
 	{
-		m_CallbackClass 	= ActionStopCPWorkbenchCB;
-		m_CommandUID		= DayZPlayerConstants.CMD_ACTIONFB_INTERACT;
-		m_FullBody 			= true;
-		m_StanceMask 		= DayZPlayerConstants.STANCEMASK_ERECT | DayZPlayerConstants.STANCEMASK_CROUCH;
-
+		m_CommandUID        = DayZPlayerConstants.CMD_ACTIONMOD_INTERACTONCE;
+		m_StanceMask        = DayZPlayerConstants.STANCEMASK_CROUCH | DayZPlayerConstants.STANCEMASK_ERECT;
 	}
 		
 	override void CreateConditionComponents()  
@@ -26,9 +23,9 @@ class ActionStopCPWorkbench : ActionContinuousBase
 		
     override string GetText()
 	{
-		
         return  "Stop Processing";
     };
+	
 	override bool ActionCondition( PlayerBase player, ActionTarget target, ItemBase item )
 	{
 
@@ -45,7 +42,7 @@ class ActionStopCPWorkbench : ActionContinuousBase
 		return false;
 	};
 
-	override void OnFinishProgressServer( ActionData action_data )
+	override void OnStartServer( ActionData action_data )
 	{
 		CP_Workbench Bench = CP_Workbench.Cast( action_data.m_Target.GetObject() );
 
