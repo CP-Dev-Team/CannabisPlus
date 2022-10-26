@@ -70,8 +70,8 @@ class CfgVehicles
 	class CP_Workbench_Kit: Inventory_Base
 	{
 		scope = 2;
-		displayName = "Workbench Kit";
-		descriptionShort = "A workbench kit for packaging of illicit drugs.";
+		displayName = "Cannabis Workbench Kit";
+		descriptionShort = "A cannabis workbench kit for packaging your favourite strains.";
 		model="\CannabisPlus\workbench\workbenchKit.p3d";
 		itemSize[] = {5,3};
 		rotationFlags = 2;
@@ -103,8 +103,8 @@ class CfgVehicles
     class CP_Workbench : Inventory_Base
     {
 		scope = 2;
-		displayName = "Workbench";
-		descriptionShort = "A workbench for packaging of illicit drugs.";
+		displayName = "Cannabis Workbench";
+		descriptionShort = "A cannabis workbench for packaging your favourite strains.";
 		model="\CannabisPlus\workbench\workbench.p3d";
 		weight=50000;
 		itemSize[]={6,6};
