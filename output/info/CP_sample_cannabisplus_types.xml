@@ -922,8 +922,6 @@
         <usage name="Office"/>
         <usage name="School"/>
         <usage name="Prison"/>
-        <value name="Tier3"/>
-        <value name="Tier4"/>
     </type>
     <type name="CP_DryPost">
         <lifetime>3888000</lifetime>
@@ -1013,17 +1011,15 @@
         <value name="Tier4"/>
     </type>    
     <type name="CP_EmptyBag">
-        <nominal>40</nominal>
+        <nominal>60</nominal>
         <lifetime>7200</lifetime>
         <restock>1800</restock>
-        <min>30</min>
+        <min>45</min>
         <quantmin>20</quantmin>
         <quantmax>100</quantmax>
         <cost>100</cost>
         <flags count_in_cargo="0" count_in_hoarder="0" count_in_map="1" count_in_player="0" crafted="0" deloot="0"/>
         <category name="food"/>
-        <value name="Tier3"/>
-        <value name="Tier4"/>
     </type>
     <type name="CP_PlasticRoll">
         <nominal>40</nominal>
