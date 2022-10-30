@@ -212,13 +212,14 @@ class CP_DryPost extends ItemBase
 	}
 
 	override bool CanPutIntoHands(EntityAI parent)
-    	{
-        	if ( m_IsLocked || RopeAttached || Plant1Attached || Plant2Attached || Plant3Attached)
-        	{
-            	return false;
-        	}
-        	return super.CanPutIntoHands(parent);
-    	}
+	{
+		return false;
+	}
+
+	override bool CanPutInCargo( EntityAI parent )
+	{
+		return false;
+	};
 	
 	void AddToMap(string item, int value)
 	{
