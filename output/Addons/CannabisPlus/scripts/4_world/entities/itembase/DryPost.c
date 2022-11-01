@@ -117,6 +117,8 @@ class CP_DryPost extends ItemBase
 			dp++;
 			//Print("dp = " + dp);
 		}
+
+		Print("EEItemAttached: LockRope");
 		LockRope();
 	}
     
@@ -157,6 +159,8 @@ class CP_DryPost extends ItemBase
 			}
 			//Print("dp = " + dp);
 		}
+
+		Print("EEItemDetached: LockRope");
 		LockRope();
 	}
 	
@@ -169,14 +173,15 @@ class CP_DryPost extends ItemBase
 		return false;
 	};
 	
-	CP_RawSkunkCannabisPlant  GetCannabisBase()
+	CP_RawSkunkCannabisPlant GetCannabisBase()
     {
 		return CP_RawSkunkCannabisPlant.Cast( GetAttachmentByType (CP_RawSkunkCannabisPlant) );
-    };
-	CP_DriedCannabisPlant  GetCannabisDried()
+    }
+
+	CP_DriedCannabisPlant GetCannabisDried()
     {
 		return CP_DriedCannabisPlant.Cast( GetAttachmentByType (CP_DriedCannabisPlant) );
-    };
+    }
 	
 	void CheckStart()
 	{
@@ -448,33 +453,41 @@ class CP_DryPost extends ItemBase
 		return "woodenlog_drop_SoundSet";
 	}
 
-	void LockRope()
-	{
-		Rope rope = Rope.Cast(GetAttachmentByType(Rope));
+    void LockRope()
+    {
+        Rope rope = Rope.Cast(GetAttachmentByType(Rope));
 
-		if ( GetInventory().GetCargo().GetItemCount() > 0 || GetInventory().AttachmentCount() > 1 )
-		{
-			if (rope)
+        if ( GetInventory().GetCargo().GetItemCount() > 0 || GetInventory().AttachmentCount() > 1 )
+        {
+            if (rope)
             {
+                Print(rope);
+                Print("LockRope: True");
                 rope.LockToParent();
             } 
 
-		}
-		else if (rope)
-		{
-			rope.UnlockFromParent();
-		}
-	}
+        }
+        else if (rope)
+        {
+            Print(rope);
+            Print("LockRope: False");
+            rope.UnlockFromParent();
+        }
+    }
 		
 	override void EECargoIn(EntityAI item)
 	{		
 		super.EECargoIn(item);
+		
+		Print("EECargoIn: LockRope");
 		LockRope();
 	}
 
 	override void EECargoOut(EntityAI item)
 	{
 		super.EECargoOut(item);
+		
+		Print("EECargoOut: LockRope");
 		LockRope();
 	}
 	
