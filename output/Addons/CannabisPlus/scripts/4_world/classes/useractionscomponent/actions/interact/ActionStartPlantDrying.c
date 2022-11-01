@@ -23,7 +23,7 @@ class ActionDryPlants: ActionInteractBase
 		
 		CP_DryPost DryingPost = CP_DryPost.Cast( target.GetObject() );
 		
-		if( DryingPost && !DryingPost.IsLocked() && CPPlant && ( CPDriedPlants && CPDriedPlants.GetQuantity() < 50 ) )
+		if( DryingPost && !DryingPost.IsLocked() && CPPlant && ( !CPDriedPlants || CPDriedPlants && CPDriedPlants.GetQuantity() < 50 ) )
 		{
 			return true;
 		}
