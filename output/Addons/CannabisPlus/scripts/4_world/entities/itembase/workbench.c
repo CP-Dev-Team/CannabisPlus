@@ -424,7 +424,7 @@ class CP_Workbench extends ItemBase
 				//Print("Out of materials.");
 				SetSynchDirty();
 			}
-		};
+		}
 		UpdateLockState();
 	};
 
@@ -516,7 +516,9 @@ class CP_Workbench extends ItemBase
 			{
 				if(!GetCannabisBricks())
 				{
+					GetInventory().SetSlotLock(InventorySlots.GetSlotIdFromString(ATTACHMENT_SLOT_BRICKS), false);
 					GetInventory().CreateAttachment(Brickname);
+					GetInventory().SetSlotLock(InventorySlots.GetSlotIdFromString(ATTACHMENT_SLOT_BRICKS), true);
 				}
 				else if (GetCannabisBricks() && GetCannabisBricks().GetType() == Brickname)
 				{
@@ -538,7 +540,9 @@ class CP_Workbench extends ItemBase
 			{
 				if(!GetCannabisBricks())
 				{
+					GetInventory().SetSlotLock(InventorySlots.GetSlotIdFromString(ATTACHMENT_SLOT_BRICKS), false);
 					GetInventory().CreateAttachment(Brickname);
+					GetInventory().SetSlotLock(InventorySlots.GetSlotIdFromString(ATTACHMENT_SLOT_BRICKS), true);
 				}
 				else if (GetCannabisBricks() && GetCannabisBricks().GetType() == Brickname)
 				{
@@ -575,9 +579,11 @@ class CP_Workbench extends ItemBase
 		if ( Class.CastTo(Wrapper, GetWrapper()) && do_lock ) {
 			GetInventory().SetSlotLock(InventorySlots.GetSlotIdFromString(ATTACHMENT_SLOT_PLASTICWRAP), do_lock);
 			GetInventory().SetSlotLock(InventorySlots.GetSlotIdFromString(ATTACHMENT_SLOT_BAGS), do_lock);
+			GetInventory().SetSlotLock(InventorySlots.GetSlotIdFromString(ATTACHMENT_SLOT_BRICKS), do_lock);
 		} else {
 			GetInventory().SetSlotLock(InventorySlots.GetSlotIdFromString(ATTACHMENT_SLOT_PLASTICWRAP), false);
 			GetInventory().SetSlotLock(InventorySlots.GetSlotIdFromString(ATTACHMENT_SLOT_BAGS), false);
+			GetInventory().SetSlotLock(InventorySlots.GetSlotIdFromString(ATTACHMENT_SLOT_BRICKS), false);
 		}
 		SetSynchDirty();
 	};
