@@ -117,6 +117,13 @@ class CP_Workbench extends ItemBase
 	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 	// constructor of workbench class
 	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+	override void EEInit()
+	{
+		super.EEInit();
+
+		UpdateLockState();
+	}
+
 	void CP_Workbench() 
 	{
 		RegisterNetSyncVariableBool("CP_TimerisRunning");
@@ -129,12 +136,6 @@ class CP_Workbench extends ItemBase
 			delete m_CP_Processing;
 		if (m_CP_ProcessingCheck)
 		    delete m_CP_ProcessingCheck;
-	};
-
-	override void AfterStoreLoad()
-	{
-		super.AfterStoreLoad();
-		StopProduction();
 	};
 	
 	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
