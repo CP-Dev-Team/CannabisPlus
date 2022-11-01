@@ -2,7 +2,7 @@ class CP_WorkBenchCraftKit extends RecipeBase
 {	
 	override void Init()
 	{
-		m_Name = "Make Workbench Kit";
+		m_Name = "Make Cannabis Workbench Kit";
 		m_IsInstaRecipe = false;//should this recipe be performed instantly without animation
 		m_AnimationLength = 3;//animation length in relative time units
 		m_Specialty = -0.01;// value > 0 for roughness, value < 0 for precision
