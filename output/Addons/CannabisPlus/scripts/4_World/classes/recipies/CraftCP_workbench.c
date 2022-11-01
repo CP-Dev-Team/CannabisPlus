@@ -64,6 +64,7 @@ class CP_WorkBenchCraftKit extends RecipeBase
 		Debug.Log("Recipe Do method called","recipes");
 	}
 };
+
 class Decraft_CP_WorkBenchCraftKit extends RecipeBase
 {	
 	override void Init()

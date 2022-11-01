@@ -3,24 +3,7 @@
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 class CP_Workbench_Kit extends ItemBase 
 {
-	override void EEInit()
-	{
-		super.EEInit();
-		
-		GetGame().GetCallQueue( CALL_CATEGORY_GAMEPLAY ).Call( AssembleKit );
-	}
-
-	override bool CanReceiveAttachment(EntityAI attachment, int slotId)
-	{
-		if ( !super.CanReceiveAttachment(attachment, slotId) )
-			return false;
-		
-		ItemBase att = ItemBase.Cast(GetInventory().FindAttachment(slotId));
-		if (att)
-			return false;
-		
-		return true;
-	}
+	
 	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 	// Event handler that is fired if placement of workbenchkit is complete.
 	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~	
@@ -44,13 +27,6 @@ class CP_Workbench_Kit extends ItemBase
 			SetIsDeploySound( true );
 		}	
 	}
-	
-	override void OnPlacementStarted( Man player )
-    	{
-        	super.OnPlacementStarted( player );
-        
-		SetAnimationPhase ("Rope", 0);  // Shows the rope on the model when rope is attached.
-    	}
 
 	override string GetPlaceSoundset()
 	{
@@ -70,59 +46,7 @@ class CP_Workbench_Kit extends ItemBase
 	{
 		return 20;
 	}
-	void AssembleKit()
-	{
-		if (!IsHologram())
-		{
-			Rope rope = Rope.Cast(GetInventory().CreateAttachment("Rope"));
-		}
-	}
-	void CreateRope(Rope rope)
-	{
-		if (!rope)
-			return;
-		
-		InventoryLocation targetLoc = rope.GetTargetLocation();
-		if (targetLoc && targetLoc.GetType() != InventoryLocationType.GROUND)
-		{
-			MiscGameplayFunctions.TransferItemProperties(this, rope);
-			return;
-		}
-
-		EntityAI newRope = EntityAI.Cast(GetGame().CreateObjectEx(rope.GetType(), GetPosition(), ECE_PLACE_ON_SURFACE));
-		
-		if (newRope)
-			MiscGameplayFunctions.TransferItemProperties(this, newRope);
-		
-		rope.Delete();
-	}
-	void DisassembleKit(ItemBase item)
-	{
-		if (!IsHologram())
-		{
-			ItemBase Log = ItemBase.Cast(GetGame().CreateObjectEx("WoodenLog",GetPosition(),ECE_PLACE_ON_SURFACE));
-			MiscGameplayFunctions.TransferItemProperties(this, Log);
-			Rope rope = Rope.Cast(item);
-			CreateRope(rope);
-		}
-	}
-	override void EEItemDetached(EntityAI item, string slot_name)
-    {
-		super.EEItemDetached( item, slot_name );
-		
-		PlayerBase player = PlayerBase.Cast(GetHierarchyRootPlayer());
-		if ( player && player.IsPlayerDisconnected() )
-			return;
-		
-		if (item && slot_name == "Rope")
-		{
-			if (GetGame().IsServer())
-			{
-				DisassembleKit(ItemBase.Cast(item));
-				Delete();
-			}
-		}
-	}
+	
 	override void SetActions()
 	{
 		super.SetActions();
@@ -162,11 +86,6 @@ class CP_Workbench extends ItemBase
 		int BagsToBricksUsage = 16; //GetCPConfig().Bags_To_Bricks_Required;	
 
 
-
-
-	
-	
-	
 	/*					 Percentile Config Options 0% - 100%                  */
 	////////////////////////////////////////////////////////////////////////////
 
@@ -200,8 +119,6 @@ class CP_Workbench extends ItemBase
 	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 	void CP_Workbench() 
 	{
-		RegisterNetSyncVariableBool("m_IsPlaceSound");
-		//RegisterNetSyncVariableBool("m_UseCPWorkbench")
 		RegisterNetSyncVariableBool("CP_TimerisRunning");
 		RegisterNetSyncVariableBool("CP_TimerIsPaused");
 	};
@@ -217,19 +134,8 @@ class CP_Workbench extends ItemBase
 	override void AfterStoreLoad()
 	{
 		super.AfterStoreLoad();
-
-		UpdateLockState();
+		StopProduction();
 	};
-
-	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-	// Entity entry Intilize
-	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-	override void EEInit()
-	{
-      	super.EEInit();
-    };
-
-
 	
 	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 	// Start of Step based Variables to change outcome and Text shown for actions. not complicated but very handy
@@ -417,7 +323,7 @@ class CP_Workbench extends ItemBase
 	{
 		CP_TimerisRunning = false;
 		CP_TimerIsPaused = false;
-		delete m_CP_Processing;
+		if (m_CP_Processing) delete m_CP_Processing;
 		UpdateLockState();
 		SetSynchDirty();
 
@@ -935,6 +841,7 @@ class CP_Workbench extends ItemBase
 	{				
 		return false;
 	};
+
 	override bool CanPutInCargo( EntityAI parent )
 	{
 		return false;
@@ -992,7 +899,7 @@ class CP_Workbench extends ItemBase
 
 		AddAction(ActionCPUseBagger);
 		AddAction(ActionCPResumeAndPause);
-		AddAction(ActionStopCPWorkbench);			
+		AddAction(ActionStopCPWorkbench);		
 	};
 
 }
