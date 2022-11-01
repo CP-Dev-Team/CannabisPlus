@@ -460,8 +460,10 @@ class CP_DryPost extends ItemBase
             } 
 
 		}
-		else 
+		else if (rope)
+		{
 			rope.UnlockFromParent();
+		}
 	}
 		
 	override void EECargoIn(EntityAI item)
