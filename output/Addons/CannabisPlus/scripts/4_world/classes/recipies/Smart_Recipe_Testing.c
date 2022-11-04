@@ -46,16 +46,16 @@ class CP_CraftCannabisBagBlackFrost extends RecipeBase
 		//----------------------------------------------------------------------------------------------------------------------
 		
 		//result1
-		AddResult("");//add results here
-
-		m_ResultSetFullQuantity[0] = false;//true = set full quantity, false = do nothing
-		m_ResultSetQuantity[0] = 1;//-1 = do nothing
-		m_ResultSetHealth[0] = -1;//-1 = do nothing
-		m_ResultInheritsHealth[0] = -1;// (value) == -1 means do nothing; a (value) >= 0 means this result will inherit health from ingredient number (value);(value) == -2 means this result will inherit health from all ingredients averaged(result_health = combined_health_of_ingredients / number_of_ingredients)
-		m_ResultInheritsColor[0] = -1;// (value) == -1 means do nothing; a (value) >= 0 means this result classname will be a composite of the name provided in AddResult method and config value "color" of ingredient (value)
-		m_ResultToInventory[0] >= -2;//(value) == -2 spawn result on the ground;(value) == -1 place anywhere in the players inventory, (value) >= 0 means switch position with ingredient number(value)
-		m_ResultUseSoftSkills[0] = false;// set 'true' to allow modification of the values by softskills on this result
-		m_ResultReplacesIngredient[0] = -1;// value == -1 means do nothing; a value >= 0 means this result will transfer item propertiesvariables, attachments etc.. from an ingredient value
+		//AddResult("");//add results here
+		//
+		//m_ResultSetFullQuantity[0] = false;//true = set full quantity, false = do nothing
+		//m_ResultSetQuantity[0] = 1;//-1 = do nothing
+		//m_ResultSetHealth[0] = -1;//-1 = do nothing
+		//m_ResultInheritsHealth[0] = -1;// (value) == -1 means do nothing; a (value) >= 0 means this result will inherit health from ingredient number (value);(value) == -2 means this result will inherit health from all ingredients averaged(result_health = combined_health_of_ingredients / number_of_ingredients)
+		//m_ResultInheritsColor[0] = -1;// (value) == -1 means do nothing; a (value) >= 0 means this result classname will be a composite of the name provided in AddResult method and config value "color" of ingredient (value)
+		//m_ResultToInventory[0] >= -2;//(value) == -2 spawn result on the ground;(value) == -1 place anywhere in the players inventory, (value) >= 0 means switch position with ingredient number(value)
+		//m_ResultUseSoftSkills[0] = false;// set 'true' to allow modification of the values by softskills on this result
+		//m_ResultReplacesIngredient[0] = -1;// value == -1 means do nothing; a value >= 0 means this result will transfer item propertiesvariables, attachments etc.. from an ingredient value
 		
 		//----------------------------------------------------------------------------------------------------------------------
 	}
@@ -75,10 +75,13 @@ class CP_CraftCannabisBagBlackFrost extends RecipeBase
 	override void Do(ItemBase ingredients[], PlayerBase player,array<ItemBase> results, float specialty_weight)//gets called upon recipe's completion
 	{
 		CP_CannabisBud ingredient1 = CP_CannabisBud.Cast(ingredients[0]);		
-		ItemBase BudsHolder;
+		//CP_CannabisBags BudsHolder;
+		//CP_CannabisBags BudsHolder = Cast(results[0]);
+		
 		string Bagname = ingredient1.GetcpBag(); 
 		
-		BudsHolder = ItemBase.Cast(GetGame().CreateObject(Bagname, BudsHolder.GetPosition()));
+		
+		CP_CannabisBags BudsHolder = CP_CannabisBags.Cast(GetGame().CreateObject(Bagname, ingredient1.GetPosition()));
 		BudsHolder.SetQuantity(1);
 	}
 };
@@ -131,16 +134,16 @@ class CP_CraftCannabisBrickBlackFrost extends RecipeBase
 		//----------------------------------------------------------------------------------------------------------------------
 		
 		//result1
-		AddResult("");//add results here
-
-		m_ResultSetFullQuantity[0] = true;//true = set full quantity, false = do nothing
-		m_ResultSetQuantity[0] = -1;//-1 = do nothing
-		m_ResultSetHealth[0] = -1;//-1 = do nothing
-		m_ResultInheritsHealth[0] = -1;// (value) == -1 means do nothing; a (value) >= 0 means this result will inherit health from ingredient number (value);(value) == -2 means this result will inherit health from all ingredients averaged(result_health = combined_health_of_ingredients / number_of_ingredients)
-		m_ResultInheritsColor[0] = -1;// (value) == -1 means do nothing; a (value) >= 0 means this result classname will be a composite of the name provided in AddResult method and config value "color" of ingredient (value)
-		m_ResultToInventory[0] >= -2;//(value) == -2 spawn result on the ground;(value) == -1 place anywhere in the players inventory, (value) >= 0 means switch position with ingredient number(value)
-		m_ResultUseSoftSkills[0] = false;// set 'true' to allow modification of the values by softskills on this result
-		m_ResultReplacesIngredient[0] = -1;// value == -1 means do nothing; a value >= 0 means this result will transfer item propertiesvariables, attachments etc.. from an ingredient value
+		//AddResult("");//add results here
+		//
+		//m_ResultSetFullQuantity[0] = true;//true = set full quantity, false = do nothing
+		//m_ResultSetQuantity[0] = -1;//-1 = do nothing
+		//m_ResultSetHealth[0] = -1;//-1 = do nothing
+		//m_ResultInheritsHealth[0] = -1;// (value) == -1 means do nothing; a (value) >= 0 means this result will inherit health from ingredient number (value);(value) == -2 means this result will inherit health from all ingredients averaged(result_health = combined_health_of_ingredients / number_of_ingredients)
+		//m_ResultInheritsColor[0] = -1;// (value) == -1 means do nothing; a (value) >= 0 means this result classname will be a composite of the name provided in AddResult method and config value "color" of ingredient (value)
+		//m_ResultToInventory[0] >= -2;//(value) == -2 spawn result on the ground;(value) == -1 place anywhere in the players inventory, (value) >= 0 means switch position with ingredient number(value)
+		//m_ResultUseSoftSkills[0] = false;// set 'true' to allow modification of the values by softskills on this result
+		//m_ResultReplacesIngredient[0] = -1;// value == -1 means do nothing; a value >= 0 means this result will transfer item propertiesvariables, attachments etc.. from an ingredient value
 		
 		//----------------------------------------------------------------------------------------------------------------------
 	}
@@ -161,11 +164,13 @@ class CP_CraftCannabisBrickBlackFrost extends RecipeBase
 
 	override void Do(ItemBase ingredients[], PlayerBase player,array<ItemBase> results, float specialty_weight)//gets called upon recipe's completion
 	{
-		CP_CannabisBags ingredient1 = CP_CannabisBags.Cast(ingredients[0]);		
-		ItemBase BrickHolder;
+		CP_CannabisBags ingredient1 = CP_CannabisBags.Cast(ingredients[0]);
+		
+		//ItemBase BrickHolder;
+		
 		string Brickname = ingredient1.GetcpBrick(); 
 		
-		BrickHolder = ItemBase.Cast(GetGame().CreateObject(Brickname, BrickHolder.GetPosition()));
+		CP_CannabisBrickBase BrickHolder = CP_CannabisBrickBase.Cast(GetGame().CreateObject(Brickname, ingredient1.GetPosition()));
 	}
 };
 class CP_CraftCigsCannabisBlackFrost extends RecipeBase
@@ -216,16 +221,16 @@ class CP_CraftCigsCannabisBlackFrost extends RecipeBase
 		//----------------------------------------------------------------------------------------------------------------------
 		
 		//result1
-		AddResult("");//add results here
-
-		m_ResultSetFullQuantity[0] = true;//true = set full quantity, false = do nothing
-		m_ResultSetQuantity[0] = -1;//-1 = do nothing
-		m_ResultSetHealth[0] = -1;//-1 = do nothing
-		m_ResultInheritsHealth[0] = -1;// (value) == -1 means do nothing; a (value) >= 0 means this result will inherit health from ingredient number (value);(value) == -2 means this result will inherit health from all ingredients averaged(result_health = combined_health_of_ingredients / number_of_ingredients)
-		m_ResultInheritsColor[0] = -1;// (value) == -1 means do nothing; a (value) >= 0 means this result classname will be a composite of the name provided in AddResult method and config value "color" of ingredient (value)
-		m_ResultToInventory[0] = -1;//(value) == -2 spawn result on the ground;(value) == -1 place anywhere in the players inventory, (value) >= 0 means switch position with ingredient number(value)
-		m_ResultUseSoftSkills[0] = false;// set 'true' to allow modification of the values by softskills on this result
-		m_ResultReplacesIngredient[0] = -1;// value == -1 means do nothing; a value >= 0 means this result will transfer item propertiesvariables, attachments etc.. from an ingredient value
+		//AddResult("");//add results here
+		//
+		//m_ResultSetFullQuantity[0] = true;//true = set full quantity, false = do nothing
+		//m_ResultSetQuantity[0] = -1;//-1 = do nothing
+		//m_ResultSetHealth[0] = -1;//-1 = do nothing
+		//m_ResultInheritsHealth[0] = -1;// (value) == -1 means do nothing; a (value) >= 0 means this result will inherit health from ingredient number (value);(value) == -2 means this result will inherit health from all ingredients averaged(result_health = combined_health_of_ingredients / number_of_ingredients)
+		//m_ResultInheritsColor[0] = -1;// (value) == -1 means do nothing; a (value) >= 0 means this result classname will be a composite of the name provided in AddResult method and config value "color" of ingredient (value)
+		//m_ResultToInventory[0] = -1;//(value) == -2 spawn result on the ground;(value) == -1 place anywhere in the players inventory, (value) >= 0 means switch position with ingredient number(value)
+		//m_ResultUseSoftSkills[0] = false;// set 'true' to allow modification of the values by softskills on this result
+		//m_ResultReplacesIngredient[0] = -1;// value == -1 means do nothing; a value >= 0 means this result will transfer item propertiesvariables, attachments etc.. from an ingredient value
 		
 		//----------------------------------------------------------------------------------------------------------------------
 	}
@@ -238,10 +243,10 @@ class CP_CraftCigsCannabisBlackFrost extends RecipeBase
 	override void Do(ItemBase ingredients[], PlayerBase player,array<ItemBase> results, float specialty_weight)//gets called upon recipe's completion
 	{
 		CP_CannabisBud ingredient1 = CP_CannabisBud.Cast(ingredients[0]);		
-		ItemBase JointHolder;
+		//ItemBase JointHolder;
 		string JointName = ingredient1.GetcpJoint(); 
 		
-		JointHolder = ItemBase.Cast(GetGame().CreateObject(JointName, JointHolder.GetPosition()));
+		CP_JointBase JointHolder = CP_JointBase.Cast(GetGame().CreateObject(JointName, ingredient1.GetPosition()));
 	}
 };
 
@@ -289,16 +294,16 @@ class CP_CraftCigarettePackBlackFrostEmpty extends RecipeBase
 		//----------------------------------------------------------------------------------------------------------------------
 		
 		//result1
-		AddResult("");//add results here
-
-		m_ResultSetFullQuantity[0] = false;//true = set full quantity, false = do nothing
-		m_ResultSetQuantity[0] = -1;//-1 = do nothing
-		m_ResultSetHealth[0] = -1;//-1 = do nothing
-		m_ResultInheritsHealth[0] = -2;// (value) == -1 means do nothing; a (value) >= 0 means this result will inherit health from ingredient number (value);(value) == -2 means this result will inherit health from all ingredients averaged(result_health = combined_health_of_ingredients / number_of_ingredients)
-		m_ResultInheritsColor[0] = -1;// (value) == -1 means do nothing; a (value) >= 0 means this result classname will be a composite of the name provided in AddResult method and config value "color" of ingredient (value)
-		m_ResultToInventory[0] = 1;//(value) == -2 spawn result on the ground;(value) == -1 place anywhere in the players inventory, (value) >= 0 means switch position with ingredient number(value)
-		m_ResultUseSoftSkills[0] = false;// set 'true' to allow modification of the values by softskills on this result
-		m_ResultReplacesIngredient[0] = -1;// value == -1 means do nothing; a value >= 0 means this result will transfer item propertiesvariables, attachments etc.. from an ingredient value
+		//AddResult("");//add results here
+		//
+		//m_ResultSetFullQuantity[0] = false;//true = set full quantity, false = do nothing
+		//m_ResultSetQuantity[0] = -1;//-1 = do nothing
+		//m_ResultSetHealth[0] = -1;//-1 = do nothing
+		//m_ResultInheritsHealth[0] = -2;// (value) == -1 means do nothing; a (value) >= 0 means this result will inherit health from ingredient number (value);(value) == -2 means this result will inherit health from all ingredients averaged(result_health = combined_health_of_ingredients / number_of_ingredients)
+		//m_ResultInheritsColor[0] = -1;// (value) == -1 means do nothing; a (value) >= 0 means this result classname will be a composite of the name provided in AddResult method and config value "color" of ingredient (value)
+		//m_ResultToInventory[0] = 1;//(value) == -2 spawn result on the ground;(value) == -1 place anywhere in the players inventory, (value) >= 0 means switch position with ingredient number(value)
+		//m_ResultUseSoftSkills[0] = false;// set 'true' to allow modification of the values by softskills on this result
+		//m_ResultReplacesIngredient[0] = -1;// value == -1 means do nothing; a value >= 0 means this result will transfer item propertiesvariables, attachments etc.. from an ingredient value
 		
 		//----------------------------------------------------------------------------------------------------------------------
 	}
@@ -317,15 +322,11 @@ class CP_CraftCigarettePackBlackFrostEmpty extends RecipeBase
 	override void Do(ItemBase ingredients[], PlayerBase player,array<ItemBase> results, float specialty_weight)//gets called upon recipe's completion
 	{
 		CP_JointBase ingredient1 = CP_JointBase.Cast(ingredients[0]);		
-		ItemBase PackHolder;
+		//ItemBase PackHolder;
 		string PackName = ingredient1.GetcpJointPack(); 
 		
-		PackHolder = ItemBase.Cast(GetGame().CreateObject(PackName, PackHolder.GetPosition()));
-		
-		if( PackHolder )
-		{
-			PackHolder.SetQuantity( 1 );
-		}
+		CP_JointPack PackHolder = CP_JointPack.Cast(GetGame().CreateObject(PackName, ingredient1.GetPosition()));
+		PackHolder.SetQuantity( 1 );
 	}
 };
 
@@ -376,14 +377,14 @@ class CP_CraftCigarettePackBlackFrost extends RecipeBase
 		//result1
 		//AddResult("");//add results here
 
-        m_ResultSetFullQuantity[0] = false;//true = set full quantity, false = do nothing
-		m_ResultSetQuantity[0] = -1;//-1 = do nothing
-		m_ResultSetHealth[0] = -1;//-1 = do nothing
-		m_ResultInheritsHealth[0] = -2;// (value) == -1 means do nothing; a (value) >= 0 means this result will inherit health from ingredient number (value);(value) == -2 means this result will inherit health from all ingredients averaged(result_health = combined_health_of_ingredients / number_of_ingredients)
-		m_ResultInheritsColor[0] = -1;// (value) == -1 means do nothing; a (value) >= 0 means this result classname will be a composite of the name provided in AddResult method and config value "color" of ingredient (value)
-		m_ResultToInventory[0] = 1;//(value) == -2 spawn result on the ground;(value) == -1 place anywhere in the players inventory, (value) >= 0 means switch position with ingredient number(value)
-		m_ResultUseSoftSkills[0] = false;// set 'true' to allow modification of the values by softskills on this result
-		m_ResultReplacesIngredient[0] = -1;// value == -1 means do nothing; a value >= 0 means this result will transfer item propertiesvariables, attachments etc.. from an ingredient value
+        //m_ResultSetFullQuantity[0] = false;//true = set full quantity, false = do nothing
+		//m_ResultSetQuantity[0] = -1;//-1 = do nothing
+		//m_ResultSetHealth[0] = -1;//-1 = do nothing
+		//m_ResultInheritsHealth[0] = -2;// (value) == -1 means do nothing; a (value) >= 0 means this result will inherit health from ingredient number (value);(value) == -2 means this result will inherit health from all ingredients averaged(result_health = combined_health_of_ingredients / number_of_ingredients)
+		//m_ResultInheritsColor[0] = -1;// (value) == -1 means do nothing; a (value) >= 0 means this result classname will be a composite of the name provided in AddResult method and config value "color" of ingredient (value)
+		//m_ResultToInventory[0] = 1;//(value) == -2 spawn result on the ground;(value) == -1 place anywhere in the players inventory, (value) >= 0 means switch position with ingredient number(value)
+		//m_ResultUseSoftSkills[0] = false;// set 'true' to allow modification of the values by softskills on this result
+		//m_ResultReplacesIngredient[0] = -1;// value == -1 means do nothing; a value >= 0 means this result will transfer item propertiesvariables, attachments etc.. from an ingredient value
 		
 		//----------------------------------------------------------------------------------------------------------------------
 	}
