@@ -426,6 +426,7 @@ class CP_Workbench extends ItemBase
 			}
 		}
 		UpdateLockState();
+		SetSynchDirty();
 	};
 
     void CreateBags()
