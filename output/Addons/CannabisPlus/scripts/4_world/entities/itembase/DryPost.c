@@ -118,7 +118,7 @@ class CP_DryPost extends ItemBase
 			//Print("dp = " + dp);
 		}
 
-		Print("EEItemAttached: LockRope");
+		//Print("EEItemAttached: LockRope");
 		LockRope();
 	}
     
@@ -160,7 +160,7 @@ class CP_DryPost extends ItemBase
 			//Print("dp = " + dp);
 		}
 
-		Print("EEItemDetached: LockRope");
+		//Print("EEItemDetached: LockRope");
 		LockRope();
 	}
 	
@@ -461,16 +461,16 @@ class CP_DryPost extends ItemBase
         {
             if (rope)
             {
-                Print(rope);
-                Print("LockRope: True");
+                //Print(rope);
+                //Print("LockRope: True");
                 rope.LockToParent();
             } 
 
         }
         else if (rope)
         {
-            Print(rope);
-            Print("LockRope: False");
+            //Print(rope);
+            //Print("LockRope: False");
             rope.UnlockFromParent();
         }
     }
@@ -479,7 +479,7 @@ class CP_DryPost extends ItemBase
 	{		
 		super.EECargoIn(item);
 		
-		Print("EECargoIn: LockRope");
+		//Print("EECargoIn: LockRope");
 		LockRope();
 	}
 
@@ -487,7 +487,7 @@ class CP_DryPost extends ItemBase
 	{
 		super.EECargoOut(item);
 		
-		Print("EECargoOut: LockRope");
+		//Print("EECargoOut: LockRope");
 		LockRope();
 	}
 	
