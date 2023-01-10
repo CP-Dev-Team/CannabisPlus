@@ -119,10 +119,8 @@ class CP_DryPost extends ItemBase
 		}
 
 		//Print("EEItemAttached: LockRope");
-			if (GetGame() && GetGame().IsClient())
-			{		
-				LockRope();
-			}
+		if (GetGame() && GetGame().IsClient())		
+			LockRope();
 	}
     
 	override void EEItemDetached(EntityAI item, string slot_name)
@@ -164,7 +162,8 @@ class CP_DryPost extends ItemBase
 		}
 
 		//Print("EEItemDetached: LockRope");
-		LockRope();
+		if (GetGame() && GetGame().IsClient())
+			LockRope();
 	}
 	
 	bool IsItemTypeAttached( typename item_type )
