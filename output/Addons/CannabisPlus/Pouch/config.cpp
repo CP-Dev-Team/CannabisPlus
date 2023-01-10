@@ -1,34 +1,8 @@
 class CfgMods
 {
-	class CP_Pouch //NAME OF MOD
+	class CP_Pouch
 	{
-		dir="CP_Pouch";//NAME OF MOD
-		picture="";
-		action="";
-		hideName=1;
-		hidePicture=1;
-		name="CP_Pouch";//NAME OF MOD
-		credits="";
 		author="THYER5";
-		authorID="0";
-		version="1.0";
-		extra=0;
-		type="mod";
-		dependencies[]=
-		{
-			"World"
-		};
-		class defs
-		{
-			class worldScriptModule
-			{
-				value="";
-				files[]=
-				{
-					"CannabisPlus/scripts/4_world"
-				};
-			};
-		};
 	};
 };
 class CfgPatches
@@ -38,7 +12,6 @@ class CfgPatches
 		units[]=
 		{
 			"CP_Pouch"
-			
 		};
 		weapons[]={};
 		requiredVersion=0.1;
@@ -112,7 +85,7 @@ class CfgVehicles
 							1,
 							
 							{
-								"Cannabis\data\Pouch\data\cannabispouch.rvmat"
+								"CannabisPlus\Pouch\data\cannabispouch.rvmat"
 							}
 						},
 						
@@ -120,7 +93,7 @@ class CfgVehicles
 							0.69999999,
 							
 							{
-								"Cannabis\data\Pouch\data\cannabispouch.rvmat"
+								"CannabisPlus\Pouch\data\cannabispouch.rvmat"
 							}
 						},
 						
@@ -128,7 +101,7 @@ class CfgVehicles
 							0.5,
 							
 							{
-								"Cannabis\data\Pouch\data\cannabispouch_damage.rvmat"
+								"CannabisPlus\Pouch\data\cannabispouch_damage.rvmat"
 							}
 						},
 						
@@ -136,7 +109,7 @@ class CfgVehicles
 							0.30000001,
 							
 							{
-								"Cannabis\data\Pouch\data\cannabispouch_damage.rvmat"
+								"CannabisPlus\Pouch\data\cannabispouch_damage.rvmat"
 							}
 						},
 						
@@ -144,7 +117,7 @@ class CfgVehicles
 							0,
 							
 							{
-								"Cannabis\data\Pouch\data\cannabispouch_destruct.rvmat"
+								"CannabisPlus\Pouch\data\cannabispouch_destruct.rvmat"
 							}
 						}
 					};
