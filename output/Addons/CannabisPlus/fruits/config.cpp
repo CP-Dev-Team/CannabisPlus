@@ -30,7 +30,7 @@ class CfgVehicles
 		scope=0;
 		displayName="";
 		descriptionShort="";
-	}
+	};
 	
 	class CP_CannabisBud: Inventory_Base
 	{
