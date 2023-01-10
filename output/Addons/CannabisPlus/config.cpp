@@ -7,7 +7,8 @@ class CfgPatches
 		requiredVersion=0.1;
 		requiredAddons[]=
 		{
-			"CPtoken"
+			"CPtoken",
+			"CannabisPlusGUI"
 		};
 	};
 };
@@ -29,7 +30,9 @@ class CfgMods
 			class imageSets
             {
                 files[]=
-                {"CannabisPlus\GUI\CP_GhostImages.imageset"};
+                {
+					"CannabisPlusGUI/GUI/CP_GhostImages.imageset"
+				};
             };
 			class gameScriptModule
 			{

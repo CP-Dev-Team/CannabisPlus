@@ -151,7 +151,7 @@ class CfgVehicles
 		};
 		hiddenSelectionsMaterials[]=
 		{
-			"CannabisPlus\seeds\data\cannabis_seeds.rvmat",
+			"CannabisPlus\seeds\data\skunk_seeds.rvmat",
 			"CannabisPlus\bricks\data\brick.rvmat"
 		};
 	};
@@ -176,7 +176,7 @@ class CfgVehicles
 		};
 		hiddenSelectionsMaterials[]=
 		{
-			"CannabisPlus\seeds\data\cannabis_seeds.rvmat",
+			"CannabisPlus\seeds\data\blue_seeds.rvmat",
 			"CannabisPlus\bricks\data\brick.rvmat"
 		};
 	};
@@ -201,7 +201,7 @@ class CfgVehicles
 		};
 		hiddenSelectionsMaterials[]=
 		{
-			"CannabisPlus\seeds\data\cannabis_seeds.rvmat",
+			"CannabisPlus\seeds\data\kush_seeds.rvmat",
 			"CannabisPlus\bricks\data\brick.rvmat"
 		};
 	};
@@ -226,7 +226,7 @@ class CfgVehicles
 		};
 		hiddenSelectionsMaterials[]=
 		{
-			"CannabisPlus\seeds\data\cannabis_seeds.rvmat",
+			"CannabisPlus\seeds\data\stardawg_seeds.rvmat",
 			"CannabisPlus\bricks\data\brick.rvmat"
 		};
 	};
@@ -251,7 +251,7 @@ class CfgVehicles
 		};
 		hiddenSelectionsMaterials[]=
 		{
-			"CannabisPlus\seeds\data\cannabis_seeds.rvmat",
+			"CannabisPlus\seeds\data\future_seeds.rvmat",
 			"CannabisPlus\bricks\data\brick.rvmat"
 		};
 	};
@@ -276,7 +276,7 @@ class CfgVehicles
 		};
 		hiddenSelectionsMaterials[]=
 		{
-			"CannabisPlus\seeds\data\cannabis_seeds.rvmat",
+			"CannabisPlus\seeds\data\s1_seeds.rvmat",
 			"CannabisPlus\bricks\data\brick.rvmat"
 		};
 	};
@@ -301,7 +301,7 @@ class CfgVehicles
 		};
 		hiddenSelectionsMaterials[]=
 		{
-			"CannabisPlus\seeds\data\cannabis_seeds.rvmat",
+			"CannabisPlus\seeds\data\nomad_seeds.rvmat",
 			"CannabisPlus\bricks\data\brick.rvmat"
 		};
 	};
@@ -326,7 +326,7 @@ class CfgVehicles
 		};
 		hiddenSelectionsMaterials[]=
 		{
-			"CannabisPlus\seeds\data\cannabis_seeds.rvmat",
+			"CannabisPlus\seeds\data\blackfrost_seeds.rvmat",
 			"CannabisPlus\bricks\data\brick.rvmat"
 		};
 	};

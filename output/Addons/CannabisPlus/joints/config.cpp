@@ -36,7 +36,7 @@ class CfgVehicles
 		{
 			"CannabisPlus\joints\data\joint_co.paa"
 		};
-	}
+	};
 	class CP_JointSkunk: CP_JointBase
 	{
 		scope=2;
