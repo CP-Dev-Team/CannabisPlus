@@ -73,34 +73,16 @@ class CP_Workbench extends ItemBase
 	const string ATTACHMENT_SLOT_BAGS				= "CP_Cannabis_Bags";
 	const string ATTACHMENT_SLOT_BRICKS 			= "CP_Cannabis_Bricks";
 	
-	/*//////////////////////////////////////////////////////////////////////////
-	//						Start of Config Control                 		  //
-	//           	All Config Main Variables ill be put Below       		  //
-	//////////////////////////////////////////////////////////////////////////*/
-	
-	/*                     	   Whole # Config Options                         */
-	////////////////////////////////////////////////////////////////////////////
-		int BatteryRequired = GetCPConfig().RequireBattery;
-		int Workbench_Timer_Repeat = GetCPConfig().Workbench_Processing_Time;
-		//int BudsToBagsUsage = GetCPConfig().Buds_To_Bags_Required;
-		int BagsToBricksUsage = 16; //GetCPConfig().Bags_To_Bricks_Required;	
 
+	int BatteryRequired;
+	int Workbench_Timer_Repeat;
+	//int BudsToBagsUsage = GetCPConfig().Buds_To_Bags_Required;
+	int BagsToBricksUsage; //GetCPConfig().Bags_To_Bricks_Required;	
 
-	/*					 Percentile Config Options 0% - 100%                  */
-	////////////////////////////////////////////////////////////////////////////
+	float Battery_Percent;
 
-	
-	    float Battery_Percent = GetCPConfig().WorkBench_PowerUsed / 100 * 1500;
-	
-		float PlaticWrap_Percent = GetCPConfig().Plastic_Wrap_Usage;
+	float PlaticWrap_Percent;
 
-
-	
-	/*//////////////////////////////////////////////////////////////////////////
-	//						  End of Config Control                 		  //
-	//           	All Config Main Variables ill be put Above    			  //
-	//////////////////////////////////////////////////////////////////////////*/
-	
 	// timer to get bagger working
 	protected ref Timer m_CP_Processing;
 	protected ref Timer m_CP_ProcessingCheck;
@@ -117,17 +99,54 @@ class CP_Workbench extends ItemBase
 	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 	// constructor of workbench class
 	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-	override void EEInit()
-	{
-		super.EEInit();
-
-		UpdateLockState();
-	}
-
 	void CP_Workbench() 
 	{
 		RegisterNetSyncVariableBool("CP_TimerisRunning");
 		RegisterNetSyncVariableBool("CP_TimerIsPaused");
+
+		if (GetGame() && GetGame().IsServer())
+			CP_LoadConfig();
+		
+		//Gotta wait a little bit to load the config on the clientside while we fetch it from the serverside
+		if (GetGame() && GetGame().IsClient())
+		{
+			GetGame().GetCallQueue(CALL_CATEGORY_SYSTEM).CallLater(CP_LoadConfig, 750, false);
+		}	
+	}
+	
+	void CP_LoadConfig()
+	{
+		//See if we gotta wait some more because we haven't received the config yet...
+		if (GetGame() && GetGame().IsClient() && !GetCPConfig())
+		{	
+			GetGame().GetCallQueue(CALL_CATEGORY_SYSTEM).CallLater(CP_LoadConfig, 500, false);	
+			return;
+		}
+
+		/*//////////////////////////////////////////////////////////////////////////
+		//						Start of Config Control                 		  //
+		//           	All Config Main Variables ill be put Below       		  //
+		//////////////////////////////////////////////////////////////////////////*/
+		
+		/*                     	   Whole # Config Options                         */
+		////////////////////////////////////////////////////////////////////////////
+		BatteryRequired = GetCPConfig().RequireBattery;
+		Workbench_Timer_Repeat = GetCPConfig().Workbench_Processing_Time;
+		//int BudsToBagsUsage = GetCPConfig().Buds_To_Bags_Required;
+		BagsToBricksUsage = 16; //GetCPConfig().Bags_To_Bricks_Required;	
+
+
+		/*					 Percentile Config Options 0% - 100%                  */
+		////////////////////////////////////////////////////////////////////////////
+
+		Battery_Percent = GetCPConfig().WorkBench_PowerUsed / 100 * 1500;
+	
+		PlaticWrap_Percent = GetCPConfig().Plastic_Wrap_Usage;
+	
+		/*//////////////////////////////////////////////////////////////////////////
+		//						  End of Config Control                 		  //
+		//           	All Config Main Variables ill be put Above    			  //
+		//////////////////////////////////////////////////////////////////////////*/		
 	};
 
 	void ~CP_Workbench()
@@ -137,6 +156,14 @@ class CP_Workbench extends ItemBase
 		if (m_CP_ProcessingCheck)
 		    delete m_CP_ProcessingCheck;
 	};
+
+	override void OnVariablesSynchronized()
+	{
+		super.OnVariablesSynchronized();
+
+		if (GetGame() && GetGame().IsClient())
+			UpdateLockState();
+	}
 	
 	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 	// Start of Step based Variables to change outcome and Text shown for actions. not complicated but very handy
@@ -243,7 +270,7 @@ class CP_Workbench extends ItemBase
 		//	//Print("Processing is started.");
 		//	//Print(m_CP_Processing);
 		//
-
+	
 		UpdateLockState();
 	};
 	void End_Processing(float actiontime)
@@ -425,7 +452,7 @@ class CP_Workbench extends ItemBase
 				SetSynchDirty();
 			}
 		}
-		UpdateLockState();
+		UpdateLockState();		
 		SetSynchDirty();
 	};
 
@@ -685,7 +712,6 @@ class CP_Workbench extends ItemBase
 		ItemBase Bagger = GetBagger();
 		ItemBase Wrapper = GetWrapper();
 		
-
 		if ( Bagger )
 		{
 			if ( m_CP_Processing && m_CP_Processing.IsRunning() )
@@ -884,16 +910,18 @@ class CP_Workbench extends ItemBase
     {
         super.EEItemAttached(item,slot_name);
 
-        UpdateLockState();
+		if (GetGame() && GetGame().IsClient())
+			UpdateLockState();
     };
 
 	override void EEItemDetached(EntityAI item, string slot_name)
 	{
 		super.EEItemDetached( item, slot_name );
 
-		if ( !RunningOrNot() ) {
-
-		UpdateLockState();
+		if (GetGame() && GetGame().IsClient())
+		{	
+			if ( !RunningOrNot() ) 
+				UpdateLockState();
 		}
 	};
 	
