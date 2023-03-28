@@ -8,7 +8,7 @@ class CfgPatches
 		requiredAddons[]=
 		{
 			"CPtoken",
-			"CannabisPlusGUI"
+			"CannabisPlus_GhostIcons"
 		};
 	};
 };
