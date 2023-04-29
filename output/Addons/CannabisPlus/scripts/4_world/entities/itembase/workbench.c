@@ -601,8 +601,7 @@ class CP_Workbench extends ItemBase
 				GetInventory().SetSlotLock(InventorySlots.GetSlotIdFromString(ATTACHMENT_SLOT_BAGS), false);
 			}
 			SetSynchDirty();
-		}
-				  
+		};
 	};
 
 	void LockCPWrapperSlots(bool do_lock) {
@@ -620,6 +619,7 @@ class CP_Workbench extends ItemBase
 				GetInventory().SetSlotLock(InventorySlots.GetSlotIdFromString(ATTACHMENT_SLOT_BRICKS), false);
 			}
 			SetSynchDirty();
+		};
 	};
 
 	void LockCPBagger(bool do_lock)
