@@ -7,8 +7,7 @@ class CfgPatches
 		requiredVersion=0.1;
 		requiredAddons[]=
 		{
-			"CPtoken",
-			"CannabisPlusGUI"
+			"CPtoken"
 		};
 	};
 };
