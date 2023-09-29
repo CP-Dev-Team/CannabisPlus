@@ -414,6 +414,7 @@ class CP_Workbench extends ItemBase
 			else if ( GetBattieries().GetCompEM().GetEnergy() < Battery_Percent )
 			{
 				m_CP_Processing.Stop();
+				SetTimerIsRunning(false);
 				EndProcessing(1);
 				//Print("Out of Battery Juice.");
 				SetSynchDirty();

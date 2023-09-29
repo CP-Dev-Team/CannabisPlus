@@ -1,3 +1,7 @@
+v3.0.2
+Fixes
+- Starting the workbench process if there wasn't enough battery energy or if the battery ran out of energy would keep the workbench in a running state until it was manually stopped.
+
 v3.0.1
 Fixes
 - Fixed a dependency reference for GhostIcons pointing to wrong class name.
