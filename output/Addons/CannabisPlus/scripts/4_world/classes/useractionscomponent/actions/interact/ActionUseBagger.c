@@ -21,8 +21,6 @@ class ActionCPUseBagger: ActionInteractBase
 		int BagsToBricksUsage = 16; //GetCPConfig().Bags_To_Bricks_Required;
 		float PlaticWrap_Percent = GetCPConfig().Plastic_Wrap_Usage;
 		
-		
-		
 		EntityAI target_entity = EntityAI.Cast( target.GetObject() );
         Object target_object = target.GetObject();
 		
@@ -34,14 +32,13 @@ class ActionCPUseBagger: ActionInteractBase
 		
 		if(BatteryRequired == 1)
 		{
-		
-			if (Bench && Bench.Bagger_Attachments() && Buds && Buds.GetQuantity() >= 2 /* BudsToBagsUsage */ && Batteries && Batteries.GetCompEM().GetEnergy() >= BatterPercentUsed && !Bench.RunningOrNot())
+			if (Bench && Bench.Bagger_Attachments() && Buds && Buds.GetQuantity() >= 2 /* BudsToBagsUsage */ && Batteries && Batteries.GetCompEM().GetEnergy() >= BatterPercentUsed && !Bench.IsRunning())
 			{
 				TendancyText = Bench.GetBagTendancyText();
 				return true;
 			
 			}
-			else if (Bench && Bench.Wrapper_Attachments() && Bags &&  Bags.GetQuantity() >= BagsToBricksUsage && Batteries && Batteries.GetCompEM().GetEnergy() >= BatterPercentUsed && !Bench.RunningOrNot()  )
+			else if (Bench && Bench.Wrapper_Attachments() && Bags &&  Bags.GetQuantity() >= BagsToBricksUsage && Batteries && Batteries.GetCompEM().GetEnergy() >= BatterPercentUsed && !Bench.IsRunning()  )
 			{
 				if(Plastic && Plastic.GetQuantity() > PlaticWrap_Percent)
 				{
@@ -53,12 +50,12 @@ class ActionCPUseBagger: ActionInteractBase
 		else if(BatteryRequired == 0)
 		{
 		
-			if (Bench && Bench.Bagger_Attachments() && Buds && Buds.GetQuantity() >= 2 /* BudsToBagsUsage */ && !Bench.RunningOrNot() )
+			if (Bench && Bench.Bagger_Attachments() && Buds && Buds.GetQuantity() >= 2 /* BudsToBagsUsage */ && !Bench.IsRunning() )
 			{
 				TendancyText = Bench.GetBagTendancyText();
 				return true;
 			}
-			else if (Bench && Bench.Wrapper_Attachments() && Bags && Bags.GetQuantity() >= BagsToBricksUsage  && !Bench.RunningOrNot() )
+			else if (Bench && Bench.Wrapper_Attachments() && Bags && Bags.GetQuantity() >= BagsToBricksUsage  && !Bench.IsRunning() )
 			{
 				if(Plastic && Plastic.GetQuantity() > PlaticWrap_Percent)
 				{
@@ -75,8 +72,7 @@ class ActionCPUseBagger: ActionInteractBase
 		CP_Workbench Bench = CP_Workbench.Cast( action_data.m_Target.GetObject() );
 		
 		//Bench.CreateBricks(Bench.GetWrapperTendancyCreationType())
-		Bench.start_processing();
-
+		Bench.StartProcessing();
 	};
 	
 	override string GetAdminLogMessage(ActionData action_data)
