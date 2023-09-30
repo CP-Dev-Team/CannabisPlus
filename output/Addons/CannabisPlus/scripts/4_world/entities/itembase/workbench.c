@@ -354,22 +354,47 @@ class CP_Workbench extends ItemBase
 		SetSynchDirty();
 	};
 
-	bool IsCannabisBugQuantityOK()
+	bool HaveEnoughBud()
 	{
 		return GetCannabisBud() && GetCannabisBud().GetQuantity() > 1;
 	}
 
+	bool HaveEnoughEmptyBags()
+	{
+		return GetEmptyBags() && GetEmptyBags().GetQuantity() > 0;
+	}
+
+	bool BaggerRuined()
+	{
+		return GetBagger().IsRuined();
+	}
+
 	bool CanCreateBags()
 	{
-        if (IsCannabisBugQuantityOK() && (GetEmptyBags() && GetEmptyBags().GetQuantity() > 0) && (!GetCannabisBags() || GetCannabisBags().GetQuantity() < 160))
+        if (HaveEnoughBud() && HaveEnoughEmptyBags() && !BaggerRuined() && (!GetCannabisBags() || GetCannabisBags().GetQuantity() < 160))
             return true;
         
         return false;
 	};
+
+	bool WrapperRuined()
+	{
+		return GetWrapper().IsRuined();
+	}
 	
+	bool HaveEnoughFullBags()
+	{
+		return GetCannabisBags() && GetCannabisBags().GetQuantity() >= 16;
+	}
+
+	bool HaveEnoughPlastic()
+	{
+		return GetPlasticRoll() && GetPlasticRoll().GetQuantity() > 5;
+	}
+
 	bool CanCreateBricks()
 	{
-		if((GetCannabisBags() && GetCannabisBags().GetQuantity() >= 16 && GetPlasticRoll() && GetPlasticRoll().GetQuantity() > 5) || (GetCannabisBags() && GetCannabisBags().GetQuantity() >= 16 && GetCannabisBricks().GetQuantity() < 25 && GetPlasticRoll() && GetPlasticRoll().GetQuantity() > 5))
+		if( HaveEnoughFullBags() && HaveEnoughPlastic() && GetCannabisBricks().GetQuantity() < 25 && !WrapperRuined() )
 			return true;
 		
 		return false;
@@ -485,9 +510,9 @@ class CP_Workbench extends ItemBase
                         return;
                     }
 
+					Batteries.GetCompEM().AddEnergy( -Battery_Percent );
                     EmptyBags.AddQuantity(-1);
-                    CannabisBud.AddQuantity(-2); 
-                    Batteries.GetCompEM().AddEnergy( -Battery_Percent );
+                    CannabisBud.AddQuantity(-2);
                 };
             };
         }
@@ -826,7 +851,7 @@ class CP_Workbench extends ItemBase
         
         string slot_name = InventorySlots.GetSlotName(slot_id);
 
-		if(slot_name != "LargeBattery" )
+		if(slot_name != "LargeBattery" || "TruckBattery" )
             return true;
         
         if( BatteryRequired == 1 )
