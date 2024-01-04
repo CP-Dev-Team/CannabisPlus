@@ -524,6 +524,7 @@ class CP_DryPost extends ItemBase
 		{
 			ItemBase Log = ItemBase.Cast(GetGame().CreateObjectEx("WoodenLog",GetPosition(),ECE_PLACE_ON_SURFACE));
 			MiscGameplayFunctions.TransferItemProperties(this, Log);
+			Log.SetQuantity(1);
 			Rope rope = Rope.Cast(item);
 			CreateRope(rope);
 		}
