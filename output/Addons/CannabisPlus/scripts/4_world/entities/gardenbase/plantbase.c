@@ -71,7 +71,7 @@ modded class PlantBase
 	void ~PlantBase() {
 		
 		if (!m_MarkForDeletion) {
-			RemovePlant();
+			DestroyPlant();
 		}
 	}
 	
