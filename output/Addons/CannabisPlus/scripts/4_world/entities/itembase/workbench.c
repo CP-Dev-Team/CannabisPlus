@@ -623,50 +623,55 @@ class CP_Workbench extends ItemBase
 		ItemBase Bagger = GetBagger();	
 
 		if (!Bagger)
-			return;
+		  
 
-		if (lock)
+		   
 		{
-			Bagger.LockToParent();
+			GetInventory().SetSlotLock(InventorySlots.GetSlotIdFromString(ATTACHMENT_SLOT_BAGGER), false);
+            return;
 		}
-		else
-		{
-			Bagger.UnlockFromParent();
-		};
+		
+		GetInventory().SetSlotLock(InventorySlots.GetSlotIdFromString(ATTACHMENT_SLOT_BAGGER), lock);
+							 
+	
 	};
 
 	void LockCPWrapper(bool lock)
 	{
 		ItemBase Wrapper = GetWrapper();			
 
-		if (!Wrapper )
-			return;
-		
-		if (lock)
+		if (!Wrapper )		
+		  
+  
+		   
 		{
-			Wrapper.LockToParent();
+			GetInventory().SetSlotLock(InventorySlots.GetSlotIdFromString(ATTACHMENT_SLOT_WRAPPER), false);
+            return;
 		}
-		else
-		{
-			Wrapper.UnlockFromParent();
-		};
+		
+		GetInventory().SetSlotLock(InventorySlots.GetSlotIdFromString(ATTACHMENT_SLOT_WRAPPER), lock);
+							  
+	
 	};
 
 	void LockCPBattery(bool lock)
 	{
 		ItemBase Battery = GetBattieries();			
 
-		if (!Battery)
+		if (!Battery)	
+		{
+			GetInventory().SetSlotLock(InventorySlots.GetSlotIdFromString(ATTACHMENT_SLOT_BATTERIES), false);
             return;
+		}	
 		
-		if (lock)
-		{
-			Battery.LockToParent();
-		}
-		else
-		{
-			Battery.UnlockFromParent();
-		};
+		GetInventory().SetSlotLock(InventorySlots.GetSlotIdFromString(ATTACHMENT_SLOT_BATTERIES), lock);
+   
+						  
+   
+	  
+   
+							  
+	
 	};
 	
 	
@@ -706,9 +711,9 @@ class CP_Workbench extends ItemBase
 
 	void UpdateBaggerSlotLockState()
 	{
-		ItemBase Bagger = GetBagger();
-		if(!Bagger)
-			return;
+								
+			 
+		  
 
 		if ( IsProcessing() )
 		{
@@ -738,10 +743,10 @@ class CP_Workbench extends ItemBase
 
 	void UpdateWrapperSlotLockState()
 	{
-		ItemBase Wrapper = GetWrapper();
-		
-		if (!Wrapper)
-			return;
+								  
+  
+			   
+		  
 
 		if ( IsProcessing() )
 		{
