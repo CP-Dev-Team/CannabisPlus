@@ -408,27 +408,29 @@ class CP_Workbench extends ItemBase
 	
 	void DoProcessing()
 	{
+		Print("BatteryRequired = " + BatteryRequired );
+		Print("GetBattieries() = " + GetBattieries() )
 		if(BatteryRequired == 1)
-		{
-			if(GetBattieries().GetCompEM().GetEnergy() > Battery_Percent )
+		{	
+			if(GetBattieries().GetCompEM().GetEnergy() >= Battery_Percent )
 			{
 				//Print("HaveEnoughFullBags() = " + HaveEnoughFullBags() );
 				//Print("HaveEnoughPlastic() = " + HaveEnoughPlastic() );
 				//Print("CanCreateBricks() = " + CanCreateBricks() );
 				//Print("WrapperRuined() = " + WrapperRuined() );
-				//Print("Battery Check.");
+				Print("Battery power " + GetBattieries().GetCompEM().GetEnergy());
 				if(CanCreateBags() == true )
 				{
 					SetTimerIsRunning(true);
 					CreateBags();
-					//Print("Create bags.");
+					Print("Create bags.");
 					//Print("CanCreateBags = true +" + m_CP_Processing);
 				}
 				else if(CanCreateBricks() == true )
 				{
 					SetTimerIsRunning(true);
 					CreateBricks(); 
-					//Print("Create bricks.");
+					Print("Create bricks.");
 					//Print("CanCreateBricks = true +" + m_CP_Processing);
 				}
 				else
@@ -436,7 +438,7 @@ class CP_Workbench extends ItemBase
 					m_CP_Processing.Stop();
 					SetTimerIsRunning(false);
 					EndProcessing(1);
-					//Print("Out of materials.");
+					Print("Out of materials.");
 					SetSynchDirty();
 				}
 			}
@@ -445,7 +447,7 @@ class CP_Workbench extends ItemBase
 				m_CP_Processing.Stop();
 				SetTimerIsRunning(false);
 				EndProcessing(1);
-				//Print("Out of Battery Juice.");
+				Print("Out of battery juice.");
 				SetSynchDirty();
 			}
 		}
@@ -497,7 +499,7 @@ class CP_Workbench extends ItemBase
                 {        
                     if(!GetCannabisBags())
                     {
-                        //Print("Creating attachment.");
+                        Print("Creating " + Bagname + " attachment.");
 						GetInventory().SetSlotLock(InventorySlots.GetSlotIdFromString(ATTACHMENT_SLOT_BAGS), false);
                         GetInventory().CreateAttachment(Bagname);
 						GetCannabisBags().SetQuantity(1);
@@ -506,11 +508,11 @@ class CP_Workbench extends ItemBase
                     else if (GetCannabisBags() && GetCannabisBags().GetType() == Bagname)
                     {
                         GetCannabisBags().AddQuantity(1); 
-                        //Print("Adding quantity.");
+                        Print("Adding " + Bagname + "quantity.");
                     }
                     else
                     {
-                        //Print("Fucking else.");
+                        Print("Fucking else.");
                         return;
                     }
 
