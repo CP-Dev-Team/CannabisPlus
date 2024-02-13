@@ -394,7 +394,7 @@ class CP_Workbench extends ItemBase
 
 	bool CanCreateBricks()
 	{
-		if( HaveEnoughFullBags() && HaveEnoughPlastic() && GetCannabisBricks().GetQuantity() < 25 && !WrapperRuined() )
+		if( HaveEnoughFullBags() && HaveEnoughPlastic() && !WrapperRuined() && ( !GetCannabisBricks() || GetCannabisBricks().GetQuantity() < 25 ) )
 			return true;
 		
 		return false;
@@ -412,6 +412,10 @@ class CP_Workbench extends ItemBase
 		{
 			if(GetBattieries().GetCompEM().GetEnergy() > Battery_Percent )
 			{
+				//Print("HaveEnoughFullBags() = " + HaveEnoughFullBags() );
+				//Print("HaveEnoughPlastic() = " + HaveEnoughPlastic() );
+				//Print("CanCreateBricks() = " + CanCreateBricks() );
+				//Print("WrapperRuined() = " + WrapperRuined() );
 				//Print("Battery Check.");
 				if(CanCreateBags() == true )
 				{
