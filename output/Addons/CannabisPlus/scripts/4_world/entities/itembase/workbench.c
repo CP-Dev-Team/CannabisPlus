@@ -163,6 +163,7 @@ class CP_Workbench extends ItemBase
 
 		if (GetGame() && GetGame().IsClient())
 			UpdateLockState();
+			Print("OnVariablesSynchronized, UpdateLockState")
 	}
 	
 	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -277,6 +278,7 @@ class CP_Workbench extends ItemBase
 		//
 	
 		UpdateLockState();
+		Print("StartProcessing, UpdateLockState")
 	};
 
 	void EndProcessing(float actiontime)
@@ -346,6 +348,7 @@ class CP_Workbench extends ItemBase
 
 		UpdateLockState();
 		SetSynchDirty();
+		Print("StropProduction, UpdateLockState")
 	};
 
 	void KillProductionCheckTimer()
@@ -478,6 +481,7 @@ class CP_Workbench extends ItemBase
 		}
 		UpdateLockState();		
 		SetSynchDirty();
+		Print("DoProcessing, UpdateLockState")
 	};
 
     void CreateBags()
@@ -615,6 +619,7 @@ class CP_Workbench extends ItemBase
 		GetInventory().SetSlotLock(InventorySlots.GetSlotIdFromString(ATTACHMENT_SLOT_BUDS), lock);
 		GetInventory().SetSlotLock(InventorySlots.GetSlotIdFromString(ATTACHMENT_SLOT_EMPTYBAGS), lock);
 		GetInventory().SetSlotLock(InventorySlots.GetSlotIdFromString(ATTACHMENT_SLOT_BAGS), lock);
+		Print("LockCPBaggerSlots = "+lock)
 	};
 
 	void LockCPWrapperSlots(bool lock) 
@@ -622,6 +627,7 @@ class CP_Workbench extends ItemBase
 		GetInventory().SetSlotLock(InventorySlots.GetSlotIdFromString(ATTACHMENT_SLOT_PLASTICWRAP), lock);
 		GetInventory().SetSlotLock(InventorySlots.GetSlotIdFromString(ATTACHMENT_SLOT_BAGS), lock);
 		GetInventory().SetSlotLock(InventorySlots.GetSlotIdFromString(ATTACHMENT_SLOT_BRICKS), lock);
+		Print("LockCPWrapperSlots = "+lock)
 	};
 
 	void LockCPBagger(bool lock)
@@ -634,10 +640,12 @@ class CP_Workbench extends ItemBase
 		   
 		{
 			GetInventory().SetSlotLock(InventorySlots.GetSlotIdFromString(ATTACHMENT_SLOT_BAGGER), false);
+			Print("No bagger.  Unlock slot.")
             return;
 		}
 		
 		GetInventory().SetSlotLock(InventorySlots.GetSlotIdFromString(ATTACHMENT_SLOT_BAGGER), lock);
+		Print("Bagger attached.  Lock slot.")
 							 
 	
 	};
@@ -652,11 +660,12 @@ class CP_Workbench extends ItemBase
 		   
 		{
 			GetInventory().SetSlotLock(InventorySlots.GetSlotIdFromString(ATTACHMENT_SLOT_WRAPPER), false);
+			Print("No wrapper.  Unlock slot.")
             return;
 		}
 		
 		GetInventory().SetSlotLock(InventorySlots.GetSlotIdFromString(ATTACHMENT_SLOT_WRAPPER), lock);
-							  
+		Print("Wrapper attached.  Lock slot.")			  
 	
 	};
 
@@ -729,21 +738,21 @@ class CP_Workbench extends ItemBase
 			}
 			LockCPBaggerSlots(true);
 			LockCPBattery(true);
-			//Print("All bagger slots locked.");
+			Print("All bagger slots locked.");
 		}
 		else if ( BaggerOccupied() )
 		{
 			LockCPBaggerSlots(false);
 			LockCPBagger(true);
 			LockCPBattery(false);
-			//Print("Bagger locked.");
+			Print("Bagger locked.");
 		}
 		else
 		{
 			LockCPBaggerSlots(false);
 			LockCPBagger(false);
 			LockCPBattery(false);
-			//Print("All bagger slots unlocked.");
+			Print("All bagger slots unlocked.");
 		};
 	}
 
@@ -917,6 +926,7 @@ class CP_Workbench extends ItemBase
 			return;
 
 		UpdateLockState();
+		Print("EEItemAttached, UpdateLockState")
     };
 
 	override void EEItemDetached(EntityAI item, string slot_name)
@@ -928,6 +938,7 @@ class CP_Workbench extends ItemBase
 
 		if (!IsRunning()) 
 			UpdateLockState();
+			Print("EEItemDetached, UpdateLockState")
 	};
 	
 	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
