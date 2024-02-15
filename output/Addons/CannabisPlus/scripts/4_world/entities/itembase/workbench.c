@@ -113,7 +113,9 @@ class CP_Workbench extends ItemBase
 			GetGame().GetCallQueue(CALL_CATEGORY_SYSTEM).CallLater(CP_LoadConfig, 750, false);
 		}	
 		
+		GetGame().GetCallQueue(CALL_CATEGORY_SYSTEM).CallLater(UnlockAll, 600, false);
 		GetGame().GetCallQueue(CALL_CATEGORY_SYSTEM).CallLater(UpdateLockState, 750, false);
+		Print("CP_Workbench constructor UpdateLockState");
 	}
 	
 	void CP_LoadConfig()
@@ -616,6 +618,21 @@ class CP_Workbench extends ItemBase
 		};
 	};
 	
+	void UnlockAll()
+	{
+		if (GetGame() && GetGame().IsServer())
+		{
+			GetInventory().SetSlotLock(InventorySlots.GetSlotIdFromString(ATTACHMENT_SLOT_BUDS), false);
+			GetInventory().SetSlotLock(InventorySlots.GetSlotIdFromString(ATTACHMENT_SLOT_EMPTYBAGS), false);
+			GetInventory().SetSlotLock(InventorySlots.GetSlotIdFromString(ATTACHMENT_SLOT_BAGS), false);
+			GetInventory().SetSlotLock(InventorySlots.GetSlotIdFromString(ATTACHMENT_SLOT_PLASTICWRAP), false);
+			GetInventory().SetSlotLock(InventorySlots.GetSlotIdFromString(ATTACHMENT_SLOT_BRICKS), false);
+			GetInventory().SetSlotLock(InventorySlots.GetSlotIdFromString(ATTACHMENT_SLOT_BAGGER), false);
+			GetInventory().SetSlotLock(InventorySlots.GetSlotIdFromString(ATTACHMENT_SLOT_WRAPPER), false);
+			GetInventory().SetSlotLock(InventorySlots.GetSlotIdFromString(ATTACHMENT_SLOT_BATTERIES), false);
+		}
+	}
+
 	void LockCPBaggerSlots(bool lock) 
 	{
 		if (GetGame() && GetGame().IsServer())
