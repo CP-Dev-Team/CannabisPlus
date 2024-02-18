@@ -8,6 +8,7 @@ Fixes
 - Some backend stuff.
 
 Known Issues
+- Unwrapping a baggy or brick spawns a piece of paper.
 - Can add raw plants to the Drying Post after drying process is started.
 - Have to look at the base of the plant to Harvest it.
 - Some sort of issue with not being able to water plants more than once per restart if server is using weather.cfg file.
