@@ -19,7 +19,7 @@ modded class CP_Plant_CannabisSkunk
 	{
 		super.Harvest(player);
 		if(GetGame().IsServer() && GetCPConfig().removeAfterHarvest==true){
-			GetGame().GetCallQueue( CALL_CATEGORY_SYSTEM ).CallLater( RemovePlant, 10, true );
+			GetGame().GetCallQueue( CALL_CATEGORY_SYSTEM ).CallLater( RemovePlant, 10, false );
 		}
 	}
 }
@@ -34,7 +34,7 @@ modded class CP_Plant_CannabisBlue
 	{
 		super.Harvest(player);
 		if(GetGame().IsServer() && GetCPConfig().removeAfterHarvest==true){
-			GetGame().GetCallQueue( CALL_CATEGORY_SYSTEM ).CallLater( RemovePlant, 10, true );
+			GetGame().GetCallQueue( CALL_CATEGORY_SYSTEM ).CallLater( RemovePlant, 10, false );
 		}
 	}
 }
@@ -48,7 +48,7 @@ modded class CP_Plant_CannabisKush
 	{
 		super.Harvest(player);
 		if(GetGame().IsServer() && GetCPConfig().removeAfterHarvest==true){
-			GetGame().GetCallQueue( CALL_CATEGORY_SYSTEM ).CallLater( RemovePlant, 10, true );
+			GetGame().GetCallQueue( CALL_CATEGORY_SYSTEM ).CallLater( RemovePlant, 10, false );
 		}
 	}
 }
@@ -65,7 +65,7 @@ modded class CP_Plant_CannabisStardawg
 	{
 		super.Harvest(player);
 		if(GetGame().IsServer() && GetCPConfig().removeAfterHarvest==true){
-			GetGame().GetCallQueue( CALL_CATEGORY_SYSTEM ).CallLater( RemovePlant, 10, true );
+			GetGame().GetCallQueue( CALL_CATEGORY_SYSTEM ).CallLater( RemovePlant, 10, false );
 		}
 	}
 }
@@ -78,7 +78,7 @@ modded class CP_Plant_CannabisFuture {
 	override void Harvest(PlayerBase player) {
 		super.Harvest(player);
 		if(GetGame().IsServer() && GetCPConfig().removeAfterHarvest==true){
-			GetGame().GetCallQueue( CALL_CATEGORY_SYSTEM ).CallLater( RemovePlant, 10, true );
+			GetGame().GetCallQueue( CALL_CATEGORY_SYSTEM ).CallLater( RemovePlant, 10, false );
 		}
 	}
 }
@@ -91,7 +91,7 @@ modded class CP_Plant_CannabisS1 {
 	override void Harvest(PlayerBase player) {
 		super.Harvest(player);
 		if(GetGame().IsServer() && GetCPConfig().removeAfterHarvest==true){
-			GetGame().GetCallQueue( CALL_CATEGORY_SYSTEM ).CallLater( RemovePlant, 10, true );
+			GetGame().GetCallQueue( CALL_CATEGORY_SYSTEM ).CallLater( RemovePlant, 10, false );
 		}
 	}
 }
@@ -104,7 +104,7 @@ modded class CP_Plant_CannabisNomad {
 	override void Harvest(PlayerBase player) {
 		super.Harvest(player);
 		if(GetGame().IsServer() && GetCPConfig().removeAfterHarvest==true){
-			GetGame().GetCallQueue( CALL_CATEGORY_SYSTEM ).CallLater( RemovePlant, 10, true );
+			GetGame().GetCallQueue( CALL_CATEGORY_SYSTEM ).CallLater( RemovePlant, 10, false );
 		}
 	}
 }
@@ -118,7 +118,7 @@ modded class CP_Plant_CannabisBlackFrost {
 	override void Harvest(PlayerBase player) {
 		super.Harvest(player);
 		if(GetGame().IsServer() && GetCPConfig().removeAfterHarvest==true){
-			GetGame().GetCallQueue( CALL_CATEGORY_SYSTEM ).CallLater( RemovePlant, 10, true );
+			GetGame().GetCallQueue( CALL_CATEGORY_SYSTEM ).CallLater( RemovePlant, 10, false );
 		}
 	}
 }
@@ -133,7 +133,7 @@ modded class CP_Plant_Tobacco
 	{
 		super.Harvest(player);
 		if(GetGame().IsServer() && GetCPConfig().removeAfterHarvest==true){
-			GetGame().GetCallQueue( CALL_CATEGORY_SYSTEM ).CallLater( RemovePlant, 10, true );
+			GetGame().GetCallQueue( CALL_CATEGORY_SYSTEM ).CallLater( RemovePlant, 10, false );
 		}
 	}
 }
@@ -147,7 +147,7 @@ modded class Plant_Pepper
 	{
 		super.Harvest(player);
 		if(GetGame().IsServer() && GetCPConfig().removeAfterHarvest==true){
-			GetGame().GetCallQueue( CALL_CATEGORY_SYSTEM ).CallLater( RemovePlant, 10, true );
+			GetGame().GetCallQueue( CALL_CATEGORY_SYSTEM ).CallLater( RemovePlant, 10, false );
 		}
 	}
 }
@@ -162,7 +162,7 @@ modded class Plant_Tomato
 	{
 		super.Harvest(player);
 		if(GetGame().IsServer() && GetCPConfig().removeAfterHarvest==true){
-			GetGame().GetCallQueue( CALL_CATEGORY_SYSTEM ).CallLater( RemovePlant, 10, true );
+			GetGame().GetCallQueue( CALL_CATEGORY_SYSTEM ).CallLater( RemovePlant, 10, false );
 		}
 	}
 }
@@ -177,7 +177,7 @@ modded class Plant_Zucchini
 	{
 		super.Harvest(player);
 		if(GetGame().IsServer() && GetCPConfig().removeAfterHarvest==true){
-			GetGame().GetCallQueue( CALL_CATEGORY_SYSTEM ).CallLater( RemovePlant, 10, true );
+			GetGame().GetCallQueue( CALL_CATEGORY_SYSTEM ).CallLater( RemovePlant, 10, false );
 		}
 	}
 }
@@ -192,7 +192,7 @@ modded class Plant_Pumpkin
 	{
 		super.Harvest(player);
 		if(GetGame().IsServer() && GetCPConfig().removeAfterHarvest==true){
-			GetGame().GetCallQueue( CALL_CATEGORY_SYSTEM ).CallLater( RemovePlant, 10, true );
+			GetGame().GetCallQueue( CALL_CATEGORY_SYSTEM ).CallLater( RemovePlant, 10, false );
 		}
 	}
 }
@@ -203,7 +203,7 @@ modded class Plant_Potato
 	{
 		super.Harvest(player);
 		if(GetGame().IsServer() && GetCPConfig().removeAfterHarvest==true){
-			GetGame().GetCallQueue( CALL_CATEGORY_SYSTEM ).CallLater( RemovePlant, 10, true );
+			GetGame().GetCallQueue( CALL_CATEGORY_SYSTEM ).CallLater( RemovePlant, 10, false );
 		}
 	}
 }

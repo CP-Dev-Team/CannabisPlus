@@ -451,7 +451,7 @@ modded class PlantBase
 			m_HasCrops = false;
 			SetSynchDirty();
 			UpdatePlant();
-			GetGame().GetCallQueue( CALL_CATEGORY_SYSTEM ).CallLater( clearSpamCheck, 5000, true );
+			GetGame().GetCallQueue( CALL_CATEGORY_SYSTEM ).CallLater( clearSpamCheck, 5000, false );
 		}	
 	}	
 	

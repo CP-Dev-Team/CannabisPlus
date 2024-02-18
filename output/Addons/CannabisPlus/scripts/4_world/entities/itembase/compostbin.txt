@@ -19,7 +19,7 @@ class CP_CompostBin extends Container_Base
 	
 	void Init()
 	{
-		GetGame().GetCallQueue(CALL_CATEGORY_GAMEPLAY).CallLater(CheckCargoTick, CompostTick, true);
+		GetGame().GetCallQueue(CALL_CATEGORY_GAMEPLAY).CallLater(CheckCargoTick, CompostTick, false);
 	}
 	
 	void CheckCargoTick()
