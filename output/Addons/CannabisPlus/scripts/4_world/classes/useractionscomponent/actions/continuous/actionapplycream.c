@@ -17,9 +17,11 @@ class ActionApplyCream : ActionContinuousBase
 		m_FullBody 			= true;
 		m_StanceMask 		= DayZPlayerConstants.STANCEMASK_ERECT | DayZPlayerConstants.STANCEMASK_CROUCH;
 
+		/* Removing because it's not supported on Linux
 		GameOptions gameOptions = new GameOptions();
 		ListOptionsAccess lang = ListOptionsAccess.Cast(gameOptions.GetOptionByType( AT_OPTIONS_LANGUAGE ));
 		lang.GetItemText(lang.GetIndex(), currentLanguage);
+		*/
 	}
 
 	void ApplyCream( ItemBase item, PlayerBase player )
@@ -65,6 +67,12 @@ class ActionApplyCream : ActionContinuousBase
 		return false;
 	}
 	
+	override string GetText() {
+	string text = "Apply Cream";
+	return text;
+    }
+
+	/* Removing because it's not supported on Linux
 	override string GetText() 
 	{
         // reserve empty string as return statement
@@ -90,4 +98,7 @@ class ActionApplyCream : ActionContinuousBase
 		// returns the string in the right language
 		return text;
 	};
+	*/
+
+
 };

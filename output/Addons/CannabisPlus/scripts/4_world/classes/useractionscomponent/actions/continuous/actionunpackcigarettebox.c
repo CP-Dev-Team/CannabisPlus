@@ -19,9 +19,11 @@ class ActionUnpackCigaretteBox: ActionContinuousBase {
 		m_CommandUIDProne = DayZPlayerConstants.CMD_ACTIONFB_OPENITEM;
 		m_SpecialtyWeight = UASoftSkillsWeight.PRECISE_LOW;
 		
+		/*
 		GameOptions gameOptions = new GameOptions();
 		ListOptionsAccess lang = ListOptionsAccess.Cast(gameOptions.GetOptionByType( AT_OPTIONS_LANGUAGE ));
-		lang.GetItemText(lang.GetIndex(), currentLanguage);		
+		lang.GetItemText(lang.GetIndex(), currentLanguage);	
+		*/	
 	}		
 	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 	//
@@ -51,6 +53,7 @@ class ActionUnpackCigaretteBox: ActionContinuousBase {
 	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 	//
 	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~	
+	/*
 	override string GetText() {
 		
 		string text = "";
@@ -74,6 +77,11 @@ class ActionUnpackCigaretteBox: ActionContinuousBase {
 		}
 		return text;
 	}
+	*/
+	override string GetText() {
+	string text = "Unpack";
+	return text;
+    }
 	
 	
 	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~

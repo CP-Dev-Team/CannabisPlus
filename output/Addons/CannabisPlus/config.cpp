@@ -39,7 +39,7 @@ class CfgMods
 				value="";
 				files[]=
 				{
-					"CannabisPlus/scripts/3_Game"
+					"CannabisPlus/scripts/3_game"
 				};
 			};
 			class worldScriptModule
@@ -47,7 +47,7 @@ class CfgMods
 				value="";
 				files[]=
 				{
-					"CannabisPlus/scripts/4_World"
+					"CannabisPlus/scripts/4_world"
 				};
 			};
 			class missionScriptModule
@@ -55,7 +55,7 @@ class CfgMods
 				value="";
 				files[]=
 				{
-					"CannabisPlus/scripts/5_Mission"
+					"CannabisPlus/scripts/5_mission"
 				};
 			};
 		};
