@@ -16,9 +16,11 @@ class ActionSmokeCigSelf: ActionContinuousBase {
 		m_CommandUID = DayZPlayerConstants.CMD_ACTIONMOD_TAKETEMPSELF;
 		m_CommandUIDProne = DayZPlayerConstants.CMD_ACTIONFB_TAKETEMPSELF;
 
+		/* Removing because it's not supported on Linux
 		GameOptions gameOptions = new GameOptions();
 		ListOptionsAccess lang = ListOptionsAccess.Cast(gameOptions.GetOptionByType( AT_OPTIONS_LANGUAGE ));
 		lang.GetItemText(lang.GetIndex(), currentLanguage);
+		*/
 	}	
 
 	override bool ActionCondition(PlayerBase player, ActionTarget target, ItemBase item) {
@@ -32,6 +34,7 @@ class ActionSmokeCigSelf: ActionContinuousBase {
         return false;
     }	
 
+	/* Removing because it's not supported on Linux
 	override string GetText() {
 		// reserve empty string as return statement
         string text = "";
@@ -56,6 +59,12 @@ class ActionSmokeCigSelf: ActionContinuousBase {
 		// returns the string in the right language
 		return text;
 	}
+	*/
+	
+	override string GetText() {
+	string text = "Smoke";
+	return text;
+    }
 
 	override void OnStartAnimationLoop( ActionData action_data ) {
 
