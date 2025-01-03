@@ -638,10 +638,12 @@ class CP_DryPost_Kit extends ItemBase
 		{
 			ItemBase Log = ItemBase.Cast(GetGame().CreateObjectEx("WoodenLog",GetPosition(),ECE_PLACE_ON_SURFACE));
 			MiscGameplayFunctions.TransferItemProperties(this, Log);
+			Log.SetQuantity(1);
 			Rope rope = Rope.Cast(item);
 			CreateRope(rope);
 		}
 	}
+
 	override void EEItemDetached(EntityAI item, string slot_name)
     {
 		super.EEItemDetached( item, slot_name );
