@@ -4,6 +4,7 @@ Fixes
 - The fix in the last update for logs spawning a full stack never worked.  Should work now.
 - Fixed paper dropping when unpacking bags or bricks.
 - Fixed two unsafe downcasting errors.
+- Fixed endless looping on some calls.
 
 Known Issues
 - Translations for actions have been removed but next update should have proper full translations.
