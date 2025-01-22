@@ -1,3 +1,21 @@
+v3.0.3
+Fixes
+- Fixed Linux servers compatibility issues.
+- The fix in the last update for logs spawning a full stack never worked.  Should work now.
+- Fixed paper dropping when unpacking bags or bricks.
+- Fixed two unsafe downcasting errors.
+
+Known Issues
+- Translations for actions have been removed but next update should have proper full translations.
+- Can add raw plants to the Drying Post after drying process is started.
+- Have to look at the base of the plant to Harvest it.
+- Some sort of issue with not being able to water plants more than once per restart if server is using weather.cfg file.
+- Cigarettes are still despawning.
+- CP Pouch has some geometry issues.
+- Rope poofs if dragged into dry post inventory.
+- Rolling papers float if dropped on ground.
+
+
 v3.0.2
 Fixes
 - Machines remain locked if the server crashes or restarts while the workbench is running.
