@@ -21,8 +21,8 @@ class CfgVehicles
     class CP_Bagger : Inventory_Base
     {
         scope = 2;
-		displayName = "Vacuum Bagger";
-		descriptionShort = "A vacuum sealer for packaging things.";
+		displayName = "#cp_vacuum_bagger0";
+		descriptionShort = "cp_vacuum_bagger1";
 		model="CannabisPlus\bagger\VacuumSealer.p3d";
 		weight=200;
 		itemSize[]={4,2};
