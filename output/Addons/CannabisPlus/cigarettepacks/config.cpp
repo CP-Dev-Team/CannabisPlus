@@ -32,8 +32,8 @@ class CfgVehicles
 	class CP_CigarettePack_Empty: Inventory_Base
 	{
 		scope=2;
-		displayName="Empty Cigarettespack";
-		descriptionShort="Looking shaby but still usable";
+		displayName="#cp_empty_cigarettespack0";
+		descriptionShort="#cp_empty_cigarettespack1";
 		model="\dz\gear\medical\cigarette_pack.p3d";
 		lootCategory="Crafted";
 		itemSize[]={1,1};
@@ -112,8 +112,8 @@ class CfgVehicles
 	class CP_JointPack: Inventory_Base
 	{
 		scope=0;
-		displayName="Empty Cigarettespack";
-		descriptionShort="Looking shaby but still usable";
+		displayName="#cp_empty_jointspack0";
+		descriptionShort="#cp_empty_jointspack1";
 		model="\dz\gear\medical\cigarette_pack.p3d";
 		lootCategory="Crafted";
 		itemSize[]={1,1};
@@ -192,8 +192,8 @@ class CfgVehicles
 	class CigarettePack_Chernamorka: CP_CigarettePack_Empty
 	{
 		scope=2;
-		displayName="Chernamorka Cigarettes";
-		descriptionShort="A pack of finest Chernamorka Cigarettes";
+		displayName="#cp_chernamorka_cigarettes0";
+		descriptionShort="#cp_chernamorka_cigarettes1";
 		varQuantityInit=20;
 		varQuantityMin=1;
 		varQuantityMax=20;
@@ -211,8 +211,8 @@ class CfgVehicles
 	class CigarettePack_Merkur: CP_CigarettePack_Empty
 	{
 		scope=2;
-		displayName="Merkur Cigarettes";
-		descriptionShort="A pack of finest Merkur Cigarettes";
+		displayName="#cp_merkur_cigarettes0";
+		descriptionShort="#cp_merkur_cigarettes1";
 		varQuantityInit=20;
 		varQuantityMin=1;
 		varQuantityMax=20;
@@ -230,8 +230,8 @@ class CfgVehicles
 	class CigarettePack_Partyzanka: CP_CigarettePack_Empty
 	{
 		scope=2;
-		displayName="Partyzanka Cigarettes";
-		descriptionShort="A pack of finest Partyzanka Cigarettes";
+		displayName="#cp_partyzanka_cigarettes0";
+		descriptionShort="#cp_partyzanka_cigarettes1";
 		varQuantityInit=20;
 		varQuantityMin=1;
 		varQuantityMax=20;
@@ -249,8 +249,8 @@ class CfgVehicles
 	class CP_CigarettePack_CannabisSkunk: CP_JointPack
 	{
 		scope=2;
-		displayName="Marijuana Cigarettes Skunk";
-		descriptionShort="A pack of skunk marijuana cigarettes.";
+		displayName="#cp_marijuana_cigarettes_skunk0";
+		descriptionShort="#cp_marijuana_cigarettes_skunk1";
 		cpCheckPack="CP_JointSkunk";
 		hiddenSelections[]=
 		{
@@ -266,8 +266,8 @@ class CfgVehicles
 	class CP_CigarettePack_CannabisBlue: CP_JointPack
 	{
 		scope=2;
-		displayName="Marijuana Cigarettes Blue God";
-		descriptionShort="A pack of blue god marijuana cigarettes.";
+		displayName="#cp_marijuana_cigarettes_blue_god0";
+		descriptionShort="#cp_marijuana_cigarettes_blue_god1";
 		cpCheckPack="CP_JointBlue";
 		hiddenSelections[]=
 		{
@@ -283,8 +283,8 @@ class CfgVehicles
 	class CP_CigarettePack_CannabisKush: CP_JointPack
 	{
 		scope=2;
-		displayName="Marijuana Cigarettes Purple Kush";
-		descriptionShort="A pack of purple kush marijuana cigarettes.";
+		displayName="#cp_marijuana_cigarettes_purple_kush0";
+		descriptionShort="#cp_marijuana_cigarettes_purple_kush1";
 		cpCheckPack="CP_JointKush";
 		hiddenSelections[]=
 		{
@@ -300,8 +300,8 @@ class CfgVehicles
 	class CP_CigarettePack_CannabisStardawg: CP_JointPack
 	{
 		scope=2;
-		displayName="Marijuana Cigarettes Stardawg";
-		descriptionShort="A pack of Stardawg marijuana cigarettes.";
+		displayName="#cp_marijuana_cigarettes_stardawg0";
+		descriptionShort="#cp_marijuana_cigarettes_stardawg1";
 		cpCheckPack="CP_JointStardawg";
 		hiddenSelections[]=
 		{
@@ -317,8 +317,8 @@ class CfgVehicles
 	class CP_CigarettePack_CannabisFuture: CP_JointPack
 	{
 		scope=2;
-		displayName="Marijuana Cigarettes Future";
-		descriptionShort="A pack of Future marijuana cigarettes.";
+		displayName="#cp_marijuana_cigarettes_future0";
+		descriptionShort="#cp_marijuana_cigarettes_future1";
 		cpCheckPack="CP_JointFuture";
 		hiddenSelections[]=
 		{
@@ -334,8 +334,8 @@ class CfgVehicles
 	class CP_CigarettePack_CannabisS1: CP_JointPack
 	{
 		scope=2;
-		displayName="Hemp Cigarettes S1";
-		descriptionShort="A pack of S1 hemp cigarettes.  Sponsored by StevesGoods.com";
+		displayName="#cp_hemp_cigarettes_s10";
+		descriptionShort="#cp_hemp_cigarettes_s11";
 		cpCheckPack="CP_JointS1";
 		hiddenSelections[]=
 		{
@@ -351,8 +351,8 @@ class CfgVehicles
 	class CP_CigarettePack_CannabisNomad: CP_JointPack
 	{
 		scope=2;
-		displayName="Marijuana Cigarettes Nomad";
-		descriptionShort="A pack of Nomad marijuana cigarettes.";
+		displayName="#cp_marijuana_cigarettes_nomad0";
+		descriptionShort="#cp_marijuana_cigarettes_nomad1";
 		cpCheckPack="CP_JointNomad";
 		hiddenSelections[]=
 		{
@@ -368,8 +368,8 @@ class CfgVehicles
 	class CP_CigarettePack_CannabisBlackFrost: CP_JointPack
 	{
 		scope=2;
-		displayName="Marijuana Cigarettes Black Frost";
-		descriptionShort="A pack of Black Frost marijuana cigarettes.";
+		displayName="#cp_marijuana_cigarettes_black_frost0";
+		descriptionShort="#cp_marijuana_cigarettes_black_frost1";
 		cpCheckPack="CP_JointBlackFrost";
 		hiddenSelections[]=
 		{

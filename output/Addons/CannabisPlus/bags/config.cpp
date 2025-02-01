@@ -28,8 +28,8 @@ class CfgVehicles
 	class CP_CannabisBags:Inventory_Base
 	{
 		scope=0;
-		displayName="base bag";
-		descriptionShort="Ignore me , Ignore me";
+		displayName="#cp_base_bag0";
+		descriptionShort="#cp_base_bag1";
 		model="CannabisPlus\bags\CP_baggy.p3d";
 		rotationFlags=17;
 		canBeSplit=1;
@@ -55,8 +55,8 @@ class CfgVehicles
 	class CP_EmptyBag : Inventory_Base
 	{
 		scope=2;
-		displayName="Empty 1oz Bag";
-		descriptionShort="Empty bag that holds 1oz of an item.";
+		displayName="#cp_empty_1oz_bag0";
+		descriptionShort="#cp_empty_1oz_bag1";
 		model="CannabisPlus\bags\CP_baggy.p3d";
 		rotationFlags=17;
 		canBeSplit=1;
@@ -84,8 +84,8 @@ class CfgVehicles
 	class CP_CannabisBagSkunk: CP_CannabisBags
 	{
 		scope=2;
-		displayName="Bag of Skunk Weed";
-		descriptionShort="About an ounce of Skunk weed.";
+		displayName="#cp_skunk_weed_bag0";
+		descriptionShort="#cp_skunk_weed_bag1";
 		cpStepUpToBrick="CP_CannabisBrickSkunk";
 		cpStepDownToBud="CP_CannabisSkunk";
 		class Resources
@@ -108,8 +108,8 @@ class CfgVehicles
 	class CP_CannabisBagBlue: CP_CannabisBags
 	{
 		scope=2;
-		displayName="Bag of Blue God Weed";
-		descriptionShort="About an ounce of Blue God weed.";
+		displayName="#cp_blue_god_weed_bag0";
+		descriptionShort="#cp_blue_god_weed_bag1";
 		cpStepUpToBrick="CP_CannabisBrickBlue";
 		cpStepDownToBud="CP_CannabisBlue";
 		class Resources
@@ -132,8 +132,8 @@ class CfgVehicles
 	class CP_CannabisBagKush: CP_CannabisBags
 	{
 		scope=2;
-		displayName="Bag of Purple Kush Weed";
-		descriptionShort="About an ounce of Purple Kush weed.";
+		displayName="#cp_purple_kush_weed_bag0";
+		descriptionShort="#cp_purple_kush_weed_bag1";
 		cpStepUpToBrick="CP_CannabisBrickKush";
 		cpStepDownToBud="CP_CannabisKush";
 		class Resources
@@ -156,8 +156,8 @@ class CfgVehicles
 	class CP_CannabisBagStardawg: CP_CannabisBags
 	{
 		scope=2;
-		displayName="Bag of Stardawg Weed";
-		descriptionShort="About an ounce of Stardawg weed.";
+		displayName="#cp_stardawg_weed_bag0";
+		descriptionShort="#cp_stardawg_weed_bag1";
 		cpStepUpToBrick="CP_CannabisBrickStardawg";
 		cpStepDownToBud="CP_CannabisStardawg";
 		class Resources
@@ -180,8 +180,8 @@ class CfgVehicles
 	class CP_CannabisBagFuture: CP_CannabisBags
 	{
 		scope=2;
-		displayName="Bag of Future Weed";
-		descriptionShort="About an ounce of Future weed.";
+		displayName="#cp_future_weed_bag0";
+		descriptionShort="#cp_future_weed_bag1";
 		cpStepUpToBrick="CP_CannabisBrickFuture";
 		cpStepDownToBud="CP_CannabisFuture";
 		class Resources
@@ -204,8 +204,8 @@ class CfgVehicles
 	class CP_CannabisBagS1: CP_CannabisBags
 	{
 		scope=2;
-		displayName="Bag of S1 Hemp";
-		descriptionShort="About an ounce of S1 hemp.  Sponsored by StevesGoods.com";
+		displayName="#cp_s1_hemp_bag0";
+		descriptionShort="#cp_s1_hemp_bag1";
 		cpStepUpToBrick="CP_CannabisBrickS1";
 		cpStepDownToBud="CP_CannabisS1";
 		class Resources
@@ -228,8 +228,8 @@ class CfgVehicles
 	class CP_CannabisBagNomad: CP_CannabisBags
 	{
 		scope=2;
-		displayName="Bag of Nomad Weed";
-		descriptionShort="About an ounce of Nomad weed.";
+		displayName="#cp_nomad_weed_bag0";
+		descriptionShort="#cp_nomad_weed_bag1";
 		cpStepUpToBrick="CP_CannabisBrickNomad";
 		cpStepDownToBud="CP_CannabisNomad";
 		class Resources
@@ -252,8 +252,8 @@ class CfgVehicles
 	class CP_CannabisBagBlackFrost: CP_CannabisBags
 	{
 		scope=2;
-		displayName="Bag of Black Frost Weed";
-		descriptionShort="About an ounce of Black Frost weed.";
+		displayName="#cp_black_frost_weed_bag0";
+		descriptionShort="#cp_black_frost_weed_bag1";
 		cpStepUpToBrick="CP_CannabisBrickBlackFrost";
 		cpStepDownToBud="CP_CannabisBlackFrost";
 		class Resources

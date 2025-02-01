@@ -27,8 +27,8 @@ class CfgVehicles
 	class CP_CannabisBrickBase: Container_Base
 	{
 		scope=0;
-		displayName="Brick Base";
-		descriptionShort="Base";
+		displayName="#cp_brick_base0";
+		descriptionShort="#cp_brick_base1";
 		model="CannabisPlus\bricks\CP_brick.p3d";
 		rotationFlags=17;
 		lootCategory="Crafted";
@@ -133,8 +133,8 @@ class CfgVehicles
 	class CP_CannabisBrickSkunk: CP_CannabisBrickBase
 	{
 		scope=2;
-		displayName="Brick of Skunk Weed";
-		descriptionShort="One pound of Skunk weed.";
+		displayName="#cp_skunk_weed_brick0";
+		descriptionShort="#cp_skunk_weed_brick1";
 		cpStepDownToBag="CP_CannabisBagSkunk";
 		class Resources
 		{
@@ -158,8 +158,8 @@ class CfgVehicles
 	class CP_CannabisBrickBlue: CP_CannabisBrickBase
 	{
 		scope=2;
-		displayName="Brick of Blue God Weed";
-		descriptionShort="One pound of Blue God weed.";
+		displayName="#cp_blue_god_weed_brick0";
+		descriptionShort="#cp_blue_god_weed_brick1";
 		cpStepDownToBag="CP_CannabisBagBlue";
 		class Resources
 		{
@@ -183,8 +183,8 @@ class CfgVehicles
 	class CP_CannabisBrickKush: CP_CannabisBrickBase
 	{
 		scope=2;
-		displayName="Brick of Purple Kush Weed";
-		descriptionShort="One pound of Purple Kush weed.";
+		displayName="#cp_purple_kush_weed_brick0";
+		descriptionShort="#cp_purple_kush_weed_brick1";
 		cpStepDownToBag="CP_CannabisBagKush";
 		class Resources
 		{
@@ -208,8 +208,8 @@ class CfgVehicles
 	class CP_CannabisBrickStardawg: CP_CannabisBrickBase
 	{
 		scope=2;
-		displayName="Brick of Stardawg Weed";
-		descriptionShort="One pound of Stardawg weed.";
+		displayName="#cp_stardawg_weed_brick0";
+		descriptionShort="#cp_stardawg_weed_brick1";
 		cpStepDownToBag="CP_CannabisBagStardawg";
 		class Resources
 		{
@@ -233,8 +233,8 @@ class CfgVehicles
 	class CP_CannabisBrickFuture: CP_CannabisBrickBase
 	{
 		scope=2;
-		displayName="Brick of Future Weed";
-		descriptionShort="One pound of Future weed.";
+		displayName="#cp_future_weed_brick0";
+		descriptionShort="#cp_future_weed_brick1";
 		cpStepDownToBag="CP_CannabisBagFuture";
 		class Resources
 		{
@@ -258,8 +258,8 @@ class CfgVehicles
 	class CP_CannabisBrickS1: CP_CannabisBrickBase
 	{
 		scope=2;
-		displayName="Brick of S1 Hemp";
-		descriptionShort="One pound of S1 hemp.  Sponsored by StevesGoods.com";
+		displayName="#cp_s1_hemp_brick0";
+		descriptionShort="#cp_s1_hemp_brick1";
 		cpStepDownToBag="CP_CannabisBagS1";
 		class Resources
 		{
@@ -283,8 +283,8 @@ class CfgVehicles
 	class CP_CannabisBrickNomad: CP_CannabisBrickBase
 	{
 		scope=2;
-		displayName="Brick of Nomad Weed";
-		descriptionShort="One pound of Nomad weed.";
+		displayName="#cp_nomad_weed_brick0";
+		descriptionShort="#cp_nomad_weed_brick1";
 		cpStepDownToBag="CP_CannabisBagNomad";
 		class Resources
 		{
@@ -308,8 +308,8 @@ class CfgVehicles
 	class CP_CannabisBrickBlackFrost: CP_CannabisBrickBase
 	{
 		scope=2;
-		displayName="Brick of Black Frost Weed";
-		descriptionShort="One pound of Black Frost weed.";
+		displayName="#cp_black_frost_weed_brick0";
+		descriptionShort="#cp_black_frost_weed_brick1";
 		cpStepDownToBag="CP_CannabisBagBlackFrost";
 		class Resources
 		{

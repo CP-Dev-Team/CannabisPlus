@@ -21,8 +21,8 @@ class CfgVehicles
 	class CP_Cigarette: Inventory_Base
 	{
 		scope=2;
-		displayName="Cigarette";
-		descriptionShort="A Cigarette made out of good Tobacco";
+		displayName="#cp_cigarette0";
+		descriptionShort="#cp_cigarette1";
 		model="\CannabisPlus\cigarettes\cigarettes_unlit.p3d";
 		inventorySlot="Ingredient";
 		rotationFlags=16;

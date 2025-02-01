@@ -22,8 +22,8 @@ class CfgVehicles
     class CP_CompostBin : Container_Base
     {
         scope = 2;
-		displayName = "Compost Bin";
-		descriptionShort = "A bin for converting plant material into compost for fertilizer.";
+		displayName="#cp_compost_bin0";
+		descriptionShort="#cp_compost_bin1";
 		model="\CannabisPlus\compost\compost_bin2.p3d";
 		weight=20000;
 		itemSize[]={9,9};
@@ -66,11 +66,11 @@ class CfgVehicles
     class GardenLime: Inventory_Base{};
     class CP_Compost: GardenLime
     {
-          scope=2;
-          displayName = "Compost";
-	    descriptionShort = "Composted plant material used for fertilizing.";
+        scope=2;
+		displayName="#cp_compost0";
+		descriptionShort="#cp_compost1";
 
-          class Horticulture
+        class Horticulture
 		{
 			TexId=1;
 			AddEnergyToSlot=0.75;

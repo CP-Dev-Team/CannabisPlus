@@ -21,8 +21,8 @@ class CfgVehicles
 	class CP_Relief_Balm: Inventory_Base
 	{
 		scope=2;
-		displayName="CBD Relief Balm";
-		descriptionShort="What if I told you that pain relief is just a swipe away? This revolutionary full spectrum salve holds the key to relieving pain with ease. Rub it on your knees after an epic day of hiking, apply it to your wrists after a long day of typing, or massage it into the back of your neck when dealing with headaches!  Sponsored by StevesGoods.com";
+		displayName="#cp_cbd_relief_balm0";
+		descriptionShort="#cp_cbd_relief_balm1";
 		model="\dz\gear\food\Marmalade.p3d";
 		hiddenSelections[]=
 		{
@@ -110,8 +110,8 @@ class CfgVehicles
 	class CP_CBDCrudeOil: Inventory_Base
 	{
 		scope=2;
-		displayName="Unknown Substance";
-		descriptionShort="A sticky, dark yellow substance.  Smells like skunk.";
+		displayName="#cp_unknown_substance0";
+		descriptionShort="#cp_unknown_substance1";
 		model="\dz\gear\medical\InjectionVial.p3d";
 		hiddenSelections[]=
 		{
