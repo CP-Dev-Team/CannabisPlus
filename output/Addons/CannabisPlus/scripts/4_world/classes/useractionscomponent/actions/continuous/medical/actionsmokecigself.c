@@ -62,7 +62,7 @@ class ActionSmokeCigSelf: ActionContinuousBase {
 	*/
 	
 	override string GetText() {
-	string text = "Smoke";
+	string text = "#cp_smoke";
 	return text;
     }
 

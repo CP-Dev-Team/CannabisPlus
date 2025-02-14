@@ -12,7 +12,7 @@ class CP_CannabisBrickBase extends CP_CoreClass
 	}
 	override string GetCPitemTendancyText()
 	{		
-        return "UnWrap " + GetDisplayName();
+        return "#cp_unwrap " + GetDisplayName();
     };
 	
 };

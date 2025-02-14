@@ -23,7 +23,7 @@ class ActionStopCPWorkbench : ActionInteractBase
 		
     override string GetText()
 	{
-        return  "Stop Processing";
+        return  "#cp_stop_processing";
     };
 	
 	override bool ActionCondition( PlayerBase player, ActionTarget target, ItemBase item )

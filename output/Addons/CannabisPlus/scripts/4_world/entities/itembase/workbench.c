@@ -213,9 +213,9 @@ class CP_Workbench extends ItemBase
 	string GetPauseOrResumeText()
 	{
 		if(!CP_TimerIsPaused)	
-			return "Pause Production";
+			return "#cp_pause_production";
 		
-		return "Resume Production";
+		return "#cp_resume_production";
 	};
 	
 	string GetBagTendancyText()
@@ -226,7 +226,7 @@ class CP_Workbench extends ItemBase
 		string BagName = GetCannabisBud().GetDisplayName();
 
 		
-        return "Fill bag with " + BagName;
+        return "#cp_fill_bag_with " + BagName;
     };
 	
 	string GetBrickTendancyText()
@@ -237,7 +237,7 @@ class CP_Workbench extends ItemBase
 		string Brickname = GetCannabisBags().GetDisplayName();
 
 		
-        return "Wrap " + Brickname;
+        return "#cp_wrap " + Brickname;
     };
 
 	void SetTimerIsPaused(bool state)

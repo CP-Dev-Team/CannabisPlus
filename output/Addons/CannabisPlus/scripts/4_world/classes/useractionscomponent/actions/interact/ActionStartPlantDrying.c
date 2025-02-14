@@ -8,7 +8,7 @@ class ActionDryPlants: ActionInteractBase
 
 	override string GetText()
 	{
-		return "Leave to Dry";
+		return "#cp_leave_to_dry";
 	}
 
 	override bool ActionCondition( PlayerBase player, ActionTarget target, ItemBase item )
