@@ -41,13 +41,44 @@ modded class PlantBase
 	private GardenBase m_GardenBase = NULL;	
 	private PluginHorticulture m_ModuleHorticulture;
 	private int currentYield;
-
+	
 	void PlantBase()
-	{	
+	{
+		
+		string plant_type = this.GetType();
+		
+		m_ModuleHorticulture 	= PluginHorticulture.Cast( GetPlugin( PluginHorticulture ) );		
+		m_SprayUsage 			= 5;
+		m_DeleteDryPlantTime 	= (60 * 10) + Math.RandomInt(0, 60 * 2);
+		m_SpoiledRemoveTime 	= (60 * 20) + Math.RandomInt(0, 60 * 5);
+		m_InfestationChance 	= 0.0; 															// Temporarily disabled until its fixed. Infestation is not visualy persistent over server restarts and m_SpoiledRemoveTimer crashes when it's meant to delete the plant.		
+		m_GrowthStagesCount 	= GetGame().ConfigGetInt( "cfgVehicles " + plant_type + " Horticulture GrowthStagesCount" );
+		//m_CropsCount = GetGame().ConfigGetInt( "cfgVehicles " + plant_type + " Horticulture CropsCount" );
+		GetGame().ConfigGetText( "cfgVehicles " + plant_type + " Horticulture CropsType", m_CropsType );
+
+		m_PlantStateIndex 				= -1;
+		m_CurrentPlantMaterialQuantity 	= 0;
+		m_IsInfested 					= false;
+		m_SprayQuantity 				= 0.0;
+		m_HasCrops 						= true;
 		int currentYield = 1;
-		m_InfestationChance 	= 0.0; // Temporarily disabled until its fixed. Infestation is not visualy persistent over server restarts and m_SpoiledRemoveTimer crashes when it's meant to delete the plant.		
+	}
+
+	
+	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+	// destructor of plantbase class
+	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~	
+	void ~PlantBase() {
+		
+		if (!m_MarkForDeletion) {
+			DestroyPlant();
+		}
 	}
 	
+	
+	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+	// 
+	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 	override void Init( GardenBase garden_base, float fertility, float harvesting_efficiency, float water)
 	{	
 		private bool isFertilized = false;
@@ -86,7 +117,7 @@ modded class PlantBase
 		m_pumpkin_cropcount 			= GetCPConfig().pumpkin_cropcount;
 		m_potato_cropcount 				= GetCPConfig().potato_cropcount;
 
-		m_spoiltime						= GetCPConfig().spoiltime;
+		m_spoiltime					= GetCPConfig().spoiltime;
 
 		m_GardenBase = garden_base;
 		
@@ -238,7 +269,7 @@ modded class PlantBase
 			m_FullMaturityTime = (float) ((48 * m_growtime) + Math.RandomInt(0, 30)); 
 		}
 
-	//	m_SpoilAfterFullMaturityTime 	= (float) ((60 * 30) + Math.RandomInt(0, 60 * 30)) * fertility;		
+//		m_SpoilAfterFullMaturityTime 	= (float) ((60 * 30) + Math.RandomInt(0, 60 * 30)) * fertility;		
 		m_SpoilAfterFullMaturityTime 	= m_spoiltime * 60;
 
 		m_StateChangeTime 				= (float) ((float)m_FullMaturityTime / ((float)m_GrowthStagesCount - 2.0));
@@ -261,19 +292,27 @@ modded class PlantBase
 		
 		float rain_intensity = GetGame().GetWeather().GetRain().GetActual();
 		
-		if (m_PlantState < EPlantState.MATURE  &&  !NeedsWater())		
-		{
-			SetPlantState(EPlantState.GROWING);
-			GrowthTimerTick(); // first tick happens straight away
+		if ( rain_intensity > 0.0 ) {
+			CheckWater();
 		}
-		
-		if (rain_intensity <= 0.0)
-		{		
-			if (NeedsWater())
-				SetPlantState(EPlantState.PAUSED);
+		else {
+			CheckWater();
+			
+			if ( NeedsWater() )	{
+				SetPlantState(STATE_DRY);
+				
+				if (GetGame().IsServer()) {
+					m_DeleteDryPlantTimer = new Timer( CALL_CATEGORY_SYSTEM );
+					m_DeleteDryPlantTimer.Run( m_DeleteDryPlantTime, this, "DeleteDryPlantTick", NULL, false );
+				}
+			}
 		}
 	}
 	
+	
+	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+	// 
+	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 	override bool OnStoreLoad( ParamsReadContext ctx, int version )
 	{
 		if ( !super.OnStoreLoad( ctx, version ) )
@@ -283,7 +322,11 @@ modded class PlantBase
 		}
 		return true;
 	}
-
+	
+		
+	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+	// 
+	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 	override void OnStoreSave( ParamsWriteContext ctx )
 	{
 		// call the inherited class
@@ -294,9 +337,14 @@ modded class PlantBase
 			ctx.Write( currentYield );
 		}
 	}
-
+	
+	
 	private bool harvestingSpamCheck = false;
 	
+	
+	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+	// 
+	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 	override void Harvest( PlayerBase player )
 	{
 		if(harvestingSpamCheck==false && m_HasCrops==true){
@@ -308,10 +356,10 @@ modded class PlantBase
 				item.SetQuantity( item.GetQuantityMax() );
 				string ItemName  = item.GetType();
                         
-                    if (ItemName.IndexOf("CP_") >= 0)
-					{
-				    	//Print("[CP] harvested " + item);
-                    }      
+                        if (ItemName.IndexOf("CP_") >= 0)
+				{
+				      //Print("[CP] harvested " + item);
+                        }      
 				
 				switch(ItemName){
 				      // cannabis skunk
@@ -391,7 +439,7 @@ modded class PlantBase
                                     super.Harvest(player);
 						return;
 				}
-				if ( m_PlantState == EPlantState.SPOILED )
+				if ( IsSpoiled() )
 				{
 					Edible_Base food_item = Edible_Base.Cast( item );
 					if ( food_item )
@@ -407,6 +455,9 @@ modded class PlantBase
 		}	
 	}	
 	
+	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+	// 
+	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 	void clearSpamCheck(){
 		harvestingSpamCheck = false;
 	}	
