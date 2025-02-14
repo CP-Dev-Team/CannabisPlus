@@ -43,57 +43,9 @@ modded class PlantBase
 	private int currentYield;
 
 	void PlantBase()
-	{		
+	{	
 		int currentYield = 1;
-
-		m_ModuleHorticulture 	= PluginHorticulture.Cast( GetPlugin( PluginHorticulture ) );
-
-		m_SprayUsage 			= 5;
-		m_DeleteDryPlantTime 	= (60 * 10) + Math.RandomInt(0, 60 * 2);
-		m_SpoiledRemoveTime 	= (60 * 20) + Math.RandomInt(0, 60 * 5);
-
-		string plant_type = this.GetType();
-		m_GrowthStagesCount 	= GetGame().ConfigGetInt( "cfgVehicles " + plant_type + " Horticulture GrowthStagesCount" );
-		//m_CropsCount = GetGame().ConfigGetInt( "cfgVehicles " + plant_type + " Horticulture CropsCount" );
-		GetGame().ConfigGetText( "cfgVehicles " + plant_type + " Horticulture CropsType", m_CropsType );
-
-		if (m_GrowthStagesCount == 0)
-			m_GrowthStagesCount = 1;
-
 		m_InfestationChance 	= 0.0; // Temporarily disabled until its fixed. Infestation is not visualy persistent over server restarts and m_SpoiledRemoveTimer crashes when it's meant to delete the plant.		
-
-		m_PlantStateIndex 				= -1;
-		m_CurrentPlantMaterialQuantity 	= 0;
-		m_IsInfested 					= false;
-		m_SprayQuantity 				= 0.0;
-		m_HasCrops 						= true;
-
-		SetTakeable( false );
-		
-		//RegisterNetSyncVariableBool("m_HasCrops");
-		RegisterNetSyncVariableInt("m_PlantState");
-		RegisterNetSyncVariableInt("m_PlantStateIndex");
-
-		if (GetGame().IsServer())
-		{
-			m_TimeTicker = new Timer( CALL_CATEGORY_SYSTEM );
-			m_TimeTicker.Run(TICK_FREQUENCY, this, "Tick", NULL, true);
-		}
-	}
-
-	
-	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-	// destructor of plantbase class
-	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~	
-	void ~PlantBase() 
-	{
-		if (m_TimeTicker)
-			m_TimeTicker.Stop();
-
-		if (!m_MarkForDeletion) 
-		{
-			DestroyPlant();
-		}
 	}
 	
 	override void Init( GardenBase garden_base, float fertility, float harvesting_efficiency, float water)
