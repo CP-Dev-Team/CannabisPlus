@@ -19,8 +19,8 @@ class CfgVehicles
 	class CP_JointBase: Inventory_Base
 	{
 		scope=0;
-		displayName="Skunk Joint";
-		descriptionShort="A joint made out of finest Skunk weed";
+		displayName="#cp_joint_base0";
+		descriptionShort="#cp_joint_base1";
 		model="\CannabisPlus\joints\CP_joint.p3d";
 		inventorySlot[]={"CP_Joint_Base"};
 		rotationFlags=16;
@@ -40,8 +40,8 @@ class CfgVehicles
 	class CP_JointSkunk: CP_JointBase
 	{
 		scope=2;
-		displayName="Skunk Joint";
-		descriptionShort="A joint made out of finest Skunk weed";
+		displayName="#cp_skunk_joint0";
+		descriptionShort="#cp_skunk_joint1";
 		cpPackJoint="CP_CigarettePack_CannabisSkunk";
 		cpCheckJoint="CP_JointSkunk";
 		hiddenSelections[]=
@@ -56,8 +56,8 @@ class CfgVehicles
 	class CP_JointBlue: CP_JointBase
 	{
 		scope=2;
-		displayName="Blue God Joint";
-		descriptionShort="A joint made out of finest Blue God weed";
+		displayName="#cp_blue_god_joint0";
+		descriptionShort="#cp_blue_god_joint1";
 		cpPackJoint="CP_CigarettePack_CannabisBlue";
 		cpCheckJoint="CP_JointBlue";
 		hiddenSelections[]=
@@ -72,8 +72,8 @@ class CfgVehicles
 	class CP_JointKush: CP_JointBase
 	{
 		scope=2;
-		displayName="Purple Kush Joint";
-		descriptionShort="A joint made out of finest Purple Kush weed";
+		displayName="#cp_purple_kush_joint0";
+		descriptionShort="#cp_purple_kush_joint1";
 		cpPackJoint="CP_CigarettePack_CannabisKush";
 		cpCheckJoint="CP_JointKush";
 		hiddenSelections[]=
@@ -88,8 +88,8 @@ class CfgVehicles
 	class CP_JointStardawg: CP_JointBase
 	{
 		scope=2;
-		displayName="Stardawg Joint";
-		descriptionShort="A joint made out of finest Stardawg weed";
+		displayName="#cp_stardawg_joint0";
+		descriptionShort="#cp_stardawg_joint1";
 		cpPackJoint="CP_CigarettePack_CannabisStardawg";
 		cpCheckJoint="CP_JointStardawg";
 		hiddenSelections[]=
@@ -104,8 +104,8 @@ class CfgVehicles
 	class CP_JointFuture: CP_JointBase
 	{
 		scope=2;
-		displayName="Future Joint";
-		descriptionShort="A joint made out of finest Future weed";
+		displayName="#cp_future_joint0";
+		descriptionShort="#cp_future_joint1";
 		cpPackJoint="CP_CigarettePack_CannabisFuture";
 		cpCheckJoint="CP_JointFuture";
 		hiddenSelections[]=
@@ -120,8 +120,8 @@ class CfgVehicles
 	class CP_JointS1: CP_JointBase
 	{
 		scope=2;
-		displayName="S1 Joint";
-		descriptionShort="A joint made out of the finest S1 hemp.  Sponsored by StevesGoods.com";
+		displayName="#cp_s1_joint0";
+		descriptionShort="#cp_s1_joint1";
 		cpPackJoint="CP_CigarettePack_CannabisS1";
 		cpCheckJoint="CP_JointS1";
 		hiddenSelections[]=
@@ -136,8 +136,8 @@ class CfgVehicles
 	class CP_JointNomad: CP_JointBase
 	{
 		scope=2;
-		displayName="Nomad Joint";
-		descriptionShort="A joint made out of finest Nomad weed";
+		displayName="#cp_nomad_joint0";
+		descriptionShort="#cp_nomad_joint1";
 		cpPackJoint="CP_CigarettePack_CannabisNomad";
 		cpCheckJoint="CP_JointNomad";
 		hiddenSelections[]=
@@ -152,8 +152,8 @@ class CfgVehicles
 	class CP_JointBlackFrost: CP_JointBase
 	{
 		scope=2;
-		displayName="BlackFrost Joint";
-		descriptionShort="A joint made out of finest BlackFrost weed";
+		displayName="#cp_blackfrost_joint0";
+		descriptionShort="#cp_blackfrost_joint1";
 		cpPackJoint="CP_CigarettePack_CannabisBlackFrost";
 		cpCheckJoint="CP_JointBlackFrost";
 		hiddenSelections[]=

@@ -21,8 +21,8 @@ class CfgVehicles
     class CP_PlasticWrapper : Inventory_Base
     {
 		scope = 2;
-		displayName = "Shrink Wrapper";
-		descriptionShort = "A shrink wrapper for wrapping your favourite sandwiches.. and perhaps other things.";
+		displayName="#cp_shrink_wrapper0";
+		descriptionShort="#cp_shrink_wrapper1";
 		model="\CannabisPlus\plasticWrapper\plasticWrapper.p3d";
 		weight=200;
 		itemSize[]={4,4};
@@ -44,8 +44,8 @@ class CfgVehicles
 	class CP_PlasticRoll: Inventory_Base
 	{
 		scope=2;
-		displayName="Plastic Wrap";
-		descriptionShort="A roll of plastic wrap.  Can be used with a wrapping machine.";
+		displayName="#cp_plastic_wrap0";
+		descriptionShort="#cp_plastic_wrap1";
 		model="\CannabisPlus\plasticWrapper\CP_EmptyROll_DeleteMep3d.p3d";
 		rotationFlags=12;
 		lootCategory="Crafted";
@@ -60,5 +60,4 @@ class CfgVehicles
 		stackedUnit="percentage";
 		inventorySlot[]={"CP_PlasticRoll"};
 	};
-	
 };

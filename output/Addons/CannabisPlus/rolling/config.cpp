@@ -20,8 +20,8 @@ class CfgVehicles
 	class CP_RollingPapers: Inventory_Base
 	{
 		scope=2;
-		displayName="Fizla Rolling Papers";
-		descriptionShort="A pack of Fizla Original rolling papers";
+		displayName="#cp_fizla_rolling_papers0";
+		descriptionShort="#cp_fizla_rolling_papers1";
 		model="CannabisPlus\rolling\CPlus_Papers.p3d";
 		inventorySlot[]={"CP_RollingPapers"};
 		rotationFlags=17;
@@ -50,7 +50,7 @@ class CfgVehicles
 	class CP_RollingPapers_Green: CP_RollingPapers
 	{
 		scope=2;
-		descriptionShort="A pack of Fizla Slimline rolling papers";
+		descriptionShort="#cp_fizla_rolling_papers2";
 		hiddenSelectionsTextures[]=
 		{
 			"CannabisPlus\rolling\data\CP_fizla_Slimline_co.paa"
@@ -63,7 +63,7 @@ class CfgVehicles
 	class CP_RollingPapers_Silver: CP_RollingPapers
 	{
 		scope=2;
-		descriptionShort="A pack of Fizla Super Thin rolling papers";
+		descriptionShort="#cp_fizla_rolling_papers3";
 		hiddenSelectionsTextures[]=
 		{
 			"CannabisPlus\rolling\data\CP_fizla_SuperThin_co.paa"

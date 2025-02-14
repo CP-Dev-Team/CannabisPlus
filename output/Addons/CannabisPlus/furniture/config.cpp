@@ -59,8 +59,8 @@ class CfgVehicles
 	class CP_DryPost_Kit: Inventory_Base
 	{
 		scope=2;
-		displayName="Dry Post Kit";
-		descriptionShort="Used to place a dry post.";
+		displayName="#cp_dry_post_kit0";
+		descriptionShort="#cp_dry_post_kit1";
 		model="\CannabisPlus\furniture\DryPostKit.p3d";
 		weight=300;
 		rotationFlags=2;
@@ -95,8 +95,8 @@ class CfgVehicles
     class CP_DryPost : Inventory_Base
     {
         scope = 2;
-		displayName = "Drying Post";
-		descriptionShort = "A post for drying cannabis and other plants.";
+		displayName="#cp_drying_post0";
+		descriptionShort="#cp_drying_post1";
 		model="\CannabisPlus\furniture\DryPost.p3d";
 		weight=20000;
 		itemSize[]={3,11};
@@ -220,13 +220,11 @@ class CfgVehicles
 			};
 		};
     };
-
-
 	class CP_RawPlantBase : Inventory_Base
     {
         scope = 0;
-		displayName = "CorePlant";
-		descriptionShort = "CorePlant";
+		displayName="#cp_plant_base0";
+		descriptionShort="#cp_plant_base1";
 		model="\CannabisPlus\furniture\CannabisPlantHanging.p3d";
         itemSize[]={1,4};
 		rotationFlags = 32;
@@ -245,8 +243,8 @@ class CfgVehicles
 	class CP_DriedCannabisPlant : CP_RawPlantBase
 	{
 		scope = 2;
-		displayName = "Dried Plant";
-		descriptionShort = "A Dried up Cannabis plant with all the buds picked off.";
+		displayName="#cp_dried_plant0";
+		descriptionShort="#cp_dried_plant1";
 		model="\CannabisPlus\furniture\DriedCannabisPlantHanging.p3d";
         itemSize[]={1,4};
 		canBeSplit=1;
@@ -260,12 +258,11 @@ class CfgVehicles
 			"DriedPlantPile"
 		};
 	};
-	
 	class CP_RawSkunkCannabisPlant : CP_RawPlantBase
     {
         scope = 2;
-		displayName = "Raw Skunk Plant";
-		descriptionShort = "A raw Skunk plant";
+		displayName="#cp_raw_skunk_plant0";
+		descriptionShort="#cp_raw_skunk_plant1";
 		hiddenSelections[]=
 		{
 			"CannabisPlantHanging"
@@ -278,8 +275,8 @@ class CfgVehicles
 	class CP_RawBlueCannabisPlant : CP_RawPlantBase
     {
         scope = 2;
-		displayName = "Raw Blue God Plant";
-		descriptionShort = "A raw Blue God plant";
+		displayName="#cp_raw_blue_god_plant0";
+		descriptionShort="#cp_raw_blue_god_plant1";
 		hiddenSelections[]=
 		{
 			"CannabisPlantHanging"
@@ -289,12 +286,11 @@ class CfgVehicles
 			"CannabisPlus\plants\data\cannabis_plant_blue_co.paa"
 		};
     };
-
 	class CP_RawKushCannabisPlant : CP_RawPlantBase
     {
         scope = 2;
-		displayName = "Raw Kush Plant";
-		descriptionShort = "A raw Kush plant";
+		displayName="#cp_raw_kush_plant0";
+		descriptionShort="#cp_raw_kush_plant1";
 		hiddenSelections[]=
 		{
 			"CannabisPlantHanging"
@@ -304,12 +300,11 @@ class CfgVehicles
 			"CannabisPlus\plants\data\cannabis_plant_kush_co.paa"
 		};
     };
-
 	class CP_RawStardawgCannabisPlant : CP_RawPlantBase
     {
         scope = 2;
-		displayName = "Raw Stardawg Plant";
-		descriptionShort = "A raw Stardawg plant";
+		displayName="#cp_raw_stardawg_plant0";
+		descriptionShort="#cp_raw_stardawg_plant1";
 		hiddenSelections[]=
 		{
 			"CannabisPlantHanging"
@@ -319,12 +314,11 @@ class CfgVehicles
 			"CannabisPlus\plants\data\cannabis_plant_stardawg_co.paa"
 		};
     };
-
 	class CP_RawFutureCannabisPlant : CP_RawPlantBase
     {
         scope = 2;
-		displayName = "Raw Future Plant";
-		descriptionShort = "A raw Future plant";
+		displayName="#cp_raw_future_plant0";
+		descriptionShort="#cp_raw_future_plant1";
 		hiddenSelections[]=
 		{
 			"CannabisPlantHanging"
@@ -334,12 +328,11 @@ class CfgVehicles
 			"CannabisPlus\plants\data\cannabis_plant_future_co.paa"
 		};
     };
-
 	class CP_RawNomadCannabisPlant : CP_RawPlantBase
     {
         scope = 2;
-		displayName = "Raw Nomad Plant";
-		descriptionShort = "A raw Nomad plant";
+		displayName="#cp_raw_nomad_plant0";
+		descriptionShort="#cp_raw_nomad_plant1";
 		hiddenSelections[]=
 		{
 			"CannabisPlantHanging"
@@ -349,12 +342,11 @@ class CfgVehicles
 			"CannabisPlus\plants\data\cannabis_plant_nomad_co.paa"
 		};
     };
-
 	class CP_RawS1CannabisPlant : CP_RawPlantBase
     {
         scope = 2;
-		displayName = "Raw S1 Plant";
-		descriptionShort = "A raw S1 plant";
+		displayName="#cp_raw_s1_plant0";
+		descriptionShort="#cp_raw_s1_plant1";
 		hiddenSelections[]=
 		{
 			"CannabisPlantHanging"
@@ -364,12 +356,11 @@ class CfgVehicles
 			"CannabisPlus\plants\data\cannabis_plant_s1_co.paa"
 		};
     };
-
 	class CP_RawBlackFrostCannabisPlant : CP_RawPlantBase
     {
         scope = 2;
-		displayName = "Raw Black Frost Plant";
-		descriptionShort = "A raw Black Frost plant";
+		displayName="#cp_raw_black_frost_plant0";
+		descriptionShort="#cp_raw_black_frost_plant1";
 		hiddenSelections[]=
 		{
 			"CannabisPlantHanging"

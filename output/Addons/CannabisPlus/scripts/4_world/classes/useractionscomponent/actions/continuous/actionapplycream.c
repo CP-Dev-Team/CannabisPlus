@@ -67,8 +67,9 @@ class ActionApplyCream : ActionContinuousBase
 		return false;
 	}
 	
-	override string GetText() {
-	string text = "Apply Cream";
+	override string GetText() 
+	{
+	string text = "#cp_apply_cream";
 	return text;
     }
 

@@ -98,8 +98,8 @@ class CfgVehicles
 	class CP_Plant_CannabisSkunk: PlantBase
 	{
 		scope=2;
-		displayName="Skunk Plant";
-		descriptionShort="A Skunk plant.";
+		displayName="#cp_skunk_plant0";
+		descriptionShort="#cp_skunk_plant1";
 		model="DZ\gear\cultivation\Cannabis_plant.p3d";
 		hiddenSelections[]=
 		{
@@ -138,8 +138,8 @@ class CfgVehicles
 	{
 		scope=2;
 		model="DZ\gear\cultivation\Cannabis_plant.p3d";
-		displayName="Blue God Plant";
-		descriptionShort="A Blue God plant.";
+		displayName="#cp_blue_god_plant0";
+		descriptionShort="#cp_blue_god_plant1";
 		hiddenSelections[]=
 		{
 			"plantstage_03",
@@ -177,8 +177,8 @@ class CfgVehicles
 	{
 		scope=2;
 		model="DZ\gear\cultivation\Cannabis_plant.p3d";
-		displayName="Purple Kush Plant";
-		descriptionShort="A Purple Kush plant.";
+		displayName="#cp_purple_kush_plant0";
+		descriptionShort="#cp_purple_kush_plant1";
 		hiddenSelections[]=
 		{
 			"plantstage_03",
@@ -215,8 +215,8 @@ class CfgVehicles
 	class CP_Plant_CannabisStardawg: PlantBase
 	{
 		scope=2;
-		displayName="Stardawg Plant";
-		descriptionShort="A Stardawg plant.";
+		displayName="#cp_stardawg_plant0";
+		descriptionShort="#cp_stardawg_plant1";
 		model="DZ\gear\cultivation\Cannabis_plant.p3d";
 		hiddenSelections[]=
 		{
@@ -254,8 +254,8 @@ class CfgVehicles
 	class CP_Plant_CannabisFuture: PlantBase
 	{
 		scope=2;
-		displayName="Future Plant";
-		descriptionShort="A Future plant.";
+		displayName="#cp_future_plant0";
+		descriptionShort="#cp_future_plant1";
 		model="DZ\gear\cultivation\Cannabis_plant.p3d";
 		hiddenSelections[]=
 		{
@@ -293,8 +293,8 @@ class CfgVehicles
 	class CP_Plant_CannabisS1: PlantBase
 	{
 		scope=2;
-		displayName="S1 Hemp Plant";
-		descriptionShort="An S1 hemp plant.  Sponsored by StevesGoods.com";
+		displayName="#cp_s1_hemp_plant0";
+		descriptionShort="#cp_s1_hemp_plant1";
 		model="DZ\gear\cultivation\Cannabis_plant.p3d";
 		hiddenSelections[]=
 		{
@@ -332,8 +332,8 @@ class CfgVehicles
 	class CP_Plant_CannabisNomad: PlantBase
 	{
 		scope=2;
-		displayName="Nomad Plant";
-		descriptionShort="A Nomad plant.";
+		displayName="#cp_nomad_plant0";
+		descriptionShort="#cp_nomad_plant1";
 		model="DZ\gear\cultivation\Cannabis_plant.p3d";
 		hiddenSelections[]=
 		{
@@ -371,8 +371,8 @@ class CfgVehicles
 	class CP_Plant_CannabisBlackFrost: PlantBase
 	{
 		scope=2;
-		displayName="Black Frost Plant";
-		descriptionShort="A Black Frost plant.";
+		displayName="#cp_black_frost_plant0";
+		descriptionShort="#cp_black_frost_plant1";
 		model="DZ\gear\cultivation\Cannabis_plant.p3d";
 		hiddenSelections[]=
 		{
@@ -410,8 +410,8 @@ class CfgVehicles
 	class CP_Plant_Tobacco: PlantBase
 	{
 		scope=2;
-		displayName="Tobacco Plant";
-		descriptionShort="A tobacco plant.";
+		displayName="#cp_tobacco_plant0";
+		descriptionShort="#cp_tobacco_plant1";
 		model="DZ\gear\cultivation\zucchini_plant.p3d";
 		hiddenSelectionsTextures[]=
 		{

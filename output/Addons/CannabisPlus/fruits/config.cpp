@@ -35,8 +35,8 @@ class CfgVehicles
 	class CP_CannabisBud: Inventory_Base
 	{
 		scope=0;
-		displayName="Base base base";
-		descriptionShort="Base bud";
+		displayName="#cp_base_bud0";
+		descriptionShort="#cp_base_bud1";
 		model="\dz\gear\food\cannabis_seedman.p3d";
 		rotationFlags=34;
 		lootCategory="Crafted";
@@ -141,8 +141,8 @@ class CfgVehicles
 	class CP_CannabisSkunk: CP_CannabisBud
 	{
 		scope=2;
-		displayName="Skunk";
-		descriptionShort="Some cannabis bud. Skunk variety";
+		displayName="#cp_skunk_bud0";
+		descriptionShort="#cp_skunk_bud1";
 		cpStepUpToBag="CP_CannabisBagSkunk";
 		cpStepUpToJoint="CP_JointSkunk";
 		hiddenSelectionsTextures[]=
@@ -157,8 +157,8 @@ class CfgVehicles
 	class CP_CannabisBlue: CP_CannabisBud
 	{
 		scope=2;
-		displayName="Blue God";
-		descriptionShort="Some cannabis bud.  Blue God variety.";
+		displayName="#cp_blue_god_bud0";
+		descriptionShort="#cp_blue_god_bud1";
 		cpStepUpToBag="CP_CannabisBagBlue";
 		cpStepUpToJoint="CP_JointBlue";
 		hiddenSelectionsTextures[]=
@@ -173,8 +173,8 @@ class CfgVehicles
 	class CP_CannabisKush: CP_CannabisBud
 	{
 		scope=2;
-		displayName="Purple Kush";
-		descriptionShort="Some cannabis bud.  Purple Kush variety.";
+		displayName="#cp_purple_kush_bud0";
+		descriptionShort="#cp_purple_kush_bud1";
 		cpStepUpToBag="CP_CannabisBagKush";
 		cpStepUpToJoint="CP_JointKush";
 		hiddenSelectionsTextures[]=
@@ -189,8 +189,8 @@ class CfgVehicles
 	class CP_CannabisStardawg: CP_CannabisBud
 	{
 		scope=2;
-		displayName="Stardawg";
-		descriptionShort="Some cannabis bud.  Stardawg variety.";
+		displayName="#cp_stardawg_bud0";
+		descriptionShort="#cp_stardawg_bud1";
 		cpStepUpToBag="CP_CannabisBagStardawg";
 		cpStepUpToJoint="CP_JointStardawg";
 		hiddenSelectionsTextures[]=
@@ -205,8 +205,8 @@ class CfgVehicles
 	class CP_CannabisFuture: CP_CannabisBud
 	{
 		scope=2;
-		displayName="Future";
-		descriptionShort="Some cannabis bud.  Future variety.";
+		displayName="#cp_future_bud0";
+		descriptionShort="#cp_future_bud1";
 		cpStepUpToBag="CP_CannabisBagFuture";
 		cpStepUpToJoint="CP_JointFuture";
 		hiddenSelectionsTextures[]=
@@ -221,8 +221,8 @@ class CfgVehicles
 	class CP_CannabisS1: CP_CannabisBud
 	{
 		scope=2;
-		displayName="S1";
-		descriptionShort="Some cannabis bud.  S1 variety.  Sponsored by StevesGoods.com";
+		displayName="#cp_s1_bud0";
+		descriptionShort="#cp_s1_bud1";
 		cpStepUpToBag="CP_CannabisBagS1";
 		cpStepUpToJoint="CP_JointS1";
 		hiddenSelectionsTextures[]=
@@ -237,8 +237,8 @@ class CfgVehicles
 	class CP_CannabisNomad: CP_CannabisBud
 	{
 		scope=2;
-		displayName="Nomad";
-		descriptionShort="Some cannabis bud.  Nomad variety.";
+		displayName="#cp_nomad_bud0";
+		descriptionShort="#cp_nomad_bud1";
 		cpStepUpToBag="CP_CannabisBagNomad";
 		cpStepUpToJoint="CP_JointNomad";
 		hiddenSelectionsTextures[]=
@@ -253,8 +253,8 @@ class CfgVehicles
 	class CP_CannabisBlackFrost: CP_CannabisBud
 	{
 		scope=2;
-		displayName="Black Frost";
-		descriptionShort="Some cannabis bud.  Black Frost variety.";
+		displayName="#cp_black_frost_bud0";
+		descriptionShort="#cp_black_frost_bud1";
 		cpStepUpToBag="CP_CannabisBagBlackFrost";
 		cpStepUpToJoint="CP_JointBlackFrost";
 		hiddenSelectionsTextures[]=
@@ -269,8 +269,8 @@ class CfgVehicles
 	class CP_Tobacco: Inventory_Base
 	{
 		scope=2;
-		displayName="Tobacco Leaf";
-		descriptionShort="Some tobacco leaves for rolling cigarettes";
+		displayName="#cp_tobacco_leaf0";
+		descriptionShort="#cp_tobacco_leaf1";
 		model="CannabisPlus\fruits\TobaccoLeaf.p3d";
 		cpStepUpToBag="";
 		rotationFlags=17;

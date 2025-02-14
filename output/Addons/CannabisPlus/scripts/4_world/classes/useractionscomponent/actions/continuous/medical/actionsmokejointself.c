@@ -62,7 +62,7 @@ class ActionSmokeJointSelf: ActionContinuousBase {
 	*/
 
 	override string GetText() {
-	string text = "Smoke";
+	string text = "#cp_smoke_joint";
 	return text;
     }
 

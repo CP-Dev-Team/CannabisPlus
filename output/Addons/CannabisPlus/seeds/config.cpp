@@ -39,8 +39,8 @@ class CfgVehicles
 	class CP_CannabisSeedsSkunk: SeedBase
 	{
 		scope=2;
-		displayName="Skunk Cannabis Seeds";
-		descriptionShort="A handful of Skunk cannabis seeds.";
+		displayName="#cp_skunk_cannabis_seeds0";
+		descriptionShort="#cp_skunk_cannabis_seeds1";
 		model="\dz\gear\cultivation\cannabis_seeds.p3d";
 		canBeSplit=1;
 		varQuantityInit=20;
@@ -54,8 +54,8 @@ class CfgVehicles
 	class CP_CannabisSeedsBlue: SeedBase
 	{
 		scope=2;
-		displayName="Blue God Cannabis Seeds";
-		descriptionShort="A handful of Blue God cannabis seeds.";
+		displayName="#cp_blue_god_cannabis_seeds0";
+		descriptionShort="#cp_blue_god_cannabis_seeds1";
 		model="\dz\gear\cultivation\cannabis_seeds.p3d";
 		canBeSplit=1;
 		varQuantityInit=20;
@@ -69,8 +69,8 @@ class CfgVehicles
 	class CP_CannabisSeedsKush: SeedBase
 	{
 		scope=2;
-		displayName="Purple Kush Cannabis Seeds";
-		descriptionShort="A handful of Purple Kush cannabis seeds.";
+		displayName="#cp_purple_kush_cannabis_seeds0";
+		descriptionShort="#cp_purple_kush_cannabis_seeds1";
 		model="\dz\gear\cultivation\cannabis_seeds.p3d";
 		canBeSplit=1;
 		varQuantityInit=20;
@@ -84,8 +84,8 @@ class CfgVehicles
 	class CP_CannabisSeedsStardawg: SeedBase
 	{
 		scope=2;
-		displayName="Stardawg Cannabis Seeds";
-		descriptionShort="A handful of Stardawg cannabis seeds.";
+		displayName="#cp_stardawg_cannabis_seeds0";
+		descriptionShort="#cp_stardawg_cannabis_seeds1";
 		model="\dz\gear\cultivation\cannabis_seeds.p3d";
 		canBeSplit=1;
 		varQuantityInit=20;
@@ -99,8 +99,8 @@ class CfgVehicles
 	class CP_CannabisSeedsFuture: SeedBase
 	{
 		scope=2;
-		displayName="Future Cannabis Seeds";
-		descriptionShort="A handful of Future cannabis seeds.";
+		displayName="#cp_future_cannabis_seeds0";
+		descriptionShort="#cp_future_cannabis_seeds1";
 		model="\dz\gear\cultivation\cannabis_seeds.p3d";
 		canBeSplit=1;
 		varQuantityInit=20;
@@ -114,8 +114,8 @@ class CfgVehicles
 	class CP_CannabisSeedsS1: SeedBase
 	{
 		scope=2;
-		displayName="S1 Cannabis Seeds";
-		descriptionShort="A handful of S1 cannabis seeds.  Sponsored by StevesGoods.com";
+		displayName="#cp_s1_cannabis_seeds0";
+		descriptionShort="#cp_s1_cannabis_seeds1"
 		model="\dz\gear\cultivation\cannabis_seeds.p3d";
 		canBeSplit=1;
 		varQuantityInit=20;
@@ -129,8 +129,8 @@ class CfgVehicles
 	class CP_CannabisSeedsNomad: SeedBase
 	{
 		scope=2;
-		displayName="Nomad Cannabis Seeds";
-		descriptionShort="A handful of Nomad cannabis seeds.";
+		displayName="#cp_nomad_cannabis_seeds0";
+		descriptionShort="#cp_nomad_cannabis_seeds1";
 		model="\dz\gear\cultivation\cannabis_seeds.p3d";
 		canBeSplit=1;
 		varQuantityInit=20;
@@ -144,8 +144,8 @@ class CfgVehicles
 	class CP_CannabisSeedsBlackFrost: SeedBase
 	{
 		scope=2;
-		displayName="BlackFrost Cannabis Seeds";
-		descriptionShort="A handful of BlackFrost cannabis seeds.";
+		displayName="#cp_blackfrost_cannabis_seeds0";
+		descriptionShort="#cp_blackfrost_cannabis_seeds1";
 		model="\dz\gear\cultivation\cannabis_seeds.p3d";
 		canBeSplit=1;
 		varQuantityInit=20;
@@ -159,8 +159,8 @@ class CfgVehicles
 	class CP_TobaccoSeeds: SeedBase
 	{
 		scope=2;
-		displayName="Tobacco Seeds";
-		descriptionShort="A handful of tobacco seeds.";
+		displayName="#cp_tobacco_seeds0";
+		descriptionShort="#cp_tobacco_seeds1";
 		model="\dz\gear\cultivation\Zucchini_seeds.p3d";
 		canBeSplit=1;
 		varQuantityInit=20;
@@ -174,8 +174,8 @@ class CfgVehicles
 	class CP_CannabisSeedsPackSkunk: Inventory_Base
 	{
 		scope=2;
-		displayName="Packed Cannabis Skunk Seeds";
-		descriptionShort="A package of Skunk cannabis seeds.";
+		displayName="#cp_packed_cannabis_skunk_seeds0";
+		descriptionShort="#cp_packed_cannabis_skunk_seeds1";
 		model="\dz\gear\cultivation\zucchini_seeds_pack.p3d";
 		rotationFlags=17;
 		quantityBar=1;
@@ -262,8 +262,8 @@ class CfgVehicles
 		{
 			class EmptyPack
 			{
-				displayNameDefault="Empty Seeds Pack";
-				displayName="A Empty Seeds Pack";
+				displayNameDefault="#cp_empty_seeds_pack0";
+				displayName="#cp_empty_seeds_pack1";
 				position="action";
 				onlyForPlayer=1;
 				radius=2;
@@ -286,8 +286,8 @@ class CfgVehicles
 	class CP_CannabisSeedsPackBlue: Inventory_Base
 	{
 		scope=2;
-		displayName="Packed Blue God Cannabis Seeds";
-		descriptionShort="A package of Blue God cannabis seeds.";
+		displayName="#cp_packed_blue_god_cannabis_seeds0";
+		descriptionShort="#cp_packed_blue_god_cannabis_seeds1";
 		model="\dz\gear\cultivation\zucchini_seeds_pack.p3d";
 		rotationFlags=17;
 		quantityBar=1;
@@ -374,8 +374,8 @@ class CfgVehicles
 		{
 			class EmptyPack
 			{
-				displayNameDefault="Empty Seeds Pack";
-				displayName="A Empty Seeds Pack";
+				displayNameDefault="#cp_empty_seeds_pack0";
+				displayName="#cp_empty_seeds_pack1";
 				position="action";
 				onlyForPlayer=1;
 				radius=2;
@@ -398,8 +398,8 @@ class CfgVehicles
 	class CP_CannabisSeedsPackKush: Inventory_Base
 	{
 		scope=2;
-		displayName="Packed Purple Kush Cannabis Seeds";
-		descriptionShort="A package of Purple Kush cannabis seeds.";
+		displayName="#cp_packed_purple_kush_cannabis_seeds0";
+		descriptionShort="#cp_packed_purple_kush_cannabis_seeds1";
 		model="\dz\gear\cultivation\zucchini_seeds_pack.p3d";
 		rotationFlags=17;
 		quantityBar=1;
@@ -486,8 +486,8 @@ class CfgVehicles
 		{
 			class EmptyPack
 			{
-				displayNameDefault="Empty Seeds Pack";
-				displayName="A Empty Seeds Pack";
+				displayNameDefault="#cp_empty_seeds_pack0";
+				displayName="#cp_empty_seeds_pack1";
 				position="action";
 				onlyForPlayer=1;
 				radius=2;
@@ -510,8 +510,8 @@ class CfgVehicles
 	class CP_CannabisSeedsPackStardawg: Inventory_Base
 	{
 		scope=2;
-		displayName="Packed Cannabis Stardawg Seeds";
-		descriptionShort="A package of Stardawg cannabis seeds.";
+		displayName="#cp_packed_cannabis_stardawg_seeds0";
+		descriptionShort="#cp_packed_cannabis_stardawg_seeds1";
 		model="\dz\gear\cultivation\zucchini_seeds_pack.p3d";
 		rotationFlags=17;
 		quantityBar=1;
@@ -598,8 +598,8 @@ class CfgVehicles
 		{
 			class EmptyPack
 			{
-				displayNameDefault="Empty Seeds Pack";
-				displayName="A Empty Seeds Pack";
+				displayNameDefault="#cp_empty_seeds_pack0";
+				displayName="#cp_empty_seeds_pack1";
 				position="action";
 				onlyForPlayer=1;
 				radius=2;
@@ -622,8 +622,8 @@ class CfgVehicles
 	class CP_CannabisSeedsPackFuture: Inventory_Base
 	{
 		scope=2;
-		displayName="Packed Cannabis Future Seeds";
-		descriptionShort="A package of Future cannabis seeds.";
+		displayName="#cp_packed_cannabis_future_seeds0";
+		descriptionShort="#cp_packed_cannabis_future_seeds1";
 		model="\dz\gear\cultivation\zucchini_seeds_pack.p3d";
 		rotationFlags=17;
 		quantityBar=1;
@@ -710,8 +710,8 @@ class CfgVehicles
 		{
 			class EmptyPack
 			{
-				displayNameDefault="Empty Seeds Pack";
-				displayName="A Empty Seeds Pack";
+				displayNameDefault="#cp_empty_seeds_pack0";
+				displayName="#cp_empty_seeds_pack1";
 				position="action";
 				onlyForPlayer=1;
 				radius=2;
@@ -734,8 +734,8 @@ class CfgVehicles
 	class CP_CannabisSeedsPackS1: Inventory_Base
 	{
 		scope=2;
-		displayName="Packed S1 Hemp Seeds";
-		descriptionShort="A package of S1 hemp seeds.  Sponsored by StevesGoods.com";
+		displayName="#cp_packed_s1_hemp_seeds0";
+		descriptionShort="#cp_packed_s1_hemp_seeds1";
 		model="\dz\gear\cultivation\zucchini_seeds_pack.p3d";
 		rotationFlags=17;
 		quantityBar=1;
@@ -822,8 +822,8 @@ class CfgVehicles
 		{
 			class EmptyPack
 			{
-				displayNameDefault="Empty Seeds Pack";
-				displayName="A Empty Seeds Pack";
+				displayNameDefault="#cp_empty_seeds_pack0";
+				displayName="#cp_empty_seeds_pack1";
 				position="action";
 				onlyForPlayer=1;
 				radius=2;
@@ -846,8 +846,8 @@ class CfgVehicles
 	class CP_CannabisSeedsPackNomad: Inventory_Base
 	{
 		scope=2;
-		displayName="Packed Cannabis Nomad Seeds";
-		descriptionShort="A package of Nomad cannabis seeds.";
+		displayName="#cp_packed_cannabis_nomad0";
+		descriptionShort="#cp_packed_cannabis_nomad1";
 		model="\dz\gear\cultivation\zucchini_seeds_pack.p3d";
 		rotationFlags=17;
 		quantityBar=1;
@@ -934,8 +934,8 @@ class CfgVehicles
 		{
 			class EmptyPack
 			{
-				displayNameDefault="Empty Seeds Pack";
-				displayName="A Empty Seeds Pack";
+				displayNameDefault="#cp_empty_seeds_pack0";
+				displayName="#cp_empty_seeds_pack1";
 				position="action";
 				onlyForPlayer=1;
 				radius=2;
@@ -958,8 +958,8 @@ class CfgVehicles
 	class CP_CannabisSeedsPackBlackFrost: Inventory_Base
 	{
 		scope=2;
-		displayName="Packed Cannabis BlackFrost Seeds";
-		descriptionShort="A package of BlackFrost cannabis seeds.";
+		displayName="#cp_packed_cannabis_blackfrost_seeds0";
+		descriptionShort="#cp_packed_cannabis_blackfrost_seeds1";
 		model="\dz\gear\cultivation\zucchini_seeds_pack.p3d";
 		rotationFlags=17;
 		quantityBar=1;
@@ -1046,8 +1046,8 @@ class CfgVehicles
 		{
 			class EmptyPack
 			{
-				displayNameDefault="Empty Seeds Pack";
-				displayName="A Empty Seeds Pack";
+				displayNameDefault="#cp_empty_seeds_pack0";
+				displayName="#cp_empty_seeds_pack1";
 				position="action";
 				onlyForPlayer=1;
 				radius=2;
@@ -1070,8 +1070,8 @@ class CfgVehicles
 	class CP_TobaccoSeedsPack: Inventory_Base
 	{
 		scope=2;
-		displayName="Packed Tobacco Seeds";
-		descriptionShort="A package of tobacco seeds.";
+		displayName="#cp_packed_tobacco_seeds0";
+		descriptionShort="#cp_packed_tobacco_seeds1";
 		model="\dz\gear\cultivation\zucchini_seeds_pack.p3d";
 		rotationFlags=17;
 		quantityBar=1;
@@ -1158,8 +1158,8 @@ class CfgVehicles
 		{
 			class EmptyPack
 			{
-				displayNameDefault="Empty Seeds Pack";
-				displayName="A Empty Seeds Pack";
+				displayNameDefault="#cp_empty_seeds_pack0";
+				displayName="#cp_empty_seeds_pack1";
 				position="action";
 				onlyForPlayer=1;
 				radius=2;

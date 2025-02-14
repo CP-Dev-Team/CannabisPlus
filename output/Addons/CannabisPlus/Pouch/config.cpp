@@ -36,8 +36,8 @@ class CfgVehicles
 	class CP_Pouch: Container_Base
 	{
 		scope=2;
-		displayName="Cannabis Pouch";
-		descriptionShort="Storage for your paraphernalia";
+		displayName="#cp_cannabis_pouch0";
+		descriptionShort="#cp_cannabis_pouch1";
 		model="CannabisPlus\Pouch\cannabis_pouch.p3d";
 		weight=30;
 		itemSize[]={2,2};
@@ -61,8 +61,8 @@ class CfgVehicles
 		{
 			class PouchAttachments
 			{
-				name="Pouch Attachments";
-				description="";
+				name="#cp_pouch_attachments0";
+				description="#cp_pouch_attachments0";
 				attachmentSlots[]=
 				{
 					"CP_Joint_Base",
@@ -147,13 +147,13 @@ class CfgSlots
 	class Slot_joint
 	{
 		name="CP_Joint_Base";
-		displayName="Joint";
+		displayName="#cp_joint0";
 		ghostIcon="Missing";
 	};
 	class Slot_papers
 	{
 		name="CP_RollingPapers";
-		displayName="Rolling Papers";
+		displayName="#cp_rolling_papers0";
 		ghostIcon="Missing";
 	};	
 };
