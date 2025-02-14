@@ -41,7 +41,7 @@ modded class PlantBase
 	private GardenBase m_GardenBase = NULL;	
 	private PluginHorticulture m_ModuleHorticulture;
 	private int currentYield;
-	
+
 	void PlantBase()
 	{		
 		int currentYield = 1;
@@ -96,10 +96,6 @@ modded class PlantBase
 		}
 	}
 	
-	
-	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-	// 
-	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 	override void Init( GardenBase garden_base, float fertility, float harvesting_efficiency, float water)
 	{	
 		private bool isFertilized = false;
@@ -290,7 +286,7 @@ modded class PlantBase
 			m_FullMaturityTime = (float) ((48 * m_growtime) + Math.RandomInt(0, 30)); 
 		}
 
-//		m_SpoilAfterFullMaturityTime 	= (float) ((60 * 30) + Math.RandomInt(0, 60 * 30)) * fertility;		
+	//	m_SpoilAfterFullMaturityTime 	= (float) ((60 * 30) + Math.RandomInt(0, 60 * 30)) * fertility;		
 		m_SpoilAfterFullMaturityTime 	= m_spoiltime * 60;
 
 		m_StateChangeTime 				= (float) ((float)m_FullMaturityTime / ((float)m_GrowthStagesCount - 2.0));
@@ -326,10 +322,6 @@ modded class PlantBase
 		}
 	}
 	
-	
-	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-	// 
-	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 	override bool OnStoreLoad( ParamsReadContext ctx, int version )
 	{
 		if ( !super.OnStoreLoad( ctx, version ) )
@@ -339,11 +331,7 @@ modded class PlantBase
 		}
 		return true;
 	}
-	
-		
-	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-	// 
-	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
 	override void OnStoreSave( ParamsWriteContext ctx )
 	{
 		// call the inherited class
@@ -354,14 +342,9 @@ modded class PlantBase
 			ctx.Write( currentYield );
 		}
 	}
-	
-	
+
 	private bool harvestingSpamCheck = false;
 	
-	
-	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-	// 
-	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 	override void Harvest( PlayerBase player )
 	{
 		if(harvestingSpamCheck==false && m_HasCrops==true){
@@ -373,10 +356,10 @@ modded class PlantBase
 				item.SetQuantity( item.GetQuantityMax() );
 				string ItemName  = item.GetType();
                         
-                        if (ItemName.IndexOf("CP_") >= 0)
-				{
-				      //Print("[CP] harvested " + item);
-                        }      
+                    if (ItemName.IndexOf("CP_") >= 0)
+					{
+				    	//Print("[CP] harvested " + item);
+                    }      
 				
 				switch(ItemName){
 				      // cannabis skunk
@@ -472,9 +455,6 @@ modded class PlantBase
 		}	
 	}	
 	
-	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-	// 
-	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 	void clearSpamCheck(){
 		harvestingSpamCheck = false;
 	}	
