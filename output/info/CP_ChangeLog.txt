@@ -1,3 +1,23 @@
+v3.0.4
+Fixes
+- 1.27 compatibility (they changed the way growing states work).
+- Remove after harvest fix.
+
+Added
+- Translations
+
+Other
+- Code cleanup
+
+Known Issues
+- Can add raw plants to the Drying Post after drying process is started.
+- Have to look at the base of the plant to Harvest it.
+- Some sort of issue with not being able to water plants more than once per restart if server is using weather.cfg file.
+- Cigarettes are still despawning.
+- CP Pouch has some geometry issues.
+- Rope poofs if dragged into dry post inventory.
+- Rolling papers float if dropped on ground.
+
 v3.0.3
 Fixes
 - Fixed Linux servers compatibility issues.
