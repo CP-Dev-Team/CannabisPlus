@@ -79,7 +79,7 @@ class ActionUnpackCigaretteBox: ActionContinuousBase {
 	}
 	*/
 	override string GetText() {
-	string text = "cp_unpack";
+	string text = "#cp_unpack";
 	return text;
     }
 	
