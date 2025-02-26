@@ -253,7 +253,7 @@ class CP_DryPost extends ItemBase
 		}	
 	}
 
-	void FinishDrying()
+	void FinishDrying( PlayerBase player )
 	{
 		//Print("[CP] finished drying...");
 		NumItems = GetInventory().AttachmentCount();
@@ -336,10 +336,10 @@ class CP_DryPost extends ItemBase
 						break;
 			}			
 		}			
-		GetGame().GetCallQueue(CALL_CATEGORY_GAMEPLAY).CallLater(SpawnDried, 500, false);
+		GetGame().GetCallQueue(CALL_CATEGORY_GAMEPLAY).CallLater(SpawnDried, 500, false, player.GetPosition() );
 	}
 	
-	void SpawnDried() 
+	void SpawnDried( PlayerBase player ) 
 	{
 		if ( GetGame() && GetGame().IsServer() )
 		{
@@ -352,7 +352,7 @@ class CP_DryPost extends ItemBase
 				if (ItemName.IndexOf("CP_Raw") >= 0)
 		        {
 					// spawn plant material for now 
-					ItemBase plant = ItemBase.Cast(GetGame().CreateObjectEx("PlantMaterial",GetPlayer().GetPosition(),ECE_PLACE_ON_SURFACE));
+					ItemBase plant = ItemBase.Cast(GetGame().CreateObjectEx("PlantMaterial",player.GetPosition(),ECE_PLACE_ON_SURFACE));
 
 				}    
 			}
