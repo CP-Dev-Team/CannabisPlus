@@ -352,7 +352,7 @@ class CP_DryPost extends ItemBase
 				if (ItemName.IndexOf("CP_Raw") >= 0)
 		        {
 					// spawn plant material for now 
-					ItemBase plant = ItemBase.Cast(GetGame().CreateObjectEx("PlantMaterial",GetPosition(),ECE_PLACE_ON_SURFACE));
+					ItemBase plant = ItemBase.Cast(GetGame().CreateObjectEx("PlantMaterial",GetPlayer().GetPosition(),ECE_PLACE_ON_SURFACE));
 
 				}    
 			}
