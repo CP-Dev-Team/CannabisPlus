@@ -74,7 +74,6 @@ class CP_Workbench extends ItemBase
 	const string ATTACHMENT_SLOT_BRICKS 			= "CP_Cannabis_Bricks";
 	
 
-	int BatteryRequired;
 	int Workbench_Timer_Repeat;
 	//int BudsToBagsUsage = GetCPConfig().Buds_To_Bags_Required;
 	int BagsToBricksUsage; //GetCPConfig().Bags_To_Bricks_Required;	
@@ -134,7 +133,7 @@ class CP_Workbench extends ItemBase
 		
 		/*                     	   Whole # Config Options                         */
 		////////////////////////////////////////////////////////////////////////////
-		BatteryRequired = GetCPConfig().RequireBattery;
+		int BatteryRequired = GetCPConfig().RequireBattery;
 		Workbench_Timer_Repeat = GetCPConfig().Workbench_Processing_Time;
 		//int BudsToBagsUsage = GetCPConfig().Buds_To_Bags_Required;
 		BagsToBricksUsage = 16; //GetCPConfig().Bags_To_Bricks_Required;	
@@ -415,6 +414,8 @@ class CP_Workbench extends ItemBase
 	
 	void DoProcessing()
 	{
+		int BatteryRequired = GetCPConfig().RequireBattery;
+
 		//Print("BatteryRequired = " + BatteryRequired );
 		//Print("GetBattieries() = " + GetBattieries() );
 		if(BatteryRequired == 1)
@@ -493,7 +494,9 @@ class CP_Workbench extends ItemBase
         ItemBase CannabisBud = GetCannabisBud();
         ItemBase EmptyBags = GetEmptyBags();
         ItemBase Batteries = GetBattieries();
-        
+
+		int BatteryRequired = GetCPConfig().RequireBattery;
+
         if(!GetCannabisBud())
             return;
         
@@ -564,6 +567,8 @@ class CP_Workbench extends ItemBase
 		ItemBase CannabisBag = GetCannabisBags();
 		ItemBase PlasticWrap = GetPlasticRoll();
 		ItemBase Batteries = GetBattieries();
+
+		int BatteryRequired = GetCPConfig().RequireBattery;
 		
 		if(!GetCannabisBags())
 			return;
@@ -777,8 +782,10 @@ class CP_Workbench extends ItemBase
     };
 	
 	bool IsPowered()
-	{		
-		if(BatteryRequired == true && HasEnergyManager() && GetCompEM().IsWorking() )
+	{
+		int BatteryRequired = GetCPConfig().RequireBattery;
+
+		if(BatteryRequired == 1 && HasEnergyManager() && GetCompEM().IsWorking() )
 			return true;
 		
 		return false;
