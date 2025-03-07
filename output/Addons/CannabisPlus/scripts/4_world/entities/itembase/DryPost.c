@@ -11,9 +11,7 @@ class CP_DryPost extends ItemBase
 	string ItemName
 	string NewPlantName;
 	ref map<string, int> BudSpawn;
-	ItemBase attachment;
-	int i, j, k, p, dp
-	EntityAI target
+	EntityAI target;
 	protected float Lock;
 	
 	autoptr array<int> plant_slots = new array<int>;
@@ -102,7 +100,9 @@ class CP_DryPost extends ItemBase
 	override void EEItemAttached(EntityAI item, string slot_name)
 	{
 		super.EEItemAttached(item, slot_name);
-	        
+	    
+		int dp;
+
 		if (slot_name == "Rope")
 		{    				
 			SetAnimationPhase ("Rope", 0);  // Shows the rope on the model when rope is attached.
@@ -150,6 +150,8 @@ class CP_DryPost extends ItemBase
 		}
 		if(item.IsKindOf("CP_RawPlantBase") && !item.IsKindOf("CP_DriedCannabisPlant"))
 		{
+			int dp;
+
 			if(dp > 0)
 			{
 				dp--;
@@ -189,9 +191,9 @@ class CP_DryPost extends ItemBase
 	{
 		if (!m_IsLocked)	
 		{
-			for ( k = 0; k < GetInventory().AttachmentCount(); k++ )
+			for ( int k = 0; k < GetInventory().AttachmentCount(); k++ )
 			{
-				attachment = ItemBase.Cast( GetInventory().GetAttachmentFromIndex( k ) );
+				ItemBase attachment = ItemBase.Cast( GetInventory().GetAttachmentFromIndex( k ) );
 				ItemName  = attachment.GetType();
 				if (ItemName.IndexOf("CP_Raw") >= 0)
 				{
@@ -258,9 +260,9 @@ class CP_DryPost extends ItemBase
 		//Print("[CP] finished drying...");
 		NumItems = GetInventory().AttachmentCount();
 		LockDryingSlots(true);
-		for ( j = 0; j < NumItems; j++ )
+		for ( int j = 0; j < NumItems; j++ )
 		{
-			attachment = ItemBase.Cast( GetInventory().GetAttachmentFromIndex( j ) );
+			ItemBase attachment = ItemBase.Cast( GetInventory().GetAttachmentFromIndex( j ) );
 			ItemName  = attachment.GetType();
 			//code to cast and get the amount of bud to spawn before deleting
 			//plant                        Bud 
@@ -345,9 +347,9 @@ class CP_DryPost extends ItemBase
 		{
 			NumItems = GetInventory().AttachmentCount();
 			
-			for (i = 0; i < NumItems; i++ )
+			for ( int i = 0; i < NumItems; i++ )
 			{
-		        attachment = ItemBase.Cast( GetInventory().GetAttachmentFromIndex( i ) );
+		        ItemBase attachment = ItemBase.Cast( GetInventory().GetAttachmentFromIndex( i ) );
 		        ItemName = attachment.GetType();
 				if (ItemName.IndexOf("CP_Raw") >= 0)
 		        {
@@ -385,7 +387,7 @@ class CP_DryPost extends ItemBase
 			*/
 			//Print("[CP] The plant has " + BudSpawn.Count() + " items");
 			
-			for (j = 0; j < BudSpawn.Count(); j++)
+			for ( int j = 0; j < BudSpawn.Count(); j++)
 			{
 				string key = BudSpawn.GetKey(j);
 				//Print("[CP] plant[" + j + "] is " + key + " with quantity " + BudSpawn.Get(key));
@@ -395,7 +397,7 @@ class CP_DryPost extends ItemBase
 				int remainder = BudSpawn.Get(key) - (stacks * StackMax);
 				//Print("[CP] " + this + " spawning " + stacks + " stacks" );
 				//Print("[CP] " + this + " spawning " + remainder + " singles" );
-				for (k = 0; k <= stacks; k++)
+				for ( int k = 0; k <= stacks; k++)
 				{
 					CP_CannabisBud weed = CP_CannabisBud.Cast(this.GetInventory().CreateInInventory(key)); 					
 					if (stacks == 0)  //less than 1 stack, break out of for
@@ -423,9 +425,9 @@ class CP_DryPost extends ItemBase
 		if ( GetGame() && GetGame().IsServer() )
 		{
 			NumItems = GetInventory().AttachmentCount();
-			for ( i = 0; i < NumItems; ++i )
+			for ( int i = 0; i < NumItems; ++i )
 			{
-				attachment = ItemBase.Cast( GetInventory().GetAttachmentFromIndex( i ) );
+				ItemBase attachment = ItemBase.Cast( GetInventory().GetAttachmentFromIndex( i ) );
 				ItemName = attachment.GetType();
 	            	if (ItemName.IndexOf("CP_Raw") >= 0)
 		            {
