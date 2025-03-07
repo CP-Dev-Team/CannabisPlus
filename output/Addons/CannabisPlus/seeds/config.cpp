@@ -115,7 +115,7 @@ class CfgVehicles
 	{
 		scope=2;
 		displayName="#cp_s1_cannabis_seeds0";
-		descriptionShort="#cp_s1_cannabis_seeds1"
+		descriptionShort="#cp_s1_cannabis_seeds1";
 		model="\dz\gear\cultivation\cannabis_seeds.p3d";
 		canBeSplit=1;
 		varQuantityInit=20;
