@@ -19,7 +19,7 @@ modded class MissionGameplay extends MissionBase
 	}
 
 	/* RPC HANDLING OF CLIENT */ 
-	void CONFIGRESPONSE(CallType type, ref ParamsReadContext ctx, ref PlayerIdentity sender, ref Object target) {
+	void CONFIGRESPONSE(CallType type, ParamsReadContext ctx, PlayerIdentity sender, Object target) {
 
 		if(type == CallType.Client) 
 		{
