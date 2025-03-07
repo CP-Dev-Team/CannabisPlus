@@ -16,7 +16,7 @@ modded class MissionServer
 	}
 
 	/* RPC HANDLING SERVERSIDE */
-	void CLIENTCONFIGREQUEST(CallType type, ref ParamsReadContext ctx, ref PlayerIdentity sender, ref Object target) {
+	void CLIENTCONFIGREQUEST(CallType type, ParamsReadContext ctx, PlayerIdentity sender, Object target) {
 
 		if(type == CallType.Server) {
 			GetRPCManager().SendRPC("CP_scripts", "CONFIGRESPONSE", new Param1< ref CannabisPlusConfigManager >( m_currentcfg ), true, sender);
