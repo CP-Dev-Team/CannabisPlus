@@ -44,7 +44,7 @@ modded class PlantBase
 
 	void PlantBase()
 	{	
-		int currentYield = 1;
+		currentYield = 1;
 		m_InfestationChance 	= 0.0; // Temporarily disabled until its fixed. Infestation is not visualy persistent over server restarts and m_SpoiledRemoveTimer crashes when it's meant to delete the plant.		
 	}
 	
