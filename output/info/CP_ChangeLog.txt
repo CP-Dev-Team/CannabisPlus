@@ -1,3 +1,14 @@
+v3.0.6
+Fixes
+- Fixed variable name errors in script.log
+- Fixed strong reference errors in script.log
+- Updated German translations.
+- Fixed Cannabis S1 seeds not showing translations.
+- Fixed an issue with seed disappearing after planting.
+- Fixed an issue where the whole stack of bud or bags would be deleted if manually crafting out of the workbench.
+
+Note: The issue with plants not growing after a restart is a VANILLA bug.  It was been reported and should be fixed in the next patch.
+
 v3.0.5
 Fixes
 - Fixed a vector error that occurred when harvesting plants and drying.
