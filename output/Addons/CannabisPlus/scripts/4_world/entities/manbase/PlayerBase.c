@@ -39,15 +39,15 @@ modded class PlayerBase {
 	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 	void AddValueToCigaretteValue(int value) {
 		if (GetCPConfig()) {	
-			if(GetCPConfig().activateCigaretteSmokingEffect) {
+			if(GetCPConfig().GetGeneralConfig().activateCigaretteSmokingEffect) {
 				m_cigaretteValue += value;
 						
-				if(m_cigaretteValue >= GetCPConfig().cigaretteCyclesToActivateEffect){
+				if(m_cigaretteValue >= GetCPConfig().GetGeneralConfig().cigaretteCyclesToActivateEffect){
 					//Print("[CP] Smoking cigarrette effect" + GetDayZGame().GetCannabisPlusConfig().cigaretteCyclesToActivateEffect);
 					m_HasConsumedCigarette = true;
 					if (!swayTimer) { swayTimer = new Timer()};
 					swayTimer.Stop();
-					swayTimer.Run(GetCPConfig().smokingCigaretteEffectDuration, this, "ResetCigaretteValues", null, false);				
+					swayTimer.Run(GetCPConfig().GetGeneralConfig().smokingCigaretteEffectDuration, this, "ResetCigaretteValues", null, false);				
 				}
 			}
 		}		
@@ -57,18 +57,18 @@ modded class PlayerBase {
 	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 	void AddValueToJointValue(int value) {	
 		if (GetCPConfig()) {	
-			if(GetCPConfig().activateJointSmokingEffect) {
+			if(GetCPConfig().GetGeneralConfig().activateJointSmokingEffect) {
 				//Print("[CP] CannabisPlus: AddValueToJointValue");
 				m_jointValue += value;
 						
-				if((m_jointValue % GetCPConfig().jointCyclesToActivateEffect) == 0){	
+				if((m_jointValue % GetCPConfig().GetGeneralConfig().jointCyclesToActivateEffect) == 0){	
 					//Print("[CP] Smoking joint effect " + GetDayZGame().GetCannabisPlusConfig().jointCyclesToActivateEffect);
 					//Print("[CP] CannabisPlus: Starting Effect");			
 					m_HasConsumedJoint = true;
 					CannabisEffectsTriggered(m_jointValue);
 					if (!jointTimer) { jointTimer = new Timer()};
 					jointTimer.Stop();
-					jointTimer.Run(GetCPConfig().smokingJointEffectDuration, this, "ResetJointValues", null, false);				
+					jointTimer.Run(GetCPConfig().GetGeneralConfig().smokingJointEffectDuration, this, "ResetJointValues", null, false);				
 				}
 				SetSynchDirty();
 			}
@@ -99,7 +99,7 @@ modded class PlayerBase {
             float multiplier;
             int counter;			
                   
-            counter = cycles / GetCPConfig().jointCyclesToActivateEffect;
+            counter = cycles / GetCPConfig().GetGeneralConfig().jointCyclesToActivateEffect;
             multiplier = 1 + (0.25 * counter);
 
 
@@ -111,10 +111,10 @@ modded class PlayerBase {
                   //CameraEffects.changeRadBlurYEffect(0);
                   //CameraEffects.changeRotationBlurPower(0);
                   
-                  CameraEffects.changeHue(GetCPConfig().weedHueIntensity-counter);
-                  CameraEffects.changeRadBlurXEffect(GetCPConfig().weedRadBlurXPower*multiplier);
-                  CameraEffects.changeRadBlurYEffect(GetCPConfig().weedRadBlurYPower*multiplier);
-                  CameraEffects.changeRotationBlurPower(GetCPConfig().weedRotBlurPow*multiplier);
+                  CameraEffects.changeHue(GetCPConfig().GetGeneralConfig().weedHueIntensity-counter);
+                  CameraEffects.changeRadBlurXEffect(GetCPConfig().GetGeneralConfig().weedRadBlurXPower*multiplier);
+                  CameraEffects.changeRadBlurYEffect(GetCPConfig().GetGeneralConfig().weedRadBlurYPower*multiplier);
+                  CameraEffects.changeRotationBlurPower(GetCPConfig().GetGeneralConfig().weedRotBlurPow*multiplier);
             }	
             PlaySoundSet(m_TurnOn, SMOKE_SOUND, 0.0, 0.0);	
 

@@ -28,21 +28,21 @@ modded class SeedPackBase
 		int seeds_quantity_max;
 		int seeds_quantity;
 		// read seed count values from config file
-		m_tobaccoSeed_count 			=  GetCPConfig().tobaccoSeed_count;
-		m_cannabisSkunkSeed_count 		=  GetCPConfig().cannabisSkunkSeed_count;
-		m_cannabisBlueSeed_count 		=  GetCPConfig().cannabisBlueSeed_count;
-		m_cannabisKushSeed_count 		=  GetCPConfig().cannabisKushSeed_count;
-		m_cannabisStardawgSeed_count 	=  GetCPConfig().cannabisStardawgSeed_count;
+		m_tobaccoSeed_count 			=  GetCPConfig().GetGeneralConfig().tobaccoSeed_count;
+		m_cannabisSkunkSeed_count 		=  GetCPConfig().LoadStrain("CannabisSkunk").SeedCount;
+		m_cannabisBlueSeed_count 		=  GetCPConfig().LoadStrain("CannabisBlue").SeedCount;
+		m_cannabisKushSeed_count 		=  GetCPConfig().LoadStrain("CannabisKush").SeedCount;
+		m_cannabisStardawgSeed_count 	=  GetCPConfig().LoadStrain("CannabisStardawg").SeedCount;
 
-		m_cannabisFutureSeed_count 		=  GetCPConfig().cannabisFutureSeed_count;
-		m_cannabisS1Seed_count 			=  GetCPConfig().cannabisS1Seed_count;
-		m_cannabisNomadSeed_count 		=  GetCPConfig().cannabisNomadSeed_count;
-		m_cannabisBlackFrostSeed_count 	=  GetCPConfig().cannabisBlackFrostSeed_count;
+		m_cannabisFutureSeed_count 		=  GetCPConfig().LoadStrain("CannabisFuture").SeedCount;
+		m_cannabisS1Seed_count 			=  GetCPConfig().LoadStrain("CannabisS1").SeedCount;
+		m_cannabisNomadSeed_count 		=  GetCPConfig().LoadStrain("CannabisNomad").SeedCount;
+		m_cannabisBlackFrostSeed_count 	=  GetCPConfig().LoadStrain("CannabisBlackFrost").SeedCount;
 
-		m_pepperSeed_count 				=  GetCPConfig().pepperSeed_count;
-		m_tomatoSeed_count 				=  GetCPConfig().tomatoSeed_count;
-		m_zucchiniSeed_count 			=  GetCPConfig().zucchiniSeed_count;
-		m_pumpkinSeed_count 			=  GetCPConfig().pumpkinSeed_count;
+		m_pepperSeed_count 				=  GetCPConfig().GetGeneralConfig().pepperSeed_count;
+		m_tomatoSeed_count 				=  GetCPConfig().GetGeneralConfig().tomatoSeed_count;
+		m_zucchiniSeed_count 			=  GetCPConfig().GetGeneralConfig().zucchiniSeed_count;
+		m_pumpkinSeed_count 			=  GetCPConfig().GetGeneralConfig().pumpkinSeed_count;
 		// select the current seedpack
 		switch(this.GetType()) {
 			// Cannabis Skunk seedpack

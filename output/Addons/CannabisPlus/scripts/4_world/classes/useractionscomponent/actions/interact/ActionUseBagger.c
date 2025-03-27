@@ -15,11 +15,11 @@ class ActionCPUseBagger: ActionInteractBase
 
 	override bool ActionCondition( PlayerBase player, ActionTarget target, ItemBase item )
 	{
-		int BatteryRequired = GetCPConfig().RequireBattery;
-		float BatterPercentUsed = GetCPConfig().WorkBench_PowerUsed / 100;
-		//int BudsToBagsUsage = GetCPConfig().Buds_To_Bags_Required;
-		int BagsToBricksUsage = 16; //GetCPConfig().Bags_To_Bricks_Required;
-		float PlaticWrap_Percent = GetCPConfig().Plastic_Wrap_Usage;
+		int BatteryRequired = GetCPConfig().GetGeneralConfig().RequireBattery;
+		float BatterPercentUsed = GetCPConfig().GetGeneralConfig().WorkBench_PowerUsed / 100;
+		//int BudsToBagsUsage = GetCPConfig().GetGeneralConfig().Buds_To_Bags_Required;
+		int BagsToBricksUsage = 16; //GetCPConfig().GetGeneralConfig().Bags_To_Bricks_Required;
+		float PlaticWrap_Percent = GetCPConfig().GetGeneralConfig().Plastic_Wrap_Usage;
 		
 		EntityAI target_entity = EntityAI.Cast( target.GetObject() );
         Object target_object = target.GetObject();

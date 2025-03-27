@@ -54,39 +54,39 @@ modded class PlantBase
 		private bool IncreaseCrop = true;
 		
 		//reads settings from CannabisPlus.json
-		m_tabacco_growtime 				= GetCPConfig().tobacco_growtime;
-		m_cannabisSkunk_growtime 		= GetCPConfig().cannabisSkunk_growtime;
-		m_cannabisKush_growtime 		= GetCPConfig().cannabisKush_growtime;
-		m_cannabisBlue_growtime	 		= GetCPConfig().cannabisBlue_growtime;
-		m_cannabisStardawg_growtime		= GetCPConfig().cannabisStardawg_growtime;
-		m_cannabisFuture_growtime 		= GetCPConfig().cannabisFuture_growtime;
-		m_cannabisS1_growtime 			= GetCPConfig().cannabisS1_growtime;
-		m_cannabisNomad_growtime 		= GetCPConfig().cannabisNomad_growtime;
-		m_cannabisBlackFrost_growtime 	= GetCPConfig().cannabisBlackFrost_growtime;
+		m_tabacco_growtime 				= GetCPConfig().GetGeneralConfig().tobacco_growtime;
+		m_cannabisSkunk_growtime 		= GetCPConfig().LoadStrain("CannabisSkunk").growtime;
+		m_cannabisKush_growtime 		= GetCPConfig().LoadStrain("CannabisKush").growtime;
+		m_cannabisBlue_growtime	 		= GetCPConfig().LoadStrain("CannabisBlue").growtime;
+		m_cannabisStardawg_growtime		= GetCPConfig().LoadStrain("CannabisStardawg").growtime;
+		m_cannabisFuture_growtime 		= GetCPConfig().LoadStrain("CannabisFuture").growtime;
+		m_cannabisS1_growtime 			= GetCPConfig().LoadStrain("CannabisS1").growtime;
+		m_cannabisNomad_growtime 		= GetCPConfig().LoadStrain("CannabisNomad").growtime;
+		m_cannabisBlackFrost_growtime 	= GetCPConfig().LoadStrain("CannabisBlackFrost").growtime;
 
-		m_pepper_growtime 				= GetCPConfig().pepper_growtime;
-		m_tomato_growtime 				= GetCPConfig().tomato_growtime;
-		m_zucchini_growtime 			= GetCPConfig().zucchini_growtime;
-		m_pumpkin_growtime 				= GetCPConfig().pumpkin_growtime;
-		m_potato_growtime 				= GetCPConfig().potato_growtime;
+		m_pepper_growtime 				= GetCPConfig().GetGeneralConfig().pepper_growtime;
+		m_tomato_growtime 				= GetCPConfig().GetGeneralConfig().tomato_growtime;
+		m_zucchini_growtime 			= GetCPConfig().GetGeneralConfig().zucchini_growtime;
+		m_pumpkin_growtime 				= GetCPConfig().GetGeneralConfig().pumpkin_growtime;
+		m_potato_growtime 				= GetCPConfig().GetGeneralConfig().potato_growtime;
 	
-		m_tabacco_cropcount 			= GetCPConfig().tobacco_cropcount;
-		m_cannabisSkunk_cropcount 		= GetCPConfig().cannabisSkunk_cropcount;
-		m_cannabisKush_cropcount 		= GetCPConfig().cannabisKush_cropcount;
-		m_cannabisBlue_cropcount 		= GetCPConfig().cannabisBlue_cropcount;
-		m_cannabisStardawg_cropcount 	= GetCPConfig().cannabisStardawg_cropcount;
-		m_cannabisFuture_cropcount 		= GetCPConfig().cannabisFuture_cropcount;
-		m_cannabisS1_cropcount 			= GetCPConfig().cannabisS1_cropcount;
-		m_cannabisNomad_cropcount 		= GetCPConfig().cannabisNomad_cropcount;
-		m_cannabisBlackFrost_cropcount 	= GetCPConfig().cannabisBlackFrost_cropcount;
+		m_tabacco_cropcount 			= GetCPConfig().GetGeneralConfig().tobacco_cropcount;
+		m_cannabisSkunk_cropcount 		= GetCPConfig().LoadStrain("CannabisSkunk").cropcount;
+		m_cannabisKush_cropcount 		= GetCPConfig().LoadStrain("CannabisKush").cropcount;
+		m_cannabisBlue_cropcount 		= GetCPConfig().LoadStrain("CannabisBlue").cropcount;
+		m_cannabisStardawg_cropcount 	= GetCPConfig().LoadStrain("CannabisStardawg").cropcount;
+		m_cannabisFuture_cropcount 		= GetCPConfig().LoadStrain("CannabisFuture").cropcount;
+		m_cannabisS1_cropcount 			= GetCPConfig().LoadStrain("CannabisS1").cropcount;
+		m_cannabisNomad_cropcount 		= GetCPConfig().LoadStrain("CannabisNomad").cropcount;
+		m_cannabisBlackFrost_cropcount 	= GetCPConfig().LoadStrain("CannabisBlackFrost").cropcount;
 		
-		m_pepper_cropcount 				= GetCPConfig().pepper_cropcount;
-		m_tomato_cropcount 				= GetCPConfig().tomato_cropcount;
-		m_zucchini_cropcount 			= GetCPConfig().zucchini_cropcount;
-		m_pumpkin_cropcount 			= GetCPConfig().pumpkin_cropcount;
-		m_potato_cropcount 				= GetCPConfig().potato_cropcount;
+		m_pepper_cropcount 				= GetCPConfig().GetGeneralConfig().pepper_cropcount;
+		m_tomato_cropcount 				= GetCPConfig().GetGeneralConfig().tomato_cropcount;
+		m_zucchini_cropcount 			= GetCPConfig().GetGeneralConfig().zucchini_cropcount;
+		m_pumpkin_cropcount 			= GetCPConfig().GetGeneralConfig().pumpkin_cropcount;
+		m_potato_cropcount 				= GetCPConfig().GetGeneralConfig().potato_cropcount;
 
-		m_spoiltime						= GetCPConfig().spoiltime;
+		m_spoiltime						= GetCPConfig().GetGeneralConfig().spoiltime;
 
 		m_GardenBase = garden_base;
 		
