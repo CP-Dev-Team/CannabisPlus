@@ -21,7 +21,7 @@ class CfgMods
 		credits="IceBlade, bombjack, Gloser, Kuli, Dumpgrah";
 		author="IceBlade";
 		authorID="0";
-		version="3.1";
+		version="3.0";
 		extra=0;
 		type="Mod";
 		dependencies[]={"gui","Game","World","Mission"};
