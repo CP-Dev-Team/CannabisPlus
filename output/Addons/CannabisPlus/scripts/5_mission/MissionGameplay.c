@@ -48,9 +48,9 @@ modded class MissionGameplay extends MissionBase
             if (g_ClientCannabisPlusConfig)
             {
                 Print("[CP] General Config Loaded.");
-                Print("[CP] Workbench Power Used: " + g_ClientCannabisPlusConfig.WorkBench_PowerUsed);
-                Print("[CP] Plastic Wrap Usage: " + g_ClientCannabisPlusConfig.Plastic_Wrap_Usage);
-                Print("[CP] Workbench Processing Time: " + g_ClientCannabisPlusConfig.Workbench_Processing_Time);
+                Print("[CP] Workbench Power Used: " + g_ClientCannabisPlusConfig.WorkbenchSettings.PowerUsed);
+                Print("[CP] Plastic Wrap Usage: " + g_ClientCannabisPlusConfig.WorkbenchSettings.PlasticWrapUsage);
+                Print("[CP] Workbench Processing Time: " + g_ClientCannabisPlusConfig.WorkbenchSettings.ProcessingTime);
             }
 
             // Debug Print All Strain Configs

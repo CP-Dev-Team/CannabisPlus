@@ -39,22 +39,19 @@ class CannabisPlusConfigManager
 
 	// Weed Effects.
 	ref WeedEffectsConfig WeedEffects;
-	/*
-    float weedHueIntensity;
-    int weedRadBlurXPower;
-    int weedRadBlurYPower;
-    int weedRotBlurPow;
-	*/
 
 	int spoiltime;							// Time until fully matured plants will spoil.
 
     int cannabis_drytime;					// Time for raw plants to dry on drying post.
 
 	// Workbench
+	ref WorkbenchConfig WorkbenchSettings;
+	/*
 	bool   RequireBattery = 1; 
-	float  WorkBench_PowerUsed = 1;
-	float  Plastic_Wrap_Usage = 10;
-	int    Workbench_Processing_Time = 5;
+	float  PowerUsed = 1;
+	float  PlasticWrapUsage = 10;
+	int    ProcessingTime = 5;
+	*/
 	//int    Buds_To_Bags_Required = 2;
 	//int    Bags_To_Bricks_Required = 16;
 	
@@ -102,23 +99,17 @@ class CannabisPlusConfigManager
             jointCyclesToActivateEffect 	= 10;
 
 			WeedEffects = new WeedEffectsConfig();
-
-			/*	
-            weedHueIntensity 				= 58.0;
-            weedRadBlurXPower 				= 2;
-            weedRadBlurYPower 				= 2;
-            weedRotBlurPow 					= 10;
-			*/
+			WorkbenchSettings = new WorkbenchConfig();
 
             spoiltime						= 60;
 
             cannabis_drytime            	= 30;
 			
-			RequireBattery 					= 1; 
-			WorkBench_PowerUsed 			= 1;
-			Plastic_Wrap_Usage 				= 10;
-			Workbench_Processing_Time 		= 5;
-			//Buds_To_Bags_Required 		= 2;
+			/*RequireBattery 					= 1; 
+			PowerUsed 			= 1;
+			PlasticWrapUsage 				= 10;
+			ProcessingTime 		= 5;
+			*///Buds_To_Bags_Required 		= 2;
 			//Bags_To_Bricks_Required		= 16;
 		
 			//PlantPerBag					= 18;
@@ -260,5 +251,21 @@ class WeedEffectsConfig
         RadBlurXPower = radBlurX;
         RadBlurYPower = radBlurY;
         RotBlurPow = rotBlur;
+    }
+};
+
+class WorkbenchConfig
+{
+    int RequireBattery;
+    int PowerUsed;
+    int PlasticWrapUsage;
+    int ProcessingTime;
+    
+    void WorkbenchConfig(int reqBat = 1, int powerUsed = 1, int wrapUsage = 10, int processingTime = 5)
+    {
+        RequireBattery = reqBat;
+        PowerUsed = powerUsed;
+        PlasticWrapUsage = wrapUsage;
+        ProcessingTime = processingTime;
     }
 };
