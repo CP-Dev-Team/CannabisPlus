@@ -1,32 +1,71 @@
-
 modded class MissionGameplay extends MissionBase
 {
-	protected bool m_isModdedMissionInitialized = false;
+    protected bool m_isModdedMissionInitialized = false;
 
-	override void OnInit()
-	{
-		super.OnInit();
-		if(!m_isModdedMissionInitialized) {
-			GetRPCManager().AddRPC( "CP_scripts", "CONFIGRESPONSE", this, SingeplayerExecutionType.Client );
-			m_isModdedMissionInitialized = true;
-		}
-	}
+    override void OnInit()
+    {
+        super.OnInit();
 
-	override void OnMissionStart()
-	{
-		super.OnMissionStart();
-		GetRPCManager().SendRPC("CP_scripts", "CLIENTCONFIGREQUEST", null, true);//Sends the remote a request to get the config.
-	}
+        if (!m_isModdedMissionInitialized)
+        {
+            // Register the client-side RPC to receive config data
+            GetRPCManager().AddRPC("CP_scripts", "CONFIGRESPONSE", this, SingeplayerExecutionType.Client);
+            m_isModdedMissionInitialized = true;
+        }
+    }
 
-	/* RPC HANDLING OF CLIENT */ 
-	void CONFIGRESPONSE(CallType type, ParamsReadContext ctx, PlayerIdentity sender, Object target) {
+    override void OnMissionStart()
+    {
+        super.OnMissionStart();
 
-		if(type == CallType.Client) 
-		{
-			Param1 <ref CannabisPlusConfigManager> data;
-        	if ( !ctx.Read( data ) ) return;
-			g_ClientCannabisPlusConfig = data.param1; //Update our referenz in Gamemodule.
-			Print("[CP] Sucessfully recieved config from remote!");
-		}
-	}
+        // Request the general config and strain configs from the server
+        GetRPCManager().SendRPC("CP_scripts", "CLIENTCONFIGREQUEST", null, true);
+    }
+
+    /* Client-side RPC to receive the general config and strain configs */
+    void CONFIGRESPONSE(CallType type, ParamsReadContext ctx, PlayerIdentity sender, Object target)
+    {
+        if (type == CallType.Client)
+        {
+            Print("[CP] Receiving general config and strain configs from the server...");
+
+            // Expecting both general config and strain configs
+            Param2<ref CannabisPlusConfigManager, ref map<string, ref CannabisStrainConfig>> data;
+
+            if (!ctx.Read(data))
+            {
+                Print("[CP] ERROR: Failed to read RPC data.");
+                return;
+            }
+
+            // Update client-side config references
+            g_ClientCannabisPlusConfig = data.param1;  // General config
+            g_ClientCannabisStrainConfigs = data.param2;  // Strain configs
+
+            Print("[CP] Successfully received all configs from the server.");
+
+            // Debug Print General Config
+            if (g_ClientCannabisPlusConfig)
+            {
+                Print("[CP] General Config Loaded.");
+                Print("[CP] Workbench Power Used: " + g_ClientCannabisPlusConfig.WorkBench_PowerUsed);
+                Print("[CP] Plastic Wrap Usage: " + g_ClientCannabisPlusConfig.Plastic_Wrap_Usage);
+                Print("[CP] Workbench Processing Time: " + g_ClientCannabisPlusConfig.Workbench_Processing_Time);
+            }
+
+            // Debug Print All Strain Configs
+            if (g_ClientCannabisStrainConfigs && g_ClientCannabisStrainConfigs.Count() > 0)
+            {
+                Print("[CP] Strain Configs Loaded: " + g_ClientCannabisStrainConfigs.Count());
+                foreach (string strainName, CannabisStrainConfig strainConfig : g_ClientCannabisStrainConfigs)
+                {
+                    Print("[CP] Strain: " + strainName + " | GrowTime: " + strainConfig.GrowTime + " | CropCount: " + strainConfig.CropCount + " | SeedCount: " + strainConfig.SeedCount);
+                }
+            }
+            else
+            {
+                Print("[CP] WARNING: No strain configs received.");
+            }
+        }
+    }
 }

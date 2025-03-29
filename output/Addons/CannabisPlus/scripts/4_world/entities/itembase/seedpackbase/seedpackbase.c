@@ -1,20 +1,22 @@
 modded class SeedPackBase
 {	
-	private int m_tobaccoSeed_count;		
-	private int m_cannabisSkunkSeed_count;	
-	private int m_cannabisBlueSeed_count;	
-	private int m_cannabisKushSeed_count;	
-	private int m_cannabisStardawgSeed_count;	
+	private int m_SeedCount;
 
+	private int m_tobaccoSeed_count;
+	/*
+	private int m_cannabisSkunkSeed_count;
+	private int m_cannabisBlueSeed_count;
+	private int m_cannabisKushSeed_count;
+	private int m_cannabisStardawgSeed_count;
 	private int m_cannabisFutureSeed_count;
 	private int m_cannabisS1Seed_count;
 	private int m_cannabisNomadSeed_count;
 	private int m_cannabisBlackFrostSeed_count;
-
-	private int m_pepperSeed_count;			
-	private int m_tomatoSeed_count;			
-	private int m_zucchiniSeed_count;		
-	private int m_pumpkinSeed_count;		
+	*/
+	private int m_pepperSeed_count;
+	private int m_tomatoSeed_count;
+	private int m_zucchiniSeed_count;
+	private int m_pumpkinSeed_count;
 	
 	override void EmptySeedPack( PlayerBase player )
 	{
@@ -27,17 +29,44 @@ modded class SeedPackBase
 		//int seeds_quantity_max = GetGame().ConfigGetInt( "cfgVehicles " + pack_type + " Horticulture ContainsSeedsQuantity" );
 		int seeds_quantity_max;
 		int seeds_quantity;
+
 		// read seed count values from config file
 		m_tobaccoSeed_count 			=  GetCPConfig().tobaccoSeed_count;
+		/*
 		m_cannabisSkunkSeed_count 		=  GetCPConfig().cannabisSkunkSeed_count;
 		m_cannabisBlueSeed_count 		=  GetCPConfig().cannabisBlueSeed_count;
 		m_cannabisKushSeed_count 		=  GetCPConfig().cannabisKushSeed_count;
 		m_cannabisStardawgSeed_count 	=  GetCPConfig().cannabisStardawgSeed_count;
-
 		m_cannabisFutureSeed_count 		=  GetCPConfig().cannabisFutureSeed_count;
 		m_cannabisS1Seed_count 			=  GetCPConfig().cannabisS1Seed_count;
 		m_cannabisNomadSeed_count 		=  GetCPConfig().cannabisNomadSeed_count;
 		m_cannabisBlackFrostSeed_count 	=  GetCPConfig().cannabisBlackFrostSeed_count;
+		*/
+
+		string packType = this.GetType();
+		string strainName;
+		
+		if (packType.Contains("CP_CannabisSeedsPack"))
+		{
+			strainName = packType.Substring(20, packType.Length() - 20); // Extracts the name after "CP_Plant_"
+			
+			if (g_CannabisStrainConfigs.Contains(strainName))
+			{
+				// Load the config from the map
+				CannabisStrainConfig config = g_CannabisStrainConfigs.Get(strainName);
+				m_SeedCount = config.SeedCount;
+
+				Print("[CP] Loaded strain config for: " + strainName + " | SeedCount: " + m_SeedCount );
+			}
+			else
+			{
+				Print("[CP] Warning: Strain config for '" + strainName + "' not found. Using default values.");
+			}
+		}
+		else
+		{
+			Print("[CP] Not a CannabisPlus seed type: " + packType);
+		}
 
 		m_pepperSeed_count 				=  GetCPConfig().pepperSeed_count;
 		m_tomatoSeed_count 				=  GetCPConfig().tomatoSeed_count;
@@ -46,7 +75,7 @@ modded class SeedPackBase
 		// select the current seedpack
 		switch(this.GetType()) {
 			// Cannabis Skunk seedpack
-			case "CP_CannabisSeedsPackSkunk":
+		/*	case "CP_CannabisSeedsPackSkunk":
 				seeds_quantity_max = m_cannabisSkunkSeed_count;
 				break;
 			// Cannabis Blue seedpack
@@ -81,15 +110,11 @@ modded class SeedPackBase
 			case "CP_CannabisSeedsPackBlackFrost":
 				seeds_quantity_max = m_cannabisBlackFrostSeed_count;
 				break;
-
+		*/
 			// Tobacco seedpack
 			case "CP_TobaccoSeedsPack":
 				seeds_quantity_max = m_tobaccoSeed_count;
 				break;
-			// deprecated
-			case "TobaccoSeedsPack":
-				seeds_quantity_max = m_tobaccoSeed_count;
-				break;	
 			// Pepper seedpack
 			case "PepperSeedsPack":
 				seeds_quantity_max = m_pepperSeed_count;

@@ -8,38 +8,6 @@ class CannabisPlusConfigManager
 	int tobacco_cropcount;
 	int tobaccoSeed_count;
 	
-	int cannabisSkunk_growtime;
-	int cannabisSkunk_cropcount;
-	int cannabisSkunkSeed_count;
-	
-	int cannabisKush_growtime;
-	int cannabisKush_cropcount;
-	int cannabisKushSeed_count;
-	
-	int cannabisBlue_growtime;
-	int cannabisBlue_cropcount;
-	int cannabisBlueSeed_count;
-
-	int cannabisStardawg_growtime;
-	int cannabisStardawg_cropcount;
-	int cannabisStardawgSeed_count;
-
-	int cannabisFuture_growtime;
-	int cannabisFuture_cropcount;
-	int cannabisFutureSeed_count;
-
-	int cannabisS1_growtime;
-	int cannabisS1_cropcount;
-	int cannabisS1Seed_count;
-
-	int cannabisNomad_growtime;
-	int cannabisNomad_cropcount;
-	int cannabisNomadSeed_count;
-
-	int cannabisBlackFrost_growtime;
-	int cannabisBlackFrost_cropcount;
-	int cannabisBlackFrostSeed_count;
-	
 	int pepper_growtime;
 	int pepper_cropcount;
 	int pepperSeed_count;
@@ -70,10 +38,13 @@ class CannabisPlusConfigManager
 	int jointCyclesToActivateEffect;		// number of cigarettes consumed to activate the effect
 
 	// Weed Effects.
+	ref WeedEffectsConfig WeedEffects;
+	/*
     float weedHueIntensity;
     int weedRadBlurXPower;
     int weedRadBlurYPower;
     int weedRotBlurPow;
+	*/
 
 	int spoiltime;							// Time until fully matured plants will spoil.
 
@@ -108,38 +79,6 @@ class CannabisPlusConfigManager
             tobacco_cropcount 				= 2;
             tobaccoSeed_count 				= 9;
 
-            cannabisSkunk_growtime 			= 8;
-            cannabisSkunk_cropcount 		= 2;
-            cannabisSkunkSeed_count 		= 9;	
-
-            cannabisKush_growtime 			= 8;
-            cannabisKush_cropcount 			= 2;
-            cannabisKushSeed_count 			= 9;	
-
-            cannabisBlue_growtime 			= 8;
-            cannabisBlue_cropcount 			= 2;
-            cannabisBlueSeed_count 			= 9;	
-
-            cannabisStardawg_growtime 		= 8;
-            cannabisStardawg_cropcount 		= 2;
-            cannabisStardawgSeed_count 		= 9;
-
-            cannabisFuture_growtime 		= 8;
-            cannabisFuture_cropcount 		= 2;
-            cannabisFutureSeed_count 		= 9;		
-
-            cannabisS1_growtime 			= 8;
-            cannabisS1_cropcount 			= 2;
-            cannabisS1Seed_count 			= 9;
-
-            cannabisNomad_growtime 			= 8;
-            cannabisNomad_cropcount 		= 2;
-            cannabisNomadSeed_count 		= 9;
-
-            cannabisBlackFrost_growtime 	= 8;
-            cannabisBlackFrost_cropcount 	= 2;
-            cannabisBlackFrostSeed_count 	= 9;
-
             pepper_growtime 				= 8;
             pepper_cropcount 				= 2;
             pepperSeed_count 				= 9;		
@@ -160,11 +99,16 @@ class CannabisPlusConfigManager
             cigaretteCyclesToActivateEffect = 8;
             activateJointSmokingEffect 		= true;
             smokingJointEffectDuration 		= 360;
-            jointCyclesToActivateEffect 	= 10;	
+            jointCyclesToActivateEffect 	= 10;
+
+			WeedEffects = new WeedEffectsConfig();
+
+			/*	
             weedHueIntensity 				= 58.0;
             weedRadBlurXPower 				= 2;
             weedRadBlurYPower 				= 2;
             weedRotBlurPow 					= 10;
+			*/
 
             spoiltime						= 60;
 
@@ -243,18 +187,78 @@ class CannabisPlusConfigManager
       }
 };
 
-/* Global Getter for config */
+/* Global Getter for Config */
 static ref CannabisPlusConfigManager g_CannabisPlusConfig;
 static ref CannabisPlusConfigManager g_ClientCannabisPlusConfig;
+static ref map<string, ref CannabisStrainConfig> g_ClientCannabisStrainConfigs = new map<string, ref CannabisStrainConfig>();
+static ref map<string, ref CannabisStrainConfig> g_CannabisStrainConfigs = new map<string, ref CannabisStrainConfig>();
+
 static CannabisPlusConfigManager GetCPConfig()
 {
-      if (g_Game.IsServer() && !g_CannabisPlusConfig) 
-      {
-            g_CannabisPlusConfig = CannabisPlusConfigManager.LoadConfig();
-      }
-            else if(g_Game.IsClient())
-            {
-                  return g_ClientCannabisPlusConfig; //GetsFilled on mission start with an RPC.
-            }
-      return g_CannabisPlusConfig;
+    if (g_Game.IsServer() && !g_CannabisPlusConfig) 
+    {
+        g_CannabisPlusConfig = CannabisPlusConfigManager.LoadConfig();
+    }
+    else if (g_Game.IsClient())
+    {
+        return g_ClientCannabisPlusConfig; // Gets filled on mission start with an RPC.
+    }
+    return g_CannabisPlusConfig;
+}
+
+/* Utility Function to Retrieve Strain Configs */
+static CannabisStrainConfig GetStrainConfigByType(EntityAI item)
+{
+    if (!item)
+    {
+        Print("[CP] Error: Null item passed to GetStrainConfigByType.");
+        return new CannabisStrainConfig(); // Return default if something goes wrong
+    }
+
+    string strainName = item.GetType(); // Get the class name of the item
+
+    // Check server-side map
+    if (g_Game.IsServer())
+    {
+        if (g_CannabisStrainConfigs.Contains(strainName))
+        {
+            return g_CannabisStrainConfigs.Get(strainName);
+        }
+        else
+        {
+            Print("[CP] Warning: Server could not find strain '" + strainName + "'. Using default values.");
+            return new CannabisStrainConfig();
+        }
+    }
+    // Check client-side map
+    else if (g_Game.IsClient())
+    {
+        if (g_ClientCannabisStrainConfigs.Contains(strainName))
+        {
+            return g_ClientCannabisStrainConfigs.Get(strainName);
+        }
+        else
+        {
+            Print("[CP] Warning: Client could not find strain '" + strainName + "'. Using default values.");
+            return new CannabisStrainConfig();
+        }
+    }
+    
+    return new CannabisStrainConfig();
+}
+
+class WeedEffectsConfig
+{
+    float HueIntensity;
+    int RadBlurXPower;
+    int RadBlurYPower;
+    int RotBlurPow;
+    
+    void WeedEffectsConfig(float hueIntensity = 58.0, int radBlurX = 2, int radBlurY = 2, int rotBlur = 10)
+    {
+        HueIntensity = hueIntensity;
+        RadBlurXPower = radBlurX;
+        RadBlurYPower = radBlurY;
+        RotBlurPow = rotBlur;
+    }
 };

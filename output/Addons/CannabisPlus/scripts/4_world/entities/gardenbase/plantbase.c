@@ -1,16 +1,8 @@
 modded class PlantBase
 {	
-	private int m_growtime;
+	private int m_GrowTime;
 	
-	private int m_tabacco_growtime;
-	private int m_cannabisSkunk_growtime; 
-	private int m_cannabisKush_growtime;
-	private int m_cannabisBlue_growtime;
-	private int m_cannabisStardawg_growtime;
-	private int m_cannabisFuture_growtime;
-	private int m_cannabisS1_growtime;
-	private int m_cannabisNomad_growtime;
-	private int m_cannabisBlackFrost_growtime;
+	private int m_tobacco_growtime;
 
 	private int m_pepper_growtime;
 	private int m_tomato_growtime;
@@ -18,7 +10,7 @@ modded class PlantBase
 	private int m_pumpkin_growtime;
 	private int m_potato_growtime;
 	
-	private int m_tabacco_cropcount;
+	private int m_tobacco_cropcount;
 	private int m_cannabisSkunk_cropcount;
 	private int m_cannabisKush_cropcount;
 	private int m_cannabisBlue_cropcount;
@@ -48,232 +40,136 @@ modded class PlantBase
 		m_InfestationChance 	= 0.0; // Temporarily disabled until its fixed. Infestation is not visualy persistent over server restarts and m_SpoiledRemoveTimer crashes when it's meant to delete the plant.		
 	}
 	
-	override void Init( GardenBase garden_base, float fertility, float harvesting_efficiency, float water)
-	{	
+	override void Init(GardenBase garden_base, float fertility, float harvesting_efficiency, float water)
+	{   
 		private bool isFertilized = false;
 		private bool IncreaseCrop = true;
-		
-		//reads settings from CannabisPlus.json
-		m_tabacco_growtime 				= GetCPConfig().tobacco_growtime;
-		m_cannabisSkunk_growtime 		= GetCPConfig().cannabisSkunk_growtime;
-		m_cannabisKush_growtime 		= GetCPConfig().cannabisKush_growtime;
-		m_cannabisBlue_growtime	 		= GetCPConfig().cannabisBlue_growtime;
-		m_cannabisStardawg_growtime		= GetCPConfig().cannabisStardawg_growtime;
-		m_cannabisFuture_growtime 		= GetCPConfig().cannabisFuture_growtime;
-		m_cannabisS1_growtime 			= GetCPConfig().cannabisS1_growtime;
-		m_cannabisNomad_growtime 		= GetCPConfig().cannabisNomad_growtime;
-		m_cannabisBlackFrost_growtime 	= GetCPConfig().cannabisBlackFrost_growtime;
-
-		m_pepper_growtime 				= GetCPConfig().pepper_growtime;
-		m_tomato_growtime 				= GetCPConfig().tomato_growtime;
-		m_zucchini_growtime 			= GetCPConfig().zucchini_growtime;
-		m_pumpkin_growtime 				= GetCPConfig().pumpkin_growtime;
-		m_potato_growtime 				= GetCPConfig().potato_growtime;
-	
-		m_tabacco_cropcount 			= GetCPConfig().tobacco_cropcount;
-		m_cannabisSkunk_cropcount 		= GetCPConfig().cannabisSkunk_cropcount;
-		m_cannabisKush_cropcount 		= GetCPConfig().cannabisKush_cropcount;
-		m_cannabisBlue_cropcount 		= GetCPConfig().cannabisBlue_cropcount;
-		m_cannabisStardawg_cropcount 	= GetCPConfig().cannabisStardawg_cropcount;
-		m_cannabisFuture_cropcount 		= GetCPConfig().cannabisFuture_cropcount;
-		m_cannabisS1_cropcount 			= GetCPConfig().cannabisS1_cropcount;
-		m_cannabisNomad_cropcount 		= GetCPConfig().cannabisNomad_cropcount;
-		m_cannabisBlackFrost_cropcount 	= GetCPConfig().cannabisBlackFrost_cropcount;
-		
-		m_pepper_cropcount 				= GetCPConfig().pepper_cropcount;
-		m_tomato_cropcount 				= GetCPConfig().tomato_cropcount;
-		m_zucchini_cropcount 			= GetCPConfig().zucchini_cropcount;
-		m_pumpkin_cropcount 			= GetCPConfig().pumpkin_cropcount;
-		m_potato_cropcount 				= GetCPConfig().potato_cropcount;
-
-		m_spoiltime						= GetCPConfig().spoiltime;
 
 		m_GardenBase = garden_base;
+		m_FullMaturityTime = 0;
+
+		string plantType = this.GetType();
+		string strainName;
 		
-		// set fertility from default 1 to 2 if fertility larger then 1 to double income
-		if(fertility > 1.0) {
-			isFertilized = true;
-		}		
-		
-		//sets growtime and cropcount out of CannabisPlus.json
-		switch(this.GetType()){
-		    // cannabis skunk
-			case "CP_Plant_CannabisSkunk":
-				m_PlantMaterialMultiplier = 0;
-				m_growtime = m_cannabisSkunk_growtime;
-				currentYield = m_cannabisSkunk_cropcount;
-				m_CropsCount = 1;
-				IncreaseCrop = false;
-				break;
+		if (plantType.Contains("CP_Plant_"))
+		{
+			strainName = plantType.Substring(9, plantType.Length() - 9); // Extracts the name after "CP_Plant_"
 			
-			// cannabis blue
-			case "CP_Plant_CannabisBlue":
-				m_PlantMaterialMultiplier = 0;
-				m_growtime = m_cannabisBlue_growtime;
-				currentYield = m_cannabisBlue_cropcount;
-				m_CropsCount = 1;
+			if (g_CannabisStrainConfigs.Contains(strainName))
+			{
+				// Load the config from the map
+				CannabisStrainConfig config = g_CannabisStrainConfigs.Get(strainName);
+				m_GrowTime = config.GrowTime;
+				currentYield = config.CropCount;
+				m_CropsCount = 1;  // Default crop count unless modified
 				IncreaseCrop = false;
-				break;
-			
-			// cannabis kush
-			case "CP_Plant_CannabisKush":
-				m_PlantMaterialMultiplier = 0;
-				m_growtime = m_cannabisKush_growtime;
-				currentYield = m_cannabisKush_cropcount;
-				m_CropsCount = 1;
-				IncreaseCrop = false;
-				break;
 
-			// cannabis Stardawg
-			case "CP_Plant_CannabisStardawg":
-				m_PlantMaterialMultiplier = 0;
-				m_growtime = m_cannabisStardawg_growtime;
-				currentYield = m_cannabisStardawg_cropcount;
-				m_CropsCount = 1;
-				IncreaseCrop = false;
-				break;
+				Print("[CP] Loaded strain config for: " + strainName + " | GrowTime: " + m_GrowTime + " | CropCount: " + currentYield);
+			}
+			else
+			{
+				Print("[CP] Warning: Strain config for '" + strainName + "' not found. Using default values.");
+			}
+		}
+		else
+		{
+			Print("[CP] Not a CannabisPlus plant type: " + plantType);
+		}
 
-			// cannabis Future
-			case "CP_Plant_CannabisFuture":
-				m_PlantMaterialMultiplier = 0;
-				m_growtime = m_cannabisFuture_growtime;
-				currentYield = m_cannabisFuture_cropcount;
-				m_CropsCount = 1;
-				IncreaseCrop = false;
-				break;
-
-			// cannabis S1
-			case "CP_Plant_CannabisS1":
-				m_PlantMaterialMultiplier = 0;
-				m_growtime = m_cannabisS1_growtime;
-				currentYield = m_cannabisS1_cropcount;
-				m_CropsCount = 1;
-				IncreaseCrop = false;
-				break;
-
-			// cannabis Nomad
-			case "CP_Plant_CannabisNomad":
-				m_PlantMaterialMultiplier = 0;
-				m_growtime = m_cannabisNomad_growtime;
-				currentYield = m_cannabisNomad_cropcount;
-				m_CropsCount = 1;
-				IncreaseCrop = false;
-				break;
-
-			// cannabis BlackFrost
-			case "CP_Plant_CannabisBlackFrost":
-				m_PlantMaterialMultiplier = 0;
-				m_growtime = m_cannabisBlackFrost_growtime;
-				currentYield = m_cannabisBlackFrost_cropcount;
-				m_CropsCount = 1;
-				IncreaseCrop = false;
-				break;
-		
-			// tobacco
+		// Non-CannabisPlus plants
+		switch (plantType)
+		{
 			case "CP_Plant_Tobacco":
 				m_PlantMaterialMultiplier = 0.1 * harvesting_efficiency;
-				m_growtime = m_tabacco_growtime;
-				m_CropsCount = m_tabacco_cropcount;
+				m_GrowTime = GetCPConfig().tobacco_growtime;
+				m_CropsCount = GetCPConfig().tobacco_cropcount;
 				currentYield = 1;
 				break;
-			
-			// deprecated
-			case "Plant_Tobacco":
-				m_PlantMaterialMultiplier = 0.1 * harvesting_efficiency;
-				m_growtime = m_tabacco_growtime;
-				m_CropsCount = m_tabacco_cropcount;
-				currentYield = 1;
-				break;	
-			
-			// pepper 
+						
 			case "Plant_Pepper":
 				m_PlantMaterialMultiplier = 0.1 * harvesting_efficiency;
-				m_growtime = m_pepper_growtime;
-				m_CropsCount = m_pepper_cropcount;
+				m_GrowTime = GetCPConfig().pepper_growtime;
+				m_CropsCount = GetCPConfig().pepper_cropcount;
 				currentYield = 1;
 				break;
 			
-			// tomato
 			case "Plant_Tomato":
 				m_PlantMaterialMultiplier = 0.1 * harvesting_efficiency;
-				m_growtime = m_tomato_growtime;
-				m_CropsCount = m_tomato_cropcount;
+				m_GrowTime = GetCPConfig().tomato_growtime;
+				m_CropsCount = GetCPConfig().tomato_cropcount;
 				currentYield = 1;
 				break;
 			
-			// zucchini
 			case "Plant_Zucchini":
 				m_PlantMaterialMultiplier = 0.1 * harvesting_efficiency;
-				m_growtime = m_zucchini_growtime;
-				m_CropsCount = m_zucchini_cropcount;
+				m_GrowTime = GetCPConfig().zucchini_growtime;
+				m_CropsCount = GetCPConfig().zucchini_cropcount;
 				currentYield = 1;
 				break;
 			
-			// pumpkin
 			case "Plant_Pumpkin":
 				m_PlantMaterialMultiplier = 0.1 * harvesting_efficiency;
-				m_growtime = m_pumpkin_growtime;
-				m_CropsCount = m_pumpkin_cropcount;
+				m_GrowTime = GetCPConfig().pumpkin_growtime;
+				m_CropsCount = GetCPConfig().pumpkin_cropcount;
 				currentYield = 1;
 				break;
 			
-			// potato
 			case "Plant_Potato":
 				m_PlantMaterialMultiplier = 0.1 * harvesting_efficiency;
-				m_growtime = m_potato_growtime;
-				m_CropsCount = m_potato_cropcount;
+				m_GrowTime = GetCPConfig().potato_growtime;
+				m_CropsCount = GetCPConfig().potato_cropcount;
 				currentYield = 1;
 				break;
 			
-			//not a CP plant, exit function to avoid messing up other plants
 			default:
-                super.Init( garden_base, fertility, harvesting_efficiency, water);
+				super.Init(garden_base, fertility, harvesting_efficiency, water);
 				return;
 		}
 
-		// if the plant is fertilized reduce time that the plant is full-grown
-		if(isFertilized) {
-			m_FullMaturityTime = (float) ((48 * m_growtime) + Math.RandomInt(0, 30)) / fertility; 
-		} else {
-			m_FullMaturityTime = (float) ((48 * m_growtime) + Math.RandomInt(0, 30)); 
+		if (fertility > 1.0)
+		{
+			isFertilized = true;
 		}
 
-	//	m_SpoilAfterFullMaturityTime 	= (float) ((60 * 30) + Math.RandomInt(0, 60 * 30)) * fertility;		
-		m_SpoilAfterFullMaturityTime 	= m_spoiltime * 60;
+		if (isFertilized)
+		{
+			m_FullMaturityTime = (float)((48 * m_GrowTime) + Math.RandomInt(0, 30)) / fertility;
+		}
+		else
+		{
+			m_FullMaturityTime = (float)((48 * m_GrowTime) + Math.RandomInt(0, 30));
+		}
 
-		m_StateChangeTime 				= (float) ((float)m_FullMaturityTime / ((float)m_GrowthStagesCount - 2.0));
+		m_SpoilAfterFullMaturityTime = GetCPConfig().spoiltime * 60;
+		m_StateChangeTime = (float)((float)m_FullMaturityTime / ((float)m_GrowthStagesCount - 2.0));
 
-		// if the plant is fertilized double the cropcount
-		if(isFertilized) {
+		if (isFertilized)
+		{
 			if (IncreaseCrop)
 			{
 				m_CropsCount = m_CropsCount * harvesting_efficiency * 2;
-			}	
+			}
 			currentYield = currentYield * harvesting_efficiency * 2;
-		} else {
+		}
+		else
+		{
 			m_CropsCount = m_CropsCount * harvesting_efficiency;
 			currentYield = currentYield * harvesting_efficiency;
 		}
-		
-		//moved up so that cannabis plants dont spawn it
-		//m_PlantMaterialMultiplier 		= 0.1 * harvesting_efficiency;
-		//m_PlantMaterialMultiplier 		= 0;
-		
+
 		float rain_intensity = GetGame().GetWeather().GetRain().GetActual();
-		
-		if (m_PlantState < EPlantState.MATURE  &&  !NeedsWater())		
+
+		if (m_PlantState < EPlantState.MATURE && !NeedsWater())
 		{
 			SetPlantState(EPlantState.GROWING);
-			GrowthTimerTick(); // first tick happens straight away
+			GrowthTimerTick(); 
 		}
 		
-		if (rain_intensity <= 0.0)
-		{		
-			if (NeedsWater())
-				SetPlantState(EPlantState.PAUSED);
+		if (rain_intensity <= 0.0 && NeedsWater())
+		{
+			SetPlantState(EPlantState.PAUSED);
 		}
-	}
-	
+	}	
 	override bool OnStoreLoad( ParamsReadContext ctx, int version )
 	{
 		if ( !super.OnStoreLoad( ctx, version ) )

@@ -111,10 +111,10 @@ modded class PlayerBase {
                   //CameraEffects.changeRadBlurYEffect(0);
                   //CameraEffects.changeRotationBlurPower(0);
                   
-                  CameraEffects.changeHue(GetCPConfig().weedHueIntensity-counter);
-                  CameraEffects.changeRadBlurXEffect(GetCPConfig().weedRadBlurXPower*multiplier);
-                  CameraEffects.changeRadBlurYEffect(GetCPConfig().weedRadBlurYPower*multiplier);
-                  CameraEffects.changeRotationBlurPower(GetCPConfig().weedRotBlurPow*multiplier);
+                  CameraEffects.changeHue(GetCPConfig().WeedEffects.HueIntensity-counter);
+                  CameraEffects.changeRadBlurXEffect(GetCPConfig().WeedEffects.RadBlurXPower*multiplier);
+                  CameraEffects.changeRadBlurYEffect(GetCPConfig().WeedEffects.RadBlurYPower*multiplier);
+                  CameraEffects.changeRotationBlurPower(GetCPConfig().WeedEffects.RotBlurPow*multiplier);
             }	
             PlaySoundSet(m_TurnOn, SMOKE_SOUND, 0.0, 0.0);	
 
