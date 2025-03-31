@@ -3,16 +3,7 @@ modded class SeedPackBase
 	private int m_SeedCount;
 
 	private int m_tobaccoSeed_count;
-	/*
-	private int m_cannabisSkunkSeed_count;
-	private int m_cannabisBlueSeed_count;
-	private int m_cannabisKushSeed_count;
-	private int m_cannabisStardawgSeed_count;
-	private int m_cannabisFutureSeed_count;
-	private int m_cannabisS1Seed_count;
-	private int m_cannabisNomadSeed_count;
-	private int m_cannabisBlackFrostSeed_count;
-	*/
+
 	private int m_pepperSeed_count;
 	private int m_tomatoSeed_count;
 	private int m_zucchiniSeed_count;
@@ -32,29 +23,20 @@ modded class SeedPackBase
 
 		// read seed count values from config file
 		m_tobaccoSeed_count 			=  GetCPConfig().tobaccoSeed_count;
-		/*
-		m_cannabisSkunkSeed_count 		=  GetCPConfig().cannabisSkunkSeed_count;
-		m_cannabisBlueSeed_count 		=  GetCPConfig().cannabisBlueSeed_count;
-		m_cannabisKushSeed_count 		=  GetCPConfig().cannabisKushSeed_count;
-		m_cannabisStardawgSeed_count 	=  GetCPConfig().cannabisStardawgSeed_count;
-		m_cannabisFutureSeed_count 		=  GetCPConfig().cannabisFutureSeed_count;
-		m_cannabisS1Seed_count 			=  GetCPConfig().cannabisS1Seed_count;
-		m_cannabisNomadSeed_count 		=  GetCPConfig().cannabisNomadSeed_count;
-		m_cannabisBlackFrostSeed_count 	=  GetCPConfig().cannabisBlackFrostSeed_count;
-		*/
 
 		string packType = this.GetType();
 		string strainName;
 		
 		if (packType.Contains("CP_CannabisSeedsPack"))
 		{
-			strainName = packType.Substring(20, packType.Length() - 20); // Extracts the name after "CP_Plant_"
-			
+			strainName = "Cannabis" + packType.Substring(20, packType.Length() - 20); // Extracts the name after "CP_CannabisSeedsPack"
+
 			if (g_CannabisStrainConfigs.Contains(strainName))
 			{
 				// Load the config from the map
 				CannabisStrainConfig config = g_CannabisStrainConfigs.Get(strainName);
 				m_SeedCount = config.SeedCount;
+				seeds_quantity_max = m_SeedCount; //Can simplify later but just passing variables so OG code works.
 
 				Print("[CP] Loaded strain config for: " + strainName + " | SeedCount: " + m_SeedCount );
 			}
@@ -74,43 +56,6 @@ modded class SeedPackBase
 		m_pumpkinSeed_count 			=  GetCPConfig().pumpkinSeed_count;
 		// select the current seedpack
 		switch(this.GetType()) {
-			// Cannabis Skunk seedpack
-		/*	case "CP_CannabisSeedsPackSkunk":
-				seeds_quantity_max = m_cannabisSkunkSeed_count;
-				break;
-			// Cannabis Blue seedpack
-			case "CP_CannabisSeedsPackBlue":
-				seeds_quantity_max = m_cannabisBlueSeed_count;
-				break;
-			// Cannabis Kush seedpack
-			case "CP_CannabisSeedsPackKush":
-				seeds_quantity_max = m_cannabisKushSeed_count;
-				break;	
-			// Cannabis Stardawg seedpack
-			case "CP_CannabisSeedsPackStardawg":
-				seeds_quantity_max = m_cannabisStardawgSeed_count;
-				break;
-
-			// Cannabis Future seedpack
-			case "CP_CannabisSeedsPackFuture":
-				seeds_quantity_max = m_cannabisFutureSeed_count;
-				break;
-
-			// Cannabis S1 seedpack
-			case "CP_CannabisSeedsPackS1":
-				seeds_quantity_max = m_cannabisS1Seed_count;
-				break;
-
-			// Cannabis Nomad seedpack
-			case "CP_CannabisSeedsPackNomad":
-				seeds_quantity_max = m_cannabisNomadSeed_count;
-				break;
-
-			// Cannabis BlackFrost seedpack
-			case "CP_CannabisSeedsPackBlackFrost":
-				seeds_quantity_max = m_cannabisBlackFrostSeed_count;
-				break;
-		*/
 			// Tobacco seedpack
 			case "CP_TobaccoSeedsPack":
 				seeds_quantity_max = m_tobaccoSeed_count;

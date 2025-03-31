@@ -39,19 +39,16 @@ class CannabisPlusConfigManager
 
 	// Weed Effects.
 	ref WeedEffectsConfig WeedEffects;
+	// Workbench
+	ref WorkbenchConfig WorkbenchSettings;
+    // Default strains
+    ref array<string> StrainsUsed;
 
 	int spoiltime;							// Time until fully matured plants will spoil.
 
     int cannabis_drytime;					// Time for raw plants to dry on drying post.
 
-	// Workbench
-	ref WorkbenchConfig WorkbenchSettings;
-	/*
-	bool   RequireBattery = 1; 
-	float  PowerUsed = 1;
-	float  PlasticWrapUsage = 10;
-	int    ProcessingTime = 5;
-	*/
+
 	//int    Buds_To_Bags_Required = 2;
 	//int    Bags_To_Bricks_Required = 16;
 	
@@ -94,22 +91,19 @@ class CannabisPlusConfigManager
             activateCigaretteSmokingEffect 	= false;
             smokingCigaretteEffectDuration 	= 20;
             cigaretteCyclesToActivateEffect = 8;
+
             activateJointSmokingEffect 		= true;
             smokingJointEffectDuration 		= 360;
             jointCyclesToActivateEffect 	= 10;
 
 			WeedEffects = new WeedEffectsConfig();
 			WorkbenchSettings = new WorkbenchConfig();
+			//StrainsUsed = new StrainsConfig();
 
             spoiltime						= 60;
-
             cannabis_drytime            	= 30;
 			
-			/*RequireBattery 					= 1; 
-			PowerUsed 			= 1;
-			PlasticWrapUsage 				= 10;
-			ProcessingTime 		= 5;
-			*///Buds_To_Bags_Required 		= 2;
+            //Buds_To_Bags_Required 		= 2;
 			//Bags_To_Bricks_Required		= 16;
 		
 			//PlantPerBag					= 18;
@@ -117,6 +111,16 @@ class CannabisPlusConfigManager
 
 			PlantMaterialUsage				= 2;
     		GardenLimeUsage					= 5;
+
+            StrainsUsed = new array<string>;
+            StrainsUsed.Insert("CannabisSkunk");
+            StrainsUsed.Insert("CannabisBlue");
+            StrainsUsed.Insert("CannabisKush");
+            StrainsUsed.Insert("CannabisStardawg");
+            StrainsUsed.Insert("CannabisS1");
+            StrainsUsed.Insert("CannabisFuture");
+            StrainsUsed.Insert("CannabisNomad");
+            StrainsUsed.Insert("CannabisBlackFrost");
 
 		SaveConfig();
 	};
