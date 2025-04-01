@@ -1,3 +1,11 @@
+v3.0.7
+Added
+- Config option for fertilize action length.
+
+Fixes
+- Fixed stack of planks being deleted if crafting from pile larger than 10.
+- Fixed stack of logs being deleted if crafting from a pile.
+
 v3.0.6
 Fixes
 - Fixed variable name errors in script.log
