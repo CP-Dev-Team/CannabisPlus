@@ -28,17 +28,22 @@ modded class SeedPackBase
 		string strainName;
 		
 		if (packType.Contains("CP_CannabisSeedsPack"))
-		{
+		{	
+			Print("[DEBUG] Seedspack type is: " + packType + ". Continuing");
 			strainName = "Cannabis" + packType.Substring(20, packType.Length() - 20); // Extracts the name after "CP_CannabisSeedsPack"
+
+			Print("[DEBUG] json to lookup is: " + strainName + ". Continuing");
 
 			if (g_CannabisStrainConfigs.Contains(strainName))
 			{
+				Print("[DEBUG] Config contains: " + strainName + ". Continuing");
+
 				// Load the config from the map
 				CannabisStrainConfig config = g_CannabisStrainConfigs.Get(strainName);
 				m_SeedCount = config.SeedCount;
 				seeds_quantity_max = m_SeedCount; //Can simplify later but just passing variables so OG code works.
 
-				Print("[CP] Loaded strain config for: " + strainName + " | SeedCount: " + m_SeedCount );
+				Print("[CP] Loaded strain config for: " + strainName + " | SeedCount: " + m_SeedCount + " | seeds_quantity_max: " + seeds_quantity_max );
 			}
 			else
 			{
@@ -55,7 +60,8 @@ modded class SeedPackBase
 		m_zucchiniSeed_count 			=  GetCPConfig().zucchiniSeed_count;
 		m_pumpkinSeed_count 			=  GetCPConfig().pumpkinSeed_count;
 		// select the current seedpack
-		switch(this.GetType()) {
+		switch(this.GetType())
+		{
 			// Tobacco seedpack
 			case "CP_TobaccoSeedsPack":
 				seeds_quantity_max = m_tobaccoSeed_count;
@@ -76,14 +82,19 @@ modded class SeedPackBase
 			case "PumpkinSeedsPack":
 				seeds_quantity_max = m_pumpkinSeed_count;
 				break;
-			//not a CP plant, exit function to avoid messing up other plants
 			default:
-                        super.EmptySeedPack(player);
-				return;
+				if (!packType.Contains("CP_CannabisSeedsPack"))
+				{
+					//not a CP plant, exit function to avoid messing up other plants
+					super.EmptySeedPack(player);
+					return;
+				}
+			break;
 		}
 		
 		seeds_quantity = Math.Round(seeds_quantity_max * GetHealth01("",""));
-	
+		Print("[DEBUG] seeds_quantity = " + seeds_quantity );
+
 		if (seeds_quantity < 1)
 		{ 
 			seeds_quantity = 1;
@@ -91,6 +102,8 @@ modded class SeedPackBase
 		
 		if (player)
 		{
+			Print("[DEBUG] Spawning seeds_quantity (" + seeds_quantity + ") onto player" );
+
 			EmptySeedsPackLambda lambda = new EmptySeedsPackLambda(this, seeds_type, player, seeds_quantity);
 			player.ServerReplaceItemInHandsWithNew(lambda);
 		}

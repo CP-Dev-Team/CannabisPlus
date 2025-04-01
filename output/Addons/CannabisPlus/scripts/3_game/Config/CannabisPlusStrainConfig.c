@@ -11,26 +11,32 @@ class CannabisStrainConfig
         SeedCount = seedCount;
     }
 
-    static CannabisStrainConfig LoadStrain(string strainName)
+    static CannabisStrainConfig CreateDefault()
     {
-        Print("[DEBUG] Loading strain: " + strainName);
+        return new CannabisStrainConfig(8, 2, 9);
+    }
 
-        CannabisStrainConfig strain = new CannabisStrainConfig();
-        string path = m_CPProfileDir + m_CPProfileFolder + "/" + strainName + ".json";
+static CannabisStrainConfig LoadStrain(string strainName)
+{
+    Print("[DEBUG] Loading strain: " + strainName);
 
-        if (FileExist(path))
-        {
-            Print("[DEBUG] File found. Loading from: " + path);
-            JsonFileLoader<CannabisStrainConfig>.JsonLoadFile(path, strain);
-        }
-        else
-        {
-            Print("[DEBUG] File not found. Using default settings for: " + strainName);
-            strain.SaveIfMissing(strainName); // Creates a file if missing
-        }
+    string path = m_CPProfileDir + m_CPProfileFolder + "/" + strainName + ".json";
 
+    if (FileExist(path))
+    {
+        CannabisStrainConfig strain = new CannabisStrainConfig(); // Empty
+        Print("[DEBUG] File found. Loading from: " + path);
+        JsonFileLoader<CannabisStrainConfig>.JsonLoadFile(path, strain);
         return strain;
     }
+    else
+    {
+        Print("[DEBUG] File not found. Using default settings for: " + strainName);
+        CannabisStrainConfig defaultStrain = CreateDefault(); // ✅ Always use this
+        defaultStrain.SaveIfMissing(strainName);
+        return defaultStrain;
+    }
+}
 
     void LoadAllStrains()
     {
