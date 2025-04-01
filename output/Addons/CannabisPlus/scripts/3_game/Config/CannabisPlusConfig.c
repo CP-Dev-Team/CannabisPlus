@@ -1,7 +1,8 @@
 class CannabisPlusConfigManager
 {
 	int configVersion;
-	
+	bool EnableDebugLogging;
+
 	bool removeAfterHarvest;
 	
 	int tobacco_growtime;
@@ -66,7 +67,7 @@ class CannabisPlusConfigManager
 	
 	void LoadDefaultSettings() {
 			configVersion					= GetModVersion();
-		
+            EnableDebugLogging              = false;  // Default is off
 			removeAfterHarvest 				= true;	
 
             tobacco_growtime 				= 8;
@@ -159,27 +160,30 @@ class CannabisPlusConfigManager
 	};
 
 	//Dont use that to load the config!
-	static CannabisPlusConfigManager LoadConfig() {
-            CannabisPlusConfigManager settings = new CannabisPlusConfigManager();
+	static CannabisPlusConfigManager LoadConfig() 
+    {
+        CannabisPlusConfigManager settings = new CannabisPlusConfigManager();
 
-            if(!FileExist(m_CPProfileFolder))
-                  MakeDirectory(m_CPProfileFolder);
+        if(!FileExist(m_CPProfileFolder))
+            MakeDirectory(m_CPProfileFolder);
 
-            if(FileExist(m_CPConfigPath))
+        if(FileExist(m_CPConfigPath))
+        {
+            JsonFileLoader<CannabisPlusConfigManager>.JsonLoadFile(m_CPConfigPath, settings);
+            if(settings.IsConfigOutdated())
             {
-                  JsonFileLoader<CannabisPlusConfigManager>.JsonLoadFile(m_CPConfigPath, settings);
-                  if(settings.IsConfigOutdated())
-                  {
-                        settings.SaveOldConfig();
-                        settings.LoadDefaultSettings();
-                  }
+                settings.SaveOldConfig();
+                settings.LoadDefaultSettings();
             }
-            else
-            {
-                  settings.LoadDefaultSettings();
-            }
-            return settings;
-      }
+        }
+        else
+        {
+            settings.LoadDefaultSettings();
+        }
+        CP_Debug = settings.EnableDebugLogging;
+
+        return settings;
+    }
 };
 
 /* Global Getter for Config */
@@ -206,7 +210,7 @@ static CannabisStrainConfig GetStrainConfigByType(EntityAI item)
 {
     if (!item)
     {
-        Print("[CP] Error: Null item passed to GetStrainConfigByType.");
+        CPDebugPrint("Error: Null item passed to GetStrainConfigByType.");
         return new CannabisStrainConfig(); // Return default if something goes wrong
     }
 
@@ -221,7 +225,7 @@ static CannabisStrainConfig GetStrainConfigByType(EntityAI item)
         }
         else
         {
-            Print("[CP] Warning: Server could not find strain '" + strainName + "'. Using default values.");
+            CPDebugPrint("Warning: Server could not find strain '" + strainName + "'. Using default values.");
             return new CannabisStrainConfig();
         }
     }
@@ -234,12 +238,22 @@ static CannabisStrainConfig GetStrainConfigByType(EntityAI item)
         }
         else
         {
-            Print("[CP] Warning: Client could not find strain '" + strainName + "'. Using default values.");
+            CPDebugPrint("Warning: Client could not find strain '" + strainName + "'. Using default values.");
             return new CannabisStrainConfig();
         }
     }
     
     return new CannabisStrainConfig();
+}
+
+bool CP_Debug = false;
+
+void CPDebugPrint(string msg)
+{
+    if (CP_Debug)
+    {
+        Print("[CP DEBUG] " + msg);
+    }
 }
 
 class WeedEffectsConfig

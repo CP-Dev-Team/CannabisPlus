@@ -18,20 +18,20 @@ class CannabisStrainConfig
 
 static CannabisStrainConfig LoadStrain(string strainName)
 {
-    Print("[DEBUG] Loading strain: " + strainName);
+    CPDebugPrint("Loading strain: " + strainName);
 
     string path = m_CPProfileDir + m_CPProfileFolder + "/" + strainName + ".json";
 
     if (FileExist(path))
     {
         CannabisStrainConfig strain = new CannabisStrainConfig(); // Empty
-        Print("[DEBUG] File found. Loading from: " + path);
+        CPDebugPrint("File found. Loading from: " + path);
         JsonFileLoader<CannabisStrainConfig>.JsonLoadFile(path, strain);
         return strain;
     }
     else
     {
-        Print("[DEBUG] File not found. Using default settings for: " + strainName);
+        CPDebugPrint("File not found. Using default settings for: " + strainName);
         CannabisStrainConfig defaultStrain = CreateDefault(); // ✅ Always use this
         defaultStrain.SaveIfMissing(strainName);
         return defaultStrain;
@@ -80,14 +80,14 @@ static CannabisStrainConfig LoadStrain(string strainName)
 
         if (!FileExist(path))
         {
-            Print("[DEBUG] Directory does not exist. Creating: " + path);
+            CPDebugPrint("Directory does not exist. Creating: " + path);
             MakeDirectory(path);
         }
 
         string fullPath = path + "/" + strainName + ".json";
         if (!FileExist(fullPath)) // Only save if the file doesn't exist
         {
-            Print("[DEBUG] Saving default config for: " + strainName);
+            CPDebugPrint("Saving default config for: " + strainName);
             JsonFileLoader<CannabisStrainConfig>.JsonSaveFile(fullPath, this);
         }
     }
