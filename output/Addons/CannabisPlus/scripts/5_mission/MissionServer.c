@@ -56,6 +56,7 @@ modded class MissionServer
             {
                 Print("[CP] General Config successfully loaded!");
 
+                CannabisStrainConfig.GenerateAllDefaultsIfStrainsFolderMissing();
                 // Automatically load all available strain configs from disk
                 InitCannabisStrainConfigs();
 

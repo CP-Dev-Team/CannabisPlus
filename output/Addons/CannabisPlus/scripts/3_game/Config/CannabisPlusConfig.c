@@ -152,14 +152,13 @@ class CannabisPlusConfigManager
 		}
 	}
 	
-	//this saves the config to the json file.
+	// Save the config to the json file.
 	protected void SaveConfig() {
 		if (!FileExist(m_CPProfileDir + m_CPProfileFolder + "/"))
 			MakeDirectory(m_CPProfileDir + m_CPProfileFolder + "/");
             JsonFileLoader<CannabisPlusConfigManager>.JsonSaveFile(m_CPConfigPath, this);
 	};
 
-	//Dont use that to load the config!
 	static CannabisPlusConfigManager LoadConfig() 
     {
         CannabisPlusConfigManager settings = new CannabisPlusConfigManager();
@@ -186,7 +185,7 @@ class CannabisPlusConfigManager
     }
 };
 
-/* Global Getter for Config */
+// Global Getter for Config.
 static ref CannabisPlusConfigManager g_CannabisPlusConfig;
 static ref CannabisPlusConfigManager g_ClientCannabisPlusConfig;
 static ref map<string, ref CannabisStrainConfig> g_ClientCannabisStrainConfigs = new map<string, ref CannabisStrainConfig>();

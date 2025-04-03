@@ -16,79 +16,69 @@ class CannabisStrainConfig
         return new CannabisStrainConfig(8, 2, 9);
     }
 
-static CannabisStrainConfig LoadStrain(string strainName)
-{
-    CPDebugPrint("Loading strain: " + strainName);
-
-    string path = m_CPProfileDir + m_CPProfileFolder + "/" + strainName + ".json";
-
-    if (FileExist(path))
+    static CannabisStrainConfig LoadStrain(string strainName)
     {
-        CannabisStrainConfig strain = new CannabisStrainConfig(); // Empty
-        CPDebugPrint("File found. Loading from: " + path);
-        JsonFileLoader<CannabisStrainConfig>.JsonLoadFile(path, strain);
-        return strain;
-    }
-    else
-    {
-        CPDebugPrint("File not found. Using default settings for: " + strainName);
-        CannabisStrainConfig defaultStrain = CreateDefault(); // ✅ Always use this
-        defaultStrain.SaveIfMissing(strainName);
-        return defaultStrain;
-    }
-}
+        CPDebugPrint("Loading strain: " + strainName);
 
-    void LoadAllStrains()
-    {
-        Print("[CP] Automatically loading all strain configs...");
+        CannabisStrainConfig strain;
+        string path = m_CPProfileDir + m_CPProfileFolder + "/" + m_CPStrainsFolder + "/" + strainName + ".json";
 
-        auto strainConfigs = new map<string, ref CannabisStrainConfig>();
-
-        string strainFolder = m_CPProfileDir + m_CPProfileFolder;
-        array<string> strainFiles = {};
-
-        if (FileExist(strainFolder))
+        if (FileExist(path))
         {
-            FindFileHandle handle;
-            string fileName;
-            int fileAttr;
-
-            handle = FindFile(strainFolder + "/*.json", fileName, fileAttr, FindFileFlags.ALL);
-
-            while (fileName != "")
-            {
-                string strainName = fileName.Substring(0, fileName.Length() - 5); // Removes ".json"
-                Print("[CP] Found strain config file: " + strainName);
-                
-                // Load the strain config
-                CannabisStrainConfig strainConfig = CannabisStrainConfig.LoadStrain(strainName);
-                strainConfigs.Insert(strainName, strainConfig);
-
-                if (!FindNextFile(handle, fileName, fileAttr))
-                    break;
-            }
-            CloseFindFile(handle);
+            strain = new CannabisStrainConfig();
+            JsonFileLoader<CannabisStrainConfig>.JsonLoadFile(path, strain);
+            CPDebugPrint("Loaded from: " + path);
+        }
+        else
+        {
+            CPDebugPrint("File not found. Using default values for: " + strainName);
+            strain = CreateDefault();
+            strain.SaveIfMissing(strainName);
         }
 
-        g_CannabisStrainConfigs = strainConfigs;
-        Print("[CP] All strain configs loaded successfully.");
+        return strain;
     }
-    
+
+    static void GenerateAllDefaultsIfStrainsFolderMissing()
+    {
+        string strainsFolderPath = m_CPProfileDir + m_CPProfileFolder + "/" + m_CPStrainsFolder;
+        if (!FileExist(strainsFolderPath))
+        {
+            Print("[CP] Strains folder not found. Generating default strain configs...");
+
+            ref array<string> defaultStrains = {
+                "CannabisSkunk",
+                "CannabisBlue",
+                "CannabisKush",
+                "CannabisStardawg",
+                "CannabisS1",
+                "CannabisFuture",
+                "CannabisNomad",
+                "CannabisBlackFrost"
+            };
+
+            foreach (string strainName : defaultStrains)
+            {
+                CreateDefault().SaveIfMissing(strainName);
+            }
+
+            Print("[CP] Default strain configs created.");
+        }
+    }
+
     void SaveIfMissing(string strainName)
     {
-        string path = m_CPProfileDir + m_CPProfileFolder;
-
+        string path = m_CPProfileDir + m_CPProfileFolder + "/" + m_CPStrainsFolder;
         if (!FileExist(path))
         {
-            CPDebugPrint("Directory does not exist. Creating: " + path);
             MakeDirectory(path);
         }
 
         string fullPath = path + "/" + strainName + ".json";
-        if (!FileExist(fullPath)) // Only save if the file doesn't exist
+        if (!FileExist(fullPath))
         {
             CPDebugPrint("Saving default config for: " + strainName);
             JsonFileLoader<CannabisStrainConfig>.JsonSaveFile(fullPath, this);
         }
     }
-};
+}
