@@ -42,8 +42,6 @@ class CannabisPlusConfigManager
 	ref WeedEffectsConfig WeedEffects;
 	// Workbench
 	ref WorkbenchConfig WorkbenchSettings;
-    // Default strains
-    ref array<string> StrainsUsed;
 
 	int spoiltime;							// Time until fully matured plants will spoil.
 
@@ -99,7 +97,6 @@ class CannabisPlusConfigManager
 
 			WeedEffects = new WeedEffectsConfig();
 			WorkbenchSettings = new WorkbenchConfig();
-			//StrainsUsed = new StrainsConfig();
 
             spoiltime						= 60;
             cannabis_drytime            	= 30;
@@ -112,16 +109,6 @@ class CannabisPlusConfigManager
 
 			PlantMaterialUsage				= 2;
     		GardenLimeUsage					= 5;
-
-            StrainsUsed = new array<string>;
-            StrainsUsed.Insert("CannabisSkunk");
-            StrainsUsed.Insert("CannabisBlue");
-            StrainsUsed.Insert("CannabisKush");
-            StrainsUsed.Insert("CannabisStardawg");
-            StrainsUsed.Insert("CannabisS1");
-            StrainsUsed.Insert("CannabisFuture");
-            StrainsUsed.Insert("CannabisNomad");
-            StrainsUsed.Insert("CannabisBlackFrost");
 
 		SaveConfig();
 	};
