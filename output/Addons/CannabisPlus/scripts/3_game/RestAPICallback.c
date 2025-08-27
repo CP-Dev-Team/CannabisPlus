@@ -29,7 +29,7 @@ class CPApiTransaction
     }
     
     string ToJson(){
-        string jsonString = JsonFileLoader<CPApiTransaction>.JsonMakeData(this);;
+        string jsonString = JsonFileLoader<CPApiTransaction>.JsonMakeData(this);
         return jsonString;
     }
     
