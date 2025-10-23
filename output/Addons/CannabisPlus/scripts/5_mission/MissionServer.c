@@ -37,7 +37,7 @@ modded class MissionServer
                 CannabisStrainConfig strainConfig = CannabisStrainConfig.LoadStrain(strainName);
                 g_CannabisStrainConfigs.Set(strainName, strainConfig);
                 loadedCount++;
-                CPDebugPrint("[CP] Loaded strain: " + strainName + " - GrowTime: " + strainConfig.GrowTime + ", CropCount: " + strainConfig.CropCount + ", SeedCount: " + strainConfig.SeedCount + ", WeedEffects: " + (strainConfig.WeedEffects != null));
+                CPDebugPrint("[CP] Loaded strain: " + strainName + " - GrowTime: " + strainConfig.GrowTime + ", CropCount: " + strainConfig.CropCount + ", SeedCount: " + strainConfig.SeedCount);
             }
 
             fileName = "";
@@ -70,7 +70,7 @@ modded class MissionServer
                 CPDebugPrint("[CP] Strain configs loaded. Total strains: " + g_CannabisStrainConfigs.Count());
                 foreach (string strainName, CannabisStrainConfig strainConfig : g_CannabisStrainConfigs)
                 {
-                    CPDebugPrint("[CP] Loaded Strain: " + strainName + " | GrowTime: " + strainConfig.GrowTime + " | CropCount: " + strainConfig.CropCount + " | SeedCount: " + strainConfig.SeedCount + " | WeedEffects: " + (strainConfig.WeedEffects != null));
+                    CPDebugPrint("[CP] Loaded Strain: " + strainName + " | GrowTime: " + strainConfig.GrowTime + " | CropCount: " + strainConfig.CropCount + " | SeedCount: " + strainConfig.SeedCount);
                 }
             }
             else
