@@ -47,11 +47,6 @@ class CannabisPlusConfigManager
 
     int cannabis_drytime;					// Time for raw plants to dry on drying post.
 
-    bool CP_Debug = false;
-    bool CP_ClientDebug = true;             // Client-side debug toggle
-    
-
-
 	//int    Buds_To_Bags_Required = 2;
 	//int    Bags_To_Bricks_Required = 16;
 	
@@ -236,6 +231,8 @@ static CannabisStrainConfig GetStrainConfigByType(EntityAI item)
     return new CannabisStrainConfig();
 }
 
+bool CP_Debug = false;
+
 void CPDebugPrint(string msg)
 {
     if (CP_Debug)
@@ -243,6 +240,8 @@ void CPDebugPrint(string msg)
         Print("[CP DEBUG] " + msg);
     }
 }
+
+bool CP_ClientDebug = true;             // Client-side debug toggle
 
 void CPClientDebugPrint(string msg)
 {
