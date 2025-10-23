@@ -47,14 +47,14 @@ class CannabisStrainConfig
             Print("[CP] Strains folder not found. Generating default strain configs...");
 
             ref array<string> defaultStrains = {
-                "CannabisSkunk",
-                "CannabisBlue",
-                "CannabisKush",
-                "CannabisStardawg",
-                "CannabisS1",
-                "CannabisFuture",
-                "CannabisNomad",
-                "CannabisBlackFrost"
+                "Skunk",
+                "Blue",
+                "Kush",
+                "Stardawg",
+                "S1",
+                "Future",
+                "Nomad",
+                "BlackFrost"
             };
 
             foreach (string strainName : defaultStrains)
