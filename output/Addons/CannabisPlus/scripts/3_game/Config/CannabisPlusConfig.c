@@ -231,7 +231,7 @@ static CannabisStrainConfig GetStrainConfigByType(EntityAI item)
     return new CannabisStrainConfig();
 }
 
-bool CP_Debug = false;
+bool CP_Debug = false;                  // Server-side debug toggle enabled via main config.
 
 void CPDebugPrint(string msg)
 {
@@ -247,7 +247,7 @@ void CPClientDebugPrint(string msg)
 {
     if (CP_ClientDebug)
     {
-        Print("[CP CLIENT DEBUG] " + msg)
+        Print("[CP CLIENT DEBUG] " + msg);
     }
 }
 
