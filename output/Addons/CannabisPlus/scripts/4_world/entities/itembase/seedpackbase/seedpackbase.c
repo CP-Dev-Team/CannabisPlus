@@ -27,7 +27,7 @@ modded class SeedPackBase
         if (packType.Contains("CP_CannabisSeedsPack"))
         {   
             Print("[DEBUG] Seedspack type is: " + packType + ". Continuing");
-            strainName = "Cannabis" + packType.Substring(20, packType.Length() - 20);
+            strainName = packType.Substring(20, packType.Length() - 20); // Extracts the name after "CP_CannabisSeedsPack"
 
             Print("[DEBUG] json to lookup is: " + strainName + ". Continuing");
 

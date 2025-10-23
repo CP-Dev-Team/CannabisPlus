@@ -1,5 +1,0 @@
-/*
-modded class PPEffects {
-	
-}
-*/

@@ -51,9 +51,9 @@ modded class PlantBase
 		string plantType = this.GetType();
 		string strainName;
 		
-		if (plantType.Contains("CP_Plant_"))
+		if (plantType.Contains("CP_Plant_Cannabis"))
 		{
-			strainName = plantType.Substring(9, plantType.Length() - 9); // Extracts the name after "CP_Plant_"
+			strainName = plantType.Substring(17, plantType.Length() - 17); // Extracts the name after "CP_Plant_Cannabis"
 			
 			if (g_CannabisStrainConfigs.Contains(strainName))
 			{
