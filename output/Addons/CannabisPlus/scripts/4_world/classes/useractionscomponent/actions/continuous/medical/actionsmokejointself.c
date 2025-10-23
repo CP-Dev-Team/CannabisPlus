@@ -13,7 +13,7 @@ class ActionSmokeJointSelf: ActionContinuousBase {
 	int jointCycles;
 
 	void ActionSmokeJointSelf()	{
-		m_CallbackClass = ActionSmokeJointSelfCB;		
+		m_CallbackClass = ActionSmokeJointSelfCB;
 		m_CommandUID = DayZPlayerConstants.CMD_ACTIONMOD_TAKETEMPSELF;
 		m_CommandUIDProne = DayZPlayerConstants.CMD_ACTIONFB_TAKETEMPSELF;
 	}	
