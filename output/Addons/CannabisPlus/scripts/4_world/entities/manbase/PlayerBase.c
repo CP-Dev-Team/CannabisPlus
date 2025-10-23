@@ -38,7 +38,7 @@ modded class PlayerBase {
 				m_cigaretteValue += value;
 						
 				if(m_cigaretteValue >= GetCPConfig().cigaretteCyclesToActivateEffect){
-					CPDebugPrint("Smoking cigarrette effect" + GetDayZGame().GetCannabisPlusConfig().cigaretteCyclesToActivateEffect);
+					CPDebugPrint("Smoking cigarrette effect" + GetCPConfig().cigaretteCyclesToActivateEffect);
 					m_HasConsumedCigarette = true;
 					if (!swayTimer) { swayTimer = new Timer()};
 					swayTimer.Stop();
@@ -48,20 +48,20 @@ modded class PlayerBase {
 		}		
 	}	
 	// set to true if the player consumed a joint
-	void AddValueToJointValue(int value) {	
-		if (GetCPConfig()) {	
+	void AddValueToJointValue(int value) {
+		if (GetCPConfig()) {
 			if(GetCPConfig().activateJointSmokingEffect) {
-				CPDebugPrint("CannabisPlus: AddValueToJointValue");
+				CPClientDebugPrint("CannabisPlus: AddValueToJointValue");
 				m_jointValue += value;
-						
-				if((m_jointValue % GetCPConfig().jointCyclesToActivateEffect) == 0){	
-					CPDebugPrint("Smoking joint effect " + GetDayZGame().GetCannabisPlusConfig().jointCyclesToActivateEffect);
-					CPDebugPrint("CannabisPlus: Starting Effect");			
+
+				if((m_jointValue % GetCPConfig().jointCyclesToActivateEffect) == 0){
+					CPClientDebugPrint("jointCyclesToActivateEffect " + GetCPConfig().jointCyclesToActivateEffect);
+					CPClientDebugPrint("CannabisPlus: Starting Effect");
 					m_HasConsumedJoint = true;
 					CannabisEffectsTriggered(m_jointValue);
 					if (!jointTimer) { jointTimer = new Timer()};
 					jointTimer.Stop();
-					jointTimer.Run(GetCPConfig().smokingJointEffectDuration, this, "ResetJointValues", null, false);				
+					jointTimer.Run(GetCPConfig().smokingJointEffectDuration, this, "ResetJointValues", null, false);
 				}
 				SetSynchDirty();
 			}
@@ -84,29 +84,28 @@ modded class PlayerBase {
 	
 	// Cannabis Visual Effect On.
 	void CannabisEffectsTriggered(int cycles)
-	{ 
+	{
 		float multiplier;
-		int counter;			
-				
+		int counter;
+
 		counter = cycles / GetCPConfig().jointCyclesToActivateEffect;
 		multiplier = 1 + (0.25 * counter);
 
-		CPDebugPrint("CannabisEffectsTriggered counter: " + counter + " multiplier: " + multiplier);
-		
 		if(GetGame().IsClient())
 		{
+			CPClientDebugPrint("CannabisEffectsTriggered counter: " + counter + " multiplier: " + multiplier);
 			//Reset effects on player before adding new ones.
 			//CameraEffects.changeHue(60);
 			//CameraEffects.changeRadBlurXEffect(0);
 			//CameraEffects.changeRadBlurYEffect(0);
 			//CameraEffects.changeRotationBlurPower(0);
-			
+
 			CameraEffects.changeHue(GetCPConfig().WeedEffects.HueIntensity-counter);
 			CameraEffects.changeRadBlurXEffect(GetCPConfig().WeedEffects.RadBlurXPower*multiplier);
 			CameraEffects.changeRadBlurYEffect(GetCPConfig().WeedEffects.RadBlurYPower*multiplier);
 			CameraEffects.changeRotationBlurPower(GetCPConfig().WeedEffects.RotBlurPow*multiplier);
-		}	
-		PlaySoundSet(m_TurnOn, SMOKE_SOUND, 0.0, 0.0);	
+		}
+		PlaySoundSet(m_TurnOn, SMOKE_SOUND, 0.0, 0.0);
 	}
 
 	// Cannabis Effects Triggered Off.
