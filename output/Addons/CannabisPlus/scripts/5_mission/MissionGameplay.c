@@ -11,6 +11,7 @@ modded class MissionGameplay extends MissionBase
             // Register the client-side RPC to receive config data
             GetRPCManager().AddRPC("CP_scripts", "CONFIGRESPONSE", this, SingeplayerExecutionType.Client);
             m_isModdedMissionInitialized = true;
+            CPDebugPrint("[CP] Client RPC CONFIGRESPONSE registered.");
         }
     }
 
@@ -19,6 +20,7 @@ modded class MissionGameplay extends MissionBase
         super.OnMissionStart();
 
         // Request the general config and strain configs from the server
+        CPDebugPrint("[CP] Client requesting configs from server.");
         GetRPCManager().SendRPC("CP_scripts", "CLIENTCONFIGREQUEST", null, true);
     }
 
@@ -27,14 +29,14 @@ modded class MissionGameplay extends MissionBase
     {
         if (type == CallType.Client)
         {
-            Print("[CP] Receiving general config and strain configs from the server...");
+            CPDebugPrint("[CP] Receiving general config and strain configs from the server...");
 
             // Expecting both general config and strain configs
             Param2<ref CannabisPlusConfigManager, ref map<string, ref CannabisStrainConfig>> data;
 
             if (!ctx.Read(data))
             {
-                Print("[CP] ERROR: Failed to read RPC data.");
+                CPDebugPrint("[CP] ERROR: Failed to read RPC data.");
                 return;
             }
 
@@ -42,29 +44,40 @@ modded class MissionGameplay extends MissionBase
             g_ClientCannabisPlusConfig = data.param1;  // General config
             g_ClientCannabisStrainConfigs = data.param2;  // Strain configs
 
-            Print("[CP] Successfully received all configs from the server.");
+            int strainsCount = 0;
+            if (g_ClientCannabisStrainConfigs)
+            {
+                strainsCount = g_ClientCannabisStrainConfigs.Count();
+            }
+            CPDebugPrint("[CP] Successfully received all configs from the server. Strains count: " + strainsCount);
 
             // Debug Print General Config
             if (g_ClientCannabisPlusConfig)
             {
-                Print("[CP] General Config Loaded.");
-                Print("[CP] Workbench Power Used: " + g_ClientCannabisPlusConfig.WorkbenchSettings.PowerUsed);
-                Print("[CP] Plastic Wrap Usage: " + g_ClientCannabisPlusConfig.WorkbenchSettings.PlasticWrapUsage);
-                Print("[CP] Workbench Processing Time: " + g_ClientCannabisPlusConfig.WorkbenchSettings.ProcessingTime);
+                CPDebugPrint("[CP] General Config Loaded.");
+                CPDebugPrint("[CP] Workbench Power Used: " + g_ClientCannabisPlusConfig.WorkbenchSettings.PowerUsed);
+                CPDebugPrint("[CP] Plastic Wrap Usage: " + g_ClientCannabisPlusConfig.WorkbenchSettings.PlasticWrapUsage);
+                CPDebugPrint("[CP] Workbench Processing Time: " + g_ClientCannabisPlusConfig.WorkbenchSettings.ProcessingTime);
+                CPDebugPrint("[CP] EnableDebugLogging: " + g_ClientCannabisPlusConfig.EnableDebugLogging);
+            }
+            else
+            {
+                CPDebugPrint("[CP] WARNING: General config is null.");
             }
 
             // Debug Print All Strain Configs
             if (g_ClientCannabisStrainConfigs && g_ClientCannabisStrainConfigs.Count() > 0)
             {
-                Print("[CP] Strain Configs Loaded: " + g_ClientCannabisStrainConfigs.Count());
+                CPDebugPrint("[CP] Strain Configs Loaded: " + g_ClientCannabisStrainConfigs.Count());
                 foreach (string strainName, CannabisStrainConfig strainConfig : g_ClientCannabisStrainConfigs)
                 {
-                    Print("[CP] Strain: " + strainName + " | GrowTime: " + strainConfig.GrowTime + " | CropCount: " + strainConfig.CropCount + " | SeedCount: " + strainConfig.SeedCount);
+                    bool hasWeedEffects = (strainConfig.WeedEffects != null);
+                    CPDebugPrint("[CP] Strain: " + strainName + " | GrowTime: " + strainConfig.GrowTime + " | CropCount: " + strainConfig.CropCount + " | SeedCount: " + strainConfig.SeedCount + " | WeedEffects: " + hasWeedEffects);
                 }
             }
             else
             {
-                Print("[CP] WARNING: No strain configs received.");
+                CPDebugPrint("[CP] WARNING: No strain configs received or map is null.");
             }
         }
     }

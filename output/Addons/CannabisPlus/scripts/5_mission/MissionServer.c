@@ -4,13 +4,14 @@ modded class MissionServer
 
     void InitCannabisStrainConfigs()
     {
-        Print("[CP] Initializing strain configs (Server-Side)...");
+        CPDebugPrint("[CP] Initializing strain configs (Server-Side)...");
 
-        string path = m_CPProfileDir + m_CPProfileFolder + "/";
+        string path = m_CPProfileDir + m_CPProfileFolder + "/" + m_CPStrainsFolder + "/";
+        CPDebugPrint("[CP] Strains folder path: " + path);
         
         if (!FileExist(path))  // Check if the directory exists
         {
-            Print("[CP] Error: The directory " + path + " does not exist.");
+            CPDebugPrint("[CP] Error: The directory " + path + " does not exist.");
             return;
         }
         
@@ -20,19 +21,23 @@ modded class MissionServer
 
         if (fileHandle == 0)
         {
-            Print("[CP] Error: Unable to open directory or find files.");
+            CPDebugPrint("[CP] Error: Unable to open directory or find files.");
             return;
         }
 
+        int loadedCount = 0;
         while (fileName != "")
         {
+            CPDebugPrint("[CP] Found file: " + fileName);
             if (fileName != "CannabisPlus.json")  // Skip the general config file
             {
                 string strainName = fileName.Substring(0, fileName.Length() - 5); // Remove ".json"
-                Print("[CP] Loading strain config: " + strainName);
+                CPDebugPrint("[CP] Loading strain config: " + strainName);
 
                 CannabisStrainConfig strainConfig = CannabisStrainConfig.LoadStrain(strainName);
                 g_CannabisStrainConfigs.Set(strainName, strainConfig);
+                loadedCount++;
+                CPDebugPrint("[CP] Loaded strain: " + strainName + " - GrowTime: " + strainConfig.GrowTime + ", CropCount: " + strainConfig.CropCount + ", SeedCount: " + strainConfig.SeedCount + ", WeedEffects: " + (strainConfig.WeedEffects != null));
             }
 
             fileName = "";
@@ -41,7 +46,7 @@ modded class MissionServer
 
         CloseFindFile(fileHandle); // Close the file handle
 
-        Print("[CP] All strain configs initialized (Server-Side). Total: " + g_CannabisStrainConfigs.Count());
+        CPDebugPrint("[CP] All strain configs initialized (Server-Side). Total: " + g_CannabisStrainConfigs.Count() + ", Loaded: " + loadedCount);
     }
 
     override void OnInit()
@@ -54,27 +59,29 @@ modded class MissionServer
 
             if (m_currentcfg)
             {
-                Print("[CP] General Config successfully loaded!");
+                CPDebugPrint("[CP] General Config successfully loaded!");
 
                 CannabisStrainConfig.GenerateAllDefaultsIfStrainsFolderMissing();
+                CPDebugPrint("[CP] GenerateAllDefaultsIfStrainsFolderMissing completed.");
                 // Automatically load all available strain configs from disk
                 InitCannabisStrainConfigs();
 
                 // Debug print all loaded strains
-                Print("[CP] Strain configs loaded. Total strains: " + g_CannabisStrainConfigs.Count());
+                CPDebugPrint("[CP] Strain configs loaded. Total strains: " + g_CannabisStrainConfigs.Count());
                 foreach (string strainName, CannabisStrainConfig strainConfig : g_CannabisStrainConfigs)
                 {
-                    Print("[CP] Loaded Strain: " + strainName + " | GrowTime: " + strainConfig.GrowTime + " | CropCount: " + strainConfig.CropCount + " | SeedCount: " + strainConfig.SeedCount);
+                    CPDebugPrint("[CP] Loaded Strain: " + strainName + " | GrowTime: " + strainConfig.GrowTime + " | CropCount: " + strainConfig.CropCount + " | SeedCount: " + strainConfig.SeedCount + " | WeedEffects: " + (strainConfig.WeedEffects != null));
                 }
             }
             else
             {
-                Print("[CP] Internal server config load failed!");
+                CPDebugPrint("[CP] Internal server config load failed!");
             }
         }
 
         // Register the RPC for client requests
         GetRPCManager().AddRPC("CP_scripts", "CLIENTCONFIGREQUEST", this, SingeplayerExecutionType.Both);
+        CPDebugPrint("[CP] RPC CLIENTCONFIGREQUEST registered.");
     }
 
     /* RPC HANDLING SERVERSIDE */
@@ -82,11 +89,11 @@ modded class MissionServer
     {
         if (type == CallType.Server) 
         {
-            Print("[CP] Sending all strain configs to client...");
+            CPDebugPrint("[CP] Sending all strain configs to client...");
 
             if (!m_currentcfg)
             {
-                Print("[CP] Error: m_currentcfg is null.");
+                CPDebugPrint("[CP] Error: m_currentcfg is null.");
                 return;
             }
 
@@ -95,7 +102,7 @@ modded class MissionServer
             
             GetRPCManager().SendRPC("CP_scripts", "CONFIGRESPONSE", rpcParams, true, sender);
 
-            Print("[CP] Successfully sent all configs to client: " + sender.GetName());
+            CPDebugPrint("[CP] Successfully sent all configs to client: " + sender.GetName() + ", Strains sent: " + g_CannabisStrainConfigs.Count());
         }
     }
 }
