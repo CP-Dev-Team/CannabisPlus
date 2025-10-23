@@ -38,7 +38,7 @@ modded class PlayerBase {
 				m_cigaretteValue += value;
 						
 				if(m_cigaretteValue >= GetCPConfig().cigaretteCyclesToActivateEffect){
-					//Print("[CP] Smoking cigarrette effect" + GetDayZGame().GetCannabisPlusConfig().cigaretteCyclesToActivateEffect);
+					CPDebugPrint("Smoking cigarrette effect" + GetDayZGame().GetCannabisPlusConfig().cigaretteCyclesToActivateEffect);
 					m_HasConsumedCigarette = true;
 					if (!swayTimer) { swayTimer = new Timer()};
 					swayTimer.Stop();
@@ -51,12 +51,12 @@ modded class PlayerBase {
 	void AddValueToJointValue(int value) {	
 		if (GetCPConfig()) {	
 			if(GetCPConfig().activateJointSmokingEffect) {
-				//Print("[CP] CannabisPlus: AddValueToJointValue");
+				CPDebugPrint("CannabisPlus: AddValueToJointValue");
 				m_jointValue += value;
 						
 				if((m_jointValue % GetCPConfig().jointCyclesToActivateEffect) == 0){	
-					//Print("[CP] Smoking joint effect " + GetDayZGame().GetCannabisPlusConfig().jointCyclesToActivateEffect);
-					//Print("[CP] CannabisPlus: Starting Effect");			
+					CPDebugPrint("Smoking joint effect " + GetDayZGame().GetCannabisPlusConfig().jointCyclesToActivateEffect);
+					CPDebugPrint("CannabisPlus: Starting Effect");			
 					m_HasConsumedJoint = true;
 					CannabisEffectsTriggered(m_jointValue);
 					if (!jointTimer) { jointTimer = new Timer()};
