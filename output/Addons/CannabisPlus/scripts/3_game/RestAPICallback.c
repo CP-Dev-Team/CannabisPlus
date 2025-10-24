@@ -6,15 +6,15 @@ class CPTransactionCallBack : RestCallback
     string Element;
     
     override void OnError(int errorCode) {
-    Print("Transaction Error");
+    CPDebugPrint("Transaction Error");
     };
     
     override void OnTimeout() {
-    Print("Transaction Timeout");
+    CPDebugPrint("Transaction Timeout");
     };
     
     override void OnSuccess(string data, int dataSize) {
-    Print("Transaction Success" + data);    
+    CPDebugPrint("Transaction Success" + data);    
     };
 };
 

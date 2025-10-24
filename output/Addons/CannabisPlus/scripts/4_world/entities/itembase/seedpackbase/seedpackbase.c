@@ -26,34 +26,34 @@ modded class SeedPackBase
 
         if (packType.Contains("CP_CannabisSeedsPack"))
         {   
-            Print("[DEBUG] Seedspack type is: " + packType + ". Continuing");
+            CPDebugPrint("Seedspack type is: " + packType + ". Continuing");
             strainName = packType.Substring(20, packType.Length() - 20); // Extracts the name after "CP_CannabisSeedsPack"
 
-            Print("[DEBUG] json to lookup is: " + strainName + ". Continuing");
+            CPDebugPrint("json to lookup is: " + strainName + ". Continuing");
 
             if (g_CannabisStrainConfigs.Contains(strainName))
             {
-                Print("[DEBUG] Config contains: " + strainName + ". Continuing");
+                CPDebugPrint("Config contains: " + strainName + ". Continuing");
 
                 CannabisStrainConfig config = g_CannabisStrainConfigs.Get(strainName);
                 m_SeedCount = config.SeedCount;
                 seeds_quantity_max = m_SeedCount;
 
-                Print("[CP] Loaded strain config for: " + strainName + " | SeedCount: " + m_SeedCount + " | seeds_quantity_max: " + seeds_quantity_max );
+                CPDebugPrint("Loaded strain config for: " + strainName + " | SeedCount: " + m_SeedCount + " | seeds_quantity_max: " + seeds_quantity_max );
             }
             else
             {
-                Print("[CP] Warning: Strain config for '" + strainName + "' not found. Using default values.");
+                CPDebugPrint("Warning: Strain config for '" + strainName + "' not found. Using default values.");
                 CannabisStrainConfig defaultConfig = CannabisStrainConfig.CreateDefault();
                 m_SeedCount = defaultConfig.SeedCount;
                 seeds_quantity_max = m_SeedCount;
 
-                Print("[CP] Fallback default SeedCount: " + m_SeedCount);
+                CPDebugPrint("Fallback default SeedCount: " + m_SeedCount);
             }
         }
         else
         {
-            Print("[CP] Not a CannabisPlus seed type: " + packType);
+            CPDebugPrint("Not a CannabisPlus seed type: " + packType);
         }
 
         m_pepperSeed_count = GetCPConfig().pepperSeed_count;
@@ -88,7 +88,7 @@ modded class SeedPackBase
         }
 
         seeds_quantity = Math.Round(seeds_quantity_max * GetHealth01("",""));
-        Print("[DEBUG] seeds_quantity = " + seeds_quantity );
+        CPDebugPrint("seeds_quantity = " + seeds_quantity );
 
         if (seeds_quantity < 1)
         { 
@@ -97,7 +97,7 @@ modded class SeedPackBase
 
         if (player)
         {
-            Print("[DEBUG] Spawning seeds_quantity (" + seeds_quantity + ") onto player" );
+            CPDebugPrint("Spawning seeds_quantity (" + seeds_quantity + ") onto player" );
 
             EmptySeedsPackLambda lambda = new EmptySeedsPackLambda(this, seeds_type, player, seeds_quantity);
             player.ServerReplaceItemInHandsWithNew(lambda);

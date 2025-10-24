@@ -265,20 +265,9 @@ class CP_Workbench extends ItemBase
 			m_CP_Processing.Run(Workbench_Timer_Repeat,this,"DoProcessing",NULL,true);
 			SetTimerIsRunning(true);
 			SetTimerIsPaused(false);
-			//UpdateLockState();
 			CPDebugPrint("Processing is started." + m_CP_Processing);
 
 		}
-
-		//f(m_CP_Processing && !m_CP_Processing.IsRunning())
-		//
-		//	m_CP_Processing.Continue();
-		//	CP_TimerisRunning = true;
-		//	CP_TimerIsPaused = false;
-		//	//UpdateLockState();
-		//	CPDebugPrint("Processing is started.");
-		//	//Print(m_CP_Processing);
-		//
 	
 		UpdateLockState();
 		CPDebugPrint("StartProcessing, UpdateLockState");

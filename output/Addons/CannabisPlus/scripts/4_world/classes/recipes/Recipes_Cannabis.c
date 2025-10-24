@@ -312,7 +312,7 @@ class CP_CraftCigarettePackEmpty extends RecipeBase
 	{
 		ItemBase item;
 		Class.CastTo(item ,ingredients[1]);
-		CPDebugPrint("[DEBUG] " + item.GetDamage());		
+		CPDebugPrint("Damage: " + item.GetDamage());		
 		if( item.GetDamage() == 0) {
 			return true;
 		}
@@ -400,8 +400,8 @@ class CP_CraftCigarettePack extends RecipeBase
 		string JointName = ingredient0.GetCpJointName(); 
 		string PackName = ingredient1.GetCpPackageName(); 
 		
-		//Print(JointName);
-		//Print(PackName);
+		CPDebugPrint("JointName: " + JointName);
+		CPDebugPrint("PackName: " + PackName);
 		
 		if(JointName == PackName)
 		{

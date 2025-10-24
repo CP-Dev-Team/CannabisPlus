@@ -64,16 +64,16 @@ modded class PlantBase
 				m_CropsCount = 1;  // Default crop count unless modified
 				IncreaseCrop = false;
 
-				Print("[CP] Loaded strain config for: " + strainName + " | GrowTime: " + m_GrowTime + " | CropCount: " + currentYield);
+				CPDebugPrint("Loaded strain config for: " + strainName + " | GrowTime: " + m_GrowTime + " | CropCount: " + currentYield);
 			}
 			else
 			{
-				Print("[CP] Warning: Strain config for '" + strainName + "' not found. Using default values.");
+				CPDebugPrint("Warning: Strain config for '" + strainName + "' not found. Using default values.");
 			}
 		}
 		else
 		{
-			Print("[CP] Not a CannabisPlus plant type: " + plantType);
+			CPDebugPrint("Not a CannabisPlus plant type: " + plantType);
 		}
 
 		// Non-CannabisPlus plants

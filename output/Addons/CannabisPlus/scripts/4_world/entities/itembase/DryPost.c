@@ -465,7 +465,6 @@ class CP_DryPost extends ItemBase
         {
             if (rope)
             {
-                //Print(rope);
                 CPDebugPrint("LockRope: True");
                 rope.LockToParent();
             } 
@@ -473,7 +472,6 @@ class CP_DryPost extends ItemBase
         }
         else if (rope)
         {
-            //Print(rope);
             CPDebugPrint("LockRope: False");
             rope.UnlockFromParent();
         }

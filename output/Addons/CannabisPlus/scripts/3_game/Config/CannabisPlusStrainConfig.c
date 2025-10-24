@@ -49,7 +49,7 @@ class CannabisStrainConfig
         string strainsFolderPath = m_CPProfileDir + m_CPProfileFolder + "/" + m_CPStrainsFolder;
         if (!FileExist(strainsFolderPath))
         {
-            Print("Strains folder not found. Generating default strain configs...");
+            CPDebugPrint("Strains folder not found. Generating default strain configs...");
 
             ref array<string> defaultStrains = {
                 "Skunk",
@@ -67,7 +67,7 @@ class CannabisStrainConfig
                 CreateDefault().SaveIfMissing(strainName);
             }
 
-            Print("Default strain configs created.");
+            CPDebugPrint("Default strain configs created.");
         }
     }
 
