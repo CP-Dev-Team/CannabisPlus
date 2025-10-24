@@ -70,12 +70,13 @@ class ActionSmokeJointSelf: ActionContinuousBase {
 		PlayerBase player = action_data.m_Player;
 		CP_JointBase joint = CP_JointBase.Cast(action_data.m_MainItem);
 		string joint_type = joint.GetType();
-		
+		string strainName = joint_type.Substring(8, joint_type.Length() - 8);  // Extracts the name after "CP_Joint"
+
 		if (joint) {
-			player.AddValueToJointValue(1);
+			player.AddValueToJointValue(1, strainName);
 			CPDebugPrint("OnFinishProgressClient cycles " + action_data.m_Player.GetJointCycles() );
 		}
-			
+
 		super.OnFinishProgressClient(action_data);
 	}
 	
@@ -101,7 +102,7 @@ class ActionSmokeJointSelf: ActionContinuousBase {
 				joint.Delete();
 			}
 		}
-    	}
+    }
 
 	override void CreateConditionComponents() {
         m_ConditionItem = new CCINonRuined;

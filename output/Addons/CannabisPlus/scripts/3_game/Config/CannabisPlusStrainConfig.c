@@ -4,6 +4,9 @@ class CannabisStrainConfig
     int CropCount;
     int SeedCount;
 
+	// Weed Effects.
+	ref WeedEffectsConfig WeedEffects;
+
     void CannabisStrainConfig(int growTime = 8, int cropCount = 2, int seedCount = 9)
     {
         GrowTime = growTime;
@@ -13,7 +16,9 @@ class CannabisStrainConfig
 
     static CannabisStrainConfig CreateDefault()
     {
-        return new CannabisStrainConfig(8, 2, 9);
+        CannabisStrainConfig config = new CannabisStrainConfig(8, 2, 9);
+        config.WeedEffects = new WeedEffectsConfig();
+        return config;
     }
 
     static CannabisStrainConfig LoadStrain(string strainName)
@@ -44,7 +49,7 @@ class CannabisStrainConfig
         string strainsFolderPath = m_CPProfileDir + m_CPProfileFolder + "/" + m_CPStrainsFolder;
         if (!FileExist(strainsFolderPath))
         {
-            Print("[CP] Strains folder not found. Generating default strain configs...");
+            Print("Strains folder not found. Generating default strain configs...");
 
             ref array<string> defaultStrains = {
                 "Skunk",
@@ -62,7 +67,7 @@ class CannabisStrainConfig
                 CreateDefault().SaveIfMissing(strainName);
             }
 
-            Print("[CP] Default strain configs created.");
+            Print("Default strain configs created.");
         }
     }
 
@@ -82,3 +87,19 @@ class CannabisStrainConfig
         }
     }
 }
+
+class WeedEffectsConfig
+{
+    float HueIntensity;
+    int RadBlurXPower;
+    int RadBlurYPower;
+    int RotBlurPow;
+    
+    void WeedEffectsConfig(float hueIntensity = 58.0, int radBlurX = 2, int radBlurY = 2, int rotBlur = 10)
+    {
+        HueIntensity = hueIntensity;
+        RadBlurXPower = radBlurX;
+        RadBlurYPower = radBlurY;
+        RotBlurPow = rotBlur;
+    }
+};

@@ -48,7 +48,7 @@ modded class PlayerBase {
 		}		
 	}	
 	// set to true if the player consumed a joint
-	void AddValueToJointValue(int value) {
+	void AddValueToJointValue(int value, string strainName = "") {
 		if (GetCPConfig()) {
 			if(GetCPConfig().activateJointSmokingEffect) {
 				CPClientDebugPrint("CannabisPlus: AddValueToJointValue");
@@ -58,7 +58,7 @@ modded class PlayerBase {
 					CPClientDebugPrint("jointCyclesToActivateEffect " + GetCPConfig().jointCyclesToActivateEffect);
 					CPClientDebugPrint("CannabisPlus: Starting Effect");
 					m_HasConsumedJoint = true;
-					CannabisEffectsTriggered(m_jointValue);
+					CannabisEffectsTriggered(m_jointValue, strainName);
 					if (!jointTimer) { jointTimer = new Timer()};
 					jointTimer.Stop();
 					jointTimer.Run(GetCPConfig().smokingJointEffectDuration, this, "ResetJointValues", null, false);
@@ -83,7 +83,7 @@ modded class PlayerBase {
 	}
 	
 	// Cannabis Visual Effect On.
-	void CannabisEffectsTriggered(int cycles)
+	void CannabisEffectsTriggered(int cycles, string strainName = "")
 	{
 		float multiplier;
 		int counter;
@@ -93,17 +93,22 @@ modded class PlayerBase {
 
 		if(GetGame().IsClient())
 		{
-			CPClientDebugPrint("CannabisEffectsTriggered counter: " + counter + " multiplier: " + multiplier);
-			//Reset effects on player before adding new ones.
-			//CameraEffects.changeHue(60);
-			//CameraEffects.changeRadBlurXEffect(0);
-			//CameraEffects.changeRadBlurYEffect(0);
-			//CameraEffects.changeRotationBlurPower(0);
+			CPClientDebugPrint("CannabisEffectsTriggered counter: " + counter + " multiplier: " + multiplier + " strain: " + strainName);
 
-			CameraEffects.changeHue(GetCPConfig().WeedEffects.HueIntensity-counter);
-			CameraEffects.changeRadBlurXEffect(GetCPConfig().WeedEffects.RadBlurXPower*multiplier);
-			CameraEffects.changeRadBlurYEffect(GetCPConfig().WeedEffects.RadBlurYPower*multiplier);
-			CameraEffects.changeRotationBlurPower(GetCPConfig().WeedEffects.RotBlurPow*multiplier);
+			CannabisStrainConfig strainConfig = g_ClientCannabisStrainConfigs.Get(strainName);
+			if (strainConfig && strainConfig.WeedEffects)
+			{
+				CPClientDebugPrint("Applying weed effects for strain: " + strainName + " - Hue: " + strainConfig.WeedEffects.HueIntensity + " RadX: " + strainConfig.WeedEffects.RadBlurXPower + " RadY: " + strainConfig.WeedEffects.RadBlurYPower + " Rot: " + strainConfig.WeedEffects.RotBlurPow);
+
+				CameraEffects.changeHue(strainConfig.WeedEffects.HueIntensity - counter);
+				CameraEffects.changeRadBlurXEffect(strainConfig.WeedEffects.RadBlurXPower * multiplier);
+				CameraEffects.changeRadBlurYEffect(strainConfig.WeedEffects.RadBlurYPower * multiplier);
+				CameraEffects.changeRotationBlurPower(strainConfig.WeedEffects.RotBlurPow * multiplier);
+			}
+			else
+			{
+				CPClientDebugPrint("Strain config not found or WeedEffects null for strain: " + strainName);
+			}
 		}
 		PlaySoundSet(m_TurnOn, SMOKE_SOUND, 0.0, 0.0);
 	}

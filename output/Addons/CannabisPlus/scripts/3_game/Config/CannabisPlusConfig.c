@@ -38,8 +38,6 @@ class CannabisPlusConfigManager
 	int smokingJointEffectDuration;			// Time in seconds for the effect to stop
 	int jointCyclesToActivateEffect;		// number of cigarettes consumed to activate the effect
 
-	// Weed Effects.
-	ref WeedEffectsConfig WeedEffects;
 	// Workbench
 	ref WorkbenchConfig WorkbenchSettings;
 
@@ -94,7 +92,6 @@ class CannabisPlusConfigManager
             smokingJointEffectDuration 		= 360;
             jointCyclesToActivateEffect 	= 10;
 
-			WeedEffects = new WeedEffectsConfig();
 			WorkbenchSettings = new WorkbenchConfig();
 
             spoiltime						= 60;
@@ -250,22 +247,6 @@ void CPClientDebugPrint(string msg)
         Print("[CP CLIENT DEBUG] " + msg);
     }
 }
-
-class WeedEffectsConfig
-{
-    float HueIntensity;
-    int RadBlurXPower;
-    int RadBlurYPower;
-    int RotBlurPow;
-    
-    void WeedEffectsConfig(float hueIntensity = 58.0, int radBlurX = 2, int radBlurY = 2, int rotBlur = 10)
-    {
-        HueIntensity = hueIntensity;
-        RadBlurXPower = radBlurX;
-        RadBlurYPower = radBlurY;
-        RotBlurPow = rotBlur;
-    }
-};
 
 class WorkbenchConfig
 {
