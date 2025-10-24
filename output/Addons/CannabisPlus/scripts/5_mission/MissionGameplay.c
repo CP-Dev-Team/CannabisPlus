@@ -42,7 +42,21 @@ modded class MissionGameplay extends MissionBase
 
             // Update client-side config references
             g_ClientCannabisPlusConfig = data.param1;  // General config
-            g_ClientCannabisStrainConfigs = data.param2;  // Strain configs
+            g_ClientCannabisStrainConfigs = new map<string, ref CannabisStrainConfig>();
+            foreach (string strainKey, CannabisStrainConfig config : data.param2) {
+                CannabisStrainConfig newConfig = new CannabisStrainConfig();
+                newConfig.GrowTime = config.GrowTime;
+                newConfig.CropCount = config.CropCount;
+                newConfig.SeedCount = config.SeedCount;
+                if (config.WeedEffects) {
+                    newConfig.WeedEffects = new WeedEffectsConfig();
+                    newConfig.WeedEffects.HueIntensity = config.WeedEffects.HueIntensity;
+                    newConfig.WeedEffects.RadBlurXPower = config.WeedEffects.RadBlurXPower;
+                    newConfig.WeedEffects.RadBlurYPower = config.WeedEffects.RadBlurYPower;
+                    newConfig.WeedEffects.RotBlurPow = config.WeedEffects.RotBlurPow;
+                }
+                g_ClientCannabisStrainConfigs.Insert(strainKey, newConfig);
+            }
 
             int strainsCount = 0;
             if (g_ClientCannabisStrainConfigs)
@@ -50,6 +64,11 @@ modded class MissionGameplay extends MissionBase
                 strainsCount = g_ClientCannabisStrainConfigs.Count();
             }
             CPClientDebugPrint("Successfully received all configs from the server. Strains count: " + strainsCount);
+
+            CPClientDebugPrint("After assignment - g_ClientCannabisStrainConfigs count: " + g_ClientCannabisStrainConfigs.Count());
+            foreach (string debugKey, CannabisStrainConfig debugVal : g_ClientCannabisStrainConfigs) {
+                CPClientDebugPrint("After assignment - Key: " + debugKey + ", WeedEffects null: " + (debugVal.WeedEffects == null));
+            }
 
             // Debug Print General Config
             if (g_ClientCannabisPlusConfig)

@@ -95,7 +95,30 @@ modded class PlayerBase {
 		{
 			CPClientDebugPrint("CannabisEffectsTriggered counter: " + counter + " multiplier: " + multiplier + " strain: " + strainName);
 
+			CPClientDebugPrint("g_ClientCannabisStrainConfigs size: " + g_ClientCannabisStrainConfigs.Count());
+			for (int i = 0; i < g_ClientCannabisStrainConfigs.Count(); i++) {
+				string key = g_ClientCannabisStrainConfigs.GetKey(i);
+				CPClientDebugPrint("Map key " + i + ": '" + key + "'");
+			}
+
 			CannabisStrainConfig strainConfig = g_ClientCannabisStrainConfigs.Get(strainName);
+			if (strainConfig != null) {
+				CPClientDebugPrint("Retrieved config for '" + strainName + "': found");
+				if (strainConfig.WeedEffects != null) {
+					CPClientDebugPrint("WeedEffects null check: not null");
+					CPClientDebugPrint("WeedEffects values - Hue: " + strainConfig.WeedEffects.HueIntensity + " RadX: " + strainConfig.WeedEffects.RadBlurXPower);
+				} else {
+					CPClientDebugPrint("WeedEffects null check: null");
+					strainConfig.WeedEffects = new WeedEffectsConfig();
+					CPClientDebugPrint("Initialized default WeedEffects for strain: " + strainName);
+				}
+			} else {
+				CPClientDebugPrint("Retrieved config for '" + strainName + "': null");
+				strainConfig = new CannabisStrainConfig();
+				strainConfig.WeedEffects = new WeedEffectsConfig();
+				CPClientDebugPrint("Created default config and WeedEffects for strain: " + strainName);
+			}
+
 			if (strainConfig && strainConfig.WeedEffects)
 			{
 				CPClientDebugPrint("Applying weed effects for strain: " + strainName + " - Hue: " + strainConfig.WeedEffects.HueIntensity + " RadX: " + strainConfig.WeedEffects.RadBlurXPower + " RadY: " + strainConfig.WeedEffects.RadBlurYPower + " Rot: " + strainConfig.WeedEffects.RotBlurPow);
