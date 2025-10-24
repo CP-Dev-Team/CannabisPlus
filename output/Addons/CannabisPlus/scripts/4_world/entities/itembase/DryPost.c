@@ -115,10 +115,10 @@ class CP_DryPost extends ItemBase
 		if(item.IsKindOf("CP_RawPlantBase") && !item.IsKindOf("CP_DriedCannabisPlant"))
 		{
 			dp++;
-			//Print("dp = " + dp);
+			CPDebugPrint("dp = " + dp);
 		}
 
-		//Print("EEItemAttached: LockRope");
+		CPDebugPrint("EEItemAttached: LockRope");
 		if (GetGame() && GetGame().IsClient())		
 			LockRope();
 	}
@@ -160,10 +160,10 @@ class CP_DryPost extends ItemBase
 			{
 			  dp = 0;
 			}
-			//Print("dp = " + dp);
+			CPDebugPrint("dp = " + dp);
 		}
 
-		//Print("EEItemDetached: LockRope");
+		CPDebugPrint("EEItemDetached: LockRope");
 		if (GetGame() && GetGame().IsClient())
 			LockRope();
 	}
@@ -203,7 +203,7 @@ class CP_DryPost extends ItemBase
 			
 			if (NumPlants>=1)
 			{
-				//Print("[CP] all items attached to post " + this + " ...starting to dry");
+				CPDebugPrint("all items attached to post " + this + " ...starting to dry");
 				GetGame().GetCallQueue(CALL_CATEGORY_GAMEPLAY).CallLater(FinishDrying, GetCPConfig().cannabis_drytime*1000, false);
 				m_IsLocked = true;
 				LockDryingSlots(true);
@@ -257,7 +257,7 @@ class CP_DryPost extends ItemBase
 
 	void FinishDrying()
 	{
-		//Print("[CP] finished drying...");
+		CPDebugPrint("finished drying...");
 		NumItems = GetInventory().AttachmentCount();
 		LockDryingSlots(true);
 		for ( int j = 0; j < NumItems; j++ )
@@ -368,35 +368,35 @@ class CP_DryPost extends ItemBase
 				{
 					//GetIn	ventory().CreateAttachment("CP_DriedCannabisPlant");
 					GetCannabisDried().AddQuantity( dp );
-					//Print("[CP] " + this + " spawning "+ CP_DriedCannabisPlant );
+					CPDebugPrint("" + this + " spawning "+ CP_DriedCannabisPlant );
 
-					//Print("Created Dried plant = " + dp);
+					CPDebugPrint("Created Dried plant = " + dp);
 						
 					dp = 0;
 				} else {
 					GetInventory().CreateAttachment("CP_DriedCannabisPlant");
 					GetCannabisDried().SetQuantity( dp );
-					//Print("[CP] " + this + " spawning "+ CP_DriedCannabisPlant );
+					CPDebugPrint("" + this + " spawning "+ CP_DriedCannabisPlant );
 
-					//Print("Created Dried plant = " + dp);
+					CPDebugPrint("Created Dried plant = " + dp);
 						
 					dp = 0;
 
 				}
 			}
 			*/
-			//Print("[CP] The plant has " + BudSpawn.Count() + " items");
+			CPDebugPrint("The plant has " + BudSpawn.Count() + " items");
 			
 			for ( int j = 0; j < BudSpawn.Count(); j++)
 			{
 				string key = BudSpawn.GetKey(j);
-				//Print("[CP] plant[" + j + "] is " + key + " with quantity " + BudSpawn.Get(key));
+				CPDebugPrint("plant[" + j + "] is " + key + " with quantity " + BudSpawn.Get(key));
 				int StackMax;
 				StackMax = GetGame().ConfigGetInt("CfgVehicles " + key + " varStackMax");
 				int stacks = Math.Floor(BudSpawn.Get(key) / StackMax);
 				int remainder = BudSpawn.Get(key) - (stacks * StackMax);
-				//Print("[CP] " + this + " spawning " + stacks + " stacks" );
-				//Print("[CP] " + this + " spawning " + remainder + " singles" );
+				CPDebugPrint("" + this + " spawning " + stacks + " stacks" );
+				CPDebugPrint("" + this + " spawning " + remainder + " singles" );
 				for ( int k = 0; k <= stacks; k++)
 				{
 					CP_CannabisBud weed = CP_CannabisBud.Cast(this.GetInventory().CreateInInventory(key)); 					
@@ -431,7 +431,7 @@ class CP_DryPost extends ItemBase
 				ItemName = attachment.GetType();
 	            	if (ItemName.IndexOf("CP_Raw") >= 0)
 		            {
-					//Print("[CP] deleting " + attachment);
+					CPDebugPrint("deleting " + attachment);
 					GetGame().ObjectDelete(attachment);	
 				}	
 	        }
@@ -466,7 +466,7 @@ class CP_DryPost extends ItemBase
             if (rope)
             {
                 //Print(rope);
-                //Print("LockRope: True");
+                CPDebugPrint("LockRope: True");
                 rope.LockToParent();
             } 
 
@@ -474,7 +474,7 @@ class CP_DryPost extends ItemBase
         else if (rope)
         {
             //Print(rope);
-            //Print("LockRope: False");
+            CPDebugPrint("LockRope: False");
             rope.UnlockFromParent();
         }
     }
@@ -483,7 +483,7 @@ class CP_DryPost extends ItemBase
 	{		
 		super.EECargoIn(item);
 		
-		//Print("EECargoIn: LockRope");
+		CPDebugPrint("EECargoIn: LockRope");
 		LockRope();
 	}
 
@@ -491,7 +491,7 @@ class CP_DryPost extends ItemBase
 	{
 		super.EECargoOut(item);
 		
-		//Print("EECargoOut: LockRope");
+		CPDebugPrint("EECargoOut: LockRope");
 		LockRope();
 	}
 	

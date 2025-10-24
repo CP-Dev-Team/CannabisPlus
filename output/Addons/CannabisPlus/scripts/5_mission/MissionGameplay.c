@@ -40,7 +40,7 @@ modded class MissionGameplay extends MissionBase
                 return;
             }
 
-            // Update client-side config references
+            // Update client-side config references because for whatever reason, the map won't f'ing pass to the client.
             g_ClientCannabisPlusConfig = data.param1;  // General config
             g_ClientCannabisStrainConfigs = new map<string, ref CannabisStrainConfig>();
             foreach (string strainKey, CannabisStrainConfig config : data.param2) {

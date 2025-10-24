@@ -206,7 +206,7 @@ modded class PlantBase
                         
                     if (ItemName.IndexOf("CP_") >= 0)
 					{
-				    	//Print("[CP] harvested " + item);
+				    	CPDebugPrint("harvested " + item);
                     }      
 				
 				switch(ItemName){
@@ -216,7 +216,7 @@ modded class PlantBase
 						if (skunkplant)
 						{
 							skunkplant.SetYield(currentYield);
-							//Print("[CP] setting plant " + skunkplant + " yield to " + currentYield); 
+							CPDebugPrint("setting plant " + skunkplant + " yield to " + currentYield); 
 						}	
 						break;
 					// cannabis blue
@@ -225,7 +225,7 @@ modded class PlantBase
 						if (blueplant)
 						{
 							blueplant.SetYield(currentYield);
-							//Print("[CP] setting plant " + blueplant + " yield to " + currentYield); 
+							CPDebugPrint("setting plant " + blueplant + " yield to " + currentYield); 
 						}	
 						break;
 					// cannabis kush
@@ -234,7 +234,7 @@ modded class PlantBase
 						if (kushplant)
 						{
 							kushplant.SetYield(currentYield);
-							//Print("[CP] setting plant " + kushplant + " yield to " + currentYield); 
+							CPDebugPrint("setting plant " + kushplant + " yield to " + currentYield); 
 						}	
 						break;
 					// cannabis Stardawg
@@ -243,7 +243,7 @@ modded class PlantBase
 						if (stardawgplant)
 						{
 							stardawgplant.SetYield(currentYield);
-							//Print("[CP] setting plant " + stardawgplant + " yield to " + currentYield); 
+							CPDebugPrint("setting plant " + stardawgplant + " yield to " + currentYield); 
 						}	
 						break;
 					// cannabis Future
@@ -252,7 +252,7 @@ modded class PlantBase
 						if (futureplant)
 						{
 							futureplant.SetYield(currentYield);
-							//Print("[CP] setting plant " + futureplant + " yield to " + currentYield); 
+							CPDebugPrint("setting plant " + futureplant + " yield to " + currentYield); 
 						}	
 						break;
 					// cannabis S1
@@ -261,7 +261,7 @@ modded class PlantBase
 						if (s1plant)
 						{
 							s1plant.SetYield(currentYield);
-							//Print("[CP] setting plant " + s1plant + " yield to " + currentYield); 
+							CPDebugPrint("setting plant " + s1plant + " yield to " + currentYield); 
 						}	
 						break;
 					// cannabis Nomad
@@ -270,7 +270,7 @@ modded class PlantBase
 						if (nomadplant)
 						{
 							nomadplant.SetYield(currentYield);
-							//Print("[CP] setting plant " + nomadplant + " yield to " + currentYield); 
+							CPDebugPrint("setting plant " + nomadplant + " yield to " + currentYield); 
 						}	
 						break;
 					// cannabis BlackFrost
@@ -279,7 +279,7 @@ modded class PlantBase
 						if (bfplant)
 						{
 							bfplant.SetYield(currentYield);
-							//Print("[CP] setting plant " + bfplant + " yield to " + currentYield); 
+							CPDebugPrint("setting plant " + bfplant + " yield to " + currentYield); 
 						}	
 						break;
 					default:

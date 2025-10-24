@@ -120,7 +120,7 @@ class CannabisPlusConfigManager
             string ModVersion;
 	  	float modFloat;	
             GetGame().ConfigGetText(cfgversion, ModVersion);
-            //Print("[CP->] ModConfig entry found Mod Version is: " + ModVersion);
+            CPDebugPrint("ModConfig entry found Mod Version is: " + ModVersion);
             modFloat  = ModVersion.ToFloat()*100;	
             return (int)modFloat;
 	}

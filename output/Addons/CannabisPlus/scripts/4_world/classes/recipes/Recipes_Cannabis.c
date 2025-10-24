@@ -312,7 +312,7 @@ class CP_CraftCigarettePackEmpty extends RecipeBase
 	{
 		ItemBase item;
 		Class.CastTo(item ,ingredients[1]);
-		//Print("[DEBUG] " + item.GetDamage());		
+		CPDebugPrint("[DEBUG] " + item.GetDamage());		
 		if( item.GetDamage() == 0) {
 			return true;
 		}

@@ -60,7 +60,7 @@ class CP_CraftCigarettePackChernamorkaEmpty extends RecipeBase
 	{
 		ItemBase item;
 		Class.CastTo(item ,ingredients[0]);
-		//Print("[DEBUG] " + item.GetDamage());		
+		CPDebugPrint("Damage " + item.GetDamage());
 		if( item.GetDamage() == 0) {
 			return true;
 		} else {
@@ -205,7 +205,7 @@ class CP_CraftCigarettePackMerkurEmpty extends RecipeBase
 	{
 		ItemBase item;
 		Class.CastTo(item ,ingredients[0]);
-		//Print("[DEBUG] " + item.GetDamage());		
+		CPDebugPrint("[DEBUG] " + item.GetDamage());		
 		if( item.GetDamage() == 0) {
 			return true;
 		} else {
@@ -352,7 +352,7 @@ class CP_CraftCigarettePackPartyzankaEmpty extends RecipeBase
 	{
 		ItemBase item;
 		Class.CastTo(item ,ingredients[0]);
-		//Print("[DEBUG] " + item.GetDamage());		
+		CPDebugPrint("[DEBUG] " + item.GetDamage());		
 		if( item.GetDamage() == 0) {
 			return true;
 		} else {

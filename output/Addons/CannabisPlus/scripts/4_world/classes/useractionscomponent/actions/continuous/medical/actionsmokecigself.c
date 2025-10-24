@@ -102,12 +102,12 @@ class ActionSmokeCigSelf: ActionContinuousBase {
         CP_Cigarette cig = CP_Cigarette.Cast(action_data.m_MainItem);
 
         if (cig) {
-			//Print("[CP] ActionSmokeCigSelf:OnFinishProgressServer");
+			CPDebugPrint("ActionSmokeCigSelf:OnFinishProgressServer");
 
             cig.AddHealth("", "Health", -ReduceAmount);
 
 			clhealth = cig.GetHealth();
-			//Print("[DECPBUG] cig has " + clhealth + " health");
+			CPDebugPrint("[DECPBUG] cig has " + clhealth + " health");
 
 			cig.SetSynchronizedHealth(clhealth);
 

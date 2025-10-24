@@ -114,7 +114,7 @@ class CP_Workbench extends ItemBase
 		
 		GetGame().GetCallQueue(CALL_CATEGORY_SYSTEM).CallLater(UnlockAll, 600, false);
 		GetGame().GetCallQueue(CALL_CATEGORY_SYSTEM).CallLater(UpdateLockState, 750, false);
-		//Print("CP_Workbench constructor UpdateLockState");
+		CPDebugPrint("CP_Workbench constructor UpdateLockState");
 	}
 	
 	void CP_LoadConfig()
@@ -166,7 +166,7 @@ class CP_Workbench extends ItemBase
 
 		if (GetGame() && GetGame().IsClient())
 			UpdateLockState();
-			//Print("OnVariablesSynchronized, UpdateLockState");
+			CPDebugPrint("OnVariablesSynchronized, UpdateLockState");
 	}
 	
 	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -256,8 +256,8 @@ class CP_Workbench extends ItemBase
 		if(m_CP_Processing && m_CP_Processing.IsRunning())
 			return;
 
-		//Print("Processing is ongoing.");
-		//Print("Is Running not canceled" + m_CP_Processing);
+		CPDebugPrint("Processing is ongoing.");
+		CPDebugPrint("Is Running not canceled" + m_CP_Processing);
 		
 		if(!m_CP_Processing)
 		{
@@ -266,7 +266,7 @@ class CP_Workbench extends ItemBase
 			SetTimerIsRunning(true);
 			SetTimerIsPaused(false);
 			//UpdateLockState();
-			//Print("Processing is started." + m_CP_Processing);
+			CPDebugPrint("Processing is started." + m_CP_Processing);
 
 		}
 
@@ -276,12 +276,12 @@ class CP_Workbench extends ItemBase
 		//	CP_TimerisRunning = true;
 		//	CP_TimerIsPaused = false;
 		//	//UpdateLockState();
-		//	//Print("Processing is started.");
+		//	CPDebugPrint("Processing is started.");
 		//	//Print(m_CP_Processing);
 		//
 	
 		UpdateLockState();
-		//Print("StartProcessing, UpdateLockState");
+		CPDebugPrint("StartProcessing, UpdateLockState");
 	};
 
 	void EndProcessing(float actiontime)
@@ -291,12 +291,12 @@ class CP_Workbench extends ItemBase
 		{
 			m_CP_ProcessingCheck = new Timer;
 			m_CP_ProcessingCheck.Run(actiontime,this,"DoTimerProcessingCheck",NULL,false);
-			//Print("m_CP_Processing  isnt runing start m_CP_ProcessingCheck = " + m_CP_ProcessingCheck);
+			CPDebugPrint("m_CP_Processing  isnt runing start m_CP_ProcessingCheck = " + m_CP_ProcessingCheck);
 		}
 		else
 		{
 		   m_CP_ProcessingCheck.Run(actiontime,this,"DoTimerProcessingCheck",NULL,false);
-			//Print("m_CP_ProcessingCheck is existing");
+			CPDebugPrint("m_CP_ProcessingCheck is existing");
 		};
 		
     };
@@ -351,7 +351,7 @@ class CP_Workbench extends ItemBase
 
 		UpdateLockState();
 		SetSynchDirty();
-		//Print("StropProduction, UpdateLockState");
+		CPDebugPrint("StropProduction, UpdateLockState");
 	};
 
 	void KillProductionCheckTimer()
@@ -416,37 +416,37 @@ class CP_Workbench extends ItemBase
 	{
 		int BatteryRequired = GetCPConfig().WorkbenchSettings.RequireBattery;
 
-		//Print("BatteryRequired = " + BatteryRequired );
-		//Print("GetBattieries() = " + GetBattieries() );
+		CPDebugPrint("BatteryRequired = " + BatteryRequired );
+		CPDebugPrint("GetBattieries() = " + GetBattieries() );
 		if(BatteryRequired == 1)
 		{	
 			if(GetBattieries().GetCompEM().GetEnergy() >= Battery_Percent )
 			{
-				//Print("HaveEnoughFullBags() = " + HaveEnoughFullBags() );
-				//Print("HaveEnoughPlastic() = " + HaveEnoughPlastic() );
-				//Print("CanCreateBricks() = " + CanCreateBricks() );
-				//Print("WrapperRuined() = " + WrapperRuined() );
-				//Print("Battery power " + GetBattieries().GetCompEM().GetEnergy());
+				CPDebugPrint("HaveEnoughFullBags() = " + HaveEnoughFullBags() );
+				CPDebugPrint("HaveEnoughPlastic() = " + HaveEnoughPlastic() );
+				CPDebugPrint("CanCreateBricks() = " + CanCreateBricks() );
+				CPDebugPrint("WrapperRuined() = " + WrapperRuined() );
+				CPDebugPrint("Battery power " + GetBattieries().GetCompEM().GetEnergy());
 				if(CanCreateBags() == true )
 				{
 					SetTimerIsRunning(true);
 					CreateBags();
-					//Print("Create bags.");
-					//Print("CanCreateBags = true +" + m_CP_Processing);
+					CPDebugPrint("Create bags.");
+					CPDebugPrint("CanCreateBags = true +" + m_CP_Processing);
 				}
 				else if(CanCreateBricks() == true )
 				{
 					SetTimerIsRunning(true);
 					CreateBricks(); 
-					//Print("Create bricks.");
-					//Print("CanCreateBricks = true +" + m_CP_Processing);
+					CPDebugPrint("Create bricks.");
+					CPDebugPrint("CanCreateBricks = true +" + m_CP_Processing);
 				}
 				else
 				{
 					m_CP_Processing.Stop();
 					SetTimerIsRunning(false);
 					EndProcessing(1);
-					//Print("Out of materials.");
+					CPDebugPrint("Out of materials.");
 					SetSynchDirty();
 				}
 			}
@@ -455,7 +455,7 @@ class CP_Workbench extends ItemBase
 				m_CP_Processing.Stop();
 				SetTimerIsRunning(false);
 				EndProcessing(1);
-				//Print("Out of battery juice.");
+				CPDebugPrint("Out of battery juice.");
 				SetSynchDirty();
 			}
 		}
@@ -465,28 +465,28 @@ class CP_Workbench extends ItemBase
 			{
 				SetTimerIsRunning(true);
 				CreateBags();
-				//Print("Create bags.");
-				//Print("CanCreateBags = true +" + m_CP_Processing);
+				CPDebugPrint("Create bags.");
+				CPDebugPrint("CanCreateBags = true +" + m_CP_Processing);
 			}
 			else if(CanCreateBricks() == true )
 			{
 				SetTimerIsRunning(true);
 				CreateBricks(); 
-				//Print("Create bricks.");
-				//Print("CanCreateBricks = true +" + m_CP_Processing);
+				CPDebugPrint("Create bricks.");
+				CPDebugPrint("CanCreateBricks = true +" + m_CP_Processing);
 			}
 			else
 			{
 				m_CP_Processing.Stop();
 				SetTimerIsRunning(false);
 				EndProcessing(1);
-				//Print("Out of materials.");
+				CPDebugPrint("Out of materials.");
 				SetSynchDirty();
 			}
 		}
 		UpdateLockState();		
 		SetSynchDirty();
-		//Print("DoProcessing, UpdateLockState");
+		CPDebugPrint("DoProcessing, UpdateLockState");
 	};
 
     void CreateBags()
@@ -510,7 +510,7 @@ class CP_Workbench extends ItemBase
                 {        
                     if(!GetCannabisBags())
                     {
-                        //Print("Creating " + Bagname + " attachment.");
+                        CPDebugPrint("Creating " + Bagname + " attachment.");
 						GetInventory().SetSlotLock(InventorySlots.GetSlotIdFromString(ATTACHMENT_SLOT_BAGS), false);
                         GetInventory().CreateAttachment(Bagname);
 						GetCannabisBags().SetQuantity(1);
@@ -519,11 +519,11 @@ class CP_Workbench extends ItemBase
                     else if (GetCannabisBags() && GetCannabisBags().GetType() == Bagname)
                     {
                         GetCannabisBags().AddQuantity(1); 
-                        //Print("Adding " + Bagname + "quantity.");
+                        CPDebugPrint("Adding " + Bagname + "quantity.");
                     }
                     else
                     {
-                        //Print("Fucking else.");
+                        CPDebugPrint("Fucking else.");
                         return;
                     }
 
@@ -539,7 +539,7 @@ class CP_Workbench extends ItemBase
 			{        
 				if(!GetCannabisBags())
 				{
-					//Print("Creating attachment.");
+					CPDebugPrint("Creating attachment.");
 					GetInventory().SetSlotLock(InventorySlots.GetSlotIdFromString(ATTACHMENT_SLOT_BAGS), false);
 					GetInventory().CreateAttachment(Bagname);
 					GetCannabisBags().SetQuantity(1);
@@ -548,11 +548,11 @@ class CP_Workbench extends ItemBase
 				else if (GetCannabisBags() && GetCannabisBags().GetType() == Bagname)
 				{
 					GetCannabisBags().AddQuantity(1); 
-					//Print("Adding quantity.");
+					CPDebugPrint("Adding quantity.");
 				}
 				else
 				{
-					//Print("Fucking else.");
+					CPDebugPrint("Fucking else.");
 					return;
 				}
 
@@ -588,7 +588,7 @@ class CP_Workbench extends ItemBase
 				else if (GetCannabisBricks() && GetCannabisBricks().GetType() == Brickname)
 				{
 					GetCannabisBricks().AddQuantity(1); 
-                    //Print("Adding quantity.");
+                    CPDebugPrint("Adding quantity.");
 				}
 				else
 				{
@@ -645,7 +645,7 @@ class CP_Workbench extends ItemBase
 			GetInventory().SetSlotLock(InventorySlots.GetSlotIdFromString(ATTACHMENT_SLOT_BUDS), lock);
 			GetInventory().SetSlotLock(InventorySlots.GetSlotIdFromString(ATTACHMENT_SLOT_EMPTYBAGS), lock);
 			GetInventory().SetSlotLock(InventorySlots.GetSlotIdFromString(ATTACHMENT_SLOT_BAGS), lock);
-			//Print("LockCPBaggerSlots = "+lock);
+			CPDebugPrint("LockCPBaggerSlots = "+lock);
 		}
 	};
 
@@ -656,7 +656,7 @@ class CP_Workbench extends ItemBase
 			GetInventory().SetSlotLock(InventorySlots.GetSlotIdFromString(ATTACHMENT_SLOT_PLASTICWRAP), lock);
 			GetInventory().SetSlotLock(InventorySlots.GetSlotIdFromString(ATTACHMENT_SLOT_BAGS), lock);
 			GetInventory().SetSlotLock(InventorySlots.GetSlotIdFromString(ATTACHMENT_SLOT_BRICKS), lock);
-			//Print("LockCPWrapperSlots = "+lock);
+			CPDebugPrint("LockCPWrapperSlots = "+lock);
 		}
 	};
 
@@ -665,7 +665,7 @@ class CP_Workbench extends ItemBase
 		if (GetGame() && GetGame().IsServer())
 		{
 			GetInventory().SetSlotLock(InventorySlots.GetSlotIdFromString(ATTACHMENT_SLOT_BAGGER), lock);
-			//Print("void LockCPBagger = "+lock);
+			CPDebugPrint("void LockCPBagger = "+lock);
 		}
 	};
 
@@ -674,7 +674,7 @@ class CP_Workbench extends ItemBase
 		if (GetGame() && GetGame().IsServer())
 		{
 			GetInventory().SetSlotLock(InventorySlots.GetSlotIdFromString(ATTACHMENT_SLOT_WRAPPER), lock);
-			//Print("void LockCPWrapper = "+lock);
+			CPDebugPrint("void LockCPWrapper = "+lock);
 		}
 	};
 
@@ -683,7 +683,7 @@ class CP_Workbench extends ItemBase
 		if (GetGame() && GetGame().IsServer())
 		{
 			GetInventory().SetSlotLock(InventorySlots.GetSlotIdFromString(ATTACHMENT_SLOT_BATTERIES), lock);
-			//Print("void LockCPBattery = "+lock);
+			CPDebugPrint("void LockCPBattery = "+lock);
 		}	
 	};
 	
@@ -731,21 +731,21 @@ class CP_Workbench extends ItemBase
 			}
 			LockCPBaggerSlots(true);
 			LockCPBattery(true);
-			//Print("All bagger slots locked.");
+			CPDebugPrint("All bagger slots locked.");
 		}
 		else if ( BaggerOccupied() )
 		{
 			LockCPBaggerSlots(false);
 			LockCPBagger(true);
 			LockCPBattery(false);
-			//Print("Bagger locked.");
+			CPDebugPrint("Bagger locked.");
 		}
 		else
 		{
 			LockCPBaggerSlots(false);
 			LockCPBagger(false);
 			LockCPBattery(false);
-			//Print("All bagger slots unlocked.");
+			CPDebugPrint("All bagger slots unlocked.");
 		};
 	}
 
@@ -759,19 +759,19 @@ class CP_Workbench extends ItemBase
 			}
 			LockCPWrapperSlots(true);
 			LockCPBattery(true);
-			//Print("All wrapper slots locked.");
+			CPDebugPrint("All wrapper slots locked.");
 		}
 		else if ( WrapperOccupied() )
 		{
 			LockCPWrapperSlots(false);
 			LockCPWrapper(true);
-			//Print("Wrapper locked.");
+			CPDebugPrint("Wrapper locked.");
 		}
 		else
 		{
 			LockCPWrapperSlots(false);
 			LockCPWrapper(false);
-			//Print("All wrapper slots unlocked.");
+			CPDebugPrint("All wrapper slots unlocked.");
 		}
 	}
 
@@ -898,7 +898,7 @@ class CP_Workbench extends ItemBase
 			return;
 
 		UpdateLockState();
-		//Print("EEItemAttached, UpdateLockState");
+		CPDebugPrint("EEItemAttached, UpdateLockState");
     };
 
 	override void EEItemDetached(EntityAI item, string slot_name)
@@ -910,7 +910,7 @@ class CP_Workbench extends ItemBase
 
 		if (!IsRunning()) 
 			UpdateLockState();
-			//Print("EEItemDetached, UpdateLockState");
+			CPDebugPrint("EEItemDetached, UpdateLockState");
 	};
 	
 	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
