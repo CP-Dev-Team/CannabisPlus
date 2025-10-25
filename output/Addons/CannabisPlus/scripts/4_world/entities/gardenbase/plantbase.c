@@ -131,13 +131,30 @@ modded class PlantBase
 			isFertilized = true;
 		}
 
-		if (isFertilized)
+		if (plantType.Contains("CP_Plant_Cannabis"))
 		{
-			m_FullMaturityTime = (float)((48 * m_GrowTime) + Math.RandomInt(0, 30)) / fertility;
+			float baseTime = m_GrowTime * 60.0; // Assume GrowTime in minutes, convert to seconds
+			float randomAdd = Math.RandomFloat(0, 30);
+			if (isFertilized)
+			{
+				m_FullMaturityTime = (baseTime + randomAdd) / fertility;
+			}
+			else
+			{
+				m_FullMaturityTime = baseTime + randomAdd;
+			}
+			CPDebugPrint("Cannabis growth time set to: " + m_FullMaturityTime + " seconds for strain: " + strainName);
 		}
-		else
+		else // Not cannabis
 		{
-			m_FullMaturityTime = (float)((48 * m_GrowTime) + Math.RandomInt(0, 30));
+			if (isFertilized)
+			{
+				m_FullMaturityTime = (float)((48 * m_GrowTime) + Math.RandomInt(0, 30)) / fertility;
+			}
+			else
+			{
+				m_FullMaturityTime = (float)((48 * m_GrowTime) + Math.RandomInt(0, 30));
+			}
 		}
 
 		m_SpoilAfterFullMaturityTime = GetCPConfig().spoiltime * 60;
@@ -209,83 +226,26 @@ modded class PlantBase
 				    	CPDebugPrint("harvested " + item);
                     }      
 				
-				switch(ItemName){
-				      // cannabis skunk
-					case "CP_RawSkunkCannabisPlant":
-						CP_RawSkunkCannabisPlant skunkplant = CP_RawSkunkCannabisPlant.Cast(item);
-						if (skunkplant)
-						{
-							skunkplant.SetYield(currentYield);
-							CPDebugPrint("setting plant " + skunkplant + " yield to " + currentYield); 
-						}	
-						break;
-					// cannabis blue
-					case "CP_RawBlueCannabisPlant":
-						CP_RawBlueCannabisPlant blueplant = CP_RawBlueCannabisPlant.Cast(item);
-						if (blueplant)
-						{
-							blueplant.SetYield(currentYield);
-							CPDebugPrint("setting plant " + blueplant + " yield to " + currentYield); 
-						}	
-						break;
-					// cannabis kush
-					case "CP_RawKushCannabisPlant":
-						CP_RawKushCannabisPlant kushplant = CP_RawKushCannabisPlant.Cast(item);
-						if (kushplant)
-						{
-							kushplant.SetYield(currentYield);
-							CPDebugPrint("setting plant " + kushplant + " yield to " + currentYield); 
-						}	
-						break;
-					// cannabis Stardawg
-					case "CP_RawStardawgCannabisPlant":
-						CP_RawStardawgCannabisPlant stardawgplant = CP_RawStardawgCannabisPlant.Cast(item);
-						if (stardawgplant)
-						{
-							stardawgplant.SetYield(currentYield);
-							CPDebugPrint("setting plant " + stardawgplant + " yield to " + currentYield); 
-						}	
-						break;
-					// cannabis Future
-					case "CP_RawFutureCannabisPlant":
-						CP_RawFutureCannabisPlant futureplant = CP_RawFutureCannabisPlant.Cast(item);
-						if (futureplant)
-						{
-							futureplant.SetYield(currentYield);
-							CPDebugPrint("setting plant " + futureplant + " yield to " + currentYield); 
-						}	
-						break;
-					// cannabis S1
-					case "CP_RawS1CannabisPlant":
-						CP_RawS1CannabisPlant s1plant = CP_RawS1CannabisPlant.Cast(item);
-						if (s1plant)
-						{
-							s1plant.SetYield(currentYield);
-							CPDebugPrint("setting plant " + s1plant + " yield to " + currentYield); 
-						}	
-						break;
-					// cannabis Nomad
-					case "CP_RawNomadCannabisPlant":
-						CP_RawNomadCannabisPlant nomadplant = CP_RawNomadCannabisPlant.Cast(item);
-						if (nomadplant)
-						{
-							nomadplant.SetYield(currentYield);
-							CPDebugPrint("setting plant " + nomadplant + " yield to " + currentYield); 
-						}	
-						break;
-					// cannabis BlackFrost
-					case "CP_RawBlackFrostCannabisPlant":
-						CP_RawBlackFrostCannabisPlant bfplant = CP_RawBlackFrostCannabisPlant.Cast(item);
-						if (bfplant)
-						{
-							bfplant.SetYield(currentYield);
-							CPDebugPrint("setting plant " + bfplant + " yield to " + currentYield); 
-						}	
-						break;
-					default:
-                                    //not a CP item, skip out
-                                    super.Harvest(player);
-						return;
+				// Dynamic strain handling for cannabis plants
+				if (ItemName.IndexOf("CP_Raw") >= 0 && ItemName.IndexOf("CannabisPlant") >= 0)
+				{
+					CP_RawPlantBase plant = CP_RawPlantBase.Cast(item);
+					if (plant)
+					{
+						plant.SetYield(currentYield);
+						CPDebugPrint("Setting plant " + plant + " yield to " + currentYield);
+
+						// Extract strain from class name (e.g., "Kush" from "CP_RawKushCannabisPlant")
+						string strainName = ItemName.Substring(6, ItemName.Length() - 19); // Remove "CP_Raw" (6 chars) and "CannabisPlant" (13 chars)
+						plant.SetStrain(strainName);
+						CPDebugPrint("Extracted strain: " + strainName + " for plant: " + ItemName);
+					}
+				}
+				else
+				{
+					// Not a CP item, use super
+					super.Harvest(player);
+					return;
 				}
 				if ( m_PlantState == EPlantState.SPOILED )
 				{

@@ -1,5 +1,6 @@
 class CP_RawPlantBase extends ItemBase
 {
+	string m_StrainName;
 
 	void CP_RawPlantBase()
 	{
@@ -11,7 +12,7 @@ class CP_RawPlantBase extends ItemBase
 	{
 		if ( !super.OnStoreLoad( ctx, version ) )
 			return false;
-		if (GetGame().IsServer() && !ctx.Read( yield ))
+		if (GetGame().IsServer() && (!ctx.Read( yield ) || !ctx.Read( m_StrainName )))
 		{
 			return false;
 		}
@@ -24,19 +25,34 @@ class CP_RawPlantBase extends ItemBase
 		if(GetGame().IsServer())
 		{
 			ctx.Write( yield );
+			ctx.Write( m_StrainName );
 		}
 	}
 
 
 	
-	void SetYield(int value) 
+	void SetYield(int value)
 	{
+		CPDebugPrint("Setting yield to: " + value);
 		yield = value;
+		SetSynchDirty();
 	}
-	
-	int GetYield() 
+
+	int GetYield()
 	{
 		return yield;
+	}
+
+	void SetStrain(string strain)
+	{
+		CPDebugPrint("Setting strain to: " + strain);
+		m_StrainName = strain;
+		SetSynchDirty();
+	}
+
+	string GetStrain()
+	{
+		return m_StrainName;
 	}
 }
 
