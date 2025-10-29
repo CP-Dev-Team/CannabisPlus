@@ -54,7 +54,7 @@ modded class PlantBase
 		if (plantType.Contains("CP_Plant_Cannabis"))
 		{
 			strainName = plantType.Substring(17, plantType.Length() - 17); // Extracts the name after "CP_Plant_Cannabis"
-			
+
 			if (g_CannabisStrainConfigs.Contains(strainName))
 			{
 				// Load the config from the map
@@ -63,6 +63,7 @@ modded class PlantBase
 				currentYield = config.CropCount;
 				m_CropsCount = 1;  // Default crop count unless modified
 				IncreaseCrop = false;
+				m_PlantMaterialMultiplier = 0.1 * harvesting_efficiency; // Set similar to other plants
 
 				CPDebugPrint("Loaded strain config for: " + strainName + " | GrowTime: " + m_GrowTime + " | CropCount: " + currentYield);
 			}
@@ -74,56 +75,56 @@ modded class PlantBase
 		else
 		{
 			CPDebugPrint("Not a CannabisPlus plant type: " + plantType);
-		}
 
-		// Non-CannabisPlus plants
-		switch (plantType)
-		{
-			case "CP_Plant_Tobacco":
-				m_PlantMaterialMultiplier = 0.1 * harvesting_efficiency;
-				m_GrowTime = GetCPConfig().tobacco_growtime;
-				m_CropsCount = GetCPConfig().tobacco_cropcount;
-				currentYield = 1;
-				break;
-						
-			case "Plant_Pepper":
-				m_PlantMaterialMultiplier = 0.1 * harvesting_efficiency;
-				m_GrowTime = GetCPConfig().pepper_growtime;
-				m_CropsCount = GetCPConfig().pepper_cropcount;
-				currentYield = 1;
-				break;
-			
-			case "Plant_Tomato":
-				m_PlantMaterialMultiplier = 0.1 * harvesting_efficiency;
-				m_GrowTime = GetCPConfig().tomato_growtime;
-				m_CropsCount = GetCPConfig().tomato_cropcount;
-				currentYield = 1;
-				break;
-			
-			case "Plant_Zucchini":
-				m_PlantMaterialMultiplier = 0.1 * harvesting_efficiency;
-				m_GrowTime = GetCPConfig().zucchini_growtime;
-				m_CropsCount = GetCPConfig().zucchini_cropcount;
-				currentYield = 1;
-				break;
-			
-			case "Plant_Pumpkin":
-				m_PlantMaterialMultiplier = 0.1 * harvesting_efficiency;
-				m_GrowTime = GetCPConfig().pumpkin_growtime;
-				m_CropsCount = GetCPConfig().pumpkin_cropcount;
-				currentYield = 1;
-				break;
-			
-			case "Plant_Potato":
-				m_PlantMaterialMultiplier = 0.1 * harvesting_efficiency;
-				m_GrowTime = GetCPConfig().potato_growtime;
-				m_CropsCount = GetCPConfig().potato_cropcount;
-				currentYield = 1;
-				break;
-			
-			default:
-				super.Init(garden_base, fertility, harvesting_efficiency, water);
-				return;
+			// Non-CannabisPlus plants
+			switch (plantType)
+			{
+				case "CP_Plant_Tobacco":
+					m_PlantMaterialMultiplier = 0.1 * harvesting_efficiency;
+					m_GrowTime = GetCPConfig().tobacco_growtime;
+					m_CropsCount = GetCPConfig().tobacco_cropcount;
+					currentYield = 1;
+					break;
+
+				case "Plant_Pepper":
+					m_PlantMaterialMultiplier = 0.1 * harvesting_efficiency;
+					m_GrowTime = GetCPConfig().pepper_growtime;
+					m_CropsCount = GetCPConfig().pepper_cropcount;
+					currentYield = 1;
+					break;
+
+				case "Plant_Tomato":
+					m_PlantMaterialMultiplier = 0.1 * harvesting_efficiency;
+					m_GrowTime = GetCPConfig().tomato_growtime;
+					m_CropsCount = GetCPConfig().tomato_cropcount;
+					currentYield = 1;
+					break;
+
+				case "Plant_Zucchini":
+					m_PlantMaterialMultiplier = 0.1 * harvesting_efficiency;
+					m_GrowTime = GetCPConfig().zucchini_growtime;
+					m_CropsCount = GetCPConfig().zucchini_cropcount;
+					currentYield = 1;
+					break;
+
+				case "Plant_Pumpkin":
+					m_PlantMaterialMultiplier = 0.1 * harvesting_efficiency;
+					m_GrowTime = GetCPConfig().pumpkin_growtime;
+					m_CropsCount = GetCPConfig().pumpkin_cropcount;
+					currentYield = 1;
+					break;
+
+				case "Plant_Potato":
+					m_PlantMaterialMultiplier = 0.1 * harvesting_efficiency;
+					m_GrowTime = GetCPConfig().potato_growtime;
+					m_CropsCount = GetCPConfig().potato_cropcount;
+					currentYield = 1;
+					break;
+
+				default:
+					super.Init(garden_base, fertility, harvesting_efficiency, water);
+					return;
+			}
 		}
 
 		if (fertility > 1.0)
@@ -143,7 +144,7 @@ modded class PlantBase
 			{
 				m_FullMaturityTime = baseTime + randomAdd;
 			}
-			CPDebugPrint("Cannabis growth time set to: " + m_FullMaturityTime + " seconds for strain: " + strainName);
+			CPDebugPrint( "m_GrowTime: " + m_GrowTime + " | Fertility: " + fertility + " | Strain: " + strainName + " | m_FullMaturityTime: " + m_FullMaturityTime );
 		}
 		else // Not cannabis
 		{
