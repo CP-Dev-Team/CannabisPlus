@@ -118,7 +118,6 @@ class CP_DryPost extends ItemBase
 			CPDebugPrint("dp = " + dp);
 		}
 
-		CPDebugPrint("EEItemAttached: LockRope");
 		if (GetGame() && GetGame().IsClient())		
 			LockRope();
 	}
