@@ -261,6 +261,12 @@ modded class PlantBase
 			SetSynchDirty();
 			UpdatePlant();
 			GetGame().GetCallQueue( CALL_CATEGORY_SYSTEM ).CallLater( clearSpamCheck, 5000, false );
+
+			// Remove plant after harvest if configured
+			string plantType = this.GetType();
+			if (plantType.Contains("CP_Plant_Cannabis") && GetGame().IsServer() && GetCPConfig().removeAfterHarvest==true){
+				GetGame().GetCallQueue( CALL_CATEGORY_SYSTEM ).CallLater( RemovePlantEx, 10, false, player.GetPosition() );
+			}
 		}	
 	}	
 	
