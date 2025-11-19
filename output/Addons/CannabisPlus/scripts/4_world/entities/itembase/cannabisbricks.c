@@ -31,6 +31,3 @@ class CP_CannabisBrickS1 extends CP_CannabisBrickBase{};
 class CP_CannabisBrickNomad extends CP_CannabisBrickBase{};
 
 class CP_CannabisBrickBlackFrost extends CP_CannabisBrickBase{};
-
-
-
