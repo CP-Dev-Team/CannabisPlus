@@ -1,9 +1,5 @@
-//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-// 'workbench_kit' represents the item from which the finished workbench can be made.
-//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 class CP_Workbench_Kit extends ItemBase 
 {
-	
 	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 	// Event handler that is fired if placement of workbenchkit is complete.
 	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~	
@@ -56,14 +52,8 @@ class CP_Workbench_Kit extends ItemBase
 	}
 }
 
-
-
-//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-// The workbench class provides all methods for processing and production of the goods.
-//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 class CP_Workbench extends ItemBase 
 {
-	
 	const string ATTACHMENT_SLOT_WRAPPER	 	    = "Wrapper";
 	const string ATTACHMENT_SLOT_BAGGER	 	        = "Bagger";
 	const string ATTACHMENT_SLOT_BATTERIES			= "LargeBattery";
@@ -73,7 +63,6 @@ class CP_Workbench extends ItemBase
 	const string ATTACHMENT_SLOT_BAGS				= "CP_Cannabis_Bags";
 	const string ATTACHMENT_SLOT_BRICKS 			= "CP_Cannabis_Bricks";
 	
-
 	int Workbench_Timer_Repeat;
 	//int BudsToBagsUsage = GetCPConfig().Buds_To_Bags_Required;
 	int BagsToBricksUsage; //GetCPConfig().Bags_To_Bricks_Required;	
