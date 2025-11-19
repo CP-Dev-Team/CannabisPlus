@@ -264,78 +264,33 @@ class CP_DryPost extends ItemBase
 			ItemBase attachment = ItemBase.Cast( GetInventory().GetAttachmentFromIndex( j ) );
 			ItemName  = attachment.GetType();
 			//code to cast and get the amount of bud to spawn before deleting
-			//plant                        Bud 
+			//plant                        Bud
 			//CP_RawSkunkCannabisPlant     CP_CannabisSkunk
-			if (ItemName.IndexOf("CP_Raw") >= 0)
-				switch(ItemName){
-				      // cannabis skunk
-					case "CP_RawSkunkCannabisPlant":
-						CP_RawSkunkCannabisPlant skunkplant = CP_RawSkunkCannabisPlant.Cast(attachment);
-						if (skunkplant)
-						{
-							AddToMap("CP_CannabisSkunk",	skunkplant.GetYield());
+			if (ItemName.IndexOf("CP_Raw") >= 0 && ItemName.IndexOf("CannabisPlant") >= 0)
+			{
+				// Extract strain name from ItemName (e.g., "Skunk" from "CP_RawSkunkCannabisPlant")
+				string strainName = ItemName.Substring(6, ItemName.Length() - 19); // Remove "CP_Raw" (6 chars) and "CannabisPlant" (13 chars)
+				CPDebugPrint("Extracted strain name for drying: " + strainName);
 
-						}
-						break;
-					// cannabis blue
-					case "CP_RawBlueCannabisPlant":
-						CP_RawBlueCannabisPlant blueplant = CP_RawBlueCannabisPlant.Cast(attachment);
-						if (blueplant)
-						{
-							AddToMap("CP_CannabisBlue",	blueplant.GetYield());
-						}	
-						break;
-					// cannabis kush
-					case "CP_RawKushCannabisPlant":
-						CP_RawKushCannabisPlant kushplant = CP_RawKushCannabisPlant.Cast(attachment);
-						if (kushplant)
-						{
-							AddToMap("CP_CannabisKush",	kushplant.GetYield());
-						}
-						break;
-					// cannabis Stardawg
-					case "CP_RawStardawgCannabisPlant":
-						CP_RawStardawgCannabisPlant stardawgplant = CP_RawStardawgCannabisPlant.Cast(attachment);
-						if (stardawgplant)
-						{ 
-							AddToMap("CP_CannabisStardawg",	stardawgplant.GetYield());
-						}
-						break;
-					// cannabis Future
-					case "CP_RawFutureCannabisPlant":
-						CP_RawFutureCannabisPlant futureplant = CP_RawFutureCannabisPlant.Cast(attachment);
-						if (futureplant)
-						{ 
-							AddToMap("CP_CannabisFuture",	futureplant.GetYield());
-						}
-						break;
-					// cannabis S1
-					case "CP_RawS1CannabisPlant":
-						CP_RawS1CannabisPlant s1plant = CP_RawS1CannabisPlant.Cast(attachment);
-						if (s1plant)
-						{ 
-							AddToMap("CP_CannabisS1",	s1plant.GetYield());
-						}
-						break;
-					// cannabis Nomad
-					case "CP_RawNomadCannabisPlant":
-						CP_RawNomadCannabisPlant nomadplant = CP_RawNomadCannabisPlant.Cast(attachment);
-						if (nomadplant)
-						{ 
-							AddToMap("CP_CannabisNomad",	nomadplant.GetYield());
-						}	
-						break;
-					// cannabis BlackFrost
-					case "CP_RawBlackFrostCannabisPlant":
-						CP_RawBlackFrostCannabisPlant bfplant = CP_RawBlackFrostCannabisPlant.Cast(attachment);
-						if (bfplant)
-						{
-							AddToMap("CP_CannabisBlackFrost",	bfplant.GetYield());
-						}
-						break;
-					default:
-						break;
-			}			
+				if (g_CannabisStrainConfigs.Contains(strainName))
+				{
+					CP_RawPlantBase plant = CP_RawPlantBase.Cast(attachment);
+					if (plant)
+					{
+						string driedType = "CP_Cannabis" + strainName;
+						AddToMap(driedType, plant.GetYield());
+						CPDebugPrint("Added to map: " + driedType + " with yield: " + plant.GetYield());
+					}
+					else
+					{
+						CPDebugPrint("Warning: Failed to cast attachment to CP_RawPlantBase for: " + ItemName);
+					}
+				}
+				else
+				{
+					CPDebugPrint("Warning: Strain config for '" + strainName + "' not found. Skipping drying for: " + ItemName);
+				}
+			}
 		}			
 		GetGame().GetCallQueue(CALL_CATEGORY_GAMEPLAY).CallLater(SpawnDried, 500, false, GetPosition() );
 	}
@@ -480,7 +435,6 @@ class CP_DryPost extends ItemBase
 	{		
 		super.EECargoIn(item);
 		
-		CPDebugPrint("EECargoIn: LockRope");
 		LockRope();
 	}
 
@@ -488,7 +442,6 @@ class CP_DryPost extends ItemBase
 	{
 		super.EECargoOut(item);
 		
-		CPDebugPrint("EECargoOut: LockRope");
 		LockRope();
 	}
 	
