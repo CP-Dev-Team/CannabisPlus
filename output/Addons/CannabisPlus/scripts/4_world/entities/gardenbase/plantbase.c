@@ -11,14 +11,6 @@ modded class PlantBase
 	private int m_potato_growtime;
 	
 	private int m_tobacco_cropcount;
-	private int m_cannabisSkunk_cropcount;
-	private int m_cannabisKush_cropcount;
-	private int m_cannabisBlue_cropcount;
-	private int m_cannabisStardawg_cropcount;
-	private int m_cannabisFuture_cropcount;
-	private int m_cannabisS1_cropcount;
-	private int m_cannabisNomad_cropcount;
-	private int m_cannabisBlackFrost_cropcount;
 
 	private int m_pepper_cropcount;
 	private int m_tomato_cropcount;
