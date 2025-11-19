@@ -16,12 +16,6 @@ class ActionApplyCream : ActionContinuousBase
 		m_CommandUID		= DayZPlayerConstants.CMD_ACTIONFB_WASHHANDSWELL;
 		m_FullBody 			= true;
 		m_StanceMask 		= DayZPlayerConstants.STANCEMASK_ERECT | DayZPlayerConstants.STANCEMASK_CROUCH;
-
-		/* Removing because it's not supported on Linux
-		GameOptions gameOptions = new GameOptions();
-		ListOptionsAccess lang = ListOptionsAccess.Cast(gameOptions.GetOptionByType( AT_OPTIONS_LANGUAGE ));
-		lang.GetItemText(lang.GetIndex(), currentLanguage);
-		*/
 	}
 
 	void ApplyCream( ItemBase item, PlayerBase player )
@@ -72,34 +66,4 @@ class ActionApplyCream : ActionContinuousBase
 	string text = "#cp_apply_cream";
 	return text;
     }
-
-	/* Removing because it's not supported on Linux
-	override string GetText() 
-	{
-        // reserve empty string as return statement
-        string text = "";
-		
-		switch(currentLanguage) {
-			// if language setting is german
-			case "#options_language_DE":
-				text = "Creme auftragen";
-				break;
-			// if language setting is french
-			case "#options_language_FR":
-				text = "Appliquer la crème";
-				break;
-			// if language setting is spanish
-			case "#options_language_ES":
-				text = "Aplicar crema";
-				break;
-			// set english to default
-			default:
-				text = "Apply Cream";
-		};
-		// returns the string in the right language
-		return text;
-	};
-	*/
-
-
 };

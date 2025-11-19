@@ -13,19 +13,16 @@ class VomitMdfr: ModifierBase
 	
 	override bool ActivateCondition(PlayerBase player)
 	{
-			return false;
+		return false;
 	}
 	
 	override bool DeactivateCondition(PlayerBase player)
 	{
 		float attached_time = GetAttachedTime();
 		
-		if ( attached_time >= LIFETIME )
-		{
+		if ( attached_time >= LIFETIME ) {
 			return true;
-		}
-		else
-		{
+		} else {
 			return false;
 		}
 	}
