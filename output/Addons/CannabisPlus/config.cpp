@@ -7,7 +7,6 @@ class CfgPatches
 		requiredVersion=0.1;
 		requiredAddons[]=
 		{
-			"CPtoken",
 			"CannabisPlus_GhostIcons"
 		};
 	};
