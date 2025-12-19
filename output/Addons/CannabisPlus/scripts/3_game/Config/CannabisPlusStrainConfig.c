@@ -53,8 +53,8 @@ class CannabisStrainConfig
 
             ref array<string> defaultStrains = {
                 "Skunk",
-                "Blue",
-                "Kush",
+                "BlueGod",
+                "PurpleKush",
                 "Stardawg",
                 "S1",
                 "Future",

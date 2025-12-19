@@ -175,11 +175,6 @@ class CP_DryPost extends ItemBase
 		}
 		return false;
 	};
-	
-	CP_RawSkunkCannabisPlant GetCannabisBase()
-    {
-		return CP_RawSkunkCannabisPlant.Cast( GetAttachmentByType (CP_RawSkunkCannabisPlant) );
-    }
 
 	CP_DriedCannabisPlant GetCannabisDried()
     {
@@ -263,9 +258,7 @@ class CP_DryPost extends ItemBase
 		{
 			ItemBase attachment = ItemBase.Cast( GetInventory().GetAttachmentFromIndex( j ) );
 			ItemName  = attachment.GetType();
-			//code to cast and get the amount of bud to spawn before deleting
-			//plant                        Bud
-			//CP_RawSkunkCannabisPlant     CP_CannabisSkunk
+			// To cast and get the amount of bud to spawn before deleting
 			if (ItemName.IndexOf("CP_Raw") >= 0 && ItemName.IndexOf("CannabisPlant") >= 0)
 			{
 				// Extract strain name from ItemName (e.g., "Skunk" from "CP_RawSkunkCannabisPlant")

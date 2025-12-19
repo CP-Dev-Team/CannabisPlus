@@ -21,7 +21,7 @@ class CfgVehicles
     class Container_Base;
     class CP_CompostBin : Container_Base
     {
-        scope = 2;
+        scope = 0;
 		displayName="#cp_compost_bin0";
 		descriptionShort="#cp_compost_bin1";
 		model="\CannabisPlus\compost\compost_bin2.p3d";
@@ -66,7 +66,7 @@ class CfgVehicles
     class GardenLime: Inventory_Base{};
     class CP_Compost: GardenLime
     {
-        scope=2;
+        scope=0;
 		displayName="#cp_compost0";
 		descriptionShort="#cp_compost1";
 

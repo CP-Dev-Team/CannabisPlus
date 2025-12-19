@@ -6,6 +6,7 @@ class CP_RawPlantBase extends ItemBase
 	{
 		RegisterNetSyncVariableInt( "yield" );
 	}
+	
 	int yield = 0;
 
 	override bool OnStoreLoad( ParamsReadContext ctx, int version )
@@ -18,6 +19,7 @@ class CP_RawPlantBase extends ItemBase
 		}
 		return true;
 	}
+
 	override void OnStoreSave( ParamsWriteContext ctx )
 	{
 		// call the inherited class
@@ -29,8 +31,6 @@ class CP_RawPlantBase extends ItemBase
 		}
 	}
 
-
-	
 	void SetYield(int value)
 	{
 		CPDebugPrint("Setting yield to: " + value);
@@ -54,46 +54,6 @@ class CP_RawPlantBase extends ItemBase
 	{
 		return m_StrainName;
 	}
-}
-
-class CP_RawSkunkCannabisPlant extends CP_RawPlantBase
-{
-
-}
-
-class CP_RawBlueCannabisPlant extends CP_RawPlantBase
-{
-
-}
-
-class CP_RawKushCannabisPlant extends CP_RawPlantBase
-{
-
-}
-
-class CP_RawStardawgCannabisPlant extends CP_RawPlantBase
-{
-
-}
-
-class CP_RawFutureCannabisPlant extends CP_RawPlantBase
-{
-
-}
-
-class CP_RawS1CannabisPlant extends CP_RawPlantBase
-{
-
-}
-
-class CP_RawNomadCannabisPlant extends CP_RawPlantBase
-{
-
-}
-
-class CP_RawBlackFrostCannabisPlant extends CP_RawPlantBase
-{
-
 }
 
 class CP_DriedCannabisPlant extends CP_RawPlantBase

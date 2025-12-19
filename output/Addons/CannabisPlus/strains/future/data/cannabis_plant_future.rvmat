@@ -21,7 +21,7 @@ class Stage1
 };
 class Stage2
 {
-	texture="cannabisplus\plants\data\cannabis_plant_s1_co.paa";
+	texture="CannabisPlus\strains\future\data\cannabis_plant_future_co.paa";
 	uvSource="tex";
 	class uvTransform
 	{

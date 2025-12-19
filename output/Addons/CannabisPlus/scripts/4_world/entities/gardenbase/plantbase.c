@@ -228,7 +228,7 @@ modded class PlantBase
 						plant.SetYield(currentYield);
 						CPDebugPrint("Setting plant " + plant + " yield to " + currentYield);
 
-						// Extract strain from class name (e.g., "Kush" from "CP_RawKushCannabisPlant")
+						// Extract strain from class name (e.g., "PurpleKush" from "CP_RawPurpleKushCannabisPlant")
 						string strainName = ItemName.Substring(6, ItemName.Length() - 19); // Remove "CP_Raw" (6 chars) and "CannabisPlant" (13 chars)
 						plant.SetStrain(strainName);
 						CPDebugPrint("Extracted strain: " + strainName + " for plant: " + ItemName);

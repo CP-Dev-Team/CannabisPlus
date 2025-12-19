@@ -1,12 +1,10 @@
 class CP_CannabisBags extends CP_CoreClass
 {
-   
     protected string m_cpBrick= "";
 	protected string m_CpRipBag="";
     
     void CP_CannabisBags()
 	{
-        
         if ( ConfigIsExisting("cpStepUpToBrick") ) 
 		{
             m_cpBrick= ConfigGetString("cpStepUpToBrick");
@@ -24,7 +22,6 @@ class CP_CannabisBags extends CP_CoreClass
 		{
             m_CpRipBag = "";
         }
-		
     }
 		
 	string GetcpBrick()
@@ -42,7 +39,6 @@ class CP_CannabisBags extends CP_CoreClass
         return "Rip open " + GetDisplayName();
     };
 	
-
 	override void SetActions()
 	{
 		super.SetActions();
@@ -51,6 +47,7 @@ class CP_CannabisBags extends CP_CoreClass
 		AddAction(ActionDetach);
 	}
 };
+
 class CP_EmptyBag extends ItemBase
 {
 	override void SetActions()
@@ -61,19 +58,3 @@ class CP_EmptyBag extends ItemBase
 		AddAction(ActionDetach);
 	}
 };
-
-class CP_CannabisBagSkunk extends CP_CannabisBags{};
-
-class CP_CannabisBagBlue extends CP_CannabisBags{};
-
-class CP_CannabisBagKush extends CP_CannabisBags{};
-
-class CP_CannabisBagStardawg extends CP_CannabisBags{};
-
-class CP_CannabisBagFuture extends CP_CannabisBags{};
-
-class CP_CannabisBagS1 extends CP_CannabisBags{};
-
-class CP_CannabisBagNomad extends CP_CannabisBags{};
-
-class CP_CannabisBagBlackFrost extends CP_CannabisBags{};

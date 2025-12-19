@@ -27,22 +27,6 @@ class CP_JointPack extends ItemBase
 	}
 }
 
-class CP_CigarettePack_CannabisSkunk: CP_JointPack {};
-
-class CP_CigarettePack_CannabisBlackFrost: CP_JointPack {};
-
-class CP_CigarettePack_CannabisBlue: CP_JointPack {};
-
-class CP_CigarettePack_CannabisStardawg: CP_JointPack {};
-
-class CP_CigarettePack_CannabisS1: CP_JointPack {};
-
-class CP_CigarettePack_CannabisNomad: CP_JointPack {};
-
-class CP_CigarettePack_CannabisKush : CP_JointPack {};
-
-class CP_CigarettePack_CannabisFuture: CP_JointPack {};
-
 modded class CigarettePack_Chernamorka: Box_Base 
 {	
 	override void SetActions()	{

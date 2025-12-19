@@ -8,7 +8,7 @@ PixelShaderID="Super";
 VertexShaderID="Super";
 class Stage1
 {
-	texture="CannabisPlus\seeds\data\cannabis_seeds_pack_kush_nohq.paa";
+	texture="CannabisPlus\strains\s1\data\cannabis_seeds_pack_s1_nohq.paa";
 	uvSource="tex";
 	class uvTransform
 	{
@@ -56,7 +56,7 @@ class Stage4
 };
 class Stage5
 {
-	texture="CannabisPlus\seeds\data\cannabis_seeds_pack_kush_smdi.paa";
+	texture="CannabisPlus\strains\s1\data\cannabis_seeds_pack_s1_smdi.paa";
 	uvSource="tex";
 	class uvTransform
 	{

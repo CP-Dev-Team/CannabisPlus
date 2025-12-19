@@ -242,7 +242,7 @@ class CfgVehicles
     };
 	class CP_DriedCannabisPlant : CP_RawPlantBase
 	{
-		scope = 2;
+		scope = 1;
 		displayName="#cp_dried_plant0";
 		descriptionShort="#cp_dried_plant1";
 		model="\CannabisPlus\furniture\DriedCannabisPlantHanging.p3d";
@@ -257,117 +257,13 @@ class CfgVehicles
 		{
 			"DriedPlantPile"
 		};
+		hiddenSelectionsTextures[]=
+		{
+			"CannabisPlus\strains\skunk\data\cannabis_plant_skunk_co.paa"
+		};
+		hiddenSelectionsMaterials[]=
+		{
+			"CannabisPlus\strains\skunk\data\cannabis_plant_skunk.rvmat"
+		};
 	};
-	class CP_RawSkunkCannabisPlant : CP_RawPlantBase
-    {
-        scope = 2;
-		displayName="#cp_raw_skunk_plant0";
-		descriptionShort="#cp_raw_skunk_plant1";
-		hiddenSelections[]=
-		{
-			"CannabisPlantHanging"
-		};
-		hiddenSelectionsTextures[]=
-		{
-			"CannabisPlus\plants\data\cannabis_plant_skunk_co.paa"
-		};
-    };
-	class CP_RawBlueCannabisPlant : CP_RawPlantBase
-    {
-        scope = 2;
-		displayName="#cp_raw_blue_god_plant0";
-		descriptionShort="#cp_raw_blue_god_plant1";
-		hiddenSelections[]=
-		{
-			"CannabisPlantHanging"
-		};
-		hiddenSelectionsTextures[]=
-		{
-			"CannabisPlus\plants\data\cannabis_plant_blue_co.paa"
-		};
-    };
-	class CP_RawKushCannabisPlant : CP_RawPlantBase
-    {
-        scope = 2;
-		displayName="#cp_raw_kush_plant0";
-		descriptionShort="#cp_raw_kush_plant1";
-		hiddenSelections[]=
-		{
-			"CannabisPlantHanging"
-		};
-		hiddenSelectionsTextures[]=
-		{
-			"CannabisPlus\plants\data\cannabis_plant_kush_co.paa"
-		};
-    };
-	class CP_RawStardawgCannabisPlant : CP_RawPlantBase
-    {
-        scope = 2;
-		displayName="#cp_raw_stardawg_plant0";
-		descriptionShort="#cp_raw_stardawg_plant1";
-		hiddenSelections[]=
-		{
-			"CannabisPlantHanging"
-		};
-		hiddenSelectionsTextures[]=
-		{
-			"CannabisPlus\plants\data\cannabis_plant_stardawg_co.paa"
-		};
-    };
-	class CP_RawFutureCannabisPlant : CP_RawPlantBase
-    {
-        scope = 2;
-		displayName="#cp_raw_future_plant0";
-		descriptionShort="#cp_raw_future_plant1";
-		hiddenSelections[]=
-		{
-			"CannabisPlantHanging"
-		};
-		hiddenSelectionsTextures[]=
-		{
-			"CannabisPlus\plants\data\cannabis_plant_future_co.paa"
-		};
-    };
-	class CP_RawNomadCannabisPlant : CP_RawPlantBase
-    {
-        scope = 2;
-		displayName="#cp_raw_nomad_plant0";
-		descriptionShort="#cp_raw_nomad_plant1";
-		hiddenSelections[]=
-		{
-			"CannabisPlantHanging"
-		};
-		hiddenSelectionsTextures[]=
-		{
-			"CannabisPlus\plants\data\cannabis_plant_nomad_co.paa"
-		};
-    };
-	class CP_RawS1CannabisPlant : CP_RawPlantBase
-    {
-        scope = 2;
-		displayName="#cp_raw_s1_plant0";
-		descriptionShort="#cp_raw_s1_plant1";
-		hiddenSelections[]=
-		{
-			"CannabisPlantHanging"
-		};
-		hiddenSelectionsTextures[]=
-		{
-			"CannabisPlus\plants\data\cannabis_plant_s1_co.paa"
-		};
-    };
-	class CP_RawBlackFrostCannabisPlant : CP_RawPlantBase
-    {
-        scope = 2;
-		displayName="#cp_raw_black_frost_plant0";
-		descriptionShort="#cp_raw_black_frost_plant1";
-		hiddenSelections[]=
-		{
-			"CannabisPlantHanging"
-		};
-		hiddenSelectionsTextures[]=
-		{
-			"CannabisPlus\plants\data\cannabis_plant_blackfrost_co.paa"
-		};
-    };
 };
