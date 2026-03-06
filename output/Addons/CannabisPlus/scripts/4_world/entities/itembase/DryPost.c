@@ -1,14 +1,13 @@
 class CP_DryPost extends ItemBase
 {	
 	bool m_IsLocked = false;
-	ref Timer m_PlantDryTime;
 	bool RopeAttached = false;
 	bool Plant1Attached = false;
 	bool Plant2Attached = false;
 	bool Plant3Attached = false;
 	int NumPlants;
 	int NumItems;
-	string ItemName
+	string ItemName;
 	string NewPlantName;
 	ref map<string, int> BudSpawn;
 	EntityAI target;
@@ -19,7 +18,6 @@ class CP_DryPost extends ItemBase
 	void CP_DryPost()
 	{
 		BudSpawn = new map<string, int>;
-		BudSpawn.Clear();
 		
 		plant_slots.Insert(InventorySlots.GetSlotIdFromString("HangingPlants")); 
         plant_slots.Insert(InventorySlots.GetSlotIdFromString("HangingPlants2")); 
@@ -29,11 +27,6 @@ class CP_DryPost extends ItemBase
         plant_slots.Insert(InventorySlots.GetSlotIdFromString("HangingPlants6")); 
 	}
 	
-	void ~CP_DryPost()
-	{
-		
-		
-	}
 	bool IsLocked()
 	{
 		return m_IsLocked;
@@ -100,22 +93,15 @@ class CP_DryPost extends ItemBase
 	override void EEItemAttached(EntityAI item, string slot_name)
 	{
 		super.EEItemAttached(item, slot_name);
-	    
-		int dp;
 
 		if (slot_name == "Rope")
 		{    				
-			SetAnimationPhase ("Rope", 0);  // Shows the rope on the model when rope is attached.
+			SetAnimationPhase ("Rope", 0);
 			RopeAttached = true;
 		} 
 		if (slot_name == "DriedPlantPile")
 		{    				
-			SetAnimationPhase ("DryPile", 0);  // Shows the Pile when dried cannbis is put in dryed slot
-		}
-		if(item.IsKindOf("CP_RawPlantBase") && !item.IsKindOf("CP_DriedCannabisPlant"))
-		{
-			dp++;
-			CPDebugPrint("dp = " + dp);
+			SetAnimationPhase ("DryPile", 0);
 		}
 
 		if (GetGame() && GetGame().IsClient())		
@@ -147,21 +133,6 @@ class CP_DryPost extends ItemBase
 				Delete();
 			}
 		}
-		if(item.IsKindOf("CP_RawPlantBase") && !item.IsKindOf("CP_DriedCannabisPlant"))
-		{
-			int dp;
-
-			if(dp > 0)
-			{
-				dp--;
-			}
-			else if (dp < 0)
-			{
-			  dp = 0;
-			}
-			CPDebugPrint("dp = " + dp);
-		}
-
 		CPDebugPrint("EEItemDetached: LockRope");
 		if (GetGame() && GetGame().IsClient())
 			LockRope();
@@ -183,11 +154,17 @@ class CP_DryPost extends ItemBase
 	
 	void CheckStart()
 	{
+		if (!GetGame().IsServer())
+			return;
+		
 		if (!m_IsLocked)	
 		{
+			NumPlants = 0;
 			for ( int k = 0; k < GetInventory().AttachmentCount(); k++ )
 			{
 				ItemBase attachment = ItemBase.Cast( GetInventory().GetAttachmentFromIndex( k ) );
+				if (!attachment)
+					continue;
 				ItemName  = attachment.GetType();
 				if (ItemName.IndexOf("CP_Raw") >= 0)
 				{
@@ -226,8 +203,8 @@ class CP_DryPost extends ItemBase
 	
 	void AddToMap(string item, int value)
 	{
-		private int CurrentValue = 0;
-		private int NewValue = 0;
+		int CurrentValue = 0;
+		int NewValue = 0;
 		
 		if (value < 1)
 		{
@@ -257,6 +234,8 @@ class CP_DryPost extends ItemBase
 		for ( int j = 0; j < NumItems; j++ )
 		{
 			ItemBase attachment = ItemBase.Cast( GetInventory().GetAttachmentFromIndex( j ) );
+			if (!attachment)
+				continue;
 			ItemName  = attachment.GetType();
 			// To cast and get the amount of bud to spawn before deleting
 			if (ItemName.IndexOf("CP_Raw") >= 0 && ItemName.IndexOf("CannabisPlant") >= 0)
@@ -292,46 +271,6 @@ class CP_DryPost extends ItemBase
 	{
 		if ( GetGame() && GetGame().IsServer() )
 		{
-			NumItems = GetInventory().AttachmentCount();
-			
-			for ( int i = 0; i < NumItems; i++ )
-			{
-		        ItemBase attachment = ItemBase.Cast( GetInventory().GetAttachmentFromIndex( i ) );
-		        ItemName = attachment.GetType();
-				if (ItemName.IndexOf("CP_Raw") >= 0)
-		        {
-					// spawn plant material for now 
-					ItemBase plant = ItemBase.Cast(GetGame().CreateObjectEx("PlantMaterial",GetPosition(),ECE_PLACE_ON_SURFACE));
-
-				}    
-			}
-			
-			
-			
-			/*
-			if( dp >= 1)
-			{
-				if ( GetCannabisDried() )
-				{
-					//GetIn	ventory().CreateAttachment("CP_DriedCannabisPlant");
-					GetCannabisDried().AddQuantity( dp );
-					CPDebugPrint("" + this + " spawning "+ CP_DriedCannabisPlant );
-
-					CPDebugPrint("Created Dried plant = " + dp);
-						
-					dp = 0;
-				} else {
-					GetInventory().CreateAttachment("CP_DriedCannabisPlant");
-					GetCannabisDried().SetQuantity( dp );
-					CPDebugPrint("" + this + " spawning "+ CP_DriedCannabisPlant );
-
-					CPDebugPrint("Created Dried plant = " + dp);
-						
-					dp = 0;
-
-				}
-			}
-			*/
 			CPDebugPrint("The plant has " + BudSpawn.Count() + " items");
 			
 			for ( int j = 0; j < BudSpawn.Count(); j++)
@@ -372,9 +311,11 @@ class CP_DryPost extends ItemBase
 		if ( GetGame() && GetGame().IsServer() )
 		{
 			NumItems = GetInventory().AttachmentCount();
-			for ( int i = 0; i < NumItems; ++i )
+			for ( int i = NumItems - 1; i >= 0; i-- )
 			{
 				ItemBase attachment = ItemBase.Cast( GetInventory().GetAttachmentFromIndex( i ) );
+				if (!attachment)
+					continue;
 				ItemName = attachment.GetType();
 	            	if (ItemName.IndexOf("CP_Raw") >= 0)
 		            {
@@ -388,10 +329,10 @@ class CP_DryPost extends ItemBase
 		}
 		LockDryingSlots(false);
 		m_IsLocked = false;	
-		syncronize();	
+		synchronize();	
 	}
 	
-	void syncronize()
+	void synchronize()
 	{
 		if ( GetGame() && GetGame().IsServer() )
 		{
