@@ -4,6 +4,7 @@ class CannabisPlusConfigManager
 	bool EnableDebugLogging;
 
 	bool removeAfterHarvest;
+	bool disablePlantMaterialDrop;
 	
 	int tobacco_growtime;
 	int tobacco_cropcount;
@@ -63,7 +64,8 @@ class CannabisPlusConfigManager
 	void LoadDefaultSettings() {
 			configVersion					= GetModVersion();
             EnableDebugLogging              = false;  // Default is off
-			removeAfterHarvest 				= true;	
+			removeAfterHarvest 				= true;
+			disablePlantMaterialDrop		= false;
 
             tobacco_growtime 				= 8;
             tobacco_cropcount 				= 2;

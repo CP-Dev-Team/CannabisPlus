@@ -264,5 +264,24 @@ modded class PlantBase
 	
 	void clearSpamCheck(){
 		harvestingSpamCheck = false;
-	}	
+	}
+
+	override void RemovePlantEx( vector pos )
+	{
+		if ( GetGame() && GetGame().IsServer() )
+		{
+			UnlockFromParent();
+
+			string plantType = this.GetType();
+			bool isCannabis = plantType.Contains("CP_Plant_Cannabis");
+
+			if ( m_CurrentPlantMaterialQuantity > 0.0 && !(isCannabis && GetCPConfig().disablePlantMaterialDrop) )
+			{
+				ItemBase item = ItemBase.Cast( GetGame().CreateObjectEx( "PlantMaterial", pos, ECE_PLACE_ON_SURFACE ) );
+				item.SetQuantity( m_CurrentPlantMaterialQuantity * 1000.0 );
+			}
+
+			RemoveSlot();
+		}
+	}
 }
