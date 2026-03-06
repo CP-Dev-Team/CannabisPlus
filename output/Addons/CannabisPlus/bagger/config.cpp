@@ -22,7 +22,7 @@ class CfgVehicles
     {
         scope = 2;
 		displayName = "#cp_vacuum_bagger0";
-		descriptionShort = "cp_vacuum_bagger1";
+		descriptionShort = "#cp_vacuum_bagger1";
 		model="CannabisPlus\bagger\VacuumSealer.p3d";
 		weight=200;
 		itemSize[]={4,2};
