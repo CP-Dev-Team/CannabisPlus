@@ -18,7 +18,7 @@ modded class PlantBase
 	private int m_pumpkin_cropcount;
 	private int m_potato_cropcount;
 
-	private int m_spoiltime;
+	private int m_TimeToPlantSpoiling;
 	
 	ref Timer m_DeleteDryPlantTimer = NULL;
 	
@@ -150,7 +150,7 @@ modded class PlantBase
 			}
 		}
 
-		m_SpoilAfterFullMaturityTime = GetCPConfig().spoiltime * 60;
+		m_SpoilAfterFullMaturityTime = GetCPConfig().TimeToPlantSpoiling * 60;
 		m_StateChangeTime = (float)((float)m_FullMaturityTime / ((float)m_GrowthStagesCount - 2.0));
 
 		if (isFertilized)
@@ -256,7 +256,7 @@ modded class PlantBase
 
 			// Remove plant after harvest if configured
 			string plantType = this.GetType();
-			if (plantType.Contains("CP_Plant_Cannabis") && GetGame().IsServer() && GetCPConfig().removeAfterHarvest==true){
+			if (plantType.Contains("CP_Plant_Cannabis") && GetGame().IsServer() && GetCPConfig().RemoveAfterHarvest==true){
 				GetGame().GetCallQueue( CALL_CATEGORY_SYSTEM ).CallLater( RemovePlantEx, 10, false, player.GetPosition() );
 			}
 		}	
@@ -275,7 +275,7 @@ modded class PlantBase
 			string plantType = this.GetType();
 			bool isCannabis = plantType.Contains("CP_Plant_Cannabis");
 
-			if ( m_CurrentPlantMaterialQuantity > 0.0 && !(isCannabis && GetCPConfig().disablePlantMaterialDrop) )
+			if ( m_CurrentPlantMaterialQuantity > 0.0 && !(isCannabis && GetCPConfig().DisablePlantMaterialDrop) )
 			{
 				ItemBase item = ItemBase.Cast( GetGame().CreateObjectEx( "PlantMaterial", pos, ECE_PLACE_ON_SURFACE ) );
 				item.SetQuantity( m_CurrentPlantMaterialQuantity * 1000.0 );

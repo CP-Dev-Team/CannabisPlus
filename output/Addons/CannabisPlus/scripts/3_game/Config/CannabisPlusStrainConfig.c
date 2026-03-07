@@ -12,13 +12,12 @@ class CannabisStrainConfig
         GrowTime = growTime;
         CropCount = cropCount;
         SeedCount = seedCount;
+        WeedEffects = new WeedEffectsConfig();
     }
 
     static CannabisStrainConfig CreateDefault()
     {
-        CannabisStrainConfig config = new CannabisStrainConfig(8, 2, 9);
-        config.WeedEffects = new WeedEffectsConfig();
-        return config;
+        return new CannabisStrainConfig(8, 2, 9);
     }
 
     static CannabisStrainConfig LoadStrain(string strainName)
@@ -32,6 +31,7 @@ class CannabisStrainConfig
         {
             strain = new CannabisStrainConfig();
             JsonFileLoader<CannabisStrainConfig>.JsonLoadFile(path, strain);
+            strain.Validate();
             CPDebugPrint("Loaded from: " + path);
         }
         else
@@ -51,7 +51,7 @@ class CannabisStrainConfig
         {
             CPDebugPrint("Strains folder not found. Generating default strain configs...");
 
-            ref array<string> defaultStrains = {
+            array<string> defaultStrains = {
                 "Skunk",
                 "BlueGod",
                 "PurpleKush",
@@ -69,6 +69,14 @@ class CannabisStrainConfig
 
             CPDebugPrint("Default strain configs created.");
         }
+    }
+
+    void Validate()
+    {
+        if (GrowTime < 1) GrowTime = 1;
+        if (CropCount < 1) CropCount = 1;
+        if (SeedCount < 1) SeedCount = 1;
+        if (!WeedEffects) WeedEffects = new WeedEffectsConfig();
     }
 
     void SaveIfMissing(string strainName)

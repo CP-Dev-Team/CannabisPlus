@@ -1,10 +1,10 @@
 class CannabisPlusConfigManager
 {
-	int configVersion;
+	int ConfigVersion;
 	bool EnableDebugLogging;
 
-	bool removeAfterHarvest;
-	bool disablePlantMaterialDrop;
+	bool RemoveAfterHarvest;
+	bool DisablePlantMaterialDrop;
 	
 	int tobacco_growtime;
 	int tobacco_cropcount;
@@ -31,30 +31,23 @@ class CannabisPlusConfigManager
 
 	
 	// smoke effect settings
-	int activateCigaretteSmokingEffect; 	// reduces the fluctuation/sway in aiming when a cigarette is smoked
-	int smokingCigaretteEffectDuration;		// Time in seconds for the effect to stop
-	int cigaretteCyclesToActivateEffect;	// number of cigarettes consumed to activate the effect
+	int ActivateCigaretteSmokingEffect; 	// reduces the fluctuation/sway in aiming when a cigarette is smoked
+	int SmokingCigaretteEffectDuration;		// Time in seconds for the effect to stop
+	int CigaretteCyclesToActivateEffect;	// number of cigarettes consumed to activate the effect
 	// joint smoke effect settings
-	int activateJointSmokingEffect; 		// reduces the fluctuation/sway in aiming when a cigarette is smoked
-	int smokingJointEffectDuration;			// Time in seconds for the effect to stop
-	int jointCyclesToActivateEffect;		// number of cigarettes consumed to activate the effect
+	int ActivateJointSmokingEffect; 		// reduces the fluctuation/sway in aiming when a cigarette is smoked
+	int SmokingJointEffectDuration;			// Time in seconds for the effect to stop
+	int JointCyclesToActivateEffect;		// number of cigarettes consumed to activate the effect
 
 	// Workbench
 	ref WorkbenchConfig WorkbenchSettings;
 
-	int spoiltime;							// Time until fully matured plants will spoil.
+	int TimeToPlantSpoiling;	// Time until fully matured plants will spoil.
 
-    int cannabis_drytime;					// Time for raw plants to dry on drying post.
+    int TimeToDryCannabisPlant;	// Time for raw plants to dry on drying post.
 
-	//int    Buds_To_Bags_Required = 2;
-	//int    Bags_To_Bricks_Required = 16;
-	
-	// Composting (Unused)
-	//int PlantPerBag;
-	//int CompostTime;
-
-	int PlantMaterialUsage;
-    int GardenLimeUsage;
+	int TimeToHarvestPlantMaterial;
+    int TimeToHarvestGardenLime;
 	
 	void CannabisPlusConfigManager() 
 	{
@@ -62,10 +55,10 @@ class CannabisPlusConfigManager
 	}	
 	
 	void LoadDefaultSettings() {
-			configVersion					= GetModVersion();
+			ConfigVersion					= GetModVersion();
             EnableDebugLogging              = false;  // Default is off
-			removeAfterHarvest 				= true;
-			disablePlantMaterialDrop		= false;
+			RemoveAfterHarvest 				= true;
+			DisablePlantMaterialDrop		= false;
 
             tobacco_growtime 				= 8;
             tobacco_cropcount 				= 2;
@@ -86,33 +79,27 @@ class CannabisPlusConfigManager
             potato_growtime 				= 8;
             potato_cropcount 				= 2;
 
-            activateCigaretteSmokingEffect 	= false;
-            smokingCigaretteEffectDuration 	= 20;
-            cigaretteCyclesToActivateEffect = 8;
+            ActivateCigaretteSmokingEffect 	= false;
+            SmokingCigaretteEffectDuration 	= 20;
+            CigaretteCyclesToActivateEffect = 8;
 
-            activateJointSmokingEffect 		= true;
-            smokingJointEffectDuration 		= 360;
-            jointCyclesToActivateEffect 	= 10;
+            ActivateJointSmokingEffect 		= true;
+            SmokingJointEffectDuration 		= 360;
+            JointCyclesToActivateEffect 	= 10;
 
 			WorkbenchSettings = new WorkbenchConfig();
 
-            spoiltime						= 60;
-            cannabis_drytime            	= 30;
+            TimeToPlantSpoiling						= 60;
+            TimeToDryCannabisPlant            	= 30;
 			
-            //Buds_To_Bags_Required 		= 2;
-			//Bags_To_Bricks_Required		= 16;
-		
-			//PlantPerBag					= 18;
-			//CompostTime					= 360; 
-
-			PlantMaterialUsage				= 2;
-    		GardenLimeUsage					= 5;
+			TimeToHarvestPlantMaterial				= 2;
+    		TimeToHarvestGardenLime					= 5;
 
 		SaveConfig();
 	};
 
 	bool IsConfigOutdated() {
-		if(this.configVersion != GetModVersion())
+		if(this.ConfigVersion != GetModVersion())
 			return true;
 		return false;
 	}
@@ -126,9 +113,35 @@ class CannabisPlusConfigManager
             modFloat  = ModVersion.ToFloat()*100;	
             return (int)modFloat;
 	}
+
+	void ValidateConfig() {
+		if (tobacco_growtime < 1) tobacco_growtime = 1;
+		if (pepper_growtime < 1) pepper_growtime = 1;
+		if (tomato_growtime < 1) tomato_growtime = 1;
+		if (zucchini_growtime < 1) zucchini_growtime = 1;
+		if (pumpkin_growtime < 1) pumpkin_growtime = 1;
+		if (potato_growtime < 1) potato_growtime = 1;
+
+		if (tobacco_cropcount < 1) tobacco_cropcount = 1;
+		if (pepper_cropcount < 1) pepper_cropcount = 1;
+		if (tomato_cropcount < 1) tomato_cropcount = 1;
+		if (zucchini_cropcount < 1) zucchini_cropcount = 1;
+		if (pumpkin_cropcount < 1) pumpkin_cropcount = 1;
+		if (potato_cropcount < 1) potato_cropcount = 1;
+
+		if (TimeToPlantSpoiling < 1) TimeToPlantSpoiling = 1;
+		if (TimeToDryCannabisPlant < 1) TimeToDryCannabisPlant = 1;
+		if (TimeToHarvestPlantMaterial < 1) TimeToHarvestPlantMaterial = 1;
+		if (TimeToHarvestGardenLime < 1) TimeToHarvestGardenLime = 1;
+
+		if (SmokingCigaretteEffectDuration < 1) SmokingCigaretteEffectDuration = 1;
+		if (CigaretteCyclesToActivateEffect < 1) CigaretteCyclesToActivateEffect = 1;
+		if (SmokingJointEffectDuration < 1) SmokingJointEffectDuration = 1;
+		if (JointCyclesToActivateEffect < 1) JointCyclesToActivateEffect = 1;
+	}
 	
 	void SaveOldConfig() {
-		local const string cfgbkpPath = "$profile:CannabisPlus/ConfigBackup";
+		const string cfgbkpPath = "$profile:CannabisPlus/ConfigBackup";
 		if (!FileExist(cfgbkpPath))
 			MakeDirectory(cfgbkpPath);
 		if(FileExist(m_CPConfigPath)) {
@@ -148,12 +161,13 @@ class CannabisPlusConfigManager
     {
         CannabisPlusConfigManager settings = new CannabisPlusConfigManager();
 
-        if(!FileExist(m_CPProfileFolder))
-            MakeDirectory(m_CPProfileFolder);
+        if(!FileExist(m_CPProfileDir + m_CPProfileFolder))
+            MakeDirectory(m_CPProfileDir + m_CPProfileFolder);
 
         if(FileExist(m_CPConfigPath))
         {
             JsonFileLoader<CannabisPlusConfigManager>.JsonLoadFile(m_CPConfigPath, settings);
+            settings.ValidateConfig();
             if(settings.IsConfigOutdated())
             {
                 settings.SaveOldConfig();

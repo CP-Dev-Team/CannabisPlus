@@ -34,15 +34,15 @@ modded class PlayerBase {
 	// set to true if the player consumed a cigarette
 	void AddValueToCigaretteValue(int value) {
 		if (GetCPConfig()) {	
-			if(GetCPConfig().activateCigaretteSmokingEffect) {
+			if(GetCPConfig().ActivateCigaretteSmokingEffect) {
 				m_cigaretteValue += value;
 						
-				if(m_cigaretteValue >= GetCPConfig().cigaretteCyclesToActivateEffect){
-					CPDebugPrint("Smoking cigarrette effect" + GetCPConfig().cigaretteCyclesToActivateEffect);
+				if(m_cigaretteValue >= GetCPConfig().CigaretteCyclesToActivateEffect){
+					CPDebugPrint("Smoking cigarrette effect" + GetCPConfig().CigaretteCyclesToActivateEffect);
 					m_HasConsumedCigarette = true;
 					if (!swayTimer) { swayTimer = new Timer()};
 					swayTimer.Stop();
-					swayTimer.Run(GetCPConfig().smokingCigaretteEffectDuration, this, "ResetCigaretteValues", null, false);				
+					swayTimer.Run(GetCPConfig().SmokingCigaretteEffectDuration, this, "ResetCigaretteValues", null, false);				
 				}
 			}
 		}		
@@ -50,18 +50,18 @@ modded class PlayerBase {
 	// set to true if the player consumed a joint
 	void AddValueToJointValue(int value, string strainName = "") {
 		if (GetCPConfig()) {
-			if(GetCPConfig().activateJointSmokingEffect) {
+			if(GetCPConfig().ActivateJointSmokingEffect) {
 				CPClientDebugPrint("CannabisPlus: AddValueToJointValue");
 				m_jointValue += value;
 
-				if((m_jointValue % GetCPConfig().jointCyclesToActivateEffect) == 0){
-					CPClientDebugPrint("jointCyclesToActivateEffect " + GetCPConfig().jointCyclesToActivateEffect);
+				if((m_jointValue % GetCPConfig().JointCyclesToActivateEffect) == 0){
+					CPClientDebugPrint("JointCyclesToActivateEffect " + GetCPConfig().JointCyclesToActivateEffect);
 					CPClientDebugPrint("CannabisPlus: Starting Effect");
 					m_HasConsumedJoint = true;
 					CannabisEffectsTriggered(m_jointValue, strainName);
 					if (!jointTimer) { jointTimer = new Timer()};
 					jointTimer.Stop();
-					jointTimer.Run(GetCPConfig().smokingJointEffectDuration, this, "ResetJointValues", null, false);
+					jointTimer.Run(GetCPConfig().SmokingJointEffectDuration, this, "ResetJointValues", null, false);
 				}
 				SetSynchDirty();
 			}
@@ -88,7 +88,7 @@ modded class PlayerBase {
 		float multiplier;
 		int counter;
 
-		counter = cycles / GetCPConfig().jointCyclesToActivateEffect;
+		counter = cycles / GetCPConfig().JointCyclesToActivateEffect;
 		multiplier = 1 + (0.25 * counter);
 
 		if(GetGame().IsClient())
