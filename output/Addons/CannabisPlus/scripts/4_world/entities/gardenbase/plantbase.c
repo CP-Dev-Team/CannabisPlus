@@ -1,7 +1,5 @@
 modded class PlantBase
 {
-	ref Timer m_DeleteDryPlantTimer = NULL;
-
 	override void Init(GardenBase garden_base, float fertility, float harvesting_efficiency, float water)
 	{
 		string plantType = this.GetType();
