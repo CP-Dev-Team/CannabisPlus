@@ -65,11 +65,6 @@ modded class MissionGameplay extends MissionBase
             }
             CPClientDebugPrint("Successfully received all configs from the server. Strains count: " + strainsCount);
 
-            CPClientDebugPrint("After assignment - g_ClientCannabisStrainConfigs count: " + g_ClientCannabisStrainConfigs.Count());
-            foreach (string debugKey, CannabisStrainConfig debugVal : g_ClientCannabisStrainConfigs) {
-                CPClientDebugPrint("After assignment - Key: " + debugKey + ", WeedEffects null: " + (debugVal.WeedEffects == null));
-            }
-
             // Debug Print General Config
             if (g_ClientCannabisPlusConfig)
             {
