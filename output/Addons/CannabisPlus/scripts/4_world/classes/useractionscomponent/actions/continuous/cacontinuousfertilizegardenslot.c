@@ -47,11 +47,11 @@ modded class CAContinuousFertilizeGardenSlot : CAContinuousQuantity
 
 				if (item_type == "PlantMaterial") 
 				{
-					action_length = GetCPConfig().TimeToHarvestPlantMaterial;
+					action_length = GetACConfig().SecondsToFertilizeUsingPlantMaterial;
 				} 
 				else if (item_type == "GardenLime") 
 				{
-					action_length = GetCPConfig().TimeToHarvestGardenLime;
+					action_length = GetACConfig().SecondsToFertilizeUsingGardenLime;
 				}
 				else
 				{

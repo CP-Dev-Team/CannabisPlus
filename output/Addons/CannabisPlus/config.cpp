@@ -7,7 +7,8 @@ class CfgPatches
 		requiredVersion=0.1;
 		requiredAddons[]=
 		{
-			"CannabisPlus_GhostIcons"
+			"CannabisPlus_GhostIcons",
+			"AgricultureCore"
 		};
 	};
 };

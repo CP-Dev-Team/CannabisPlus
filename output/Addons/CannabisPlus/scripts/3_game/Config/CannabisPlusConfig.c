@@ -4,31 +4,9 @@ class CannabisPlusConfigManager
 	bool EnableServerDebugLogging;
 	bool EnableClientDebugLogging;
 
-	bool RemoveAfterHarvest;
-	bool DisablePlantMaterialDrop;
-	
-	int tobacco_growtime;
-	int tobacco_cropcount;
-	int tobaccoSeed_count;
-	
-	int pepper_growtime;
-	int pepper_cropcount;
-	int pepperSeed_count;
-	
-	int tomato_growtime;
-	int tomato_cropcount;
-	int tomatoSeed_count;
-	
-	int zucchini_growtime;
-	int zucchini_cropcount;
-	int zucchiniSeed_count;
-	
-	int pumpkin_growtime;
-	int pumpkin_cropcount;
-	int pumpkinSeed_count;
-
-	int potato_growtime;
-	int potato_cropcount;
+	int TobaccoGrowTime;
+	int TobaccoCropCount;
+	int TobaccoSeedCount;
 
 	
 	// smoke effect settings
@@ -43,12 +21,7 @@ class CannabisPlusConfigManager
 	// Workbench
 	ref WorkbenchConfig WorkbenchSettings;
 
-	int TimeToPlantSpoiling;	// Time until fully matured plants will spoil.
-
     int TimeToDryCannabisPlant;	// Time for raw plants to dry on drying post.
-
-	int TimeToHarvestPlantMaterial;
-    int TimeToHarvestGardenLime;
 	
 	void CannabisPlusConfigManager() 
 	{
@@ -59,28 +32,10 @@ class CannabisPlusConfigManager
 			ConfigVersion					= GetModVersion();
             EnableServerDebugLogging        = false;
             EnableClientDebugLogging        = true;  // Set to true for initial release so users can help report issues.
-			RemoveAfterHarvest 				= true;
-			DisablePlantMaterialDrop		= false;
 
-            tobacco_growtime 				= 8;
-            tobacco_cropcount 				= 2;
-            tobaccoSeed_count 				= 9;
-
-            pepper_growtime 				= 8;
-            pepper_cropcount 				= 2;
-            pepperSeed_count 				= 9;		
-            tomato_growtime 				= 8;
-            tomato_cropcount 				= 2;
-            tomatoSeed_count 				= 9;		
-            zucchini_growtime 				= 8;
-            zucchini_cropcount 				= 2;
-            zucchiniSeed_count 				= 9;
-            pumpkin_growtime 				= 8;
-            pumpkin_cropcount 				= 2;
-            pumpkinSeed_count 				= 9;
-            potato_growtime 				= 8;
-            potato_cropcount 				= 2;
-
+            TobaccoGrowTime 				= 8;
+            TobaccoCropCount 				= 2;
+            TobaccoSeedCount 				= 9;
             ActivateCigaretteSmokingEffect 	= false;
             SmokingCigaretteEffectDuration 	= 20;
             CigaretteCyclesToActivateEffect = 8;
@@ -91,11 +46,7 @@ class CannabisPlusConfigManager
 
 			WorkbenchSettings = new WorkbenchConfig();
 
-            TimeToPlantSpoiling						= 60;
             TimeToDryCannabisPlant            	= 30;
-			
-			TimeToHarvestPlantMaterial				= 2;
-    		TimeToHarvestGardenLime					= 5;
 
 		SaveConfig();
 	};
@@ -117,24 +68,11 @@ class CannabisPlusConfigManager
 	}
 
 	void ValidateConfig() {
-		if (tobacco_growtime < 1) tobacco_growtime = 1;
-		if (pepper_growtime < 1) pepper_growtime = 1;
-		if (tomato_growtime < 1) tomato_growtime = 1;
-		if (zucchini_growtime < 1) zucchini_growtime = 1;
-		if (pumpkin_growtime < 1) pumpkin_growtime = 1;
-		if (potato_growtime < 1) potato_growtime = 1;
+		if (TobaccoGrowTime < 1) TobaccoGrowTime = 1;
 
-		if (tobacco_cropcount < 1) tobacco_cropcount = 1;
-		if (pepper_cropcount < 1) pepper_cropcount = 1;
-		if (tomato_cropcount < 1) tomato_cropcount = 1;
-		if (zucchini_cropcount < 1) zucchini_cropcount = 1;
-		if (pumpkin_cropcount < 1) pumpkin_cropcount = 1;
-		if (potato_cropcount < 1) potato_cropcount = 1;
+		if (TobaccoCropCount < 1) TobaccoCropCount = 1;
 
-		if (TimeToPlantSpoiling < 1) TimeToPlantSpoiling = 1;
 		if (TimeToDryCannabisPlant < 1) TimeToDryCannabisPlant = 1;
-		if (TimeToHarvestPlantMaterial < 1) TimeToHarvestPlantMaterial = 1;
-		if (TimeToHarvestGardenLime < 1) TimeToHarvestGardenLime = 1;
 
 		if (SmokingCigaretteEffectDuration < 1) SmokingCigaretteEffectDuration = 1;
 		if (CigaretteCyclesToActivateEffect < 1) CigaretteCyclesToActivateEffect = 1;

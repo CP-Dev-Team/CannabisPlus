@@ -2,13 +2,6 @@ modded class SeedPackBase
 {   
     private int m_SeedCount;
 
-    private int m_tobaccoSeed_count;
-
-    private int m_pepperSeed_count;
-    private int m_tomatoSeed_count;
-    private int m_zucchiniSeed_count;
-    private int m_pumpkinSeed_count;
-
     override void EmptySeedPack( PlayerBase player )
     {
         string pack_type = GetType();
@@ -18,8 +11,6 @@ modded class SeedPackBase
 
         int seeds_quantity_max;
         int seeds_quantity;
-
-        m_tobaccoSeed_count = GetCPConfig().tobaccoSeed_count;
 
         string packType = this.GetType();
         string strainName;
@@ -51,40 +42,30 @@ modded class SeedPackBase
                 CPDebugPrint("Fallback default SeedCount: " + m_SeedCount);
             }
         }
+        else if (packType == "CP_TobaccoSeedsPack")
+        {
+            seeds_quantity_max = GetCPConfig().TobaccoSeedCount;
+        }
+        else if (packType == "PepperSeedsPack")
+        {
+            seeds_quantity_max = GetGPConfig().PepperSeedCount;
+        }
+        else if (packType == "TomatoSeedsPack")
+        {
+            seeds_quantity_max = GetGPConfig().TomatoSeedCount;
+        }
+        else if (packType == "ZucchiniSeedsPack")
+        {
+            seeds_quantity_max = GetGPConfig().ZucchiniSeedCount;
+        }
+        else if (packType == "PumpkinSeedsPack")
+        {
+            seeds_quantity_max = GetGPConfig().PumpkinSeedCount;
+        }
         else
         {
-            CPDebugPrint("Not a CannabisPlus seed type: " + packType);
-        }
-
-        m_pepperSeed_count = GetCPConfig().pepperSeed_count;
-        m_tomatoSeed_count = GetCPConfig().tomatoSeed_count;
-        m_zucchiniSeed_count = GetCPConfig().zucchiniSeed_count;
-        m_pumpkinSeed_count = GetCPConfig().pumpkinSeed_count;
-
-        switch(this.GetType())
-        {
-            case "CP_TobaccoSeedsPack":
-                seeds_quantity_max = m_tobaccoSeed_count;
-                break;
-            case "PepperSeedsPack":
-                seeds_quantity_max = m_pepperSeed_count;
-                break;
-            case "TomatoSeedsPack":
-                seeds_quantity_max = m_tomatoSeed_count;
-                break;
-            case "ZucchiniSeedsPack":
-                seeds_quantity_max = m_zucchiniSeed_count;
-                break;
-            case "PumpkinSeedsPack":
-                seeds_quantity_max = m_pumpkinSeed_count;
-                break;
-            default:
-                if (!packType.Contains("CP_CannabisSeedsPack"))
-                {
-                    super.EmptySeedPack(player);
-                    return;
-                }
-                break;
+            super.EmptySeedPack(player);
+            return;
         }
 
         seeds_quantity = Math.Round(seeds_quantity_max * GetHealth01("",""));
