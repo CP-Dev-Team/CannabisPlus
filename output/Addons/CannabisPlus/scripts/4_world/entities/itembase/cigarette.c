@@ -101,6 +101,7 @@ class CP_Cigarette extends ItemBase
 	override void SetActions()	{
 		super.SetActions();		
 		AddAction(ActionSmokeCigSelf);	// add action to smoke the joint
+		AddAction(ActionCPLoadPack);
 	}
 }
 

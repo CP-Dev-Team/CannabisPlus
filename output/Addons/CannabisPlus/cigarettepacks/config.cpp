@@ -115,7 +115,7 @@ class CfgVehicles
 		varQuantityMin=1;
 		varQuantityMax=20;
 		varQuantityDestroyOnMin=0;
-		quantityBar=1;
+		quantityBar=0;
 		cpCheckPack="empty";
 		hiddenSelections[]=
 		{
@@ -189,6 +189,7 @@ class CfgVehicles
 		varQuantityInit=20;
 		varQuantityMin=1;
 		varQuantityMax=20;
+		quantityBar=0;
 		hiddenSelections[]=
 		{
 			"camoGround",
@@ -208,6 +209,7 @@ class CfgVehicles
 		varQuantityInit=20;
 		varQuantityMin=1;
 		varQuantityMax=20;
+		quantityBar=0;
 		hiddenSelections[]=
 		{
 			"camoGround",
@@ -227,6 +229,7 @@ class CfgVehicles
 		varQuantityInit=20;
 		varQuantityMin=1;
 		varQuantityMax=20;
+		quantityBar=0;
 		hiddenSelections[]=
 		{
 			"camoGround",

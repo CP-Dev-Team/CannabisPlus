@@ -22,6 +22,8 @@ class ActionSmokeJointSelf: ActionContinuousBase {
         	CP_JointBase joint;
 		Class.CastTo(joint, item);
         	if (joint) {
+			if (joint.GetQuantity() > 1)
+				return false;
 	            clhealth = joint.GetSynchronizedHealth();
 	            return true;
 		}	

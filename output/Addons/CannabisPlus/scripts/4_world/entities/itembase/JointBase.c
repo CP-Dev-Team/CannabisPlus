@@ -158,5 +158,6 @@ class CP_JointBase extends ItemBase
 	override void SetActions()	{
 		super.SetActions();		
 		AddAction(ActionSmokeJointSelf);	// add action to smoke the joint
+		AddAction(ActionCPLoadPack);
 	}
 }

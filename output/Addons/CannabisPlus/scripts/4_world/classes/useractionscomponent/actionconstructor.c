@@ -7,6 +7,7 @@ modded class ActionConstructor {
 		
         actions.Insert(ActionSmokeJointSelf);
 		actions.Insert(ActionSmokeCigSelf); 
+		actions.Insert(ActionCPLoadPack);
 		actions.Insert(ActionUnpackCigaretteBox);
 		actions.Insert(ActionApplyCream);
 		// starts drying process on Drypost

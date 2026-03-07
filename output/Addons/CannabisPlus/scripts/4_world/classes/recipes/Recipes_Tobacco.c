@@ -1,5 +1,7 @@
 class CP_CraftCigarettePackChernamorkaEmpty extends RecipeBase
-{	
+{
+	protected int m_SavedCigQty;
+
 	override void Init()
 	{
 		m_Name = "Pack Cigarette into Chernamorka Cigarette Pack";
@@ -58,9 +60,14 @@ class CP_CraftCigarettePackChernamorkaEmpty extends RecipeBase
 
 	override bool CanDo(ItemBase ingredients[], PlayerBase player)//final check for recipe's validity
 	{
+		ItemBase pack = ingredients[1];
+		if (!pack || pack.GetType() != "CP_CigarettePack_Empty")
+			return false;
+
 		ItemBase item;
 		Class.CastTo(item ,ingredients[0]);
-		CPDebugPrint("Damage: " + item.GetDamage());
+		m_SavedCigQty = item.GetQuantity();
+		CPDebugPrint("[ChernamorkaEmpty CanDo] Damage: " + item.GetDamage() + ", cigQty: " + m_SavedCigQty);
 		if( item.GetDamage() == 0) {
 			return true;
 		} else {
@@ -70,12 +77,22 @@ class CP_CraftCigarettePackChernamorkaEmpty extends RecipeBase
 
 	override void Do(ItemBase ingredients[], PlayerBase player,array<ItemBase> results, float specialty_weight)//gets called upon recipe's completion
 	{
-		Debug.Log("Recipe Do method called","recipes");
+		if (results.Count() > 0 && results[0])
+		{
+			int packQty = Math.Min(m_SavedCigQty, 20);
+			if (packQty < 1)
+				packQty = 1;
+			results[0].SetQuantity(packQty);
+			CPDebugPrint("[ChernamorkaEmpty Do] Created pack with qty: " + packQty);
+		}
 	}
 };
 
 class CP_CraftCigarettePackChernamorka extends RecipeBase
-{	
+{
+	protected int m_SavedCigQty;
+	protected int m_SavedPackQty;
+
 	override void Init()
 	{
 		m_Name = "Pack Cigarette into Chernamorka Cigarette Pack";
@@ -95,7 +112,7 @@ class CP_CraftCigarettePackChernamorka extends RecipeBase
 		m_MaxDamageIngredient[1] = -1;//-1 = disable check
 		
 		m_MinQuantityIngredient[1] = -1;//-1 = disable check
-		m_MaxQuantityIngredient[1] = 20;//-1 = disable check
+		m_MaxQuantityIngredient[1] = 19;//-1 = disable check
 		//----------------------------------------------------------------------------------------------------------------------
 		
 		//INGREDIENTS
@@ -104,8 +121,8 @@ class CP_CraftCigarettePackChernamorka extends RecipeBase
 		InsertIngredient(0,"CP_Cigarette");
 		m_IngredientAddHealth[0] = 0;// 0 = do nothing
 		m_IngredientSetHealth[0] = -1; // -1 = do nothing
-		m_IngredientAddQuantity[0] = -1;// 0 = do nothing
-		m_IngredientDestroy[0] = true;//true = destroy, false = do nothing
+		m_IngredientAddQuantity[0] = 0;// handled in Do()
+		m_IngredientDestroy[0] = false;// handled in Do()
 		m_IngredientUseSoftSkills[0] = false;// set 'true' to allow modification of the values by softskills on this ingredient
 		
 		//ingredient 2
@@ -113,7 +130,7 @@ class CP_CraftCigarettePackChernamorka extends RecipeBase
 		InsertIngredient(1, "CigarettePack_Chernamorka");
 		m_IngredientAddHealth[1] = 0;// 0 = do nothing
 		m_IngredientSetHealth[1] = -1; // -1 = do nothing
-		m_IngredientAddQuantity[1] = 1;// 0 = do nothing
+		m_IngredientAddQuantity[1] = 0;// handled in Do()
 		m_IngredientDestroy[1] = false;// false = do nothing
 		m_IngredientUseSoftSkills[1] = false;// set 'true' to allow modification of the values by softskills on this ingredient
 		//----------------------------------------------------------------------------------------------------------------------
@@ -134,17 +151,53 @@ class CP_CraftCigarettePackChernamorka extends RecipeBase
 	}
 
 	override bool CanDo(ItemBase ingredients[], PlayerBase player)//final check for recipe's validity
-    {
+	{
+		ItemBase cig = ingredients[0];
+		ItemBase pack = ingredients[1];
+		if (!cig || !pack)
+			return false;
+		if (pack.GetQuantity() >= 20)
+			return false;
+		m_SavedCigQty = cig.GetQuantity();
+		m_SavedPackQty = pack.GetQuantity();
+		CPDebugPrint("[ChernamorkaLoad CanDo] cigQty: " + m_SavedCigQty + ", packQty: " + m_SavedPackQty);
 		return true;
-    }
+	}
 
-    override void Do(ItemBase ingredients[], PlayerBase player,array<ItemBase> results, float specialty_weight)//gets called upon recipe's completion
-    {
-        Debug.Log("Recipe Do method called","recipes");
-    }
+	override void Do(ItemBase ingredients[], PlayerBase player,array<ItemBase> results, float specialty_weight)//gets called upon recipe's completion
+	{
+		ItemBase cig = ingredients[0];
+		ItemBase pack = ingredients[1];
+		if (!cig || !pack)
+			return;
+
+		int cigQty = m_SavedCigQty;
+		int packQty = m_SavedPackQty;
+		int spaceInPack = 20 - packQty;
+		int toTransfer = Math.Min(cigQty, spaceInPack);
+
+		CPDebugPrint("[ChernamorkaLoad Do] savedCigQty: " + cigQty + ", savedPackQty: " + packQty + ", toTransfer: " + toTransfer);
+
+		if (toTransfer <= 0)
+			return;
+
+		pack.SetQuantity(packQty + toTransfer);
+
+		int remaining = cigQty - toTransfer;
+		if (remaining <= 0)
+		{
+			cig.Delete();
+		}
+		else
+		{
+			cig.SetQuantity(remaining);
+		}
+	}
 };
 class CP_CraftCigarettePackMerkurEmpty extends RecipeBase
-{	
+{
+	protected int m_SavedCigQty;
+
 	override void Init()
 	{
 		m_Name = "Pack Cigarette into Merkur Cigarette Pack";
@@ -203,9 +256,14 @@ class CP_CraftCigarettePackMerkurEmpty extends RecipeBase
 
 	override bool CanDo(ItemBase ingredients[], PlayerBase player)//final check for recipe's validity
 	{
+		ItemBase pack = ingredients[1];
+		if (!pack || pack.GetType() != "CP_CigarettePack_Empty")
+			return false;
+
 		ItemBase item;
 		Class.CastTo(item ,ingredients[0]);
-		CPDebugPrint("Damage: " + item.GetDamage());		
+		m_SavedCigQty = item.GetQuantity();
+		CPDebugPrint("[MerkurEmpty CanDo] Damage: " + item.GetDamage() + ", cigQty: " + m_SavedCigQty);
 		if( item.GetDamage() == 0) {
 			return true;
 		} else {
@@ -215,12 +273,22 @@ class CP_CraftCigarettePackMerkurEmpty extends RecipeBase
 
 	override void Do(ItemBase ingredients[], PlayerBase player,array<ItemBase> results, float specialty_weight)//gets called upon recipe's completion
 	{
-		Debug.Log("Recipe Do method called","recipes");
+		if (results.Count() > 0 && results[0])
+		{
+			int packQty = Math.Min(m_SavedCigQty, 20);
+			if (packQty < 1)
+				packQty = 1;
+			results[0].SetQuantity(packQty);
+			CPDebugPrint("[MerkurEmpty Do] Created pack with qty: " + packQty);
+		}
 	}
 };
 
 class CP_CraftCigarettePackMerkur extends RecipeBase
-{	
+{
+	protected int m_SavedCigQty;
+	protected int m_SavedPackQty;
+
 	override void Init()
 	{
 		m_Name = "Pack Cigarette into Merkur Cigarette Pack";
@@ -241,7 +309,7 @@ class CP_CraftCigarettePackMerkur extends RecipeBase
 		m_MaxDamageIngredient[1] = -1;//-1 = disable check
 		
 		m_MinQuantityIngredient[1] = -1;//-1 = disable check
-		m_MaxQuantityIngredient[1] = 20;//-1 = disable check
+		m_MaxQuantityIngredient[1] = 19;//-1 = disable check
 		//----------------------------------------------------------------------------------------------------------------------
 		
 		//INGREDIENTS
@@ -250,8 +318,8 @@ class CP_CraftCigarettePackMerkur extends RecipeBase
 		InsertIngredient(0,"CP_Cigarette");
 		m_IngredientAddHealth[0] = 0;// 0 = do nothing
 		m_IngredientSetHealth[0] = -1; // -1 = do nothing
-		m_IngredientAddQuantity[0] = -1;// 0 = do nothing
-		m_IngredientDestroy[0] = true;//true = destroy, false = do nothing
+		m_IngredientAddQuantity[0] = 0;// handled in Do()
+		m_IngredientDestroy[0] = false;// handled in Do()
 		m_IngredientUseSoftSkills[0] = false;// set 'true' to allow modification of the values by softskills on this ingredient
 		
 		//ingredient 2
@@ -259,7 +327,7 @@ class CP_CraftCigarettePackMerkur extends RecipeBase
 		InsertIngredient(1, "CigarettePack_Merkur");
 		m_IngredientAddHealth[1] = 0;// 0 = do nothing
 		m_IngredientSetHealth[1] = -1; // -1 = do nothing
-		m_IngredientAddQuantity[1] = 1;// 0 = do nothing
+		m_IngredientAddQuantity[1] = 0;// handled in Do()
 		m_IngredientDestroy[1] = false;// false = do nothing
 		m_IngredientUseSoftSkills[1] = false;// set 'true' to allow modification of the values by softskills on this ingredient
 		//----------------------------------------------------------------------------------------------------------------------
@@ -280,18 +348,54 @@ class CP_CraftCigarettePackMerkur extends RecipeBase
 	}
 
 	override bool CanDo(ItemBase ingredients[], PlayerBase player)//final check for recipe's validity
-    {
+	{
+		ItemBase cig = ingredients[0];
+		ItemBase pack = ingredients[1];
+		if (!cig || !pack)
+			return false;
+		if (pack.GetQuantity() >= 20)
+			return false;
+		m_SavedCigQty = cig.GetQuantity();
+		m_SavedPackQty = pack.GetQuantity();
+		CPDebugPrint("[MerkurLoad CanDo] cigQty: " + m_SavedCigQty + ", packQty: " + m_SavedPackQty);
 		return true;
-    }
+	}
 
-    override void Do(ItemBase ingredients[], PlayerBase player,array<ItemBase> results, float specialty_weight)//gets called upon recipe's completion
-    {
-        Debug.Log("Recipe Do method called","recipes");
-    }
+	override void Do(ItemBase ingredients[], PlayerBase player,array<ItemBase> results, float specialty_weight)//gets called upon recipe's completion
+	{
+		ItemBase cig = ingredients[0];
+		ItemBase pack = ingredients[1];
+		if (!cig || !pack)
+			return;
+
+		int cigQty = m_SavedCigQty;
+		int packQty = m_SavedPackQty;
+		int spaceInPack = 20 - packQty;
+		int toTransfer = Math.Min(cigQty, spaceInPack);
+
+		CPDebugPrint("[MerkurLoad Do] savedCigQty: " + cigQty + ", savedPackQty: " + packQty + ", toTransfer: " + toTransfer);
+
+		if (toTransfer <= 0)
+			return;
+
+		pack.SetQuantity(packQty + toTransfer);
+
+		int remaining = cigQty - toTransfer;
+		if (remaining <= 0)
+		{
+			cig.Delete();
+		}
+		else
+		{
+			cig.SetQuantity(remaining);
+		}
+	}
 };
 
 class CP_CraftCigarettePackPartyzankaEmpty extends RecipeBase
-{	
+{
+	protected int m_SavedCigQty;
+
 	override void Init()
 	{
 		m_Name = "Pack Cigarette into Partyzanka Cigarette Pack";
@@ -350,9 +454,14 @@ class CP_CraftCigarettePackPartyzankaEmpty extends RecipeBase
 
 	override bool CanDo(ItemBase ingredients[], PlayerBase player)//final check for recipe's validity
 	{
+		ItemBase pack = ingredients[1];
+		if (!pack || pack.GetType() != "CP_CigarettePack_Empty")
+			return false;
+
 		ItemBase item;
 		Class.CastTo(item ,ingredients[0]);
-		CPDebugPrint("Damage: " + item.GetDamage());		
+		m_SavedCigQty = item.GetQuantity();
+		CPDebugPrint("[PartyzankaEmpty CanDo] Damage: " + item.GetDamage() + ", cigQty: " + m_SavedCigQty);
 		if( item.GetDamage() == 0) {
 			return true;
 		} else {
@@ -362,12 +471,22 @@ class CP_CraftCigarettePackPartyzankaEmpty extends RecipeBase
 
 	override void Do(ItemBase ingredients[], PlayerBase player,array<ItemBase> results, float specialty_weight)//gets called upon recipe's completion
 	{
-		Debug.Log("Recipe Do method called","recipes");
+		if (results.Count() > 0 && results[0])
+		{
+			int packQty = Math.Min(m_SavedCigQty, 20);
+			if (packQty < 1)
+				packQty = 1;
+			results[0].SetQuantity(packQty);
+			CPDebugPrint("[PartyzankaEmpty Do] Created pack with qty: " + packQty);
+		}
 	}
 };
 
 class CP_CraftCigarettePackPartyzanka extends RecipeBase
-{	
+{
+	protected int m_SavedCigQty;
+	protected int m_SavedPackQty;
+
 	override void Init()
 	{
 		m_Name = "Pack Cigarette into Partyzanka Cigarette Pack";
@@ -387,7 +506,7 @@ class CP_CraftCigarettePackPartyzanka extends RecipeBase
 		m_MaxDamageIngredient[1] = -1;//-1 = disable check
 		
 		m_MinQuantityIngredient[1] = -1;//-1 = disable check
-		m_MaxQuantityIngredient[1] = 20;//-1 = disable check
+		m_MaxQuantityIngredient[1] = 19;//-1 = disable check
 		//----------------------------------------------------------------------------------------------------------------------
 		
 		//INGREDIENTS
@@ -396,8 +515,8 @@ class CP_CraftCigarettePackPartyzanka extends RecipeBase
 		InsertIngredient(0,"CP_Cigarette");
 		m_IngredientAddHealth[0] = 0;// 0 = do nothing
 		m_IngredientSetHealth[0] = -1; // -1 = do nothing
-		m_IngredientAddQuantity[0] = -1;// 0 = do nothing
-		m_IngredientDestroy[0] = true;//true = destroy, false = do nothing
+		m_IngredientAddQuantity[0] = 0;// handled in Do()
+		m_IngredientDestroy[0] = false;// handled in Do()
 		m_IngredientUseSoftSkills[0] = false;// set 'true' to allow modification of the values by softskills on this ingredient
 		
 		//ingredient 2
@@ -405,7 +524,7 @@ class CP_CraftCigarettePackPartyzanka extends RecipeBase
 		InsertIngredient(1, "CigarettePack_Partyzanka");
 		m_IngredientAddHealth[1] = 0;// 0 = do nothing
 		m_IngredientSetHealth[1] = -1; // -1 = do nothing
-		m_IngredientAddQuantity[1] = 1;// 0 = do nothing
+		m_IngredientAddQuantity[1] = 0;// handled in Do()
 		m_IngredientDestroy[1] = false;// false = do nothing
 		m_IngredientUseSoftSkills[1] = false;// set 'true' to allow modification of the values by softskills on this ingredient
 		//----------------------------------------------------------------------------------------------------------------------
@@ -426,14 +545,48 @@ class CP_CraftCigarettePackPartyzanka extends RecipeBase
 	}
 
 	override bool CanDo(ItemBase ingredients[], PlayerBase player)//final check for recipe's validity
-    {
+	{
+		ItemBase cig = ingredients[0];
+		ItemBase pack = ingredients[1];
+		if (!cig || !pack)
+			return false;
+		if (pack.GetQuantity() >= 20)
+			return false;
+		m_SavedCigQty = cig.GetQuantity();
+		m_SavedPackQty = pack.GetQuantity();
+		CPDebugPrint("[PartyzankaLoad CanDo] cigQty: " + m_SavedCigQty + ", packQty: " + m_SavedPackQty);
 		return true;
-    }
+	}
 
-    override void Do(ItemBase ingredients[], PlayerBase player,array<ItemBase> results, float specialty_weight)//gets called upon recipe's completion
-    {
-        Debug.Log("Recipe Do method called","recipes");
-    }
+	override void Do(ItemBase ingredients[], PlayerBase player,array<ItemBase> results, float specialty_weight)//gets called upon recipe's completion
+	{
+		ItemBase cig = ingredients[0];
+		ItemBase pack = ingredients[1];
+		if (!cig || !pack)
+			return;
+
+		int cigQty = m_SavedCigQty;
+		int packQty = m_SavedPackQty;
+		int spaceInPack = 20 - packQty;
+		int toTransfer = Math.Min(cigQty, spaceInPack);
+
+		CPDebugPrint("[PartyzankaLoad Do] savedCigQty: " + cigQty + ", savedPackQty: " + packQty + ", toTransfer: " + toTransfer);
+
+		if (toTransfer <= 0)
+			return;
+
+		pack.SetQuantity(packQty + toTransfer);
+
+		int remaining = cigQty - toTransfer;
+		if (remaining <= 0)
+		{
+			cig.Delete();
+		}
+		else
+		{
+			cig.SetQuantity(remaining);
+		}
+	}
 };
 class CP_CraftCigsTobacco extends RecipeBase
 {	

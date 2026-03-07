@@ -22,6 +22,8 @@ class ActionSmokeCigSelf: ActionContinuousBase {
 		Class.CastTo(cig, item);
 
         if (cig) {
+			if (cig.GetQuantity() > 1)
+				return false;
             clhealth = cig.GetSynchronizedHealth();
             return true;
 		}	

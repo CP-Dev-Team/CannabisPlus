@@ -42,7 +42,7 @@ class ActionUnpackCigaretteBox: ActionContinuousBase {
 			string packType = action_data.m_MainItem.GetType();
 			CPDebugPrint("Unpacking cigarette pack type: " + packType);
 
-			string jointType = "CP_CigarettePack_CannabisSkunk"; // default for vanilla packs
+			string itemType = "";
 
 			if (packType.Contains("CP_CigarettePack_Cannabis"))
 			{
@@ -51,21 +51,43 @@ class ActionUnpackCigaretteBox: ActionContinuousBase {
 
 				if (g_CannabisStrainConfigs.Contains(strainName))
 				{
-					jointType = "CP_Joint" + strainName;
-					CPDebugPrint("Using joint type: " + jointType + " for strain: " + strainName);
+					itemType = "CP_Joint" + strainName;
+					CPDebugPrint("Using joint type: " + itemType + " for strain: " + strainName);
 				}
 				else
 				{
-					CPDebugPrint("Warning: Strain config for '" + strainName + "' not found. Using default joint type: " + jointType);
+					CPDebugPrint("Warning: Strain config for '" + strainName + "' not found, skipping unpack.");
+					return;
 				}
+			}
+			else if (packType.Contains("CigarettePack_Chernamorka") || packType.Contains("CigarettePack_Merkur") || packType.Contains("CigarettePack_Partyzanka"))
+			{
+				itemType = "CP_Cigarette";
+				CPDebugPrint("Tobacco cigarette pack, using item type: CP_Cigarette");
 			}
 			else
 			{
-				CPDebugPrint("Vanilla cigarette pack, using joint type: " + jointType);
+				CPDebugPrint("Unknown pack type: " + packType + ", skipping unpack.");
+				return;
 			}
 
-			for(int i = 0; i<action_data.m_MainItem.GetQuantity(); i++){
-				resultItem = ItemBase.Cast( GetGame().CreateObject(jointType , action_data.m_Player.GetPosition(), false) );
+			int qty = action_data.m_MainItem.GetQuantity();
+			
+			// Create stacks based on varQuantityMax (joints max out at 10)
+			int maxStackSize = 10;
+			while (qty > 0)
+			{
+				int stackQty = Math.Min(qty, maxStackSize);
+				ItemBase stack = ItemBase.Cast(GetGame().CreateObject(itemType, action_data.m_Player.GetPosition(), false));
+				if (stack)
+				{
+					if (stackQty > 1)
+						stack.SetQuantity(stackQty);
+					
+					if (!resultItem)
+						resultItem = stack; // First stack goes to hands
+				}
+				qty -= stackQty;
 			}
 
 			GetGame().ObjectDelete(action_data.m_MainItem);

@@ -26,6 +26,12 @@ class CfgVehicles
 		rotationFlags=16;
 		weight=30;
 		itemSize[]={1,1};
+		canBeSplit=1;
+		varQuantityInit=1;
+		varQuantityMin=0;
+		varQuantityMax=10;
+		varQuantityDestroyOnMin=1;
+		quantityBar=0;
 		cpPackJoint="CP_CigarettePack_Empty";
 		cpCheckJoint="";
 		hiddenSelections[]=
