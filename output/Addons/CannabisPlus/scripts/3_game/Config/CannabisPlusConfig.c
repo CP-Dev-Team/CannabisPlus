@@ -1,7 +1,8 @@
 class CannabisPlusConfigManager
 {
 	int ConfigVersion;
-	bool EnableDebugLogging;
+	bool EnableServerDebugLogging;
+	bool EnableClientDebugLogging;
 
 	bool RemoveAfterHarvest;
 	bool DisablePlantMaterialDrop;
@@ -56,7 +57,8 @@ class CannabisPlusConfigManager
 	
 	void LoadDefaultSettings() {
 			ConfigVersion					= GetModVersion();
-            EnableDebugLogging              = false;  // Default is off
+            EnableServerDebugLogging        = false;
+            EnableClientDebugLogging        = true;  // Set to true for initial release so users can help report issues.
 			RemoveAfterHarvest 				= true;
 			DisablePlantMaterialDrop		= false;
 
@@ -178,7 +180,7 @@ class CannabisPlusConfigManager
         {
             settings.LoadDefaultSettings();
         }
-        CP_Debug = settings.EnableDebugLogging;
+        CP_Debug = settings.EnableServerDebugLogging;
 
         return settings;
     }
@@ -254,7 +256,7 @@ void CPDebugPrint(string msg)
     }
 }
 
-bool CP_ClientDebug = true;             // Client-side debug toggle
+bool CP_ClientDebug = false;            // Client-side debug toggle, set from config via RPC
 
 void CPClientDebugPrint(string msg)
 {
