@@ -48,19 +48,19 @@ modded class SeedPackBase
         }
         else if (packType == "PepperSeedsPack")
         {
-            seeds_quantity_max = GetGPConfig().PepperSeedCount;
+            seeds_quantity_max = GetGPConfig().PepperSeedsPerPackage;
         }
         else if (packType == "TomatoSeedsPack")
         {
-            seeds_quantity_max = GetGPConfig().TomatoSeedCount;
+            seeds_quantity_max = GetGPConfig().TomatoSeedsPerPackage;
         }
         else if (packType == "ZucchiniSeedsPack")
         {
-            seeds_quantity_max = GetGPConfig().ZucchiniSeedCount;
+            seeds_quantity_max = GetGPConfig().ZucchiniSeedsPerPackage;
         }
         else if (packType == "PumpkinSeedsPack")
         {
-            seeds_quantity_max = GetGPConfig().PumpkinSeedCount;
+            seeds_quantity_max = GetGPConfig().PumpkinSeedsPerPackage;
         }
         else
         {
