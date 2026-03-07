@@ -44,16 +44,22 @@ class ActionCP_RipOpenBrickOrBag: ActionContinuousBase
 	override bool ActionCondition( PlayerBase player, ActionTarget target, ItemBase item )
 	{
 		CP_CannabisBags Bag = CP_CannabisBags.Cast(item);
+		CP_CannabisBrickBase Brick = CP_CannabisBrickBase.Cast(item);
         CP_CoreClass CPCORE = CP_CoreClass.Cast(item);
 
 		if(Bag && Bag.GetQuantity() <= 1)
 		{
 			TendancyText = CPCORE.GetCPitemTendancyText();
-	
 			return true;
-		}	
-		return false;
+		}
 
+		if(Brick && Brick.GetQuantity() <= 1)
+		{
+			TendancyText = CPCORE.GetCPitemTendancyText();
+			return true;
+		}
+
+		return false;
 	};
 	
 	override void OnFinishProgressServer( ActionData action_data )
