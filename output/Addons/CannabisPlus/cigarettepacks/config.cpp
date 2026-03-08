@@ -5,9 +5,9 @@ class CfgPatches
 		units[]=
 		{
 			"CP_CigarettePack_Empty",
-			"CigarettePack_Chernamorka",
-			"CigarettePack_Merkur",
-			"CigarettePack_Partyzanka",
+			"CP_CigarettePack_Chernamorka",
+			"CP_CigarettePack_Merkur",
+			"CP_CigarettePack_Partyzanka",
 		};
 		weapons[]={};
 		requiredVersion=0.1;
@@ -181,7 +181,7 @@ class CfgVehicles
 			};
 		};
 	};
-	class CigarettePack_Chernamorka: CP_CigarettePack_Empty
+	class CP_CigarettePack_Chernamorka: CP_CigarettePack_Empty
 	{
 		scope=2;
 		displayName="#cp_chernamorka_cigarettes0";
@@ -201,7 +201,7 @@ class CfgVehicles
 			"DZ\gear\medical\Data\pack_of_cigs_cherno_co.paa"
 		};
 	};
-	class CigarettePack_Merkur: CP_CigarettePack_Empty
+	class CP_CigarettePack_Merkur: CP_CigarettePack_Empty
 	{
 		scope=2;
 		displayName="#cp_merkur_cigarettes0";
@@ -221,7 +221,7 @@ class CfgVehicles
 			"DZ\gear\medical\Data\pack_of_cigs_merkur_co.paa"
 		};
 	};
-	class CigarettePack_Partyzanka: CP_CigarettePack_Empty
+	class CP_CigarettePack_Partyzanka: CP_CigarettePack_Empty
 	{
 		scope=2;
 		displayName="#cp_partyzanka_cigarettes0";

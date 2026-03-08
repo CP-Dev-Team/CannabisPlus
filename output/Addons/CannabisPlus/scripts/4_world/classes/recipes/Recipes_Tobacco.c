@@ -44,7 +44,7 @@ class CP_CraftCigarettePackChernamorkaEmpty extends RecipeBase
 		//----------------------------------------------------------------------------------------------------------------------
 		
 		//result1
-		AddResult("CigarettePack_Chernamorka");//add results here
+		AddResult("CP_CigarettePack_Chernamorka");//add results here
 
 		m_ResultSetFullQuantity[0] = false;//true = set full quantity, false = do nothing
 		m_ResultSetQuantity[0] = 1;//-1 = do nothing
@@ -127,7 +127,8 @@ class CP_CraftCigarettePackChernamorka extends RecipeBase
 		
 		//ingredient 2
 
-		InsertIngredient(1, "CigarettePack_Chernamorka");
+		InsertIngredient(1, "CP_CigarettePack_Chernamorka");
+		InsertIngredient(1, "CigarettePack_Chernamorka"); // legacy support for pre-migration items
 		m_IngredientAddHealth[1] = 0;// 0 = do nothing
 		m_IngredientSetHealth[1] = -1; // -1 = do nothing
 		m_IngredientAddQuantity[1] = 0;// handled in Do()
@@ -240,7 +241,7 @@ class CP_CraftCigarettePackMerkurEmpty extends RecipeBase
 		//----------------------------------------------------------------------------------------------------------------------
 		
 		//result1
-		AddResult("CigarettePack_Merkur");//add results here
+		AddResult("CP_CigarettePack_Merkur");//add results here
 
 		m_ResultSetFullQuantity[0] = false;//true = set full quantity, false = do nothing
 		m_ResultSetQuantity[0] = -1;//-1 = do nothing
@@ -324,7 +325,8 @@ class CP_CraftCigarettePackMerkur extends RecipeBase
 		
 		//ingredient 2
 
-		InsertIngredient(1, "CigarettePack_Merkur");
+		InsertIngredient(1, "CP_CigarettePack_Merkur");
+		InsertIngredient(1, "CigarettePack_Merkur"); // legacy support for pre-migration items
 		m_IngredientAddHealth[1] = 0;// 0 = do nothing
 		m_IngredientSetHealth[1] = -1; // -1 = do nothing
 		m_IngredientAddQuantity[1] = 0;// handled in Do()
@@ -438,7 +440,7 @@ class CP_CraftCigarettePackPartyzankaEmpty extends RecipeBase
 		//----------------------------------------------------------------------------------------------------------------------
 		
 		//result1
-		AddResult("CigarettePack_Partyzanka");//add results here
+		AddResult("CP_CigarettePack_Partyzanka");//add results here
 
 		m_ResultSetFullQuantity[0] = false;//true = set full quantity, false = do nothing
 		m_ResultSetQuantity[0] = -1;//-1 = do nothing
@@ -521,7 +523,8 @@ class CP_CraftCigarettePackPartyzanka extends RecipeBase
 		
 		//ingredient 2
 
-		InsertIngredient(1, "CigarettePack_Partyzanka");
+		InsertIngredient(1, "CP_CigarettePack_Partyzanka");
+		InsertIngredient(1, "CigarettePack_Partyzanka"); // legacy support for pre-migration items
 		m_IngredientAddHealth[1] = 0;// 0 = do nothing
 		m_IngredientSetHealth[1] = -1; // -1 = do nothing
 		m_IngredientAddQuantity[1] = 0;// handled in Do()

@@ -60,7 +60,7 @@ class ActionUnpackCigaretteBox: ActionContinuousBase {
 					return;
 				}
 			}
-			else if (packType.Contains("CigarettePack_Chernamorka") || packType.Contains("CigarettePack_Merkur") || packType.Contains("CigarettePack_Partyzanka"))
+			else if (packType.Contains("CP_CigarettePack_Chernamorka") || packType.Contains("CP_CigarettePack_Merkur") || packType.Contains("CP_CigarettePack_Partyzanka") || packType.Contains("CigarettePack_Chernamorka") || packType.Contains("CigarettePack_Merkur") || packType.Contains("CigarettePack_Partyzanka"))
 			{
 				itemType = "CP_Cigarette";
 				CPDebugPrint("Tobacco cigarette pack, using item type: CP_Cigarette");
