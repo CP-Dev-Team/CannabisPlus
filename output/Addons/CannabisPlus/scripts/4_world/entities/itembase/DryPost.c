@@ -44,6 +44,16 @@ class CP_DryPost extends ItemBase
 	{
 		if ( !super.CanReceiveAttachment(attachment, slotId) )
 			return false;
+
+		// During active drying, block new attachments in hanging plant slots.
+		if (m_IsLocked)
+		{
+			for (int i = 0; i < plant_slots.Count(); i++)
+			{
+				if (plant_slots.Get(i) == slotId)
+					return false;
+			}
+		}
 		
 		ItemBase att = ItemBase.Cast(GetInventory().FindAttachment(slotId));
 		if (att)
@@ -125,17 +135,29 @@ class CP_DryPost extends ItemBase
 		if ( player && player.IsPlayerDisconnected() )
 			return;
 		
-		if (item && slot_name == "Rope")
+		if (item && slot_name == "Rope" && GetGame().IsServer())
 		{
-			if (GetGame().IsServer())
-			{
-				DisassembleKit(ItemBase.Cast(item));
-				Delete();
-			}
+			// Delay disassembly so rope swap operations can complete first.
+			GetGame().GetCallQueue(CALL_CATEGORY_GAMEPLAY).CallLater(HandleRopeDetachedServer, 1, false, ItemBase.Cast(item));
 		}
 		CPDebugPrint("EEItemDetached: LockRope");
 		if (GetGame() && GetGame().IsClient())
 			LockRope();
+	}
+
+	void HandleRopeDetachedServer(ItemBase detachedRope)
+	{
+		if (!GetGame() || !GetGame().IsServer())
+			return;
+
+		// If rope is present again, this was a swap/replace; do not disassemble.
+		if (FindAttachmentBySlotName("Rope"))
+			return;
+
+		if (detachedRope)
+			DisassembleKit(detachedRope);
+
+		Delete();
 	}
 	
 	bool IsItemTypeAttached( typename item_type )
@@ -538,14 +560,26 @@ class CP_DryPost_Kit extends ItemBase
 		if ( player && player.IsPlayerDisconnected() )
 			return;
 		
-		if (item && slot_name == "Rope")
+		if (item && slot_name == "Rope" && GetGame().IsServer())
 		{
-			if (GetGame().IsServer())
-			{
-				DisassembleKit(ItemBase.Cast(item));
-				Delete();
-			}
+			// Delay disassembly so rope swap operations can complete first.
+			GetGame().GetCallQueue(CALL_CATEGORY_GAMEPLAY).CallLater(HandleKitRopeDetachedServer, 1, false, ItemBase.Cast(item));
 		}
+	}
+
+	void HandleKitRopeDetachedServer(ItemBase detachedRope)
+	{
+		if (!GetGame() || !GetGame().IsServer())
+			return;
+
+		// If rope is present again, this was a swap/replace; do not disassemble.
+		if (FindAttachmentBySlotName("Rope"))
+			return;
+
+		if (detachedRope)
+			DisassembleKit(detachedRope);
+
+		Delete();
 	}
 	override void SetActions()
 	{
