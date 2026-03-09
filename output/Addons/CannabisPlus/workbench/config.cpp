@@ -39,7 +39,7 @@ class CfgNonAIVehicles
 	};
 	class ProxyCP_baggy : ProxyAttachment
     {
-		inventorySlot="CP_Empty_Bags";
+		inventorySlot="AC_Empty_Bags";
 		model="CannabisPlus\bags\CP_baggy.p3d";
     };
 	class ProxyCP_Proxybaggy : ProxyAttachment
@@ -124,7 +124,7 @@ class CfgVehicles
 			"Wrapper",
 			"Bagger",
 			"LargeBattery",
-			"CP_Empty_Bags",
+			"AC_Empty_Bags",
 			"CP_PlasticRoll",
 			"CP_Cannabis_Buds",
 			"CP_Cannabis_Bags",
@@ -150,7 +150,7 @@ class CfgVehicles
 				description="";
 				attachmentSlots[]=
 				{
-					"CP_Empty_Bags",
+					"AC_Empty_Bags",
 					"CP_Cannabis_Buds"
 				};
 				icon="set:BuildingFortIcons image:WindowBarricade";

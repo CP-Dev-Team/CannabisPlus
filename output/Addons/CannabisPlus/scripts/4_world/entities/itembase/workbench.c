@@ -58,7 +58,7 @@ class CP_Workbench extends ItemBase
 	const string ATTACHMENT_SLOT_BAGGER	 	        = "Bagger";
 	const string ATTACHMENT_SLOT_BATTERIES			= "LargeBattery";
 	const string ATTACHMENT_SLOT_PLASTICWRAP		= "CP_PlasticRoll";
-	const string ATTACHMENT_SLOT_EMPTYBAGS          = "CP_Empty_Bags";
+	const string ATTACHMENT_SLOT_EMPTYBAGS          = "AC_Empty_Bags";
 	const string ATTACHMENT_SLOT_BUDS 				= "CP_Cannabis_Buds";
 	const string ATTACHMENT_SLOT_BAGS				= "CP_Cannabis_Bags";
 	const string ATTACHMENT_SLOT_BRICKS 			= "CP_Cannabis_Bricks";
@@ -173,9 +173,9 @@ class CP_Workbench extends ItemBase
 		return CP_CannabisBags.Cast(FindAttachmentBySlotName( ATTACHMENT_SLOT_BAGS ) );
 	};
 	
-	CP_EmptyBag GetEmptyBags()
+	AC_EmptyBag GetEmptyBags()
 	{
-		return CP_EmptyBag.Cast(FindAttachmentBySlotName( ATTACHMENT_SLOT_EMPTYBAGS ) );
+		return AC_EmptyBag.Cast(FindAttachmentBySlotName( ATTACHMENT_SLOT_EMPTYBAGS ) );
 	};
 	CP_PlasticRoll GetPlasticRoll()
 	{

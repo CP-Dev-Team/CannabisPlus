@@ -47,14 +47,3 @@ class CP_CannabisBags extends CP_CoreClass
 		AddAction(ActionDetach);
 	}
 };
-
-class CP_EmptyBag extends ItemBase
-{
-	override void SetActions()
-	{
-		super.SetActions();
-		
-		//AddAction(ActionAttach);
-		AddAction(ActionDetach);
-	}
-};

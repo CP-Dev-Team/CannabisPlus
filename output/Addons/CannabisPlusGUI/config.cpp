@@ -76,9 +76,9 @@ class CfgSlots
         displayName="Roll";
         ghostIcon="set:CP_GhostImages image:PlasticWrap";
     };
-	class Slot_CP_Empty_Bags
+	class Slot_AC_Empty_Bags
 	{
-		name="CP_Empty_Bags";
+		name="AC_Empty_Bags";
         displayName="Empty Bags";
         ghostIcon="set:CP_GhostImages image:bags";
 		stackMax=160;

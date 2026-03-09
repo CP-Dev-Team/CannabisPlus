@@ -55,7 +55,7 @@ class CfgVehicles
 		attachments[]=
 		{
 			"CP_Joint_Base",
-			"CP_RollingPapers"
+			"AC_RollingPapers"
 		};
 		class GUIInventoryAttachmentsProps
 		{
@@ -66,7 +66,7 @@ class CfgVehicles
 				attachmentSlots[]=
 				{
 					"CP_Joint_Base",
-					"CP_RollingPapers"				
+					"AC_RollingPapers"				
 				};
 				icon="";
 			};		
@@ -135,12 +135,6 @@ class CfgNonAIVehicles
         inventorySlot="CP_Joint_Base";
         model="CannabisPlus\joints\CP_joint.p3d";
     };
-    class Proxypapers: ProxyAttachment  
-    {
-        scope=2;
-        inventorySlot="CP_RollingPapers";
-        model="CannabisPlus\rolling\CPlus_papers.p3d";
-    };    
 };
 class CfgSlots
 {
@@ -150,10 +144,4 @@ class CfgSlots
 		displayName="#cp_joint0";
 		ghostIcon="Missing";
 	};
-	class Slot_papers
-	{
-		name="CP_RollingPapers";
-		displayName="#cp_rolling_papers0";
-		ghostIcon="Missing";
-	};	
 };

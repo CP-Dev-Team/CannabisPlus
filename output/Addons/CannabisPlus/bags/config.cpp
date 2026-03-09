@@ -45,32 +45,4 @@ class CfgVehicles
 		cpStepUpToBrick="";
 		cpStepDownToBud="";
 	};
-	class CP_EmptyBag : Inventory_Base
-	{
-		scope=2;
-		displayName="#cp_empty_1oz_bag0";
-		descriptionShort="#cp_empty_1oz_bag1";
-		model="CannabisPlus\bags\CP_baggy.p3d";
-		rotationFlags=17;
-		canBeSplit=1;
-		varQuantityInit=16;
-		varQuantityMin=0;
-		varQuantityMax=160;
-		varQuantityDestroyOnMin=1;
-		varStackMax=16;
-		weight=28;
-		itemSize[]={1,2};
-		absorbency=0.2;
-		lootCategory="Crafted";
-		cpStepUpToBrick="CP_CannabisBrickBlueGod";
-		inventorySlot[]={"CP_Empty_Bags"};
-		hiddenSelections[]=
-		{
-			"zbytek"
-		};
-		hiddenSelectionsTextures[]=
-		{
-			"CannabisPlus\bags\data\empty_bag_ca.paa"
-		};
-	};
 };
