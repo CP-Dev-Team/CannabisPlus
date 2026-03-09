@@ -23,7 +23,7 @@ class CfgVehicles
 		scope=0;
 		displayName="#cp_base_bag0";
 		descriptionShort="#cp_base_bag1";
-		model="CannabisPlus\bags\CP_baggy.p3d";
+		model="AgricultureCore\bags\CP_baggy.p3d";
 		rotationFlags=17;
 		canBeSplit=1;
 		varQuantityInit=16;

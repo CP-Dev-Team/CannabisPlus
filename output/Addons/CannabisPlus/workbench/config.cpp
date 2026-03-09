@@ -40,7 +40,7 @@ class CfgNonAIVehicles
 	class ProxyCP_baggy : ProxyAttachment
     {
 		inventorySlot="AC_Empty_Bags";
-		model="CannabisPlus\bags\CP_baggy.p3d";
+		model="AgricultureCore\bags\CP_baggy.p3d";
     };
 	class ProxyCP_Proxybaggy : ProxyAttachment
     {
