@@ -11,7 +11,7 @@ class CfgPatches
 			"CP_CannabisBagPurpleKush",
 			"CP_CannabisBrickPurpleKush",
 			"CP_CannabisPurpleKush",
-			"CP_CigarettePack_CannabisPurpleKush"
+			"CP_JointPack_PurpleKush"
 		};
 		weapons[]={};
 		requiredVersion=0.1;
@@ -188,7 +188,7 @@ class CfgVehicles
 		scope=2;
 		displayName="#cp_purplekush_joint0";
 		descriptionShort="#cp_purplekush_joint1";
-		cpPackJoint="CP_CigarettePack_CannabisPurpleKush";
+		cpPackJoint="CP_JointPack_PurpleKush";
 		cpCheckJoint="CP_JointPurpleKush";
 		hiddenSelections[]=
 		{
@@ -268,7 +268,7 @@ class CfgVehicles
 		};
 	};
 	class CP_JointPack;
-	class CP_CigarettePack_CannabisPurpleKush: CP_JointPack
+	class CP_JointPack_PurpleKush: CP_JointPack
 	{
 		scope=2;
 		displayName="#cp_marijuana_cigarettes_purplekush0";

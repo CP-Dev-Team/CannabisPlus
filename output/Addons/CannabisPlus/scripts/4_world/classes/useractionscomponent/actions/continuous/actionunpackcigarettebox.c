@@ -44,26 +44,29 @@ class ActionUnpackCigaretteBox: ActionContinuousBase {
 
 			string itemType = "";
 
-			if (packType.Contains("CP_CigarettePack_Cannabis"))
+			// CP joint packs (CP_JointPack_*)
+			CP_JointPack jointPack;
+			if (Class.CastTo(jointPack, action_data.m_MainItem))
 			{
-				string strainName = packType.Substring(25, packType.Length() - 25); // Extract strain name after "CP_CigarettePack_Cannabis"
-				CPDebugPrint("Extracted strain name: " + strainName);
-
-				if (g_CannabisStrainConfigs.Contains(strainName))
+				itemType = jointPack.GetCpPackageName();
+				if (itemType == "")
 				{
-					itemType = "CP_Joint" + strainName;
-					CPDebugPrint("Using joint type: " + itemType + " for strain: " + strainName);
-				}
-				else
-				{
-					CPDebugPrint("Warning: Strain config for '" + strainName + "' not found, skipping unpack.");
+					CPDebugPrint("Warning: Joint pack has no cpCheckPack config, skipping unpack.");
 					return;
 				}
+				CPDebugPrint("Using joint type: " + itemType);
 			}
-			else if (packType.Contains("CP_CigarettePack_Chernamorka") || packType.Contains("CP_CigarettePack_Merkur") || packType.Contains("CP_CigarettePack_Partyzanka") || packType.Contains("CigarettePack_Chernamorka") || packType.Contains("CigarettePack_Merkur") || packType.Contains("CigarettePack_Partyzanka"))
+			// DP cigarette packs (DP_CigarettePack_*)
+			else if (packType.Contains("DP_CigarettePack_"))
+			{
+				itemType = "DP_Cigarette";
+				CPDebugPrint("DP cigarette pack, using item type: DP_Cigarette");
+			}
+			// Vanilla cigarette packs
+			else if (packType.Contains("CigarettePack_Chernamorka") || packType.Contains("CigarettePack_Merkur") || packType.Contains("CigarettePack_Partyzanka"))
 			{
 				itemType = "CP_Cigarette";
-				CPDebugPrint("Tobacco cigarette pack, using item type: CP_Cigarette");
+				CPDebugPrint("Vanilla cigarette pack, using item type: CP_Cigarette");
 			}
 			else
 			{
@@ -91,7 +94,7 @@ class ActionUnpackCigaretteBox: ActionContinuousBase {
 			}
 
 			GetGame().ObjectDelete(action_data.m_MainItem);
-			action_data.m_Player.GetHumanInventory().CreateInHands("CP_CigarettePack_Empty");
+			action_data.m_Player.GetHumanInventory().CreateInHands("AC_CigarettePack_Empty");
 		}
 	}
 };

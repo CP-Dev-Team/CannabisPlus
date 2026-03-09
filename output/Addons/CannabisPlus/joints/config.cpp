@@ -9,7 +9,8 @@ class CfgPatches
 		requiredAddons[]=
 		{
 			"DZ_Data",
-			"DZ_gear_tools"
+			"DZ_gear_tools",
+			"AgricultureCore"
 		};
 	};
 };
@@ -32,7 +33,7 @@ class CfgVehicles
 		varQuantityMax=10;
 		varQuantityDestroyOnMin=1;
 		quantityBar=0;
-		cpPackJoint="CP_CigarettePack_Empty";
+		cpPackJoint="AC_CigarettePack_Empty";
 		cpCheckJoint="";
 		hiddenSelections[]=
 		{

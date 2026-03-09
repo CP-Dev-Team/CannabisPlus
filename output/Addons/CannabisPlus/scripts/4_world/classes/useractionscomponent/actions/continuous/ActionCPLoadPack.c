@@ -45,7 +45,7 @@ class ActionCPLoadPack : ActionContinuousBase
 
 	protected bool IsVanillaCigarettePack(ItemBase pack)
 	{
-		return pack.IsInherited(CP_CigarettePack_Chernamorka) || pack.IsInherited(CP_CigarettePack_Merkur) || pack.IsInherited(CP_CigarettePack_Partyzanka) || pack.IsInherited(CigarettePack_Chernamorka) || pack.IsInherited(CigarettePack_Merkur) || pack.IsInherited(CigarettePack_Partyzanka);
+		return pack.IsInherited(CigarettePack_Chernamorka) || pack.IsInherited(CigarettePack_Merkur) || pack.IsInherited(CigarettePack_Partyzanka);
 	}
 
 	protected bool CanLoadPack(ActionTarget target, ItemBase item)

@@ -11,7 +11,7 @@ class CfgPatches
 			"CP_CannabisBagStardawg",
 			"CP_CannabisBrickStardawg",
 			"CP_CannabisStardawg",
-			"CP_CigarettePack_CannabisStardawg"
+			"CP_JointPack_Stardawg"
 		};
 		weapons[]={};
 		requiredVersion=0.1;
@@ -188,7 +188,7 @@ class CfgVehicles
 		scope=2;
 		displayName="#cp_stardawg_joint0";
 		descriptionShort="#cp_stardawg_joint1";
-		cpPackJoint="CP_CigarettePack_CannabisStardawg";
+		cpPackJoint="CP_JointPack_Stardawg";
 		cpCheckJoint="CP_JointStardawg";
 		hiddenSelections[]=
 		{
@@ -268,7 +268,7 @@ class CfgVehicles
 		};
 	};
 	class CP_JointPack;
-	class CP_CigarettePack_CannabisStardawg: CP_JointPack
+	class CP_JointPack_Stardawg: CP_JointPack
 	{
 		scope=2;
 		displayName="#cp_marijuana_cigarettes_stardawg0";

@@ -1,4 +1,4 @@
-class CP_JointPack extends ItemBase
+class CP_JointPack extends AC_CigarettePack_Empty
 {
 	protected string m_cpPackage= "";
 
@@ -48,15 +48,6 @@ modded class CigarettePack_Merkur: Box_Base
 {	
 	override void SetActions()	{
 		
-		AddAction(ActionUnpackCigaretteBox);
-		super.SetActions();
-	}
-};
-
-class CP_CigarettePack_Empty: ItemBase
-{
-	override void SetActions()
-	{
 		AddAction(ActionUnpackCigaretteBox);
 		super.SetActions();
 	}

@@ -37,7 +37,7 @@ class CP_CraftCannabisBag extends RecipeBase
 		m_IngredientUseSoftSkills[0] = false;// set 'true' to allow modification of the values by softskills on this ingredient
 		
 		//ingredient 2
-		InsertIngredient(1, "CP_EmptyBag");//you can insert multiple ingredients this way
+		InsertIngredient(1, "AC_EmptyBag");
 		m_IngredientAddHealth[1] = 0;// 0 = do nothing
 		m_IngredientSetHealth[1] = -1; // -1 = do nothing
 		m_IngredientAddQuantity[1] = -1;// 0 = do nothing
@@ -211,7 +211,7 @@ class CP_CraftCigsCannabis extends RecipeBase
 		m_IngredientUseSoftSkills[0] = false;// set 'true' to allow modification of the values by softskills on this ingredient
 		
 		//ingredient 2
-		InsertIngredient(1, "CP_RollingPapers");//you can insert multiple ingredients this way
+		InsertIngredient(1, "AC_RollingPapers");//you can insert multiple ingredients this way
 
 		m_IngredientAddHealth[1] = 0;// 0 = do nothing
 		m_IngredientSetHealth[1] = -1; // -1 = do nothing
@@ -285,7 +285,7 @@ class CP_CraftCigarettePackEmpty extends RecipeBase
 		m_IngredientUseSoftSkills[0] = false;// set 'true' to allow modification of the values by softskills on this ingredient
 		
 		//ingredient 2
-		InsertIngredient(1, "CP_CigarettePack_Empty");//you can insert multiple ingredients this way
+		InsertIngredient(1, "AC_CigarettePack_Empty");//you can insert multiple ingredients this way
 		m_IngredientAddHealth[1] = 0;// 0 = do nothing
 		m_IngredientSetHealth[1] = -1; // -1 = do nothing
 		m_IngredientAddQuantity[1] = 0;// 0 = do nothing

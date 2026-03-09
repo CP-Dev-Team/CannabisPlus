@@ -131,19 +131,6 @@ class CfgVehicles
 		};
 	};
 
-	class CP_Tobacco: Inventory_Base
-	{
-		scope=2;
-		displayName="#cp_tobacco_leaf0";
-		descriptionShort="#cp_tobacco_leaf1";
-		model="CannabisPlus\fruits\TobaccoLeaf.p3d";
-		cpStepUpToBag="";
-		rotationFlags=17;
-		lootCategory="Crafted";
-		weight=14;
-		itemSize[]={1,1};
-	};
-
 	// So that vanilla cannabis can't be spawned.
 	class Edible_Base;
 	class Cannabis: Edible_Base

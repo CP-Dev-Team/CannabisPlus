@@ -11,7 +11,7 @@ class CfgPatches
 			"CP_CannabisBagSkunk",
 			"CP_CannabisBrickSkunk",
 			"CP_CannabisSkunk",
-			"CP_CigarettePack_CannabisSkunk"
+			"CP_JointPack_Skunk"
 		};
 		weapons[]={};
 		requiredVersion=0.1;
@@ -188,7 +188,7 @@ class CfgVehicles
 		scope=2;
 		displayName="#cp_skunk_joint0";
 		descriptionShort="#cp_skunk_joint1";
-		cpPackJoint="CP_CigarettePack_CannabisSkunk";
+		cpPackJoint="CP_JointPack_Skunk";
 		cpCheckJoint="CP_JointSkunk";
 		hiddenSelections[]=
 		{
@@ -268,7 +268,7 @@ class CfgVehicles
 		};
 	};
 	class CP_JointPack;
-	class CP_CigarettePack_CannabisSkunk: CP_JointPack
+	class CP_JointPack_Skunk: CP_JointPack
 	{
 		scope=2;
 		displayName="#cp_marijuana_cigarettes_skunk0";

@@ -11,7 +11,7 @@ class CfgPatches
 			"CP_CannabisBagBlueGod",
 			"CP_CannabisBrickBlueGod",
 			"CP_CannabisBlueGod",
-			"CP_CigarettePack_CannabisBlueGod"
+			"CP_JointPack_BlueGod"
 		};
 		weapons[]={};
 		requiredVersion=0.1;
@@ -188,7 +188,7 @@ class CfgVehicles
 		scope=2;
 		displayName="#cp_bluegod_joint0";
 		descriptionShort="#cp_bluegod_joint1";
-		cpPackJoint="CP_CigarettePack_CannabisBlueGod";
+		cpPackJoint="CP_JointPack_BlueGod";
 		cpCheckJoint="CP_JointBlueGod";
 		hiddenSelections[]=
 		{
@@ -268,7 +268,7 @@ class CfgVehicles
 		};
 	};
 	class CP_JointPack;
-	class CP_CigarettePack_CannabisBlueGod: CP_JointPack
+	class CP_JointPack_BlueGod: CP_JointPack
 	{
 		scope=2;
 		displayName="#cp_marijuana_cigarettes_bluegod0";

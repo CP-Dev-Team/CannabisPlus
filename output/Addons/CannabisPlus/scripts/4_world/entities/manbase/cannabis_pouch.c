@@ -9,13 +9,13 @@ class CP_Pouch extends FirstAidKit
 		"CP_TobaccoSeedsPack",
 		"CP_Relief_Balm",
 		"CP_CBDCrudeOil",
-		"CP_CigarettePack_Empty",
+		"AC_CigarettePack_Empty",
 		"CP_JointPack",
 		"CP_Cigarette",
 		"CP_CannabisBud",
 		"CP_Tobacco",
 		"CP_JointBase",
-		"CP_RollingPapers"
+		"AC_RollingPapers"
 	};
 	
 	override bool CanReceiveItemIntoCargo(EntityAI item)

@@ -11,7 +11,7 @@ class CfgPatches
 			"CP_CannabisBagBlackFrost",
 			"CP_CannabisBrickBlackFrost",
 			"CP_CannabisBlackFrost",
-			"CP_CigarettePack_CannabisBlackFrost"
+			"CP_JointPack_BlackFrost"
 		};
 		weapons[]={};
 		requiredVersion=0.1;
@@ -188,7 +188,7 @@ class CfgVehicles
 		scope=2;
 		displayName="#cp_blackfrost_joint0";
 		descriptionShort="#cp_blackfrost_joint1";
-		cpPackJoint="CP_CigarettePack_CannabisBlackFrost";
+		cpPackJoint="CP_JointPack_BlackFrost";
 		cpCheckJoint="CP_JointBlackFrost";
 		hiddenSelections[]=
 		{
@@ -268,7 +268,7 @@ class CfgVehicles
 		};
 	};
 	class CP_JointPack;
-	class CP_CigarettePack_CannabisBlackFrost: CP_JointPack
+	class CP_JointPack_BlackFrost: CP_JointPack
 	{
 		scope=2;
 		displayName="#cp_marijuana_cigarettes_blackfrost0";
