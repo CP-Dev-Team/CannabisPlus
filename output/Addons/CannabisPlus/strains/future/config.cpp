@@ -22,7 +22,6 @@ class CfgPatches
 			"CP_Fruits",
 			"CP_Bags",
 			"CP_Bricks",
-			"CP_Cigarettepacks",
 			"CP_Dry_Post",
 			"CP_Seeds",
 			"CP_Plants",
