@@ -6,7 +6,6 @@ modded class ActionConstructor {
 		super.RegisterActions(actions);
 		
         actions.Insert(ActionSmokeJointSelf);
-		actions.Insert(ActionSmokeCigSelf); 
 		actions.Insert(ActionCPLoadPack);
 		actions.Insert(ActionUnpackCigaretteBox);
 		actions.Insert(ActionApplyCream);

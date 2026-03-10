@@ -2,10 +2,7 @@ class CfgPatches
 {
 	class CP_Fruits
 	{
-		units[]=
-		{
-			"CP_Tobacco"
-		};
+		units[]={};
 		weapons[]={};
 		requiredVersion=0.1;
 		requiredAddons[]=
@@ -17,12 +14,6 @@ class CfgPatches
 class CfgVehicles
 {
 	class Inventory_Base;
-	class CP_CoreClass:Inventory_Base
-	{
-		scope=0;
-		displayName="";
-		descriptionShort="";
-	};
 	
 	class CP_CannabisBud: Inventory_Base
 	{

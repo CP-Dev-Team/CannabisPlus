@@ -65,10 +65,6 @@ modded class MissionServer
                 CPDebugPrint("GenerateAllDefaultsIfStrainsFolderMissing completed.");
                 // Automatically load all available strain configs from disk
                 InitCannabisStrainConfigs();
-
-                // Register tobacco with AgricultureCore (UseMinuteGrowTime = false, IncreaseCropOnFertilize = true)
-                AC_RegisterPlant("CP_Plant_Tobacco", m_currentcfg.TobaccoGrowTime, m_currentcfg.TobaccoCropCount, 1, false, true);
-                CPDebugPrint("Registered CP_Plant_Tobacco with AgricultureCore.");
             }
             else
             {

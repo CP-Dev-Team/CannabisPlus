@@ -42,10 +42,6 @@ modded class SeedPackBase
                 CPDebugPrint("Fallback default SeedCount: " + m_SeedCount);
             }
         }
-        else if (packType == "CP_TobaccoSeedsPack")
-        {
-            seeds_quantity_max = GetCPConfig().TobaccoSeedCount;
-        }
         else if (packType == "PepperSeedsPack")
         {
             seeds_quantity_max = GetGPConfig().PepperSeedsPerPackage;

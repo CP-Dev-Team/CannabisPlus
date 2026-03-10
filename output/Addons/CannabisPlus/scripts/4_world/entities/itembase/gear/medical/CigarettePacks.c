@@ -25,30 +25,3 @@ class CP_JointPack extends AC_CigarettePack_Empty
 		super.SetActions();
 	}
 }
-
-modded class CigarettePack_Chernamorka: Box_Base 
-{	
-	override void SetActions()	{
-		
-		AddAction(ActionUnpackCigaretteBox);
-		super.SetActions();
-	}
-};
-
-modded class CigarettePack_Partyzanka: Box_Base 
-{	
-	override void SetActions()	{
-		
-		AddAction(ActionUnpackCigaretteBox);
-		super.SetActions();
-	}
-};
-
-modded class CigarettePack_Merkur: Box_Base 
-{	
-	override void SetActions()	{
-		
-		AddAction(ActionUnpackCigaretteBox);
-		super.SetActions();
-	}
-};

@@ -46,5 +46,3 @@ class CP_CannabisBud extends CP_CoreClass
 	}
 	
 };
-
-class CP_Tobacco extends CP_CannabisBud{};

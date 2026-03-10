@@ -65,8 +65,8 @@ class ActionUnpackCigaretteBox: ActionContinuousBase {
 			// Vanilla cigarette packs
 			else if (packType.Contains("CigarettePack_Chernamorka") || packType.Contains("CigarettePack_Merkur") || packType.Contains("CigarettePack_Partyzanka"))
 			{
-				itemType = "CP_Cigarette";
-				CPDebugPrint("Vanilla cigarette pack, using item type: CP_Cigarette");
+				itemType = "DP_Cigarette";
+				CPDebugPrint("Vanilla cigarette pack, using item type: DP_Cigarette");
 			}
 			else
 			{

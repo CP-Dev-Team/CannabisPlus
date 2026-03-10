@@ -4,15 +4,6 @@ class CannabisPlusConfigManager
 	bool EnableServerDebugLogging;
 	bool EnableClientDebugLogging;
 
-	int TobaccoGrowTime;
-	int TobaccoCropCount;
-	int TobaccoSeedCount;
-
-	
-	// smoke effect settings
-	int ActivateCigaretteSmokingEffect; 	// reduces the fluctuation/sway in aiming when a cigarette is smoked
-	int SmokingCigaretteEffectDuration;		// Time in seconds for the effect to stop
-	int CigaretteCyclesToActivateEffect;	// number of cigarettes consumed to activate the effect
 	// joint smoke effect settings
 	int ActivateJointSmokingEffect; 		// reduces the fluctuation/sway in aiming when a cigarette is smoked
 	int SmokingJointEffectDuration;			// Time in seconds for the effect to stop
@@ -32,13 +23,6 @@ class CannabisPlusConfigManager
 			ConfigVersion					= GetModVersion();
             EnableServerDebugLogging        = false;
             EnableClientDebugLogging        = true;  // Set to true for initial release so users can help report issues.
-
-            TobaccoGrowTime 				= 8;
-            TobaccoCropCount 				= 2;
-            TobaccoSeedCount 				= 9;
-            ActivateCigaretteSmokingEffect 	= false;
-            SmokingCigaretteEffectDuration 	= 20;
-            CigaretteCyclesToActivateEffect = 8;
 
             ActivateJointSmokingEffect 		= true;
             SmokingJointEffectDuration 		= 360;
@@ -68,14 +52,8 @@ class CannabisPlusConfigManager
 	}
 
 	void ValidateConfig() {
-		if (TobaccoGrowTime < 1) TobaccoGrowTime = 1;
-
-		if (TobaccoCropCount < 1) TobaccoCropCount = 1;
-
 		if (TimeToDryCannabisPlant < 1) TimeToDryCannabisPlant = 1;
 
-		if (SmokingCigaretteEffectDuration < 1) SmokingCigaretteEffectDuration = 1;
-		if (CigaretteCyclesToActivateEffect < 1) CigaretteCyclesToActivateEffect = 1;
 		if (SmokingJointEffectDuration < 1) SmokingJointEffectDuration = 1;
 		if (JointCyclesToActivateEffect < 1) JointCyclesToActivateEffect = 1;
 	}

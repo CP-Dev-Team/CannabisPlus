@@ -4,16 +4,12 @@ class CP_Pouch extends FirstAidKit
 	{
 		"CP_CannabisBags",
 		"CP_CannabisSeeds",
-		"CP_TobaccoSeeds",
 		"CP_CannabisSeedsPack",
-		"CP_TobaccoSeedsPack",
 		"CP_Relief_Balm",
 		"CP_CBDCrudeOil",
 		"AC_CigarettePack_Empty",
 		"CP_JointPack",
-		"CP_Cigarette",
 		"CP_CannabisBud",
-		"CP_Tobacco",
 		"CP_JointBase",
 		"AC_RollingPapers"
 	};

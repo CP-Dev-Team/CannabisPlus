@@ -1,26 +1,18 @@
 modded class PlayerBase {
 
-	protected ref Timer swayTimer; // timer that resets the values after the effect is over
 	protected ref Timer jointTimer; // timer that resets the values after the effect is over
 	protected const string SMOKE_SOUND  = "Smoking_SoundSet";
 
 	protected EffectSound m_TurnOff;
     protected EffectSound m_TurnOn;
 	
-	bool m_HasConsumedCigarette = false;	// has the player consumed a hole cigarette	
-	int m_cigaretteValue;					// the quantity of the cigarette, what the player consumed
-	
 	bool m_HasConsumedJoint = false;
-	int m_jointValue;						// the quantity of the cigarette, what the player consumed
+	int m_jointValue;						// the quantity of the joint, what the player consumed
 	
-	//getters for cig/joint smoke state
+	//getters for joint smoke state
 	bool HasConsumedJoint () {
 		return m_HasConsumedJoint; 
 	}
-
-	bool HasConsumedCigarette () {
-		return m_HasConsumedCigarette; 
-	} 
 	
 	int GetJointCycles() {
 		return m_jointValue;
@@ -31,22 +23,6 @@ modded class PlayerBase {
 		RegisterNetSyncVariableInt("m_jointValue");
 	}
 	
-	// set to true if the player consumed a cigarette
-	void AddValueToCigaretteValue(int value) {
-		if (GetCPConfig()) {	
-			if(GetCPConfig().ActivateCigaretteSmokingEffect) {
-				m_cigaretteValue += value;
-						
-				if(m_cigaretteValue >= GetCPConfig().CigaretteCyclesToActivateEffect){
-					CPDebugPrint("Smoking cigarrette effect" + GetCPConfig().CigaretteCyclesToActivateEffect);
-					m_HasConsumedCigarette = true;
-					if (!swayTimer) { swayTimer = new Timer()};
-					swayTimer.Stop();
-					swayTimer.Run(GetCPConfig().SmokingCigaretteEffectDuration, this, "ResetCigaretteValues", null, false);				
-				}
-			}
-		}		
-	}	
 	// set to true if the player consumed a joint
 	void AddValueToJointValue(int value, string strainName = "") {
 		if (GetCPConfig()) {
@@ -67,13 +43,7 @@ modded class PlayerBase {
 			}
 		}
 	}
-	// called by timer if the effect is over, resets all values that the player "consume again"
-	void ResetCigaretteValues() {		
-		m_cigaretteValue = 0;
-		m_HasConsumedCigarette = false;
-		swayTimer.Stop();
-	}
-	// called by timer if the effect is over, resets all values that the player "consume again"
+	// called by timer if the effect is over, resets all values so the player can consume again
 	void ResetJointValues() {
 		m_HasConsumedJoint = false;
 		CannabisEffectsTriggeredOff();

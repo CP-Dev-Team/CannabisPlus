@@ -1,8 +1,1 @@
-class CP_CoreClass extends ItemBase 
-{
-
-	string GetCPitemTendancyText()
-	{		
-        return "";
-    };
-}
+// CP_CoreClass removed — all CannabisPlus items now use AG_CoreClass from AgricultureCore directly
