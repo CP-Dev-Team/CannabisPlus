@@ -5,4 +5,4 @@ class CP_CannabisBrickNomad extends CP_CannabisBrickBase{};
 class CP_CannabisNomad extends CP_CannabisBud{};
 class CP_JointNomad extends CP_JointBase {};
 class CP_RawNomadCannabisPlant extends CP_RawPlantBase{};
-class CP_CigarettePack_CannabisNomad: CP_JointPack {};
+class CP_JointPack_Nomad: CP_JointPack {};

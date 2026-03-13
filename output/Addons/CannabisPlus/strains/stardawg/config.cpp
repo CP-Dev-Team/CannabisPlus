@@ -21,7 +21,8 @@ class CfgPatches
 			"DZ_Data",
 			"CP_Fruits",
 			"CP_Bags",
-			"CP_Bricks",			"CP_Dry_Post",
+			"CP_Bricks",
+			"CP_Dry_Post",
 			"CP_Seeds",
 			"CP_Plants",
 			"CannabisPlus_Joint"
@@ -240,12 +241,12 @@ class CfgVehicles
 		hiddenSelectionsTextures[]=
 		{
 			"CannabisPlus\strains\stardawg\data\cannabis_seeds_pack_stardawg_co.paa",
-			"CannabisPlus\bricks\data\cannabis_brick_co.paa"
+			"AgricultureCore\bricks\data\cannabis_brick_co.paa"
 		};
 		hiddenSelectionsMaterials[]=
 		{
 			"CannabisPlus\strains\stardawg\data\stardawg_seeds.rvmat",
-			"CannabisPlus\bricks\data\brick.rvmat"
+			"AgricultureCore\bricks\data\brick.rvmat"
 		};
 	};
 	class CP_CannabisBud;
@@ -269,8 +270,8 @@ class CfgVehicles
 	class CP_JointPack_Stardawg: CP_JointPack
 	{
 		scope=2;
-		displayName="#cp_marijuana_cigarettes_stardawg0";
-		descriptionShort="#cp_marijuana_cigarettes_stardawg1";
+		displayName="#cp_marijuana_joints_stardawg0";
+		descriptionShort="#cp_marijuana_joints_stardawg1";
 		cpCheckPack="CP_JointStardawg";
 		hiddenSelections[]=
 		{

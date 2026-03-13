@@ -5,4 +5,4 @@ class CP_CannabisBrickS1 extends CP_CannabisBrickBase{};
 class CP_CannabisS1 extends CP_CannabisBud{};
 class CP_JointS1 extends CP_JointBase {};
 class CP_RawS1CannabisPlant extends CP_RawPlantBase{};
-class CP_CigarettePack_CannabisS1: CP_JointPack {};
+class CP_JointPack_S1: CP_JointPack {};

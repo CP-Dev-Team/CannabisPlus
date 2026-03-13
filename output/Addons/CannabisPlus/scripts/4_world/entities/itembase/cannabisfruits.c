@@ -1,4 +1,4 @@
-class CP_CannabisBud extends CP_CoreClass
+class CP_CannabisBud extends AG_CoreClass
 {
 	   
     protected string m_cpBags= "";

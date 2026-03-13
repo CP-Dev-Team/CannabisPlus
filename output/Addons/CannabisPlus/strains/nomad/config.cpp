@@ -239,13 +239,15 @@ class CfgVehicles
 		};
 		hiddenSelectionsTextures[]=
 		{
-			"CannabisPlus\strains\nomad\data\cannabis_seeds_pack_nomad_co.paa",
-			"CannabisPlus\bricks\data\cannabis_brick_co.paa"
+			"AgricultureCore\bricks\data\cannabis_brick_co.paa",
+			"AgricultureCore\bricks\data\cannabis_brick_co.paa",
+			"CannabisPlus\strains\nomad\data\cannabis_seeds_pack_nomad_co.paa"
 		};
 		hiddenSelectionsMaterials[]=
 		{
-			"CannabisPlus\strains\nomad\data\nomad_seeds.rvmat",
-			"CannabisPlus\bricks\data\brick.rvmat"
+			"AgricultureCore\bricks\data\brick.rvmat",
+			"AgricultureCore\bricks\data\brick.rvmat",
+			"CannabisPlus\strains\nomad\data\nomad_seeds.rvmat"
 		};
 	};
 	class CP_CannabisBud;
@@ -269,8 +271,8 @@ class CfgVehicles
 	class CP_JointPack_Nomad: CP_JointPack
 	{
 		scope=2;
-		displayName="#cp_marijuana_cigarettes_nomad0";
-		descriptionShort="#cp_marijuana_cigarettes_nomad1";
+		displayName="#cp_marijuana_joints_nomad0";
+		descriptionShort="#cp_marijuana_joints_nomad1";
 		cpCheckPack="CP_JointNomad";
 		hiddenSelections[]=
 		{

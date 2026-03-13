@@ -21,7 +21,7 @@ class CP_JointPack extends AC_CigarettePack_Empty
 
 	override void SetActions()
 	{
-		AddAction(ActionUnpackCigaretteBox);
+		AddAction(ActionUnpackJointBox);
 		super.SetActions();
 	}
 }

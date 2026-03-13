@@ -75,6 +75,5 @@ class CP_JointBase extends AC_SmokableBase
 	override void SetActions()	{
 		super.SetActions();		
 		AddAction(ActionSmokeJointSelf);	// add action to smoke the joint
-		AddAction(ActionCPLoadPack);
 	}
 }

@@ -469,7 +469,7 @@ class CP_Workbench extends ItemBase
 
     void CreateBags()
     {
-        ItemBase CannabisBud = GetCannabisBud();
+		CP_CannabisBud CannabisBud = GetCannabisBud();
         ItemBase EmptyBags = GetEmptyBags();
         ItemBase Batteries = GetBattieries();
 

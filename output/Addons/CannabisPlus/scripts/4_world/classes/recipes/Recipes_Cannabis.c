@@ -250,7 +250,7 @@ class CP_CraftCigsCannabis extends RecipeBase
 	}
 };
 
-class CP_CraftCigarettePackEmpty extends RecipeBase
+class CP_CraftJointPackEmpty extends RecipeBase
 {	
 	override void Init()
 	{
@@ -338,7 +338,7 @@ class CP_CraftCigarettePackEmpty extends RecipeBase
 	}
 };
 
-class CP_CraftCigarettePack extends RecipeBase
+class CP_CraftJointPack extends RecipeBase
 {
 	protected int m_SavedJointQty;
 	protected int m_SavedPackQty;

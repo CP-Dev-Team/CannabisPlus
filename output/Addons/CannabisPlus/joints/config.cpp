@@ -10,13 +10,15 @@ class CfgPatches
 		{
 			"DZ_Data",
 			"DZ_gear_tools",
-			"AgricultureCore"
+			"AgricultureCore",
+			"AC_Cigarettepacks"
 		};
 	};
 };
 class CfgVehicles
 {
 	class Inventory_Base;
+	class AC_CigarettePack_Empty;
 	class CP_JointBase: Inventory_Base
 	{
 		scope=0;
@@ -43,5 +45,16 @@ class CfgVehicles
 		{
 			"CannabisPlus\joints\data\joint_co.paa"
 		};
+	};
+	class CP_JointPack: AC_CigarettePack_Empty
+	{
+		scope=0;
+		canBeSplit=1;
+		varQuantityInit=1;
+		varQuantityMin=0;
+		varQuantityMax=20;
+		varQuantityDestroyOnMin=1;
+		quantityBar=0;
+		cpCheckPack="";
 	};
 };

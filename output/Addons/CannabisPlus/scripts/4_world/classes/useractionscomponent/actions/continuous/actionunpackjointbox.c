@@ -1,16 +1,16 @@
-class ActionUnpackCigaretteBoxCB : ActionContinuousBaseCB {
+class ActionUnpackJointBoxCB : ActionContinuousBaseCB {
 	
 	override void CreateActionComponent() {
 		m_ActionData.m_ActionComponent = new CAContinuousTime(UATimeSpent.UNPACK);
 	}
 };
 
-class ActionUnpackCigaretteBox: ActionContinuousBase {	
+class ActionUnpackJointBox: ActionContinuousBase {	
 	ItemBase resultItem;
 	string currentLanguage;	
-	void ActionUnpackCigaretteBox() {
+	void ActionUnpackJointBox() {
 		
-		m_CallbackClass = ActionUnpackCigaretteBoxCB;
+		m_CallbackClass = ActionUnpackJointBoxCB;
 		m_CommandUID = DayZPlayerConstants.CMD_ACTIONMOD_OPENITEM;
 		m_CommandUIDProne = DayZPlayerConstants.CMD_ACTIONFB_OPENITEM;
 		m_SpecialtyWeight = UASoftSkillsWeight.PRECISE_LOW;
@@ -40,7 +40,7 @@ class ActionUnpackCigaretteBox: ActionContinuousBase {
 		if ( action_data.m_MainItem && action_data.m_MainItem.GetHierarchyRootPlayer() == action_data.m_Player ) {
 
 			string packType = action_data.m_MainItem.GetType();
-			CPDebugPrint("Unpacking cigarette pack type: " + packType);
+			CPDebugPrint("Unpacking joint pack type: " + packType);
 
 			string itemType = "";
 
@@ -98,3 +98,12 @@ class ActionUnpackCigaretteBox: ActionContinuousBase {
 		}
 	}
 };
+
+// Backward compatibility for mods still referencing the old unpack action name.
+class ActionUnpackCigaretteBoxCB : ActionUnpackJointBoxCB
+{
+}
+
+class ActionUnpackCigaretteBox : ActionUnpackJointBox
+{
+}

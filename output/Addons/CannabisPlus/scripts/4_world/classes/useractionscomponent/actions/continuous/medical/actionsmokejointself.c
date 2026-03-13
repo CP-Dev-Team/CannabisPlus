@@ -22,8 +22,6 @@ class ActionSmokeJointSelf: ActionContinuousBase {
         	CP_JointBase joint;
 		Class.CastTo(joint, item);
         	if (joint) {
-			if (joint.GetQuantity() > 1)
-				return false;
 	            clhealth = joint.GetSynchronizedHealth();
 	            return true;
 		}	
@@ -97,11 +95,19 @@ class ActionSmokeJointSelf: ActionContinuousBase {
 			joint.SetSynchronizedHealth(clhealth);
 			
 			if (clhealth <= 0) {
-				CPDebugPrint("Deleting Joint");
-				//CPApi().Log("Smoked", joint.GetType());
-				joint.SetSmokingState(ESmokeState.NOT_SMOKING);
-				joint.UpdateParticles();
-				joint.Delete();
+				if (joint.GetQuantity() > 1)
+				{
+					joint.AddQuantity(-1);
+					joint.SetHealth("", "Health", joint.GetMaxHealth("", "Health"));
+					joint.SetSynchronizedHealth(joint.GetMaxHealth("", "Health"));
+				}
+				else
+				{
+					CPDebugPrint("Deleting Joint");
+					joint.SetSmokingState(ESmokeState.NOT_SMOKING);
+					joint.UpdateParticles();
+					joint.Delete();
+				}
 			}
 		}
     }

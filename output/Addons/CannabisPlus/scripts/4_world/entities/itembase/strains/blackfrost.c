@@ -5,4 +5,4 @@ class CP_CannabisBrickBlackFrost extends CP_CannabisBrickBase{};
 class CP_CannabisBlackFrost extends CP_CannabisBud{};
 class CP_JointBlackFrost extends CP_JointBase {};
 class CP_RawBlackFrostCannabisPlant extends CP_RawPlantBase{};
-class CP_CigarettePack_CannabisBlackFrost: CP_JointPack {};
+class CP_JointPack_BlackFrost: CP_JointPack {};

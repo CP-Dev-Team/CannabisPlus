@@ -240,12 +240,12 @@ class CfgVehicles
 		hiddenSelectionsTextures[]=
 		{
 			"CannabisPlus\strains\skunk\data\cannabis_seeds_pack_skunk_co.paa",
-			"CannabisPlus\bricks\data\cannabis_brick_co.paa"
+			"AgricultureCore\bricks\data\cannabis_brick_co.paa"
 		};
 		hiddenSelectionsMaterials[]=
 		{
 			"CannabisPlus\strains\skunk\data\skunk_seeds.rvmat",
-			"CannabisPlus\bricks\data\brick.rvmat"
+			"AgricultureCore\bricks\data\brick.rvmat"
 		};
 	};
 	class CP_CannabisBud;
@@ -269,8 +269,8 @@ class CfgVehicles
 	class CP_JointPack_Skunk: CP_JointPack
 	{
 		scope=2;
-		displayName="#cp_marijuana_cigarettes_skunk0";
-		descriptionShort="#cp_marijuana_cigarettes_skunk1";
+		displayName="#cp_marijuana_joints_skunk0";
+		descriptionShort="#cp_marijuana_joints_skunk1";
 		cpCheckPack="CP_JointSkunk";
 		hiddenSelections[]=
 		{

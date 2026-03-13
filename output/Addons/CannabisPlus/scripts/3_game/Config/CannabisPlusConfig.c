@@ -5,9 +5,9 @@ class CannabisPlusConfigManager
 	bool EnableClientDebugLogging;
 
 	// joint smoke effect settings
-	int ActivateJointSmokingEffect; 		// reduces the fluctuation/sway in aiming when a cigarette is smoked
+	int ActivateJointSmokingEffect; 		// reduces the fluctuation/sway in aiming when a joint is smoked
 	int SmokingJointEffectDuration;			// Time in seconds for the effect to stop
-	int JointCyclesToActivateEffect;		// number of cigarettes consumed to activate the effect
+	int JointCyclesToActivateEffect;		// number of joints consumed to activate the effect
 
 	// Workbench
 	ref WorkbenchConfig WorkbenchSettings;
