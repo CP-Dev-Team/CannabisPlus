@@ -35,8 +35,6 @@ class CP_DryPost extends ItemBase
 	override void EEInit()
 	{
 		super.EEInit();
-		
-		GetGame().GetCallQueue( CALL_CATEGORY_GAMEPLAY ).Call( AssemblePost );
 		m_IsLocked = false;
 	}
 	
@@ -446,11 +444,14 @@ class CP_DryPost extends ItemBase
 
 class CP_DryPost_Kit extends ItemBase
 {	
+	protected bool m_SuppressRopeDetachDisassemble;
+
 	override void EEInit()
 	{
 		super.EEInit();
-		
-		GetGame().GetCallQueue( CALL_CATEGORY_GAMEPLAY ).Call( AssembleKit );
+
+		if (GetGame() && GetGame().IsServer())
+			GetGame().GetCallQueue( CALL_CATEGORY_GAMEPLAY ).Call( AssembleKit );
 	}
 
 	override bool CanReceiveAttachment(EntityAI attachment, int slotId)
@@ -474,19 +475,24 @@ class CP_DryPost_Kit extends ItemBase
 		
 		if ( GetGame().IsServer() )
 		{
-			PlayerBase player_base = PlayerBase.Cast( player );
-
-			CP_DryPost Dry_Post = CP_DryPost.Cast( GetGame().CreateObjectEx( "CP_DryPost", GetPosition(), ECE_PLACE_ON_SURFACE ) );
+			CP_DryPost Dry_Post = CP_DryPost.Cast( GetGame().CreateObjectEx( "CP_DryPost", position, ECE_PLACE_ON_SURFACE ) );
+			if (!Dry_Post)
+				return;
 			
-			Dry_Post.SetPosition( position);
+			Dry_Post.SetPosition( position );
 			Dry_Post.SetOrientation( orientation );
+			TransferRopeToPlacedPost( Dry_Post );
 			
-			//make the kit invisible, so it can be destroyed from deploy UA when action ends
+			//make the kit invisible, then delete it next frame so the deploy action can finish cleanly
 			HideAllSelections();
-			
-			this.Delete();
 			SetIsDeploySound( true );
+			GetGame().GetCallQueue(CALL_CATEGORY_GAMEPLAY).CallLater(DeleteKit, 0, false);
 		}	
+	}
+
+	void DeleteKit()
+	{
+		Delete();
 	}
 
 	override void OnPlacementStarted( Man player )
@@ -514,12 +520,42 @@ class CP_DryPost_Kit extends ItemBase
 	{
 		return 20;
 	}
+	void TransferRopeToPlacedPost(CP_DryPost dry_post)
+	{
+		if (!dry_post)
+			return;
+
+		Rope rope = Rope.Cast(FindAttachmentBySlotName("Rope"));
+		if (!rope)
+		{
+			dry_post.GetInventory().CreateAttachment("Rope");
+			return;
+		}
+
+		m_SuppressRopeDetachDisassemble = true;
+
+		int rope_slot = InventorySlots.GetSlotIdFromString("Rope");
+		if (rope_slot != InventorySlots.INVALID && ServerTakeEntityToTargetAttachmentEx(dry_post, rope, rope_slot))
+			return;
+
+		// Fallback: create new rope on the post, delete the old one
+		Rope placed_rope = Rope.Cast(dry_post.GetInventory().CreateAttachment("Rope"));
+		if (placed_rope)
+		{
+			MiscGameplayFunctions.TransferItemProperties(rope, placed_rope);
+			rope.Delete();
+		}
+	}
+
 	void AssembleKit()
 	{
-		if (!IsHologram())
-		{
-			Rope rope = Rope.Cast(GetInventory().CreateAttachment("Rope"));
-		}
+		if (IsHologram())
+			return;
+
+		if (FindAttachmentBySlotName("Rope"))
+			return;
+
+		GetInventory().CreateAttachment("Rope");
 	}
 	void CreateRope(Rope rope)
 	{
@@ -555,6 +591,9 @@ class CP_DryPost_Kit extends ItemBase
 	override void EEItemDetached(EntityAI item, string slot_name)
     {
 		super.EEItemDetached( item, slot_name );
+
+		if (m_SuppressRopeDetachDisassemble && slot_name == "Rope")
+			return;
 		
 		PlayerBase player = PlayerBase.Cast(GetHierarchyRootPlayer());
 		if ( player && player.IsPlayerDisconnected() )
