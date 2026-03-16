@@ -240,13 +240,15 @@ class CfgVehicles
 		};
 		hiddenSelectionsTextures[]=
 		{
-			"CannabisPlus\strains\future\data\cannabis_seeds_pack_future_co.paa",
-			"AgricultureCore\bricks\data\cannabis_brick_co.paa"
+			"AgricultureCore\bricks\data\cannabis_brick_co.paa",
+			"AgricultureCore\bricks\data\cannabis_brick_co.paa",
+			"CannabisPlus\strains\future\data\cannabis_seeds_pack_future_co.paa"
 		};
 		hiddenSelectionsMaterials[]=
 		{
-			"CannabisPlus\strains\future\data\future_seeds.rvmat",
-			"AgricultureCore\bricks\data\brick.rvmat"
+			"AgricultureCore\bricks\data\brick.rvmat",
+			"AgricultureCore\bricks\data\brick.rvmat",
+			"CannabisPlus\strains\future\data\future_seeds.rvmat"
 		};
 	};
 	class CP_CannabisBud;
