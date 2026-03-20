@@ -95,7 +95,7 @@
         <value name="Tier1"/>
         <value name="Tier2"/>
     </type>
- 	<type name="CP_Plant_CannabisBlueGodGod">
+ 	<type name="CP_Plant_CannabisBlueGod">
         <lifetime>3888000</lifetime>
         <flags count_in_cargo="0" count_in_hoarder="0" count_in_map="1" count_in_player="0" crafted="0" deloot="0"/>
     </type>
@@ -114,7 +114,7 @@
         <usage name="Town"/>
         <usage name="Village"/>
     </type>
-    <type name="CP_CannabisSeedsBlueGodGod">
+    <type name="CP_CannabisSeedsBlueGod">
         <nominal>0</nominal>
         <lifetime>86400</lifetime>
         <restock>1800</restock>
@@ -125,7 +125,7 @@
         <flags count_in_cargo="0" count_in_hoarder="0" count_in_map="1" count_in_player="0" crafted="1" deloot="0"/>
         <category name="food"/>
     </type>
-    <type name="CP_CannabisSeedsPackBlueGodGod">
+    <type name="CP_CannabisSeedsPackBlueGod">
         <nominal>10</nominal>
         <lifetime>7200</lifetime>
         <restock>1800</restock>
@@ -138,7 +138,7 @@
         <usage name="Farm"/>
         <usage name="Hunting"/>
     </type>
-    <type name="CP_CannabisBagBlueGodGod">
+    <type name="CP_CannabisBagBlueGod">
         <nominal>0</nominal>
         <lifetime>7200</lifetime>
         <restock>1800</restock>
@@ -149,7 +149,7 @@
         <flags count_in_cargo="0" count_in_hoarder="0" count_in_map="1" count_in_player="0" crafted="1" deloot="0"/>
         <category name="food"/>
     </type>
-    <type name="CP_CannabisBrickBlueGodGod">
+    <type name="CP_CannabisBrickBlueGod">
         <nominal>0</nominal>
         <lifetime>7200</lifetime>
         <restock>1800</restock>
@@ -173,7 +173,7 @@
         <tag name="shelves"/>
         <value name="Tier4"/>
     </type>
-    <type name="CP_JointBlueGodGod">
+    <type name="CP_JointBlueGod">
         <nominal>10</nominal>
         <lifetime>7200</lifetime>
         <restock>1800</restock>
@@ -810,42 +810,6 @@
         <lifetime>3888000</lifetime>
         <flags count_in_cargo="0" count_in_hoarder="0" count_in_map="1" count_in_player="0" crafted="1" deloot="0"/>
     </type>
-    <type name="CP_DriedCannabisPlant">
-        <lifetime>7200</lifetime>
-        <flags count_in_cargo="0" count_in_hoarder="0" count_in_map="1" count_in_player="0" crafted="1" deloot="0"/>
-    </type>
-    <type name="CP_RawSkunkCannabisPlant">
-        <lifetime>7200</lifetime>
-        <flags count_in_cargo="0" count_in_hoarder="0" count_in_map="1" count_in_player="0" crafted="1" deloot="0"/>
-    </type>    
-    <type name="CP_RawBlueGodCannabisPlant">
-        <lifetime>7200</lifetime>
-        <flags count_in_cargo="0" count_in_hoarder="0" count_in_map="1" count_in_player="0" crafted="1" deloot="0"/>
-    </type>    
-    <type name="CP_RawPurpleKushCannabisPlant">
-        <lifetime>7200</lifetime>
-        <flags count_in_cargo="0" count_in_hoarder="0" count_in_map="1" count_in_player="0" crafted="1" deloot="0"/>
-    </type>    
-    <type name="CP_RawStardawgCannabisPlant">
-        <lifetime>7200</lifetime>
-        <flags count_in_cargo="0" count_in_hoarder="0" count_in_map="1" count_in_player="0" crafted="1" deloot="0"/>
-    </type>    
-    <type name="CP_RawFutureCannabisPlant">
-        <lifetime>7200</lifetime>
-        <flags count_in_cargo="0" count_in_hoarder="0" count_in_map="1" count_in_player="0" crafted="1" deloot="0"/>
-    </type>    
-    <type name="CP_RawNomadCannabisPlant">
-        <lifetime>7200</lifetime>
-        <flags count_in_cargo="0" count_in_hoarder="0" count_in_map="1" count_in_player="0" crafted="1" deloot="0"/>
-    </type>    
-    <type name="CP_RawS1CannabisPlant">
-        <lifetime>7200</lifetime>
-        <flags count_in_cargo="0" count_in_hoarder="0" count_in_map="1" count_in_player="0" crafted="1" deloot="0"/>
-    </type>    
-    <type name="CP_RawBlackFrostCannabisPlant">
-        <lifetime>7200</lifetime>
-        <flags count_in_cargo="0" count_in_hoarder="0" count_in_map="1" count_in_player="0" crafted="1" deloot="0"/>
-    </type>    
     <type name="CP_Workbench_Kit">
         <nominal>40</nominal>
         <lifetime>7200</lifetime>
