@@ -135,6 +135,7 @@ Known Issues
 
 v3.1.0
 Mod Changes
+- CPTOKENS.pbo and all tracking code removed.
 - Cigarettes and Tobacco moved to DrugsPlus.
 - Joints now stack to 10.
 - Joint packs now show a numbered quantity.
@@ -152,3 +153,8 @@ Config Changes
     "SecondsToFertilizeUsingPlantMaterial": 2,
     "SecondsToFertilizeUsingGardenLime": 5
     ]
+- All vanilla plant settings moved to GardeningPlus.
+
+Bugs
+- Cigarettes shouldn't despawn anymore.
+- Can't add raw plants to dry post while drying anymore.
