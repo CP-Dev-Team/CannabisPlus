@@ -19,7 +19,7 @@ class CP_CompostBin extends Container_Base
 	
 	void Init()
 	{
-		GetGame().GetCallQueue(CALL_CATEGORY_GAMEPLAY).CallLater(CheckCargoTick, CompostTick, false);
+		g_Game.GetCallQueue(CALL_CATEGORY_GAMEPLAY).CallLater(CheckCargoTick, CompostTick, false);
 	}
 	
 	void CheckCargoTick()
@@ -55,7 +55,7 @@ class CP_CompostBin extends Container_Base
 	{
 		m_IsLocked = true;
 		GetInventory().LockInventory(HIDE_INV_FROM_SCRIPT);
-		GetGame().GetCallQueue(CALL_CATEGORY_GAMEPLAY).CallLater(ProcessOutput, GetCPConfig().CompostTime*1000, false);	
+		g_Game.GetCallQueue(CALL_CATEGORY_GAMEPLAY).CallLater(ProcessOutput, GetCPConfig().CompostTime*1000, false);	
 	}
 	
 	void ProcessOutput()
@@ -65,7 +65,7 @@ class CP_CompostBin extends Container_Base
 		ItemBase item;
 		int j, NumCargo;
 		
-		if ( GetGame() && GetGame().IsServer() )
+		if ( g_Game && g_Game.IsServer() )
 		{
 			CargoBase cargo = GetInventory().GetCargo();
 			NumCargo = cargo.GetItemCount();
@@ -80,11 +80,11 @@ class CP_CompostBin extends Container_Base
 						item.Delete();	
 					}	
 				}
-				ItemBase output = ItemBase.Cast(GetGame().CreateObject("GardenLime", output_position, false ));
+				ItemBase output = ItemBase.Cast(g_Game.CreateObject("GardenLime", output_position, false ));
 			}	
 		}
 		Syncronize();
-		GetGame().GetCallQueue(CALL_CATEGORY_GAMEPLAY).CallLater(UnlockInventory, 1000, false);
+		g_Game.GetCallQueue(CALL_CATEGORY_GAMEPLAY).CallLater(UnlockInventory, 1000, false);
 	}
 	
 	void UnlockInventory()
@@ -121,7 +121,7 @@ class CP_CompostBin extends Container_Base
 	
 	void Syncronize()
 	{
-		if ( GetGame() && GetGame().IsServer() )
+		if ( g_Game && g_Game.IsServer() )
 		{
 			SetSynchDirty();
 		}

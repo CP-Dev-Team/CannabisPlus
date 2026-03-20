@@ -81,7 +81,7 @@ class ActionUnpackJointBox: ActionContinuousBase {
 			while (qty > 0)
 			{
 				int stackQty = Math.Min(qty, maxStackSize);
-				ItemBase stack = ItemBase.Cast(GetGame().CreateObject(itemType, action_data.m_Player.GetPosition(), false));
+				ItemBase stack = ItemBase.Cast(g_Game.CreateObject(itemType, action_data.m_Player.GetPosition(), false));
 				if (stack)
 				{
 					if (stackQty > 1)
@@ -93,7 +93,7 @@ class ActionUnpackJointBox: ActionContinuousBase {
 				qty -= stackQty;
 			}
 
-			GetGame().ObjectDelete(action_data.m_MainItem);
+			g_Game.ObjectDelete(action_data.m_MainItem);
 			action_data.m_Player.GetHumanInventory().CreateInHands("AC_CigarettePack_Empty");
 		}
 	}

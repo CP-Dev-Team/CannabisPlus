@@ -7,7 +7,7 @@ modded class SeedPackBase
         string pack_type = GetType();
         string seeds_type = "";
 
-        GetGame().ConfigGetText( "cfgVehicles " + pack_type + " Horticulture ContainsSeedsType", seeds_type );
+        g_Game.ConfigGetText( "cfgVehicles " + pack_type + " Horticulture ContainsSeedsType", seeds_type );
 
         int seeds_quantity_max;
         int seeds_quantity;
@@ -82,8 +82,8 @@ modded class SeedPackBase
         else
         {
             vector pos = GetPosition();
-            GetGame().CreateObjectEx(seeds_type, pos, ECE_PLACE_ON_SURFACE);
-            GetGame().ObjectDelete(this);
+            g_Game.CreateObjectEx(seeds_type, pos, ECE_PLACE_ON_SURFACE);
+            g_Game.ObjectDelete(this);
         }
     }
 }

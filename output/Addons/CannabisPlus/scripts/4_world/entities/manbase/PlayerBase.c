@@ -61,7 +61,7 @@ modded class PlayerBase {
 		counter = cycles / GetCPConfig().JointCyclesToActivateEffect;
 		multiplier = 1 + (0.25 * counter);
 
-		if(GetGame().IsClient())
+		if(g_Game.IsClient())
 		{
 			CPClientDebugPrint("CannabisEffectsTriggered counter: " + counter + " multiplier: " + multiplier + " strain: " + strainName);
 
@@ -109,7 +109,7 @@ modded class PlayerBase {
 	// Cannabis Effects Triggered Off.
 	void CannabisEffectsTriggeredOff()
 	{
-		if(GetGame().IsClient())
+		if(g_Game.IsClient())
 		{
 			CameraEffects.changeHue(60);
 			CameraEffects.changeRadBlurXEffect(0);

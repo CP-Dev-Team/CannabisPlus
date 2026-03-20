@@ -81,7 +81,7 @@ class CP_CraftCannabisBag extends RecipeBase
 		string Bagname = ingredient1.GetcpBag(); 
 		
 		
-		CP_CannabisBags BudsHolder = CP_CannabisBags.Cast(GetGame().CreateObject(Bagname, ingredient1.GetPosition()));
+		CP_CannabisBags BudsHolder = CP_CannabisBags.Cast(g_Game.CreateObject(Bagname, ingredient1.GetPosition()));
 		BudsHolder.SetQuantity(1);
 	}
 };
@@ -170,7 +170,7 @@ class CP_CraftCannabisBrick extends RecipeBase
 		
 		string Brickname = ingredient1.GetcpBrick(); 
 		
-		CP_CannabisBrickBase BrickHolder = CP_CannabisBrickBase.Cast(GetGame().CreateObject(Brickname, ingredient1.GetPosition()));
+		CP_CannabisBrickBase BrickHolder = CP_CannabisBrickBase.Cast(g_Game.CreateObject(Brickname, ingredient1.GetPosition()));
 	}
 };
 class CP_CraftCigsCannabis extends RecipeBase
@@ -246,7 +246,7 @@ class CP_CraftCigsCannabis extends RecipeBase
 		//ItemBase JointHolder;
 		string JointName = ingredient1.GetcpJoint(); 
 		
-		CP_JointBase JointHolder = CP_JointBase.Cast(GetGame().CreateObject(JointName, ingredient1.GetPosition()));
+		CP_JointBase JointHolder = CP_JointBase.Cast(g_Game.CreateObject(JointName, ingredient1.GetPosition()));
 	}
 };
 
@@ -328,7 +328,7 @@ class CP_CraftJointPackEmpty extends RecipeBase
 		
 		CPDebugPrint("[EmptyPack Do] jointQty: " + jointQty + ", PackName: " + PackName);
 		
-		CP_JointPack PackHolder = CP_JointPack.Cast(GetGame().CreateObject(PackName, ingredient1.GetPosition()));
+		CP_JointPack PackHolder = CP_JointPack.Cast(g_Game.CreateObject(PackName, ingredient1.GetPosition()));
 		int packQty = Math.Min(jointQty, 20);
 		if (packQty < 1)
 			packQty = 1;

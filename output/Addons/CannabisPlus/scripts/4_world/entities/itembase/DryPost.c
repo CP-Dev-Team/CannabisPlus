@@ -79,7 +79,7 @@ class CP_DryPost extends ItemBase
 			return;
 		}
 		
-		EntityAI newRope = EntityAI.Cast(GetGame().CreateObjectEx(rope.GetType(), GetPosition(), ECE_PLACE_ON_SURFACE));
+		EntityAI newRope = EntityAI.Cast(g_Game.CreateObjectEx(rope.GetType(), GetPosition(), ECE_PLACE_ON_SURFACE));
 		
 		if (newRope)
 			MiscGameplayFunctions.TransferItemProperties(this, newRope);
@@ -90,7 +90,7 @@ class CP_DryPost extends ItemBase
 	{
 		if (!IsHologram())
 		{
-			ItemBase stick = ItemBase.Cast(GetGame().CreateObjectEx("WoodenLog",GetPosition(),ECE_PLACE_ON_SURFACE));
+			ItemBase stick = ItemBase.Cast(g_Game.CreateObjectEx("WoodenLog",GetPosition(),ECE_PLACE_ON_SURFACE));
 			stick.SetQuantity(1);
 			MiscGameplayFunctions.TransferItemProperties(this, stick);
 			Rope rope = Rope.Cast(item);
@@ -112,7 +112,7 @@ class CP_DryPost extends ItemBase
 			SetAnimationPhase ("DryPile", 0);
 		}
 
-		if (GetGame() && GetGame().IsClient())		
+		if (g_Game && g_Game.IsClient())		
 			LockRope();
 	}
     
@@ -133,19 +133,19 @@ class CP_DryPost extends ItemBase
 		if ( player && player.IsPlayerDisconnected() )
 			return;
 		
-		if (item && slot_name == "Rope" && GetGame().IsServer())
+		if (item && slot_name == "Rope" && g_Game.IsServer())
 		{
 			// Delay disassembly so rope swap operations can complete first.
-			GetGame().GetCallQueue(CALL_CATEGORY_GAMEPLAY).CallLater(HandleRopeDetachedServer, 1, false, ItemBase.Cast(item));
+			g_Game.GetCallQueue(CALL_CATEGORY_GAMEPLAY).CallLater(HandleRopeDetachedServer, 1, false, ItemBase.Cast(item));
 		}
 		CPDebugPrint("EEItemDetached: LockRope");
-		if (GetGame() && GetGame().IsClient())
+		if (g_Game && g_Game.IsClient())
 			LockRope();
 	}
 
 	void HandleRopeDetachedServer(ItemBase detachedRope)
 	{
-		if (!GetGame() || !GetGame().IsServer())
+		if (!g_Game || !g_Game.IsServer())
 			return;
 
 		// If rope is present again, this was a swap/replace; do not disassemble.
@@ -174,7 +174,7 @@ class CP_DryPost extends ItemBase
 	
 	void CheckStart()
 	{
-		if (!GetGame().IsServer())
+		if (!g_Game.IsServer())
 			return;
 		
 		if (!m_IsLocked)	
@@ -195,7 +195,7 @@ class CP_DryPost extends ItemBase
 			if (NumPlants>=1)
 			{
 				CPDebugPrint("all items attached to post " + this + " ...starting to dry");
-				GetGame().GetCallQueue(CALL_CATEGORY_GAMEPLAY).CallLater(FinishDrying, GetCPConfig().TimeToDryCannabisPlant*1000, false);
+				g_Game.GetCallQueue(CALL_CATEGORY_GAMEPLAY).CallLater(FinishDrying, GetCPConfig().TimeToDryCannabisPlant*1000, false);
 				m_IsLocked = true;
 				LockDryingSlots(true);
 			}
@@ -284,12 +284,12 @@ class CP_DryPost extends ItemBase
 				}
 			}
 		}			
-		GetGame().GetCallQueue(CALL_CATEGORY_GAMEPLAY).CallLater(SpawnDried, 500, false, GetPosition() );
+		g_Game.GetCallQueue(CALL_CATEGORY_GAMEPLAY).CallLater(SpawnDried, 500, false, GetPosition() );
 	}
 	
 	void SpawnDried() 
 	{
-		if ( GetGame() && GetGame().IsServer() )
+		if ( g_Game && g_Game.IsServer() )
 		{
 			CPDebugPrint("The plant has " + BudSpawn.Count() + " items");
 			
@@ -298,7 +298,7 @@ class CP_DryPost extends ItemBase
 				string key = BudSpawn.GetKey(j);
 				CPDebugPrint("plant[" + j + "] is " + key + " with quantity " + BudSpawn.Get(key));
 				int StackMax;
-				StackMax = GetGame().ConfigGetInt("CfgVehicles " + key + " varStackMax");
+				StackMax = g_Game.ConfigGetInt("CfgVehicles " + key + " varStackMax");
 				int stacks = Math.Floor(BudSpawn.Get(key) / StackMax);
 				int remainder = BudSpawn.Get(key) - (stacks * StackMax);
 				CPDebugPrint("" + this + " spawning " + stacks + " stacks" );
@@ -321,14 +321,14 @@ class CP_DryPost extends ItemBase
 				}
 			}  	
 		}	
-		GetGame().GetCallQueue(CALL_CATEGORY_GAMEPLAY).CallLater(CleanUp, 500, false);
+		g_Game.GetCallQueue(CALL_CATEGORY_GAMEPLAY).CallLater(CleanUp, 500, false);
 		LockDryingSlots(false);
     }
 	
 
     void CleanUp()
 	{	
-		if ( GetGame() && GetGame().IsServer() )
+		if ( g_Game && g_Game.IsServer() )
 		{
 			NumItems = GetInventory().AttachmentCount();
 			for ( int i = NumItems - 1; i >= 0; i-- )
@@ -340,7 +340,7 @@ class CP_DryPost extends ItemBase
 	            	if (ItemName.IndexOf("CP_Raw") >= 0)
 		            {
 					CPDebugPrint("deleting " + attachment);
-					GetGame().ObjectDelete(attachment);	
+					g_Game.ObjectDelete(attachment);	
 				}	
 	        }
 	
@@ -354,7 +354,7 @@ class CP_DryPost extends ItemBase
 	
 	void synchronize()
 	{
-		if ( GetGame() && GetGame().IsServer() )
+		if ( g_Game && g_Game.IsServer() )
 		{
 			SetSynchDirty();
 		}
@@ -428,7 +428,7 @@ class CP_DryPost extends ItemBase
 	{
 		if (!IsHologram())
 		{
-			ItemBase Log = ItemBase.Cast(GetGame().CreateObjectEx("WoodenLog",GetPosition(),ECE_PLACE_ON_SURFACE));
+			ItemBase Log = ItemBase.Cast(g_Game.CreateObjectEx("WoodenLog",GetPosition(),ECE_PLACE_ON_SURFACE));
 			MiscGameplayFunctions.TransferItemProperties(this, Log);
 			Log.SetQuantity(1);
 			Rope rope = Rope.Cast(item);
@@ -450,8 +450,8 @@ class CP_DryPost_Kit extends ItemBase
 	{
 		super.EEInit();
 
-		if (GetGame() && GetGame().IsServer())
-			GetGame().GetCallQueue( CALL_CATEGORY_GAMEPLAY ).Call( AssembleKit );
+		if (g_Game && g_Game.IsServer())
+			g_Game.GetCallQueue( CALL_CATEGORY_GAMEPLAY ).Call( AssembleKit );
 	}
 
 	override bool CanReceiveAttachment(EntityAI attachment, int slotId)
@@ -473,9 +473,9 @@ class CP_DryPost_Kit extends ItemBase
 	{
 		super.OnPlacementComplete( player, position, orientation );
 		
-		if ( GetGame().IsServer() )
+		if ( g_Game.IsServer() )
 		{
-			CP_DryPost Dry_Post = CP_DryPost.Cast( GetGame().CreateObjectEx( "CP_DryPost", position, ECE_PLACE_ON_SURFACE ) );
+			CP_DryPost Dry_Post = CP_DryPost.Cast( g_Game.CreateObjectEx( "CP_DryPost", position, ECE_PLACE_ON_SURFACE ) );
 			if (!Dry_Post)
 				return;
 			
@@ -486,7 +486,7 @@ class CP_DryPost_Kit extends ItemBase
 			//make the kit invisible, then delete it next frame so the deploy action can finish cleanly
 			HideAllSelections();
 			SetIsDeploySound( true );
-			GetGame().GetCallQueue(CALL_CATEGORY_GAMEPLAY).CallLater(DeleteKit, 0, false);
+			g_Game.GetCallQueue(CALL_CATEGORY_GAMEPLAY).CallLater(DeleteKit, 0, false);
 		}	
 	}
 
@@ -569,7 +569,7 @@ class CP_DryPost_Kit extends ItemBase
 			return;
 		}
 		
-		EntityAI newRope = EntityAI.Cast(GetGame().CreateObjectEx(rope.GetType(), GetPosition(), ECE_PLACE_ON_SURFACE));
+		EntityAI newRope = EntityAI.Cast(g_Game.CreateObjectEx(rope.GetType(), GetPosition(), ECE_PLACE_ON_SURFACE));
 		
 		if (newRope)
 			MiscGameplayFunctions.TransferItemProperties(this, newRope);
@@ -580,7 +580,7 @@ class CP_DryPost_Kit extends ItemBase
 	{
 		if (!IsHologram())
 		{
-			ItemBase Log = ItemBase.Cast(GetGame().CreateObjectEx("WoodenLog",GetPosition(),ECE_PLACE_ON_SURFACE));
+			ItemBase Log = ItemBase.Cast(g_Game.CreateObjectEx("WoodenLog",GetPosition(),ECE_PLACE_ON_SURFACE));
 			MiscGameplayFunctions.TransferItemProperties(this, Log);
 			Log.SetQuantity(1);
 			Rope rope = Rope.Cast(item);
@@ -599,16 +599,16 @@ class CP_DryPost_Kit extends ItemBase
 		if ( player && player.IsPlayerDisconnected() )
 			return;
 		
-		if (item && slot_name == "Rope" && GetGame().IsServer())
+		if (item && slot_name == "Rope" && g_Game.IsServer())
 		{
 			// Delay disassembly so rope swap operations can complete first.
-			GetGame().GetCallQueue(CALL_CATEGORY_GAMEPLAY).CallLater(HandleKitRopeDetachedServer, 1, false, ItemBase.Cast(item));
+			g_Game.GetCallQueue(CALL_CATEGORY_GAMEPLAY).CallLater(HandleKitRopeDetachedServer, 1, false, ItemBase.Cast(item));
 		}
 	}
 
 	void HandleKitRopeDetachedServer(ItemBase detachedRope)
 	{
-		if (!GetGame() || !GetGame().IsServer())
+		if (!g_Game || !g_Game.IsServer())
 			return;
 
 		// If rope is present again, this was a swap/replace; do not disassemble.

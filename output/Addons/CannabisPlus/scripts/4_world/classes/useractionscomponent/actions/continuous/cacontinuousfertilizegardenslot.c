@@ -41,8 +41,8 @@ modded class CAContinuousFertilizeGardenSlot : CAContinuousQuantity
 				}
 				
 				string item_type = action_data.m_MainItem.GetType();
-				float consumed_quantity = GetGame().ConfigGetFloat( "cfgVehicles " + item_type + " Horticulture ConsumedQuantity" );
-				//float action_length = GetGame().ConfigGetFloat( "cfgVehicles " + item_type + " Horticulture FertilizeLength" );
+				float consumed_quantity = g_Game.ConfigGetFloat( "cfgVehicles " + item_type + " Horticulture ConsumedQuantity" );
+				//float action_length = g_Game.ConfigGetFloat( "cfgVehicles " + item_type + " Horticulture FertilizeLength" );
 				float action_length;
 
 				if (item_type == "PlantMaterial") 
@@ -55,7 +55,7 @@ modded class CAContinuousFertilizeGardenSlot : CAContinuousQuantity
 				}
 				else
 				{
-					action_length = GetGame().ConfigGetFloat( "cfgVehicles " + item_type + " Horticulture FertilizeLength" );
+					action_length = g_Game.ConfigGetFloat( "cfgVehicles " + item_type + " Horticulture FertilizeLength" );
 				}
 				
 				if (action_length == 0)

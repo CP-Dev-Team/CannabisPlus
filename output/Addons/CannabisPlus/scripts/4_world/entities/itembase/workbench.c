@@ -7,11 +7,11 @@ class CP_Workbench_Kit extends ItemBase
 	{		
 		super.OnPlacementComplete( player );		
 		
-		if ( GetGame().IsServer() )
+		if ( g_Game.IsServer() )
 		{
 			PlayerBase player_base = PlayerBase.Cast( player );
 
-			CP_Workbench CPWorkbench = CP_Workbench.Cast( GetGame().CreateObjectEx( "CP_Workbench", GetPosition(), ECE_PLACE_ON_SURFACE ) );
+			CP_Workbench CPWorkbench = CP_Workbench.Cast( g_Game.CreateObjectEx( "CP_Workbench", GetPosition(), ECE_PLACE_ON_SURFACE ) );
 			
 			CPWorkbench.SetPosition( position);
 			CPWorkbench.SetOrientation( orientation );
@@ -92,26 +92,26 @@ class CP_Workbench extends ItemBase
 		RegisterNetSyncVariableBool("CP_TimerisRunning");
 		RegisterNetSyncVariableBool("CP_TimerIsPaused");
 
-		if (GetGame() && GetGame().IsServer())
+		if (g_Game && g_Game.IsServer())
 			CP_LoadConfig();
 		
 		//Gotta wait a little bit to load the config on the clientside while we fetch it from the serverside
-		if (GetGame() && GetGame().IsClient())
+		if (g_Game && g_Game.IsClient())
 		{
-			GetGame().GetCallQueue(CALL_CATEGORY_SYSTEM).CallLater(CP_LoadConfig, 750, false);
+			g_Game.GetCallQueue(CALL_CATEGORY_SYSTEM).CallLater(CP_LoadConfig, 750, false);
 		}	
 		
-		GetGame().GetCallQueue(CALL_CATEGORY_SYSTEM).CallLater(UnlockAll, 600, false);
-		GetGame().GetCallQueue(CALL_CATEGORY_SYSTEM).CallLater(UpdateLockState, 750, false);
+		g_Game.GetCallQueue(CALL_CATEGORY_SYSTEM).CallLater(UnlockAll, 600, false);
+		g_Game.GetCallQueue(CALL_CATEGORY_SYSTEM).CallLater(UpdateLockState, 750, false);
 		CPDebugPrint("CP_Workbench constructor UpdateLockState");
 	}
 	
 	void CP_LoadConfig()
 	{
 		//See if we gotta wait some more because we haven't received the config yet...
-		if (GetGame() && GetGame().IsClient() && !GetCPConfig())
+		if (g_Game && g_Game.IsClient() && !GetCPConfig())
 		{	
-			GetGame().GetCallQueue(CALL_CATEGORY_SYSTEM).CallLater(CP_LoadConfig, 500, false);	
+			g_Game.GetCallQueue(CALL_CATEGORY_SYSTEM).CallLater(CP_LoadConfig, 500, false);	
 			return;
 		}
 
@@ -153,7 +153,7 @@ class CP_Workbench extends ItemBase
 	{
 		super.OnVariablesSynchronized();
 
-		if (GetGame() && GetGame().IsClient())
+		if (g_Game && g_Game.IsClient())
 			UpdateLockState();
 			CPDebugPrint("OnVariablesSynchronized, UpdateLockState");
 	}
@@ -603,7 +603,7 @@ class CP_Workbench extends ItemBase
 	
 	void UnlockAll()
 	{
-		if (GetGame() && GetGame().IsServer())
+		if (g_Game && g_Game.IsServer())
 		{
 			GetInventory().SetSlotLock(InventorySlots.GetSlotIdFromString(ATTACHMENT_SLOT_BUDS), false);
 			GetInventory().SetSlotLock(InventorySlots.GetSlotIdFromString(ATTACHMENT_SLOT_EMPTYBAGS), false);
@@ -618,7 +618,7 @@ class CP_Workbench extends ItemBase
 
 	void LockCPBaggerSlots(bool lock) 
 	{
-		if (GetGame() && GetGame().IsServer())
+		if (g_Game && g_Game.IsServer())
 		{
 			GetInventory().SetSlotLock(InventorySlots.GetSlotIdFromString(ATTACHMENT_SLOT_BUDS), lock);
 			GetInventory().SetSlotLock(InventorySlots.GetSlotIdFromString(ATTACHMENT_SLOT_EMPTYBAGS), lock);
@@ -629,7 +629,7 @@ class CP_Workbench extends ItemBase
 
 	void LockCPWrapperSlots(bool lock) 
 	{
-		if (GetGame() && GetGame().IsServer())
+		if (g_Game && g_Game.IsServer())
 		{
 			GetInventory().SetSlotLock(InventorySlots.GetSlotIdFromString(ATTACHMENT_SLOT_PLASTICWRAP), lock);
 			GetInventory().SetSlotLock(InventorySlots.GetSlotIdFromString(ATTACHMENT_SLOT_BAGS), lock);
@@ -640,7 +640,7 @@ class CP_Workbench extends ItemBase
 
 	void LockCPBagger(bool lock)
 	{
-		if (GetGame() && GetGame().IsServer())
+		if (g_Game && g_Game.IsServer())
 		{
 			GetInventory().SetSlotLock(InventorySlots.GetSlotIdFromString(ATTACHMENT_SLOT_BAGGER), lock);
 			CPDebugPrint("void LockCPBagger = "+lock);
@@ -649,7 +649,7 @@ class CP_Workbench extends ItemBase
 
 	void LockCPWrapper(bool lock)
 	{
-		if (GetGame() && GetGame().IsServer())
+		if (g_Game && g_Game.IsServer())
 		{
 			GetInventory().SetSlotLock(InventorySlots.GetSlotIdFromString(ATTACHMENT_SLOT_WRAPPER), lock);
 			CPDebugPrint("void LockCPWrapper = "+lock);
@@ -658,7 +658,7 @@ class CP_Workbench extends ItemBase
 
 	void LockCPBattery(bool lock)
 	{
-		if (GetGame() && GetGame().IsServer())
+		if (g_Game && g_Game.IsServer())
 		{
 			GetInventory().SetSlotLock(InventorySlots.GetSlotIdFromString(ATTACHMENT_SLOT_BATTERIES), lock);
 			CPDebugPrint("void LockCPBattery = "+lock);
@@ -872,7 +872,7 @@ class CP_Workbench extends ItemBase
     {
         super.EEItemAttached(item,slot_name);
 
-		if (!GetGame().IsServer())
+		if (!g_Game.IsServer())
 			return;
 
 		UpdateLockState();
@@ -883,7 +883,7 @@ class CP_Workbench extends ItemBase
 	{
 		super.EEItemDetached( item, slot_name );
 
-		if (!GetGame().IsServer())
+		if (!g_Game.IsServer())
 			return;
 
 		if (!IsRunning()) 

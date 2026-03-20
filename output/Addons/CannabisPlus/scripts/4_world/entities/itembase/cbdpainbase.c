@@ -19,7 +19,7 @@ class CP_Relief_Balm extends Inventory_Base
     {
         super.OnItemLocationChanged(old_owner, new_owner);
 
-        if (GetGame().IsServer()) {
+        if (g_Game.IsServer()) {
 
             DayZPlayer player_old = NULL;
             DayZPlayer player_new = NULL;

@@ -13,7 +13,7 @@ class CP_RawPlantBase extends ItemBase
 	{
 		if ( !super.OnStoreLoad( ctx, version ) )
 			return false;
-		if (GetGame().IsServer() && (!ctx.Read( yield ) || !ctx.Read( m_StrainName )))
+		if (g_Game.IsServer() && (!ctx.Read( yield ) || !ctx.Read( m_StrainName )))
 		{
 			return false;
 		}
@@ -24,7 +24,7 @@ class CP_RawPlantBase extends ItemBase
 	{
 		// call the inherited class
 		super.OnStoreSave( ctx );
-		if(GetGame().IsServer())
+		if(g_Game.IsServer())
 		{
 			ctx.Write( yield );
 			ctx.Write( m_StrainName );
