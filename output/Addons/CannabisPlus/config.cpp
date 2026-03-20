@@ -23,6 +23,7 @@ class CfgMods
 		version="3.1";
 		extra=0;
 		type="Mod";
+		defines[]={"CANNABISPLUS"};
 		dependencies[]={"gui","Game","World","Mission"};
 		class defs
 		{

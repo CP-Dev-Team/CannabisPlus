@@ -22,6 +22,7 @@ class CfgMods
 		version="3.0";
 		extra=0;
 		type="Mod";
+		defines[]={"CANNABISPLUSGUI"};
 		dependencies[]={"gui"};
 		class defs
 		{
