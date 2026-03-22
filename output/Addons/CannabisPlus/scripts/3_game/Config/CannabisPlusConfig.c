@@ -6,13 +6,13 @@ class CannabisPlusConfigManager
 
 	// joint smoke effect settings
 	int ActivateJointSmokingEffect; 		// reduces the fluctuation/sway in aiming when a joint is smoked
-	int SmokingJointEffectDuration;			// Time in seconds for the effect to stop
+	int SmokingJointEffectSeconds;			// Time in seconds for the effect to stop
 	int JointCyclesToActivateEffect;		// number of joints consumed to activate the effect
 
 	// Workbench
 	ref WorkbenchConfig WorkbenchSettings;
 
-    int TimeToDryCannabisPlant;	// Time for raw plants to dry on drying post.
+    int SecondsToDryCannabisPlant;	// Time in seconds for raw plants to dry on drying post.
 	
 	void CannabisPlusConfigManager() 
 	{
@@ -25,12 +25,12 @@ class CannabisPlusConfigManager
             EnableClientDebugLogging        = true;  // Set to true for initial release so users can help report issues.
 
             ActivateJointSmokingEffect 		= true;
-            SmokingJointEffectDuration 		= 360;
+            SmokingJointEffectSeconds 		= 360;
             JointCyclesToActivateEffect 	= 10;
 
 			WorkbenchSettings = new WorkbenchConfig();
 
-            TimeToDryCannabisPlant            	= 30;
+            SecondsToDryCannabisPlant            	= 30;
 
 		SaveConfig();
 	};
@@ -52,9 +52,9 @@ class CannabisPlusConfigManager
 	}
 
 	void ValidateConfig() {
-		if (TimeToDryCannabisPlant < 1) TimeToDryCannabisPlant = 1;
+		if (SecondsToDryCannabisPlant < 1) SecondsToDryCannabisPlant = 1;
 
-		if (SmokingJointEffectDuration < 1) SmokingJointEffectDuration = 1;
+		if (SmokingJointEffectSeconds < 1) SmokingJointEffectSeconds = 1;
 		if (JointCyclesToActivateEffect < 1) JointCyclesToActivateEffect = 1;
 	}
 	
@@ -187,13 +187,13 @@ class WorkbenchConfig
     int RequireBattery;
     int PowerUsed;
     int PlasticWrapUsage;
-    int ProcessingTime;
+    int ProcessingSeconds;
     
-    void WorkbenchConfig(int reqBat = 1, int powerUsed = 1, int wrapUsage = 10, int processingTime = 5)
+    void WorkbenchConfig(int reqBat = 1, int powerUsed = 1, int wrapUsage = 10, int procSeconds = 5)
     {
         RequireBattery = reqBat;
         PowerUsed = powerUsed;
         PlasticWrapUsage = wrapUsage;
-        ProcessingTime = processingTime;
+        ProcessingSeconds = procSeconds;
     }
 };

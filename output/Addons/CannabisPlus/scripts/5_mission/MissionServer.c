@@ -37,7 +37,7 @@ modded class MissionServer
                 CannabisStrainConfig strainConfig = CannabisStrainConfig.LoadStrain(strainName);
                 g_CannabisStrainConfigs.Set(strainName, strainConfig);
                 loadedCount++;
-                CPDebugPrint("Loaded strain: " + strainName + " - GrowTime: " + strainConfig.GrowTime + ", CropCount: " + strainConfig.CropCount + ", SeedCount: " + strainConfig.SeedCount);
+                CPDebugPrint("Loaded strain: " + strainName + " - MinutesToGrow: " + strainConfig.MinutesToGrow + ", CropCount: " + strainConfig.CropCount + ", SeedCount: " + strainConfig.SeedCount);
             }
 
             fileName = "";
@@ -65,6 +65,18 @@ modded class MissionServer
                 CPDebugPrint("GenerateAllDefaultsIfStrainsFolderMissing completed.");
                 // Automatically load all available strain configs from disk
                 InitCannabisStrainConfigs();
+				
+				// Pre-register all cannabis strains with AgricultureCore
+				// This is required so plants loaded from storage after server restart
+				// are in the registry when Harvest() checks it
+				for (int i = 0; i < g_CannabisStrainConfigs.Count(); i++)
+				{
+					string strainName = g_CannabisStrainConfigs.GetKey(i);
+					CannabisStrainConfig strainCfg = g_CannabisStrainConfigs.GetElement(i);
+					string plantType = "CP_Plant_Cannabis" + strainName;
+					AC_RegisterPlant(plantType, strainCfg.MinutesToGrow, 1, strainCfg.CropCount, true, false);
+					CPDebugPrint("Pre-registered plant: " + plantType);
+				}
             }
             else
             {

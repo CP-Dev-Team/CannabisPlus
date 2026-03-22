@@ -1,15 +1,15 @@
 class CannabisStrainConfig
 {
-    int GrowTime;
+    int MinutesToGrow;
     int CropCount;
     int SeedCount;
 
 	// Weed Effects.
 	ref WeedEffectsConfig WeedEffects;
 
-    void CannabisStrainConfig(int growTime = 8, int cropCount = 2, int seedCount = 9)
+    void CannabisStrainConfig(int growMins = 8, int cropCount = 2, int seedCount = 9)
     {
-        GrowTime = growTime;
+        MinutesToGrow = growMins;
         CropCount = cropCount;
         SeedCount = seedCount;
         WeedEffects = new WeedEffectsConfig();
@@ -73,7 +73,7 @@ class CannabisStrainConfig
 
     void Validate()
     {
-        if (GrowTime < 1) GrowTime = 1;
+        if (MinutesToGrow < 1) MinutesToGrow = 1;
         if (CropCount < 1) CropCount = 1;
         if (SeedCount < 1) SeedCount = 1;
         if (!WeedEffects) WeedEffects = new WeedEffectsConfig();

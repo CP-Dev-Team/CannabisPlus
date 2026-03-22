@@ -195,7 +195,7 @@ class CP_DryPost extends ItemBase
 			if (NumPlants>=1)
 			{
 				CPDebugPrint("all items attached to post " + this + " ...starting to dry");
-				g_Game.GetCallQueue(CALL_CATEGORY_GAMEPLAY).CallLater(FinishDrying, GetCPConfig().TimeToDryCannabisPlant*1000, false);
+				g_Game.GetCallQueue(CALL_CATEGORY_GAMEPLAY).CallLater(FinishDrying, GetCPConfig().SecondsToDryCannabisPlant*1000, false);
 				m_IsLocked = true;
 				LockDryingSlots(true);
 			}

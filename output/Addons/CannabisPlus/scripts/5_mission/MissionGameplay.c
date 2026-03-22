@@ -45,7 +45,7 @@ modded class MissionGameplay extends MissionBase
             g_ClientCannabisStrainConfigs = new map<string, ref CannabisStrainConfig>();
             foreach (string strainKey, CannabisStrainConfig config : data.param2) {
                 CannabisStrainConfig newConfig = new CannabisStrainConfig();
-                newConfig.GrowTime = config.GrowTime;
+                newConfig.MinutesToGrow = config.MinutesToGrow;
                 newConfig.CropCount = config.CropCount;
                 newConfig.SeedCount = config.SeedCount;
                 if (config.WeedEffects) {
@@ -71,7 +71,7 @@ modded class MissionGameplay extends MissionBase
                 CPClientDebugPrint("General Config Loaded.");
                 CPClientDebugPrint("Workbench Power Used: " + g_ClientCannabisPlusConfig.WorkbenchSettings.PowerUsed);
                 CPClientDebugPrint("Plastic Wrap Usage: " + g_ClientCannabisPlusConfig.WorkbenchSettings.PlasticWrapUsage);
-                CPClientDebugPrint("Workbench Processing Time: " + g_ClientCannabisPlusConfig.WorkbenchSettings.ProcessingTime);
+                CPClientDebugPrint("Workbench Processing Time: " + g_ClientCannabisPlusConfig.WorkbenchSettings.ProcessingSeconds);
                 CP_ClientDebug = g_ClientCannabisPlusConfig.EnableClientDebugLogging;
                 CPClientDebugPrint("EnableServerDebugLogging: " + g_ClientCannabisPlusConfig.EnableServerDebugLogging);
                 CPClientDebugPrint("EnableClientDebugLogging: " + g_ClientCannabisPlusConfig.EnableClientDebugLogging);
@@ -87,7 +87,7 @@ modded class MissionGameplay extends MissionBase
                 CPClientDebugPrint("Strain Configs Loaded: " + g_ClientCannabisStrainConfigs.Count());
                 foreach (string strainName, CannabisStrainConfig strainConfig : g_ClientCannabisStrainConfigs)
                 {
-                    CPClientDebugPrint("Strain: " + strainName + " | GrowTime: " + strainConfig.GrowTime + " | CropCount: " + strainConfig.CropCount + " | SeedCount: " + strainConfig.SeedCount);
+                    CPClientDebugPrint("Strain: " + strainName + " | MinutesToGrow: " + strainConfig.MinutesToGrow + " | CropCount: " + strainConfig.CropCount + " | SeedCount: " + strainConfig.SeedCount);
                 }
             }
             else

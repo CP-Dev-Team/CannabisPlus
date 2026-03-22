@@ -123,7 +123,7 @@ class CP_Workbench extends ItemBase
 		/*                     	   Whole # Config Options                         */
 		////////////////////////////////////////////////////////////////////////////
 		int BatteryRequired = GetCPConfig().WorkbenchSettings.RequireBattery;
-		Workbench_Timer_Repeat = GetCPConfig().WorkbenchSettings.ProcessingTime;
+		Workbench_Timer_Repeat = GetCPConfig().WorkbenchSettings.ProcessingSeconds;
 		//int BudsToBagsUsage = GetCPConfig().Buds_To_Bags_Required;
 		BagsToBricksUsage = 16; //GetCPConfig().Bags_To_Bricks_Required;	
 

@@ -37,7 +37,7 @@ modded class PlayerBase {
 					CannabisEffectsTriggered(m_jointValue, strainName);
 					if (!jointTimer) { jointTimer = new Timer()};
 					jointTimer.Stop();
-					jointTimer.Run(GetCPConfig().SmokingJointEffectDuration, this, "ResetJointValues", null, false);
+					jointTimer.Run(GetCPConfig().SmokingJointEffectSeconds, this, "ResetJointValues", null, false);
 				}
 				SetSynchDirty();
 			}

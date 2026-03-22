@@ -141,6 +141,7 @@ Mod Changes
 - Joint packs now show a numbered quantity.
 - Joints can now be smoked from a stack instead of only while holding one.
 - Classname changes for ease of use and future functionality.
+- Lots of performance improvements.
 
 Config Changes
 - Configs have been split.  There's now a folder in profiles/CannabisPlus called strains and each strain of cannabis has it's own .json
