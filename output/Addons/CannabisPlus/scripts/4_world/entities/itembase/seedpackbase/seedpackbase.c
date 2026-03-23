@@ -42,22 +42,6 @@ modded class SeedPackBase
                 CPDebugPrint("Fallback default SeedCount: " + m_SeedCount);
             }
         }
-        else if (packType == "PepperSeedsPack")
-        {
-            seeds_quantity_max = GetGPConfig().PepperSeedsPerPackage;
-        }
-        else if (packType == "TomatoSeedsPack")
-        {
-            seeds_quantity_max = GetGPConfig().TomatoSeedsPerPackage;
-        }
-        else if (packType == "ZucchiniSeedsPack")
-        {
-            seeds_quantity_max = GetGPConfig().ZucchiniSeedsPerPackage;
-        }
-        else if (packType == "PumpkinSeedsPack")
-        {
-            seeds_quantity_max = GetGPConfig().PumpkinSeedsPerPackage;
-        }
         else
         {
             super.EmptySeedPack(player);
