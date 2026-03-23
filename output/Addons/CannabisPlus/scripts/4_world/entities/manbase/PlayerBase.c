@@ -23,6 +23,11 @@ modded class PlayerBase {
 		RegisterNetSyncVariableInt("m_jointValue");
 	}
 	
+	override bool AC_HasAnyPPEActive()
+	{
+		return m_HasConsumedJoint || super.AC_HasAnyPPEActive();
+	}
+	
 	// set to true if the player consumed a joint
 	void AddValueToJointValue(int value, string strainName = "") {
 		if (GetCPConfig()) {
@@ -38,6 +43,7 @@ modded class PlayerBase {
 					if (!jointTimer) { jointTimer = new Timer()};
 					jointTimer.Stop();
 					jointTimer.Run(GetCPConfig().SmokingJointEffectSeconds, this, "ResetJointValues", null, false);
+				AC_StartFreeCamPPECheck();
 				}
 				SetSynchDirty();
 			}
@@ -49,6 +55,7 @@ modded class PlayerBase {
 		CannabisEffectsTriggeredOff();
 		m_jointValue = 0;
 		jointTimer.Stop();
+		AC_StopFreeCamPPECheck();
 		SetSynchDirty();
 	}
 	
@@ -117,4 +124,18 @@ modded class PlayerBase {
 			CameraEffects.changeRotationBlurPower(0);	
 		}
 	}
+	
+	override void EEKilled(Object killer)
+	{
+		super.EEKilled(killer);
+		
+		if (jointTimer)
+			jointTimer.Stop();
+		
+		g_Game.GetCallQueue(CALL_CATEGORY_GAMEPLAY).RemoveByName(this, "ResetJointValues");
+		
+		m_HasConsumedJoint = false;
+		m_jointValue = 0;
+	}
+	
 }
