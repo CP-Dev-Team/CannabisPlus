@@ -234,4 +234,47 @@ class CameraEffects extends PPEffects
 		    materialColors.SetParam( "Saturation", HUESHIFT);
 		}
 	}
+
+	// Temporarily reset all PPE materials to defaults without changing the tracked state.
+	// Used when entering admin free camera so drug visuals don't affect the bird's eye view.
+	static void SuspendDrugPPE()
+	{
+		Material glow = g_Game.GetWorld().GetMaterial("graphics/materials/postprocess/glow");
+		Material chromaber = g_Game.GetWorld().GetMaterial("graphics/materials/postprocess/chromaber");
+		Material radialBlur = g_Game.GetWorld().GetMaterial("Graphics/Materials/postprocess/radialblur");
+		
+		if (glow)
+			glow.SetParam("Saturation", 1.0);
+		if (chromaber)
+		{
+			chromaber.SetParam("PowerX", 0.0);
+			chromaber.SetParam("PowerY", 0.0);
+		}
+		if (radialBlur)
+		{
+			radialBlur.SetParam("PowerX", 0.0);
+			radialBlur.SetParam("PowerY", 0.0);
+		}
+	}
+
+	// Re-apply PPE from the tracked static values after returning from free camera.
+	static void RestoreDrugPPE()
+	{
+		Material glow = g_Game.GetWorld().GetMaterial("graphics/materials/postprocess/glow");
+		Material chromaber = g_Game.GetWorld().GetMaterial("graphics/materials/postprocess/chromaber");
+		Material radialBlur = g_Game.GetWorld().GetMaterial("Graphics/Materials/postprocess/radialblur");
+		
+		if (glow)
+			glow.SetParam("Saturation", HUESHIFT);
+		if (chromaber)
+		{
+			chromaber.SetParam("PowerX", CHROMABERX);
+			chromaber.SetParam("PowerY", CHROMABERY);
+		}
+		if (radialBlur)
+		{
+			radialBlur.SetParam("PowerX", RADBLURX);
+			radialBlur.SetParam("PowerY", RADBLURY);
+		}
+	}
 };
