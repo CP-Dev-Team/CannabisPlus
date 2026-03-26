@@ -32,7 +32,7 @@ modded class MissionGameplay extends MissionBase
             CPClientDebugPrint("Receiving general config and strain configs from the server...");
 
             // Expecting both general config and strain configs
-            Param2<ref CannabisPlusConfigManager, ref map<string, ref CannabisStrainConfig>> data;
+            Param2<CannabisPlusConfigManager, map<string, ref CannabisStrainConfig>> data;
 
             if (!ctx.Read(data))
             {

@@ -102,8 +102,8 @@ modded class MissionServer
                 return;
             }
 
-            ref Param2< ref CannabisPlusConfigManager, ref map<string, ref CannabisStrainConfig> > rpcParams = 
-                new Param2< ref CannabisPlusConfigManager, ref map<string, ref CannabisStrainConfig> >(m_currentcfg, g_CannabisStrainConfigs);
+            ref Param2<CannabisPlusConfigManager, map<string, ref CannabisStrainConfig>> rpcParams = 
+                new Param2<CannabisPlusConfigManager, map<string, ref CannabisStrainConfig>>(m_currentcfg, g_CannabisStrainConfigs);
             
             GetRPCManager().SendRPC("CP_scripts", "CONFIGRESPONSE", rpcParams, true, sender);
 
