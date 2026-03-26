@@ -1,29 +1,18 @@
-//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-// 
-//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 modded class PlayerBase {
 
-	protected ref Timer swayTimer; // timer that resets the values after the effect is over
 	protected ref Timer jointTimer; // timer that resets the values after the effect is over
 	protected const string SMOKE_SOUND  = "Smoking_SoundSet";
 
 	protected EffectSound m_TurnOff;
     protected EffectSound m_TurnOn;
 	
-	bool m_HasConsumedCigarette = false;	// has the player consumed a hole cigarette	
-	int m_cigaretteValue;					// the quantity of the cigarette, what the player consumed
-	
 	bool m_HasConsumedJoint = false;
-	int m_jointValue;						// the quantity of the cigarette, what the player consumed
+	int m_jointValue;						// the quantity of the joint, what the player consumed
 	
-	//getters for cig/joint smoke state
+	//getters for joint smoke state
 	bool HasConsumedJoint () {
 		return m_HasConsumedJoint; 
 	}
-
-	bool HasConsumedCigarette () {
-		return m_HasConsumedCigarette; 
-	} 
 	
 	int GetJointCycles() {
 		return m_jointValue;
@@ -34,104 +23,119 @@ modded class PlayerBase {
 		RegisterNetSyncVariableInt("m_jointValue");
 	}
 	
-	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-	// set to true if the player consumed a cigarette
-	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-	void AddValueToCigaretteValue(int value) {
-		if (GetCPConfig()) {	
-			if(GetCPConfig().activateCigaretteSmokingEffect) {
-				m_cigaretteValue += value;
-						
-				if(m_cigaretteValue >= GetCPConfig().cigaretteCyclesToActivateEffect){
-					//Print("[CP] Smoking cigarrette effect" + GetDayZGame().GetCannabisPlusConfig().cigaretteCyclesToActivateEffect);
-					m_HasConsumedCigarette = true;
-					if (!swayTimer) { swayTimer = new Timer()};
-					swayTimer.Stop();
-					swayTimer.Run(GetCPConfig().smokingCigaretteEffectDuration, this, "ResetCigaretteValues", null, false);				
-				}
-			}
-		}		
-	}	
-	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+	override bool AC_HasAnyPPEActive()
+	{
+		return m_HasConsumedJoint || super.AC_HasAnyPPEActive();
+	}
+	
 	// set to true if the player consumed a joint
-	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-	void AddValueToJointValue(int value) {	
-		if (GetCPConfig()) {	
-			if(GetCPConfig().activateJointSmokingEffect) {
-				//Print("[CP] CannabisPlus: AddValueToJointValue");
+	void AddValueToJointValue(int value, string strainName = "") {
+		if (GetCPConfig()) {
+			if(GetCPConfig().ActivateJointSmokingEffect) {
+				CPClientDebugPrint("CannabisPlus: AddValueToJointValue");
 				m_jointValue += value;
-						
-				if((m_jointValue % GetCPConfig().jointCyclesToActivateEffect) == 0){	
-					//Print("[CP] Smoking joint effect " + GetDayZGame().GetCannabisPlusConfig().jointCyclesToActivateEffect);
-					//Print("[CP] CannabisPlus: Starting Effect");			
+
+				if((m_jointValue % GetCPConfig().JointCyclesToActivateEffect) == 0){
+					CPClientDebugPrint("JointCyclesToActivateEffect " + GetCPConfig().JointCyclesToActivateEffect);
+					CPClientDebugPrint("CannabisPlus: Starting Effect");
 					m_HasConsumedJoint = true;
-					CannabisEffectsTriggered(m_jointValue);
+					CannabisEffectsTriggered(m_jointValue, strainName);
 					if (!jointTimer) { jointTimer = new Timer()};
 					jointTimer.Stop();
-					jointTimer.Run(GetCPConfig().smokingJointEffectDuration, this, "ResetJointValues", null, false);				
+					jointTimer.Run(GetCPConfig().SmokingJointEffectSeconds, this, "ResetJointValues", null, false);
+				AC_StartFreeCamPPECheck();
 				}
 				SetSynchDirty();
 			}
 		}
 	}
-	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-	// called by timer if the effect is over, resets all values that the player "consume again"
-	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-	void ResetCigaretteValues() {		
-		m_cigaretteValue = 0;
-		m_HasConsumedCigarette = false;
-		swayTimer.Stop();
-	}
-	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-	// called by timer if the effect is over, resets all values that the player "consume again"
-	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+	// called by timer if the effect is over, resets all values so the player can consume again
 	void ResetJointValues() {
 		m_HasConsumedJoint = false;
 		CannabisEffectsTriggeredOff();
 		m_jointValue = 0;
 		jointTimer.Stop();
+		AC_StopFreeCamPPECheck();
 		SetSynchDirty();
 	}
 	
 	// Cannabis Visual Effect On.
-      void CannabisEffectsTriggered(int cycles)
-      { 
-            float multiplier;
-            int counter;			
-                  
-            counter = cycles / GetCPConfig().jointCyclesToActivateEffect;
-            multiplier = 1 + (0.25 * counter);
+	void CannabisEffectsTriggered(int cycles, string strainName = "")
+	{
+		float multiplier;
+		int counter;
 
+		counter = cycles / GetCPConfig().JointCyclesToActivateEffect;
+		multiplier = 1 + (0.25 * counter);
 
-            if(GetGame().IsClient())
-            {
-                  //Reset effects on player before adding new ones.
-                  //CameraEffects.changeHue(60);
-                  //CameraEffects.changeRadBlurXEffect(0);
-                  //CameraEffects.changeRadBlurYEffect(0);
-                  //CameraEffects.changeRotationBlurPower(0);
-                  
-                  CameraEffects.changeHue(GetCPConfig().weedHueIntensity-counter);
-                  CameraEffects.changeRadBlurXEffect(GetCPConfig().weedRadBlurXPower*multiplier);
-                  CameraEffects.changeRadBlurYEffect(GetCPConfig().weedRadBlurYPower*multiplier);
-                  CameraEffects.changeRotationBlurPower(GetCPConfig().weedRotBlurPow*multiplier);
-            }	
-            PlaySoundSet(m_TurnOn, SMOKE_SOUND, 0.0, 0.0);	
+		if(g_Game.IsClient())
+		{
+			CPClientDebugPrint("CannabisEffectsTriggered counter: " + counter + " multiplier: " + multiplier + " strain: " + strainName);
 
-      }
+			CPClientDebugPrint("g_ClientCannabisStrainConfigs size: " + g_ClientCannabisStrainConfigs.Count());
+			for (int i = 0; i < g_ClientCannabisStrainConfigs.Count(); i++) {
+				string key = g_ClientCannabisStrainConfigs.GetKey(i);
+				CPClientDebugPrint("Map key " + i + ": '" + key + "'");
+			}
 
-      // Cannabis Effects Triggered Off.
-      void CannabisEffectsTriggeredOff()
-      {
+			CannabisStrainConfig strainConfig = g_ClientCannabisStrainConfigs.Get(strainName);
+			if (strainConfig != null) {
+				CPClientDebugPrint("Retrieved config for '" + strainName + "': found");
+				if (strainConfig.WeedEffects != null) {
+					CPClientDebugPrint("WeedEffects null check: not null");
+					CPClientDebugPrint("WeedEffects values - Hue: " + strainConfig.WeedEffects.HueIntensity + " RadX: " + strainConfig.WeedEffects.RadBlurXPower);
+				} else {
+					CPClientDebugPrint("WeedEffects null check: null");
+					strainConfig.WeedEffects = new WeedEffectsConfig();
+					CPClientDebugPrint("Initialized default WeedEffects for strain: " + strainName);
+				}
+			} else {
+				CPClientDebugPrint("Retrieved config for '" + strainName + "': null");
+				strainConfig = new CannabisStrainConfig();
+				strainConfig.WeedEffects = new WeedEffectsConfig();
+				CPClientDebugPrint("Created default config and WeedEffects for strain: " + strainName);
+			}
 
-            if(GetGame().IsClient())
-            {
-                  CameraEffects.changeHue(60);
-                  CameraEffects.changeRadBlurXEffect(0);
-                  CameraEffects.changeRadBlurYEffect(0);
-                  CameraEffects.changeRotationBlurPower(0);	
-            }
-      }
+			if (strainConfig && strainConfig.WeedEffects)
+			{
+				CPClientDebugPrint("Applying weed effects for strain: " + strainName + " - Hue: " + strainConfig.WeedEffects.HueIntensity + " RadX: " + strainConfig.WeedEffects.RadBlurXPower + " RadY: " + strainConfig.WeedEffects.RadBlurYPower + " Rot: " + strainConfig.WeedEffects.RotBlurPow);
 
+				CameraEffects.changeHue(strainConfig.WeedEffects.HueIntensity - counter);
+				CameraEffects.changeRadBlurXEffect(strainConfig.WeedEffects.RadBlurXPower * multiplier);
+				CameraEffects.changeRadBlurYEffect(strainConfig.WeedEffects.RadBlurYPower * multiplier);
+				CameraEffects.changeRotationBlurPower(strainConfig.WeedEffects.RotBlurPow * multiplier);
+			}
+			else
+			{
+				CPClientDebugPrint("Strain config not found or WeedEffects null for strain: " + strainName);
+			}
+		}
+		PlaySoundSet(m_TurnOn, SMOKE_SOUND, 0.0, 0.0);
+	}
+
+	// Cannabis Effects Triggered Off.
+	void CannabisEffectsTriggeredOff()
+	{
+		if(g_Game.IsClient())
+		{
+			CameraEffects.changeHue(60);
+			CameraEffects.changeRadBlurXEffect(0);
+			CameraEffects.changeRadBlurYEffect(0);
+			CameraEffects.changeRotationBlurPower(0);	
+		}
+	}
+	
+	override void EEKilled(Object killer)
+	{
+		super.EEKilled(killer);
+		
+		if (jointTimer)
+			jointTimer.Stop();
+		
+		g_Game.GetCallQueue(CALL_CATEGORY_GAMEPLAY).RemoveByName(this, "ResetJointValues");
+		
+		m_HasConsumedJoint = false;
+		m_jointValue = 0;
+	}
 	
 }

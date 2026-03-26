@@ -21,7 +21,7 @@ class CfgVehicles
     class Inventory_Base;
     class CP_MediumBox : Inventory_Base
     {
-		scope = 2;
+		scope = 0;
 		displayName="#cp_medium_box0";
 		descriptionShort="#cp_medium_box1";
 		model="\CannabisPlus\boxes\box_medium.p3d";
@@ -48,7 +48,7 @@ class CfgVehicles
 
       class CP_SmallBox : Inventory_Base
     {
-		scope = 2;
+		scope = 0;
 		displayName="#cp_small_box0";
 		descriptionShort="#cp_small_box1";
 		model="\CannabisPlus\boxes\box_small.p3d";

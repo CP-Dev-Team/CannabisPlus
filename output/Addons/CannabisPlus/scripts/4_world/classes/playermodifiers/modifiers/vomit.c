@@ -13,26 +13,23 @@ class VomitMdfr: ModifierBase
 	
 	override bool ActivateCondition(PlayerBase player)
 	{
-			return false;
+		return false;
 	}
 	
 	override bool DeactivateCondition(PlayerBase player)
 	{
 		float attached_time = GetAttachedTime();
 		
-		if ( attached_time >= LIFETIME )
-		{
+		if ( attached_time >= LIFETIME ) {
 			return true;
-		}
-		else
-		{
+		} else {
 			return false;
 		}
 	}
 
 	override void OnActivate(PlayerBase player)
 	{
-		//Print("[CP] Vomit modifier activating on player: " + player);
+		CPDebugPrint("Vomit modifier activating on player: " + player);
 		SymptomBase symptom = player.GetSymptomManager().QueueUpPrimarySymptom( SymptomIDs.SYMPTOM_VOMIT );
 		if( symptom )
 		{
@@ -42,6 +39,6 @@ class VomitMdfr: ModifierBase
 	
 	override protected void OnDeactivate(PlayerBase player)
 	{
-		//Print("[CP] Vomit modifier deactivating on player: " + player);
+		CPDebugPrint("Vomit modifier deactivating on player: " + player);
 	}		
 };

@@ -44,16 +44,14 @@ class ActionCP_RipOpenBrickOrBag: ActionContinuousBase
 	override bool ActionCondition( PlayerBase player, ActionTarget target, ItemBase item )
 	{
 		CP_CannabisBags Bag = CP_CannabisBags.Cast(item);
-        CP_CoreClass CPCORE = CP_CoreClass.Cast(item);
 
 		if(Bag && Bag.GetQuantity() <= 1)
 		{
-			TendancyText = CPCORE.GetCPitemTendancyText();
-	
+			TendancyText = Bag.GetACitemTendancyText();
 			return true;
-		}	
-		return false;
+		}
 
+		return false;
 	};
 	
 	override void OnFinishProgressServer( ActionData action_data )
@@ -65,15 +63,15 @@ class ActionCP_RipOpenBrickOrBag: ActionContinuousBase
 			int count;
 			array<string> resources = new array<string>;
 			
-			if( GetGame().ConfigIsExisting( path ) && GetGame().ConfigIsExisting( path + " Resources") )
+			if( g_Game.ConfigIsExisting( path ) && g_Game.ConfigIsExisting( path + " Resources") )
 			{
 				path = path + " Resources";
-				count = GetGame().ConfigGetChildrenCount ( path );
+				count = g_Game.ConfigGetChildrenCount ( path );
 				for (int i = 0; i < count; i++)
 				{
-					GetGame().ConfigGetChildName ( path, i, child_name );
+					g_Game.ConfigGetChildName ( path, i, child_name );
 					
-					if ( GetGame().ConfigGetInt( path + " " + child_name + " value" ) )
+					if ( g_Game.ConfigGetInt( path + " " + child_name + " value" ) )
 					{
 						resources.Insert( child_name );
 					}
@@ -81,13 +79,13 @@ class ActionCP_RipOpenBrickOrBag: ActionContinuousBase
 
 				//TODO modify to allow for multiple ammo types spawning (if needed??)
 				string itemType = resources.Get(0);
-				int itemCount = GetGame().ConfigGetInt( path + " " + itemType + " value" );
+				int itemCount = g_Game.ConfigGetInt( path + " " + itemType + " value" );
 				
 				UnboxBrickBag lambda = new UnboxBrickBag(action_data.m_MainItem, itemType, action_data.m_Player, itemCount);
 				action_data.m_Player.ServerReplaceItemInHandsWithNew(lambda);
 				
 				//spawns wrapping Paper
-				//ItemBase paper = ItemBase.Cast( GetGame().CreateObjectEx("Paper", action_data.m_Player.GetPosition(), ECE_PLACE_ON_SURFACE) );
+				//ItemBase paper = ItemBase.Cast( g_Game.CreateObjectEx("Paper", action_data.m_Player.GetPosition(), ECE_PLACE_ON_SURFACE) );
 				
 				action_data.m_Player.GetSoftSkillsManager().AddSpecialty( m_SpecialtyWeight );
 			}
@@ -103,7 +101,7 @@ class UnboxBrickBag : ReplaceItemWithNewLambdaBase
 	{
 		super.CopyOldPropertiesToNew(old_item, new_item);
 
-		if ( GetGame().ConfigIsExisting( "CfgMagazines " + m_NewItemType ) )
+		if ( g_Game.ConfigIsExisting( "CfgMagazines " + m_NewItemType ) )
 		{
 			Magazine pile;
 			Class.CastTo(pile, new_item);

@@ -7,7 +7,6 @@ class CfgPatches
 		requiredVersion=0.1;
 		requiredAddons[]=
 		{
-			"CPtoken"
 		};
 	};
 };
@@ -23,6 +22,7 @@ class CfgMods
 		version="3.0";
 		extra=0;
 		type="Mod";
+		defines[]={"CANNABISPLUSGUI"};
 		dependencies[]={"gui"};
 		class defs
 		{
@@ -77,9 +77,9 @@ class CfgSlots
         displayName="Roll";
         ghostIcon="set:CP_GhostImages image:PlasticWrap";
     };
-	class Slot_CP_Empty_Bags
+	class Slot_AC_Empty_Bags
 	{
-		name="CP_Empty_Bags";
+		name="AC_Empty_Bags";
         displayName="Empty Bags";
         ghostIcon="set:CP_GhostImages image:bags";
 		stackMax=160;

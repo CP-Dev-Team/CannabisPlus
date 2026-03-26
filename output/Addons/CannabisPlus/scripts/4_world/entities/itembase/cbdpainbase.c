@@ -19,7 +19,7 @@ class CP_Relief_Balm extends Inventory_Base
     {
         super.OnItemLocationChanged(old_owner, new_owner);
 
-        if (GetGame().IsServer()) {
+        if (g_Game.IsServer()) {
 
             DayZPlayer player_old = NULL;
             DayZPlayer player_new = NULL;
@@ -43,15 +43,15 @@ class CP_Relief_Balm extends Inventory_Base
                 }
             }
             if (CBDCreamPickedUp && CBDCreamDropped && player_new != player_old ) { //Also making sure the player isn't just moving it around in the inventory 
-//          //Print("CBDCream stolen off a deady player's body");
-          	CPApi().Log("PickedUp","CBDReliefBalm");
+                CPDebugPrint("CBDCream stolen off a deady player's body");
+                //CPApi().Log("PickedUp","CBDReliefBalm");
             } else if (CBDCreamPickedUp && player_new != player_old ){
-//          //Print("Player has picked up CBDCream");
-          	CPApi().Log("PickedUp","CBDReliefBalm");
+                CPDebugPrint("Player has picked up CBDCream");
+                //CPApi().Log("PickedUp","CBDReliefBalm");
             } else if (CBDCreamDropped && player_new != player_old) {
-//          //Print("Player has dropped CBDCream");
-          	CPApi().Log("Dropped","CBDReliefBalm");
+                CPDebugPrint("Player has dropped CBDCream");
+                //CPApi().Log("Dropped","CBDReliefBalm");
+            }
         }
-      }
     }
 };

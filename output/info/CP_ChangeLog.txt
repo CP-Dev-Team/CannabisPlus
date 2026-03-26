@@ -140,3 +140,30 @@ Bug Fixes
 Known Issues
 - Can add raw plants to the Drying Post after drying process is started.
 - Have to look at the base of the plant to Harvest it.
+
+v3.1.0
+Mod Changes
+- CPTOKENS.pbo and all tracking code removed.
+- Cigarettes and Tobacco moved to DrugsPlus.
+- Joints now stack to 10.
+- Joint packs now show a numbered quantity.
+- Joints can now be smoked from a stack instead of only while holding one.
+- Classname changes for ease of use and future functionality.
+- Lots of performance improvements.
+
+Config Changes
+- Configs have been split.  There's now a folder in profiles/CannabisPlus called strains and each strain of cannabis has it's own .json
+- Config variables have been renamed for better understanding.
+- All generic plant settings moved to AgricultureCore.
+    [
+    "RemovePlantAfterHarvest": 1,
+    "EnablePlantMaterialDrop": 1,
+    "MinutesToPlantSpoiling": 60,
+    "SecondsToFertilizeUsingPlantMaterial": 2,
+    "SecondsToFertilizeUsingGardenLime": 5
+    ]
+- All vanilla plant settings moved to GardeningPlus.
+
+Bugs
+- Cigarettes shouldn't despawn anymore.
+- Can't add raw plants to dry post while drying anymore.

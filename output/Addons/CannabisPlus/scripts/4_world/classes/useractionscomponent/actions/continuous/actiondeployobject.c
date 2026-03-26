@@ -11,10 +11,10 @@ modded class ActionDeployObject
 	      if (!poActionData.m_AlreadyPlaced)
 	      {
 			EntityAI entity_for_placing = action_data.m_MainItem;
-		    GetGame().ClearJuncture(action_data.m_Player, entity_for_placing);
+		    g_Game.ClearJuncture(action_data.m_Player, entity_for_placing);
 		    action_data.m_MainItem.SetIsBeingPlaced(false);
 	        
-			if (GetGame().IsMultiplayer())
+			if (g_Game.IsMultiplayer())
 			{
 				action_data.m_Player.PlacingCancelServer();
 				action_data.m_MainItem.SoundSynchRemoteReset();
@@ -24,7 +24,7 @@ modded class ActionDeployObject
 				action_data.m_Player.PlacingCancelLocal();
 				action_data.m_Player.LocalTakeEntityToHands(entity_for_placing);
 			}
-			GetGame().ClearJuncture( action_data.m_Player, action_data.m_MainItem );
+			g_Game.ClearJuncture( action_data.m_Player, action_data.m_MainItem );
             } else {
 	            action_data.m_MainItem.SetIsDeploySound(false);
 	            action_data.m_MainItem.SetIsPlaceSound(false);

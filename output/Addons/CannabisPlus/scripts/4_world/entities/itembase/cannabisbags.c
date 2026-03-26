@@ -1,48 +1,56 @@
-class CP_CannabisBags extends CP_CoreClass
+// Cannabis bags now extend AC_BagBase for standardized bag system
+class CP_CannabisBags extends AC_BagBase
 {
-   
-    protected string m_cpBrick= "";
-	protected string m_CpRipBag="";
-    
-    void CP_CannabisBags()
+	// Legacy property names kept for backward compatibility
+	protected string m_cpBrick = "";
+	protected string m_CpRipBag = "";
+	
+	void CP_CannabisBags()
 	{
-        
-        if ( ConfigIsExisting("cpStepUpToBrick") ) 
+		// Parent AC_BagBase constructor calls LoadConfigProperties()
+	}
+	
+	// Override to load CannabisPlus-specific config properties
+	override protected void LoadConfigProperties()
+	{
+		if (ConfigIsExisting("cpStepUpToBrick"))
 		{
-            m_cpBrick= ConfigGetString("cpStepUpToBrick");
-        }
+			m_cpBrick = ConfigGetString("cpStepUpToBrick");
+			m_StepUpItem = m_cpBrick;  // Also set base class property
+		}
 		else
 		{
-            m_cpBrick= "";
-        }
+			m_cpBrick = "";
+		}
 		
-		if ( ConfigIsExisting("cpStepDownToBud") ) 
+		if (ConfigIsExisting("cpStepDownToBud"))
 		{
-            m_CpRipBag = ConfigGetString("cpStepDownToBud");
-        }
+			m_CpRipBag = ConfigGetString("cpStepDownToBud");
+			m_StepDownItem = m_CpRipBag;  // Also set base class property
+		}
 		else
 		{
-            m_CpRipBag = "";
-        }
-		
-    }
-		
+			m_CpRipBag = "";
+		}
+	}
+	
+	// Legacy getter methods for backward compatibility with existing recipes
 	string GetcpBrick()
 	{
-        return m_cpBrick;
-    }
+		return m_cpBrick;  // Same as GetStepUpItem()
+	}
 	
 	string GetCPRipBag()
 	{
-        return m_CpRipBag;
-    }
+		return m_CpRipBag;  // Same as GetStepDownItem()
+	}
 	
-	override string GetCPitemTendancyText()
+	// Override AG_CoreClass tendancy text for rip-open action display
+	override string GetACitemTendancyText()
 	{		
         return "Rip open " + GetDisplayName();
-    };
+    }
 	
-
 	override void SetActions()
 	{
 		super.SetActions();
@@ -51,29 +59,3 @@ class CP_CannabisBags extends CP_CoreClass
 		AddAction(ActionDetach);
 	}
 };
-class CP_EmptyBag extends ItemBase
-{
-	override void SetActions()
-	{
-		super.SetActions();
-		
-		//AddAction(ActionAttach);
-		AddAction(ActionDetach);
-	}
-};
-
-class CP_CannabisBagSkunk extends CP_CannabisBags{};
-
-class CP_CannabisBagBlue extends CP_CannabisBags{};
-
-class CP_CannabisBagKush extends CP_CannabisBags{};
-
-class CP_CannabisBagStardawg extends CP_CannabisBags{};
-
-class CP_CannabisBagFuture extends CP_CannabisBags{};
-
-class CP_CannabisBagS1 extends CP_CannabisBags{};
-
-class CP_CannabisBagNomad extends CP_CannabisBags{};
-
-class CP_CannabisBagBlackFrost extends CP_CannabisBags{};

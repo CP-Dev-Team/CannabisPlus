@@ -6,7 +6,7 @@ modded class ActionConstructor {
 		super.RegisterActions(actions);
 		
         actions.Insert(ActionSmokeJointSelf);
-		actions.Insert(ActionSmokeCigSelf); 
+		actions.Insert(ActionUnpackJointBox);
 		actions.Insert(ActionUnpackCigaretteBox);
 		actions.Insert(ActionApplyCream);
 		// starts drying process on Drypost
