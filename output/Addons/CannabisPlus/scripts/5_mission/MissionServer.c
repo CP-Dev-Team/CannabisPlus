@@ -37,7 +37,7 @@ modded class MissionServer
                 CannabisStrainConfig strainConfig = CannabisStrainConfig.LoadStrain(strainName);
                 g_CannabisStrainConfigs.Set(strainName, strainConfig);
                 loadedCount++;
-                CPDebugPrint("Loaded strain: " + strainName + " - MinutesToGrow: " + strainConfig.MinutesToGrow + ", CropCount: " + strainConfig.CropCount + ", SeedCount: " + strainConfig.SeedCount);
+                CPDebugPrint("Loaded strain: " + strainName + " - MinutesToGrow: " + strainConfig.MinutesToGrow + ", CropCount: " + strainConfig.CropCount + ", SeedsPerPackage: " + strainConfig.SeedsPerPackage);
             }
 
             fileName = "";

@@ -20,9 +20,9 @@ Folder structure:
     "EnableServerDebugLogging": false,                   // Enables debug logging on the server.
     "EnableClientDebugLogging": false,                   // Enables debug logging on the client.
     "ActivateJointSmokingEffect": 1,                     // 1 = Activates effects when smoking joints; 0 = No effect.
-    "SmokingJointEffectDuration": 360,                   // Duration the effect will last, in seconds.
+    "SmokingJointEffectSeconds": 360,                   // Duration the effect will last, in seconds.
     "JointCyclesToActivateEffect": 10,                   // How many cycles to activate the effect.  20 = One joint.
-    "TimeToDryCannabisPlant": 30,                        // Time in seconds for raw cannabis plants to dry on the drying post.
+    "SecondsToDryCannabisPlant": 30,                      // Time in seconds for raw cannabis plants to dry on the drying post.
     "WorkbenchSettings": {                               // Nested workbench settings:
         "RequireBattery": 1,                             //   1 = Require battery attached to workbench; 0 = No battery needed.
         "PowerUsed": 1,                                  //   Energy subtracted from the battery per use.  Ignored if RequireBattery = 0.
@@ -36,9 +36,9 @@ Each strain has its own JSON file in the CannabisStrains folder.
 All strains share the same settings structure.  You can customize each strain independently.
 Delete the CannabisStrains folder to regenerate all defaults.
 
-    "GrowTime": 8,                                       // Growtime of this strain in minutes.
+    "MinutesToGrow": 8,                                       // Growtime of this strain in minutes.
     "CropCount": 2,                                      // Amount of crop to harvest from this strain.
-    "SeedCount": 9,                                      // Amount of seeds in a seedpack for this strain.
+    "SeedsPerPackage": 9,                                // Amount of seeds in a seedpack for this strain.
     "WeedEffects": {                                     // Per-strain visual effects when smoking:
         "HueIntensity": 58.0,                            //   Manipulating the hue.  Probably shouldn't change.
         "RadBlurXPower": 2,                              //   Radial blur for the x-axis (0-100).

@@ -2,7 +2,7 @@ class CannabisStrainConfig
 {
     int MinutesToGrow;
     int CropCount;
-    int SeedCount;
+    int SeedsPerPackage;
 
 	// Weed Effects.
 	ref WeedEffectsConfig WeedEffects;
@@ -11,7 +11,7 @@ class CannabisStrainConfig
     {
         MinutesToGrow = growMins;
         CropCount = cropCount;
-        SeedCount = seedCount;
+        SeedsPerPackage = seedCount;
         WeedEffects = new WeedEffectsConfig();
     }
 
@@ -75,7 +75,7 @@ class CannabisStrainConfig
     {
         if (MinutesToGrow < 1) MinutesToGrow = 1;
         if (CropCount < 1) CropCount = 1;
-        if (SeedCount < 1) SeedCount = 1;
+        if (SeedsPerPackage < 1) SeedsPerPackage = 1;
         if (!WeedEffects) WeedEffects = new WeedEffectsConfig();
     }
 

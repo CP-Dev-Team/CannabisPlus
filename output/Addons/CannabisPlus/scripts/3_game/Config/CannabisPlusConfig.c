@@ -43,12 +43,20 @@ class CannabisPlusConfigManager
 
 	protected int GetModVersion() { 
 		string cfgversion = "CfgMods CannabisPlus version";
-            string ModVersion;
-	  	float modFloat;	
-            g_Game.ConfigGetText(cfgversion, ModVersion);
-            CPDebugPrint("ModConfig entry found Mod Version is: " + ModVersion);
-            modFloat  = ModVersion.ToFloat()*100;	
-            return (int)modFloat;
+		string ModVersion;
+		g_Game.ConfigGetText(cfgversion, ModVersion);
+		CPDebugPrint("ModConfig entry found Mod Version is: " + ModVersion);
+		return ParseVersionString(ModVersion);
+	}
+
+	protected int ParseVersionString(string version) {
+		array<string> parts = new array<string>();
+		version.Split(".", parts);
+		int major = 0, minor = 0, patch = 0;
+		if (parts.Count() > 0) major = parts[0].ToInt();
+		if (parts.Count() > 1) minor = parts[1].ToInt();
+		if (parts.Count() > 2) patch = parts[2].ToInt();
+		return (major * 100) + (minor * 10) + patch;
 	}
 
 	void ValidateConfig() {

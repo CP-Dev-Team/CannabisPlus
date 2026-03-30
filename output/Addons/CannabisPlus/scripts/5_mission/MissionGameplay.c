@@ -47,7 +47,7 @@ modded class MissionGameplay extends MissionBase
                 CannabisStrainConfig newConfig = new CannabisStrainConfig();
                 newConfig.MinutesToGrow = config.MinutesToGrow;
                 newConfig.CropCount = config.CropCount;
-                newConfig.SeedCount = config.SeedCount;
+                newConfig.SeedsPerPackage = config.SeedsPerPackage;
                 if (config.WeedEffects) {
                     newConfig.WeedEffects = new WeedEffectsConfig();
                     newConfig.WeedEffects.HueIntensity = config.WeedEffects.HueIntensity;
@@ -87,7 +87,7 @@ modded class MissionGameplay extends MissionBase
                 CPClientDebugPrint("Strain Configs Loaded: " + g_ClientCannabisStrainConfigs.Count());
                 foreach (string strainName, CannabisStrainConfig strainConfig : g_ClientCannabisStrainConfigs)
                 {
-                    CPClientDebugPrint("Strain: " + strainName + " | MinutesToGrow: " + strainConfig.MinutesToGrow + " | CropCount: " + strainConfig.CropCount + " | SeedCount: " + strainConfig.SeedCount);
+                    CPClientDebugPrint("Strain: " + strainName + " | MinutesToGrow: " + strainConfig.MinutesToGrow + " | CropCount: " + strainConfig.CropCount + " | SeedsPerPackage: " + strainConfig.SeedsPerPackage);
                 }
             }
             else

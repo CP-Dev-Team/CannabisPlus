@@ -27,19 +27,19 @@ modded class SeedPackBase
                 CPDebugPrint("Config contains: " + strainName + ". Continuing");
 
                 CannabisStrainConfig config = g_CannabisStrainConfigs.Get(strainName);
-                m_SeedCount = config.SeedCount;
+                m_SeedCount = config.SeedsPerPackage;
                 seeds_quantity_max = m_SeedCount;
 
-                CPDebugPrint("Loaded strain config for: " + strainName + " | SeedCount: " + m_SeedCount + " | seeds_quantity_max: " + seeds_quantity_max );
+                CPDebugPrint("Loaded strain config for: " + strainName + " | SeedsPerPackage: " + m_SeedCount + " | seeds_quantity_max: " + seeds_quantity_max );
             }
             else
             {
                 CPDebugPrint("Warning: Strain config for '" + strainName + "' not found. Using default values.");
                 CannabisStrainConfig defaultConfig = CannabisStrainConfig.CreateDefault();
-                m_SeedCount = defaultConfig.SeedCount;
+                m_SeedCount = defaultConfig.SeedsPerPackage;
                 seeds_quantity_max = m_SeedCount;
 
-                CPDebugPrint("Fallback default SeedCount: " + m_SeedCount);
+                CPDebugPrint("Fallback default SeedsPerPackage: " + m_SeedCount);
             }
         }
         else
