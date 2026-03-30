@@ -22,7 +22,7 @@ class CannabisPlusConfigManager
 	void LoadDefaultSettings() {
 			ConfigVersion					= GetModVersion();
             EnableServerDebugLogging        = false;
-            EnableClientDebugLogging        = true;  // Set to true for initial release so users can help report issues.
+            EnableClientDebugLogging        = false;
 
             ActivateJointSmokingEffect 		= true;
             SmokingJointEffectSeconds 		= 360;
