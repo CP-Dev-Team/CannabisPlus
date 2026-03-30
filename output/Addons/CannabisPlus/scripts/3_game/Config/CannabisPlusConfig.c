@@ -74,6 +74,33 @@ class CannabisPlusConfigManager
 			CopyFile(m_CPConfigPath, cfgbkpPath + "/CannabisConfig_OLD_Version.json");
 			DeleteFile(m_CPConfigPath);
 		}
+		BackupStrainConfigs(cfgbkpPath);
+	}
+
+	protected void BackupStrainConfigs(string cfgbkpPath) {
+		string strainsPath = m_CPProfileDir + m_CPProfileFolder + "/" + m_CPStrainsFolder + "/";
+		if (!FileExist(strainsPath))
+			return;
+
+		string strainsBkpPath = cfgbkpPath + "/" + m_CPStrainsFolder;
+		if (!FileExist(strainsBkpPath))
+			MakeDirectory(strainsBkpPath);
+
+		string fileName;
+		int fileAttr;
+		FindFileHandle fileHandle = FindFile(strainsPath + "*.json", fileName, fileAttr, 0);
+		if (fileHandle == 0)
+			return;
+
+		while (fileName != "")
+		{
+			CopyFile(strainsPath + fileName, strainsBkpPath + "/" + fileName);
+			DeleteFile(strainsPath + fileName);
+			fileName = "";
+			FindNextFile(fileHandle, fileName, fileAttr);
+		}
+		CloseFindFile(fileHandle);
+		DeleteFile(strainsPath);
 	}
 	
 	// Save the config to the json file.
