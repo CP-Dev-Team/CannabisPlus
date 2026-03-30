@@ -62,11 +62,6 @@ class CfgVehicles
 {
 	class Inventory_Base;
 	
-	class DuctTape: Inventory_Base 
-	{
-		inventorySlot[] = {"DuctTapes"};
-	};
-	
 	class CP_Workbench_Kit: Inventory_Base
 	{
 		scope = 2;
