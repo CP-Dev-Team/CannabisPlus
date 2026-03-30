@@ -3,9 +3,9 @@
     "EnableServerDebugLogging": false,
     "EnableClientDebugLogging": false,
     "ActivateJointSmokingEffect": 1,
-    "SmokingJointEffectDuration": 360,
+    "SmokingJointEffectSeconds": 360,
     "JointCyclesToActivateEffect": 10,
-    "TimeToDryCannabisPlant": 30,
+    "SecondsToDryCannabisPlant": 30,
     "WorkbenchSettings": {
         "RequireBattery": 1,
         "PowerUsed": 1,
