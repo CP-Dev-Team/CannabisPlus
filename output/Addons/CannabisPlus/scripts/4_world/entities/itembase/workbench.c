@@ -154,8 +154,10 @@ class CP_Workbench extends ItemBase
 		super.OnVariablesSynchronized();
 
 		if (g_Game && g_Game.IsClient())
+		{
 			UpdateLockState();
 			CPDebugPrint("OnVariablesSynchronized, UpdateLockState");
+		}
 	}
 	
 	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -264,19 +266,20 @@ class CP_Workbench extends ItemBase
 
 	void EndProcessing(float actiontime)
 	{
-
-		if (!m_CP_Processing.IsRunning()  && !m_CP_ProcessingCheck)
+		if (!m_CP_Processing || !m_CP_Processing.IsRunning())
 		{
-			m_CP_ProcessingCheck = new Timer;
-			m_CP_ProcessingCheck.Run(actiontime,this,"DoTimerProcessingCheck",NULL,false);
-			CPDebugPrint("m_CP_Processing  isnt runing start m_CP_ProcessingCheck = " + m_CP_ProcessingCheck);
+			if (!m_CP_ProcessingCheck)
+			{
+				m_CP_ProcessingCheck = new Timer;
+				m_CP_ProcessingCheck.Run(actiontime,this,"DoTimerProcessingCheck",NULL,false);
+				CPDebugPrint("m_CP_Processing  isnt runing start m_CP_ProcessingCheck = " + m_CP_ProcessingCheck);
+			}
+			else
+			{
+				m_CP_ProcessingCheck.Run(actiontime,this,"DoTimerProcessingCheck",NULL,false);
+				CPDebugPrint("m_CP_ProcessingCheck is existing");
+			}
 		}
-		else
-		{
-		   m_CP_ProcessingCheck.Run(actiontime,this,"DoTimerProcessingCheck",NULL,false);
-			CPDebugPrint("m_CP_ProcessingCheck is existing");
-		};
-		
     };
 		
 	void PauseOrResume()
@@ -316,7 +319,8 @@ class CP_Workbench extends ItemBase
 
 	void CheckStopProductionCall()
 	{
-		m_CP_Processing.Stop();
+		if (m_CP_Processing)
+			m_CP_Processing.Stop();
 		StopProduction();
 	};
 
@@ -334,7 +338,8 @@ class CP_Workbench extends ItemBase
 
 	void KillProductionCheckTimer()
 	{
-		m_CP_ProcessingCheck.Stop();
+		if (m_CP_ProcessingCheck)
+			m_CP_ProcessingCheck.Stop();
 		SetSynchDirty();
 	};
 
@@ -378,7 +383,7 @@ class CP_Workbench extends ItemBase
 
 	bool CanCreateBricks()
 	{
-		if( HaveEnoughFullBags() && HaveEnoughPlastic() && !WrapperRuined() && ( !GetCannabisBricks() || GetCannabisBricks().GetQuantity() < 25 ) )
+		if( HaveEnoughFullBags() && HaveEnoughPlastic() && !WrapperRuined() && ( !GetCannabisBricks() || GetCannabisBricks().GetQuantity() < 25 ) && CP_StrainHelper.IsValidStrain(CP_StrainHelper.GetStrain(GetCannabisBags().GetType())) )
 			return true;
 		
 		return false;
@@ -396,36 +401,48 @@ class CP_Workbench extends ItemBase
 
 		CPDebugPrint("BatteryRequired = " + BatteryRequired );
 		CPDebugPrint("GetBattieries() = " + GetBattieries() );
+		bool didWork = false;
 		if(BatteryRequired == 1)
-		{	
-			if(GetBattieries().GetCompEM().GetEnergy() >= Battery_Percent )
+		{
+			if(!GetBattieries() || !GetBattieries().GetCompEM())
+			{
+				m_CP_Processing.Stop();
+				SetTimerIsRunning(false);
+				EndProcessing(1);
+				CPDebugPrint("No battery attached.");
+				SetSynchDirty();
+			}
+			else if(GetBattieries().GetCompEM().GetEnergy() >= Battery_Percent )
 			{
 				CPDebugPrint("HaveEnoughFullBags() = " + HaveEnoughFullBags() );
 				CPDebugPrint("HaveEnoughPlastic() = " + HaveEnoughPlastic() );
 				CPDebugPrint("CanCreateBricks() = " + CanCreateBricks() );
 				CPDebugPrint("WrapperRuined() = " + WrapperRuined() );
 				CPDebugPrint("Battery power " + GetBattieries().GetCompEM().GetEnergy());
-				if(CanCreateBricks() == true )
+				didWork = false;
+				if(CanCreateBricks())
 				{
-					SetTimerIsRunning(true);
 					CreateBricks(); 
+					didWork = true;
 					CPDebugPrint("Create bricks.");
-					CPDebugPrint("CanCreateBricks = true +" + m_CP_Processing);
 				}
-				else if(CanCreateBags() == true )
+				if(CanCreateBags())
 				{
-					SetTimerIsRunning(true);
 					CreateBags();
+					didWork = true;
 					CPDebugPrint("Create bags.");
-					CPDebugPrint("CanCreateBags = true +" + m_CP_Processing);
 				}
-				else
+				if(!didWork)
 				{
 					m_CP_Processing.Stop();
 					SetTimerIsRunning(false);
 					EndProcessing(1);
 					CPDebugPrint("Out of materials.");
 					SetSynchDirty();
+				}
+				else
+				{
+					SetTimerIsRunning(true);
 				}
 			}
 			else if ( GetBattieries().GetCompEM().GetEnergy() < Battery_Percent )
@@ -439,27 +456,30 @@ class CP_Workbench extends ItemBase
 		}
 		else if (BatteryRequired == 0)
 		{
-			if(CanCreateBricks() == true )
+			didWork = false;
+			if(CanCreateBricks())
 			{
-				SetTimerIsRunning(true);
 				CreateBricks(); 
+				didWork = true;
 				CPDebugPrint("Create bricks.");
-				CPDebugPrint("CanCreateBricks = true +" + m_CP_Processing);
 			}
-			else if(CanCreateBags() == true )
+			if(CanCreateBags())
 			{
-				SetTimerIsRunning(true);
 				CreateBags();
+				didWork = true;
 				CPDebugPrint("Create bags.");
-				CPDebugPrint("CanCreateBags = true +" + m_CP_Processing);
 			}
-			else
+			if(!didWork)
 			{
 				m_CP_Processing.Stop();
 				SetTimerIsRunning(false);
 				EndProcessing(1);
 				CPDebugPrint("Out of materials.");
 				SetSynchDirty();
+			}
+			else
+			{
+				SetTimerIsRunning(true);
 			}
 		}
 		UpdateLockState();		
@@ -478,7 +498,7 @@ class CP_Workbench extends ItemBase
         if(!GetCannabisBud())
             return;
         
-        string Bagname = GetCannabisBud().GetcpBag(); 
+        string Bagname = CP_StrainHelper.GetBagFromBud(GetCannabisBud().GetType()); 
         
         if (BatteryRequired == 1)
         {
@@ -491,6 +511,11 @@ class CP_Workbench extends ItemBase
                         CPDebugPrint("Creating " + Bagname + " attachment.");
 						GetInventory().SetSlotLock(InventorySlots.GetSlotIdFromString(ATTACHMENT_SLOT_BAGS), false);
                         GetInventory().CreateAttachment(Bagname);
+						if (!GetCannabisBags())
+						{
+							CPDebugPrint("ERROR: CreateAttachment failed for bag: " + Bagname);
+							return;
+						}
 						GetCannabisBags().SetQuantity(1);
                         GetInventory().SetSlotLock(InventorySlots.GetSlotIdFromString(ATTACHMENT_SLOT_BAGS), true);
                     }
@@ -520,6 +545,11 @@ class CP_Workbench extends ItemBase
 					CPDebugPrint("Creating attachment.");
 					GetInventory().SetSlotLock(InventorySlots.GetSlotIdFromString(ATTACHMENT_SLOT_BAGS), false);
 					GetInventory().CreateAttachment(Bagname);
+					if (!GetCannabisBags())
+					{
+						CPDebugPrint("ERROR: CreateAttachment failed for bag: " + Bagname);
+						return;
+					}
 					GetCannabisBags().SetQuantity(1);
 					GetInventory().SetSlotLock(InventorySlots.GetSlotIdFromString(ATTACHMENT_SLOT_BAGS), true);
 				}
@@ -551,7 +581,8 @@ class CP_Workbench extends ItemBase
 		if(!GetCannabisBags())
 			return;
 		
-		string Brickname = GetCannabisBags().GetcpBrick(); 
+		string Brickname = CP_StrainHelper.GetBrickFromBag(GetCannabisBags().GetType());
+		EntityAI createdBrick; 
 		
 		if(BatteryRequired == 1)
 		{
@@ -560,7 +591,7 @@ class CP_Workbench extends ItemBase
 				if(!GetCannabisBricks())
 				{
 					GetInventory().SetSlotLock(InventorySlots.GetSlotIdFromString(ATTACHMENT_SLOT_BRICKS), false);
-					EntityAI createdBrick = GetInventory().CreateAttachment(Brickname);
+					createdBrick = GetInventory().CreateAttachment(Brickname);
 					GetInventory().SetSlotLock(InventorySlots.GetSlotIdFromString(ATTACHMENT_SLOT_BRICKS), true);
 					if (!createdBrick)
 					{
@@ -589,7 +620,7 @@ class CP_Workbench extends ItemBase
 				if(!GetCannabisBricks())
 				{
 					GetInventory().SetSlotLock(InventorySlots.GetSlotIdFromString(ATTACHMENT_SLOT_BRICKS), false);
-					EntityAI createdBrick = GetInventory().CreateAttachment(Brickname);
+					createdBrick = GetInventory().CreateAttachment(Brickname);
 					GetInventory().SetSlotLock(InventorySlots.GetSlotIdFromString(ATTACHMENT_SLOT_BRICKS), true);
 					if (!createdBrick)
 					{
@@ -831,7 +862,7 @@ class CP_Workbench extends ItemBase
         
         string slot_name = InventorySlots.GetSlotName(slot_id);
 
-		if(slot_name != "LargeBattery" || "TruckBattery" )
+		if(slot_name != "LargeBattery" && slot_name != "TruckBattery")
             return true;
         
         if( BatteryRequired == 1 )
@@ -873,9 +904,9 @@ class CP_Workbench extends ItemBase
     bool IsCargoEmpty()    
     {        
         if(GetInventory() && GetInventory().GetCargo() && GetInventory().GetCargo().GetItemCount() > 0 )
-            return true;        
+            return false;        
 
-        return false;
+        return true;
     };
 
     override void EEItemAttached(EntityAI item, string slot_name)
@@ -896,9 +927,11 @@ class CP_Workbench extends ItemBase
 		if (!g_Game.IsServer())
 			return;
 
-		if (!IsRunning()) 
+		if (!IsRunning())
+		{
 			UpdateLockState();
 			CPDebugPrint("EEItemDetached, UpdateLockState");
+		}
 	};
 	
 	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
