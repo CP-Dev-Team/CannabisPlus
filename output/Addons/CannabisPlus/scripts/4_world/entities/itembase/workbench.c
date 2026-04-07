@@ -350,7 +350,7 @@ class CP_Workbench extends ItemBase
 
 	bool BaggerRuined()
 	{
-		return GetBagger().IsRuined();
+		return !GetBagger() || GetBagger().IsRuined();
 	}
 
 	bool CanCreateBags()
@@ -363,7 +363,7 @@ class CP_Workbench extends ItemBase
 
 	bool WrapperRuined()
 	{
-		return GetWrapper().IsRuined();
+		return !GetWrapper() || GetWrapper().IsRuined();
 	}
 	
 	bool HaveEnoughFullBags()
@@ -405,19 +405,19 @@ class CP_Workbench extends ItemBase
 				CPDebugPrint("CanCreateBricks() = " + CanCreateBricks() );
 				CPDebugPrint("WrapperRuined() = " + WrapperRuined() );
 				CPDebugPrint("Battery power " + GetBattieries().GetCompEM().GetEnergy());
-				if(CanCreateBags() == true )
-				{
-					SetTimerIsRunning(true);
-					CreateBags();
-					CPDebugPrint("Create bags.");
-					CPDebugPrint("CanCreateBags = true +" + m_CP_Processing);
-				}
-				else if(CanCreateBricks() == true )
+				if(CanCreateBricks() == true )
 				{
 					SetTimerIsRunning(true);
 					CreateBricks(); 
 					CPDebugPrint("Create bricks.");
 					CPDebugPrint("CanCreateBricks = true +" + m_CP_Processing);
+				}
+				else if(CanCreateBags() == true )
+				{
+					SetTimerIsRunning(true);
+					CreateBags();
+					CPDebugPrint("Create bags.");
+					CPDebugPrint("CanCreateBags = true +" + m_CP_Processing);
 				}
 				else
 				{
@@ -439,19 +439,19 @@ class CP_Workbench extends ItemBase
 		}
 		else if (BatteryRequired == 0)
 		{
-			if(CanCreateBags() == true )
-			{
-				SetTimerIsRunning(true);
-				CreateBags();
-				CPDebugPrint("Create bags.");
-				CPDebugPrint("CanCreateBags = true +" + m_CP_Processing);
-			}
-			else if(CanCreateBricks() == true )
+			if(CanCreateBricks() == true )
 			{
 				SetTimerIsRunning(true);
 				CreateBricks(); 
 				CPDebugPrint("Create bricks.");
 				CPDebugPrint("CanCreateBricks = true +" + m_CP_Processing);
+			}
+			else if(CanCreateBags() == true )
+			{
+				SetTimerIsRunning(true);
+				CreateBags();
+				CPDebugPrint("Create bags.");
+				CPDebugPrint("CanCreateBags = true +" + m_CP_Processing);
 			}
 			else
 			{
@@ -560,8 +560,13 @@ class CP_Workbench extends ItemBase
 				if(!GetCannabisBricks())
 				{
 					GetInventory().SetSlotLock(InventorySlots.GetSlotIdFromString(ATTACHMENT_SLOT_BRICKS), false);
-					GetInventory().CreateAttachment(Brickname);
+					EntityAI createdBrick = GetInventory().CreateAttachment(Brickname);
 					GetInventory().SetSlotLock(InventorySlots.GetSlotIdFromString(ATTACHMENT_SLOT_BRICKS), true);
+					if (!createdBrick)
+					{
+						CPDebugPrint("ERROR: CreateAttachment failed for brick: " + Brickname);
+						return;
+					}
 				}
 				else if (GetCannabisBricks() && GetCannabisBricks().GetType() == Brickname)
 				{
@@ -584,8 +589,13 @@ class CP_Workbench extends ItemBase
 				if(!GetCannabisBricks())
 				{
 					GetInventory().SetSlotLock(InventorySlots.GetSlotIdFromString(ATTACHMENT_SLOT_BRICKS), false);
-					GetInventory().CreateAttachment(Brickname);
+					EntityAI createdBrick = GetInventory().CreateAttachment(Brickname);
 					GetInventory().SetSlotLock(InventorySlots.GetSlotIdFromString(ATTACHMENT_SLOT_BRICKS), true);
+					if (!createdBrick)
+					{
+						CPDebugPrint("ERROR: CreateAttachment failed for brick: " + Brickname);
+						return;
+					}
 				}
 				else if (GetCannabisBricks() && GetCannabisBricks().GetType() == Brickname)
 				{
