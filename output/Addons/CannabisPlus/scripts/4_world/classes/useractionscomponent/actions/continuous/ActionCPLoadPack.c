@@ -20,7 +20,7 @@ class ActionCPLoadPack : ActionAC_LoadPackBase
 			if (!jointPack)
 				return false;
 
-			return joint.GetCpJointName() == jointPack.GetCpPackageName();
+			return CP_StrainHelper.GetStrain(joint.GetType()) == CP_StrainHelper.GetStrain(jointPack.GetType());
 		}
 
 		return false;

@@ -1,4 +1,4 @@
-class CfgPatches
+﻿class CfgPatches
 {
 	class CP_Skunk
 	{
@@ -186,8 +186,6 @@ class CfgVehicles
 		scope=2;
 		displayName="#cp_skunk_joint0";
 		descriptionShort="#cp_skunk_joint1";
-		cpPackJoint="CP_JointPack_Skunk";
-		cpCheckJoint="CP_JointSkunk";
 		hiddenSelections[]=
 		{
 			"zbytek"
@@ -203,8 +201,6 @@ class CfgVehicles
 		scope=2;
 		displayName="#cp_skunk_weed_bag0";
 		descriptionShort="#cp_skunk_weed_bag1";
-		cpStepUpToBrick="CP_CannabisBrickSkunk";
-		cpStepDownToBud="CP_CannabisSkunk";
 		class Resources
 		{
 			class CP_CannabisSkunk
@@ -228,7 +224,6 @@ class CfgVehicles
 		scope=2;
 		displayName="#cp_skunk_weed_brick0";
 		descriptionShort="#cp_skunk_weed_brick1";
-		cpStepDownToBag="CP_CannabisBagSkunk";
 		class Resources
 		{
 			class CP_CannabisBagSkunk
@@ -256,8 +251,6 @@ class CfgVehicles
 		scope=2;
 		displayName="#cp_skunk_bud0";
 		descriptionShort="#cp_skunk_bud1";
-		cpStepUpToBag="CP_CannabisBagSkunk";
-		cpStepUpToJoint="CP_JointSkunk";
 		hiddenSelectionsTextures[]=
 		{
 			"CannabisPlus\strains\skunk\data\cannabis_seedman_raw_skunk_co.paa"
@@ -273,7 +266,6 @@ class CfgVehicles
 		scope=2;
 		displayName="#cp_marijuana_joints_skunk0";
 		descriptionShort="#cp_marijuana_joints_skunk1";
-		cpCheckPack="CP_JointSkunk";
 		hiddenSelections[]=
 		{
 			"camoGround",

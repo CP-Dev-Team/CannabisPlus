@@ -7,7 +7,7 @@ modded class PlantBase
 		// Cannabis plants - register dynamically from strain configs
 		if (plantType.Contains("CP_Plant_Cannabis"))
 		{
-			string strainName = plantType.Substring(17, plantType.Length() - 17);
+			string strainName = CP_StrainHelper.GetStrain(plantType);
 
 			if (g_CannabisStrainConfigs.Contains(strainName))
 			{

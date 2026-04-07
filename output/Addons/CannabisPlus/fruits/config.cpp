@@ -1,4 +1,4 @@
-class CfgPatches
+﻿class CfgPatches
 {
 	class CP_Fruits
 	{
@@ -7,7 +7,8 @@ class CfgPatches
 		requiredVersion=0.1;
 		requiredAddons[]=
 		{
-			"DZ_Data"
+			"DZ_Data",
+			"DZ_Gear_Food"
 		};
 	};
 };
@@ -32,8 +33,6 @@ class CfgVehicles
 		varQuantityMax=100;
 		varStackMax=2;
 		inventorySlot[]={"DryPlant","CP_Cannabis_Buds"};
-		cpStepUpToBag="";
-		cpStepUpToJoint="";
 		hiddenSelections[]=
 		{
 			"cs_raw"

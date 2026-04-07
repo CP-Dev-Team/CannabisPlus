@@ -1,4 +1,4 @@
-class CfgPatches
+﻿class CfgPatches
 {
 	class CP_Bricks
 	{
@@ -22,6 +22,5 @@ class CfgVehicles
 	{
 		scope=0;
 		inventorySlot[]={"CP_Cannabis_Bricks"};
-		cpStepDownToBag="";
 	};
 };

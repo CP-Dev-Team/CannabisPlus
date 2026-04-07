@@ -48,10 +48,10 @@ class ActionUnpackJointBox: ActionContinuousBase {
 			CP_JointPack jointPack;
 			if (Class.CastTo(jointPack, action_data.m_MainItem))
 			{
-				itemType = jointPack.GetCpPackageName();
+				itemType = CP_StrainHelper.GetJointFromPack(jointPack.GetType());
 				if (itemType == "")
 				{
-					CPDebugPrint("Warning: Joint pack has no cpCheckPack config, skipping unpack.");
+					CPDebugPrint("Warning: Joint pack has no strain, skipping unpack.");
 					return;
 				}
 				CPDebugPrint("Using joint type: " + itemType);

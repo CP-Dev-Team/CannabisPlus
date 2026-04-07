@@ -1,31 +1,6 @@
 class CP_JointBase extends AC_SmokableBase 
 {
 	vector m_ParticleLocalPos = Vector(0, 0.2, 0);
-	protected string m_cpJointPack= "";
-	protected string m_cpJointNames= "";
-
-	void CP_JointBase() 
-	{							
-        if ( ConfigIsExisting("cpPackJoint") ) 
-		{
-            m_cpJointPack= ConfigGetString("cpPackJoint");
-        }
-		else
-		{
-            m_cpJointPack= "";
-        }
-		
-				        
-        if ( ConfigIsExisting("cpCheckJoint") ) 
-		{
-            m_cpJointNames= ConfigGetString("cpCheckJoint");
-        }
-		else
-		{
-            m_cpJointNames= "";
-        }
-		
-	}
 
 	override int GetSmokeParticleId()
 	{
@@ -49,11 +24,11 @@ class CP_JointBase extends AC_SmokableBase
 	
     string GetcpJointPack()
 	{
-        return m_cpJointPack;
+        return CP_StrainHelper.GetJointPackFromJoint(GetType());
 	}
 	string GetCpJointName()
 	{
-		return m_cpJointNames;
+		return CP_StrainHelper.GetStrain(GetType());
 	}
 	
 	void MakeStoned(PlayerBase player)

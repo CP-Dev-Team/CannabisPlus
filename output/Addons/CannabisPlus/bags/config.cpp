@@ -1,4 +1,4 @@
-class CfgPatches
+﻿class CfgPatches
 {
 	class CP_Bags
 	{
@@ -42,7 +42,5 @@ class CfgVehicles
 		{
 			"CP_Cannabis_Bags"
 		};
-		cpStepUpToBrick="";
-		cpStepDownToBud="";
 	};
 };

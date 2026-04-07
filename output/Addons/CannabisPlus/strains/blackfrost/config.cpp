@@ -1,4 +1,4 @@
-class CfgPatches
+﻿class CfgPatches
 {
 	class CP_BlackFrost
 	{
@@ -187,8 +187,6 @@ class CfgVehicles
 		scope=2;
 		displayName="#cp_blackfrost_joint0";
 		descriptionShort="#cp_blackfrost_joint1";
-		cpPackJoint="CP_JointPack_BlackFrost";
-		cpCheckJoint="CP_JointBlackFrost";
 		hiddenSelections[]=
 		{
 			"zbytek"
@@ -204,8 +202,6 @@ class CfgVehicles
 		scope=2;
 		displayName="#cp_blackfrost_weed_bag0";
 		descriptionShort="#cp_blackfrost_weed_bag1";
-		cpStepUpToBrick="CP_CannabisBrickBlackFrost";
-		cpStepDownToBud="CP_CannabisBlackFrost";
 		class Resources
 		{
 			class CP_CannabisBlackFrost
@@ -229,7 +225,6 @@ class CfgVehicles
 		scope=2;
 		displayName="#cp_blackfrost_weed_brick0";
 		descriptionShort="#cp_blackfrost_weed_brick1";
-		cpStepDownToBag="CP_CannabisBagBlackFrost";
 		class Resources
 		{
 			class CP_CannabisBagBlackFrost
@@ -257,8 +252,6 @@ class CfgVehicles
 		scope=2;
 		displayName="#cp_blackfrost_bud0";
 		descriptionShort="#cp_blackfrost_bud1";
-		cpStepUpToBag="CP_CannabisBagBlackFrost";
-		cpStepUpToJoint="CP_JointBlackFrost";
 		hiddenSelectionsTextures[]=
 		{
 			"CannabisPlus\strains\blackfrost\data\cannabis_seedman_raw_blackfrost_co.paa"
@@ -274,7 +267,6 @@ class CfgVehicles
 		scope=2;
 		displayName="#cp_marijuana_joints_blackfrost0";
 		descriptionShort="#cp_marijuana_joints_blackfrost1";
-		cpCheckPack="CP_JointBlackFrost";
 		hiddenSelections[]=
 		{
 			"camoGround",

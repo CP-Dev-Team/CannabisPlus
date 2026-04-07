@@ -1,4 +1,4 @@
-class CfgPatches
+﻿class CfgPatches
 {
 	class CannabisPlus_Joint
 	{
@@ -35,8 +35,6 @@ class CfgVehicles
 		varQuantityMax=10;
 		varQuantityDestroyOnMin=1;
 		quantityBar=0;
-		cpPackJoint="AC_CigarettePack_Empty";
-		cpCheckJoint="";
 		hiddenSelections[]=
 		{
 			"zbytek"
@@ -55,6 +53,5 @@ class CfgVehicles
 		varQuantityMax=20;
 		varQuantityDestroyOnMin=1;
 		quantityBar=0;
-		cpCheckPack="";
 	};
 };

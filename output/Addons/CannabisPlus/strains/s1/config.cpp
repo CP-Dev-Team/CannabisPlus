@@ -1,4 +1,4 @@
-class CfgPatches
+﻿class CfgPatches
 {
 	class CP_S1
 	{
@@ -186,8 +186,6 @@ class CfgVehicles
 		scope=2;
 		displayName="#cp_s1_joint0";
 		descriptionShort="#cp_s1_joint1";
-		cpPackJoint="CP_JointPack_S1";
-		cpCheckJoint="CP_JointS1";
 		hiddenSelections[]=
 		{
 			"zbytek"
@@ -203,8 +201,6 @@ class CfgVehicles
 		scope=2;
 		displayName="#cp_s1_weed_bag0";
 		descriptionShort="#cp_s1_weed_bag1";
-		cpStepUpToBrick="CP_CannabisBrickS1";
-		cpStepDownToBud="CP_CannabisS1";
 		class Resources
 		{
 			class CP_CannabisS1
@@ -228,7 +224,6 @@ class CfgVehicles
 		scope=2;
 		displayName="#cp_s1_weed_brick0";
 		descriptionShort="#cp_s1_weed_brick1";
-		cpStepDownToBag="CP_CannabisBagS1";
 		class Resources
 		{
 			class CP_CannabisBagS1
@@ -256,8 +251,6 @@ class CfgVehicles
 		scope=2;
 		displayName="#cp_s1_bud0";
 		descriptionShort="#cp_s1_bud1";
-		cpStepUpToBag="CP_CannabisBagS1";
-		cpStepUpToJoint="CP_JointS1";
 		hiddenSelectionsTextures[]=
 		{
 			"CannabisPlus\strains\s1\data\cannabis_seedman_raw_s1_co.paa"
@@ -273,7 +266,6 @@ class CfgVehicles
 		scope=2;
 		displayName="#cp_marijuana_joints_s10";
 		descriptionShort="#cp_marijuana_joints_s11";
-		cpCheckPack="CP_JointS1";
 		hiddenSelections[]=
 		{
 			"camoGround",

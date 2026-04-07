@@ -78,7 +78,7 @@ class CP_CraftCannabisBag extends RecipeBase
 		//CP_CannabisBags BudsHolder;
 		//CP_CannabisBags BudsHolder = Cast(results[0]);
 		
-		string Bagname = ingredient1.GetcpBag(); 
+		string Bagname = CP_StrainHelper.GetBagFromBud(ingredient1.GetType()); 
 		
 		
 		CP_CannabisBags BudsHolder = CP_CannabisBags.Cast(g_Game.CreateObject(Bagname, ingredient1.GetPosition()));
@@ -168,7 +168,7 @@ class CP_CraftCannabisBrick extends RecipeBase
 		
 		//ItemBase BrickHolder;
 		
-		string Brickname = ingredient1.GetcpBrick(); 
+		string Brickname = CP_StrainHelper.GetBrickFromBag(ingredient1.GetType()); 
 		
 		CP_CannabisBrickBase BrickHolder = CP_CannabisBrickBase.Cast(g_Game.CreateObject(Brickname, ingredient1.GetPosition()));
 	}
@@ -244,7 +244,7 @@ class CP_CraftCigsCannabis extends RecipeBase
 	{
 		CP_CannabisBud ingredient1 = CP_CannabisBud.Cast(ingredients[0]);		
 		//ItemBase JointHolder;
-		string JointName = ingredient1.GetcpJoint(); 
+		string JointName = CP_StrainHelper.GetJointFromBud(ingredient1.GetType()); 
 		
 		CP_JointBase JointHolder = CP_JointBase.Cast(g_Game.CreateObject(JointName, ingredient1.GetPosition()));
 	}
@@ -324,7 +324,7 @@ class CP_CraftJointPackEmpty extends RecipeBase
 	{
 		CP_JointBase ingredient1 = CP_JointBase.Cast(ingredients[0]);
 		int jointQty = ingredient1.GetQuantity();
-		string PackName = ingredient1.GetcpJointPack(); 
+		string PackName = CP_StrainHelper.GetJointPackFromJoint(ingredient1.GetType()); 
 		
 		CPDebugPrint("[EmptyPack Do] jointQty: " + jointQty + ", PackName: " + PackName);
 		
@@ -411,8 +411,8 @@ class CP_CraftJointPack extends RecipeBase
 		if (ingredient1.GetQuantity() >= 20)
 			return false;
 					
-		string JointName = ingredient0.GetCpJointName(); 
-		string PackName = ingredient1.GetCpPackageName(); 
+		string JointName = CP_StrainHelper.GetStrain(ingredient0.GetType()); 
+		string PackName = CP_StrainHelper.GetStrain(ingredient1.GetType()); 
 		
 		m_SavedJointQty = ingredient0.GetQuantity();
 		m_SavedPackQty = ingredient1.GetQuantity();

@@ -1,4 +1,4 @@
-class CfgPatches
+﻿class CfgPatches
 {
 	class CP_PurpleKush
 	{
@@ -186,8 +186,6 @@ class CfgVehicles
 		scope=2;
 		displayName="#cp_purplekush_joint0";
 		descriptionShort="#cp_purplekush_joint1";
-		cpPackJoint="CP_JointPack_PurpleKush";
-		cpCheckJoint="CP_JointPurpleKush";
 		hiddenSelections[]=
 		{
 			"zbytek"
@@ -203,8 +201,6 @@ class CfgVehicles
 		scope=2;
 		displayName="#cp_purplekush_weed_bag0";
 		descriptionShort="#cp_purplekush_weed_bag1";
-		cpStepUpToBrick="CP_CannabisBrickPurpleKush";
-		cpStepDownToBud="CP_CannabisPurpleKush";
 		class Resources
 		{
 			class CP_CannabisPurpleKush
@@ -228,7 +224,6 @@ class CfgVehicles
 		scope=2;
 		displayName="#cp_purplekush_weed_brick0";
 		descriptionShort="#cp_purplekush_weed_brick1";
-		cpStepDownToBag="CP_CannabisBagPurpleKush";
 		class Resources
 		{
 			class CP_CannabisBagPurpleKush
@@ -256,8 +251,6 @@ class CfgVehicles
 		scope=2;
 		displayName="#cp_purplekush_bud0";
 		descriptionShort="#cp_purplekush_bud1";
-		cpStepUpToBag="CP_CannabisBagPurpleKush";
-		cpStepUpToJoint="CP_JointPurpleKush";
 		hiddenSelectionsTextures[]=
 		{
 			"CannabisPlus\strains\purplekush\data\cannabis_seedman_raw_purplekush_co.paa"
@@ -273,7 +266,6 @@ class CfgVehicles
 		scope=2;
 		displayName="#cp_marijuana_joints_purplekush0";
 		descriptionShort="#cp_marijuana_joints_purplekush1";
-		cpCheckPack="CP_JointPurpleKush";
 		hiddenSelections[]=
 		{
 			"camoGround",
