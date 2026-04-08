@@ -1,6 +1,6 @@
 v3.1.2
 Mod Changes
-- CPTOKENS.pbo and all tracking code removed.
+- CPTOKENS.pbo and all statistics tracking code removed.
 - Cigarettes and Tobacco moved to DrugsPlus.
 - Joints now stack to 10.
 - Joint packs now show a numbered quantity.
@@ -22,7 +22,6 @@ Config Changes
 - All vanilla plant settings moved to GardeningPlus.
 
 Fixes
-- Cigarettes shouldn't despawn anymore.
 - Can't add raw plants to dry post while drying anymore.
 - Fixed OnVariablesSynchronized debug print running unconditionally (missing braces).
 - Fixed EEItemDetached UpdateLockState running unconditionally (missing braces).

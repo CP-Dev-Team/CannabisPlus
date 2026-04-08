@@ -74,7 +74,7 @@ modded class MissionServer
 					string strainName = g_CannabisStrainConfigs.GetKey(i);
 					CannabisStrainConfig strainCfg = g_CannabisStrainConfigs.GetElement(i);
 					string plantType = CP_StrainHelper.GetPlantClass(strainName);
-					AC_RegisterPlant(plantType, strainCfg.MinutesToGrow, 1, strainCfg.CropCount, true, false);
+					AC_RegisterPlant(plantType, strainCfg.MinutesToGrow, 1, strainCfg.CropCount, true, true);
 					CPDebugPrint("Pre-registered plant: " + plantType);
 				}
             }

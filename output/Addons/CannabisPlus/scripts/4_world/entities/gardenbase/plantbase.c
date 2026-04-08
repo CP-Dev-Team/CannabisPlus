@@ -12,8 +12,8 @@ modded class PlantBase
 			if (g_CannabisStrainConfigs.Contains(strainName))
 			{
 				CannabisStrainConfig config = g_CannabisStrainConfigs.Get(strainName);
-				// Cannabis: UseMinuteGrowTime = true, IncreaseCropOnFertilize = false
-				AC_RegisterPlant(plantType, config.MinutesToGrow, 1, config.CropCount, true, false);
+				// Cannabis: UseMinuteGrowTime = true, IncreaseCropOnFertilize = true
+				AC_RegisterPlant(plantType, config.MinutesToGrow, 1, config.CropCount, true, true);
 				CPDebugPrint("Registered cannabis strain for Init: " + strainName + " | MinutesToGrow: " + config.MinutesToGrow + " | Yield: " + config.CropCount);
 			}
 			else
