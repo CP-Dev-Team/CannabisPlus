@@ -38,7 +38,7 @@ class ActionSmokeJointSelf: ActionContinuousBase {
         CP_JointBase joint = CP_JointBase.Cast(action_data.m_MainItem);
 		
         if (joint) {
-			joint.SetSmokingState(ESmokeState.SMOKING);
+			joint.SetSmokingState(AC_ESmokeState.SMOKING);
         };
 	  super.OnStartAnimationLoop(action_data);
     }
@@ -48,7 +48,7 @@ class ActionSmokeJointSelf: ActionContinuousBase {
         CP_JointBase joint = CP_JointBase.Cast(action_data.m_MainItem);
 		
         if (joint) {
-			joint.SetSmokingState(ESmokeState.INACTIVE);
+			joint.SetSmokingState(AC_ESmokeState.INACTIVE);
         };
 	  super.OnEndAnimationLoop(action_data);		
     }			
@@ -104,7 +104,7 @@ class ActionSmokeJointSelf: ActionContinuousBase {
 				else
 				{
 					CPDebugPrint("Deleting Joint");
-					joint.SetSmokingState(ESmokeState.NOT_SMOKING);
+					joint.SetSmokingState(AC_ESmokeState.NOT_SMOKING);
 					joint.UpdateParticles();
 					joint.Delete();
 				}

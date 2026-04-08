@@ -122,8 +122,8 @@ class CP_Workbench extends ItemBase
 		
 		/*                     	   Whole # Config Options                         */
 		////////////////////////////////////////////////////////////////////////////
-		int BatteryRequired = GetCPConfig().WorkbenchSettings.RequireBattery;
-		Workbench_Timer_Repeat = GetCPConfig().WorkbenchSettings.ProcessingSeconds;
+		int BatteryRequired = GetCPConfig().CP_WorkbenchSettings.RequireBattery;
+		Workbench_Timer_Repeat = GetCPConfig().CP_WorkbenchSettings.ProcessingSeconds;
 		//int BudsToBagsUsage = GetCPConfig().Buds_To_Bags_Required;
 		BagsToBricksUsage = 16; //GetCPConfig().Bags_To_Bricks_Required;	
 
@@ -131,9 +131,9 @@ class CP_Workbench extends ItemBase
 		/*					 Percentile Config Options 0% - 100%                  */
 		////////////////////////////////////////////////////////////////////////////
 
-		Battery_Percent = GetCPConfig().WorkbenchSettings.PowerUsed / 100 * 1500;
+		Battery_Percent = GetCPConfig().CP_WorkbenchSettings.PowerUsed / 100 * 1500;
 	
-		PlaticWrap_Percent = GetCPConfig().WorkbenchSettings.PlasticWrapUsage;
+		PlaticWrap_Percent = GetCPConfig().CP_WorkbenchSettings.PlasticWrapUsage;
 	
 		/*//////////////////////////////////////////////////////////////////////////
 		//						  End of Config Control                 		  //
@@ -397,7 +397,7 @@ class CP_Workbench extends ItemBase
 	
 	void DoProcessing()
 	{
-		int BatteryRequired = GetCPConfig().WorkbenchSettings.RequireBattery;
+		int BatteryRequired = GetCPConfig().CP_WorkbenchSettings.RequireBattery;
 
 		CPDebugPrint("BatteryRequired = " + BatteryRequired );
 		CPDebugPrint("GetBattieries() = " + GetBattieries() );
@@ -493,7 +493,7 @@ class CP_Workbench extends ItemBase
         ItemBase EmptyBags = GetEmptyBags();
         ItemBase Batteries = GetBattieries();
 
-		int BatteryRequired = GetCPConfig().WorkbenchSettings.RequireBattery;
+		int BatteryRequired = GetCPConfig().CP_WorkbenchSettings.RequireBattery;
 
         if(!GetCannabisBud())
             return;
@@ -576,7 +576,7 @@ class CP_Workbench extends ItemBase
 		ItemBase PlasticWrap = GetPlasticRoll();
 		ItemBase Batteries = GetBattieries();
 
-		int BatteryRequired = GetCPConfig().WorkbenchSettings.RequireBattery;
+		int BatteryRequired = GetCPConfig().CP_WorkbenchSettings.RequireBattery;
 		
 		if(!GetCannabisBags())
 			return;
@@ -802,7 +802,7 @@ class CP_Workbench extends ItemBase
 	
 	bool IsPowered()
 	{
-		int BatteryRequired = GetCPConfig().WorkbenchSettings.RequireBattery;
+		int BatteryRequired = GetCPConfig().CP_WorkbenchSettings.RequireBattery;
 
 		if(BatteryRequired == 1 && HasEnergyManager() && GetCompEM().IsWorking() )
 			return true;
@@ -858,7 +858,7 @@ class CP_Workbench extends ItemBase
     {
         //if (!super.CanDisplayAttachmentSlot(slot_id))
             //return false;
-        int BatteryRequired = GetCPConfig().WorkbenchSettings.RequireBattery;
+        int BatteryRequired = GetCPConfig().CP_WorkbenchSettings.RequireBattery;
         
         string slot_name = InventorySlots.GetSlotName(slot_id);
 

@@ -10,7 +10,7 @@ class CannabisPlusConfigManager
 	int JointCyclesToActivateEffect;		// number of joints consumed to activate the effect
 
 	// Workbench
-	ref WorkbenchConfig WorkbenchSettings;
+	ref WorkbenchConfig CP_WorkbenchSettings;
 
     int SecondsToDryCannabisPlant;	// Time in seconds for raw plants to dry on drying post.
 	
@@ -28,7 +28,7 @@ class CannabisPlusConfigManager
             SmokingJointEffectSeconds 		= 360;
             JointCyclesToActivateEffect 	= 10;
 
-			WorkbenchSettings = new WorkbenchConfig();
+			CP_WorkbenchSettings = new WorkbenchConfig();
 
             SecondsToDryCannabisPlant            	= 30;
 
@@ -103,7 +103,24 @@ class CannabisPlusConfigManager
 		DeleteFile(strainsPath);
 	}
 	
-	// Save the config to the json file.
+	static void MigrateConfigKeys(string path) {
+		FileHandle fileRead = OpenFile(path, FileMode.READ);
+		if (fileRead == 0) return;
+
+		string content = "";
+		string line;
+		while (FGets(fileRead, line) >= 0) {
+			line.Replace("\"WorkbenchSettings\"", "\"CP_WorkbenchSettings\"");
+			content = content + line + "\n";
+		}
+		CloseFile(fileRead);
+
+		FileHandle fileWrite = OpenFile(path, FileMode.WRITE);
+		if (fileWrite == 0) return;
+		FPrint(fileWrite, content);
+		CloseFile(fileWrite);
+	}
+
 	protected void SaveConfig() {
 		if (!FileExist(m_CPProfileDir + m_CPProfileFolder + "/"))
 			MakeDirectory(m_CPProfileDir + m_CPProfileFolder + "/");
@@ -119,6 +136,7 @@ class CannabisPlusConfigManager
 
         if(FileExist(m_CPConfigPath))
         {
+            MigrateConfigKeys(m_CPConfigPath);
             JsonFileLoader<CannabisPlusConfigManager>.JsonLoadFile(m_CPConfigPath, settings);
             settings.ValidateConfig();
             if(settings.IsConfigOutdated())

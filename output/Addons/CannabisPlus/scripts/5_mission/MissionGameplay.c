@@ -69,9 +69,9 @@ modded class MissionGameplay extends MissionBase
             if (g_ClientCannabisPlusConfig)
             {
                 CPClientDebugPrint("General Config Loaded.");
-                CPClientDebugPrint("Workbench Power Used: " + g_ClientCannabisPlusConfig.WorkbenchSettings.PowerUsed);
-                CPClientDebugPrint("Plastic Wrap Usage: " + g_ClientCannabisPlusConfig.WorkbenchSettings.PlasticWrapUsage);
-                CPClientDebugPrint("Workbench Processing Time: " + g_ClientCannabisPlusConfig.WorkbenchSettings.ProcessingSeconds);
+                CPClientDebugPrint("Workbench Power Used: " + g_ClientCannabisPlusConfig.CP_WorkbenchSettings.PowerUsed);
+                CPClientDebugPrint("Plastic Wrap Usage: " + g_ClientCannabisPlusConfig.CP_WorkbenchSettings.PlasticWrapUsage);
+                CPClientDebugPrint("Workbench Processing Time: " + g_ClientCannabisPlusConfig.CP_WorkbenchSettings.ProcessingSeconds);
                 CP_ClientDebug = g_ClientCannabisPlusConfig.EnableClientDebugLogging;
                 CPClientDebugPrint("EnableServerDebugLogging: " + g_ClientCannabisPlusConfig.EnableServerDebugLogging);
                 CPClientDebugPrint("EnableClientDebugLogging: " + g_ClientCannabisPlusConfig.EnableClientDebugLogging);
