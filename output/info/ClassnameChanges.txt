@@ -1,0 +1,64 @@
+============================================================================
+CannabisPlus - Classname Changes
+============================================================================
+Server owners: Update your types.xml / CE files with these new classnames.
+Old classnames will NOT work and will be ignored by Central Economy.
+
+============================================================================
+STRAIN RENAMES: Blue -> BlueGod
+============================================================================
+CP_Plant_CannabisBlue          -> CP_Plant_CannabisBlueGod
+CP_CannabisBlue                -> CP_CannabisBlueGod
+CP_CannabisSeedsBlue           -> CP_CannabisSeedsBlueGod
+CP_CannabisSeedsPackBlue       -> CP_CannabisSeedsPackBlueGod
+CP_CannabisBagBlue             -> CP_CannabisBagBlueGod
+CP_CannabisBrickBlue           -> CP_CannabisBrickBlueGod
+CP_JointBlue                   -> CP_JointBlueGod
+CP_RawBlueCannabisPlant        -> CP_RawBlueGodCannabisPlant
+CP_CigarettePack_CannabisBlue  -> CP_JointPack_BlueGod
+
+============================================================================
+STRAIN RENAMES: Kush -> PurpleKush
+============================================================================
+CP_Plant_CannabisKush          -> CP_Plant_CannabisPurpleKush
+CP_CannabisKush                -> CP_CannabisPurpleKush
+CP_CannabisSeedsKush           -> CP_CannabisSeedsPurpleKush
+CP_CannabisSeedsPackKush       -> CP_CannabisSeedsPackPurpleKush
+CP_CannabisBagKush             -> CP_CannabisBagPurpleKush
+CP_CannabisBrickKush           -> CP_CannabisBrickPurpleKush
+CP_JointKush                   -> CP_JointPurpleKush
+CP_RawKushCannabisPlant        -> CP_RawPurpleKushCannabisPlant
+CP_CigarettePack_CannabisKush  -> CP_JointPack_PurpleKush
+
+============================================================================
+CIGARETTE PACKS -> JOINT PACKS (all strains)
+============================================================================
+CP_CigarettePack_CannabisSkunk      -> CP_JointPack_Skunk
+CP_CigarettePack_CannabisStardawg   -> CP_JointPack_Stardawg
+CP_CigarettePack_CannabisFuture     -> CP_JointPack_Future
+CP_CigarettePack_CannabisS1         -> CP_JointPack_S1
+CP_CigarettePack_CannabisNomad      -> CP_JointPack_Nomad
+CP_CigarettePack_CannabisBlackFrost -> CP_JointPack_BlackFrost
+
+============================================================================
+MOVED TO DRUGSPLUS (DP_ prefix)
+============================================================================
+CP_Plant_Tobacco     -> DP_Plant_Tobacco
+CP_Tobacco           -> DP_Tobacco
+CP_TobaccoSeeds      -> DP_TobaccoSeeds
+CP_TobaccoSeedsPack  -> DP_TobaccoSeedsPack
+CP_Cigarette         -> DP_Cigarette
+
+============================================================================
+MOVED TO AGRICULTURECORE (AC_ prefix)
+============================================================================
+CP_CigarettePack_Empty -> AC_CigarettePack_Empty
+CP_EmptyBag            -> AC_EmptyBag
+CP_RollingPapers       -> AC_RollingPapers
+CP_RollingPapers_Green -> AC_RollingPapers_Green
+CP_RollingPapers_Silver-> AC_RollingPapers_Silver
+
+============================================================================
+NEW CLASSNAMES (DrugsPLUS)
+============================================================================
+DP_Vodka               (new item)
