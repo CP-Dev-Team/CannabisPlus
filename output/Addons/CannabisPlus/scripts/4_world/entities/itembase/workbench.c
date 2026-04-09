@@ -378,7 +378,7 @@ class CP_Workbench extends ItemBase
 
 	bool HaveEnoughPlastic()
 	{
-		return GetPlasticRoll() && GetPlasticRoll().GetQuantity() > 5;
+		return GetPlasticRoll() && GetPlasticRoll().GetQuantity() >= PlaticWrap_Percent;
 	}
 
 	bool CanCreateBricks()
