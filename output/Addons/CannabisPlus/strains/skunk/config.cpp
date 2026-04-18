@@ -124,7 +124,7 @@ class CfgVehicles
 	class PlantBase;
 	class CP_Plant_CannabisSkunk: PlantBase
 	{
-		scope=1;
+		scope=2;
 		displayName="#cp_skunk_plant0";
 		descriptionShort="#cp_skunk_plant1";
 		model="DZ\gear\cultivation\Cannabis_plant.p3d";

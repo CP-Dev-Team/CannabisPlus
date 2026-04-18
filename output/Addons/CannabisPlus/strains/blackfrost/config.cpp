@@ -125,7 +125,7 @@ class CfgVehicles
 	class PlantBase;
 	class CP_Plant_CannabisBlackFrost: PlantBase
 	{
-		scope=1;
+		scope=2;
 		displayName="#cp_blackfrost_plant0";
 		descriptionShort="#cp_blackfrost_plant1";
 		model="DZ\gear\cultivation\Cannabis_plant.p3d";
