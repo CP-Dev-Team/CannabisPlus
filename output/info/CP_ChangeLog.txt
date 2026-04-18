@@ -32,6 +32,9 @@ Fixes
 - Fixed CheckStopProductionCall crash when processing timer is null.
 - Fixed KillProductionCheckTimer crash when check timer is null.
 - Fixed CreateBags crash when CreateAttachment fails (null check added).
+- Fixed plastic wrap bugging out the workbench when plastic wrap got below the useable threshold
+- Fixed S1 brick translation
+- Fixed 'scope is not public' in logs
 
 v3.0.7
 Added
