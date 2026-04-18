@@ -125,7 +125,7 @@ class CfgVehicles
 	class PlantBase;
 	class CP_Plant_CannabisFuture: PlantBase
 	{
-		scope=1;
+		scope=2;
 		displayName="#cp_future_plant0";
 		descriptionShort="#cp_future_plant1";
 		model="DZ\gear\cultivation\Cannabis_plant.p3d";

@@ -242,7 +242,7 @@ class CfgVehicles
     };
 	class CP_DriedCannabisPlant : CP_RawPlantBase
 	{
-		scope = 1;
+		scope = 2;
 		displayName="#cp_dried_plant0";
 		descriptionShort="#cp_dried_plant1";
 		model="\CannabisPlus\furniture\DriedCannabisPlantHanging.p3d";
