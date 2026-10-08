@@ -53,6 +53,22 @@ class CannabisStrainConfig
         return strain;
     }
 
+    // The strains that ship with CannabisPlus.
+    static array<string> GetDefaultStrainNames()
+    {
+        array<string> defaultStrains = {
+            "Skunk",
+            "BlueGod",
+            "PurpleKush",
+            "Stardawg",
+            "S1",
+            "Future",
+            "Nomad",
+            "BlackFrost"
+        };
+        return defaultStrains;
+    }
+
     static void GenerateAllDefaultsIfStrainsFolderMissing()
     {
         string strainsFolderPath = m_CPProfileDir + m_CPProfileFolder + "/" + m_CPStrainsFolder;
@@ -60,17 +76,7 @@ class CannabisStrainConfig
         {
             CPDebugPrint("Strains folder not found. Generating default strain configs...");
 
-            array<string> defaultStrains = {
-                "Skunk",
-                "BlueGod",
-                "PurpleKush",
-                "Stardawg",
-                "S1",
-                "Future",
-                "Nomad",
-                "BlackFrost"
-            };
-
+            array<string> defaultStrains = GetDefaultStrainNames();
             foreach (string strainName : defaultStrains)
             {
                 CreateDefault().SaveIfMissing(strainName);

@@ -10,10 +10,10 @@ Config Changes
 
 DayZ 1.30 Server Setup (IMPORTANT)
 - DayZ 1.30 has a bug (Bohemia ticket DZEXP-134) that stops mods from listing files in the profiles folder, so strain files could not be found. CannabisPlus now works around it using Community Framework. Keep CF updated.
-- On DayZ 1.30 your -profiles folder must be inside the server folder, for example -profiles=profiles or -profiles=C:\DayZServer\profiles. If it is somewhere else, CannabisPlus can't read your strain files and every strain uses default settings. A WARNING about this appears in the script log.
+- If your -profiles folder is outside the server folder (some hosts do this), the 8 built-in strains still load with your settings, but extra custom strain files won't load. A WARNING about this appears in the script log. To load custom strains, put the -profiles folder inside the server folder, for example -profiles=profiles or -profiles=C:\DayZServer\profiles.
 - This is temporary until Bohemia fixes DZEXP-134. Servers on DayZ 1.29 are not affected.
 
-No items removed. No config file changes required. Servers on DayZ 1.30 may need to change their -profiles launch parameter (see above).
+No items removed. No config file changes required. Servers on DayZ 1.30 that use custom strains may need to change their -profiles launch parameter (see above).
 
 v3.1.2
 Mod Changes

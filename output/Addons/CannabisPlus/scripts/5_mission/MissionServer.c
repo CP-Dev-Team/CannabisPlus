@@ -21,8 +21,11 @@ modded class MissionServer
 
         if (fileHandle == 0)
         {
-            Print("[CannabisPlus] WARNING: Could not list the strain files in " + path + " - all strains will use default settings.");
-            Print("[CannabisPlus] WARNING: On DayZ 1.30 the -profiles folder must be inside the server folder (e.g. -profiles=profiles) until Bohemia fixes DZEXP-134.");
+            // TEMPORARY until Bohemia fixes DZEXP-134 (DayZ 1.30 FindFile can't list $profile: when the
+            // profiles folder is outside the server folder): load the built-in strains by name instead.
+            Print("[CannabisPlus] WARNING: Could not list the strain files in " + path + " - loading the built-in strains by name instead. Extra custom strain files will not load.");
+            Print("[CannabisPlus] WARNING: On DayZ 1.30 put the -profiles folder inside the server folder (e.g. -profiles=profiles) to load custom strains, until Bohemia fixes DZEXP-134.");
+            LoadDefaultStrainsByName(path);
             return;
         }
 
@@ -48,6 +51,21 @@ modded class MissionServer
         CloseFindFile(fileHandle); // Close the file handle
 
         CPDebugPrint("All strain configs initialized (Server-Side). Total: " + g_CannabisStrainConfigs.Count() + ", Loaded: " + loadedCount);
+    }
+
+    // TEMPORARY fallback for DZEXP-134: loads the built-in strain files by name, which works on every host.
+    protected void LoadDefaultStrainsByName(string path)
+    {
+        array<string> strainNames = CannabisStrainConfig.GetDefaultStrainNames();
+        foreach (string strainName : strainNames)
+        {
+            if (!FileExist(path + strainName + ".json"))
+                continue;
+
+            CannabisStrainConfig strainConfig = CannabisStrainConfig.LoadStrain(strainName);
+            g_CannabisStrainConfigs.Set(strainName, strainConfig);
+            CPDebugPrint("Loaded strain by name: " + strainName + " - MinutesToGrow: " + strainConfig.MinutesToGrow + ", CropCount: " + strainConfig.CropCount);
+        }
     }
 
     override void OnInit()
