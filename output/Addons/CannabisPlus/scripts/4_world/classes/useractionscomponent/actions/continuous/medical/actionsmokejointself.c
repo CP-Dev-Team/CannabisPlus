@@ -69,11 +69,9 @@ class ActionSmokeJointSelf: ActionContinuousBase {
 	{
 		PlayerBase player = action_data.m_Player;
 		CP_JointBase joint = CP_JointBase.Cast(action_data.m_MainItem);
-		string joint_type = joint.GetType();
-		string strainName = joint_type.Substring(8, joint_type.Length() - 8);  // Extracts the name after "CP_Joint"
 
 		if (joint) {
-			player.AddValueToJointValue(1, strainName);
+			player.AddValueToJointValue(1, joint.GetCpJointName());
 			CPDebugPrint("OnFinishProgressClient cycles " + action_data.m_Player.GetJointCycles() );
 		}
 
@@ -84,6 +82,8 @@ class ActionSmokeJointSelf: ActionContinuousBase {
 		CP_JointBase joint = CP_JointBase.Cast(action_data.m_MainItem);
 		
 		if (joint) {
+			// Server keeps its own cycle count so over-smoking (MakePuke) works on multiplayer servers.
+			action_data.m_Player.AddValueToJointValue(1, joint.GetCpJointName());
 			ApplyModifiers(action_data);
 			CPDebugPrint("OnFinishProgressServer cycles " + action_data.m_Player.GetJointCycles() );
 			

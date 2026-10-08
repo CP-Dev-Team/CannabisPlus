@@ -4,6 +4,10 @@ Mod Changes
 - Unpacking DrugsPLUS and vanilla cigarette packs is now handled by DrugsPLUS instead of CannabisPlus.
 - Unpacked joints now drop onto the ground surface instead of at the player's exact position.
 
+Fixes
+- Smoking too much now makes players vomit on multiplayer servers. Before, the server never counted joint puffs, so it only worked in singleplayer.
+- The stoned screen effect now reliably starts after JointCyclesToActivateEffect puffs on multiplayer servers. Before, the count could be reset by the server mid-smoke.
+
 Config Changes
 - Your settings in CannabisPlus.json and your strain files are now kept when the mod updates. Previously an update moved every strain file into ConfigBackup and replaced them with defaults, so custom strains disappeared from the strains folder. New settings are added with their default values and settings that no longer exist are removed. A copy of your old files is still saved in profiles/CannabisPlus/ConfigBackup/v<old version>.
 - If CannabisPlus.json or a strain file has a mistake in it (for example a missing comma), the mod now logs an error in the script log and uses default settings for that file until it's fixed, instead of silently using zeros. Your file is not overwritten.

@@ -7,7 +7,9 @@ modded class PlayerBase {
     protected EffectSound m_TurnOn;
 	
 	bool m_HasConsumedJoint = false;
-	int m_jointValue;						// the quantity of the joint, what the player consumed
+	// Joint cycles smoked. Counted separately on the server (puking) and the smoking player's client (visuals).
+	// Not net-synced on purpose: a synced value from the server would overwrite the client's own count.
+	int m_jointValue;
 	
 	//getters for joint smoke state
 	bool HasConsumedJoint () {
@@ -18,17 +20,12 @@ modded class PlayerBase {
 		return m_jointValue;
 	}
 	
-	override void Init() {
-		super.Init();		
-		RegisterNetSyncVariableInt("m_jointValue");
-	}
-	
 	override bool AC_HasAnyPPEActive()
 	{
 		return m_HasConsumedJoint || super.AC_HasAnyPPEActive();
 	}
 	
-	// set to true if the player consumed a joint
+	// Called each joint cycle from the smoke action, on the server and on the smoking player's client.
 	void AddValueToJointValue(int value, string strainName = "") {
 		if (GetCPConfig()) {
 			if(GetCPConfig().ActivateJointSmokingEffect) {
@@ -39,13 +36,13 @@ modded class PlayerBase {
 					CPClientDebugPrint("JointCyclesToActivateEffect " + GetCPConfig().JointCyclesToActivateEffect);
 					CPClientDebugPrint("CannabisPlus: Starting Effect");
 					m_HasConsumedJoint = true;
-					CannabisEffectsTriggered(m_jointValue, strainName);
+					if (!g_Game.IsDedicatedServer())
+						CannabisEffectsTriggered(m_jointValue, strainName);
 					if (!jointTimer) { jointTimer = new Timer()};
 					jointTimer.Stop();
 					jointTimer.Run(GetCPConfig().SmokingJointEffectSeconds, this, "ResetJointValues", null, false);
-				AC_StartFreeCamPPECheck();
+					AC_StartFreeCamPPECheck();
 				}
-				SetSynchDirty();
 			}
 		}
 	}
@@ -56,7 +53,6 @@ modded class PlayerBase {
 		m_jointValue = 0;
 		jointTimer.Stop();
 		AC_StopFreeCamPPECheck();
-		SetSynchDirty();
 	}
 	
 	// Cannabis Visual Effect On.
