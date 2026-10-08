@@ -3,6 +3,8 @@ Mod Changes
 - Unpacking joint packs now uses AgricultureCore's shared unpack action. Requires the latest AgricultureCore.
 - Unpacking DrugsPLUS and vanilla cigarette packs is now handled by DrugsPLUS instead of CannabisPlus.
 - Unpacked joints now drop onto the ground surface instead of at the player's exact position.
+- Dried cannabis plants can be put in AgricultureCore's new compost bin.
+- The fertilizing-speed settings code moved to AgricultureCore. The settings themselves were already in AgricultureCore.json, so nothing changes for you.
 
 Fixes
 - Smoking too much now makes players vomit on multiplayer servers. Before, the server never counted joint puffs, so it only worked in singleplayer.
@@ -19,7 +21,7 @@ Config Changes
 
 DayZ 1.30 Server Setup (IMPORTANT)
 - DayZ 1.30 has a bug (Bohemia ticket DZEXP-134) that stops mods from listing files in the profiles folder, so strain files could not be found. CannabisPlus now works around it using Community Framework. Keep CF updated.
-- If your -profiles folder is outside the server folder (some hosts do this), the 8 built-in strains still load with your settings, but extra custom strain files won't load. A WARNING about this appears in the script log. To load custom strains, put the -profiles folder inside the server folder, for example -profiles=profiles or -profiles=C:\DayZServer\profiles.
+- If your -profiles folder is outside the server folder (some hosts do this), the 8 built-in strains still load with your settings, but extra custom strain files won't load. A WARNING about this appears in the script log (and CF's own error about it is avoided). To load custom strains, put the -profiles folder inside the server folder, for example -profiles=profiles or -profiles=C:\DayZServer\profiles.
 - This is temporary until Bohemia fixes DZEXP-134. Servers on DayZ 1.29 are not affected.
 
 No items removed. No config file changes required. Servers on DayZ 1.30 that use custom strains may need to change their -profiles launch parameter (see above).

@@ -65,7 +65,31 @@ class CP_StrainHelper
 	#ifdef DAYZ_1_29
 		return FindFile(pattern, fileName, fileAttr, FindFileFlags.DIRECTORIES);
 	#else
+		// CF can only help when the profiles folder is inside the server folder; otherwise it logs a
+		// script error. Skip it then - plain FindFile just finds nothing and the caller falls back.
+		if (!CanCFListProfile())
+			return FindFile(pattern, fileName, fileAttr, FindFileFlags.DIRECTORIES);
 		return CF.FindFileEx(pattern, fileName, fileAttr, FindFileFlags.DIRECTORIES);
 	#endif
+	}
+
+	// Same check CF.FindFileEx makes: the -profiles folder (its last path part) must exist inside the server folder.
+	static bool CanCFListProfile()
+	{
+		string profiles;
+		if (!GetCLIParam("profiles", profiles))
+			return false;
+
+		profiles.Replace("\\", "/");
+		while (profiles.Length() > 0 && profiles.Substring(profiles.Length() - 1, 1) == "/")
+			profiles = profiles.Substring(0, profiles.Length() - 1);
+
+		if (profiles.IndexOf("/") == 0 || profiles.IndexOf(":/") == 1)
+		{
+			int lastSlash = profiles.LastIndexOf("/");
+			profiles = profiles.Substring(lastSlash + 1, profiles.Length() - lastSlash - 1);
+		}
+
+		return profiles != "" && FileExist(profiles);
 	}
 }
