@@ -13,25 +13,32 @@ class CannabisPlusConfigManager
 	ref WorkbenchConfig CP_WorkbenchSettings;
 
     int SecondsToDryCannabisPlant;	// Time in seconds for raw plants to dry on drying post.
-	
-	void CannabisPlusConfigManager() 
+
+	void CannabisPlusConfigManager()
 	{
-		
-	}	
-	
+		SetDefaults();
+	}
+
+	// Default values. Settings missing from the server's json keep these.
+	protected void SetDefaults()
+	{
+		ConfigVersion					= 0;
+		EnableServerDebugLogging        = false;
+		EnableClientDebugLogging        = false;
+
+		ActivateJointSmokingEffect 		= true;
+		SmokingJointEffectSeconds 		= 360;
+		JointCyclesToActivateEffect 	= 10;
+
+		CP_WorkbenchSettings = new WorkbenchConfig();
+
+		SecondsToDryCannabisPlant       = 30;
+	}
+
+	// Resets every general setting to its default and saves. Strain files are not touched.
 	void LoadDefaultSettings() {
-			ConfigVersion					= GetModVersion();
-            EnableServerDebugLogging        = false;
-            EnableClientDebugLogging        = false;
-
-            ActivateJointSmokingEffect 		= true;
-            SmokingJointEffectSeconds 		= 360;
-            JointCyclesToActivateEffect 	= 10;
-
-			CP_WorkbenchSettings = new WorkbenchConfig();
-
-            SecondsToDryCannabisPlant            	= 30;
-
+		SetDefaults();
+		ConfigVersion = GetModVersion();
 		SaveConfig();
 	};
 
@@ -41,11 +48,10 @@ class CannabisPlusConfigManager
 		return false;
 	}
 
-	protected int GetModVersion() { 
+	protected int GetModVersion() {
 		string cfgversion = "CfgMods CannabisPlus version";
 		string ModVersion;
 		g_Game.ConfigGetText(cfgversion, ModVersion);
-		CPDebugPrint("ModConfig entry found Mod Version is: " + ModVersion);
 		return ParseVersionString(ModVersion);
 	}
 
@@ -64,25 +70,35 @@ class CannabisPlusConfigManager
 
 		if (SmokingJointEffectSeconds < 1) SmokingJointEffectSeconds = 1;
 		if (JointCyclesToActivateEffect < 1) JointCyclesToActivateEffect = 1;
-	}
-	
-	void SaveOldConfig() {
-		const string cfgbkpPath = "$profile:CannabisPlus/ConfigBackup";
-		if (!FileExist(cfgbkpPath))
-			MakeDirectory(cfgbkpPath);
-		if(FileExist(m_CPConfigPath)) {
-			CopyFile(m_CPConfigPath, cfgbkpPath + "/CannabisConfig_OLD_Version.json");
-			DeleteFile(m_CPConfigPath);
-		}
-		BackupStrainConfigs(cfgbkpPath);
+
+		if (!CP_WorkbenchSettings) CP_WorkbenchSettings = new WorkbenchConfig();
 	}
 
-	protected void BackupStrainConfigs(string cfgbkpPath) {
+	// Called when the saved config comes from an older mod version, after it has been loaded
+	// over the defaults. Add a step here when a setting changes meaning between versions,
+	// e.g. if (fromVersion < 320) SecondsToDryCannabisPlant = SecondsToDryCannabisPlant * 60;
+	// Renamed settings are handled in MigrateConfigKeys before loading.
+	protected void MigrateConfig(int fromVersion)
+	{
+	}
+
+	// Keeps copies of the server's config and strain files from before an update. The originals are not deleted.
+	protected void BackupConfig(int fromVersion) {
+		string bkpPath = m_CPProfileDir + m_CPProfileFolder + "/ConfigBackup";
+		if (!FileExist(bkpPath))
+			MakeDirectory(bkpPath);
+		bkpPath = bkpPath + "/v" + fromVersion;
+		if (!FileExist(bkpPath))
+			MakeDirectory(bkpPath);
+
+		if (FileExist(m_CPConfigPath))
+			CopyFile(m_CPConfigPath, bkpPath + "/CannabisPlus.json");
+
 		string strainsPath = m_CPProfileDir + m_CPProfileFolder + "/" + m_CPStrainsFolder + "/";
 		if (!FileExist(strainsPath))
 			return;
 
-		string strainsBkpPath = cfgbkpPath + "/" + m_CPStrainsFolder;
+		string strainsBkpPath = bkpPath + "/" + m_CPStrainsFolder;
 		if (!FileExist(strainsBkpPath))
 			MakeDirectory(strainsBkpPath);
 
@@ -95,14 +111,12 @@ class CannabisPlusConfigManager
 		while (fileName != "")
 		{
 			CopyFile(strainsPath + fileName, strainsBkpPath + "/" + fileName);
-			DeleteFile(strainsPath + fileName);
 			fileName = "";
 			FindNextFile(fileHandle, fileName, fileAttr);
 		}
 		CloseFindFile(fileHandle);
-		DeleteFile(strainsPath);
 	}
-	
+
 	static void MigrateConfigKeys(string path) {
 		FileHandle fileRead = OpenFile(path, FileMode.READ);
 		if (fileRead == 0) return;
@@ -124,31 +138,51 @@ class CannabisPlusConfigManager
 	protected void SaveConfig() {
 		if (!FileExist(m_CPProfileDir + m_CPProfileFolder + "/"))
 			MakeDirectory(m_CPProfileDir + m_CPProfileFolder + "/");
-            JsonFileLoader<CannabisPlusConfigManager>.JsonSaveFile(m_CPConfigPath, this);
+
+		string error;
+		if (!JsonFileLoader<CannabisPlusConfigManager>.SaveFile(m_CPConfigPath, this, error))
+			Print("[CannabisPlus] ERROR: " + error);
 	};
 
-	static CannabisPlusConfigManager LoadConfig() 
+	static CannabisPlusConfigManager LoadConfig()
     {
         CannabisPlusConfigManager settings = new CannabisPlusConfigManager();
 
         if(!FileExist(m_CPProfileDir + m_CPProfileFolder))
             MakeDirectory(m_CPProfileDir + m_CPProfileFolder);
 
-        if(FileExist(m_CPConfigPath))
-        {
-            MigrateConfigKeys(m_CPConfigPath);
-            JsonFileLoader<CannabisPlusConfigManager>.JsonLoadFile(m_CPConfigPath, settings);
-            settings.ValidateConfig();
-            if(settings.IsConfigOutdated())
-            {
-                settings.SaveOldConfig();
-                settings.LoadDefaultSettings();
-            }
-        }
-        else
+        if(!FileExist(m_CPConfigPath))
         {
             settings.LoadDefaultSettings();
+            CP_Debug = settings.EnableServerDebugLogging;
+            return settings;
         }
+
+        MigrateConfigKeys(m_CPConfigPath);
+
+        string error;
+        if (!JsonFileLoader<CannabisPlusConfigManager>.LoadFile(m_CPConfigPath, settings, error))
+        {
+            // Broken json (e.g. a typo): leave the server's file untouched and run on defaults.
+            Print("[CannabisPlus] ERROR: " + error);
+            Print("[CannabisPlus] ERROR: Using default settings until " + m_CPConfigPath + " is fixed.");
+            settings = new CannabisPlusConfigManager();
+            settings.ConfigVersion = settings.GetModVersion();
+            CP_Debug = settings.EnableServerDebugLogging;
+            return settings;
+        }
+
+        int modVersion = settings.GetModVersion();
+        if (settings.ConfigVersion != modVersion)
+        {
+            settings.BackupConfig(settings.ConfigVersion);
+            settings.MigrateConfig(settings.ConfigVersion);
+            settings.ConfigVersion = modVersion;
+        }
+
+        settings.ValidateConfig();
+        // Rewrite the file so newly added settings appear and removed ones are dropped.
+        settings.SaveConfig();
         CP_Debug = settings.EnableServerDebugLogging;
 
         return settings;

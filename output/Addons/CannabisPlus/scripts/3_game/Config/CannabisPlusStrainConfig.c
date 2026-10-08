@@ -30,8 +30,17 @@ class CannabisStrainConfig
         if (FileExist(path))
         {
             strain = new CannabisStrainConfig();
-            JsonFileLoader<CannabisStrainConfig>.JsonLoadFile(path, strain);
+            string error;
+            if (!JsonFileLoader<CannabisStrainConfig>.LoadFile(path, strain, error))
+            {
+                // Broken json (e.g. a typo): leave the server's file untouched and use defaults for this strain.
+                Print("[CannabisPlus] ERROR: " + error);
+                Print("[CannabisPlus] ERROR: Using default settings for strain " + strainName + " until " + path + " is fixed.");
+                return CreateDefault();
+            }
             strain.Validate();
+            // Rewrite the file so newly added settings appear and removed ones are dropped.
+            strain.Save(strainName);
             CPDebugPrint("Loaded from: " + path);
         }
         else
@@ -91,8 +100,19 @@ class CannabisStrainConfig
         if (!FileExist(fullPath))
         {
             CPDebugPrint("Saving default config for: " + strainName);
-            JsonFileLoader<CannabisStrainConfig>.JsonSaveFile(fullPath, this);
+            Save(strainName);
         }
+    }
+
+    void Save(string strainName)
+    {
+        string path = m_CPProfileDir + m_CPProfileFolder + "/" + m_CPStrainsFolder;
+        if (!FileExist(path))
+            MakeDirectory(path);
+
+        string error;
+        if (!JsonFileLoader<CannabisStrainConfig>.SaveFile(path + "/" + strainName + ".json", this, error))
+            Print("[CannabisPlus] ERROR: " + error);
     }
 }
 
