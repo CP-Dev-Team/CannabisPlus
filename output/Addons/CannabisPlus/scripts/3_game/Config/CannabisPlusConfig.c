@@ -104,7 +104,7 @@ class CannabisPlusConfigManager
 
 		string fileName;
 		int fileAttr;
-		FindFileHandle fileHandle = FindFile(strainsPath + "*.json", fileName, fileAttr, 0);
+		FindFileHandle fileHandle = CP_StrainHelper.FindProfileFile(strainsPath + "*.json", fileName, fileAttr);
 		if (fileHandle == 0)
 			return;
 

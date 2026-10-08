@@ -17,11 +17,12 @@ modded class MissionServer
         
         string fileName;
         int fileAttr;
-        FindFileHandle fileHandle = FindFile(path + "*.json", fileName, fileAttr, 0);
+        FindFileHandle fileHandle = CP_StrainHelper.FindProfileFile(path + "*.json", fileName, fileAttr);
 
         if (fileHandle == 0)
         {
-            CPDebugPrint("Error: Unable to open directory or find files.");
+            Print("[CannabisPlus] WARNING: Could not list the strain files in " + path + " - all strains will use default settings.");
+            Print("[CannabisPlus] WARNING: On DayZ 1.30 the -profiles folder must be inside the server folder (e.g. -profiles=profiles) until Bohemia fixes DZEXP-134.");
             return;
         }
 

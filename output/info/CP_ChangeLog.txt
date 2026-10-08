@@ -8,7 +8,12 @@ Config Changes
 - Your settings in CannabisPlus.json and your strain files are now kept when the mod updates. Previously an update moved every strain file into ConfigBackup and replaced them with defaults, so custom strains disappeared from the strains folder. New settings are added with their default values and settings that no longer exist are removed. A copy of your old files is still saved in profiles/CannabisPlus/ConfigBackup/v<old version>.
 - If CannabisPlus.json or a strain file has a mistake in it (for example a missing comma), the mod now logs an error in the script log and uses default settings for that file until it's fixed, instead of silently using zeros. Your file is not overwritten.
 
-No items removed. No config changes required.
+DayZ 1.30 Server Setup (IMPORTANT)
+- DayZ 1.30 has a bug (Bohemia ticket DZEXP-134) that stops mods from listing files in the profiles folder, so strain files could not be found. CannabisPlus now works around it using Community Framework. Keep CF updated.
+- On DayZ 1.30 your -profiles folder must be inside the server folder, for example -profiles=profiles or -profiles=C:\DayZServer\profiles. If it is somewhere else, CannabisPlus can't read your strain files and every strain uses default settings. A WARNING about this appears in the script log.
+- This is temporary until Bohemia fixes DZEXP-134. Servers on DayZ 1.29 are not affected.
+
+No items removed. No config file changes required. Servers on DayZ 1.30 may need to change their -profiles launch parameter (see above).
 
 v3.1.2
 Mod Changes

@@ -57,4 +57,15 @@ class CP_StrainHelper
 	{
 		return strain != "";
 	}
+
+	// Lists files in the server profile. DayZ 1.30 broke FindFile on $profile: paths
+	// (https://report.bistudio.com/issues/DZEXP-134); CF.FindFileEx works around it.
+	static FindFileHandle FindProfileFile(string pattern, out string fileName, out FileAttr fileAttr)
+	{
+	#ifdef DAYZ_1_29
+		return FindFile(pattern, fileName, fileAttr, FindFileFlags.DIRECTORIES);
+	#else
+		return CF.FindFileEx(pattern, fileName, fileAttr, FindFileFlags.DIRECTORIES);
+	#endif
+	}
 }
