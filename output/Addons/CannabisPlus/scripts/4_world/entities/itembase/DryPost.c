@@ -18,7 +18,9 @@ class CP_DryPost extends ItemBase
 	void CP_DryPost()
 	{
 		BudSpawn = new map<string, int>;
-		
+		// Synced so players' inventory screens know the post is locked while drying.
+		RegisterNetSyncVariableBool("m_IsLocked");
+
 		plant_slots.Insert(InventorySlots.GetSlotIdFromString("HangingPlants")); 
         plant_slots.Insert(InventorySlots.GetSlotIdFromString("HangingPlants2")); 
         plant_slots.Insert(InventorySlots.GetSlotIdFromString("HangingPlants3")); 
@@ -36,6 +38,17 @@ class CP_DryPost extends ItemBase
 	{
 		super.EEInit();
 		m_IsLocked = false;
+	}
+
+	override void EEDelete(EntityAI parent)
+	{
+		super.EEDelete(parent);
+
+		// Don't let pending drying steps run on a post that no longer exists.
+		g_Game.GetCallQueue(CALL_CATEGORY_GAMEPLAY).Remove(FinishDrying);
+		g_Game.GetCallQueue(CALL_CATEGORY_GAMEPLAY).Remove(SpawnDried);
+		g_Game.GetCallQueue(CALL_CATEGORY_GAMEPLAY).Remove(CleanUp);
+		g_Game.GetCallQueue(CALL_CATEGORY_GAMEPLAY).Remove(HandleRopeDetachedServer);
 	}
 	
 	override bool CanReceiveAttachment(EntityAI attachment, int slotId)
@@ -108,12 +121,12 @@ class CP_DryPost extends ItemBase
 			RopeAttached = true;
 		} 
 		if (slot_name == "DriedPlantPile")
-		{    				
+		{
 			SetAnimationPhase ("DryPile", 0);
 		}
 
-		if (g_Game && g_Game.IsClient())		
-			LockRope();
+		// Lock on the server too, otherwise the rope (and the post with everything on it) could still be removed.
+		LockRope();
 	}
     
 	override void EEItemDetached(EntityAI item, string slot_name)
@@ -139,8 +152,7 @@ class CP_DryPost extends ItemBase
 			g_Game.GetCallQueue(CALL_CATEGORY_GAMEPLAY).CallLater(HandleRopeDetachedServer, 1, false, ItemBase.Cast(item));
 		}
 		CPDebugPrint("EEItemDetached: LockRope");
-		if (g_Game && g_Game.IsClient())
-			LockRope();
+		LockRope();
 	}
 
 	void HandleRopeDetachedServer(ItemBase detachedRope)
@@ -197,6 +209,7 @@ class CP_DryPost extends ItemBase
 				CPDebugPrint("all items attached to post " + this + " ...starting to dry");
 				g_Game.GetCallQueue(CALL_CATEGORY_GAMEPLAY).CallLater(FinishDrying, GetCPConfig().SecondsToDryCannabisPlant*1000, false);
 				m_IsLocked = true;
+				SetSynchDirty();
 				LockDryingSlots(true);
 			}
 		}		
@@ -224,15 +237,7 @@ class CP_DryPost extends ItemBase
 	void AddToMap(string item, int value)
 	{
 		int CurrentValue = 0;
-		int NewValue = 0;
-		
-		if (value < 1)
-		{
-			NewValue = 1;
-		} else
-		{
-			NewValue = value;
-		}	
+		int NewValue = value;
 		
  		if (BudSpawn.Find(item,CurrentValue))
 		{
@@ -270,8 +275,17 @@ class CP_DryPost extends ItemBase
 					if (plant)
 					{
 						string driedType = "CP_Cannabis" + strainName;
-						AddToMap(driedType, plant.GetYield());
-						CPDebugPrint("Added to map: " + driedType + " with yield: " + plant.GetYield());
+						int plantYield = plant.GetYield();
+						if (plantYield <= 0)
+						{
+							// Yield was never set (e.g. plant created outside normal harvest chain).
+							// Fall back to the strain's configured CropCount so the post still
+							// produces the correct amount rather than 1 bud per plant.
+							plantYield = g_CannabisStrainConfigs.Get(strainName).CropCount;
+							CPDebugPrint("Warning: Plant " + plant + " had yield=0; using strain default CropCount: " + plantYield);
+						}
+						AddToMap(driedType, plantYield);
+						CPDebugPrint("Added to map: " + driedType + " with yield: " + plantYield);
 					}
 					else
 					{
@@ -299,13 +313,30 @@ class CP_DryPost extends ItemBase
 				CPDebugPrint("plant[" + j + "] is " + key + " with quantity " + BudSpawn.Get(key));
 				int StackMax;
 				StackMax = g_Game.ConfigGetInt("CfgVehicles " + key + " varStackMax");
+				if (StackMax < 1) StackMax = 1;
 				int stacks = Math.Floor(BudSpawn.Get(key) / StackMax);
 				int remainder = BudSpawn.Get(key) - (stacks * StackMax);
 				CPDebugPrint("" + this + " spawning " + stacks + " stacks" );
 				CPDebugPrint("" + this + " spawning " + remainder + " singles" );
 				for ( int k = 0; k <= stacks; k++)
 				{
-					CP_CannabisBud weed = CP_CannabisBud.Cast(this.GetInventory().CreateInInventory(key)); 					
+					// Skip the final iteration when remainder is 0 — no phantom item needed
+					if (stacks > 0 && k == stacks && remainder == 0)
+						break;
+
+					CP_CannabisBud weed = CP_CannabisBud.Cast(this.GetInventory().CreateInInventory(key));
+					if (!weed)
+					{
+						// Post is full: drop the rest next to it instead of losing it.
+						CPDebugPrint("Post inventory full, dropping " + key + " on the ground.");
+						weed = CP_CannabisBud.Cast(g_Game.CreateObjectEx(key, GetPosition(), ECE_PLACE_ON_SURFACE));
+					}
+					if (!weed)
+					{
+						CPDebugPrint("Warning: Failed to create " + key + ".");
+						break;
+					}
+
 					if (stacks == 0)  //less than 1 stack, break out of for
 					{
 						weed.SetQuantity(remainder);
@@ -368,8 +399,12 @@ class CP_DryPost extends ItemBase
     void LockRope()
     {
         Rope rope = Rope.Cast(GetAttachmentByType(Rope));
+        CargoBase cargo = GetInventory().GetCargo();
+        int cargoCount = 0;
+        if (cargo)
+            cargoCount = cargo.GetItemCount();
 
-        if ( GetInventory().GetCargo().GetItemCount() > 0 || GetInventory().AttachmentCount() > 1 )
+        if ( cargoCount > 0 || GetInventory().AttachmentCount() > 1 )
         {
             if (rope)
             {
