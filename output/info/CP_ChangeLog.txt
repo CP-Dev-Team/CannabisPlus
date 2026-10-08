@@ -7,6 +7,7 @@ Mod Changes
 Fixes
 - Smoking too much now makes players vomit on multiplayer servers. Before, the server never counted joint puffs, so it only worked in singleplayer.
 - The stoned screen effect now reliably starts after JointCyclesToActivateEffect puffs on multiplayer servers. Before, the count could be reset by the server mid-smoke.
+- The stoned screen effect now combines with DrugsPLUS effects instead of being cleared when one of them wears off. Needs the latest AgricultureCore.
 
 Config Changes
 - Your settings in CannabisPlus.json and your strain files are now kept when the mod updates. Previously an update moved every strain file into ConfigBackup and replaced them with defaults, so custom strains disappeared from the strains folder. New settings are added with their default values and settings that no longer exist are removed. A copy of your old files is still saved in profiles/CannabisPlus/ConfigBackup/v<old version>.

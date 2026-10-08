@@ -96,10 +96,7 @@ modded class PlayerBase {
 			{
 				CPClientDebugPrint("Applying weed effects for strain: " + strainName + " - Hue: " + strainConfig.WeedEffects.HueIntensity + " RadX: " + strainConfig.WeedEffects.RadBlurXPower + " RadY: " + strainConfig.WeedEffects.RadBlurYPower + " Rot: " + strainConfig.WeedEffects.RotBlurPow);
 
-				CameraEffects.changeHue(strainConfig.WeedEffects.HueIntensity - counter);
-				CameraEffects.changeRadBlurXEffect(strainConfig.WeedEffects.RadBlurXPower * multiplier);
-				CameraEffects.changeRadBlurYEffect(strainConfig.WeedEffects.RadBlurYPower * multiplier);
-				CameraEffects.changeRotationBlurPower(strainConfig.WeedEffects.RotBlurPow * multiplier);
+				CameraEffects.SetEffect("weed", strainConfig.WeedEffects.HueIntensity - counter, strainConfig.WeedEffects.RadBlurXPower * multiplier, strainConfig.WeedEffects.RadBlurYPower * multiplier, 0, 0, strainConfig.WeedEffects.RotBlurPow * multiplier);
 			}
 			else
 			{
@@ -114,10 +111,7 @@ modded class PlayerBase {
 	{
 		if(g_Game.IsClient())
 		{
-			CameraEffects.changeHue(60);
-			CameraEffects.changeRadBlurXEffect(0);
-			CameraEffects.changeRadBlurYEffect(0);
-			CameraEffects.changeRotationBlurPower(0);	
+			CameraEffects.ClearEffect("weed");
 		}
 	}
 	
