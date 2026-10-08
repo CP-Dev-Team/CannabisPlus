@@ -1,3 +1,11 @@
+Next update (unreleased)
+Mod Changes
+- Unpacking joint packs now uses AgricultureCore's shared unpack action. Requires the latest AgricultureCore.
+- Unpacking DrugsPLUS and vanilla cigarette packs is now handled by DrugsPLUS instead of CannabisPlus.
+- Unpacked joints now drop onto the ground surface instead of at the player's exact position.
+
+No items removed. No config changes required.
+
 v3.1.2
 Mod Changes
 - CPTOKENS.pbo and all statistics tracking code removed.
