@@ -16,18 +16,18 @@ Folder structure:
 
 === Explanation of CannabisPlus.json (Main Config) ===
 
-    "ConfigVersion": 310,                               // Mod version.  310 = 3.1.0
+    "ConfigVersion": 312,                               // Mod version the config was saved with.  312 = 3.1.2.  Don't change; the mod uses it to update your config.
     "EnableServerDebugLogging": false,                   // Enables debug logging on the server.
     "EnableClientDebugLogging": false,                   // Enables debug logging on the client.
     "ActivateJointSmokingEffect": 1,                     // 1 = Activates effects when smoking joints; 0 = No effect.
     "SmokingJointEffectSeconds": 360,                   // Duration the effect will last, in seconds.
     "JointCyclesToActivateEffect": 10,                   // How many cycles to activate the effect.  20 = One joint.
     "SecondsToDryCannabisPlant": 30,                      // Time in seconds for raw cannabis plants to dry on the drying post.
-    "WorkbenchSettings": {                               // Nested workbench settings:
-        "RequireBattery": 1,                             //   1 = Require battery attached to workbench; 0 = No battery needed.
-        "PowerUsed": 1,                                  //   Energy subtracted from the battery per use.  Ignored if RequireBattery = 0.
-        "PlasticWrapUsage": 10,                          //   Plastic wrap consumed per use.
-        "ProcessingTime": 5                              //   Time in seconds to process a bag or brick.
+    "CP_WorkbenchSettings": {                            // Nested workbench settings (older configs called this "WorkbenchSettings"; it's renamed automatically):
+        "RequireBattery": 1,                             //   1 = Require a car or truck battery attached to the workbench; 0 = No battery needed.
+        "PowerUsed": 1,                                  //   Energy used per bag or brick, in units of 15 energy.  1 = 15 energy (1% of a full truck battery, 3% of a car battery).  Ignored if RequireBattery = 0.
+        "PlasticWrapUsage": 10,                          //   Plastic wrap used per brick.
+        "ProcessingSeconds": 5                           //   Time in seconds to process each bag or brick.
     }
 
 === Explanation of Strain JSONs (Per-Strain Config) ===
@@ -47,6 +47,10 @@ Delete the CannabisStrains folder to regenerate all defaults.
     }
 
 === Notes ===
+
+Mod updates keep your settings.  New settings are added with their default values, settings that no longer exist are removed,
+and a copy of your old files is saved in "profiles/CannabisPlus/ConfigBackup/v<old version>/".
+If a file has a mistake in it (for example a missing comma), the script log shows an error and that file uses default settings until it's fixed.
 
 Settings that were previously in CannabisPlus.json but have been moved:
     - Per-strain growtime, cropcount, and seed count are now in each strain's own JSON.
