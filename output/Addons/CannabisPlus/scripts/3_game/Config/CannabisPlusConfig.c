@@ -72,6 +72,7 @@ class CannabisPlusConfigManager
 		if (JointCyclesToActivateEffect < 1) JointCyclesToActivateEffect = 1;
 
 		if (!CP_WorkbenchSettings) CP_WorkbenchSettings = new WorkbenchConfig();
+		CP_WorkbenchSettings.Validate();
 	}
 
 	// Called when the saved config comes from an older mod version, after it has been loaded
@@ -275,6 +276,8 @@ class WorkbenchConfig
     int PowerUsed;
     int PlasticWrapUsage;
     int ProcessingSeconds;
+    int BudsPerBag;
+    int BagsPerBrick;
     
     void WorkbenchConfig(int reqBat = 1, int powerUsed = 1, int wrapUsage = 10, int procSeconds = 5)
     {
@@ -282,5 +285,18 @@ class WorkbenchConfig
         PowerUsed = powerUsed;
         PlasticWrapUsage = wrapUsage;
         ProcessingSeconds = procSeconds;
+        BudsPerBag = 2;
+        BagsPerBrick = 16;
+    }
+
+    void Validate()
+    {
+        if (PowerUsed < 0) PowerUsed = 0;
+        if (PowerUsed > 100) PowerUsed = 100;
+        if (PlasticWrapUsage < 1) PlasticWrapUsage = 1;
+        if (PlasticWrapUsage > 100) PlasticWrapUsage = 100;
+        if (ProcessingSeconds < 1) ProcessingSeconds = 1;
+        if (BudsPerBag < 1) BudsPerBag = 1;
+        if (BagsPerBrick < 1) BagsPerBrick = 1;
     }
 };

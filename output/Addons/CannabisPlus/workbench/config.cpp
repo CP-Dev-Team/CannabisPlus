@@ -5,13 +5,17 @@ class CfgPatches
         units[]={};
         weapons[] = {};
         requiredVersion = 0.1;
-        requiredAddons[] = 
+        requiredAddons[] =
         {
-            "DZ_Data"
+            "DZ_Data",
+            "DZ_Vehicles_Parts",
+            "AgricultureCore",
+            "AC_Bench"
         };
     };
 };
 
+// The truck battery shows on the bench through vanilla's ProxyBattery_truck (slots TruckBattery + LargeBattery).
 class CfgNonAIVehicles
 {
     class ProxyAttachment;
@@ -52,59 +56,35 @@ class CfgNonAIVehicles
 		inventorySlot="CP_Cannabis_Bricks";
 		model="CannabisPlus\bricks\CP_brick.p3d";
     };
-	class Proxybattery_truck : ProxyAttachment
-	{
-		inventorySlot="LargeBattery";
-		model="\dz\vehicles\parts\battery_truck.p3d";
-	};
 };
 class CfgVehicles
 {
-	class Inventory_Base;
-	
-	class CP_Workbench_Kit: Inventory_Base
+	class AC_BenchBase;
+	class AC_BenchKitBase;
+
+	// Placed like a tent; the placing preview uses AgricultureCore's hologram setup.
+	class CP_Workbench_Kit: AC_BenchKitBase
 	{
 		scope = 2;
 		displayName="#cp_cannabis_workbench_kit0";
 		descriptionShort="#cp_cannabis_workbench_kit1";
 		model="\CannabisPlus\workbench\workbenchKit.p3d";
+		acBenchType = "CP_Workbench";
 		itemSize[] = {5,3};
-		rotationFlags = 2;
-		itemBehaviour=0;
 		weight = 300;
-		class AnimationSources
-		{
-			class AnimSourceShown
-			{
-				source="user";
-				animPeriod=0.0099999998;
-				initPhase=0;
-			};
-			class AnimSourceHidden
-			{
-				source="user";
-				animPeriod=0.0099999998;
-				initPhase=1;
-			};
-			class Inventory: AnimSourceShown
-			{
-			};
-			class Placing: AnimSourceHidden
-			{
-			};
-		};
     };
-	  
-    class CP_Workbench : Inventory_Base
+
+	// Runs on the AgricultureCore bench framework (recipes below, settings in CP_WorkbenchSettings).
+    class CP_Workbench : AC_BenchBase
     {
 		scope = 2;
 		displayName="#cp_cannabis_workbench0";
 		descriptionShort="#cp_cannabis_workbench1";
 		model="\CannabisPlus\workbench\workbench.p3d";
+		acBenchRecipeSet = "CP_Workbench";
 		weight=50000;
 		itemSize[]={6,6};
-		itemBehaviour=0;
-		physLayer="item_heavy";
+		itemsCargoSize[]={10,4};
 		placement = "ForceSlopeOnTerrain";
 		hiddenSelections[]=
 		{
@@ -113,7 +93,7 @@ class CfgVehicles
 		hiddenSelectionsTextures[]=
 		{
 			"CannabisPlus\workbench\data\tisch1.paa"
-		};		
+		};
 		attachments[]=
 		{
 			"Wrapper",
@@ -163,11 +143,40 @@ class CfgVehicles
 				icon="set:BuildingFortIcons image:WindowBarricade";
 			};
 		};
-
 	};
-	
+
     class CP_Workbench_Holo: CP_Workbench
 	{
 		scope = 0;
-	};	
+	};
+};
+
+// Workbench recipes. Amounts, time and power per batch come from CP_WorkbenchSettings (BudsPerBag,
+// BagsPerBrick, PlasticWrapUsage, ProcessingSeconds, RequireBattery, PowerUsed); the numbers here are defaults.
+// Both repeat while there's enough, like the old workbench. Products keep the strain of what went in.
+class CfgACBenchRecipes
+{
+	class CP_Workbench
+	{
+		class CP_FillBags
+		{
+			displayName = "#cp_recipe_fill_bags";
+			seconds = 5;
+			energy = 15;
+			stations[] = {"CP_Bagger"};
+			inputs[] = {"CP_CannabisBud:2:same", "AC_EmptyBag:1"};
+			outputs[] = {"@CP_BagFromBud:1"};
+			repeat = 1;
+		};
+		class CP_WrapBricks
+		{
+			displayName = "#cp_recipe_wrap_bricks";
+			seconds = 5;
+			energy = 15;
+			stations[] = {"CP_PlasticWrapper"};
+			inputs[] = {"CP_CannabisBags:16:same", "CP_PlasticRoll:10"};
+			outputs[] = {"@CP_BrickFromBag:1"};
+			repeat = 1;
+		};
+	};
 };

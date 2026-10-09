@@ -1,3 +1,28 @@
+v4 (in development - branch v4, not released yet)
+New: Workbench window
+- The workbench now runs on AgricultureCore's bench system (the same one as the DrugsPLUS chemistry bench).
+  Requires the AgricultureCore version that includes it; update both mods together.
+- Look at the workbench and use "Open bench": pick Fill bags or Wrap bricks, see what's attached, what's missing and
+  what you're carrying, then Start. "Load from inventory" moves the bagger/wrapper, battery, buds, empty bags and
+  plastic wrap you carry onto the bench in one click.
+- Both keep going by themselves while there's enough, like before. Bags keep the strain of their buds and bricks
+  the strain of their bags; different strains are never mixed in one bag or brick.
+- New bags and bricks go into the bags/bricks slots, then into the workbench's new storage (10x4), then on the
+  ground. The old 160 bag / 25 brick stop is gone.
+- Placing the workbench kit now shows the green/red hologram instead of the solid model.
+- Removed actions: "Fill bag with ...", "Wrap ...", "Pause/Resume production" and "Stop processing" (all in the
+  window now; Stop ends the current batch).
+
+Config Changes
+- New settings in CP_WorkbenchSettings: "BudsPerBag" (default 2) and "BagsPerBrick" (default 16). They're added to
+  your CannabisPlus.json automatically.
+
+Fixes
+- CannabisPlus no longer overrides the vanilla truck battery proxy, which removed the TruckBattery slot from it.
+
+Existing workbenches keep their attached machines, battery and items (tested with a save from the current release).
+No items removed. No config changes required.
+
 Next update (unreleased)
 Mod Changes
 - Unpacking joint packs now uses AgricultureCore's shared unpack action. Requires the latest AgricultureCore.

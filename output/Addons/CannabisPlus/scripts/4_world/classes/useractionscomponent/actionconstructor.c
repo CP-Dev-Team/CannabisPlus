@@ -11,10 +11,6 @@ modded class ActionConstructor {
 		actions.Insert(ActionApplyCream);
 		// starts drying process on Drypost
 		actions.Insert(ActionDryPlants);
-		//WorkBench actions
-		actions.Insert(ActionCPUseBagger);
-		actions.Insert(ActionCPResumeAndPause);
-		actions.Insert(ActionStopCPWorkbench);
 		actions.Insert(ActionCP_RipOpenBrickOrBag);
 	};
 };

@@ -27,7 +27,9 @@ Folder structure:
         "RequireBattery": 1,                             //   1 = Require a car or truck battery attached to the workbench; 0 = No battery needed.
         "PowerUsed": 1,                                  //   Energy used per bag or brick, in units of 15 energy.  1 = 15 energy (1% of a full truck battery, 3% of a car battery).  Ignored if RequireBattery = 0.
         "PlasticWrapUsage": 10,                          //   Plastic wrap used per brick.
-        "ProcessingSeconds": 5                           //   Time in seconds to process each bag or brick.
+        "ProcessingSeconds": 5,                          //   Time in seconds to process each bag or brick.
+        "BudsPerBag": 2,                                 //   Buds of one strain used per bag. [1+]
+        "BagsPerBrick": 16                               //   Bags of one strain used per brick. [1+]
     }
 
 === Explanation of Strain JSONs (Per-Strain Config) ===
