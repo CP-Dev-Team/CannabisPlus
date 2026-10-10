@@ -93,6 +93,9 @@ Fixes
 - Drying post: no longer creates an extra empty bud when the total divides evenly into stacks.
 - Drying post: buds that don't fit in the post now drop on the ground next to it instead of being lost.
 - Drying post: players can no longer try to take plants off while it's drying, and the rope can't be pulled off a post that has items on it.
+- Crafting names and the "Rip open" action are now translated (they were always English): Fill Bag, Wrap Brick,
+  Roll Joint, Create a pack of joints, Put joint into pack, Make Wooden Drying Post, Make CBD Crude Oil,
+  Make Cannabis Workbench Kit, Tear apart Workbench.
 
 Config Changes
 - Your settings in CannabisPlus.json and your strain files are now kept when the mod updates. Previously an update moved every strain file into ConfigBackup and replaced them with defaults, so custom strains disappeared from the strains folder. New settings are added with their default values and settings that no longer exist are removed. A copy of your old files is still saved in profiles/CannabisPlus/ConfigBackup/v<old version>.

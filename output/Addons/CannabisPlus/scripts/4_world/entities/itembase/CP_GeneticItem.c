@@ -418,7 +418,7 @@ class CP_Genetics
 				wild.Insert(strainName);
 		}
 		if (wild.Count() == 0)
-			return "Afghan";
+			return "Afghani";
 		return wild.GetRandomElement();
 	}
 }
