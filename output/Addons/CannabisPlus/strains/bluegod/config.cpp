@@ -1,4 +1,4 @@
-﻿class CfgPatches
+class CfgPatches
 {
 	class CP_BlueGod
 	{
@@ -64,6 +64,9 @@ class CfgVehicles
 	class CP_CannabisSeedsPackBlueGod: CP_CannabisSeedsPack
 	{
 		scope=2;
+		cpGenetic=1;	// CannabisPlus 4: this strain's seed pack (see genetics/config.cpp)
+		cpLookTextures[]={"seedsPack"};
+		cpLookMaterials[]={"seedsPackMat"};
 		displayName="#cp_packed_cannabis_bluegod_seeds0";
 		descriptionShort="#cp_packed_cannabis_bluegod_seeds1";
 		hiddenSelectionsTextures[]=

@@ -34,11 +34,383 @@
         <flags count_in_cargo="0" count_in_hoarder="0" count_in_map="1" count_in_player="0" crafted="1" deloot="0"/>
         <category name="food"/>
     </type>
+    <!-- Seed packs: one per strain, always that strain. Rarer the deeper the strain is in the breeding tree.
+         For breeding-only servers keep just the foundation packs (or none and rely on CP_CannabisSeedsPackGenetic). -->
+    <!-- Random foundation strain each time it spawns. Not in loot by default; raise nominal/min to use it. -->
     <type name="CP_CannabisSeedsPackGenetic">
-        <nominal>30</nominal>
+        <nominal>0</nominal>
         <lifetime>7200</lifetime>
         <restock>1800</restock>
-        <min>20</min>
+        <min>0</min>
+        <quantmin>-1</quantmin>
+        <quantmax>-1</quantmax>
+        <cost>100</cost>
+        <flags count_in_cargo="0" count_in_hoarder="0" count_in_map="1" count_in_player="0" crafted="0" deloot="0"/>
+        <category name="food"/>
+        <usage name="Farm"/>
+        <usage name="Hunting"/>
+    </type>
+    <!-- foundation (wild landraces and found-only strains) -->
+    <type name="CP_CannabisSeedsPackAfghani">
+        <nominal>12</nominal>
+        <lifetime>7200</lifetime>
+        <restock>1800</restock>
+        <min>8</min>
+        <quantmin>-1</quantmin>
+        <quantmax>-1</quantmax>
+        <cost>100</cost>
+        <flags count_in_cargo="0" count_in_hoarder="0" count_in_map="1" count_in_player="0" crafted="0" deloot="0"/>
+        <category name="food"/>
+        <usage name="Farm"/>
+        <usage name="Hunting"/>
+    </type>
+    <type name="CP_CannabisSeedsPackThai">
+        <nominal>12</nominal>
+        <lifetime>7200</lifetime>
+        <restock>1800</restock>
+        <min>8</min>
+        <quantmin>-1</quantmin>
+        <quantmax>-1</quantmax>
+        <cost>100</cost>
+        <flags count_in_cargo="0" count_in_hoarder="0" count_in_map="1" count_in_player="0" crafted="0" deloot="0"/>
+        <category name="food"/>
+        <usage name="Farm"/>
+        <usage name="Hunting"/>
+    </type>
+    <type name="CP_CannabisSeedsPackHinduKush">
+        <nominal>12</nominal>
+        <lifetime>7200</lifetime>
+        <restock>1800</restock>
+        <min>8</min>
+        <quantmin>-1</quantmin>
+        <quantmax>-1</quantmax>
+        <cost>100</cost>
+        <flags count_in_cargo="0" count_in_hoarder="0" count_in_map="1" count_in_player="0" crafted="0" deloot="0"/>
+        <category name="food"/>
+        <usage name="Farm"/>
+        <usage name="Hunting"/>
+    </type>
+    <type name="CP_CannabisSeedsPackAcapulcoGold">
+        <nominal>12</nominal>
+        <lifetime>7200</lifetime>
+        <restock>1800</restock>
+        <min>8</min>
+        <quantmin>-1</quantmin>
+        <quantmax>-1</quantmax>
+        <cost>100</cost>
+        <flags count_in_cargo="0" count_in_hoarder="0" count_in_map="1" count_in_player="0" crafted="0" deloot="0"/>
+        <category name="food"/>
+        <usage name="Farm"/>
+        <usage name="Hunting"/>
+    </type>
+    <type name="CP_CannabisSeedsPackColombianGold">
+        <nominal>12</nominal>
+        <lifetime>7200</lifetime>
+        <restock>1800</restock>
+        <min>8</min>
+        <quantmin>-1</quantmin>
+        <quantmax>-1</quantmax>
+        <cost>100</cost>
+        <flags count_in_cargo="0" count_in_hoarder="0" count_in_map="1" count_in_player="0" crafted="0" deloot="0"/>
+        <category name="food"/>
+        <usage name="Farm"/>
+        <usage name="Hunting"/>
+    </type>
+    <type name="CP_CannabisSeedsPackDurbanPoison">
+        <nominal>12</nominal>
+        <lifetime>7200</lifetime>
+        <restock>1800</restock>
+        <min>8</min>
+        <quantmin>-1</quantmin>
+        <quantmax>-1</quantmax>
+        <cost>100</cost>
+        <flags count_in_cargo="0" count_in_hoarder="0" count_in_map="1" count_in_player="0" crafted="0" deloot="0"/>
+        <category name="food"/>
+        <usage name="Farm"/>
+        <usage name="Hunting"/>
+    </type>
+    <type name="CP_CannabisSeedsPackHawaiian">
+        <nominal>12</nominal>
+        <lifetime>7200</lifetime>
+        <restock>1800</restock>
+        <min>8</min>
+        <quantmin>-1</quantmin>
+        <quantmax>-1</quantmax>
+        <cost>100</cost>
+        <flags count_in_cargo="0" count_in_hoarder="0" count_in_map="1" count_in_player="0" crafted="0" deloot="0"/>
+        <category name="food"/>
+        <usage name="Farm"/>
+        <usage name="Hunting"/>
+    </type>
+    <type name="CP_CannabisSeedsPackPurpleAfghani">
+        <nominal>12</nominal>
+        <lifetime>7200</lifetime>
+        <restock>1800</restock>
+        <min>8</min>
+        <quantmin>-1</quantmin>
+        <quantmax>-1</quantmax>
+        <cost>100</cost>
+        <flags count_in_cargo="0" count_in_hoarder="0" count_in_map="1" count_in_player="0" crafted="0" deloot="0"/>
+        <category name="food"/>
+        <usage name="Farm"/>
+        <usage name="Hunting"/>
+    </type>
+    <type name="CP_CannabisSeedsPackPurpleThai">
+        <nominal>12</nominal>
+        <lifetime>7200</lifetime>
+        <restock>1800</restock>
+        <min>8</min>
+        <quantmin>-1</quantmin>
+        <quantmax>-1</quantmax>
+        <cost>100</cost>
+        <flags count_in_cargo="0" count_in_hoarder="0" count_in_map="1" count_in_player="0" crafted="0" deloot="0"/>
+        <category name="food"/>
+        <usage name="Farm"/>
+        <usage name="Hunting"/>
+    </type>
+    <type name="CP_CannabisSeedsPackChemdawg">
+        <nominal>12</nominal>
+        <lifetime>7200</lifetime>
+        <restock>1800</restock>
+        <min>8</min>
+        <quantmin>-1</quantmin>
+        <quantmax>-1</quantmax>
+        <cost>100</cost>
+        <flags count_in_cargo="0" count_in_hoarder="0" count_in_map="1" count_in_player="0" crafted="0" deloot="0"/>
+        <category name="food"/>
+        <usage name="Farm"/>
+        <usage name="Hunting"/>
+    </type>
+    <type name="CP_CannabisSeedsPackHaze">
+        <nominal>12</nominal>
+        <lifetime>7200</lifetime>
+        <restock>1800</restock>
+        <min>8</min>
+        <quantmin>-1</quantmin>
+        <quantmax>-1</quantmax>
+        <cost>100</cost>
+        <flags count_in_cargo="0" count_in_hoarder="0" count_in_map="1" count_in_player="0" crafted="0" deloot="0"/>
+        <category name="food"/>
+        <usage name="Farm"/>
+        <usage name="Hunting"/>
+    </type>
+    <type name="CP_CannabisSeedsPackPurpleSkunk">
+        <nominal>12</nominal>
+        <lifetime>7200</lifetime>
+        <restock>1800</restock>
+        <min>8</min>
+        <quantmin>-1</quantmin>
+        <quantmax>-1</quantmax>
+        <cost>100</cost>
+        <flags count_in_cargo="0" count_in_hoarder="0" count_in_map="1" count_in_player="0" crafted="0" deloot="0"/>
+        <category name="food"/>
+        <usage name="Farm"/>
+        <usage name="Hunting"/>
+    </type>
+    <type name="CP_CannabisSeedsPackBlackberry">
+        <nominal>12</nominal>
+        <lifetime>7200</lifetime>
+        <restock>1800</restock>
+        <min>8</min>
+        <quantmin>-1</quantmin>
+        <quantmax>-1</quantmax>
+        <cost>100</cost>
+        <flags count_in_cargo="0" count_in_hoarder="0" count_in_map="1" count_in_player="0" crafted="0" deloot="0"/>
+        <category name="food"/>
+        <usage name="Farm"/>
+        <usage name="Hunting"/>
+    </type>
+    <type name="CP_CannabisSeedsPackHarlequin">
+        <nominal>12</nominal>
+        <lifetime>7200</lifetime>
+        <restock>1800</restock>
+        <min>8</min>
+        <quantmin>-1</quantmin>
+        <quantmax>-1</quantmax>
+        <cost>100</cost>
+        <flags count_in_cargo="0" count_in_hoarder="0" count_in_map="1" count_in_player="0" crafted="0" deloot="0"/>
+        <category name="food"/>
+        <usage name="Farm"/>
+        <usage name="Hunting"/>
+    </type>
+    <!-- tier 1 (one cross) -->
+    <type name="CP_CannabisSeedsPackNorthernLights">
+        <nominal>8</nominal>
+        <lifetime>7200</lifetime>
+        <restock>1800</restock>
+        <min>5</min>
+        <quantmin>-1</quantmin>
+        <quantmax>-1</quantmax>
+        <cost>100</cost>
+        <flags count_in_cargo="0" count_in_hoarder="0" count_in_map="1" count_in_player="0" crafted="0" deloot="0"/>
+        <category name="food"/>
+        <usage name="Farm"/>
+        <usage name="Hunting"/>
+    </type>
+    <type name="CP_CannabisSeedsPackOGKush">
+        <nominal>8</nominal>
+        <lifetime>7200</lifetime>
+        <restock>1800</restock>
+        <min>5</min>
+        <quantmin>-1</quantmin>
+        <quantmax>-1</quantmax>
+        <cost>100</cost>
+        <flags count_in_cargo="0" count_in_hoarder="0" count_in_map="1" count_in_player="0" crafted="0" deloot="0"/>
+        <category name="food"/>
+        <usage name="Farm"/>
+        <usage name="Hunting"/>
+    </type>
+    <type name="CP_CannabisSeedsPackPurpleKush">
+        <nominal>8</nominal>
+        <lifetime>7200</lifetime>
+        <restock>1800</restock>
+        <min>5</min>
+        <quantmin>-1</quantmin>
+        <quantmax>-1</quantmax>
+        <cost>100</cost>
+        <flags count_in_cargo="0" count_in_hoarder="0" count_in_map="1" count_in_player="0" crafted="0" deloot="0"/>
+        <category name="food"/>
+        <usage name="Farm"/>
+        <usage name="Hunting"/>
+    </type>
+    <type name="CP_CannabisSeedsPackTresDawg">
+        <nominal>8</nominal>
+        <lifetime>7200</lifetime>
+        <restock>1800</restock>
+        <min>5</min>
+        <quantmin>-1</quantmin>
+        <quantmax>-1</quantmax>
+        <cost>100</cost>
+        <flags count_in_cargo="0" count_in_hoarder="0" count_in_map="1" count_in_player="0" crafted="0" deloot="0"/>
+        <category name="food"/>
+        <usage name="Farm"/>
+        <usage name="Hunting"/>
+    </type>
+    <type name="CP_CannabisSeedsPackGodBud">
+        <nominal>8</nominal>
+        <lifetime>7200</lifetime>
+        <restock>1800</restock>
+        <min>5</min>
+        <quantmin>-1</quantmin>
+        <quantmax>-1</quantmax>
+        <cost>100</cost>
+        <flags count_in_cargo="0" count_in_hoarder="0" count_in_map="1" count_in_player="0" crafted="0" deloot="0"/>
+        <category name="food"/>
+        <usage name="Farm"/>
+        <usage name="Hunting"/>
+    </type>
+    <!-- tier 2 -->
+    <type name="CP_CannabisSeedsPackSkunk">
+        <nominal>5</nominal>
+        <lifetime>7200</lifetime>
+        <restock>1800</restock>
+        <min>3</min>
+        <quantmin>-1</quantmin>
+        <quantmax>-1</quantmax>
+        <cost>100</cost>
+        <flags count_in_cargo="0" count_in_hoarder="0" count_in_map="1" count_in_player="0" crafted="0" deloot="0"/>
+        <category name="food"/>
+        <usage name="Farm"/>
+        <usage name="Hunting"/>
+    </type>
+    <type name="CP_CannabisSeedsPackBlueberry">
+        <nominal>5</nominal>
+        <lifetime>7200</lifetime>
+        <restock>1800</restock>
+        <min>3</min>
+        <quantmin>-1</quantmin>
+        <quantmax>-1</quantmax>
+        <cost>100</cost>
+        <flags count_in_cargo="0" count_in_hoarder="0" count_in_map="1" count_in_player="0" crafted="0" deloot="0"/>
+        <category name="food"/>
+        <usage name="Farm"/>
+        <usage name="Hunting"/>
+    </type>
+    <type name="CP_CannabisSeedsPackCookies">
+        <nominal>5</nominal>
+        <lifetime>7200</lifetime>
+        <restock>1800</restock>
+        <min>3</min>
+        <quantmin>-1</quantmin>
+        <quantmax>-1</quantmax>
+        <cost>100</cost>
+        <flags count_in_cargo="0" count_in_hoarder="0" count_in_map="1" count_in_player="0" crafted="0" deloot="0"/>
+        <category name="food"/>
+        <usage name="Farm"/>
+        <usage name="Hunting"/>
+    </type>
+    <type name="CP_CannabisSeedsPackStardawg">
+        <nominal>5</nominal>
+        <lifetime>7200</lifetime>
+        <restock>1800</restock>
+        <min>3</min>
+        <quantmin>-1</quantmin>
+        <quantmax>-1</quantmax>
+        <cost>100</cost>
+        <flags count_in_cargo="0" count_in_hoarder="0" count_in_map="1" count_in_player="0" crafted="0" deloot="0"/>
+        <category name="food"/>
+        <usage name="Farm"/>
+        <usage name="Hunting"/>
+    </type>
+    <type name="CP_CannabisSeedsPackZombieOG">
+        <nominal>5</nominal>
+        <lifetime>7200</lifetime>
+        <restock>1800</restock>
+        <min>3</min>
+        <quantmin>-1</quantmin>
+        <quantmax>-1</quantmax>
+        <cost>100</cost>
+        <flags count_in_cargo="0" count_in_hoarder="0" count_in_map="1" count_in_player="0" crafted="0" deloot="0"/>
+        <category name="food"/>
+        <usage name="Farm"/>
+        <usage name="Hunting"/>
+    </type>
+    <!-- tier 3 -->
+    <type name="CP_CannabisSeedsPackSuperSkunk">
+        <nominal>3</nominal>
+        <lifetime>7200</lifetime>
+        <restock>1800</restock>
+        <min>1</min>
+        <quantmin>-1</quantmin>
+        <quantmax>-1</quantmax>
+        <cost>100</cost>
+        <flags count_in_cargo="0" count_in_hoarder="0" count_in_map="1" count_in_player="0" crafted="0" deloot="0"/>
+        <category name="food"/>
+        <usage name="Farm"/>
+        <usage name="Hunting"/>
+    </type>
+    <type name="CP_CannabisSeedsPackBlueGod">
+        <nominal>3</nominal>
+        <lifetime>7200</lifetime>
+        <restock>1800</restock>
+        <min>1</min>
+        <quantmin>-1</quantmin>
+        <quantmax>-1</quantmax>
+        <cost>100</cost>
+        <flags count_in_cargo="0" count_in_hoarder="0" count_in_map="1" count_in_player="0" crafted="0" deloot="0"/>
+        <category name="food"/>
+        <usage name="Farm"/>
+        <usage name="Hunting"/>
+    </type>
+    <!-- tier 4 (hardest to breed) -->
+    <type name="CP_CannabisSeedsPackJackHerer">
+        <nominal>1</nominal>
+        <lifetime>7200</lifetime>
+        <restock>1800</restock>
+        <min>0</min>
+        <quantmin>-1</quantmin>
+        <quantmax>-1</quantmax>
+        <cost>100</cost>
+        <flags count_in_cargo="0" count_in_hoarder="0" count_in_map="1" count_in_player="0" crafted="0" deloot="0"/>
+        <category name="food"/>
+        <usage name="Farm"/>
+        <usage name="Hunting"/>
+    </type>
+    <type name="CP_CannabisSeedsPackSourDiesel">
+        <nominal>1</nominal>
+        <lifetime>7200</lifetime>
+        <restock>1800</restock>
+        <min>0</min>
         <quantmin>-1</quantmin>
         <quantmax>-1</quantmax>
         <cost>100</cost>

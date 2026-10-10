@@ -70,11 +70,11 @@ modded class ItemBase
 		if (m_CPRecordHash == 0)
 			m_CPRecordHash = 1;
 
-		string look = "Skunk";
+		string look = "";
 		CannabisStrainConfig strainConfig = CP_GetStrainConfig(m_CPRecord.Strain);
 		if (strainConfig)
 			look = strainConfig.Look;
-		m_CPLook = CannabisStrainConfig.GetLegacyStrainNames().Find(look);
+		m_CPLook = CP_StrainLooks.GetIndex(look);
 
 		SetSynchDirty();
 		CPApplyLook();
@@ -193,8 +193,9 @@ modded class ItemBase
 		return true;
 	}
 
-	// Puts the textures of the strain's look on the model: the same item kind's old per-strain class
-	// (e.g. CP_CannabisBagSkunk) has them in its config.
+	// Puts the textures of the strain's look (CfgCannabisStrainLooks) on the model. The item's config says which
+	// look entry goes on each hidden selection (cpLookTextures[] / cpLookMaterials[]); entries the look doesn't
+	// have keep the class's own texture.
 	void CPApplyLook(bool force = false)
 	{
 		if (!m_CPIsGenetic || g_Game.IsDedicatedServer())
@@ -202,23 +203,26 @@ modded class ItemBase
 		if (m_CPLook < 0 || (m_CPLook == m_CPAppliedLook && !force))
 			return;
 
-		array<string> looks = CannabisStrainConfig.GetLegacyStrainNames();
-		if (m_CPLook >= looks.Count())
+		string look = CP_StrainLooks.GetByIndex(m_CPLook);
+		if (look == "")
 			return;
 
-		string source = "CfgVehicles " + CP_StrainHelper.ReplaceStrain(GetType(), looks[m_CPLook]);
-		TStringArray textures = new TStringArray;
-		TStringArray materials = new TStringArray;
-		g_Game.ConfigGetTextArray(source + " hiddenSelectionsTextures", textures);
-		g_Game.ConfigGetTextArray(source + " hiddenSelectionsMaterials", materials);
+		TStringArray textureEntries = new TStringArray;
+		TStringArray materialEntries = new TStringArray;
+		ConfigGetTextArray("cpLookTextures", textureEntries);
+		ConfigGetTextArray("cpLookMaterials", materialEntries);
 
-		for (int i = 0; i < textures.Count(); i++)
+		for (int i = 0; i < textureEntries.Count(); i++)
 		{
-			SetObjectTexture(i, textures[i]);
+			string texture = CP_StrainLooks.Get(look, textureEntries[i]);
+			if (texture != "")
+				SetObjectTexture(i, texture);
 		}
-		for (int j = 0; j < materials.Count(); j++)
+		for (int j = 0; j < materialEntries.Count(); j++)
 		{
-			SetObjectMaterial(j, materials[j]);
+			string material = CP_StrainLooks.Get(look, materialEntries[j]);
+			if (material != "")
+				SetObjectMaterial(j, material);
 		}
 		m_CPAppliedLook = m_CPLook;
 	}
@@ -256,11 +260,19 @@ modded class ItemBase
 			return;
 		}
 
-		// Loot and admin spawns come without a strain: they get a random wild landrace.
-		if (!m_CPRecord)
-			CPSetRecord(CP_StrainRecord.Named(CP_Genetics.PickWildStrain()));
-		else
+		if (m_CPRecord)
+		{
 			CPSyncRecord();
+			return;
+		}
+
+		// Loot and admin spawns come without a strain. Per-strain seed packs (CP_CannabisSeedsPack<Strain>) hold
+		// their strain; everything else gets a random foundation strain.
+		string classStrain = CP_StrainHelper.GetStrain(GetType());
+		if (classStrain != CP_StrainHelper.GENETIC && CP_GetStrainConfig(classStrain))
+			CPSetRecord(CP_StrainRecord.Named(classStrain));
+		else
+			CPSetRecord(CP_StrainRecord.Named(CP_Genetics.PickWildStrain()));
 	}
 
 	// Turns an item of an old per-strain class into the genetic item of that strain, in the same place.
@@ -268,6 +280,10 @@ modded class ItemBase
 	{
 		string strain = CP_StrainHelper.GetLegacyStrain(GetType());
 		string geneticType = CP_StrainHelper.GetGeneticClass(GetType());
+		// Seed packs of a retired strain become the seed pack of the strain that replaces it.
+		string ownType = CP_StrainHelper.ReplaceStrain(GetType(), strain);
+		if (ownType != GetType() && g_Game.ConfigGetInt("CfgVehicles " + ownType + " cpGenetic") == 1)
+			geneticType = ownType;
 		if (strain == "" || !g_Game.ConfigIsExisting("CfgVehicles " + geneticType))
 			return;
 

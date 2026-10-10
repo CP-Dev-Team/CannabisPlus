@@ -33,9 +33,14 @@ modded class MissionServer
         while (fileName != "")
         {
             CPDebugPrint("Found file: " + fileName);
-            if (fileName != "CannabisPlus.json")  // Skip the general config file
+            string strainName = fileName.Substring(0, fileName.Length() - 5); // Remove ".json"
+            if (CP_StrainHelper.IsRetiredStrain(strainName))
             {
-                string strainName = fileName.Substring(0, fileName.Length() - 5); // Remove ".json"
+                // Retired in 4.0 (not a real strain); its items now belong to another strain. The file is left alone.
+                Print("[CannabisPlus] Strain file " + fileName + " is not used any more: " + strainName + " was retired, its items became " + CP_StrainHelper.GetRetiredReplacement(strainName) + ".");
+            }
+            else if (fileName != "CannabisPlus.json")  // Skip the general config file
+            {
                 CPDebugPrint("Loading strain config: " + strainName);
 
                 CannabisStrainConfig strainConfig = CannabisStrainConfig.LoadStrain(strainName);
@@ -91,9 +96,10 @@ modded class MissionServer
 				array<string> legacyStrains = CannabisStrainConfig.GetLegacyStrainNames();
 				foreach (string strainName : legacyStrains)
 				{
-					CannabisStrainConfig strainCfg = g_CannabisStrainConfigs.Get(strainName);
+					string currentStrain = CP_StrainHelper.GetRetiredReplacement(strainName);
+					CannabisStrainConfig strainCfg = g_CannabisStrainConfigs.Get(currentStrain);
 					if (!strainCfg)
-						strainCfg = CannabisStrainConfig.CreateDefaultFor(strainName);
+						strainCfg = CannabisStrainConfig.CreateDefaultFor(currentStrain);
 					string plantType = CP_StrainHelper.GetPlantClass(strainName);
 					AC_RegisterPlant(plantType, strainCfg.MinutesToGrow, 1, strainCfg.CropCount, true, true);
 					CPDebugPrint("Pre-registered plant: " + plantType);

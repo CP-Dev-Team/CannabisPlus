@@ -3,15 +3,25 @@ New: Strain genetics (part 1 of the breeding update)
 - Strains are no longer separate items. Every strain now uses one set of items (buds, bags, bricks, joints,
   joint packs, seeds, seed packs, plants, raw plants), and each item remembers its strain. Item names and
   textures still show the strain, for example "Skunk Bud" with the Skunk look.
-- 23 strains ship with the mod: 7 wild landraces (Afghan, Thai, Colombian Gold, Acapulco Gold, Hindu Kush,
-  Hawaiian, Swiss Hemp), 8 new crosses and the 8 strains you already know. Breeding between them comes in a
-  later part of v4.
+- 28 real strains ship with the mod, each bred from its commonly cited real parents:
+  - Found-only (loot and traders): Afghani, Thai, Hindu Kush, Acapulco Gold, Colombian Gold, Durban Poison, Hawaiian,
+    Purple Afghani, Purple Thai, plus Chemdawg, Haze, Purple Skunk, Blackberry and Harlequin (real strains whose
+    origin is unknown or disputed).
+  - Bred: Northern Lights, OG Kush, Purple Kush, Tres Dawg, God Bud (tier 1); Skunk #1, Blueberry, Girl Scout
+    Cookies, Stardawg, Zombie OG (tier 2); Super Skunk, Blue God (tier 3); Jack Herer, Sour Diesel (tier 4).
+  Breeding itself comes in a later part of v4.
+- Nomad, S1, Black Frost and Future are retired (they aren't real strains). Their items become Afghani, Harlequin,
+  Northern Lights and Super Skunk, which also take over their textures.
+- Every strain has its own seed pack (CP_CannabisSeedsPack<Strain>, e.g. CP_CannabisSeedsPackJackHerer), so loot and
+  traders can offer specific strains. The sample types.xml makes packs rarer the deeper the strain is in the tree.
+  CP_CannabisSeedsPackGenetic gives a random found-only strain instead.
+- Strains have their own textures (new: Acapulco Gold, Afghani, Blueberry, Girl Scout Cookies, Durban Poison,
+  Harlequin, Jack Herer, OG Kush, Sour Diesel, Zombie OG). Strains without textures yet use plain cannabis textures.
+  Textures live in CfgCannabisStrainLooks, so another mod can add looks for custom strains.
 - Items only stack with items of the same strain. Splitting a stack keeps the strain.
 - The strain carries through everything: seed pack -> seeds -> plant -> raw plant -> drying post -> buds ->
   workbench bags and bricks -> ripping open / unwrapping -> joints -> joint packs -> unpacking.
-- Seed packs found as loot (or spawned without a strain) are a random wild landrace.
-- CBD crude oil can be made from buds of any strain with at least 40 CBD (S1 and Swiss Hemp by default) instead
-  of S1 only.
+- CBD crude oil can be made from buds of any strain with at least 40 CBD (Harlequin by default) instead of S1 only.
 - Custom strain files are full strains now: add a json file and the strain exists, no new item classes needed.
 
 Your players' items are converted, nothing is lost
@@ -26,14 +36,18 @@ Your players' items are converted, nothing is lost
 Config Changes (REQUIRED)
 - types.xml / traders: the 8 sets of per-strain classes are replaced by one set: CP_CannabisGenetic,
   CP_CannabisBagGenetic, CP_CannabisBrickGenetic, CP_JointGenetic, CP_JointPack_Genetic, CP_CannabisSeedsGenetic,
-  CP_CannabisSeedsPackGenetic, CP_Plant_CannabisGenetic (and CP_RawGeneticCannabisPlant). See the updated
+  CP_Plant_CannabisGenetic (and CP_RawGeneticCannabisPlant), plus one seed pack per strain. See the updated
   CP_sample_cannabisplus_types.xml. Remove the old per-strain entries; if you keep them, those items spawn and
-  convert into the new ones. Trader prices are now per item type, not per strain.
+  convert into the new ones. The seed packs of Skunk, Blue God, Purple Kush and Stardawg keep their class names,
+  so those entries keep working. Trader prices are now per item type, not per strain (except seed packs).
+- Strain files of retired strains (Nomad.json, S1.json, BlackFrost.json, Future.json) are no longer used; the
+  server log says so. Your file is left in place.
 - Strain files (profiles/CannabisPlus/CannabisStrains/*.json) get new settings, added automatically with the
-  strain's built-in values: DisplayName, Description, Tier, ParentA, ParentB, Look (whose textures the strain
-  uses: Skunk, BlueGod, PurpleKush, Stardawg, S1, Future, Nomad or BlackFrost) and Traits (Potency, Yield, Speed,
-  Hardiness, Resin, CBD, Aroma, 0-100). Your MinutesToGrow, CropCount, SeedsPerPackage and WeedEffects are kept.
-- The 15 new built-in strains get their own files on the first start after updating. A built-in strain file you
+  strain's built-in values: DisplayName, Description, Tier, ParentA, ParentB (a parent written "A+B" is the unnamed
+  first cross of A and B), Look (whose textures the strain uses, any strain with textures, "" = plain) and Traits
+  (Potency, Yield, Speed, Hardiness, Resin, CBD, Aroma, 0-100). Your MinutesToGrow, CropCount, SeedsPerPackage and
+  WeedEffects are kept.
+- The new built-in strains get their own files on the first start after updating. A built-in strain file you
   delete stays deleted until the next CannabisPlus update.
 - Grow time and buds per plant now come from each plant's strain file.
 

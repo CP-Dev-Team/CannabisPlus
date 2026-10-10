@@ -93,7 +93,8 @@ class CP_StrainHelper
 		return className.Substring(0, className.Length() - strain.Length()) + newStrain;
 	}
 
-	// The strain of an item class from CannabisPlus 3 (one class per strain), or "" for any other class.
+	// The strain an item class from CannabisPlus 3 (one class per strain) stands for now, or "" for any other
+	// class. Retired strains (not real strains) give the real strain their items turn into.
 	static string GetLegacyStrain(string className)
 	{
 		string strain = GetStrain(className);
@@ -101,7 +102,25 @@ class CP_StrainHelper
 			return "";
 		if (CannabisStrainConfig.GetLegacyStrainNames().Find(strain) == -1)
 			return "";
+		return GetRetiredReplacement(strain);
+	}
+
+	// CannabisPlus 3 strains that aren't real strains were retired in 4.0; their items become these.
+	static string GetRetiredReplacement(string strain)
+	{
+		switch (strain)
+		{
+			case "Nomad":      return "Afghani";
+			case "BlackFrost": return "NorthernLights";
+			case "S1":         return "Harlequin";
+			case "Future":     return "SuperSkunk";
+		}
 		return strain;
+	}
+
+	static bool IsRetiredStrain(string strain)
+	{
+		return GetRetiredReplacement(strain) != strain;
 	}
 
 	// Lists files in the server profile. DayZ 1.30 broke FindFile on $profile: paths

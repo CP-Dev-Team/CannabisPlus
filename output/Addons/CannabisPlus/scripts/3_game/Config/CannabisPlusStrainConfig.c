@@ -16,7 +16,7 @@ class CannabisStrainConfig
 	int Tier;					// 0 = wild landrace, 1-4 = how many crosses deep it is
 	string ParentA;				// the two strains it is bred from ("" for landraces)
 	string ParentB;
-	string Look;				// whose textures the items use: Skunk, BlueGod, PurpleKush, Stardawg, S1, Future, Nomad or BlackFrost
+	string Look;				// whose textures the items use: a class in CfgCannabisStrainLooks ("" = plain textures)
 	ref CP_StrainTraits Traits;	// reference traits, 0-100
 
     void CannabisStrainConfig(int growMins = 8, int cropCount = 2, int seedCount = 9)
@@ -26,7 +26,7 @@ class CannabisStrainConfig
         SeedsPerPackage = seedCount;
         WeedEffects = new WeedEffectsConfig();
         Traits = new CP_StrainTraits();
-        Look = "Skunk";
+        Look = "";
     }
 
     static CannabisStrainConfig CreateDefault()
@@ -116,7 +116,8 @@ class CannabisStrainConfig
         array<string> defaultStrains = GetDefaultStrainNames();
         foreach (string strainName : defaultStrains)
         {
-            CreateDefaultFor(strainName).SaveIfMissing(strainName);
+            CannabisStrainConfig strain = CreateDefaultFor(strainName);
+            strain.SaveIfMissing(strainName);
         }
     }
 
@@ -130,10 +131,13 @@ class CannabisStrainConfig
         Traits.Validate();
         if (Tier < 0) Tier = 0;
         if (DisplayName == "") DisplayName = strainName;
-        if (GetLegacyStrainNames().Find(Look) == -1)
+        // A strain with its own textures (a class in CfgCannabisStrainLooks named like it) uses them by default.
+        if (Look == "" && CP_StrainLooks.Has(strainName))
+            Look = strainName;
+        if (Look != "" && !CP_StrainLooks.Has(Look))
         {
-            Print("[CannabisPlus] WARNING: Strain " + strainName + " has an unknown Look \"" + Look + "\", using Skunk.");
-            Look = "Skunk";
+            Print("[CannabisPlus] WARNING: Strain " + strainName + " has an unknown Look \"" + Look + "\", using plain textures.");
+            Look = "";
         }
     }
 
@@ -282,30 +286,28 @@ class CP_StrainTraits
     }
 };
 
-// The strain tree that ships with CannabisPlus: 7 wild landraces and 16 crosses of exactly two parents.
-// A cross's reference traits are the average of its parents', so every named strain can be bred.
+// The strain tree that ships with CannabisPlus: real strains with their commonly cited parents.
+// - Foundation strains are found only (loot, traders): wild landraces, and real strains whose origin is unknown
+//   or disputed (Chemdawg, Haze, Purple Skunk, Blackberry, Harlequin).
+// - Every other strain is a cross of exactly two parents. A parent written "A+B" is the unnamed first cross of A
+//   and B, used for real 3- and 4-way crosses (e.g. Skunk #1 = (Afghani x Colombian Gold) x Acapulco Gold),
+//   so no strain names are invented.
+// - A cross's reference traits are the average of its parents', and its tier is how many crosses deep it is.
+// Trait values of foundation strains are game values, not lab data.
 class CP_BuiltInStrains
 {
     static array<string> GetNames()
     {
         array<string> names = {
-            // wild landraces
-            "Afghan", "Thai", "ColombianGold", "AcapulcoGold", "HinduKush", "Hawaiian", "SwissHemp",
-            // tier 1
-            "NorthernLights", "GoldenCross", "PurpleAfghani", "Chemdawg", "Nomad",
-            // tier 2
-            "Skunk", "PurpleKush", "Blueberry", "GodBud", "TresDawg",
-            // tier 3
-            "BlueGod", "Stardawg", "GoldenGoat", "S1", "BlackFrost",
-            // tier 4
-            "Future"
+            // foundation: wild landraces
+            "Afghani", "Thai", "HinduKush", "AcapulcoGold", "ColombianGold", "DurbanPoison", "Hawaiian", "PurpleAfghani", "PurpleThai",
+            // foundation: real strains of unknown or disputed origin
+            "Chemdawg", "Haze", "PurpleSkunk", "Blackberry", "Harlequin",
+            // crosses
+            "NorthernLights", "OGKush", "PurpleKush", "TresDawg", "GodBud",
+            "Skunk", "Blueberry", "Cookies", "Stardawg", "ZombieOG",
+            "SuperSkunk", "BlueGod", "JackHerer", "SourDiesel"
         };
-        return names;
-    }
-
-    static array<string> GetLandraceNames()
-    {
-        array<string> names = {"Afghan", "Thai", "ColombianGold", "AcapulcoGold", "HinduKush", "Hawaiian", "SwissHemp"};
         return names;
     }
 
@@ -314,58 +316,148 @@ class CP_BuiltInStrains
     {
         switch (name)
         {
-            //                  name, display name, look, potency, yield, speed, hardiness, resin, CBD, aroma
-            case "Afghan":          return MakeLandrace("Afghan", "Nomad", 70, 65, 70, 80, 75, 5, 45);
-            case "Thai":            return MakeLandrace("Thai", "Stardawg", 60, 45, 35, 50, 55, 5, 80);
-            case "ColombianGold":   return MakeLandrace("Colombian Gold", "Skunk", 65, 55, 45, 55, 60, 5, 70);
-            case "AcapulcoGold":    return MakeLandrace("Acapulco Gold", "Future", 68, 60, 50, 55, 62, 5, 72);
-            case "HinduKush":       return MakeLandrace("Hindu Kush", "PurpleKush", 72, 62, 68, 82, 78, 5, 50);
-            case "Hawaiian":        return MakeLandrace("Hawaiian", "S1", 62, 58, 40, 52, 58, 5, 85);
-            case "SwissHemp":       return MakeLandrace("Swiss Hemp", "S1", 10, 70, 60, 85, 30, 80, 40);
+            //                              display name, potency, yield, speed, hardiness, resin, CBD, aroma
+            case "Afghani":         return MakeFoundation(name, "Afghani", 70, 65, 70, 80, 75, 5, 45, "Wild landrace from Afghanistan, the classic hash plant.");
+            case "Thai":            return MakeFoundation(name, "Thai", 60, 45, 35, 50, 55, 5, 80, "Wild landrace from Thailand: tall, slow and fragrant.");
+            case "HinduKush":       return MakeFoundation(name, "Hindu Kush", 72, 62, 68, 82, 78, 5, 50, "Wild landrace from the Hindu Kush mountains.");
+            case "AcapulcoGold":    return MakeFoundation(name, "Acapulco Gold", 68, 60, 50, 55, 62, 5, 72, "Wild landrace from Mexico.");
+            case "ColombianGold":   return MakeFoundation(name, "Colombian Gold", 65, 55, 45, 55, 60, 5, 70, "Wild landrace from Colombia's Santa Marta mountains.");
+            case "DurbanPoison":    return MakeFoundation(name, "Durban Poison", 72, 55, 60, 60, 70, 3, 75, "Wild landrace from South Africa.");
+            case "Hawaiian":        return MakeFoundation(name, "Hawaiian", 62, 58, 40, 52, 58, 5, 85, "Wild landrace from Hawaii.");
+            case "PurpleAfghani":   return MakeFoundation(name, "Purple Afghani", 68, 60, 72, 80, 74, 5, 55, "Purple Afghan landrace.");
+            case "PurpleThai":      return MakeFoundation(name, "Purple Thai", 62, 45, 38, 50, 58, 4, 82, "Purple Thai heirloom.");
+            case "Chemdawg":        return MakeFoundation(name, "Chemdawg", 85, 55, 55, 60, 80, 3, 70, "Famous cut of unknown origin, first seen at a 1991 Grateful Dead show.");
+            case "Haze":            return MakeFoundation(name, "Haze", 75, 45, 25, 45, 60, 3, 85, "Santa Cruz heirloom of tropical sativas; its exact parents are disputed.");
+            case "PurpleSkunk":     return MakeFoundation(name, "Purple Skunk", 66, 62, 62, 65, 66, 5, 70, "Old Afghan-type line of unclear origin.");
+            case "Blackberry":      return MakeFoundation(name, "Blackberry", 70, 60, 62, 68, 72, 5, 80, "A family of berry-scented lines rather than one fixed strain.");
+            case "Harlequin":       return MakeFoundation(name, "Harlequin", 25, 60, 50, 70, 45, 85, 55, "High-CBD strain from Colombian Gold, Thai, Swiss and Nepali landraces.");
 
-            //                  display name, look, tier, parents
-            case "NorthernLights":  return MakeCross("Northern Lights", "BlackFrost", 1, "Afghan", "Thai");
-            case "GoldenCross":     return MakeCross("Golden Cross", "Future", 1, "ColombianGold", "AcapulcoGold");
-            case "PurpleAfghani":   return MakeCross("Purple Afghani", "PurpleKush", 1, "Afghan", "HinduKush");
-            case "Chemdawg":        return MakeCross("Chemdawg", "Stardawg", 1, "Thai", "HinduKush");
-            case "Nomad":           return MakeCross("Nomad", "Nomad", 1, "Afghan", "AcapulcoGold");
-            case "Skunk":           return MakeCross("Skunk", "Skunk", 2, "Afghan", "GoldenCross");
-            case "PurpleKush":      return MakeCross("Purple Kush", "PurpleKush", 2, "HinduKush", "PurpleAfghani");
-            case "Blueberry":       return MakeCross("Blueberry", "BlueGod", 2, "Thai", "PurpleAfghani");
-            case "GodBud":          return MakeCross("God Bud", "BlueGod", 2, "Hawaiian", "PurpleAfghani");
-            case "TresDawg":        return MakeCross("Tres Dawg", "Stardawg", 2, "Chemdawg", "Afghan");
-            case "BlueGod":         return MakeCross("Blue God", "BlueGod", 3, "Blueberry", "GodBud");
-            case "Stardawg":        return MakeCross("Stardawg", "Stardawg", 3, "Chemdawg", "TresDawg");
-            case "GoldenGoat":      return MakeCross("Golden Goat", "Future", 3, "Hawaiian", "Skunk");
-            case "S1":              return MakeCross("S1", "S1", 3, "SwissHemp", "Skunk");
-            case "BlackFrost":      return MakeCross("Black Frost", "BlackFrost", 3, "NorthernLights", "PurpleKush");
-            case "Future":          return MakeCross("Future", "Future", 4, "GoldenGoat", "PurpleKush");
+            //                          display name, parents
+            case "NorthernLights":  return MakeCross(name, "Northern Lights", "Afghani", "Thai");
+            case "OGKush":          return MakeCross(name, "OG Kush", "Chemdawg", "HinduKush");
+            case "PurpleKush":      return MakeCross(name, "Purple Kush", "HinduKush", "PurpleAfghani");
+            case "TresDawg":        return MakeCross(name, "Tres Dawg", "Chemdawg", "Afghani");
+            case "GodBud":          return MakeCross(name, "God Bud", "Hawaiian", "PurpleSkunk");
+            case "Skunk":           return MakeCross(name, "Skunk #1", "Afghani+ColombianGold", "AcapulcoGold");
+            case "Blueberry":       return MakeCross(name, "Blueberry", "Afghani+PurpleThai", "Thai");
+            case "Cookies":         return MakeCross(name, "Girl Scout Cookies", "OGKush", "DurbanPoison");
+            case "Stardawg":        return MakeCross(name, "Stardawg", "Chemdawg", "TresDawg");
+            case "ZombieOG":        return MakeCross(name, "Zombie OG", "OGKush", "Blackberry");
+            case "SuperSkunk":      return MakeCross(name, "Super Skunk", "Skunk", "Afghani");
+            case "BlueGod":         return MakeCross(name, "Blue God", "Blueberry", "GodBud");
+            case "JackHerer":       return MakeCross(name, "Jack Herer", "NorthernLights+Haze", "Skunk+Haze");
+            case "SourDiesel":      return MakeCross(name, "Sour Diesel", "Chemdawg", "SuperSkunk");
         }
         return null;
     }
 
-    protected static CannabisStrainConfig MakeLandrace(string displayName, string look, int potency, int yield, int speed, int hardiness, int resin, int cbd, int aroma)
+    protected static CannabisStrainConfig MakeFoundation(string name, string displayName, int potency, int yield, int speed, int hardiness, int resin, int cbd, int aroma, string description)
     {
         CannabisStrainConfig strain = CannabisStrainConfig.CreateDefault();
         strain.DisplayName = displayName;
-        strain.Look = look;
+        strain.Description = description;
+        if (CP_StrainLooks.Has(name)) strain.Look = name;	// no textures yet: plain textures
         strain.Tier = 0;
         strain.Traits = new CP_StrainTraits(potency, yield, speed, hardiness, resin, cbd, aroma);
         return strain;
     }
 
-    protected static CannabisStrainConfig MakeCross(string displayName, string look, int tier, string parentA, string parentB)
+    protected static CannabisStrainConfig MakeCross(string name, string displayName, string parentA, string parentB)
     {
         CannabisStrainConfig strain = CannabisStrainConfig.CreateDefault();
         strain.DisplayName = displayName;
-        strain.Look = look;
-        strain.Tier = tier;
+        if (CP_StrainLooks.Has(name)) strain.Look = name;	// no textures yet: plain textures
         strain.ParentA = parentA;
         strain.ParentB = parentB;
+        strain.Tier = Math.Max(GetTier(parentA), GetTier(parentB)) + 1;
         // Kept in variables: a temporary result would be freed before its traits are read.
-        CannabisStrainConfig a = Create(parentA);
-        CannabisStrainConfig b = Create(parentB);
-        strain.Traits = CP_StrainTraits.Average(a.Traits, b.Traits);
+        CP_StrainTraits a = GetTraits(parentA);
+        CP_StrainTraits b = GetTraits(parentB);
+        strain.Traits = CP_StrainTraits.Average(a, b);
         return strain;
+    }
+
+    // Reference traits of a parent: a built-in strain, or "A+B" (the average of A and B).
+    static CP_StrainTraits GetTraits(string parent)
+    {
+        int plus = parent.IndexOf("+");
+        if (plus >= 0)
+        {
+            CP_StrainTraits a = GetTraits(parent.Substring(0, plus));
+            CP_StrainTraits b = GetTraits(parent.Substring(plus + 1, parent.Length() - plus - 1));
+            return CP_StrainTraits.Average(a, b);
+        }
+
+        CannabisStrainConfig strain = Create(parent);
+        if (!strain)
+            return new CP_StrainTraits();
+        // A copy: strain (and its traits) is freed when this function ends.
+        return strain.Traits.Copy();
+    }
+
+    // How many crosses deep a parent is: a built-in strain's tier, or "A+B" = one cross above the deeper of A and B.
+    static int GetTier(string parent)
+    {
+        int plus = parent.IndexOf("+");
+        if (plus >= 0)
+            return Math.Max(GetTier(parent.Substring(0, plus)), GetTier(parent.Substring(plus + 1, parent.Length() - plus - 1))) + 1;
+
+        CannabisStrainConfig strain = Create(parent);
+        if (!strain)
+            return 0;
+        return strain.Tier;
+    }
+}
+
+// Strain textures: classes in CfgCannabisStrainLooks (genetics/config.cpp). Each genetic item class says in
+// cpLookTextures[] / cpLookMaterials[] which look entry goes on each of its hidden selections.
+class CP_StrainLooks
+{
+    protected static ref TStringArray s_Names;
+
+    // Every look, sorted (the same on the server and on clients, so items sync a look as its position).
+    static TStringArray GetNames()
+    {
+        if (!s_Names)
+        {
+            s_Names = new TStringArray;
+            string path = "CfgCannabisStrainLooks";
+            int count = g_Game.ConfigGetChildrenCount(path);
+            for (int i = 0; i < count; i++)
+            {
+                string name;
+                g_Game.ConfigGetChildName(path, i, name);
+                s_Names.Insert(name);
+            }
+            s_Names.Sort();
+        }
+        return s_Names;
+    }
+
+    static bool Has(string look)
+    {
+        return look != "" && GetNames().Find(look) != -1;
+    }
+
+    static int GetIndex(string look)
+    {
+        return GetNames().Find(look);
+    }
+
+    static string GetByIndex(int index)
+    {
+        TStringArray names = GetNames();
+        if (index < 0 || index >= names.Count())
+            return "";
+        return names[index];
+    }
+
+    // A texture or material of a look, e.g. ("Skunk", "bag"); "" if the look has none.
+    static string Get(string look, string entry)
+    {
+        string value = "";
+        if (look != "" && entry != "")
+            g_Game.ConfigGetText("CfgCannabisStrainLooks " + look + " " + entry, value);
+        return value;
     }
 }
