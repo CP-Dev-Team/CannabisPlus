@@ -60,20 +60,67 @@ class CP_Workbench extends AC_BenchBase
 
 	// ------------------------------------------------------------------ strain-specific products
 
+	// The "same" inputs are keyed "<genetic class>|<strain record key>" (ItemBase.GetACSameKey), so products are
+	// always genetic bags / bricks; OnACOutputCreated gives them the strain. Batches saved before CannabisPlus 4
+	// stored the old class name (e.g. CP_CannabisSkunk) instead.
 	override string ResolveACOutputType(AC_BenchRecipe recipe, string token, TStringArray usedTypes)
 	{
 		if (!usedTypes || usedTypes.Count() == 0 || usedTypes[0] == "")
 			return "";
 
-		string strain = CP_StrainHelper.GetStrain(usedTypes[0]);
+		string strain = CP_StrainHelper.GetStrain(GetCPUsedType(usedTypes[0]));
 		if (!CP_StrainHelper.IsValidStrain(strain))
 			return "";
 
 		if (token == "@CP_BagFromBud")
-			return CP_StrainHelper.GetBagClass(strain);
+			return CP_StrainHelper.GetGeneticClass(CP_StrainHelper.GetBagClass(strain));
 		if (token == "@CP_BrickFromBag")
-			return CP_StrainHelper.GetBrickClass(strain);
+			return CP_StrainHelper.GetGeneticClass(CP_StrainHelper.GetBrickClass(strain));
 		return super.ResolveACOutputType(recipe, token, usedTypes);
+	}
+
+	override void OnACOutputCreated(AC_BenchRecipe recipe, AC_BenchIngredient output, ItemBase product)
+	{
+		super.OnACOutputCreated(recipe, output, product);
+
+		CP_StrainRecord record = GetCPUsedRecord();
+		if (record)
+			product.CPSetRecord(record);
+	}
+
+	// Products only top up stacks of the same strain.
+	override bool CanACTopUp(AC_BenchRecipe recipe, AC_BenchIngredient output, ItemBase stack)
+	{
+		CP_StrainRecord record = GetCPUsedRecord();
+		if (!record || !stack.IsCPGenetic())
+			return super.CanACTopUp(recipe, output, stack);
+		return stack.CPGetRecordKey() == record.GetKey();
+	}
+
+	// The class part of a used-input entry.
+	protected static string GetCPUsedType(string used)
+	{
+		int bar = used.IndexOf("|");
+		if (bar < 0)
+			return used;
+		return used.Substring(0, bar);
+	}
+
+	// Server: the strain of the running batch's buds / bags.
+	protected CP_StrainRecord GetCPUsedRecord()
+	{
+		if (!m_ACUsedTypes || m_ACUsedTypes.Count() == 0)
+			return null;
+
+		string used = m_ACUsedTypes[0];
+		int bar = used.IndexOf("|");
+		if (bar >= 0)
+			return CP_StrainRecord.FromKey(used.Substring(bar + 1, used.Length() - bar - 1));
+
+		string legacyStrain = CP_StrainHelper.GetLegacyStrain(used);
+		if (legacyStrain != "")
+			return CP_StrainRecord.Named(legacyStrain);
+		return null;
 	}
 
 	override string GetACOutputLabel(AC_BenchRecipe recipe, AC_BenchIngredient output)

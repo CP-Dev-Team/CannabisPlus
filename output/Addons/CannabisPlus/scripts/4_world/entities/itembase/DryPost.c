@@ -9,7 +9,8 @@ class CP_DryPost extends ItemBase
 	int NumItems;
 	string ItemName;
 	string NewPlantName;
-	ref map<string, int> BudSpawn;
+	ref map<string, int> BudSpawn;					// strain record key -> buds to make
+	protected ref map<string, ref CP_StrainRecord> m_BudRecords;	// strain record key -> record
 	EntityAI target;
 	protected float Lock;
 	
@@ -18,6 +19,7 @@ class CP_DryPost extends ItemBase
 	void CP_DryPost()
 	{
 		BudSpawn = new map<string, int>;
+		m_BudRecords = new map<string, ref CP_StrainRecord>;
 		// Synced so players' inventory screens know the post is locked while drying.
 		RegisterNetSyncVariableBool("m_IsLocked");
 
@@ -265,39 +267,33 @@ class CP_DryPost extends ItemBase
 			// To cast and get the amount of bud to spawn before deleting
 			if (ItemName.IndexOf("CP_Raw") >= 0 && ItemName.IndexOf("CannabisPlant") >= 0)
 			{
-				// Extract strain name from ItemName (e.g., "Skunk" from "CP_RawSkunkCannabisPlant")
-				string strainName = ItemName.Substring(6, ItemName.Length() - 19); // Remove "CP_Raw" (6 chars) and "CannabisPlant" (13 chars)
-				CPDebugPrint("Extracted strain name for drying: " + strainName);
+				CP_RawPlantBase plant = CP_RawPlantBase.Cast(attachment);
+				CP_StrainRecord record = attachment.CPGetRecord();
+				if (!plant || !record)
+				{
+					CPDebugPrint("Warning: No strain on " + ItemName + ", skipping it.");
+					continue;
+				}
 
-				if (g_CannabisStrainConfigs.Contains(strainName))
+				int plantYield = plant.GetYield();
+				if (plantYield <= 0)
 				{
-					CP_RawPlantBase plant = CP_RawPlantBase.Cast(attachment);
-					if (plant)
-					{
-						string driedType = "CP_Cannabis" + strainName;
-						int plantYield = plant.GetYield();
-						if (plantYield <= 0)
-						{
-							// Yield was never set (e.g. plant created outside normal harvest chain).
-							// Fall back to the strain's configured CropCount so the post still
-							// produces the correct amount rather than 1 bud per plant.
-							plantYield = g_CannabisStrainConfigs.Get(strainName).CropCount;
-							CPDebugPrint("Warning: Plant " + plant + " had yield=0; using strain default CropCount: " + plantYield);
-						}
-						AddToMap(driedType, plantYield);
-						CPDebugPrint("Added to map: " + driedType + " with yield: " + plantYield);
-					}
-					else
-					{
-						CPDebugPrint("Warning: Failed to cast attachment to CP_RawPlantBase for: " + ItemName);
-					}
+					// Yield was never set (e.g. plant created outside normal harvest chain).
+					// Fall back to the strain's configured CropCount so the post still
+					// produces the correct amount rather than 1 bud per plant.
+					plantYield = 2;
+					CannabisStrainConfig strainConfig = CP_GetStrainConfig(record.Strain);
+					if (strainConfig)
+						plantYield = strainConfig.CropCount;
+					CPDebugPrint("Warning: Plant " + plant + " had yield=0; using strain default CropCount: " + plantYield);
 				}
-				else
-				{
-					CPDebugPrint("Warning: Strain config for '" + strainName + "' not found. Skipping drying for: " + ItemName);
-				}
+
+				string key = record.GetKey();
+				AddToMap(key, plantYield);
+				m_BudRecords.Set(key, record);
+				CPDebugPrint("Added to map: " + key + " with yield: " + plantYield);
 			}
-		}			
+		}
 		g_Game.GetCallQueue(CALL_CATEGORY_GAMEPLAY).CallLater(SpawnDried, 500, false, GetPosition() );
 	}
 	
@@ -307,12 +303,15 @@ class CP_DryPost extends ItemBase
 		{
 			CPDebugPrint("The plant has " + BudSpawn.Count() + " items");
 			
+			// Every strain dries into the genetic buds, carrying the raw plant's strain.
+			string budType = "CP_CannabisGenetic";
 			for ( int j = 0; j < BudSpawn.Count(); j++)
 			{
 				string key = BudSpawn.GetKey(j);
+				CP_StrainRecord record = m_BudRecords.Get(key);
 				CPDebugPrint("plant[" + j + "] is " + key + " with quantity " + BudSpawn.Get(key));
 				int StackMax;
-				StackMax = g_Game.ConfigGetInt("CfgVehicles " + key + " varStackMax");
+				StackMax = g_Game.ConfigGetInt("CfgVehicles " + budType + " varStackMax");
 				if (StackMax < 1) StackMax = 1;
 				int stacks = Math.Floor(BudSpawn.Get(key) / StackMax);
 				int remainder = BudSpawn.Get(key) - (stacks * StackMax);
@@ -324,18 +323,19 @@ class CP_DryPost extends ItemBase
 					if (stacks > 0 && k == stacks && remainder == 0)
 						break;
 
-					CP_CannabisBud weed = CP_CannabisBud.Cast(this.GetInventory().CreateInInventory(key));
+					CP_CannabisBud weed = CP_CannabisBud.Cast(this.GetInventory().CreateInInventory(budType));
 					if (!weed)
 					{
 						// Post is full: drop the rest next to it instead of losing it.
-						CPDebugPrint("Post inventory full, dropping " + key + " on the ground.");
-						weed = CP_CannabisBud.Cast(g_Game.CreateObjectEx(key, GetPosition(), ECE_PLACE_ON_SURFACE));
+						CPDebugPrint("Post inventory full, dropping " + budType + " on the ground.");
+						weed = CP_CannabisBud.Cast(g_Game.CreateObjectEx(budType, GetPosition(), ECE_PLACE_ON_SURFACE));
 					}
 					if (!weed)
 					{
-						CPDebugPrint("Warning: Failed to create " + key + ".");
+						CPDebugPrint("Warning: Failed to create " + budType + ".");
 						break;
 					}
+					weed.CPSetRecord(record);
 
 					if (stacks == 0)  //less than 1 stack, break out of for
 					{
@@ -377,6 +377,7 @@ class CP_DryPost extends ItemBase
 	
 			NumPlants = 0;
 			BudSpawn.Clear();
+			m_BudRecords.Clear();
 		}
 		LockDryingSlots(false);
 		m_IsLocked = false;	

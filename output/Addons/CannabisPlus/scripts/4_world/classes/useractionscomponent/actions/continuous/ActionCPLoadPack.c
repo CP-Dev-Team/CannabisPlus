@@ -20,7 +20,7 @@ class ActionCPLoadPack : ActionAC_LoadPackBase
 			if (!jointPack)
 				return false;
 
-			return CP_StrainHelper.GetStrain(joint.GetType()) == CP_StrainHelper.GetStrain(jointPack.GetType());
+			return CP_Genetics.SameStrain(joint, jointPack);
 		}
 
 		return false;

@@ -78,11 +78,11 @@ class CP_CraftCannabisBag extends RecipeBase
 		//CP_CannabisBags BudsHolder;
 		//CP_CannabisBags BudsHolder = Cast(results[0]);
 		
-		string Bagname = CP_StrainHelper.GetBagFromBud(ingredient1.GetType()); 
-		
-		
-		CP_CannabisBags BudsHolder = CP_CannabisBags.Cast(g_Game.CreateObject(Bagname, ingredient1.GetPosition()));
-		BudsHolder.SetQuantity(1);
+		string Bagname = CP_StrainHelper.GetBagFromBud(ingredient1.GetType());
+
+		CP_CannabisBags BudsHolder = CP_CannabisBags.Cast(CP_Genetics.CreateOnGround(Bagname, ingredient1.GetPosition(), ingredient1));
+		if (BudsHolder)
+			BudsHolder.SetQuantity(1);
 	}
 };
 
@@ -170,7 +170,7 @@ class CP_CraftCannabisBrick extends RecipeBase
 		
 		string Brickname = CP_StrainHelper.GetBrickFromBag(ingredient1.GetType()); 
 		
-		CP_CannabisBrickBase BrickHolder = CP_CannabisBrickBase.Cast(g_Game.CreateObject(Brickname, ingredient1.GetPosition()));
+		CP_Genetics.CreateOnGround(Brickname, ingredient1.GetPosition(), ingredient1);
 	}
 };
 class CP_CraftCigsCannabis extends RecipeBase
@@ -246,7 +246,7 @@ class CP_CraftCigsCannabis extends RecipeBase
 		//ItemBase JointHolder;
 		string JointName = CP_StrainHelper.GetJointFromBud(ingredient1.GetType()); 
 		
-		CP_JointBase JointHolder = CP_JointBase.Cast(g_Game.CreateObject(JointName, ingredient1.GetPosition()));
+		CP_Genetics.CreateOnGround(JointName, ingredient1.GetPosition(), ingredient1);
 	}
 };
 
@@ -328,7 +328,9 @@ class CP_CraftJointPackEmpty extends RecipeBase
 		
 		CPDebugPrint("[EmptyPack Do] jointQty: " + jointQty + ", PackName: " + PackName);
 		
-		CP_JointPack PackHolder = CP_JointPack.Cast(g_Game.CreateObject(PackName, ingredient1.GetPosition()));
+		CP_JointPack PackHolder = CP_JointPack.Cast(CP_Genetics.CreateOnGround(PackName, ingredient1.GetPosition(), ingredient1));
+		if (!PackHolder)
+			return;
 		int packQty = Math.Min(jointQty, 20);
 		if (packQty < 1)
 			packQty = 1;
@@ -411,19 +413,13 @@ class CP_CraftJointPack extends RecipeBase
 		if (ingredient1.GetQuantity() >= 20)
 			return false;
 					
-		string JointName = CP_StrainHelper.GetStrain(ingredient0.GetType()); 
-		string PackName = CP_StrainHelper.GetStrain(ingredient1.GetType()); 
-		
 		m_SavedJointQty = ingredient0.GetQuantity();
 		m_SavedPackQty = ingredient1.GetQuantity();
-		
-		CPDebugPrint("[LoadPack CanDo] JointName: " + JointName + ", PackName: " + PackName + ", jointQty: " + m_SavedJointQty + ", packQty: " + m_SavedPackQty);
-		
-		if(JointName == PackName)
-		{
-			return true;
-		};
-		return false;
+
+		CPDebugPrint("[LoadPack CanDo] joint: " + ingredient0.CPGetRecordKey() + ", pack: " + ingredient1.CPGetRecordKey() + ", jointQty: " + m_SavedJointQty + ", packQty: " + m_SavedPackQty);
+
+		// Only joints of the pack's strain.
+		return CP_Genetics.SameStrain(ingredient0, ingredient1);
     }
 
     override void Do(ItemBase ingredients[], PlayerBase player,array<ItemBase> results, float specialty_weight)//gets called upon recipe's completion

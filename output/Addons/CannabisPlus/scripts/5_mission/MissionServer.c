@@ -80,22 +80,25 @@ modded class MissionServer
             {
                 CPDebugPrint("General Config successfully loaded!");
 
-                CannabisStrainConfig.GenerateAllDefaultsIfStrainsFolderMissing();
-                CPDebugPrint("GenerateAllDefaultsIfStrainsFolderMissing completed.");
+                // New servers and updated mods get the built-in strains that have no file yet.
+                CannabisStrainConfig.GenerateMissingDefaults(!g_CPConfigUpdated);
                 // Automatically load all available strain configs from disk
                 InitCannabisStrainConfigs();
-				
-				// Pre-register all cannabis strains with AgricultureCore
-				// This is required so plants loaded from storage after server restart
-				// are in the registry when Harvest() checks it
-				for (int i = 0; i < g_CannabisStrainConfigs.Count(); i++)
+                CP_RebuildStrainOrder();
+
+				// Genetic plants take their grow time and crops from their own strain (PlantBase.GetACPlantEntry).
+				// Plants of the old per-strain classes still growing in plots use these registry entries.
+				array<string> legacyStrains = CannabisStrainConfig.GetLegacyStrainNames();
+				foreach (string strainName : legacyStrains)
 				{
-					string strainName = g_CannabisStrainConfigs.GetKey(i);
-					CannabisStrainConfig strainCfg = g_CannabisStrainConfigs.GetElement(i);
+					CannabisStrainConfig strainCfg = g_CannabisStrainConfigs.Get(strainName);
+					if (!strainCfg)
+						strainCfg = CannabisStrainConfig.CreateDefaultFor(strainName);
 					string plantType = CP_StrainHelper.GetPlantClass(strainName);
 					AC_RegisterPlant(plantType, strainCfg.MinutesToGrow, 1, strainCfg.CropCount, true, true);
 					CPDebugPrint("Pre-registered plant: " + plantType);
 				}
+				CPDebugPrint("Strains loaded: " + g_CPStrainOrder.Count());
             }
             else
             {

@@ -1,5 +1,5 @@
-// Joint packs unpack through AgricultureCore's shared ActionAC_UnpackPack;
-// the joint type is derived from the pack's strain instead of a config entry.
+// Joint packs unpack through AgricultureCore's shared ActionAC_UnpackPack into genetic joints;
+// the joints get the pack's strain (ItemBase.ACInheritFrom).
 class ActionUnpackJointBoxCB : ActionAC_UnpackPackCB
 {
 };
@@ -15,7 +15,7 @@ class ActionUnpackJointBox : ActionAC_UnpackPack
 	{
 		CP_JointPack jointPack;
 		if (Class.CastTo(jointPack, pack))
-			return CP_StrainHelper.GetJointFromPack(jointPack.GetType());
+			return CP_StrainHelper.GetGeneticClass(CP_StrainHelper.GetJointFromPack(jointPack.GetType()));
 
 		return super.GetUnpackItemType(pack);
 	}

@@ -5,9 +5,16 @@ class CP_StrainHelper
 	static const string PREFIX_BRICK     = "CP_CannabisBrick";
 	static const string PREFIX_JOINT_PACK = "CP_JointPack_";
 	static const string PREFIX_SEEDS_PACK = "CP_CannabisSeedsPack";
+	static const string PREFIX_SEEDS     = "CP_CannabisSeeds";
 	static const string PREFIX_PLANT     = "CP_Plant_Cannabis";
 	static const string PREFIX_JOINT     = "CP_Joint";
 	static const string PREFIX_BUD       = "CP_Cannabis";
+	static const string PREFIX_RAW       = "CP_Raw";
+	static const string SUFFIX_RAW       = "CannabisPlant";
+
+	// The "strain" part of the genetic item classes (CP_CannabisGenetic, CP_CannabisBagGenetic, ...). Their real
+	// strain is in the record each item carries.
+	static const string GENETIC          = "Genetic";
 
 	static string GetStrain(string className)
 	{
@@ -20,6 +27,14 @@ class CP_StrainHelper
 
 		if (className.IndexOf(PREFIX_SEEDS_PACK) == 0)
 			return className.Substring(PREFIX_SEEDS_PACK.Length(), className.Length() - PREFIX_SEEDS_PACK.Length());
+
+		if (className.IndexOf(PREFIX_SEEDS) == 0)
+			return className.Substring(PREFIX_SEEDS.Length(), className.Length() - PREFIX_SEEDS.Length());
+
+		// CP_Raw<Strain>CannabisPlant
+		int rawLength = PREFIX_RAW.Length() + SUFFIX_RAW.Length();
+		if (className.IndexOf(PREFIX_RAW) == 0 && className.Length() > rawLength && className.Substring(className.Length() - SUFFIX_RAW.Length(), SUFFIX_RAW.Length()) == SUFFIX_RAW)
+			return className.Substring(PREFIX_RAW.Length(), className.Length() - rawLength);
 
 		if (className.IndexOf(PREFIX_JOINT_PACK) == 0)
 			return className.Substring(PREFIX_JOINT_PACK.Length(), className.Length() - PREFIX_JOINT_PACK.Length());
@@ -56,6 +71,37 @@ class CP_StrainHelper
 	static bool IsValidStrain(string strain)
 	{
 		return strain != "";
+	}
+
+	// The genetic class an item class belongs with, e.g. CP_CannabisBagSkunk -> CP_CannabisBagGenetic,
+	// CP_RawSkunkCannabisPlant -> CP_RawGeneticCannabisPlant. "" if the class has no strain in its name.
+	static string GetGeneticClass(string className)
+	{
+		return ReplaceStrain(className, GENETIC);
+	}
+
+	// The same kind of item with another strain in its name, e.g. (CP_CannabisBagGenetic, Skunk) -> CP_CannabisBagSkunk.
+	static string ReplaceStrain(string className, string newStrain)
+	{
+		string strain = GetStrain(className);
+		if (strain == "")
+			return "";
+
+		// The strain is always the last part of the name, except for raw plants (CP_Raw<Strain>CannabisPlant).
+		if (className.IndexOf(PREFIX_RAW) == 0)
+			return PREFIX_RAW + newStrain + SUFFIX_RAW;
+		return className.Substring(0, className.Length() - strain.Length()) + newStrain;
+	}
+
+	// The strain of an item class from CannabisPlus 3 (one class per strain), or "" for any other class.
+	static string GetLegacyStrain(string className)
+	{
+		string strain = GetStrain(className);
+		if (strain == "" || strain == GENETIC)
+			return "";
+		if (CannabisStrainConfig.GetLegacyStrainNames().Find(strain) == -1)
+			return "";
+		return strain;
 	}
 
 	// Lists files in the server profile. DayZ 1.30 broke FindFile on $profile: paths

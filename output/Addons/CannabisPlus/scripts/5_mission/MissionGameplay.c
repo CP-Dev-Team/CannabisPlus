@@ -44,19 +44,11 @@ modded class MissionGameplay extends MissionBase
             g_ClientCannabisPlusConfig = data.param1;  // General config
             g_ClientCannabisStrainConfigs = new map<string, ref CannabisStrainConfig>();
             foreach (string strainKey, CannabisStrainConfig config : data.param2) {
-                CannabisStrainConfig newConfig = new CannabisStrainConfig();
-                newConfig.MinutesToGrow = config.MinutesToGrow;
-                newConfig.CropCount = config.CropCount;
-                newConfig.SeedsPerPackage = config.SeedsPerPackage;
-                if (config.WeedEffects) {
-                    newConfig.WeedEffects = new WeedEffectsConfig();
-                    newConfig.WeedEffects.HueIntensity = config.WeedEffects.HueIntensity;
-                    newConfig.WeedEffects.RadBlurXPower = config.WeedEffects.RadBlurXPower;
-                    newConfig.WeedEffects.RadBlurYPower = config.WeedEffects.RadBlurYPower;
-                    newConfig.WeedEffects.RotBlurPow = config.WeedEffects.RotBlurPow;
-                }
-                g_ClientCannabisStrainConfigs.Insert(strainKey, newConfig);
+                g_ClientCannabisStrainConfigs.Insert(strainKey, config.CopyForClient());
             }
+            // Items sync their strain as a position in this list.
+            if (!g_Game.IsServer())
+                CP_RebuildStrainOrder();
 
             int strainsCount = 0;
             if (g_ClientCannabisStrainConfigs)

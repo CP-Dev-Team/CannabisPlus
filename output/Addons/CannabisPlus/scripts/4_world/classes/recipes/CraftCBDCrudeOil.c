@@ -25,7 +25,7 @@ class CP_CraftCBDCrudeOil extends RecipeBase
 		//INGREDIENTS
 		//ingredient 1
 
-		InsertIngredient(0,"CP_CannabisS1");//you can insert multiple ingredients this way
+		InsertIngredient(0,"CP_CannabisBud");// buds of a strain with enough CBD, see CanDo
 		m_IngredientAddHealth[0] = 0;// 0 = do nothing
 		m_IngredientSetHealth[0] = -1; // -1 = do nothing
 		m_IngredientAddQuantity[0] = -1;// 0 = do nothing
@@ -56,9 +56,13 @@ class CP_CraftCBDCrudeOil extends RecipeBase
 		//----------------------------------------------------------------------------------------------------------------------
 	}
 
+	// Strains with at least this much CBD make oil (S1 and Swiss Hemp by default).
+	static const int MIN_CBD = 40;
+
 	override bool CanDo(ItemBase ingredients[], PlayerBase player)//final check for recipe's validity
 	{
-		return true;
+		CannabisStrainConfig strainConfig = ingredients[0].CPGetStrainConfig();
+		return strainConfig && strainConfig.Traits && strainConfig.Traits.CBD >= MIN_CBD;
 	}
 
 	override void Do(ItemBase ingredients[], PlayerBase player,array<ItemBase> results, float specialty_weight)//gets called upon recipe's completion

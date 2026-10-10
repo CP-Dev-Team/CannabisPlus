@@ -1,52 +1,79 @@
-modded class PlantBase
+// The strain of the seed being planted, handed from GardenBase.CreatePlant to the new plant's Init.
+static ref CP_StrainRecord g_CPPendingPlantRecord;
+
+modded class GardenBase
 {
-	override void Init(GardenBase garden_base, float fertility, float harvesting_efficiency, float water)
+	override void CreatePlant(Slot slot)
 	{
-		string plantType = this.GetType();
-
-		// Cannabis plants - register dynamically from strain configs
-		if (plantType.Contains("CP_Plant_Cannabis"))
+		CP_StrainRecord record = null;
+		ItemBase seed = slot.GetSeed();
+		if (seed && g_Game.IsServer())
 		{
-			string strainName = CP_StrainHelper.GetStrain(plantType);
-
-			if (g_CannabisStrainConfigs.Contains(strainName))
-			{
-				CannabisStrainConfig config = g_CannabisStrainConfigs.Get(strainName);
-				// Cannabis: UseMinuteGrowTime = true, IncreaseCropOnFertilize = true
-				AC_RegisterPlant(plantType, config.MinutesToGrow, 1, config.CropCount, true, true);
-				CPDebugPrint("Registered cannabis strain for Init: " + strainName + " | MinutesToGrow: " + config.MinutesToGrow + " | Yield: " + config.CropCount);
-			}
-			else
-			{
-				CPDebugPrint("Warning: Strain config for '" + strainName + "' not found. Using default values.");
-			}
+			record = seed.CPGetRecord();
+			// Seeds of the old per-strain classes grow a genetic plant of their strain too.
+			if (record && seed.IsKindOf("CP_CannabisSeeds"))
+				slot.m_PlantType = "CP_Plant_CannabisGenetic";
 		}
 
-		// Let AC handle the actual Init (registry lookup, growth calc, fertility, etc.)
-		super.Init(garden_base, fertility, harvesting_efficiency, water);
+		g_CPPendingPlantRecord = record;
+		super.CreatePlant(slot);
+		g_CPPendingPlantRecord = null;
+	}
+}
+
+modded class PlantBase
+{
+	// Genetic plants grow by their own strain's settings; plants of the old per-strain classes use the
+	// registry entries MissionServer makes for them.
+	override AG_PlantRegistryEntry GetACPlantEntry()
+	{
+		if (!IsCPGenetic())
+			return super.GetACPlantEntry();
+
+		if (!m_CPRecord && g_Game.IsServer())
+		{
+			if (g_CPPendingPlantRecord)
+				CPSetRecord(g_CPPendingPlantRecord);
+			else
+				CPSetRecord(CP_StrainRecord.Named(CP_Genetics.PickWildStrain()));
+		}
+
+		AG_PlantRegistryEntry entry = new AG_PlantRegistryEntry();
+		entry.UseMinuteGrowTime = true;
+		entry.IncreaseCropOnFertilize = true;
+		entry.CropCount = 1;
+
+		CannabisStrainConfig strainConfig = CPGetStrainConfig();
+		if (strainConfig)
+		{
+			entry.GrowTime = strainConfig.MinutesToGrow;
+			entry.InitialYield = strainConfig.CropCount;
+		}
+		return entry;
 	}
 
 	override void OnItemHarvested(ItemBase item, string itemType)
 	{
-		// Cannabis-specific harvest logic: set yield and strain on raw plants
-		if (itemType.IndexOf("CP_Raw") >= 0 && itemType.IndexOf("CannabisPlant") >= 0)
-		{
-			CP_RawPlantBase plant = CP_RawPlantBase.Cast(item);
-			if (plant)
-			{
-				plant.SetYield(GetCurrentYield());
-				CPDebugPrint("Setting plant " + plant + " yield to " + GetCurrentYield());
+		super.OnItemHarvested(item, itemType);
 
-				// Extract strain from class name (e.g., "PurpleKush" from "CP_RawPurpleKushCannabisPlant")
-				string strainName = itemType.Substring(6, itemType.Length() - 19); // Remove "CP_Raw" (6) and "CannabisPlant" (13)
-				plant.SetStrain(strainName);
-				CPDebugPrint("Extracted strain: " + strainName + " for plant: " + itemType);
-			}
+		// Raw plants remember how many buds they give on the drying post.
+		CP_RawPlantBase plant = CP_RawPlantBase.Cast(item);
+		if (plant)
+		{
+			plant.SetYield(GetCurrentYield());
+			CPDebugPrint("Setting plant " + plant + " yield to " + GetCurrentYield());
 		}
 
-		if (itemType.IndexOf("CP_") >= 0)
-		{
-			CPDebugPrint("harvested " + item);
-		}
+		if (item)
+			item.CPSetRecord(CPGetRecord());
+	}
+
+	// Vanilla puts the CfgHorticulture texture back on the plant; keep the strain's look.
+	override void ChangeInfestation(bool is_infested)
+	{
+		super.ChangeInfestation(is_infested);
+
+		if (IsCPGenetic())
+			CPApplyLook(true);
 	}
 }

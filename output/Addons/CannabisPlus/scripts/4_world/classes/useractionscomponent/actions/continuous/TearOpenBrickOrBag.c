@@ -80,6 +80,11 @@ class ActionCP_RipOpenBrickOrBag: ActionContinuousBase
 				//TODO modify to allow for multiple ammo types spawning (if needed??)
 				string itemType = resources.Get(0);
 				int itemCount = g_Game.ConfigGetInt( path + " " + itemType + " value" );
+
+				// Bags of the old per-strain classes give genetic buds of their strain too.
+				string geneticType = CP_StrainHelper.GetGeneticClass(itemType);
+				if (geneticType != "" && g_Game.ConfigIsExisting("CfgVehicles " + geneticType))
+					itemType = geneticType;
 				
 				UnboxBrickBag lambda = new UnboxBrickBag(action_data.m_MainItem, itemType, action_data.m_Player, itemCount);
 				action_data.m_Player.ServerReplaceItemInHandsWithNew(lambda);
@@ -112,6 +117,7 @@ class UnboxBrickBag : ReplaceItemWithNewLambdaBase
 			ItemBase unboxed;
 			Class.CastTo(unboxed, new_item);
 			unboxed.SetQuantity(m_ItemCount);
+			unboxed.ACInheritFrom(ItemBase.Cast(old_item));
 		}
 	}
 	

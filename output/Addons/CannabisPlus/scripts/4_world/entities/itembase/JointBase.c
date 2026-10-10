@@ -26,9 +26,10 @@ class CP_JointBase extends AC_SmokableBase
 	{
         return CP_StrainHelper.GetJointPackFromJoint(GetType());
 	}
+	// The joint's strain (decides the smoking effect).
 	string GetCpJointName()
 	{
-		return CP_StrainHelper.GetStrain(GetType());
+		return CPGetStrainName();
 	}
 	
 	void MakeStoned(PlayerBase player)

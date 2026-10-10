@@ -1,4 +1,42 @@
 v4 (in development - branch v4, not released yet)
+New: Strain genetics (part 1 of the breeding update)
+- Strains are no longer separate items. Every strain now uses one set of items (buds, bags, bricks, joints,
+  joint packs, seeds, seed packs, plants, raw plants), and each item remembers its strain. Item names and
+  textures still show the strain, for example "Skunk Bud" with the Skunk look.
+- 23 strains ship with the mod: 7 wild landraces (Afghan, Thai, Colombian Gold, Acapulco Gold, Hindu Kush,
+  Hawaiian, Swiss Hemp), 8 new crosses and the 8 strains you already know. Breeding between them comes in a
+  later part of v4.
+- Items only stack with items of the same strain. Splitting a stack keeps the strain.
+- The strain carries through everything: seed pack -> seeds -> plant -> raw plant -> drying post -> buds ->
+  workbench bags and bricks -> ripping open / unwrapping -> joints -> joint packs -> unpacking.
+- Seed packs found as loot (or spawned without a strain) are a random wild landrace.
+- CBD crude oil can be made from buds of any strain with at least 40 CBD (S1 and Swiss Hemp by default) instead
+  of S1 only.
+- Custom strain files are full strains now: add a json file and the strain exists, no new item classes needed.
+
+Your players' items are converted, nothing is lost
+- Items of the old per-strain classes (CP_CannabisSkunk, CP_CannabisBagBlueGod, CP_JointPack_Nomad, ...) turn into
+  the new item of their strain automatically when the server loads or spawns them, in the same place, with the
+  same quantity and health.
+- Plants already growing in plots keep growing and their harvest is converted. Seeds already sitting in a plot
+  grow a plant of their strain.
+- Items locked in a running workbench or drying post still count as their strain and are converted on the next
+  restart.
+
+Config Changes (REQUIRED)
+- types.xml / traders: the 8 sets of per-strain classes are replaced by one set: CP_CannabisGenetic,
+  CP_CannabisBagGenetic, CP_CannabisBrickGenetic, CP_JointGenetic, CP_JointPack_Genetic, CP_CannabisSeedsGenetic,
+  CP_CannabisSeedsPackGenetic, CP_Plant_CannabisGenetic (and CP_RawGeneticCannabisPlant). See the updated
+  CP_sample_cannabisplus_types.xml. Remove the old per-strain entries; if you keep them, those items spawn and
+  convert into the new ones. Trader prices are now per item type, not per strain.
+- Strain files (profiles/CannabisPlus/CannabisStrains/*.json) get new settings, added automatically with the
+  strain's built-in values: DisplayName, Description, Tier, ParentA, ParentB, Look (whose textures the strain
+  uses: Skunk, BlueGod, PurpleKush, Stardawg, S1, Future, Nomad or BlackFrost) and Traits (Potency, Yield, Speed,
+  Hardiness, Resin, CBD, Aroma, 0-100). Your MinutesToGrow, CropCount, SeedsPerPackage and WeedEffects are kept.
+- The 15 new built-in strains get their own files on the first start after updating. A built-in strain file you
+  delete stays deleted until the next CannabisPlus update.
+- Grow time and buds per plant now come from each plant's strain file.
+
 New: Workbench window
 - The workbench now runs on AgricultureCore's bench system (the same one as the DrugsPLUS chemistry bench).
   Requires the AgricultureCore version that includes it; update both mods together.
@@ -21,7 +59,9 @@ Fixes
 - CannabisPlus no longer overrides the vanilla truck battery proxy, which removed the TruckBattery slot from it.
 
 Existing workbenches keep their attached machines, battery and items (tested with a save from the current release).
-No items removed. No config changes required.
+No items lost: the per-strain item classes are retired and converted automatically (see Strain genetics).
+Config changes required: types.xml and trader entries for the new strain items (see Strain genetics).
+Requires the AgricultureCore version with the bench framework and strain hooks; update both mods together.
 
 Next update (unreleased)
 Mod Changes

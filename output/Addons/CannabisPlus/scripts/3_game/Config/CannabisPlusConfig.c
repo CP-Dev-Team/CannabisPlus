@@ -1,3 +1,6 @@
+// True when this start found no config or one from an older CannabisPlus version (new built-in strains get written).
+static bool g_CPConfigUpdated = false;
+
 class CannabisPlusConfigManager
 {
 	int ConfigVersion;
@@ -154,6 +157,7 @@ class CannabisPlusConfigManager
 
         if(!FileExist(m_CPConfigPath))
         {
+            g_CPConfigUpdated = true;
             settings.LoadDefaultSettings();
             CP_Debug = settings.EnableServerDebugLogging;
             return settings;
@@ -176,6 +180,7 @@ class CannabisPlusConfigManager
         int modVersion = settings.GetModVersion();
         if (settings.ConfigVersion != modVersion)
         {
+            g_CPConfigUpdated = true;
             settings.BackupConfig(settings.ConfigVersion);
             settings.MigrateConfig(settings.ConfigVersion);
             settings.ConfigVersion = modVersion;
@@ -209,45 +214,46 @@ static CannabisPlusConfigManager GetCPConfig()
     return g_CannabisPlusConfig;
 }
 
-/* Utility Function to Retrieve Strain Configs */
-static CannabisStrainConfig GetStrainConfigByType(EntityAI item)
+// The strain names sorted, identical on the server and on clients, so items can sync a strain as a small number.
+static ref TStringArray g_CPStrainOrder = new TStringArray;
+
+// The strain registry on this machine (server: loaded from the profile, client: received from the server).
+static map<string, ref CannabisStrainConfig> CP_GetStrainMap()
 {
-    if (!item)
-    {
-        CPDebugPrint("Error: Null item passed to GetStrainConfigByType.");
-        return new CannabisStrainConfig(); // Return default if something goes wrong
-    }
-
-    string strainName = item.GetType(); // Get the class name of the item
-
-    // Check server-side map
     if (g_Game.IsServer())
+        return g_CannabisStrainConfigs;
+    return g_ClientCannabisStrainConfigs;
+}
+
+// A strain's settings, or null if this server has no such strain.
+static CannabisStrainConfig CP_GetStrainConfig(string strainName)
+{
+    if (strainName == "")
+        return null;
+    return CP_GetStrainMap().Get(strainName);
+}
+
+static void CP_RebuildStrainOrder()
+{
+    g_CPStrainOrder = new TStringArray;
+    map<string, ref CannabisStrainConfig> strains = CP_GetStrainMap();
+    foreach (string strainName, CannabisStrainConfig strainConfig : strains)
     {
-        if (g_CannabisStrainConfigs.Contains(strainName))
-        {
-            return g_CannabisStrainConfigs.Get(strainName);
-        }
-        else
-        {
-            CPDebugPrint("Warning: Server could not find strain '" + strainName + "'. Using default values.");
-            return new CannabisStrainConfig();
-        }
+        g_CPStrainOrder.Insert(strainName);
     }
-    // Check client-side map
-    else if (g_Game.IsClient())
-    {
-        if (g_ClientCannabisStrainConfigs.Contains(strainName))
-        {
-            return g_ClientCannabisStrainConfigs.Get(strainName);
-        }
-        else
-        {
-            CPClientDebugPrint("Warning: Client could not find strain '" + strainName + "'. Using default values.");
-            return new CannabisStrainConfig();
-        }
-    }
-    
-    return new CannabisStrainConfig();
+    g_CPStrainOrder.Sort();
+}
+
+static int CP_GetStrainIndex(string strainName)
+{
+    return g_CPStrainOrder.Find(strainName);
+}
+
+static string CP_GetStrainByIndex(int index)
+{
+    if (index < 0 || index >= g_CPStrainOrder.Count())
+        return "";
+    return g_CPStrainOrder[index];
 }
 
 bool CP_Debug = false;                  // Server-side debug toggle enabled via main config.

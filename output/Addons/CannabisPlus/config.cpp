@@ -20,7 +20,8 @@ class CfgMods
 		credits="IceBlade, bombjack, Gloser, Kuli, Dumpgrah";
 		author="IceBlade";
 		authorID="0";
-		version="3.1.2";
+		version="4.0.0";
+		storageVersion=1;	// CF mod storage: strain records on items (section "CannabisPlus")
 		extra=0;
 		type="Mod";
 		defines[]={"CANNABISPLUS"};
