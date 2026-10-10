@@ -54,7 +54,7 @@ class CfgNonAIVehicles
 	class ProxyCP_brick : ProxyAttachment
     {
 		inventorySlot="CP_Cannabis_Bricks";
-		model="CannabisPlus\bricks\CP_brick.p3d";
+		model="AgricultureCore\bricks\CP_brick.p3d";
     };
 };
 class CfgVehicles
@@ -84,7 +84,7 @@ class CfgVehicles
 		acBenchRecipeSet = "CP_Workbench";
 		weight=50000;
 		itemSize[]={6,6};
-		itemsCargoSize[]={10,4};
+		itemsCargoSize[]={10,10};
 		placement = "ForceSlopeOnTerrain";
 		hiddenSelections[]=
 		{
@@ -94,6 +94,8 @@ class CfgVehicles
 		{
 			"CannabisPlus\workbench\data\tisch1.paa"
 		};
+		// Only the machines and the battery are attachments; buds, bags, bricks and supplies go into the storage.
+		// The old supply slots stay listed so CannabisPlus 3 saves load; the bench empties them into its storage.
 		attachments[]=
 		{
 			"Wrapper",
@@ -118,29 +120,6 @@ class CfgVehicles
 					"LargeBattery"
 				};
 				icon="";
-			};
-			class CP_Bagger
-			{
-				name="Bagger";
-				description="";
-				attachmentSlots[]=
-				{
-					"AC_Empty_Bags",
-					"CP_Cannabis_Buds"
-				};
-				icon="set:BuildingFortIcons image:WindowBarricade";
-			};
-			class CP_Wrapper
-			{
-				name="Wrapper";
-				description="";
-				attachmentSlots[]=
-				{
-					"CP_PlasticRoll",
-					"CP_Cannabis_Bags",
-					"CP_Cannabis_Bricks"
-				};
-				icon="set:BuildingFortIcons image:WindowBarricade";
 			};
 		};
 	};

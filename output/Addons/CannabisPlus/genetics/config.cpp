@@ -471,6 +471,10 @@ class CfgVehicles
 		{
 			"zbytek"
 		};
+		hiddenSelectionsTextures[]=
+		{
+			"CannabisPlus\bags\data\cannabis_bag_generic_co.paa"
+		};
 	};
 	class CP_CannabisBrickBase;
 	class CP_CannabisBrickGenetic: CP_CannabisBrickBase

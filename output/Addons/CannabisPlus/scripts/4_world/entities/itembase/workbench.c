@@ -132,6 +132,87 @@ class CP_Workbench extends AC_BenchBase
 		return super.GetACOutputLabel(recipe, output);
 	}
 
+	// ------------------------------------------------------------------ storage instead of supply slots
+
+	// CannabisPlus 3 had slots for buds, empty bags, bags, bricks and plastic wrap. Everything now goes into the
+	// bench's storage, so several strains can be bagged one after the other. The slots stay in the config only so
+	// old saves load; anything still in them is moved into the storage.
+	static ref TStringArray CP_SUPPLY_SLOTS = {"CP_Cannabis_Buds", "AC_Empty_Bags", "CP_Cannabis_Bags", "CP_Cannabis_Bricks", "CP_PlasticRoll"};
+
+	static bool IsCPSupplySlot(int slotId)
+	{
+		return CP_SUPPLY_SLOTS.Find(InventorySlots.GetSlotName(slotId)) != -1;
+	}
+
+	override bool UseACAttachmentOutputs()
+	{
+		return false;
+	}
+
+	override bool CanReceiveAttachment(EntityAI attachment, int slotId)
+	{
+		if (IsCPSupplySlot(slotId))
+			return false;
+		return super.CanReceiveAttachment(attachment, slotId);
+	}
+
+	override bool CanDisplayAttachmentSlot(int slot_id)
+	{
+		if (IsCPSupplySlot(slot_id))
+			return false;
+		return super.CanDisplayAttachmentSlot(slot_id);
+	}
+
+	// The supply slots are never locked (nothing can go in, and old contents must be able to leave).
+	override void UpdateACLocks()
+	{
+		super.UpdateACLocks();
+
+		foreach (string slotName : CP_SUPPLY_SLOTS)
+		{
+			int slotId = InventorySlots.GetSlotIdFromString(slotName);
+			if (slotId != InventorySlots.INVALID)
+				GetInventory().SetSlotLock(slotId, false);
+		}
+	}
+
+	override void AfterStoreLoad()
+	{
+		super.AfterStoreLoad();
+
+		if (g_Game.IsServer())
+			g_Game.GetCallQueue(CALL_CATEGORY_GAMEPLAY).CallLater(EmptyCPSupplySlots, 500, false);
+	}
+
+	override void EEDelete(EntityAI parent)
+	{
+		super.EEDelete(parent);
+
+		g_Game.GetCallQueue(CALL_CATEGORY_GAMEPLAY).Remove(EmptyCPSupplySlots);
+	}
+
+	// Moves items from the old supply slots into the storage, or next to the bench when it's full.
+	protected void EmptyCPSupplySlots()
+	{
+		foreach (string slotName : CP_SUPPLY_SLOTS)
+		{
+			int slotId = InventorySlots.GetSlotIdFromString(slotName);
+			if (slotId == InventorySlots.INVALID)
+				continue;
+
+			EntityAI item = GetInventory().FindAttachment(slotId);
+			if (!item)
+				continue;
+
+			bool moved = false;
+			if (GetInventory().CanAddEntityInCargo(item, item.GetInventory().GetFlipCargo()))
+				moved = GetInventory().TakeEntityToTargetCargo(InventoryMode.SERVER, this, item);
+			if (!moved)
+				moved = GetInventory().DropEntity(InventoryMode.SERVER, this, item);
+			CPDebugPrint("Workbench: moved " + item.GetType() + " out of slot " + slotName + " -> " + moved);
+		}
+	}
+
 	// ------------------------------------------------------------------ handling
 
 	override bool IsElectricAppliance()

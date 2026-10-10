@@ -59,8 +59,12 @@ New: Workbench window
   plastic wrap you carry onto the bench in one click.
 - Both keep going by themselves while there's enough, like before. Bags keep the strain of their buds and bricks
   the strain of their bags; different strains are never mixed in one bag or brick.
-- New bags and bricks go into the bags/bricks slots, then into the workbench's new storage (10x4), then on the
-  ground. The old 160 bag / 25 brick stop is gone.
+- Buds, empty bags, bags, bricks and plastic wrap now all go into the workbench's storage (10x10) instead of their
+  own slots, so you can load several strains at once and the bench works through them one after another. Only the
+  bagger, the wrapper and the battery are attachments. New bags and bricks appear in the storage (on the ground when
+  it's full). The old 160 bag / 25 brick stop is gone.
+- Workbenches from CannabisPlus 3 keep everything: items in the old slots are moved into the storage when the server
+  loads (next to the bench if the storage is full).
 - Placing the workbench kit now shows the green/red hologram instead of the solid model.
 - Removed actions: "Fill bag with ...", "Wrap ...", "Pause/Resume production" and "Stop processing" (all in the
   window now; Stop ends the current batch).

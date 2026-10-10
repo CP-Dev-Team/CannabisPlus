@@ -18,7 +18,9 @@ modded class ItemBase
 	protected int m_CPStrainIndex = -1;			// synced: index in g_CPStrainOrder, -1 = none / unknown cross
 	protected int m_CPLook = -1;				// synced: index in CannabisStrainConfig.GetLegacyStrainNames()
 	protected int m_CPRecordHash;				// synced: tells unknown crosses apart (0 = no record)
-	protected int m_CPAppliedLook = -1;			// client: look whose textures are on the model
+	protected int m_CPAppliedLook = -1;			// look whose textures are on the model
+	protected int m_CPLookRefresh;				// synced: the server bumps it to make clients put the textures on again
+	protected int m_CPLookRefreshSeen;			// client: last m_CPLookRefresh handled
 
 	void ItemBase()
 	{
@@ -28,6 +30,7 @@ modded class ItemBase
 			RegisterNetSyncVariableInt("m_CPStrainIndex");
 			RegisterNetSyncVariableInt("m_CPLook");
 			RegisterNetSyncVariableInt("m_CPRecordHash");
+			RegisterNetSyncVariableInt("m_CPLookRefresh", 0, 255);
 		}
 	}
 
@@ -196,9 +199,11 @@ modded class ItemBase
 	// Puts the textures of the strain's look (CfgCannabisStrainLooks) on the model. The item's config says which
 	// look entry goes on each hidden selection (cpLookTextures[] / cpLookMaterials[]); entries the look doesn't
 	// have keep the class's own texture.
+	// Textures set this way can fall back to the config's when the item changes place (attached, detached, moved),
+	// so they are put on again then, on both the server and clients (as vanilla food stages and the UF skin system do).
 	void CPApplyLook(bool force = false)
 	{
-		if (!m_CPIsGenetic || g_Game.IsDedicatedServer())
+		if (!m_CPIsGenetic)
 			return;
 		if (m_CPLook < 0 || (m_CPLook == m_CPAppliedLook && !force))
 			return;
@@ -227,19 +232,89 @@ modded class ItemBase
 		m_CPAppliedLook = m_CPLook;
 	}
 
+	void CPRefreshLook()
+	{
+		CPApplyLook(true);
+	}
+
+	// Server: puts the textures on again here and makes every client do the same.
+	void CPMarkLookRefresh()
+	{
+		if (!m_CPIsGenetic || !g_Game.IsServer())
+			return;
+		CPApplyLook(true);
+		m_CPLookRefresh = (m_CPLookRefresh + 1) % 256;
+		SetSynchDirty();
+	}
+
 	override void OnVariablesSynchronized()
 	{
 		super.OnVariablesSynchronized();
 
-		if (m_CPIsGenetic)
+		if (!m_CPIsGenetic)
+			return;
+		if (m_CPLookRefresh != m_CPLookRefreshSeen)
+		{
+			m_CPLookRefreshSeen = m_CPLookRefresh;
+			CPApplyLook(true);
+		}
+		else
+		{
 			CPApplyLook();
+		}
+	}
+
+	override void OnWasAttached(EntityAI parent, int slot_id)
+	{
+		super.OnWasAttached(parent, slot_id);
+
+		if (m_CPIsGenetic)
+			CPRefreshAfterMove();
+	}
+
+	override void OnWasDetached(EntityAI parent, int slot_id)
+	{
+		super.OnWasDetached(parent, slot_id);
+
+		if (m_CPIsGenetic)
+			CPRefreshAfterMove();
+	}
+
+	override void EEItemLocationChanged(notnull InventoryLocation oldLoc, notnull InventoryLocation newLoc)
+	{
+		super.EEItemLocationChanged(oldLoc, newLoc);
+
+		if (m_CPIsGenetic)
+			CPRefreshAfterMove();
+	}
+
+	protected void CPRefreshAfterMove()
+	{
+		g_Game.GetCallQueue(CALL_CATEGORY_SYSTEM).Call(CPRefreshLook);
+		if (g_Game.IsServer())
+			g_Game.GetCallQueue(CALL_CATEGORY_SYSTEM).CallLater(CPMarkLookRefresh, 100, false);
 	}
 
 	// ------------------------------------------------------------------ new items, old items
 
+	override void EEDelete(EntityAI parent)
+	{
+		super.EEDelete(parent);
+
+		if (!m_CPIsGenetic)
+			return;
+		g_Game.GetCallQueue(CALL_CATEGORY_SYSTEM).Remove(CPRefreshLook);
+		g_Game.GetCallQueue(CALL_CATEGORY_SYSTEM).Remove(CPMarkLookRefresh);
+		g_Game.GetCallQueue(CALL_CATEGORY_GAMEPLAY).Remove(CPCheckGenetics);
+	}
+
 	override void EEInit()
 	{
 		super.EEInit();
+
+		// Textures from the synced look, once the item is fully set up (both sides).
+		if (m_CPIsGenetic)
+			g_Game.GetCallQueue(CALL_CATEGORY_SYSTEM).Call(CPRefreshLook);
 
 		if (!g_Game.IsServer() || GetType().IndexOf("CP_") != 0)
 			return;
