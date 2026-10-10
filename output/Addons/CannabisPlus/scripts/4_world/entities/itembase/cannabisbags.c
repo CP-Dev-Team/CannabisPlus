@@ -21,7 +21,7 @@ class CP_CannabisBags extends AC_BagBase
 	// Override AG_CoreClass tendancy text for rip-open action display
 	override string GetACitemTendancyText()
 	{		
-        return "Rip open " + GetDisplayName();
+        return "#cp_rip_open " + GetDisplayName();
     }
 	
 	override void SetActions()

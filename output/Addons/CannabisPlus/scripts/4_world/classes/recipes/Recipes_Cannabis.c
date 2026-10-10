@@ -6,7 +6,7 @@ class CP_CraftCannabisBag extends RecipeBase
 
 	override void Init()
 	{
-		m_Name = "Fill Bag";
+		m_Name = "#cp_recipe_fill_bag";
 		m_IsInstaRecipe = false;//should this recipe be performed instantly without animation
 		m_AnimationLength = 0.25;//animation length in relative time units
 		m_Specialty = -0.01;// value > 0 for roughness, value < 0 for precision
@@ -92,7 +92,7 @@ class CP_CraftCannabisBrick extends RecipeBase
 
 	override void Init()
 	{
-		m_Name = "Wrap Brick";
+		m_Name = "#cp_recipe_wrap_brick";
 		m_IsInstaRecipe = false;//should this recipe be performed instantly without animation
 		m_AnimationLength = 2.25;//animation length in relative time units
 		m_Specialty = -0.01;// value > 0 for roughness, value < 0 for precision
@@ -179,7 +179,7 @@ class CP_CraftCigsCannabis extends RecipeBase
 	
 	override void Init()
 	{
-		m_Name = "Roll Joint";
+		m_Name = "#cp_recipe_roll_joint";
 		m_IsInstaRecipe = false;//should this recipe be performed instantly without animation
 		m_AnimationLength = 0.5;//animation length in relative time units
 		m_Specialty = -0.01;// value > 0 for roughness, value < 0 for precision
@@ -254,7 +254,7 @@ class CP_CraftJointPackEmpty extends RecipeBase
 {	
 	override void Init()
 	{
-		m_Name = "Create a pack of joints.";
+		m_Name = "#cp_recipe_joint_pack_new";
 		m_IsInstaRecipe = false;//should this recipe be performed instantly without animation
 		m_AnimationLength = 0.01;//animation length in relative time units
 		m_Specialty = 0;// value > 0 for roughness, value < 0 for precision
@@ -345,7 +345,7 @@ class CP_CraftJointPack extends RecipeBase
 	
 	override void Init()
 	{
-		m_Name = "Put joint into pack.";
+		m_Name = "#cp_recipe_joint_pack_add";
 		m_IsInstaRecipe = false;//should this recipe be performed instantly without animation
 		m_AnimationLength = 0.01;//animation length in relative time units
 		m_Specialty = 0;// value > 0 for roughness, value < 0 for precision
