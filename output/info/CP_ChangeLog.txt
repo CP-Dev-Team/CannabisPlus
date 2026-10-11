@@ -56,7 +56,7 @@ New: Workbench window
   Requires the AgricultureCore version that includes it; update both mods together.
 - Look at the workbench and use "Open bench": pick Fill bags or Wrap bricks, see what's attached, what's missing and
   what you're carrying, then Start. "Load from inventory" moves the bagger/wrapper, battery, buds, empty bags and
-  plastic wrap you carry onto the bench in one click.
+  plastic wrap you carry onto the bench in one click (all your buds, of every strain, not just one batch).
 - Both keep going by themselves while there's enough, like before. Bags keep the strain of their buds and bricks
   the strain of their bags; different strains are never mixed in one bag or brick.
 - Buds, empty bags, bags, bricks and plastic wrap now all go into the workbench's storage (10x10) instead of their
@@ -64,7 +64,9 @@ New: Workbench window
   bagger, the wrapper and the battery are attachments. New bags and bricks appear in the storage (on the ground when
   it's full). The old 160 bag / 25 brick stop is gone.
 - Workbenches from CannabisPlus 3 keep everything: items in the old slots are moved into the storage when the server
-  loads (next to the bench if the storage is full).
+  loads (next to the bench if the storage is full). The old slots allowed bigger stacks (e.g. 160 empty bags);
+  these are split into normal-sized stacks (16 empty bags), keeping strain and health, so they can be picked up
+  and stacked normally again.
 - Placing the workbench kit now shows the green/red hologram instead of the solid model.
 - Removed actions: "Fill bag with ...", "Wrap ...", "Pause/Resume production" and "Stop processing" (all in the
   window now; Stop ends the current batch).

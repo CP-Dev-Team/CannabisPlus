@@ -200,9 +200,12 @@ class CP_Workbench extends AC_BenchBase
 			if (slotId == InventorySlots.INVALID)
 				continue;
 
-			EntityAI item = GetInventory().FindAttachment(slotId);
+			ItemBase item = ItemBase.Cast(GetInventory().FindAttachment(slotId));
 			if (!item)
 				continue;
+
+			// The slots allowed bigger stacks (e.g. 160 bags) than storage does (16): split the rest off first.
+			SplitCPOversizedStack(item);
 
 			bool moved = false;
 			if (GetInventory().CanAddEntityInCargo(item, item.GetInventory().GetFlipCargo()))
@@ -210,6 +213,36 @@ class CP_Workbench extends AC_BenchBase
 			if (!moved)
 				moved = GetInventory().DropEntity(InventoryMode.SERVER, this, item);
 			CPDebugPrint("Workbench: moved " + item.GetType() + " out of slot " + slotName + " -> " + moved);
+		}
+	}
+
+	// Splits everything above the item's normal stack size (outside a slot) into new stacks in the storage,
+	// or next to the bench when it's full. Strain, health and other properties are copied to each new stack.
+	protected void SplitCPOversizedStack(ItemBase item)
+	{
+		if (!item.IsSplitable() || !item.HasQuantity())
+			return;
+
+		int stackMax = item.GetTargetQuantityMax(-1);
+		if (stackMax < 1)
+			return;
+
+		int guard = 0;
+		while (item.GetQuantity() > stackMax && guard < 100)
+		{
+			guard++;
+			int amount = Math.Min(stackMax, item.GetQuantity() - stackMax);
+			ItemBase stack = ItemBase.Cast(GetInventory().CreateEntityInCargo(item.GetType()));
+			if (!stack)
+				stack = ItemBase.Cast(g_Game.CreateObjectEx(item.GetType(), GetACDropPosition(), ECE_PLACE_ON_SURFACE));
+			if (!stack)
+			{
+				Print("[CannabisPlus] ERROR: workbench could not split " + item.GetType());
+				return;
+			}
+			MiscGameplayFunctions.TransferItemProperties(item, stack, true, true, true, true);
+			stack.SetQuantity(amount);
+			item.AddQuantity(-amount);
 		}
 	}
 
