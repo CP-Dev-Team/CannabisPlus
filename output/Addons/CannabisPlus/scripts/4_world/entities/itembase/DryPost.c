@@ -11,6 +11,7 @@ class CP_DryPost extends ItemBase
 	string NewPlantName;
 	ref map<string, int> BudSpawn;					// strain record key -> buds to make
 	protected ref map<string, ref CP_StrainRecord> m_BudRecords;	// strain record key -> record
+	ref array<ItemBase> m_DriedPlants = new array<ItemBase>;	// raw plants turned into buds this round (CleanUp deletes only these)
 	EntityAI target;
 	protected float Lock;
 	
@@ -258,6 +259,7 @@ class CP_DryPost extends ItemBase
 		CPDebugPrint("finished drying...");
 		NumItems = GetInventory().AttachmentCount();
 		LockDryingSlots(true);
+		m_DriedPlants.Clear();
 		for ( int j = 0; j < NumItems; j++ )
 		{
 			ItemBase attachment = ItemBase.Cast( GetInventory().GetAttachmentFromIndex( j ) );
@@ -291,6 +293,7 @@ class CP_DryPost extends ItemBase
 				string key = record.GetKey();
 				AddToMap(key, plantYield);
 				m_BudRecords.Set(key, record);
+				m_DriedPlants.Insert(plant);
 				CPDebugPrint("Added to map: " + key + " with yield: " + plantYield);
 			}
 		}
@@ -361,20 +364,17 @@ class CP_DryPost extends ItemBase
 	{	
 		if ( g_Game && g_Game.IsServer() )
 		{
-			NumItems = GetInventory().AttachmentCount();
-			for ( int i = NumItems - 1; i >= 0; i-- )
+			// Only the plants that were turned into buds; any the post couldn't dry stay on it.
+			foreach (ItemBase dried : m_DriedPlants)
 			{
-				ItemBase attachment = ItemBase.Cast( GetInventory().GetAttachmentFromIndex( i ) );
-				if (!attachment)
-					continue;
-				ItemName = attachment.GetType();
-	            	if (ItemName.IndexOf("CP_Raw") >= 0)
-		            {
-					CPDebugPrint("deleting " + attachment);
-					g_Game.ObjectDelete(attachment);	
-				}	
-	        }
-	
+				if (dried)
+				{
+					CPDebugPrint("deleting " + dried);
+					g_Game.ObjectDelete(dried);
+				}
+			}
+			m_DriedPlants.Clear();
+
 			NumPlants = 0;
 			BudSpawn.Clear();
 			m_BudRecords.Clear();
