@@ -1,5 +1,5 @@
 Experimental (DayZ 1.30 test build, Workshop experimental branch)
-Update AgricultureCore, DrugsPLUS and CannabisPlus together; GardeningPlus works with it as-is.
+Update all four agriculture mods together: AgricultureCore, GardeningPlus, DrugsPLUS and CannabisPlus.
 
 Mod Changes
 - Unpacking joint packs now uses AgricultureCore's shared unpack action. Requires the latest AgricultureCore.
