@@ -1,4 +1,6 @@
-Next update (unreleased)
+Experimental (DayZ 1.30 test build, Workshop experimental branch)
+Update AgricultureCore, DrugsPLUS and CannabisPlus together; GardeningPlus works with it as-is.
+
 Mod Changes
 - Unpacking joint packs now uses AgricultureCore's shared unpack action. Requires the latest AgricultureCore.
 - Unpacking DrugsPLUS and vanilla cigarette packs is now handled by DrugsPLUS instead of CannabisPlus.
