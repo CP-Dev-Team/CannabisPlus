@@ -106,7 +106,16 @@ class CannabisPlusConfigManager
 		int fileAttr;
 		FindFileHandle fileHandle = CP_StrainHelper.FindProfileFile(strainsPath + "*.json", fileName, fileAttr);
 		if (fileHandle == 0)
+		{
+			// The folder can't be listed (DZEXP-134 on some hosts): back up the built-in strain files by name.
+			array<string> strainNames = CannabisStrainConfig.GetDefaultStrainNames();
+			foreach (string strainName : strainNames)
+			{
+				if (FileExist(strainsPath + strainName + ".json"))
+					CopyFile(strainsPath + strainName + ".json", strainsBkpPath + "/" + strainName + ".json");
+			}
 			return;
+		}
 
 		while (fileName != "")
 		{

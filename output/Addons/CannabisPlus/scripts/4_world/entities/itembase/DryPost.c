@@ -10,6 +10,7 @@ class CP_DryPost extends ItemBase
 	string ItemName;
 	string NewPlantName;
 	ref map<string, int> BudSpawn;
+	ref array<ItemBase> m_DriedPlants = new array<ItemBase>;	// raw plants turned into buds this round (CleanUp deletes only these)
 	EntityAI target;
 	protected float Lock;
 	
@@ -256,6 +257,7 @@ class CP_DryPost extends ItemBase
 		CPDebugPrint("finished drying...");
 		NumItems = GetInventory().AttachmentCount();
 		LockDryingSlots(true);
+		m_DriedPlants.Clear();
 		for ( int j = 0; j < NumItems; j++ )
 		{
 			ItemBase attachment = ItemBase.Cast( GetInventory().GetAttachmentFromIndex( j ) );
@@ -269,33 +271,31 @@ class CP_DryPost extends ItemBase
 				string strainName = ItemName.Substring(6, ItemName.Length() - 19); // Remove "CP_Raw" (6 chars) and "CannabisPlant" (13 chars)
 				CPDebugPrint("Extracted strain name for drying: " + strainName);
 
-				if (g_CannabisStrainConfigs.Contains(strainName))
+				CP_RawPlantBase plant = CP_RawPlantBase.Cast(attachment);
+				string driedType = "CP_Cannabis" + strainName;
+				if (!plant || !g_Game.ConfigIsExisting("CfgVehicles " + driedType))
 				{
-					CP_RawPlantBase plant = CP_RawPlantBase.Cast(attachment);
-					if (plant)
-					{
-						string driedType = "CP_Cannabis" + strainName;
-						int plantYield = plant.GetYield();
-						if (plantYield <= 0)
-						{
-							// Yield was never set (e.g. plant created outside normal harvest chain).
-							// Fall back to the strain's configured CropCount so the post still
-							// produces the correct amount rather than 1 bud per plant.
-							plantYield = g_CannabisStrainConfigs.Get(strainName).CropCount;
-							CPDebugPrint("Warning: Plant " + plant + " had yield=0; using strain default CropCount: " + plantYield);
-						}
-						AddToMap(driedType, plantYield);
-						CPDebugPrint("Added to map: " + driedType + " with yield: " + plantYield);
-					}
-					else
-					{
-						CPDebugPrint("Warning: Failed to cast attachment to CP_RawPlantBase for: " + ItemName);
-					}
+					Print("[CannabisPlus] WARNING: drying post can't dry " + ItemName + " (no bud item " + driedType + "); the plant stays on the post.");
+					continue;
 				}
-				else
+
+				int plantYield = plant.GetYield();
+				if (plantYield <= 0)
 				{
-					CPDebugPrint("Warning: Strain config for '" + strainName + "' not found. Skipping drying for: " + ItemName);
+					// Yield was never set (e.g. plant created outside the normal harvest chain): use the strain's
+					// CropCount. If the strain's settings didn't load (e.g. DZEXP-134 on DayZ 1.30), the plant stays
+					// on the post rather than being deleted without buds.
+					if (!g_CannabisStrainConfigs.Contains(strainName))
+					{
+						Print("[CannabisPlus] WARNING: no settings loaded for strain '" + strainName + "' and " + ItemName + " has no yield; the plant stays on the post.");
+						continue;
+					}
+					plantYield = g_CannabisStrainConfigs.Get(strainName).CropCount;
+					CPDebugPrint("Warning: Plant " + plant + " had yield=0; using strain default CropCount: " + plantYield);
 				}
+				AddToMap(driedType, plantYield);
+				m_DriedPlants.Insert(plant);
+				CPDebugPrint("Added to map: " + driedType + " with yield: " + plantYield);
 			}
 		}			
 		g_Game.GetCallQueue(CALL_CATEGORY_GAMEPLAY).CallLater(SpawnDried, 500, false, GetPosition() );
@@ -361,20 +361,17 @@ class CP_DryPost extends ItemBase
 	{	
 		if ( g_Game && g_Game.IsServer() )
 		{
-			NumItems = GetInventory().AttachmentCount();
-			for ( int i = NumItems - 1; i >= 0; i-- )
+			// Only the plants that were turned into buds; any the post couldn't dry stay on it.
+			foreach (ItemBase dried : m_DriedPlants)
 			{
-				ItemBase attachment = ItemBase.Cast( GetInventory().GetAttachmentFromIndex( i ) );
-				if (!attachment)
-					continue;
-				ItemName = attachment.GetType();
-	            	if (ItemName.IndexOf("CP_Raw") >= 0)
-		            {
-					CPDebugPrint("deleting " + attachment);
-					g_Game.ObjectDelete(attachment);	
-				}	
-	        }
-	
+				if (dried)
+				{
+					CPDebugPrint("deleting " + dried);
+					g_Game.ObjectDelete(dried);
+				}
+			}
+			m_DriedPlants.Clear();
+
 			NumPlants = 0;
 			BudSpawn.Clear();
 		}
