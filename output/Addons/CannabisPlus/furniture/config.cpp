@@ -228,6 +228,7 @@ class CfgVehicles
 		model="\CannabisPlus\furniture\CannabisPlantHanging.p3d";
         itemSize[]={1,4};
 		rotationFlags = 32;
+		acCompostable=1;		// AgricultureCore compost bin accepts raw and dried plants (1 compost point per plant)
         inventorySlot[]=
         {
             "HangingPlants",
@@ -245,7 +246,6 @@ class CfgVehicles
 		scope = 2;
 		displayName="#cp_dried_plant0";
 		descriptionShort="#cp_dried_plant1";
-		acCompostable=1;		// AgricultureCore compost bin accepts it (1 compost point per plant)
 		model="\CannabisPlus\furniture\DriedCannabisPlantHanging.p3d";
         itemSize[]={1,4};
 		canBeSplit=1;

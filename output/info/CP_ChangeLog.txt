@@ -88,7 +88,7 @@ Mod Changes
 - Unpacking joint packs now uses AgricultureCore's shared unpack action. Requires the latest AgricultureCore.
 - Unpacking DrugsPLUS and vanilla cigarette packs is now handled by DrugsPLUS instead of CannabisPlus.
 - Unpacked joints now drop onto the ground surface instead of at the player's exact position.
-- Dried cannabis plants can be put in AgricultureCore's new compost bin.
+- Raw and dried cannabis plants can be put in AgricultureCore's new compost bin.
 - The fertilizing-speed settings code moved to AgricultureCore. The settings themselves were already in AgricultureCore.json, so nothing changes for you.
 
 Fixes
