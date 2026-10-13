@@ -9,6 +9,8 @@ Mod Changes
 - The fertilizing-speed settings code moved to AgricultureCore. The settings themselves were already in AgricultureCore.json, so nothing changes for you.
 
 Fixes
+- Fixed "Can't compile Game script module: Circle inheritance in class ParticleList" (CannabisPlus/scripts/3_game/ParticleList.c)
+  on servers where another mod that adds particles loads after CannabisPlus (for example some vehicle mods).
 - Smoking too much now makes players vomit on multiplayer servers. Before, the server never counted joint puffs, so it only worked in singleplayer.
 - The stoned screen effect now reliably starts after JointCyclesToActivateEffect puffs on multiplayer servers. Before, the count could be reset by the server mid-smoke.
 - The stoned screen effect now combines with DrugsPLUS effects instead of being cleared when one of them wears off. Needs the latest AgricultureCore.
