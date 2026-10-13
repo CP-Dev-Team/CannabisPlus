@@ -77,6 +77,8 @@ Config Changes
 
 Fixes
 - CannabisPlus no longer overrides the vanilla truck battery proxy, which removed the TruckBattery slot from it.
+- Fixed "Can't compile Game script module: Circle inheritance in class ParticleList" (CannabisPlus/scripts/3_game/ParticleList.c)
+  on servers where another mod that adds particles loads after CannabisPlus (for example some vehicle mods).
 
 Existing workbenches keep their attached machines, battery and items (tested with a save from the current release).
 No items lost: the per-strain item classes are retired and converted automatically (see Strain genetics).
