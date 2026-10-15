@@ -1,5 +1,5 @@
-Experimental (DayZ 1.30 test build, Workshop experimental branch)
-Update all four agriculture mods together: AgricultureCore, GardeningPlus, DrugsPLUS and CannabisPlus.
+v3.2.0
+DayZ 1.30 update. Update all four agriculture mods together: AgricultureCore 1.1.0, GardeningPlus 1.1.0, DrugsPLUS 2.3.0 and CannabisPlus 3.2.0.
 
 Mod Changes
 - Unpacking joint packs now uses AgricultureCore's shared unpack action. Requires the latest AgricultureCore.
@@ -25,6 +25,7 @@ Fixes
   Make Cannabis Workbench Kit, Tear apart Workbench.
 
 Config Changes
+- CannabisPlus is now version 3.2.0. On the first start after updating, a copy of your current CannabisPlus.json and strain files is saved in profiles/CannabisPlus/ConfigBackup/v312 before anything is added. Your settings are kept.
 - Your settings in CannabisPlus.json and your strain files are now kept when the mod updates. Previously an update moved every strain file into ConfigBackup and replaced them with defaults, so custom strains disappeared from the strains folder. New settings are added with their default values and settings that no longer exist are removed. A copy of your old files is still saved in profiles/CannabisPlus/ConfigBackup/v<old version>.
 - If CannabisPlus.json or a strain file has a mistake in it (for example a missing comma), the mod now logs an error in the script log and uses default settings for that file until it's fixed, instead of silently using zeros. Your file is not overwritten.
 

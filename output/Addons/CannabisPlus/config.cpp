@@ -20,7 +20,7 @@ class CfgMods
 		credits="IceBlade, bombjack, Gloser, Kuli, Dumpgrah";
 		author="IceBlade";
 		authorID="0";
-		version="3.1.2";
+		version="3.2.0";
 		extra=0;
 		type="Mod";
 		defines[]={"CANNABISPLUS"};

@@ -16,7 +16,7 @@ Folder structure:
 
 === Explanation of CannabisPlus.json (Main Config) ===
 
-    "ConfigVersion": 312,                               // Mod version the config was saved with.  312 = 3.1.2.  Don't change; the mod uses it to update your config.
+    "ConfigVersion": 320,                               // Mod version the config was saved with.  320 = 3.2.0.  Don't change; the mod uses it to update your config.
     "EnableServerDebugLogging": false,                   // Enables debug logging on the server.
     "EnableClientDebugLogging": false,                   // Enables debug logging on the client.
     "ActivateJointSmokingEffect": 1,                     // 1 = Activates effects when smoking joints; 0 = No effect.
